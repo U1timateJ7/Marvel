@@ -1,0 +1,17 @@
+{
+  "_fv": 17,
+  "_type": "musicdisc",
+  "definition": {
+    "texture": "music_disc_driving_with_the_top_down",
+    "name": "Music Disc",
+    "description": "Ramin Djawadi - Driving With The Top Down",
+    "creativeTab": {
+      "value": "MISC"
+    },
+    "music": {
+      "value": "CUSTOM:music.marvel.driving_with_the_top_down"
+    },
+    "specialInfo": [],
+    "hasGlow": false
+  }
+}

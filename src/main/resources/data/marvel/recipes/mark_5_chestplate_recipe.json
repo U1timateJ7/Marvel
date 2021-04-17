@@ -1,0 +1,39 @@
+{
+  "group": "mark_5",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "2": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "3": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "4": {
+      "item": "marvel:palladium_arc_reactor"
+    },
+    "5": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "6": {
+      "item": "minecraft:iron_ingot"
+    },
+    "7": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "8": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_5_chestplate",
+    "count": 1
+  }
+}

@@ -66,6 +66,8 @@ public class MarvelModElements {
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.unibeam.fire")));
 		sounds.put(new ResourceLocation("marvel", "item.unibeam.use"),
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.unibeam.use")));
+		sounds.put(new ResourceLocation("marvel", "music.marvel.driving_with_the_top_down"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "music.marvel.driving_with_the_top_down")));
 		try {
 			ModFileScanData modFileInfo = ModList.get().getModFileById("marvel").getFile().getScanResult();
 			Set<ModFileScanData.AnnotationData> annotations = modFileInfo.getAnnotations();

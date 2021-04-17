@@ -1,0 +1,46 @@
+{
+  "_fv": 17,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "suitcasemark5",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:IronManMark5.helmet"
+      },
+      {
+        "value": "CUSTOM:IronManMark5.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark5.legs"
+      },
+      {
+        "value": "CUSTOM:IronManMark5.boots"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:Mark5Suitcase"
+    },
+    "name": "mark_5_suitcase_recipe",
+    "namespace": "mod"
+  }
+}

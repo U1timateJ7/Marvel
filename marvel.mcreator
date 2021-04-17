@@ -2468,6 +2468,76 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "iron_man_ability_function"
+    },
+    {
+      "name": "DrivingWithTheTopDown",
+      "type": "musicdisc",
+      "sortid": 182,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "driving_with_the_top_down",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark5HelmetRecipe",
+      "type": "recipe",
+      "sortid": 183,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_helmet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark5ChestplateRecipe",
+      "type": "recipe",
+      "sortid": 184,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_chestplate_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark5LegsRecipe",
+      "type": "recipe",
+      "sortid": 185,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_legs_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark5FeetRecipe",
+      "type": "recipe",
+      "sortid": 186,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_feet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark5SuitcaseRecipe",
+      "type": "recipe",
+      "sortid": 187,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_suitcase_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark5Recipe",
+      "type": "achievement",
+      "sortid": 188,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_recipe",
+      "path": "~/Function Advancements"
     }
   ],
   "variable_elements": [
@@ -2570,6 +2640,14 @@
       ],
       "category": "player",
       "subtitle": ""
+    },
+    {
+      "name": "music.marvel.driving_with_the_top_down",
+      "files": [
+        "driving_with_the_top_down"
+      ],
+      "category": "record",
+      "subtitle": ""
     }
   ],
   "language_map": {
@@ -2590,16 +2668,17 @@
       "block.marvel.vibranium_block": "Block of Vibranium",
       "advancements.reinforced_leather_recipe.descr": "IRON LEATHER",
       "advancements.black_panther_recipes.descr": "wakanda forever",
-      "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
       "item.marvel.mark_2_open_boots": "Iron Man Boots",
+      "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
       "item.marvel.bloody_captain_americas_shield_red": "Captain America\u0027s Shield",
       "item.marvel.star_spangled_man": "Music Disc",
       "subtitles.item.vibranium_shield.catch": "Shield Is Caught",
       "subtitles.item.vibranium_shield.throw": "Shield Is Thrown",
       "subtitles.item.unibeam.use": "",
-      "item.marvel.vibranium_armor_helmet": "Vibranium Helmet",
       "advancements.vibranium_ore_recipes.title": "Vibranium Ore Recipes",
+      "item.marvel.vibranium_armor_helmet": "Vibranium Helmet",
       "advancements.marvel_advancement_root.title": "Marvel",
+      "subtitles.music.marvel.driving_with_the_top_down": "",
       "item.marvel.repulsor_bullet": "Flame",
       "advancements.vibranium_shield_recipes.title": "Vibranium Shield Recipes",
       "item.marvel.unibeam": "Unibeam",
@@ -2650,6 +2729,7 @@
       "item.marvel.vibranium_shovel": "Vibranium Shovel",
       "block.marvel.heart_shaped_herb": "Heart-Shaped Herb Flower",
       "item.marvel.vibranium_sword": "Vibranium Sword",
+      "item.marvel.driving_with_the_top_down": "Music Disc",
       "item.marvel.iron_man_mark_5_boots": "Iron Man Boots",
       "advancements.reinforced_leather_recipe.title": "Reinforced Leather Recipe",
       "advancements.black_panther_recipes.title": "Black Panther Recipes",
@@ -2686,6 +2766,7 @@
       "item.marvel.vibranium_shield": "Vibranium Shield",
       "item.marvel.iron_man_mark_5_helmet": "Iron Man Helmet",
       "subtitles.item.iron_man_helmet.open": "Helmet Opens",
+      "item.marvel.driving_with_the_top_down.desc": "Ramin Djawadi - Driving With The Top Down",
       "item.marvel.iron_man_mark_5_leggings": "Iron Man Leggings",
       "item.marvel.anti_serum": "AntiSerum",
       "itemGroup.tabmarvel_costumes": "Marvel Costumes",
@@ -2693,6 +2774,7 @@
       "item.marvel.iron_man_mark_3_boots": "Iron Man Boots",
       "item.marvel.mark_5_open_helmet": "Iron Man Helmet",
       "advancements.mark_3_recipe.descr": "Aa",
+      "advancements.mark_5_recipe.descr": "Aa",
       "block.marvel.palladium_ore": "Palladium Ore",
       "item.marvel.mark_2_open_leggings": "Iron Man Leggings",
       "item.marvel.flame": "Flame",
@@ -2700,6 +2782,7 @@
       "item.marvel.star_spangled_man.desc": "Captain America Drum Corps - Star Spangled Man",
       "advancements.mark_1_recipe.descr": "Mark 1",
       "item.marvel.mark_3_open_helmet": "Iron Man Helmet",
+      "advancements.mark_5_recipe.title": "Mark 5 Recipe",
       "item.marvel.iron_man_mark_2_boots": "Iron Man Boots",
       "advancements.vibranium_ore_recipes.descr": "Everything vibranium",
       "item.marvel.vibranium": "Vibranium",

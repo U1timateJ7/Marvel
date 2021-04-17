@@ -94,5 +94,14 @@
         "stream": false
       }
     ]
+  },
+  "music.marvel.driving_with_the_top_down": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "marvel:driving_with_the_top_down",
+        "stream": true
+      }
+    ]
   }
 }

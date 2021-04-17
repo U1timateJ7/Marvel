@@ -76,7 +76,7 @@ public class CapsShieldRedItem extends MarvelModElements.ModElement {
 	}
 	public static class ItemRanged extends Item {
 		public ItemRanged() {
-			super(new Item.Properties().group(MarvelWeaponsItemGroup.tab).maxStackSize(1));
+			super(new Item.Properties().group(MarvelWeaponsItemGroup.tab).maxStackSize(1).isImmuneToFire());
 			setRegistryName("captain_americas_shield_red");
 		}
 
