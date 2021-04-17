@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "mark_1_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:palladium_arc_reactor",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:mark_1_helmet_recipe",
+      "marvel:mark_1_chestplate_recipe",
+      "marvel:mark_1_legs_recipe",
+      "marvel:mark_1_boots_recipe"
+    ]
+  }
+}

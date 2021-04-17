@@ -1,0 +1,12 @@
+{
+  "_fv": 17,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "H",
+    "keyBindingName": "Toggle Helmet",
+    "keyBindingCategoryKey": "misc",
+    "onKeyReleased": {
+      "name": "ToggleHelmetKey"
+    }
+  }
+}

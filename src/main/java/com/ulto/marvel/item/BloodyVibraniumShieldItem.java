@@ -41,7 +41,7 @@ import java.util.Random;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.ulto.marvel.procedures.VibraniumShieldRangedItemUsedProcedure;
+import com.ulto.marvel.procedures.BloodyVibraniumShieldRangedItemUsedProcedure;
 import com.ulto.marvel.procedures.VibraniumShieldHitsLivingEntityProcedure;
 import com.ulto.marvel.procedures.VibraniumShieldHitsBlockProcedure;
 import com.ulto.marvel.itemgroup.MarvelWeaponsItemGroup;
@@ -119,11 +119,11 @@ public class BloodyVibraniumShieldItem extends MarvelModElements.ModElement {
 				double z = entity.getPosZ();
 				if (true) {
 					ItemStack stack = ShootableItem.getHeldAmmo(entity,
-							e -> e.getItem() == new ItemStack(block, (int) (1)).getItem());
+							e -> e.getItem() == new ItemStack(BloodyVibraniumShieldItem.block, (int) (1)).getItem());
 					if (stack == ItemStack.EMPTY) {
 						for (int i = 0; i < entity.inventory.mainInventory.size(); i++) {
 							ItemStack teststack = entity.inventory.mainInventory.get(i);
-							if (teststack != null && teststack.getItem() == new ItemStack(block, (int) (1)).getItem()) {
+							if (teststack != null && teststack.getItem() == new ItemStack(BloodyVibraniumShieldItem.block, (int) (1)).getItem()) {
 								stack = teststack;
 								break;
 							}
@@ -135,7 +135,7 @@ public class BloodyVibraniumShieldItem extends MarvelModElements.ModElement {
 						if (entity.abilities.isCreativeMode) {
 							entityarrow.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 						} else {
-							if (new ItemStack(block, (int) (1)).isDamageable()) {
+							if (new ItemStack(BloodyVibraniumShieldItem.block, (int) (1)).isDamageable()) {
 								if (stack.attemptDamageItem(1, random, entity)) {
 									stack.shrink(1);
 									stack.setDamage(0);
@@ -151,7 +151,7 @@ public class BloodyVibraniumShieldItem extends MarvelModElements.ModElement {
 						{
 							Map<String, Object> $_dependencies = new HashMap<>();
 							$_dependencies.put("entity", entity);
-							VibraniumShieldRangedItemUsedProcedure.executeProcedure($_dependencies);
+							BloodyVibraniumShieldRangedItemUsedProcedure.executeProcedure($_dependencies);
 						}
 					}
 				}
@@ -185,12 +185,12 @@ public class BloodyVibraniumShieldItem extends MarvelModElements.ModElement {
 		@Override
 		@OnlyIn(Dist.CLIENT)
 		public ItemStack getItem() {
-			return new ItemStack(VibraniumShieldItem.block, (int) (1));
+			return new ItemStack(BloodyVibraniumShieldItem.block, (int) (1));
 		}
 
 		@Override
 		protected ItemStack getArrowStack() {
-			return new ItemStack(VibraniumShieldItem.block, (int) (1));
+			return new ItemStack(BloodyVibraniumShieldItem.block, (int) (1));
 		}
 
 		@Override

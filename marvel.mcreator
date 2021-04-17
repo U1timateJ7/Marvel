@@ -1517,6 +1517,957 @@
       "ids": {},
       "registry_name": "palladium_ore_smelting",
       "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "IronManMark1",
+      "type": "armor",
+      "sortid": 119,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_1",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManArmor",
+      "type": "tab",
+      "sortid": 120,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_armor"
+    },
+    {
+      "name": "Mark1BlurDisplay",
+      "type": "procedure",
+      "sortid": 121,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "mark_1_blur_display",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark1Blur",
+      "type": "overlay",
+      "sortid": 121,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_blur",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Flame",
+      "type": "item",
+      "sortid": 122,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "flame",
+      "path": "~/Useless Items"
+    },
+    {
+      "name": "IronManFlamethrower",
+      "type": "gun",
+      "sortid": 122,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "flamethrower",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManFlamethrowerBulletHitsLivingEntity",
+      "type": "procedure",
+      "sortid": 123,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_flamethrower_bullet_hits_living_entity",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManMark1BodyTickEvent",
+      "type": "procedure",
+      "sortid": 124,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_1_body_tick_event",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManFlamethrowerBulletHitsBlock",
+      "type": "procedure",
+      "sortid": 125,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_flamethrower_bullet_hits_block",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "BloodyVibraniumShieldRangedItemUsed",
+      "type": "procedure",
+      "sortid": 127,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "bloody_vibranium_shield_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "BloodyCapsShieldRedRangedItemUsed",
+      "type": "procedure",
+      "sortid": 128,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "bloody_caps_shield_red_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "BloodyCapsShieldBlueRangedItemUsed",
+      "type": "procedure",
+      "sortid": 129,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "bloody_caps_shield_blue_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "TitaniumIngot",
+      "type": "item",
+      "sortid": 131,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_ingot",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "TitaniumOre",
+      "type": "block",
+      "sortid": 132,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_ore",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "TitaniumBlock",
+      "type": "block",
+      "sortid": 133,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_block",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "TitaniumOreBlockRecipe",
+      "type": "recipe",
+      "sortid": 134,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_ore_block_recipe",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "TitaniumBlockOreRecipe",
+      "type": "recipe",
+      "sortid": 135,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_block_ore_recipe",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "TitaniumOreSmelting",
+      "type": "recipe",
+      "sortid": 136,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_ore_smelting",
+      "path": "~/Iron Man/Titanium"
+    },
+    {
+      "name": "Mark1HelmetRecipe",
+      "type": "recipe",
+      "sortid": 137,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_helmet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "PalladiumArcReactor",
+      "type": "item",
+      "sortid": 138,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_arc_reactor",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "PalladiumArcReactorRecipe",
+      "type": "recipe",
+      "sortid": 139,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_arc_reactor_recipe",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark1ChestplateRecipe",
+      "type": "recipe",
+      "sortid": 138,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_chestplate_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark1LegsRecipe",
+      "type": "recipe",
+      "sortid": 140,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_legs_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark1BootsRecipe",
+      "type": "recipe",
+      "sortid": 141,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_boots_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "PalladiumRecipes",
+      "type": "achievement",
+      "sortid": 142,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "TitaniumRecipes",
+      "type": "achievement",
+      "sortid": 143,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "titanium_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "Mark1Recipe",
+      "type": "achievement",
+      "sortid": 144,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_1_recipe",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "IronManMark2",
+      "type": "armor",
+      "sortid": 145,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_2",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "RemoveIronManWeapons",
+      "type": "procedure",
+      "sortid": 147,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "remove_iron_man_weapons",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark2Flight",
+      "type": "procedure",
+      "sortid": 148,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_flight",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "GoldTitaniumAlloy",
+      "type": "item",
+      "sortid": 150,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "gold_titanium_alloy",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark2HelmetRecipe",
+      "type": "recipe",
+      "sortid": 151,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_helmet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark2ChestplateRecipe",
+      "type": "recipe",
+      "sortid": 152,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_chestplate_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark2LegsRecipe",
+      "type": "recipe",
+      "sortid": 153,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_legs_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark2BootsRecipe",
+      "type": "recipe",
+      "sortid": 154,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_boots_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "GoldTitaniumAlloyRecipe",
+      "type": "recipe",
+      "sortid": 155,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "gold_titanium_alloy_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark2Recipe",
+      "type": "achievement",
+      "sortid": 156,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_recipe",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "IronManMark3",
+      "type": "armor",
+      "sortid": 157,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_3",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark3Flight",
+      "type": "procedure",
+      "sortid": 158,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "mark_3_flight",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark2Open",
+      "type": "armor",
+      "sortid": 159,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_2_open",
+      "metadata": {
+        "eh": true,
+        "el": false,
+        "eb": false,
+        "ec": false
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark3Open",
+      "type": "armor",
+      "sortid": 160,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_open",
+      "metadata": {
+        "eh": true,
+        "el": false,
+        "eb": false,
+        "ec": false
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "ToggleHelmetKey",
+      "type": "procedure",
+      "sortid": 161,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "toggle_helmet_key",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ToggleHelmet",
+      "type": "keybind",
+      "sortid": 161,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "toggle_helmet"
+    },
+    {
+      "name": "Repulsor",
+      "type": "gun",
+      "sortid": 162,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "repulsor",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "RepulsorBullet",
+      "type": "item",
+      "sortid": 163,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "repulsor_bullet",
+      "path": "~/Useless Items"
+    },
+    {
+      "name": "RepulsorRangedItemUsed",
+      "type": "procedure",
+      "sortid": 164,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "repulsor_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Unibeam",
+      "type": "gun",
+      "sortid": 165,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "unibeam",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "UnibeamRangedItemUsed",
+      "type": "procedure",
+      "sortid": 166,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "unibeam_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "UnibeamBulletHitsBlock",
+      "type": "procedure",
+      "sortid": 167,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "unibeam_bullet_hits_block",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManBodyTickEvent",
+      "type": "procedure",
+      "sortid": 168,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_body_tick_event",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManWeaponsPrime",
+      "type": "procedure",
+      "sortid": 169,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_weapons_prime",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark3HelmetRecipe",
+      "type": "recipe",
+      "sortid": 170,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_helmet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark3ChestplateRecipe",
+      "type": "recipe",
+      "sortid": 171,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_chestplate_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark3LegsRecipe",
+      "type": "recipe",
+      "sortid": 172,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_legs_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark3FeetRecipe",
+      "type": "recipe",
+      "sortid": 173,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_feet_recipe",
+      "path": "~/Iron Man/Recipes"
+    },
+    {
+      "name": "Mark3Recipe",
+      "type": "achievement",
+      "sortid": 174,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_3_recipe",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "IronManMark5",
+      "type": "armor",
+      "sortid": 175,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_5",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark5Flight",
+      "type": "procedure",
+      "sortid": 176,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "mark_5_flight",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark5Open",
+      "type": "armor",
+      "sortid": 177,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_open",
+      "metadata": {
+        "eh": true,
+        "el": false,
+        "eb": false,
+        "ec": false
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark5Suitcase",
+      "type": "item",
+      "sortid": 178,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_suitcase",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Mark5SuitcaseRightClickedInAir",
+      "type": "procedure",
+      "sortid": 178,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_5_suitcase_right_clicked_in_air",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManAbilityOnKeyReleased",
+      "type": "procedure",
+      "sortid": 179,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_ability_on_key_released",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "IronManAbility",
+      "type": "keybind",
+      "sortid": 179,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_ability"
+    },
+    {
+      "name": "MarkNumberUpdater",
+      "type": "procedure",
+      "sortid": 180,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "mark_number_updater",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManAbilityFunction",
+      "type": "function",
+      "sortid": 181,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_ability_function"
     }
   ],
   "variable_elements": [
@@ -1531,6 +2482,12 @@
       "type": "logic",
       "scope": "player_lifetime",
       "value": "false"
+    },
+    {
+      "name": "ironManMkNum",
+      "type": "number",
+      "scope": "player_persistent",
+      "value": "0"
     }
   ],
   "sound_elements": [
@@ -1565,91 +2522,197 @@
       ],
       "category": "record",
       "subtitle": ""
+    },
+    {
+      "name": "item.iron_man_helmet.open",
+      "files": [
+        "iron_man_helmet_opens"
+      ],
+      "category": "player",
+      "subtitle": "Helmet Opens"
+    },
+    {
+      "name": "item.iron_man_helmet.close",
+      "files": [
+        "iron_man_helmet_closes"
+      ],
+      "category": "ambient",
+      "subtitle": "Helmet Closes"
+    },
+    {
+      "name": "item.repulsor.shoot",
+      "files": [
+        "repulser_shoot"
+      ],
+      "category": "player",
+      "subtitle": "Repulsor Fires"
+    },
+    {
+      "name": "item.repulsor.use",
+      "files": [
+        "repulser_use"
+      ],
+      "category": "player",
+      "subtitle": ""
+    },
+    {
+      "name": "item.unibeam.fire",
+      "files": [
+        "unibeam_shoot"
+      ],
+      "category": "player",
+      "subtitle": "Unibeam Fired"
+    },
+    {
+      "name": "item.unibeam.use",
+      "files": [
+        "unibeam_use"
+      ],
+      "category": "player",
+      "subtitle": ""
     }
   ],
   "language_map": {
     "en_us": {
-      "itemGroup.tabmarvel_items": "Marvel",
       "subtitles.music.marvel.wakanda": "",
-      "subtitles.music.records.star_spangled_man": "",
       "item.marvel.vibranium_axe": "Vibranium Axe",
       "item.marvel.captain_america_suit_helmet": "Captain America\u0027s Helmet",
+      "item.marvel.iron_man_mark_1_leggings": "Iron Man Leggings",
+      "item.marvel.mark_5_open_chestplate": "Iron Man Chestplate",
+      "itemGroup.tabiron_man_armor": "Iron Man",
       "advancements.leather_costume_recipes.descr": "MOER COSTUMES",
       "item.marvel.captain_america_suit_boots": "Captain America\u0027s Boots",
-      "item.marvel.bloody_captain_americas_shield_blue": "Captain America\u0027s Shield",
-      "item.marvel.john_walker_suit_boots": "Captain America\u0027s Boots",
       "item.marvel.john_walker_suit_chestplate": "Captain America\u0027s Suit",
-      "item.marvel.captain_america_suit_leggings": "Captain America\u0027s Pants",
-      "item.marvel.captain_america_stealth_suit_boots": "Captain America\u0027s Stealth Boots",
-      "item.marvel.vibranium_shovel": "Vibranium Shovel",
-      "block.marvel.heart_shaped_herb": "Heart-Shaped Herb Flower",
-      "item.marvel.vibranium_sword": "Vibranium Sword",
+      "item.marvel.iron_man_mark_1_boots": "Iron Man Boots",
+      "item.marvel.titanium_ingot": "Titanium",
       "item.marvel.black_panther_suit_helmet": "Black Panther Helmet",
-      "advancements.reinforced_leather_recipe.title": "Reinforced Leather Recipe",
-      "advancements.black_panther_recipes.title": "Black Panther Recipes",
-      "item.marvel.wakanda": "Music Disc",
+      "advancements.mark_1_recipe.title": "Mark 1 Recipe",
       "block.marvel.vibranium_block": "Block of Vibranium",
       "advancements.reinforced_leather_recipe.descr": "IRON LEATHER",
-      "item.marvel.vibranium_ingot": "Vibranium Ingot",
       "advancements.black_panther_recipes.descr": "wakanda forever",
-      "item.marvel.captain_america_stealth_suit_helmet": "Captain America\u0027s Stealth Helmet",
       "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
-      "advancements.serum_recipes.title": "Serum Recipes",
+      "item.marvel.mark_2_open_boots": "Iron Man Boots",
       "item.marvel.bloody_captain_americas_shield_red": "Captain America\u0027s Shield",
       "item.marvel.star_spangled_man": "Music Disc",
-      "item.marvel.vibranium_armor_leggings": "Vibranium Leggings",
       "subtitles.item.vibranium_shield.catch": "Shield Is Caught",
       "subtitles.item.vibranium_shield.throw": "Shield Is Thrown",
-      "item.marvel.vibranium_armor_boots": "Vibranium Boots",
-      "block.marvel.heart_shaped_herb_stage_4": "Heart Shaped Herb Stage 4",
+      "subtitles.item.unibeam.use": "",
       "item.marvel.vibranium_armor_helmet": "Vibranium Helmet",
       "advancements.vibranium_ore_recipes.title": "Vibranium Ore Recipes",
-      "block.marvel.heart_shaped_herb_stage_5": "Heart Shaped Herb Stage 5",
-      "block.marvel.vibranium_ore": "Vibranium Ore",
-      "block.marvel.heart_shaped_herb_stage_2": "Heart Shaped Herb Stage 2",
       "advancements.marvel_advancement_root.title": "Marvel",
-      "block.marvel.heart_shaped_herb_stage_3": "Heart Shaped Herb Stage 3",
-      "block.marvel.heart_shaped_herb_stage_1": "Heart Shaped Herb Stage 1",
-      "item.marvel.wakanda.desc": "Ludwig Göransson - Wakanda",
+      "item.marvel.repulsor_bullet": "Flame",
       "advancements.vibranium_shield_recipes.title": "Vibranium Shield Recipes",
-      "item.marvel.captain_americas_shield_red": "Captain America\u0027s Shield",
-      "block.marvel.heart_shaped_herb_stage_6": "Heart Shaped Herb Stage 6",
-      "block.marvel.heart_shaped_herb_stage_7": "Heart Shaped Herb Stage 7",
+      "item.marvel.unibeam": "Unibeam",
       "subtitles.music.marvel.star_spangled_man": "",
       "item.marvel.captain_america_suit_chestplate": "Captain America\u0027s Suit",
       "item.marvel.black_panther_suit_chestplate": "Black Panther Suit",
       "advancements.vibranium_advancement.title": "The most versatile substance on the planet...",
+      "block.marvel.titanium_ore": "Titanium Ore",
+      "key.marvel.iron_man_ability": "Iron Man Ability",
       "item.marvel.reinforced_leather": "Reinforced Leather",
+      "item.marvel.gold_titanium_alloy": "Gold Titanium Alloy",
+      "key.marvel.toggle_helmet": "Toggle Helmet",
+      "item.marvel.iron_man_mark_2_helmet": "Iron Man Helmet",
+      "item.marvel.iron_man_mark_3_helmet": "Iron Man Helmet",
+      "item.marvel.palladium_arc_reactor": "Palladium Arc Reactor",
+      "item.marvel.mark_3_open_boots": "Iron Man Boots",
+      "item.marvel.captain_america_stealth_suit_leggings": "Captain America\u0027s Stealth Pants",
+      "advancements.palladium_recipes.title": "Palladium Recipes",
+      "subtitles.item.vibranium_shield.hit": "Shield Hits",
+      "item.marvel.black_panther_suit_boots": "Black Panther Boots",
+      "item.marvel.iron_man_mark_1_chestplate": "Iron Man Chestplate",
+      "advancements.palladium_recipes.descr": "palladium",
+      "item.marvel.iron_man_mark_3_leggings": "Iron Man Leggings",
+      "itemGroup.tabmarvel_weapons": "Marvel Weapons",
+      "advancements.mark_2_recipe.title": "Mark 2 Recipe",
+      "item.marvel.iron_man_mark_2_chestplate": "Iron Man Chestplate",
+      "advancements.titanium_recipes.descr": "titan",
+      "item.marvel.captain_america_stealth_suit_chestplate": "Captain America\u0027s Stealth Suit",
+      "advancements.mark_2_recipe.descr": "Mark 2",
+      "item.marvel.bloody_vibranium_shield": "Vibranium Shield",
+      "subtitles.item.repulsor.shoot": "Repulsor Fires",
+      "item.marvel.repulsor": "Repulsor",
+      "advancements.leather_costume_recipes.title": "Leather Costume Recipes",
+      "item.marvel.vibranium_hoe": "Vibranium Hoe",
+      "item.marvel.iron_man_mark_3_chestplate": "Iron Man Chestplate",
+      "item.marvel.vibranium_pickaxe": "Vibranium Pickaxe",
+      "item.marvel.palladium_ingot": "Palladium",
+      "item.marvel.heart_shaped_herb_seeds": "Heart-Shaped Herb Seeds",
+      "item.marvel.mark_5_open_boots": "Iron Man Boots",
+      "itemGroup.tabmarvel_items": "Marvel",
+      "subtitles.music.records.star_spangled_man": "",
+      "item.marvel.bloody_captain_americas_shield_blue": "Captain America\u0027s Shield",
+      "item.marvel.john_walker_suit_boots": "Captain America\u0027s Boots",
+      "item.marvel.captain_america_suit_leggings": "Captain America\u0027s Pants",
+      "block.marvel.titanium_block": "Block of Titanium",
+      "item.marvel.mark_5_open_leggings": "Iron Man Leggings",
+      "item.marvel.captain_america_stealth_suit_boots": "Captain America\u0027s Stealth Boots",
+      "item.marvel.vibranium_shovel": "Vibranium Shovel",
+      "block.marvel.heart_shaped_herb": "Heart-Shaped Herb Flower",
+      "item.marvel.vibranium_sword": "Vibranium Sword",
+      "item.marvel.iron_man_mark_5_boots": "Iron Man Boots",
+      "advancements.reinforced_leather_recipe.title": "Reinforced Leather Recipe",
+      "advancements.black_panther_recipes.title": "Black Panther Recipes",
+      "item.marvel.wakanda": "Music Disc",
+      "advancements.mark_3_recipe.title": "Mark 3 Recipe",
+      "item.marvel.vibranium_ingot": "Vibranium Ingot",
+      "item.marvel.captain_america_stealth_suit_helmet": "Captain America\u0027s Stealth Helmet",
+      "subtitles.item.repulsor.use": "",
+      "item.marvel.iron_man_mark_5_chestplate": "Iron Man Chestplate",
+      "advancements.serum_recipes.title": "Serum Recipes",
+      "subtitles.item.unibeam.fire": "Unibeam Fired",
+      "item.marvel.vibranium_armor_leggings": "Vibranium Leggings",
+      "item.marvel.vibranium_armor_boots": "Vibranium Boots",
+      "block.marvel.heart_shaped_herb_stage_4": "Heart Shaped Herb Stage 4",
+      "advancements.titanium_recipes.title": "Titanium Recipes",
+      "item.marvel.mark_3_open_leggings": "Iron Man Leggings",
+      "block.marvel.heart_shaped_herb_stage_5": "Heart Shaped Herb Stage 5",
+      "block.marvel.heart_shaped_herb_stage_2": "Heart Shaped Herb Stage 2",
+      "block.marvel.vibranium_ore": "Vibranium Ore",
+      "block.marvel.heart_shaped_herb_stage_3": "Heart Shaped Herb Stage 3",
+      "item.marvel.mark_3_open_chestplate": "Iron Man Chestplate",
+      "block.marvel.heart_shaped_herb_stage_1": "Heart Shaped Herb Stage 1",
+      "item.marvel.wakanda.desc": "Ludwig Göransson - Wakanda",
+      "item.marvel.captain_americas_shield_red": "Captain America\u0027s Shield",
+      "block.marvel.heart_shaped_herb_stage_6": "Heart Shaped Herb Stage 6",
+      "block.marvel.heart_shaped_herb_stage_7": "Heart Shaped Herb Stage 7",
+      "subtitles.item.iron_man_helmet.close": "Helmet Closes",
       "item.marvel.super_soldier_serum": "Super Soldier Serum",
       "advancements.marvel_advancement_root.descr": "You\u0027re a part of a bigger universe now.",
       "item.marvel.black_panther_suit_leggings": "Black Panther Pants",
       "item.marvel.heart_shaped_herb_item": "Heart Shaped Herb",
+      "item.marvel.iron_man_mark_1_helmet": "Iron Man Helmet",
       "item.marvel.john_walker_suit_helmet": "Captain America\u0027s Helmet",
       "item.marvel.vibranium_shield": "Vibranium Shield",
-      "item.marvel.captain_america_stealth_suit_leggings": "Captain America\u0027s Stealth Pants",
+      "item.marvel.iron_man_mark_5_helmet": "Iron Man Helmet",
+      "subtitles.item.iron_man_helmet.open": "Helmet Opens",
+      "item.marvel.iron_man_mark_5_leggings": "Iron Man Leggings",
       "item.marvel.anti_serum": "AntiSerum",
       "itemGroup.tabmarvel_costumes": "Marvel Costumes",
-      "subtitles.item.vibranium_shield.hit": "Shield Hits",
-      "item.marvel.black_panther_suit_boots": "Black Panther Boots",
       "item.marvel.vibranium_weave": "Vibranium Weave",
+      "item.marvel.iron_man_mark_3_boots": "Iron Man Boots",
+      "item.marvel.mark_5_open_helmet": "Iron Man Helmet",
+      "advancements.mark_3_recipe.descr": "Aa",
       "block.marvel.palladium_ore": "Palladium Ore",
-      "itemGroup.tabmarvel_weapons": "Marvel Weapons",
+      "item.marvel.mark_2_open_leggings": "Iron Man Leggings",
+      "item.marvel.flame": "Flame",
       "block.marvel.palladium_block": "Block of Palladium",
       "item.marvel.star_spangled_man.desc": "Captain America Drum Corps - Star Spangled Man",
-      "item.marvel.captain_america_stealth_suit_chestplate": "Captain America\u0027s Stealth Suit",
+      "advancements.mark_1_recipe.descr": "Mark 1",
+      "item.marvel.mark_3_open_helmet": "Iron Man Helmet",
+      "item.marvel.iron_man_mark_2_boots": "Iron Man Boots",
       "advancements.vibranium_ore_recipes.descr": "Everything vibranium",
       "item.marvel.vibranium": "Vibranium",
-      "item.marvel.bloody_vibranium_shield": "Vibranium Shield",
-      "advancements.leather_costume_recipes.title": "Leather Costume Recipes",
+      "item.marvel.mark_5_suitcase": "Mark V Suitcase",
+      "item.marvel.mark_2_open_helmet": "Iron Man Helmet",
       "item.marvel.john_walker_suit_leggings": "Captain America\u0027s Pants",
-      "item.marvel.vibranium_hoe": "Vibranium Hoe",
+      "item.marvel.iron_man_mark_2_leggings": "Iron Man Leggings",
       "advancements.vibranium_advancement.descr": "Refine Vibranium",
       "item.marvel.captain_americas_shield_blue": "Captain America\u0027s Shield",
-      "item.marvel.vibranium_pickaxe": "Vibranium Pickaxe",
+      "item.marvel.mark_2_open_chestplate": "Iron Man Chestplate",
       "advancements.serum_recipes.descr": "Steroids",
-      "item.marvel.palladium_ingot": "Palladium",
-      "advancements.vibranium_shield_recipes.descr": "Dyed shields",
-      "item.marvel.heart_shaped_herb_seeds": "Heart-Shaped Herb Seeds"
+      "item.marvel.flamethrower": "Flamethrower",
+      "advancements.vibranium_shield_recipes.descr": "Dyed shields"
     }
   },
   "foldersRoot": {
@@ -1681,8 +2744,20 @@
           {
             "name": "Palladium",
             "children": []
+          },
+          {
+            "name": "Recipes",
+            "children": []
+          },
+          {
+            "name": "Titanium",
+            "children": []
           }
         ]
+      },
+      {
+        "name": "Useless Items",
+        "children": []
       }
     ]
   },

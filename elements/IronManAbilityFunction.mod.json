@@ -1,0 +1,9 @@
+{
+  "_fv": 17,
+  "_type": "function",
+  "definition": {
+    "code": "give @p marvel:mark_5_suitcase\nreplaceitem entity @p armor.head air\nreplaceitem entity @p armor.chest air\nreplaceitem entity @p armor.legs air\nreplaceitem entity @p armor.feet air",
+    "name": "iron_man_ability",
+    "namespace": "mod"
+  }
+}

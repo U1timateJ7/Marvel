@@ -1,0 +1,16 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "repulser"
+      },
+      "name": "default"
+    },
+    "unibeam": {
+      "map": {
+        "0": "unibeam"
+      },
+      "name": "unibeam"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "group": "titanium",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "marvel:gold_titanium_alloy",
+    "count": 2
+  }
+}

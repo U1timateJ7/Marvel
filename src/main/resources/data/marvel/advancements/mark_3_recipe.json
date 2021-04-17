@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "mark_3_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:iron_man_mark_2_chestplate",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:mark_3_helmet_recipe",
+      "marvel:mark_3_chestplate_recipe",
+      "marvel:mark_3_legs_recipe",
+      "marvel:mark_3_feet_recipe"
+    ]
+  }
+}

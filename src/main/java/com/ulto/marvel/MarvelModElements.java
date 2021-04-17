@@ -54,6 +54,18 @@ public class MarvelModElements {
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "music.marvel.star_spangled_man")));
 		sounds.put(new ResourceLocation("marvel", "music.marvel.wakanda"),
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "music.marvel.wakanda")));
+		sounds.put(new ResourceLocation("marvel", "item.iron_man_helmet.open"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.iron_man_helmet.open")));
+		sounds.put(new ResourceLocation("marvel", "item.iron_man_helmet.close"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.iron_man_helmet.close")));
+		sounds.put(new ResourceLocation("marvel", "item.repulsor.shoot"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.repulsor.shoot")));
+		sounds.put(new ResourceLocation("marvel", "item.repulsor.use"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.repulsor.use")));
+		sounds.put(new ResourceLocation("marvel", "item.unibeam.fire"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.unibeam.fire")));
+		sounds.put(new ResourceLocation("marvel", "item.unibeam.use"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.unibeam.use")));
 		try {
 			ModFileScanData modFileInfo = ModList.get().getModFileById("marvel").getFile().getScanResult();
 			Set<ModFileScanData.AnnotationData> annotations = modFileInfo.getAnnotations();

@@ -1,0 +1,12 @@
+{
+  "_fv": 17,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "V",
+    "keyBindingName": "Iron Man Ability",
+    "keyBindingCategoryKey": "misc",
+    "onKeyPressed": {
+      "name": "IronManAbilityOnKeyReleased"
+    }
+  }
+}

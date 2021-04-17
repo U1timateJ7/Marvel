@@ -1,0 +1,11 @@
+{
+  "_fv": 17,
+  "_type": "tab",
+  "definition": {
+    "name": "Iron Man",
+    "icon": {
+      "value": "CUSTOM:IronManMark3.helmet"
+    },
+    "showSearch": true
+  }
+}

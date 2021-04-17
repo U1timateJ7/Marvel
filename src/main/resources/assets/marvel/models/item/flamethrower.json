@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/flamethrower",
+  "textures": {
+    "0": "marvel:blocks/flamethrower",
+    "particle": "marvel:items/flamethrower"
+  }
+}

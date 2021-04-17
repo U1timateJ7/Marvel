@@ -36,5 +36,63 @@
         "stream": true
       }
     ]
+  },
+  "item.iron_man_helmet.open": {
+    "category": "player",
+    "subtitle": "subtitles.item.iron_man_helmet.open",
+    "sounds": [
+      {
+        "name": "marvel:iron_man_helmet_opens",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_man_helmet.close": {
+    "category": "ambient",
+    "subtitle": "subtitles.item.iron_man_helmet.close",
+    "sounds": [
+      {
+        "name": "marvel:iron_man_helmet_closes",
+        "stream": false
+      }
+    ]
+  },
+  "item.repulsor.shoot": {
+    "category": "player",
+    "subtitle": "subtitles.item.repulsor.shoot",
+    "sounds": [
+      {
+        "name": "marvel:repulser_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "item.repulsor.use": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:repulser_use",
+        "stream": false
+      }
+    ]
+  },
+  "item.unibeam.fire": {
+    "category": "player",
+    "subtitle": "subtitles.item.unibeam.fire",
+    "sounds": [
+      {
+        "name": "marvel:unibeam_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "item.unibeam.use": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:unibeam_use",
+        "stream": false
+      }
+    ]
   }
 }

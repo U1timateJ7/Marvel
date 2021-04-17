@@ -1,0 +1,36 @@
+{
+  "group": "mark_3",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_ingot"
+    },
+    "1": {
+      "item": "minecraft:gold_ingot"
+    },
+    "2": {
+      "item": "minecraft:gold_ingot"
+    },
+    "3": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "4": {
+      "item": "minecraft:gold_ingot"
+    },
+    "5": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "7": {
+      "item": "marvel:gold_titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_3_helmet",
+    "count": 1
+  }
+}

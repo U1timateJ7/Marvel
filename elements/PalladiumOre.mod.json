@@ -43,9 +43,9 @@
     },
     "destroyTool": "pickaxe",
     "customDrop": {
-      "value": "CUSTOM:PalladiumIngot"
+      "value": "CUSTOM:PalladiumOre"
     },
-    "dropAmount": 1,
+    "dropAmount": 2,
     "useLootTableForDrops": false,
     "enchantPowerBonus": 0.0,
     "plantsGrowOn": false,
@@ -110,9 +110,9 @@
         "value": "Blocks.STONE"
       }
     ],
-    "frequencyPerChunks": 11,
-    "frequencyOnChunk": 7,
+    "frequencyPerChunks": 8,
+    "frequencyOnChunk": 4,
     "minGenerateHeight": 1,
-    "maxGenerateHeight": 63
+    "maxGenerateHeight": 40
   }
 }

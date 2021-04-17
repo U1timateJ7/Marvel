@@ -39,7 +39,6 @@ import java.util.List;
 import java.util.Collections;
 
 import com.ulto.marvel.itemgroup.MarvelItemsItemGroup;
-import com.ulto.marvel.item.PalladiumIngotItem;
 import com.ulto.marvel.MarvelModElements;
 
 @MarvelModElements.ModElement.Tag
@@ -70,7 +69,7 @@ public class PalladiumOreBlock extends MarvelModElements.ModElement {
 			List<ItemStack> dropsOriginal = super.getDrops(state, builder);
 			if (!dropsOriginal.isEmpty())
 				return dropsOriginal;
-			return Collections.singletonList(new ItemStack(PalladiumIngotItem.block, (int) (1)));
+			return Collections.singletonList(new ItemStack(PalladiumOreBlock.block, (int) (2)));
 		}
 	}
 	private static Feature<OreFeatureConfig> feature = null;
@@ -107,8 +106,8 @@ public class PalladiumOreBlock extends MarvelModElements.ModElement {
 					return super.generate(world, generator, rand, pos, config);
 				}
 			};
-			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 7)).range(63)
-					.square().func_242731_b(11);
+			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 4)).range(40)
+					.square().func_242731_b(8);
 			event.getRegistry().register(feature.setRegistryName("palladium_ore"));
 			Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("marvel:palladium_ore"), configuredFeature);
 		}

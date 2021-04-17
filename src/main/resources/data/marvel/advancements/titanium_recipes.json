@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "titanium_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:titanium_ore",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:titanium_ore_block_recipe",
+      "marvel:titanium_block_ore_recipe",
+      "marvel:titanium_ore_smelting",
+      "marvel:gold_titanium_alloy_recipe"
+    ]
+  }
+}

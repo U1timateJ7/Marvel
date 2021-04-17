@@ -69,6 +69,7 @@ public class MarvelModVariables {
 			CompoundNBT nbt = new CompoundNBT();
 			nbt.putBoolean("superSoldier", instance.superSoldier);
 			nbt.putBoolean("hasEatenHeartShapedHerb", instance.hasEatenHeartShapedHerb);
+			nbt.putDouble("ironManMkNum", instance.ironManMkNum);
 			return nbt;
 		}
 
@@ -77,12 +78,14 @@ public class MarvelModVariables {
 			CompoundNBT nbt = (CompoundNBT) inbt;
 			instance.superSoldier = nbt.getBoolean("superSoldier");
 			instance.hasEatenHeartShapedHerb = nbt.getBoolean("hasEatenHeartShapedHerb");
+			instance.ironManMkNum = nbt.getDouble("ironManMkNum");
 		}
 	}
 
 	public static class PlayerVariables {
 		public boolean superSoldier = false;
 		public boolean hasEatenHeartShapedHerb = false;
+		public double ironManMkNum = 0;
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayerEntity)
 				MarvelMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity), new PlayerVariablesSyncMessage(this));
@@ -117,6 +120,7 @@ public class MarvelModVariables {
 			PlayerVariables clone = ((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null)
 					.orElse(new PlayerVariables()));
 			clone.superSoldier = original.superSoldier;
+			clone.ironManMkNum = original.ironManMkNum;
 		}
 	}
 	public static class PlayerVariablesSyncMessage {
@@ -142,6 +146,7 @@ public class MarvelModVariables {
 							.orElse(new PlayerVariables()));
 					variables.superSoldier = message.data.superSoldier;
 					variables.hasEatenHeartShapedHerb = message.data.hasEatenHeartShapedHerb;
+					variables.ironManMkNum = message.data.ironManMkNum;
 				}
 			});
 			context.setPacketHandled(true);
