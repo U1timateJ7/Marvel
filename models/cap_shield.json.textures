@@ -1,0 +1,40 @@
+{
+  "mappings": {
+    "red": {
+      "map": {
+        "0": "cap_shield_red"
+      },
+      "name": "red"
+    },
+    "default": {
+      "map": {
+        "0": "cap_shield_blank"
+      },
+      "name": "default"
+    },
+    "blue": {
+      "map": {
+        "0": "cap_shield_blue"
+      },
+      "name": "blue"
+    },
+    "bloody_default": {
+      "map": {
+        "0": "bloody_shield_blank"
+      },
+      "name": "bloody_default"
+    },
+    "bloody_red": {
+      "map": {
+        "0": "bloody_shield_red"
+      },
+      "name": "bloody_red"
+    },
+    "bloody_blue": {
+      "map": {
+        "0": "bloody_shield_blue"
+      },
+      "name": "bloody_blue"
+    }
+  }
+}

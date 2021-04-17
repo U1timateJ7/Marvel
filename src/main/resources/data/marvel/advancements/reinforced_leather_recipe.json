@@ -1,0 +1,25 @@
+{
+  "criteria": {
+    "reinforced_leather_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:iron_ingot",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:reinforced_leather"
+    ]
+  },
+  "parent": "marvel:vibranium_ore_recipes"
+}

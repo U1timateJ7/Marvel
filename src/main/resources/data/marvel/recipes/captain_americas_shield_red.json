@@ -1,0 +1,16 @@
+{
+  "group": "dyed_vibranium_shield",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "marvel:vibranium_shields"
+    },
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "result": {
+    "item": "marvel:captain_americas_shield_red",
+    "count": 1
+  }
+}

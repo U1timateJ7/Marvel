@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "marvel:blocks/heart_shaped_herb",
+    "particle": "marvel:blocks/heart_shaped_herb"
+  }
+}

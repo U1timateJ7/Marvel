@@ -1,0 +1,26 @@
+{
+  "group": "weave_vibranium",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:vibranium"
+    },
+    "1": {
+      "item": "minecraft:string"
+    },
+    "2": {
+      "item": "minecraft:string"
+    },
+    "3": {
+      "item": "marvel:vibranium"
+    }
+  },
+  "result": {
+    "item": "marvel:vibranium_weave",
+    "count": 2
+  }
+}

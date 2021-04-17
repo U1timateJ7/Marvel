@@ -1,0 +1,58 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "captain_america_helmet",
+    "enableBody": true,
+    "textureBody": "captain_america_stealth_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "captain_america_stealth_leggings",
+    "enableBoots": true,
+    "textureBoots": "captain_america_stealth_boots",
+    "creativeTab": {
+      "value": "CUSTOM:MarvelCostumes"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Captain America's Stealth Helmet",
+    "bodyName": "Captain America's Stealth Suit",
+    "leggingsName": "Captain America's Stealth Pants",
+    "bootsName": "Captain America's Stealth Boots",
+    "helmetSpecialInfo": [],
+    "bodySpecialInfo": [],
+    "leggingsSpecialInfo": [],
+    "bootsSpecialInfo": [],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "captain_america_stealth_helmet.png",
+    "bodyModelName": "ModelCostume",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "captain_america_stealth_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "captain_america_stealth_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "captain_america_stealth_layer_1.png",
+    "maxDamage": 25,
+    "damageValueHelmet": 2,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 2,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.0,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      }
+    ]
+  }
+}

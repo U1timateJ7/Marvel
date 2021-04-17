@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "leather_costume_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:reinforced_leather",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:captain_america_suit_head",
+      "marvel:captain_america_suit_body",
+      "marvel:captain_america_suit_leg",
+      "marvel:captain_america_suit_feet",
+      "marvel:captain_america_stealth_suit_head",
+      "marvel:captain_america_stealth_suit_body",
+      "marvel:captain_america_stealth_suit_legs",
+      "marvel:captain_america_stealth_suit_feet",
+      "marvel:john_walker_helmet_recipe",
+      "marvel:john_walker_chestplate_recipe",
+      "marvel:john_walker_legs_recipe",
+      "marvel:john_walker_feet_recipe"
+    ]
+  },
+  "parent": "marvel:vibranium_ore_recipes"
+}

@@ -1,0 +1,36 @@
+{
+  "group": "john_walker",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5",
+    "6 8"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:blue_dye"
+    },
+    "1": {
+      "item": "marvel:reinforced_leather"
+    },
+    "2": {
+      "item": "minecraft:blue_dye"
+    },
+    "3": {
+      "item": "minecraft:red_dye"
+    },
+    "5": {
+      "item": "minecraft:red_dye"
+    },
+    "6": {
+      "item": "marvel:reinforced_leather"
+    },
+    "8": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "result": {
+    "item": "marvel:john_walker_suit_leggings",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "_fv": 17,
+  "_type": "food",
+  "definition": {
+    "renderType": 0,
+    "texture": "heart_shaped_herb",
+    "customModelName": "Normal",
+    "name": "Heart Shaped Herb",
+    "rarity": "COMMON",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:MarvelItems"
+    },
+    "stackSize": 64,
+    "nutritionalValue": 20,
+    "saturation": 2.0,
+    "eatingSpeed": 32,
+    "resultItem": {
+      "value": ""
+    },
+    "forDogs": false,
+    "isAlwaysEdible": true,
+    "animation": "eat",
+    "hasGlow": false,
+    "onEaten": {
+      "name": "HeartShapedHerbEaten"
+    }
+  }
+}

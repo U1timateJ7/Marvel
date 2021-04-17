@@ -1,0 +1,39 @@
+{
+  "group": "panther",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:vibranium_weave"
+    },
+    "2": {
+      "item": "marvel:vibranium_weave"
+    },
+    "3": {
+      "item": "marvel:vibranium_weave"
+    },
+    "4": {
+      "item": "marvel:vibranium_weave"
+    },
+    "5": {
+      "item": "marvel:vibranium_weave"
+    },
+    "6": {
+      "item": "marvel:vibranium_weave"
+    },
+    "7": {
+      "item": "marvel:vibranium_weave"
+    },
+    "8": {
+      "item": "marvel:vibranium_weave"
+    }
+  },
+  "result": {
+    "item": "marvel:black_panther_suit_chestplate",
+    "count": 1
+  }
+}

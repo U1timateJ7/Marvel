@@ -1,0 +1,27 @@
+{
+  "_fv": 17,
+  "_type": "tool",
+  "definition": {
+    "renderType": 0,
+    "texture": "vibranium_sword",
+    "customModelName": "Normal",
+    "name": "Vibranium Sword",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:MarvelWeapons"
+    },
+    "toolType": "Sword",
+    "harvestLevel": 4,
+    "efficiency": 12.0,
+    "attackSpeed": 1.6,
+    "enchantability": 0,
+    "damageVsEntity": 8.0,
+    "usageCount": 0,
+    "blocksAffected": [],
+    "hasGlow": false,
+    "repairItems": [],
+    "immuneToFire": true,
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false
+  }
+}

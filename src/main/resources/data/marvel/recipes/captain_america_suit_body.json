@@ -1,0 +1,39 @@
+{
+  "group": "cap",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:reinforced_leather"
+    },
+    "2": {
+      "item": "marvel:reinforced_leather"
+    },
+    "3": {
+      "item": "marvel:reinforced_leather"
+    },
+    "4": {
+      "item": "marvel:reinforced_leather"
+    },
+    "5": {
+      "item": "marvel:reinforced_leather"
+    },
+    "6": {
+      "item": "minecraft:white_dye"
+    },
+    "7": {
+      "item": "minecraft:red_dye"
+    },
+    "8": {
+      "item": "minecraft:white_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:captain_america_suit_chestplate",
+    "count": 1
+  }
+}

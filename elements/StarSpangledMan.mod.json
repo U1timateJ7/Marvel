@@ -1,0 +1,17 @@
+{
+  "_fv": 17,
+  "_type": "musicdisc",
+  "definition": {
+    "texture": "music_disc_star_spangled_man",
+    "name": "Music Disc",
+    "description": "Captain America Drum Corps - Star Spangled Man",
+    "creativeTab": {
+      "value": "MISC"
+    },
+    "music": {
+      "value": "CUSTOM:music.marvel.star_spangled_man"
+    },
+    "specialInfo": [],
+    "hasGlow": false
+  }
+}

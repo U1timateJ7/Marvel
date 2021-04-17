@@ -1,0 +1,17 @@
+{
+  "_fv": 17,
+  "_type": "tag",
+  "definition": {
+    "type": "Blocks",
+    "items": [],
+    "blocks": [
+      {
+        "value": "CUSTOM:HeartShapedHerb"
+      }
+    ],
+    "functions": [],
+    "entities": [],
+    "name": "small_flowers",
+    "namespace": "minecraft"
+  }
+}

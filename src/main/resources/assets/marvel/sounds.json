@@ -1,0 +1,40 @@
+{
+  "item.vibranium_shield.throw": {
+    "category": "player",
+    "subtitle": "subtitles.item.vibranium_shield.throw",
+    "sounds": [
+      {
+        "name": "marvel:shield_throw",
+        "stream": false
+      }
+    ]
+  },
+  "item.vibranium_shield.hit": {
+    "category": "player",
+    "subtitle": "subtitles.item.vibranium_shield.hit",
+    "sounds": [
+      {
+        "name": "marvel:shield_hit2",
+        "stream": false
+      }
+    ]
+  },
+  "music.marvel.star_spangled_man": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "marvel:star_spangled_man",
+        "stream": true
+      }
+    ]
+  },
+  "music.marvel.wakanda": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "marvel:wakanda",
+        "stream": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:vibranium_ingot"
+    },
+    "1": {
+      "item": "marvel:vibranium_ingot"
+    },
+    "2": {
+      "item": "marvel:vibranium_ingot"
+    },
+    "3": {
+      "item": "marvel:vibranium_ingot"
+    },
+    "5": {
+      "item": "marvel:vibranium_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:vibranium_armor_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "vibranium_ore_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:vibranium_ore",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 0,
+    "recipes": [
+      "marvel:vibranium_ore_block_recipe",
+      "marvel:vibranium_block_ore_recipe",
+      "marvel:vibranium_ore_smelting",
+      "marvel:vibranium_pickaxe_recipe",
+      "marvel:vibranium_axe_recipe",
+      "marvel:vibranium_sword_recipe",
+      "marvel:vibranium_shovel_recipe",
+      "marvel:vibranium_hoe_recipe",
+      "marvel:vibranium_armor_helmet_recipe",
+      "marvel:vibranium_armor_body_recipe",
+      "marvel:vibranium_armor_leggings_recipe",
+      "marvel:vibranium_armor_boots_recipe",
+      "marvel:vibranium",
+      "marvel:vibranium_shield",
+      "marvel:vibranium_weave"
+    ]
+  }
+}

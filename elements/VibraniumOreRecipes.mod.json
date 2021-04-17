@@ -1,0 +1,41 @@
+{
+  "_fv": 17,
+  "_type": "achievement",
+  "definition": {
+    "achievementName": "Vibranium Ore Recipes",
+    "achievementDescription": "Everything vibranium",
+    "achievementIcon": {
+      "value": "CUSTOM:VibraniumIngot"
+    },
+    "background": "Default",
+    "disableDisplay": true,
+    "showPopup": false,
+    "announceToChat": false,
+    "hideIfNotCompleted": false,
+    "rewardLoot": [],
+    "rewardRecipes": [
+      "VibraniumOreBlockRecipe",
+      "VibraniumBlockOreRecipe",
+      "VibraniumOreSmelting",
+      "VibraniumPickaxeRecipe",
+      "VibraniumAxeRecipe",
+      "VibraniumSwordRecipe",
+      "VibraniumShovelRecipe",
+      "VibraniumHoeRecipe",
+      "VibraniumArmorHelmetRecipe",
+      "VibraniumArmorBodyRecipe",
+      "VibraniumArmorLeggingsRecipe",
+      "VibraniumArmorBootsRecipe",
+      "VibraniumRecipe",
+      "VibraniumShieldRecipe",
+      "VibraniumWeaveRecipe"
+    ],
+    "rewardFunction": "No function",
+    "rewardXP": 0,
+    "achievementType": "task",
+    "parent": {
+      "value": "No parent: root"
+    },
+    "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"item_in_inventory\" x=\"44\" y=\"31\"><value name=\"amount_l\"><block type=\"math_number\"><field name=\"NUM\">1</field></block></value><value name=\"amount_h\"><block type=\"math_number\"><field name=\"NUM\">64</field></block></value><value name=\"item\"><block type=\"mcitem_all\"><field name=\"value\">CUSTOM:VibraniumOre</field></block></value><next><block type=\"advancement_trigger\" deletable=\"false\"></block></next></block></xml>"
+  }
+}

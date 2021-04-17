@@ -1,0 +1,36 @@
+{
+  "group": "cap",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5",
+    "6 8"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:reinforced_leather"
+    },
+    "1": {
+      "item": "marvel:reinforced_leather"
+    },
+    "2": {
+      "item": "marvel:reinforced_leather"
+    },
+    "3": {
+      "item": "minecraft:red_dye"
+    },
+    "5": {
+      "item": "minecraft:red_dye"
+    },
+    "6": {
+      "item": "minecraft:blue_dye"
+    },
+    "8": {
+      "item": "minecraft:blue_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:captain_america_suit_leggings",
+    "count": 1
+  }
+}

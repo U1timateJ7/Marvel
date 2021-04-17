@@ -1,0 +1,16 @@
+{
+  "group": "clean_shield",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:bloody_vibranium_shield"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "marvel:vibranium_shield",
+    "count": 1
+  }
+}

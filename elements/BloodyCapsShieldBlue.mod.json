@@ -1,0 +1,46 @@
+{
+  "_fv": 17,
+  "_type": "gun",
+  "definition": {
+    "renderType": 1,
+    "texture": "bloody_shield_blue",
+    "customModelName": "cap_shield:bloody_blue",
+    "name": "Captain America's Shield",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:MarvelWeapons"
+    },
+    "stackSize": 1,
+    "ammoItem": {
+      "value": "CUSTOM:CapsShieldBlue"
+    },
+    "shootConstantly": false,
+    "usageCount": 0,
+    "actionSound": {
+      "value": "CUSTOM:item.vibranium_shield.throw"
+    },
+    "hasGlow": false,
+    "animation": "spear",
+    "enableMeleeDamage": true,
+    "damageVsEntity": 10.0,
+    "onRangedItemUsed": {
+      "name": "CapsShieldBlueRangedItemUsed"
+    },
+    "bulletPower": 1.0,
+    "bulletDamage": 6.0,
+    "bulletKnockback": 1,
+    "bulletParticles": false,
+    "bulletIgnitesFire": false,
+    "bulletItemTexture": {
+      "value": "CUSTOM:CapsShieldBlue"
+    },
+    "bulletModel": "Default",
+    "customBulletModelTexture": "",
+    "onBulletHitsBlock": {
+      "name": "VibraniumShieldHitsBlock"
+    },
+    "onBulletHitsEntity": {
+      "name": "VibraniumShieldHitsLivingEntity"
+    }
+  }
+}

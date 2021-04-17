@@ -1,0 +1,11 @@
+{
+  "_fv": 17,
+  "_type": "tab",
+  "definition": {
+    "name": "Marvel Costumes",
+    "icon": {
+      "value": "CUSTOM:CaptainAmericaSuit.body"
+    },
+    "showSearch": false
+  }
+}

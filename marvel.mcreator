@@ -1,0 +1,1707 @@
+{
+  "id_map": {},
+  "mod_elements": [
+    {
+      "name": "VibraniumIngot",
+      "type": "item",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_ingot",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumOre",
+      "type": "block",
+      "sortid": 4,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_ore",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumBlock",
+      "type": "block",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_block",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumOreBlockRecipe",
+      "type": "recipe",
+      "sortid": 30,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_ore_block_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumBlockOreRecipe",
+      "type": "recipe",
+      "sortid": 31,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_block_ore_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumOreSmelting",
+      "type": "recipe",
+      "sortid": 32,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_ore_smelting",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumPickaxe",
+      "type": "tool",
+      "sortid": 12,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_pickaxe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumAxe",
+      "type": "tool",
+      "sortid": 13,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_axe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumSword",
+      "type": "tool",
+      "sortid": 11,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_sword",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumShovel",
+      "type": "tool",
+      "sortid": 14,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shovel",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumHoe",
+      "type": "tool",
+      "sortid": 15,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_hoe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumPickaxeRecipe",
+      "type": "recipe",
+      "sortid": 33,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_pickaxe_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumAxeRecipe",
+      "type": "recipe",
+      "sortid": 34,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_axe_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumSwordRecipe",
+      "type": "recipe",
+      "sortid": 35,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_sword_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumShovelRecipe",
+      "type": "recipe",
+      "sortid": 36,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shovel_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumHoeRecipe",
+      "type": "recipe",
+      "sortid": 37,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_hoe_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumArmor",
+      "type": "armor",
+      "sortid": 22,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_armor",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumArmorHelmetRecipe",
+      "type": "recipe",
+      "sortid": 38,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_armor_helmet_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumArmorBodyRecipe",
+      "type": "recipe",
+      "sortid": 39,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_armor_body_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumArmorLeggingsRecipe",
+      "type": "recipe",
+      "sortid": 40,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_armor_leggings_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumArmorBootsRecipe",
+      "type": "recipe",
+      "sortid": 41,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_armor_boots_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "Vibranium",
+      "type": "item",
+      "sortid": 1,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumRecipe",
+      "type": "recipe",
+      "sortid": 42,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_recipe",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "VibraniumShield",
+      "type": "gun",
+      "sortid": 16,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "vibranium_shield",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "VibraniumShieldHitsBlock",
+      "type": "procedure",
+      "sortid": 43,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "vibranium_shield_hits_block",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "VibraniumShieldHitsLivingEntity",
+      "type": "procedure",
+      "sortid": 44,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "vibranium_shield_hits_living_entity",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldRed",
+      "type": "gun",
+      "sortid": 17,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "captain_americas_shield_red",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldBlue",
+      "type": "gun",
+      "sortid": 18,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "captain_americas_shield_blue",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "VibraniumShieldRecipe",
+      "type": "recipe",
+      "sortid": 45,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shield_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldRedRecipe",
+      "type": "recipe",
+      "sortid": 46,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "caps_shield_red_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "VibraniumShields",
+      "type": "tag",
+      "sortid": 47,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shields",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldBlueRecipe",
+      "type": "recipe",
+      "sortid": 48,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "caps_shield_blue_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "VibraniumOreRecipes",
+      "type": "achievement",
+      "sortid": 49,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_ore_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "VibraniumShieldRecipes",
+      "type": "achievement",
+      "sortid": 50,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shield_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "VibraniumShieldRangedItemUsed",
+      "type": "procedure",
+      "sortid": 51,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_shield_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldRedRangedItemUsed",
+      "type": "procedure",
+      "sortid": 52,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "caps_shield_red_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CapsShieldBlueRangedItemUsed",
+      "type": "procedure",
+      "sortid": 53,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "caps_shield_blue_ranged_item_used",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaSuit",
+      "type": "armor",
+      "sortid": 23,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_suit",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaStealthSuit",
+      "type": "armor",
+      "sortid": 24,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_stealth_suit",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "ReinforcedLeather",
+      "type": "item",
+      "sortid": 27,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "reinforced_leather"
+    },
+    {
+      "name": "IronLeatherRecipe",
+      "type": "recipe",
+      "sortid": 54,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_leather_recipe"
+    },
+    {
+      "name": "CaptainAmericaSuitHead",
+      "type": "recipe",
+      "sortid": 55,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_suit_head",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaSuitBody",
+      "type": "recipe",
+      "sortid": 56,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_suit_body",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaSuitleg",
+      "type": "recipe",
+      "sortid": 57,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_suitleg",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaSuitFeet",
+      "type": "recipe",
+      "sortid": 58,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_suit_feet",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaStealthSuitHead",
+      "type": "recipe",
+      "sortid": 59,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_stealth_suit_head",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaStealthSuitBody",
+      "type": "recipe",
+      "sortid": 60,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_stealth_suit_body",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaStealthSuitLegs",
+      "type": "recipe",
+      "sortid": 61,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_stealth_suit_legs",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CaptainAmericaStealthSuitFeet",
+      "type": "recipe",
+      "sortid": 62,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "captain_america_stealth_suit_feet",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "ReinforcedLeatherRecipe",
+      "type": "achievement",
+      "sortid": 63,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "reinforced_leather_recipe",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "LeatherCostumeRecipes",
+      "type": "achievement",
+      "sortid": 64,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "leather_costume_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "SuperSoldierSerumTaken",
+      "type": "procedure",
+      "sortid": 65,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "super_soldier_serum_taken",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "SuperSoldierSerum",
+      "type": "food",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "super_soldier_serum",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "SSSGive",
+      "type": "procedure",
+      "sortid": 66,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "sss_give",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "AntiSerum",
+      "type": "food",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "anti_serum",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "AntiSerumTaken",
+      "type": "procedure",
+      "sortid": 67,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "anti_serum_taken",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "SuperSoldierSerumRecipe",
+      "type": "recipe",
+      "sortid": 68,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "super_soldier_serum_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "AntiSerumRecipe",
+      "type": "recipe",
+      "sortid": 69,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "anti_serum_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "SerumRecipes",
+      "type": "achievement",
+      "sortid": 70,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "serum_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "HeartShapedHerb",
+      "type": "plant",
+      "sortid": 6,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbSeeds",
+      "type": "item",
+      "sortid": 7,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_seeds",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbLootTable",
+      "type": "loottable",
+      "sortid": 71,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_loot_table",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage1BlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 72,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_1_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage1BlockDestroyedByExplosion",
+      "type": "procedure",
+      "sortid": 73,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_1_block_destroyed_by_explosion",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage1",
+      "type": "block",
+      "sortid": 74,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_1",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage2",
+      "type": "block",
+      "sortid": 75,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_2",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage3",
+      "type": "block",
+      "sortid": 76,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_3",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage4",
+      "type": "block",
+      "sortid": 77,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_4",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage5",
+      "type": "block",
+      "sortid": 78,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_5",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage6",
+      "type": "block",
+      "sortid": 79,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_6",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage7",
+      "type": "block",
+      "sortid": 80,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_7",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbItem",
+      "type": "food",
+      "sortid": 8,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_item",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage7BlockDestroyedByPlayer",
+      "type": "procedure",
+      "sortid": 81,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_7_block_destroyed_by_player",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbEaten",
+      "type": "procedure",
+      "sortid": 82,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_eaten",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbEffects",
+      "type": "procedure",
+      "sortid": 83,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_effects",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "SmallFlowerBlocks",
+      "type": "tag",
+      "sortid": 84,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "small_flower_blocks",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherSuit",
+      "type": "armor",
+      "sortid": 26,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_suit",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "VibraniumWeave",
+      "type": "item",
+      "sortid": 3,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_weave",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "VibraniumWeaveRecipe",
+      "type": "recipe",
+      "sortid": 85,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_weave_recipe",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherHead",
+      "type": "recipe",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_head",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherBody",
+      "type": "recipe",
+      "sortid": 87,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_body",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherLegs",
+      "type": "recipe",
+      "sortid": 88,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_legs",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherFeet",
+      "type": "recipe",
+      "sortid": 89,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_feet",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherRecipes",
+      "type": "achievement",
+      "sortid": 90,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "black_panther_recipes",
+      "path": "~/Function Advancements"
+    },
+    {
+      "name": "Wakanda",
+      "type": "musicdisc",
+      "sortid": 28,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "wakanda",
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BeaconBaseBlockBlocks",
+      "type": "tag",
+      "sortid": 91,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "beacon_base_block_blocks",
+      "path": "~/Vibranium"
+    },
+    {
+      "name": "MarvelItems",
+      "type": "tab",
+      "sortid": 92,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "marvel_items"
+    },
+    {
+      "name": "MarvelWeapons",
+      "type": "tab",
+      "sortid": 93,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "marvel_weapons"
+    },
+    {
+      "name": "MarvelCostumes",
+      "type": "tab",
+      "sortid": 94,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "marvel_costumes"
+    },
+    {
+      "name": "HeartShapedHerbSeedsRightClickedOnBlock",
+      "type": "procedure",
+      "sortid": 95,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_seeds_right_clicked_on_block",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage7BlockDestroyedByExplosion",
+      "type": "procedure",
+      "sortid": 96,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_7_block_destroyed_by_explosion",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbStage1UpdateTick",
+      "type": "procedure",
+      "sortid": 97,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_stage_1_update_tick",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "HeartShapedHerbAdditionalGenerationCondition",
+      "type": "procedure",
+      "sortid": 98,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "heart_shaped_herb_additional_generation_condition",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": []
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BoneMealProcedure",
+      "type": "procedure",
+      "sortid": 99,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "bone_meal_procedure",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "BlackPantherAttack",
+      "type": "procedure",
+      "sortid": 100,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "black_panther_attack",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "imediatesourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Black Panther"
+    },
+    {
+      "name": "GlassPanes",
+      "type": "tag",
+      "sortid": 101,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "glass_panes",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "MarvelAdvancementRoot",
+      "type": "achievement",
+      "sortid": 102,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "marvel_advancement_root",
+      "path": "~/Advancements"
+    },
+    {
+      "name": "VibraniumAdvancement",
+      "type": "achievement",
+      "sortid": 103,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "vibranium_advancement",
+      "path": "~/Advancements"
+    },
+    {
+      "name": "BloodyVibraniumShield",
+      "type": "gun",
+      "sortid": 19,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "bloody_vibranium_shield",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "BloodyCapsShieldRed",
+      "type": "gun",
+      "sortid": 20,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "bloody_captain_americas_shield_red",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "BloodyCapsShieldBlue",
+      "type": "gun",
+      "sortid": 21,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "bloody_captain_americas_shield_blue",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "StarSpangledMan",
+      "type": "musicdisc",
+      "sortid": 29,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "star_spangled_man",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "ShieldPlusBlood",
+      "type": "procedure",
+      "sortid": 104,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "shield_plus_blood",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "JohnWalkerSuit",
+      "type": "armor",
+      "sortid": 25,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "john_walker_suit",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "SSSGivenToOthers",
+      "type": "procedure",
+      "sortid": 105,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "sss_given_to_others",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Captain America"
+    },
+    {
+      "name": "JohnWalkerHelmetRecipe",
+      "type": "recipe",
+      "sortid": 106,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "john_walker_helmet_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "JohnWalkerChestplateRecipe",
+      "type": "recipe",
+      "sortid": 107,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "john_walker_chestplate_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "JohnWalkerLegsRecipe",
+      "type": "recipe",
+      "sortid": 108,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "john_walker_legs_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "JohnWalkerFeetRecipe",
+      "type": "recipe",
+      "sortid": 109,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "john_walker_feet_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CleanVibraniumShieldRecipe",
+      "type": "recipe",
+      "sortid": 110,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "clean_vibranium_shield_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CleanRedShieldRecipe",
+      "type": "recipe",
+      "sortid": 111,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "clean_red_shield_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "CleanBlueShieldRecipe",
+      "type": "recipe",
+      "sortid": 112,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "clean_blue_shield_recipe",
+      "path": "~/Captain America"
+    },
+    {
+      "name": "PalladiumIngot",
+      "type": "item",
+      "sortid": 113,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_ingot",
+      "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "PalladiumOre",
+      "type": "block",
+      "sortid": 114,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_ore",
+      "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "PalladiumBlock",
+      "type": "block",
+      "sortid": 115,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_block",
+      "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "PalladiumOreBlockRecipe",
+      "type": "recipe",
+      "sortid": 116,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_ore_block_recipe",
+      "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "PalladiumBlockOreRecipe",
+      "type": "recipe",
+      "sortid": 117,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_block_ore_recipe",
+      "path": "~/Iron Man/Palladium"
+    },
+    {
+      "name": "PalladiumOreSmelting",
+      "type": "recipe",
+      "sortid": 118,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "palladium_ore_smelting",
+      "path": "~/Iron Man/Palladium"
+    }
+  ],
+  "variable_elements": [
+    {
+      "name": "superSoldier",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
+    },
+    {
+      "name": "hasEatenHeartShapedHerb",
+      "type": "logic",
+      "scope": "player_lifetime",
+      "value": "false"
+    }
+  ],
+  "sound_elements": [
+    {
+      "name": "item.vibranium_shield.throw",
+      "files": [
+        "shield_throw"
+      ],
+      "category": "player",
+      "subtitle": "Shield Is Thrown"
+    },
+    {
+      "name": "item.vibranium_shield.hit",
+      "files": [
+        "shield_hit2"
+      ],
+      "category": "player",
+      "subtitle": "Shield Hits"
+    },
+    {
+      "name": "music.marvel.star_spangled_man",
+      "files": [
+        "star_spangled_man"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "music.marvel.wakanda",
+      "files": [
+        "wakanda"
+      ],
+      "category": "record",
+      "subtitle": ""
+    }
+  ],
+  "language_map": {
+    "en_us": {
+      "itemGroup.tabmarvel_items": "Marvel",
+      "subtitles.music.marvel.wakanda": "",
+      "subtitles.music.records.star_spangled_man": "",
+      "item.marvel.vibranium_axe": "Vibranium Axe",
+      "item.marvel.captain_america_suit_helmet": "Captain America\u0027s Helmet",
+      "advancements.leather_costume_recipes.descr": "MOER COSTUMES",
+      "item.marvel.captain_america_suit_boots": "Captain America\u0027s Boots",
+      "item.marvel.bloody_captain_americas_shield_blue": "Captain America\u0027s Shield",
+      "item.marvel.john_walker_suit_boots": "Captain America\u0027s Boots",
+      "item.marvel.john_walker_suit_chestplate": "Captain America\u0027s Suit",
+      "item.marvel.captain_america_suit_leggings": "Captain America\u0027s Pants",
+      "item.marvel.captain_america_stealth_suit_boots": "Captain America\u0027s Stealth Boots",
+      "item.marvel.vibranium_shovel": "Vibranium Shovel",
+      "block.marvel.heart_shaped_herb": "Heart-Shaped Herb Flower",
+      "item.marvel.vibranium_sword": "Vibranium Sword",
+      "item.marvel.black_panther_suit_helmet": "Black Panther Helmet",
+      "advancements.reinforced_leather_recipe.title": "Reinforced Leather Recipe",
+      "advancements.black_panther_recipes.title": "Black Panther Recipes",
+      "item.marvel.wakanda": "Music Disc",
+      "block.marvel.vibranium_block": "Block of Vibranium",
+      "advancements.reinforced_leather_recipe.descr": "IRON LEATHER",
+      "item.marvel.vibranium_ingot": "Vibranium Ingot",
+      "advancements.black_panther_recipes.descr": "wakanda forever",
+      "item.marvel.captain_america_stealth_suit_helmet": "Captain America\u0027s Stealth Helmet",
+      "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
+      "advancements.serum_recipes.title": "Serum Recipes",
+      "item.marvel.bloody_captain_americas_shield_red": "Captain America\u0027s Shield",
+      "item.marvel.star_spangled_man": "Music Disc",
+      "item.marvel.vibranium_armor_leggings": "Vibranium Leggings",
+      "subtitles.item.vibranium_shield.catch": "Shield Is Caught",
+      "subtitles.item.vibranium_shield.throw": "Shield Is Thrown",
+      "item.marvel.vibranium_armor_boots": "Vibranium Boots",
+      "block.marvel.heart_shaped_herb_stage_4": "Heart Shaped Herb Stage 4",
+      "item.marvel.vibranium_armor_helmet": "Vibranium Helmet",
+      "advancements.vibranium_ore_recipes.title": "Vibranium Ore Recipes",
+      "block.marvel.heart_shaped_herb_stage_5": "Heart Shaped Herb Stage 5",
+      "block.marvel.vibranium_ore": "Vibranium Ore",
+      "block.marvel.heart_shaped_herb_stage_2": "Heart Shaped Herb Stage 2",
+      "advancements.marvel_advancement_root.title": "Marvel",
+      "block.marvel.heart_shaped_herb_stage_3": "Heart Shaped Herb Stage 3",
+      "block.marvel.heart_shaped_herb_stage_1": "Heart Shaped Herb Stage 1",
+      "item.marvel.wakanda.desc": "Ludwig Göransson - Wakanda",
+      "advancements.vibranium_shield_recipes.title": "Vibranium Shield Recipes",
+      "item.marvel.captain_americas_shield_red": "Captain America\u0027s Shield",
+      "block.marvel.heart_shaped_herb_stage_6": "Heart Shaped Herb Stage 6",
+      "block.marvel.heart_shaped_herb_stage_7": "Heart Shaped Herb Stage 7",
+      "subtitles.music.marvel.star_spangled_man": "",
+      "item.marvel.captain_america_suit_chestplate": "Captain America\u0027s Suit",
+      "item.marvel.black_panther_suit_chestplate": "Black Panther Suit",
+      "advancements.vibranium_advancement.title": "The most versatile substance on the planet...",
+      "item.marvel.reinforced_leather": "Reinforced Leather",
+      "item.marvel.super_soldier_serum": "Super Soldier Serum",
+      "advancements.marvel_advancement_root.descr": "You\u0027re a part of a bigger universe now.",
+      "item.marvel.black_panther_suit_leggings": "Black Panther Pants",
+      "item.marvel.heart_shaped_herb_item": "Heart Shaped Herb",
+      "item.marvel.john_walker_suit_helmet": "Captain America\u0027s Helmet",
+      "item.marvel.vibranium_shield": "Vibranium Shield",
+      "item.marvel.captain_america_stealth_suit_leggings": "Captain America\u0027s Stealth Pants",
+      "item.marvel.anti_serum": "AntiSerum",
+      "itemGroup.tabmarvel_costumes": "Marvel Costumes",
+      "subtitles.item.vibranium_shield.hit": "Shield Hits",
+      "item.marvel.black_panther_suit_boots": "Black Panther Boots",
+      "item.marvel.vibranium_weave": "Vibranium Weave",
+      "block.marvel.palladium_ore": "Palladium Ore",
+      "itemGroup.tabmarvel_weapons": "Marvel Weapons",
+      "block.marvel.palladium_block": "Block of Palladium",
+      "item.marvel.star_spangled_man.desc": "Captain America Drum Corps - Star Spangled Man",
+      "item.marvel.captain_america_stealth_suit_chestplate": "Captain America\u0027s Stealth Suit",
+      "advancements.vibranium_ore_recipes.descr": "Everything vibranium",
+      "item.marvel.vibranium": "Vibranium",
+      "item.marvel.bloody_vibranium_shield": "Vibranium Shield",
+      "advancements.leather_costume_recipes.title": "Leather Costume Recipes",
+      "item.marvel.john_walker_suit_leggings": "Captain America\u0027s Pants",
+      "item.marvel.vibranium_hoe": "Vibranium Hoe",
+      "advancements.vibranium_advancement.descr": "Refine Vibranium",
+      "item.marvel.captain_americas_shield_blue": "Captain America\u0027s Shield",
+      "item.marvel.vibranium_pickaxe": "Vibranium Pickaxe",
+      "advancements.serum_recipes.descr": "Steroids",
+      "item.marvel.palladium_ingot": "Palladium",
+      "advancements.vibranium_shield_recipes.descr": "Dyed shields",
+      "item.marvel.heart_shaped_herb_seeds": "Heart-Shaped Herb Seeds"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": [
+      {
+        "name": "Vibranium",
+        "children": []
+      },
+      {
+        "name": "Function Advancements",
+        "children": []
+      },
+      {
+        "name": "Captain America",
+        "children": []
+      },
+      {
+        "name": "Black Panther",
+        "children": []
+      },
+      {
+        "name": "Advancements",
+        "children": []
+      },
+      {
+        "name": "Iron Man",
+        "children": [
+          {
+            "name": "Palladium",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "workspaceSettings": {
+    "modid": "marvel",
+    "modName": "Marvel Mod",
+    "version": "1.0.0",
+    "author": "Karen, MCreator",
+    "websiteURL": "https://mcreator.net",
+    "license": "Academic Free License v3.0",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": false,
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "forge-1.16.5",
+    "modElementsPackage": "com.ulto.marvel",
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202100112313
+}

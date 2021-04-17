@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "marvel:items/black_panther_leggings"
+  }
+}

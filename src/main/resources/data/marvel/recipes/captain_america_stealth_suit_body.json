@@ -1,0 +1,16 @@
+{
+  "group": "cap",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:captain_america_suit_chestplate"
+    },
+    {
+      "item": "minecraft:blue_dye"
+    }
+  ],
+  "result": {
+    "item": "marvel:captain_america_stealth_suit_chestplate",
+    "count": 1
+  }
+}
