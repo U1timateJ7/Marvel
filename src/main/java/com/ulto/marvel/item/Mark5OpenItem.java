@@ -110,7 +110,7 @@ public class Mark5OpenItem extends MarvelModElements.ModElement {
 
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "marvel:textures/mark3_open.png";
+				return "marvel:textures/mark5_open.png";
 			}
 		}.setRegistryName("mark_5_open_helmet"));
 	}

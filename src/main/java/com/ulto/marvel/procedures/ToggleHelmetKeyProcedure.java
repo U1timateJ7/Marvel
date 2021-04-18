@@ -186,13 +186,13 @@ public class ToggleHelmetKeyProcedure extends MarvelModElements.ModElement {
 			}
 		} else if ((((entity instanceof LivingEntity)
 				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark5Item.helmet, (int) (1)).getItem())) {
+				: ItemStack.EMPTY).getItem() == new ItemStack(Mark5OpenItem.helmet, (int) (1)).getItem())) {
 			if (entity instanceof LivingEntity) {
 				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark5Item.helmet, (int) (1)));
 				else
 					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+							new ItemStack(IronManMark5Item.helmet, (int) (1)));
 				if (entity instanceof ServerPlayerEntity)
 					((ServerPlayerEntity) entity).inventory.markDirty();
 			}

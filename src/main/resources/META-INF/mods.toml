@@ -4,11 +4,11 @@ license="Academic Free License v3.0"
 
 [[mods]]
 modId="marvel"
-version="1.0.0"
+version="21w15a"
 displayName="Marvel Mod"
 credits="Created using mod maker MCreator - https://mcreator.net/about"
-displayURL="https://mcreator.net"
-authors="Karen, MCreator"
+displayURL="https://www.curseforge.com/members/u1timatej7/projects"
+authors="U1timateJ7, Alextimus9"
 
 [[dependencies.marvel]]
     modId="minecraft"

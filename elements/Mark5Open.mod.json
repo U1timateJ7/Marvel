@@ -35,7 +35,7 @@
     ],
     "helmetModelName": "ModelHelmet",
     "helmetModelPart": "Head",
-    "helmetModelTexture": "mark3_open.png",
+    "helmetModelTexture": "mark5_open.png",
     "bodyModelName": "ModelCostume",
     "bodyModelPart": "Body",
     "armsModelPartL": "LeftArm",
