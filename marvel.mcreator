@@ -2538,6 +2538,28 @@
       "ids": {},
       "registry_name": "mark_5_recipe",
       "path": "~/Function Advancements"
+    },
+    {
+      "name": "IronManSlap",
+      "type": "procedure",
+      "sortid": 189,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_slap",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "imediatesourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
     }
   ],
   "variable_elements": [
