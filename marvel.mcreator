@@ -2009,7 +2009,7 @@
       "type": "procedure",
       "sortid": 158,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "mark_3_flight",
       "metadata": {
@@ -2327,7 +2327,7 @@
       "type": "procedure",
       "sortid": 176,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "mark_5_flight",
       "metadata": {
@@ -2562,16 +2562,6 @@
       "path": "~/Iron Man"
     },
     {
-      "name": "Iceing",
-      "type": "potion",
-      "sortid": 190,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "iceing",
-      "path": "~/Iron Man"
-    },
-    {
       "name": "IceingProblemOverlayDisplayOverlayIngame",
       "type": "procedure",
       "sortid": 191,
@@ -2588,6 +2578,16 @@
           }
         ]
       },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Iceing",
+      "type": "potion",
+      "sortid": 190,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing",
       "path": "~/Iron Man"
     },
     {
@@ -2615,6 +2615,22 @@
             "type": "entity"
           }
         ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManMark6",
+      "type": "armor",
+      "sortid": 193,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_6",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
       },
       "path": "~/Iron Man"
     }
@@ -2886,15 +2902,7 @@
     "name": "~",
     "children": [
       {
-        "name": "Vibranium",
-        "children": []
-      },
-      {
         "name": "Function Advancements",
-        "children": []
-      },
-      {
-        "name": "Captain America",
         "children": []
       },
       {
@@ -2906,18 +2914,26 @@
         "children": []
       },
       {
+        "name": "Captain America",
+        "children": []
+      },
+      {
+        "name": "Vibranium",
+        "children": []
+      },
+      {
         "name": "Iron Man",
         "children": [
-          {
-            "name": "Palladium",
-            "children": []
-          },
           {
             "name": "Recipes",
             "children": []
           },
           {
             "name": "Titanium",
+            "children": []
+          },
+          {
+            "name": "Palladium",
             "children": []
           }
         ]
