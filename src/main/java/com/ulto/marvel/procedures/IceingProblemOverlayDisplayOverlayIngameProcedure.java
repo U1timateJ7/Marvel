@@ -1,20 +1,11 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-
-import java.util.Map;
-import java.util.Collection;
-
-import com.ulto.marvel.potion.IceingPotion;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
 @MarvelModElements.ModElement.Tag
 public class IceingProblemOverlayDisplayOverlayIngameProcedure extends MarvelModElements.ModElement {
+
 	public IceingProblemOverlayDisplayOverlayIngameProcedure(MarvelModElements instance) {
 		super(instance, 191);
+
 	}
 
 	public static boolean executeProcedure(Map<String, Object> dependencies) {
@@ -23,7 +14,9 @@ public class IceingProblemOverlayDisplayOverlayIngameProcedure extends MarvelMod
 				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure IceingProblemOverlayDisplayOverlayIngame!");
 			return false;
 		}
+
 		Entity entity = (Entity) dependencies.get("entity");
+
 		if ((new Object() {
 			boolean check(Entity _entity) {
 				if (_entity instanceof LivingEntity) {
@@ -39,5 +32,7 @@ public class IceingProblemOverlayDisplayOverlayIngameProcedure extends MarvelMod
 			return (true);
 		}
 		return (false);
+
 	}
+
 }
