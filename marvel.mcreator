@@ -2617,6 +2617,22 @@
         ]
       },
       "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManMark6",
+      "type": "armor",
+      "sortid": 193,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_mark_6",
+      "metadata": {
+        "eh": true,
+        "el": true,
+        "eb": true,
+        "ec": true
+      },
+      "path": "~/Iron Man"
     }
   ],
   "variable_elements": [
@@ -2762,6 +2778,7 @@
       "subtitles.music.marvel.driving_with_the_top_down": "",
       "item.marvel.repulsor_bullet": "Flame",
       "advancements.vibranium_shield_recipes.title": "Vibranium Shield Recipes",
+      "item.marvel.iron_man_mark_6_chestplate": "Iron Man Chestplate",
       "item.marvel.unibeam": "Unibeam",
       "subtitles.music.marvel.star_spangled_man": "",
       "item.marvel.captain_america_suit_chestplate": "Captain America\u0027s Suit",
@@ -2773,8 +2790,10 @@
       "item.marvel.gold_titanium_alloy": "Gold Titanium Alloy",
       "key.marvel.toggle_helmet": "Toggle Helmet",
       "effect.iceing": "Iceing",
+      "item.marvel.iron_man_mark_6_boots": "Iron Man Boots",
       "item.marvel.iron_man_mark_2_helmet": "Iron Man Helmet",
       "item.marvel.iron_man_mark_3_helmet": "Iron Man Helmet",
+      "item.marvel.iron_man_mark_6_helmet": "Iron Man Helmet",
       "item.marvel.palladium_arc_reactor": "Palladium Arc Reactor",
       "item.marvel.mark_3_open_boots": "Iron Man Boots",
       "item.marvel.captain_america_stealth_suit_leggings": "Captain America\u0027s Stealth Pants",
@@ -2791,6 +2810,7 @@
       "item.marvel.captain_america_stealth_suit_chestplate": "Captain America\u0027s Stealth Suit",
       "advancements.mark_2_recipe.descr": "Mark 2",
       "item.marvel.bloody_vibranium_shield": "Vibranium Shield",
+      "item.marvel.iron_man_mark_6_leggings": "Iron Man Leggings",
       "subtitles.item.repulsor.shoot": "Repulsor Fires",
       "item.marvel.repulsor": "Repulsor",
       "advancements.leather_costume_recipes.title": "Leather Costume Recipes",
