@@ -1,11 +1,38 @@
 package com.ulto.marvel.procedures;
 
+import net.minecraftforge.registries.ForgeRegistries;
+
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.GameType;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector2f;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.command.ICommandSource;
+import net.minecraft.command.FunctionObject;
+import net.minecraft.command.CommandSource;
+import net.minecraft.client.network.play.NetworkPlayerInfo;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.Minecraft;
+
+import java.util.Optional;
+import java.util.Map;
+
+import com.ulto.marvel.MarvelModVariables;
+import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.MarvelMod;
+
 @MarvelModElements.ModElement.Tag
 public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModElement {
-
 	public IronManAbilityOnKeyReleasedProcedure(MarvelModElements instance) {
 		super(instance, 179);
-
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -34,13 +61,11 @@ public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModE
 				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure IronManAbilityOnKeyReleased!");
 			return;
 		}
-
 		Entity entity = (Entity) dependencies.get("entity");
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-
 		boolean isMark5 = false;
 		isMark5 = (boolean) (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == 5);
@@ -100,7 +125,5 @@ public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModE
 				}
 			}
 		}
-
 	}
-
 }

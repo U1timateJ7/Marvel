@@ -1,11 +1,37 @@
 package com.ulto.marvel.procedures;
 
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.common.MinecraftForge;
+
+import net.minecraft.world.World;
+import net.minecraft.world.GameType;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.item.ItemStack;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.client.network.play.NetworkPlayerInfo;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.Minecraft;
+
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collection;
+
+import com.ulto.marvel.potion.IceingPotion;
+import com.ulto.marvel.item.IronManMark5Item;
+import com.ulto.marvel.item.IronManMark3Item;
+import com.ulto.marvel.item.IronManMark2Item;
+import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.MarvelMod;
+
 @MarvelModElements.ModElement.Tag
 public class IronManFlightProcedure extends MarvelModElements.ModElement {
-
 	public IronManFlightProcedure(MarvelModElements instance) {
 		super(instance, 192);
-
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -15,9 +41,7 @@ public class IronManFlightProcedure extends MarvelModElements.ModElement {
 				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure IronManFlight!");
 			return;
 		}
-
 		Entity entity = (Entity) dependencies.get("entity");
-
 		if (((new Object() {
 			public boolean checkGamemode(Entity _ent) {
 				if (_ent instanceof ServerPlayerEntity) {
@@ -131,7 +155,6 @@ public class IronManFlightProcedure extends MarvelModElements.ModElement {
 				((PlayerEntity) entity).sendPlayerAbilities();
 			}
 		}
-
 	}
 
 	@SubscribeEvent
@@ -152,5 +175,4 @@ public class IronManFlightProcedure extends MarvelModElements.ModElement {
 			this.executeProcedure(dependencies);
 		}
 	}
-
 }

@@ -1,11 +1,26 @@
 package com.ulto.marvel.procedures;
 
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+
+import net.minecraft.world.IWorld;
+import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
+
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.Map;
+
+import com.ulto.marvel.item.UnibeamItem;
+import com.ulto.marvel.item.RepulsorItem;
+import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.MarvelMod;
+
 @MarvelModElements.ModElement.Tag
 public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement {
-
 	public IronManBodyTickEventProcedure(MarvelModElements instance) {
 		super(instance, 168);
-
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -19,10 +34,8 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure IronManBodyTickEvent!");
 			return;
 		}
-
 		Entity entity = (Entity) dependencies.get("entity");
 		IWorld world = (IWorld) dependencies.get("world");
-
 		boolean bl = false;
 		boolean hasRepulsor = false;
 		boolean bl2 = false;
@@ -101,7 +114,5 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 				}
 			}
 		}
-
 	}
-
 }
