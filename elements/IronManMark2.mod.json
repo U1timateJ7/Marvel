@@ -10,9 +10,6 @@
     "textureLeggings": "mark2_leggings",
     "enableBoots": true,
     "textureBoots": "mark2_boots",
-    "onBodyTick": {
-      "name": "Mark2Flight"
-    },
     "creativeTab": {
       "value": "CUSTOM:IronManArmor"
     },

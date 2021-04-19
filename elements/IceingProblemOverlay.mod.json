@@ -1,0 +1,12 @@
+{
+  "_fv": 17,
+  "_type": "overlay",
+  "definition": {
+    "priority": "NORMAL",
+    "components": [],
+    "baseTexture": "powder_snow_outline.png",
+    "displayCondition": {
+      "name": "IceingProblemOverlayDisplayOverlayIngame"
+    }
+  }
+}

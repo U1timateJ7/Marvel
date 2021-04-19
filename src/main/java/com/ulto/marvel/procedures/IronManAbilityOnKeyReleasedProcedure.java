@@ -1,33 +1,11 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
-
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector2f;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.command.ICommandSource;
-import net.minecraft.command.FunctionObject;
-import net.minecraft.command.CommandSource;
-
-import java.util.Optional;
-import java.util.Map;
-
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
 @MarvelModElements.ModElement.Tag
 public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModElement {
+
 	public IronManAbilityOnKeyReleasedProcedure(MarvelModElements instance) {
 		super(instance, 179);
+
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -56,11 +34,13 @@ public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModE
 				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure IronManAbilityOnKeyReleased!");
 			return;
 		}
+
 		Entity entity = (Entity) dependencies.get("entity");
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
+
 		boolean isMark5 = false;
 		isMark5 = (boolean) (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == 5);
@@ -88,13 +68,39 @@ public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModE
 						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
 			}
 			if (entity instanceof PlayerEntity) {
-				((PlayerEntity) entity).abilities.allowFlying = (false);
+				((PlayerEntity) entity).abilities.allowFlying = (new Object() {
+					public boolean checkGamemode(Entity _ent) {
+						if (_ent instanceof ServerPlayerEntity) {
+							return ((ServerPlayerEntity) _ent).interactionManager.getGameType() == GameType.CREATIVE;
+						} else if (_ent instanceof PlayerEntity && _ent.world.isRemote()) {
+							NetworkPlayerInfo _npi = Minecraft.getInstance().getConnection()
+									.getPlayerInfo(((AbstractClientPlayerEntity) _ent).getGameProfile().getId());
+							return _npi != null && _npi.getGameType() == GameType.CREATIVE;
+						}
+						return false;
+					}
+				}.checkGamemode(entity));
 				((PlayerEntity) entity).sendPlayerAbilities();
 			}
-			if (entity instanceof PlayerEntity) {
-				((PlayerEntity) entity).abilities.isFlying = (false);
-				((PlayerEntity) entity).sendPlayerAbilities();
+			if ((!(new Object() {
+				public boolean checkGamemode(Entity _ent) {
+					if (_ent instanceof ServerPlayerEntity) {
+						return ((ServerPlayerEntity) _ent).interactionManager.getGameType() == GameType.CREATIVE;
+					} else if (_ent instanceof PlayerEntity && _ent.world.isRemote()) {
+						NetworkPlayerInfo _npi = Minecraft.getInstance().getConnection()
+								.getPlayerInfo(((AbstractClientPlayerEntity) _ent).getGameProfile().getId());
+						return _npi != null && _npi.getGameType() == GameType.CREATIVE;
+					}
+					return false;
+				}
+			}.checkGamemode(entity)))) {
+				if (entity instanceof PlayerEntity) {
+					((PlayerEntity) entity).abilities.isFlying = (false);
+					((PlayerEntity) entity).sendPlayerAbilities();
+				}
 			}
 		}
+
 	}
+
 }

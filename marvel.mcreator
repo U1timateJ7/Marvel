@@ -2560,6 +2560,63 @@
         ]
       },
       "path": "~/Iron Man"
+    },
+    {
+      "name": "IceingProblemOverlayDisplayOverlayIngame",
+      "type": "procedure",
+      "sortid": 191,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing_problem_overlay_display_overlay_ingame",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "Iceing",
+      "type": "potion",
+      "sortid": 190,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IceingProblemOverlay",
+      "type": "overlay",
+      "sortid": 190,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing_problem_overlay",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManFlight",
+      "type": "procedure",
+      "sortid": 192,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_flight",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
     }
   ],
   "variable_elements": [
@@ -2824,15 +2881,7 @@
     "name": "~",
     "children": [
       {
-        "name": "Vibranium",
-        "children": []
-      },
-      {
         "name": "Function Advancements",
-        "children": []
-      },
-      {
-        "name": "Captain America",
         "children": []
       },
       {
@@ -2844,18 +2893,26 @@
         "children": []
       },
       {
+        "name": "Captain America",
+        "children": []
+      },
+      {
+        "name": "Vibranium",
+        "children": []
+      },
+      {
         "name": "Iron Man",
         "children": [
-          {
-            "name": "Palladium",
-            "children": []
-          },
           {
             "name": "Recipes",
             "children": []
           },
           {
             "name": "Titanium",
+            "children": []
+          },
+          {
+            "name": "Palladium",
             "children": []
           }
         ]
