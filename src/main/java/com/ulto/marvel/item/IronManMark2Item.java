@@ -18,7 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,11 +25,8 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 
-import java.util.Map;
 import java.util.List;
-import java.util.HashMap;
 
-import com.ulto.marvel.procedures.Mark2FlightProcedure;
 import com.ulto.marvel.itemgroup.IronManArmorItemGroup;
 import com.ulto.marvel.MarvelModElements;
 
@@ -141,18 +137,6 @@ public class IronManMark2Item extends MarvelModElements.ModElement {
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
 				return "marvel:textures/mark2_layer_1.png";
-			}
-
-			@Override
-			public void onArmorTick(ItemStack itemstack, World world, PlayerEntity entity) {
-				double x = entity.getPosX();
-				double y = entity.getPosY();
-				double z = entity.getPosZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					Mark2FlightProcedure.executeProcedure($_dependencies);
-				}
 			}
 		}.setRegistryName("iron_man_mark_2_chestplate"));
 		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.LEGS, new Item.Properties().group(IronManArmorItemGroup.tab)) {

@@ -2009,7 +2009,7 @@
       "type": "procedure",
       "sortid": 158,
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "ids": {},
       "registry_name": "mark_3_flight",
       "metadata": {
@@ -2327,7 +2327,7 @@
       "type": "procedure",
       "sortid": 176,
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "ids": {},
       "registry_name": "mark_5_flight",
       "metadata": {
@@ -2560,6 +2560,63 @@
         ]
       },
       "path": "~/Iron Man"
+    },
+    {
+      "name": "Iceing",
+      "type": "potion",
+      "sortid": 190,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IceingProblemOverlayDisplayOverlayIngame",
+      "type": "procedure",
+      "sortid": 191,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing_problem_overlay_display_overlay_ingame",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IceingProblemOverlay",
+      "type": "overlay",
+      "sortid": 190,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iceing_problem_overlay",
+      "path": "~/Iron Man"
+    },
+    {
+      "name": "IronManFlight",
+      "type": "procedure",
+      "sortid": 192,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "iron_man_flight",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/Iron Man"
     }
   ],
   "variable_elements": [
@@ -2686,12 +2743,14 @@
       "item.marvel.iron_man_mark_1_boots": "Iron Man Boots",
       "item.marvel.titanium_ingot": "Titanium",
       "item.marvel.black_panther_suit_helmet": "Black Panther Helmet",
+      "item.minecraft.splash_potion.effect.iceing": "Splash Iceing",
       "advancements.mark_1_recipe.title": "Mark 1 Recipe",
       "block.marvel.vibranium_block": "Block of Vibranium",
       "advancements.reinforced_leather_recipe.descr": "IRON LEATHER",
       "advancements.black_panther_recipes.descr": "wakanda forever",
-      "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
       "item.marvel.mark_2_open_boots": "Iron Man Boots",
+      "item.marvel.vibranium_armor_chestplate": "Vibranium Chestplate",
+      "item.minecraft.tipped_arrow.effect.iceing": "Arrow of Iceing",
       "item.marvel.bloody_captain_americas_shield_red": "Captain America\u0027s Shield",
       "item.marvel.star_spangled_man": "Music Disc",
       "subtitles.item.vibranium_shield.catch": "Shield Is Caught",
@@ -2713,6 +2772,7 @@
       "item.marvel.reinforced_leather": "Reinforced Leather",
       "item.marvel.gold_titanium_alloy": "Gold Titanium Alloy",
       "key.marvel.toggle_helmet": "Toggle Helmet",
+      "effect.iceing": "Iceing",
       "item.marvel.iron_man_mark_2_helmet": "Iron Man Helmet",
       "item.marvel.iron_man_mark_3_helmet": "Iron Man Helmet",
       "item.marvel.palladium_arc_reactor": "Palladium Arc Reactor",
@@ -2771,6 +2831,7 @@
       "block.marvel.heart_shaped_herb_stage_5": "Heart Shaped Herb Stage 5",
       "block.marvel.heart_shaped_herb_stage_2": "Heart Shaped Herb Stage 2",
       "block.marvel.vibranium_ore": "Vibranium Ore",
+      "item.minecraft.lingering_potion.effect.iceing": "Lingering Iceing",
       "block.marvel.heart_shaped_herb_stage_3": "Heart Shaped Herb Stage 3",
       "item.marvel.mark_3_open_chestplate": "Iron Man Chestplate",
       "block.marvel.heart_shaped_herb_stage_1": "Heart Shaped Herb Stage 1",
@@ -2779,6 +2840,7 @@
       "block.marvel.heart_shaped_herb_stage_6": "Heart Shaped Herb Stage 6",
       "block.marvel.heart_shaped_herb_stage_7": "Heart Shaped Herb Stage 7",
       "subtitles.item.iron_man_helmet.close": "Helmet Closes",
+      "item.minecraft.potion.effect.iceing": "Iceing",
       "item.marvel.super_soldier_serum": "Super Soldier Serum",
       "advancements.marvel_advancement_root.descr": "You\u0027re a part of a bigger universe now.",
       "item.marvel.black_panther_suit_leggings": "Black Panther Pants",

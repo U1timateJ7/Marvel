@@ -107,7 +107,7 @@ public class PalladiumOreBlock extends MarvelModElements.ModElement {
 				}
 			};
 			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 4)).range(40)
-					.square().func_242731_b(8);
+					.square().func_242731_b(6);
 			event.getRegistry().register(feature.setRegistryName("palladium_ore"));
 			Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("marvel:palladium_ore"), configuredFeature);
 		}

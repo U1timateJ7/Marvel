@@ -13,9 +13,6 @@
     "onBodyTick": {
       "name": "IronManBodyTickEvent"
     },
-    "onBootsTick": {
-      "name": "Mark5Flight"
-    },
     "creativeTab": {
       "value": "CUSTOM:IronManArmor"
     },

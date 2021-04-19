@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 
-import com.ulto.marvel.procedures.Mark5FlightProcedure;
 import com.ulto.marvel.procedures.IronManBodyTickEventProcedure;
 import com.ulto.marvel.itemgroup.IronManArmorItemGroup;
 import com.ulto.marvel.MarvelModElements;
@@ -203,18 +202,6 @@ public class IronManMark5Item extends MarvelModElements.ModElement {
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
 				return "marvel:textures/mark5_layer_1.png";
-			}
-
-			@Override
-			public void onArmorTick(ItemStack itemstack, World world, PlayerEntity entity) {
-				double x = entity.getPosX();
-				double y = entity.getPosY();
-				double z = entity.getPosZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					Mark5FlightProcedure.executeProcedure($_dependencies);
-				}
 			}
 		}.setRegistryName("iron_man_mark_5_boots"));
 	}

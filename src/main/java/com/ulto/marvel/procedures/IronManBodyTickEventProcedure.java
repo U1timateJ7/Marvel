@@ -42,73 +42,75 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 		boolean hasUnibeam = false;
 		double count = 0;
 		double count2 = 0;
-		hasRepulsor = (boolean) (false);
-		{
-			AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
-			entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
-			if (_iitemhandlerref.get() != null) {
-				for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
-					ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-					if (((hasRepulsor) == (false))) {
-						if (((itemstackiterator).getItem() == new ItemStack(RepulsorItem.block, (int) (1)).getItem())) {
-							bl = (boolean) (true);
-							count = (double) ((count) + 1);
+		if ((entity.isAlive())) {
+			hasRepulsor = (boolean) (false);
+			{
+				AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+				entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
+				if (_iitemhandlerref.get() != null) {
+					for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+						ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+						if (((hasRepulsor) == (false))) {
+							if (((itemstackiterator).getItem() == new ItemStack(RepulsorItem.block, (int) (1)).getItem())) {
+								bl = (boolean) (true);
+								count = (double) ((count) + 1);
+							}
 						}
 					}
 				}
 			}
-		}
-		if (((bl) == (true))) {
-			hasRepulsor = (boolean) (true);
-		}
-		if (((hasRepulsor) == (false))) {
-			if (entity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(RepulsorItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			if (((bl) == (true))) {
+				hasRepulsor = (boolean) (true);
 			}
-		}
-		if (((hasRepulsor) == (true))) {
-			if (((count) > 1)) {
+			if (((hasRepulsor) == (false))) {
 				if (entity instanceof PlayerEntity) {
-					ItemStack _stktoremove = new ItemStack(RepulsorItem.block, (int) (1));
-					((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count) - 1),
-							((PlayerEntity) entity).container.func_234641_j_());
+					ItemStack _setstack = new ItemStack(RepulsorItem.block, (int) (1));
+					_setstack.setCount((int) 1);
+					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
 				}
 			}
-		}
-		hasUnibeam = (boolean) (false);
-		{
-			AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
-			entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
-			if (_iitemhandlerref.get() != null) {
-				for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
-					ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-					if (((hasUnibeam) == (false))) {
-						if (((itemstackiterator).getItem() == new ItemStack(UnibeamItem.block, (int) (1)).getItem())) {
-							bl2 = (boolean) (true);
-							count2 = (double) ((count2) + 1);
+			if (((hasRepulsor) == (true))) {
+				if (((count) > 1)) {
+					if (entity instanceof PlayerEntity) {
+						ItemStack _stktoremove = new ItemStack(RepulsorItem.block, (int) (1));
+						((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count) - 1),
+								((PlayerEntity) entity).container.func_234641_j_());
+					}
+				}
+			}
+			hasUnibeam = (boolean) (false);
+			{
+				AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+				entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
+				if (_iitemhandlerref.get() != null) {
+					for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+						ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+						if (((hasUnibeam) == (false))) {
+							if (((itemstackiterator).getItem() == new ItemStack(UnibeamItem.block, (int) (1)).getItem())) {
+								bl2 = (boolean) (true);
+								count2 = (double) ((count2) + 1);
+							}
 						}
 					}
 				}
 			}
-		}
-		if (((bl) == (true))) {
-			hasRepulsor = (boolean) (true);
-		}
-		if (((hasRepulsor) == (false))) {
-			if (entity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(UnibeamItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			if (((bl) == (true))) {
+				hasRepulsor = (boolean) (true);
 			}
-		}
-		if (((hasRepulsor) == (true))) {
-			if (((count2) > 1)) {
+			if (((hasRepulsor) == (false))) {
 				if (entity instanceof PlayerEntity) {
-					ItemStack _stktoremove = new ItemStack(UnibeamItem.block, (int) (1));
-					((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count2) - 1),
-							((PlayerEntity) entity).container.func_234641_j_());
+					ItemStack _setstack = new ItemStack(UnibeamItem.block, (int) (1));
+					_setstack.setCount((int) 1);
+					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+				}
+			}
+			if (((hasRepulsor) == (true))) {
+				if (((count2) > 1)) {
+					if (entity instanceof PlayerEntity) {
+						ItemStack _stktoremove = new ItemStack(UnibeamItem.block, (int) (1));
+						((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count2) - 1),
+								((PlayerEntity) entity).container.func_234641_j_());
+					}
 				}
 			}
 		}

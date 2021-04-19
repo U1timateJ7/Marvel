@@ -26,9 +26,9 @@ public class Mark2FlightProcedure extends MarvelModElements.ModElement {
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		if (entity instanceof PlayerEntity) {
-			((PlayerEntity) entity).abilities.allowFlying = (((entity instanceof LivingEntity)
+			((PlayerEntity) entity).abilities.allowFlying = ((((entity instanceof LivingEntity)
 					? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
-					: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark2Item.boots, (int) (1)).getItem());
+					: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark2Item.boots, (int) (1)).getItem()) && ((entity.getPosY()) < 180));
 			((PlayerEntity) entity).sendPlayerAbilities();
 		}
 	}

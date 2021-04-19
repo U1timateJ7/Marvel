@@ -5,17 +5,22 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.GameType;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.command.FunctionObject;
 import net.minecraft.command.CommandSource;
+import net.minecraft.client.network.play.NetworkPlayerInfo;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.client.Minecraft;
 
 import java.util.Optional;
 import java.util.Map;
@@ -88,12 +93,36 @@ public class IronManAbilityOnKeyReleasedProcedure extends MarvelModElements.ModE
 						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
 			}
 			if (entity instanceof PlayerEntity) {
-				((PlayerEntity) entity).abilities.allowFlying = (false);
+				((PlayerEntity) entity).abilities.allowFlying = (new Object() {
+					public boolean checkGamemode(Entity _ent) {
+						if (_ent instanceof ServerPlayerEntity) {
+							return ((ServerPlayerEntity) _ent).interactionManager.getGameType() == GameType.CREATIVE;
+						} else if (_ent instanceof PlayerEntity && _ent.world.isRemote()) {
+							NetworkPlayerInfo _npi = Minecraft.getInstance().getConnection()
+									.getPlayerInfo(((AbstractClientPlayerEntity) _ent).getGameProfile().getId());
+							return _npi != null && _npi.getGameType() == GameType.CREATIVE;
+						}
+						return false;
+					}
+				}.checkGamemode(entity));
 				((PlayerEntity) entity).sendPlayerAbilities();
 			}
-			if (entity instanceof PlayerEntity) {
-				((PlayerEntity) entity).abilities.isFlying = (false);
-				((PlayerEntity) entity).sendPlayerAbilities();
+			if ((!(new Object() {
+				public boolean checkGamemode(Entity _ent) {
+					if (_ent instanceof ServerPlayerEntity) {
+						return ((ServerPlayerEntity) _ent).interactionManager.getGameType() == GameType.CREATIVE;
+					} else if (_ent instanceof PlayerEntity && _ent.world.isRemote()) {
+						NetworkPlayerInfo _npi = Minecraft.getInstance().getConnection()
+								.getPlayerInfo(((AbstractClientPlayerEntity) _ent).getGameProfile().getId());
+						return _npi != null && _npi.getGameType() == GameType.CREATIVE;
+					}
+					return false;
+				}
+			}.checkGamemode(entity)))) {
+				if (entity instanceof PlayerEntity) {
+					((PlayerEntity) entity).abilities.isFlying = (false);
+					((PlayerEntity) entity).sendPlayerAbilities();
+				}
 			}
 		}
 	}

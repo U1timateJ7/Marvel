@@ -106,8 +106,8 @@ public class TitaniumOreBlock extends MarvelModElements.ModElement {
 					return super.generate(world, generator, rand, pos, config);
 				}
 			};
-			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 7)).range(63)
-					.square().func_242731_b(11);
+			configuredFeature = feature.withConfiguration(new OreFeatureConfig(CustomRuleTest.INSTANCE, block.getDefaultState(), 7)).range(24)
+					.square().func_242731_b(7);
 			event.getRegistry().register(feature.setRegistryName("titanium_ore"));
 			Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("marvel:titanium_ore"), configuredFeature);
 		}
