@@ -6553,8 +6553,8 @@
       "item.marvel.captain_america_suit_helmet": "Captain America\u0027s Helmet",
       "advancements.leather_costume_recipes.descr": "MOER COSTUMES",
       "item.marvel.iron_man_mark_30_leggings": "Iron Man Leggings",
-      "advancements.web_fluid_advancement.descr": "\"Is this stuff coming out of you?\"",
       "item.marvel.red_guardian_suit_chestplate": "Red Guardian\u0027s Suit",
+      "advancements.web_fluid_advancement.descr": "\"Is this stuff coming out of you?\"",
       "item.marvel.iron_man_mark_42_helmet": "Iron Man Helmet",
       "subtitles.iron_man.mark30.visible": "",
       "item.marvel.iron_man_mark_1_boots": "Iron Man Boots",
@@ -6948,7 +6948,7 @@
   "workspaceSettings": {
     "modid": "marvel",
     "modName": "Marvel Mod",
-    "version": "Phase 2 a1.1",
+    "version": "Phase 2 a1.1.1",
     "author": "U1timateJ7, Alextimus9",
     "websiteURL": "https://www.curseforge.com/members/u1timatej7/projects",
     "license": "Academic Free License v3.0",
@@ -6959,6 +6959,7 @@
     "dependants": [],
     "mcreatorDependencies": [],
     "currentGenerator": "forge-1.16.5",
+    "credits": "Created using mod maker MCreator - https://mcreator.net/about",
     "modElementsPackage": "com.ulto.marvel",
     "lockBaseModFiles": false
   },
