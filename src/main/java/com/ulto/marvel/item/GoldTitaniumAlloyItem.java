@@ -16,7 +16,7 @@ public class GoldTitaniumAlloyItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:gold_titanium_alloy")
 	public static final Item block = null;
 	public GoldTitaniumAlloyItem(MarvelModElements instance) {
-		super(instance, 150);
+		super(instance, 6);
 	}
 
 	@Override

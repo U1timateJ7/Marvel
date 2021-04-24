@@ -1,0 +1,36 @@
+{
+  "group": "mark_25",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:titanium_ingot"
+    },
+    "1": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "2": {
+      "item": "marvel:titanium_ingot"
+    },
+    "3": {
+      "item": "minecraft:iron_ingot"
+    },
+    "4": {
+      "item": "marvel:iron_man_mark_6_helmet"
+    },
+    "5": {
+      "item": "minecraft:iron_ingot"
+    },
+    "7": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_25_helmet",
+    "count": 1
+  }
+}

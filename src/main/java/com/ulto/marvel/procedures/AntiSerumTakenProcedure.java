@@ -12,7 +12,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class AntiSerumTakenProcedure extends MarvelModElements.ModElement {
 	public AntiSerumTakenProcedure(MarvelModElements instance) {
-		super(instance, 67);
+		super(instance, 108);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -26,6 +26,13 @@ public class AntiSerumTakenProcedure extends MarvelModElements.ModElement {
 			boolean _setval = (boolean) (false);
 			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 				capability.superSoldier = _setval;
+				capability.syncPlayerVariables(entity);
+			});
+		}
+		{
+			boolean _setval = (boolean) (false);
+			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				capability.radioactive = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}

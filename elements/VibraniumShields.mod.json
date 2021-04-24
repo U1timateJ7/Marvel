@@ -12,6 +12,27 @@
       },
       {
         "value": "CUSTOM:CapsShieldBlue"
+      },
+      {
+        "value": "CUSTOM:BloodyVibraniumShield"
+      },
+      {
+        "value": "CUSTOM:BloodyCapsShieldRed"
+      },
+      {
+        "value": "CUSTOM:BloodyCapsShieldBlue"
+      },
+      {
+        "value": "CUSTOM:RedGuardianShield"
+      },
+      {
+        "value": "CUSTOM:BloodyRedGuardianShield"
+      },
+      {
+        "value": "CUSTOM:TaskmasterShield"
+      },
+      {
+        "value": "CUSTOM:BloodyTaskmasterShield"
       }
     ],
     "blocks": [],

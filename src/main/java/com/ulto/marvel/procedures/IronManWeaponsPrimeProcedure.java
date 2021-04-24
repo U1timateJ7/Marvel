@@ -26,7 +26,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class IronManWeaponsPrimeProcedure extends MarvelModElements.ModElement {
 	public IronManWeaponsPrimeProcedure(MarvelModElements instance) {
-		super(instance, 169);
+		super(instance, 190);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 

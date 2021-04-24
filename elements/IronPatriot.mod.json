@@ -1,0 +1,67 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "iron_patriot_helmet",
+    "enableBody": true,
+    "textureBody": "iron_patriot_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "iron_patriot_leggings",
+    "enableBoots": true,
+    "textureBoots": "iron_patriot_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
+    "onBodyTick": {
+      "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
+    "creativeTab": {
+      "value": "CUSTOM:MarvelCostumes"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Iron Patriot Helmet",
+    "bodyName": "Iron Patriot Chestplate",
+    "leggingsName": "Iron Patriot Leggings",
+    "bootsName": "Iron Patriot Boots",
+    "helmetSpecialInfo": [],
+    "bodySpecialInfo": [],
+    "leggingsSpecialInfo": [],
+    "bootsSpecialInfo": [],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "iron_patriot_helmet.png",
+    "bodyModelName": "ModelWarMachine",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "iron_patriot_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "iron_patriot_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "iron_patriot_layer_1.png",
+    "maxDamage": 25,
+    "damageValueHelmet": 3,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 3,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.1,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:TitaniumIngot"
+      }
+    ]
+  }
+}

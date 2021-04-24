@@ -1,0 +1,22 @@
+{
+  "group": "iron_patriot",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:war_machine_helmet"
+    },
+    {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "marvel:iron_patriot_helmet",
+    "count": 1
+  }
+}

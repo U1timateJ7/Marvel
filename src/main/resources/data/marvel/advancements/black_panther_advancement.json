@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "marvel:black_panther_suit_helmet"
+    },
+    "title": {
+      "translate": "advancements.black_panther_advancement.title"
+    },
+    "description": {
+      "translate": "advancements.black_panther_advancement.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "black_panther_advancement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:black_panther_suit_chestplate",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  },
+  "parent": "marvel:vibranium_advancement"
+}

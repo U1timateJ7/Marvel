@@ -15,7 +15,7 @@ public class FlameItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:flame")
 	public static final Item block = null;
 	public FlameItem(MarvelModElements instance) {
-		super(instance, 122);
+		super(instance, 158);
 	}
 
 	@Override

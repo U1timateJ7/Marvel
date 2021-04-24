@@ -24,7 +24,7 @@ import com.google.common.collect.ImmutableMap;
 @MarvelModElements.ModElement.Tag
 public class Mark1BlurOverlay extends MarvelModElements.ModElement {
 	public Mark1BlurOverlay(MarvelModElements instance) {
-		super(instance, 121);
+		super(instance, 157);
 	}
 
 	@Override

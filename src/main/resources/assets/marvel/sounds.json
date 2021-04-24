@@ -103,5 +103,96 @@
         "stream": true
       }
     ]
+  },
+  "item.war_machine_gun.fire": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:war_machine_gun_fire",
+        "stream": false
+      }
+    ]
+  },
+  "item.web_shooter.fire": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:web_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark30.invisible": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:invisible_activate",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark30.visible": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:invisible_deactivate",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.fly": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:iron_man_flight",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_man_helmet.close_46": {
+    "category": "player",
+    "subtitle": "subtitles.item.iron_man_helmet.close_46",
+    "sounds": [
+      {
+        "name": "marvel:mark46_helmet_close",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark5.suit_up": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:mark5_suit_up",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark42.arrive": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:mark42_arrive",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark42.depart": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:mark42_depart",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.house_party_protocol": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:house_party_protocol",
+        "stream": false
+      }
+    ]
   }
 }

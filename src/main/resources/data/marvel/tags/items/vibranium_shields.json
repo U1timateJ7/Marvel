@@ -3,6 +3,13 @@
   "values": [
     "marvel:vibranium_shield",
     "marvel:captain_americas_shield_red",
-    "marvel:captain_americas_shield_blue"
+    "marvel:captain_americas_shield_blue",
+    "marvel:bloody_vibranium_shield",
+    "marvel:bloody_captain_americas_shield_red",
+    "marvel:bloody_captain_americas_shield_blue",
+    "marvel:red_guardian_shield",
+    "marvel:bloody_red_guardian_shield",
+    "marvel:taskmaster_shield",
+    "marvel:bloody_taskmaster_shield"
   ]
 }

@@ -6,7 +6,7 @@
     "keyBindingName": "Iron Man Ability",
     "keyBindingCategoryKey": "misc",
     "onKeyPressed": {
-      "name": "IronManAbilityOnKeyReleased"
+      "name": "IronManAbilityKey"
     }
   }
 }

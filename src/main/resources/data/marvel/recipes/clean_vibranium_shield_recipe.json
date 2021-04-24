@@ -3,7 +3,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "marvel:bloody_vibranium_shield"
+      "tag": "marvel:vibranium_shields"
     },
     {
       "item": "minecraft:water_bucket"

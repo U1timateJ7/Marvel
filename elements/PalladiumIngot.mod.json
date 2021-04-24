@@ -3,12 +3,12 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "palladium_ingot",
+    "texture": "palladium",
     "customModelName": "Normal",
     "name": "Palladium",
     "rarity": "COMMON",
     "creativeTab": {
-      "value": "MISC"
+      "value": "CUSTOM:MarvelItems"
     },
     "stackSize": 64,
     "enchantability": 0,

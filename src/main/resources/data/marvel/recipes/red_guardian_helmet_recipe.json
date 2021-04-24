@@ -1,0 +1,29 @@
+{
+  "group": "red_guardian",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:red_dye"
+    },
+    "1": {
+      "item": "minecraft:white_dye"
+    },
+    "2": {
+      "item": "minecraft:red_dye"
+    },
+    "3": {
+      "item": "marvel:reinforced_leather"
+    },
+    "5": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "result": {
+    "item": "marvel:red_guardian_suit_helmet",
+    "count": 1
+  }
+}

@@ -46,7 +46,7 @@ public class RepulsorItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:entitybulletrepulsor")
 	public static final EntityType arrow = null;
 	public RepulsorItem(MarvelModElements instance) {
-		super(instance, 162);
+		super(instance, 183);
 	}
 
 	@Override

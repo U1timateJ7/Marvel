@@ -7,19 +7,19 @@
   ],
   "key": {
     "0": {
-      "item": "marvel:vibranium"
+      "item": "marvel:adamantium"
     },
     "1": {
-      "item": "marvel:vibranium_ingot"
-    },
-    "2": {
       "item": "marvel:vibranium"
     },
+    "2": {
+      "item": "marvel:adamantium"
+    },
     "3": {
-      "item": "marvel:vibranium_ingot"
+      "item": "marvel:vibranium"
     },
     "5": {
-      "item": "marvel:vibranium_ingot"
+      "item": "marvel:vibranium"
     }
   },
   "result": {

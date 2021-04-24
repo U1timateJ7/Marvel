@@ -11,7 +11,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class SuperSoldierSerumTakenProcedure extends MarvelModElements.ModElement {
 	public SuperSoldierSerumTakenProcedure(MarvelModElements instance) {
-		super(instance, 65);
+		super(instance, 106);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -21,12 +21,17 @@ public class SuperSoldierSerumTakenProcedure extends MarvelModElements.ModElemen
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		{
-			boolean _setval = (boolean) (true);
-			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-				capability.superSoldier = _setval;
-				capability.syncPlayerVariables(entity);
-			});
+		if ((!(((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb)
+				&& ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MarvelModVariables.PlayerVariables())).radioactive)))) {
+			{
+				boolean _setval = (boolean) (true);
+				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.superSoldier = _setval;
+					capability.syncPlayerVariables(entity);
+				});
+			}
 		}
 	}
 }

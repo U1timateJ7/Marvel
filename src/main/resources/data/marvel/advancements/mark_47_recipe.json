@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "mark_47_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:iron_man_mark_46_chestplate",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:mark_47_helmet_recipe",
+      "marvel:mark_47_chestplate_recipe",
+      "marvel:mark_47_legs_recipe",
+      "marvel:mark_47_feet_recipe"
+    ]
+  },
+  "parent": "marvel:vibranium_ore_recipes"
+}

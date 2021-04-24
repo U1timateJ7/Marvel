@@ -24,7 +24,7 @@ public class TitaniumBlockBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:titanium_block")
 	public static final Block block = null;
 	public TitaniumBlockBlock(MarvelModElements instance) {
-		super(instance, 133);
+		super(instance, 11);
 	}
 
 	@Override

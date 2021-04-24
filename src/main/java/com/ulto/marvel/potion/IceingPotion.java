@@ -18,7 +18,7 @@ public class IceingPotion extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:iceing")
 	public static final Effect potion = null;
 	public IceingPotion(MarvelModElements instance) {
-		super(instance, 190);
+		super(instance, 201);
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 	}
 

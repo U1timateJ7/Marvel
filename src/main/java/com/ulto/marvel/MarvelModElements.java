@@ -68,6 +68,25 @@ public class MarvelModElements {
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.unibeam.use")));
 		sounds.put(new ResourceLocation("marvel", "music.marvel.driving_with_the_top_down"),
 				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "music.marvel.driving_with_the_top_down")));
+		sounds.put(new ResourceLocation("marvel", "item.war_machine_gun.fire"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.war_machine_gun.fire")));
+		sounds.put(new ResourceLocation("marvel", "item.web_shooter.fire"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.web_shooter.fire")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.mark30.invisible"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.mark30.invisible")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.mark30.visible"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.mark30.visible")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.fly"), new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.fly")));
+		sounds.put(new ResourceLocation("marvel", "item.iron_man_helmet.close_46"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "item.iron_man_helmet.close_46")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.mark5.suit_up"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.mark5.suit_up")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.mark42.arrive"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.mark42.arrive")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.mark42.depart"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.mark42.depart")));
+		sounds.put(new ResourceLocation("marvel", "iron_man.house_party_protocol"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("marvel", "iron_man.house_party_protocol")));
 		try {
 			ModFileScanData modFileInfo = ModList.get().getModFileById("marvel").getFile().getScanResult();
 			Set<ModFileScanData.AnnotationData> annotations = modFileInfo.getAnnotations();

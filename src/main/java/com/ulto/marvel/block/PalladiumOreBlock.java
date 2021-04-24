@@ -46,7 +46,7 @@ public class PalladiumOreBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:palladium_ore")
 	public static final Block block = null;
 	public PalladiumOreBlock(MarvelModElements instance) {
-		super(instance, 114);
+		super(instance, 9);
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new FeatureRegisterHandler());
 	}

@@ -10,6 +10,9 @@
     "textureLeggings": "mark2_leggings",
     "enableBoots": true,
     "textureBoots": "mark2_boots",
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
     "creativeTab": {
       "value": "CUSTOM:IronManArmor"
     },

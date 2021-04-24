@@ -19,7 +19,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class IronManMark1BodyTickEventProcedure extends MarvelModElements.ModElement {
 	public IronManMark1BodyTickEventProcedure(MarvelModElements instance) {
-		super(instance, 124);
+		super(instance, 161);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

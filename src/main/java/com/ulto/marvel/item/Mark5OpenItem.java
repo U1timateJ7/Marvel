@@ -42,7 +42,7 @@ public class Mark5OpenItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:mark_5_open_boots")
 	public static final Item boots = null;
 	public Mark5OpenItem(MarvelModElements instance) {
-		super(instance, 177);
+		super(instance, 192);
 	}
 
 	@Override

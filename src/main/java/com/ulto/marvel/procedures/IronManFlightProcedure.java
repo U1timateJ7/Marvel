@@ -22,16 +22,31 @@ import java.util.HashMap;
 import java.util.Collection;
 
 import com.ulto.marvel.potion.IceingPotion;
+import com.ulto.marvel.item.WarMachineMark2Item;
+import com.ulto.marvel.item.WarMachineItem;
+import com.ulto.marvel.item.Mark30StealthItem;
+import com.ulto.marvel.item.IronPatriotItem;
+import com.ulto.marvel.item.IronManMark6Item;
 import com.ulto.marvel.item.IronManMark5Item;
+import com.ulto.marvel.item.IronManMark47Item;
+import com.ulto.marvel.item.IronManMark46Item;
+import com.ulto.marvel.item.IronManMark43Item;
+import com.ulto.marvel.item.IronManMark42Item;
 import com.ulto.marvel.item.IronManMark3Item;
+import com.ulto.marvel.item.IronManMark33Item;
+import com.ulto.marvel.item.IronManMark30Item;
 import com.ulto.marvel.item.IronManMark2Item;
+import com.ulto.marvel.item.IronManMark25Item;
+import com.ulto.marvel.item.IronManMark23Item;
+import com.ulto.marvel.item.IronManMark22Item;
+import com.ulto.marvel.item.IronManMark21Item;
 import com.ulto.marvel.MarvelModElements;
 import com.ulto.marvel.MarvelMod;
 
 @MarvelModElements.ModElement.Tag
 public class IronManFlightProcedure extends MarvelModElements.ModElement {
 	public IronManFlightProcedure(MarvelModElements instance) {
-		super(instance, 192);
+		super(instance, 204);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -124,6 +139,294 @@ public class IronManFlightProcedure extends MarvelModElements.ModElement {
 								? ((LivingEntity) entity)
 										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
 								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark5Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark6Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark6Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark21Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark21Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 384)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 384)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineItem.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineItem.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 200)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 200)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark22Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark22Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark23Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark23Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronPatriotItem.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronPatriotItem.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark25Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark25Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if ((((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark30Item.body, (int) (1)).getItem())
+						|| (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+								: ItemStack.EMPTY).getItem() == new ItemStack(Mark30StealthItem.body, (int) (1)).getItem()))
+						&& ((((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark30Item.boots, (int) (1)).getItem())
+								|| (((entity instanceof LivingEntity)
+										? ((LivingEntity) entity)
+												.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+										: ItemStack.EMPTY).getItem() == new ItemStack(Mark30StealthItem.boots, (int) (1)).getItem())))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark33Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark33Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark42Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark42Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark43Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark43Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark46Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark46Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark47Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark47Item.boots, (int) (1)).getItem()))) {
+					if (((entity.getPosY()) < 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (true);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+					} else if (((entity.getPosY()) >= 256)) {
+						if (entity instanceof PlayerEntity) {
+							((PlayerEntity) entity).abilities.allowFlying = (false);
+							((PlayerEntity) entity).sendPlayerAbilities();
+						}
+						if (entity instanceof LivingEntity)
+							((LivingEntity) entity).addPotionEffect(new EffectInstance(IceingPotion.potion, (int) 100, (int) 0, (false), (false)));
+					}
+				} else if (((((entity instanceof LivingEntity)
+						? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+						: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineMark2Item.body, (int) (1)).getItem())
+						&& (((entity instanceof LivingEntity)
+								? ((LivingEntity) entity)
+										.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+								: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineMark2Item.boots, (int) (1)).getItem()))) {
 					if (((entity.getPosY()) < 256)) {
 						if (entity instanceof PlayerEntity) {
 							((PlayerEntity) entity).abilities.allowFlying = (true);

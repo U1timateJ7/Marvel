@@ -20,7 +20,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbEffectsProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbEffectsProcedure(MarvelModElements instance) {
-		super(instance, 83);
+		super(instance, 124);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 

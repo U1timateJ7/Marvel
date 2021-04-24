@@ -3,26 +3,22 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "0 2",
-    "3 5",
-    "6 8"
+    "345"
   ],
   "key": {
     "0": {
-      "item": "minecraft:gold_ingot"
+      "item": "marvel:gold_titanium_alloy"
     },
     "2": {
-      "item": "minecraft:gold_ingot"
+      "item": "marvel:gold_titanium_alloy"
     },
     "3": {
       "item": "marvel:gold_titanium_alloy"
     },
+    "4": {
+      "item": "marvel:iron_man_mark_2_boots"
+    },
     "5": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "6": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "8": {
       "item": "marvel:gold_titanium_alloy"
     }
   },

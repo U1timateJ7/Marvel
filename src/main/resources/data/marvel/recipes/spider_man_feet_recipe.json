@@ -1,0 +1,26 @@
+{
+  "group": "spider_man",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:reinforced_leather"
+    },
+    "2": {
+      "item": "marvel:reinforced_leather"
+    },
+    "3": {
+      "item": "minecraft:red_dye"
+    },
+    "5": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:spider_man_suit_boots",
+    "count": 1
+  }
+}

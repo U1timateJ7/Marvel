@@ -23,7 +23,7 @@ public class HeartShapedHerbItemItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:heart_shaped_herb_item")
 	public static final Item block = null;
 	public HeartShapedHerbItemItem(MarvelModElements instance) {
-		super(instance, 8);
+		super(instance, 16);
 	}
 
 	@Override

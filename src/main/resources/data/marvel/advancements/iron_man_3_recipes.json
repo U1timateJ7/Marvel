@@ -1,0 +1,56 @@
+{
+  "criteria": {
+    "iron_man_3_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:iron_man_mark_6_chestplate",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:mark_21_helmet_recipe",
+      "marvel:mark_21_chestplate_recipe",
+      "marvel:mark_21_legs_recipe",
+      "marvel:mark_21_feet_recipe",
+      "marvel:iron_patriot_helmet_recipe",
+      "marvel:iron_patriot_chestplate_recipe",
+      "marvel:iron_patriot_legs_recipe",
+      "marvel:iron_patriot_feet_recipe",
+      "marvel:mark_22_helmet_recipe",
+      "marvel:mark_22_chestplate_recipe",
+      "marvel:mark_22_legs_recipe",
+      "marvel:mark_22_feet_recipe",
+      "marvel:mark_23_helmet_recipe",
+      "marvel:mark_23_chestplate_recipe",
+      "marvel:mark_23_legs_recipe",
+      "marvel:mark_23_feet_recipe",
+      "marvel:mark_25_helmet_recipe",
+      "marvel:mark_25_chestplate_recipe",
+      "marvel:mark_25_legs_recipe",
+      "marvel:mark_25_feet_recipe",
+      "marvel:mark_30_helmet_recipe",
+      "marvel:mark_30_chestplate_recipe",
+      "marvel:mark_30_legs_recipe",
+      "marvel:mark_30_feet_recipe",
+      "marvel:mark_33_helmet_recipe",
+      "marvel:mark_33_chestplate_recipe",
+      "marvel:mark_33_legs_recipe",
+      "marvel:mark_33_feet_recipe",
+      "marvel:mark_42_helmet_recipe",
+      "marvel:mark_42_chestplate_recipe",
+      "marvel:mark_42_legs_recipe",
+      "marvel:mark_42_feet_recipe",
+      "marvel:veronica_remote_recipe"
+    ]
+  }
+}

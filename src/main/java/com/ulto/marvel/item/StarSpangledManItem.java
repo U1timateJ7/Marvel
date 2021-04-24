@@ -16,7 +16,7 @@ public class StarSpangledManItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:star_spangled_man")
 	public static final Item block = null;
 	public StarSpangledManItem(MarvelModElements instance) {
-		super(instance, 29);
+		super(instance, 55);
 	}
 
 	@Override

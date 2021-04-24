@@ -8,7 +8,7 @@ import com.ulto.marvel.MarvelModElements;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbAdditionalGenerationConditionProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbAdditionalGenerationConditionProcedure(MarvelModElements instance) {
-		super(instance, 98);
+		super(instance, 139);
 	}
 
 	public static boolean executeProcedure(Map<String, Object> dependencies) {

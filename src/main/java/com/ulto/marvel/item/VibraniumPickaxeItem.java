@@ -16,7 +16,7 @@ public class VibraniumPickaxeItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_pickaxe")
 	public static final Item block = null;
 	public VibraniumPickaxeItem(MarvelModElements instance) {
-		super(instance, 12);
+		super(instance, 28);
 	}
 
 	@Override

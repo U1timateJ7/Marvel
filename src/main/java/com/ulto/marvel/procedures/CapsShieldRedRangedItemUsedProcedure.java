@@ -18,7 +18,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class CapsShieldRedRangedItemUsedProcedure extends MarvelModElements.ModElement {
 	public CapsShieldRedRangedItemUsedProcedure(MarvelModElements instance) {
-		super(instance, 52);
+		super(instance, 93);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

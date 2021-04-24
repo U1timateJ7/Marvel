@@ -15,7 +15,7 @@ public class RepulsorBulletItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:repulsor_bullet")
 	public static final Item block = null;
 	public RepulsorBulletItem(MarvelModElements instance) {
-		super(instance, 163);
+		super(instance, 184);
 	}
 
 	@Override

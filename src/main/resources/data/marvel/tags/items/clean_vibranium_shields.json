@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "marvel:vibranium_shield",
+    "marvel:captain_americas_shield_red",
+    "marvel:captain_americas_shield_blue",
+    "marvel:red_guardian_shield",
+    "marvel:taskmaster_shield"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "group": "veronica",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01 ",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:redstone_torch"
+    },
+    "1": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "3": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "4": {
+      "item": "minecraft:repeater"
+    },
+    "5": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "7": {
+      "item": "marvel:gold_titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "marvel:veronica_remote",
+    "count": 1
+  }
+}

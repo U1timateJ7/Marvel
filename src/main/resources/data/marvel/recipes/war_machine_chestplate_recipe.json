@@ -1,0 +1,39 @@
+{
+  "group": "warmachine",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:bow"
+    },
+    "2": {
+      "item": "minecraft:iron_ingot"
+    },
+    "3": {
+      "item": "marvel:titanium_ingot"
+    },
+    "4": {
+      "item": "marvel:iron_man_mark_2_chestplate"
+    },
+    "5": {
+      "item": "marvel:titanium_ingot"
+    },
+    "6": {
+      "item": "minecraft:iron_ingot"
+    },
+    "7": {
+      "item": "marvel:titanium_ingot"
+    },
+    "8": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:war_machine_chestplate",
+    "count": 1
+  }
+}

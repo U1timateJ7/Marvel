@@ -16,7 +16,7 @@ public class VibraniumWeaveItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_weave")
 	public static final Item block = null;
 	public VibraniumWeaveItem(MarvelModElements instance) {
-		super(instance, 3);
+		super(instance, 13);
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class VibraniumBlockBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_block")
 	public static final Block block = null;
 	public VibraniumBlockBlock(MarvelModElements instance) {
-		super(instance, 5);
+		super(instance, 10);
 	}
 
 	@Override

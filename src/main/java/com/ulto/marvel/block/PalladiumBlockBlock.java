@@ -24,7 +24,7 @@ public class PalladiumBlockBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:palladium_block")
 	public static final Block block = null;
 	public PalladiumBlockBlock(MarvelModElements instance) {
-		super(instance, 115);
+		super(instance, 12);
 	}
 
 	@Override

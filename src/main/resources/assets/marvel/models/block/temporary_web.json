@@ -1,0 +1,7 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "marvel:blocks/cobweb",
+    "particle": "marvel:blocks/cobweb"
+  }
+}

@@ -37,7 +37,7 @@ public class JohnWalkerSuitItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:john_walker_suit_boots")
 	public static final Item boots = null;
 	public JohnWalkerSuitItem(MarvelModElements instance) {
-		super(instance, 25);
+		super(instance, 46);
 	}
 
 	@Override

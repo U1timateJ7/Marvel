@@ -1,0 +1,12 @@
+{
+  "_fv": 17,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "C",
+    "keyBindingName": "Ability Key",
+    "keyBindingCategoryKey": "misc",
+    "onKeyReleased": {
+      "name": "WebShooterSwich"
+    }
+  }
+}

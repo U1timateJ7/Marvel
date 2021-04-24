@@ -40,7 +40,7 @@ public class IronManMark1Item extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:iron_man_mark_1_boots")
 	public static final Item boots = null;
 	public IronManMark1Item(MarvelModElements instance) {
-		super(instance, 119);
+		super(instance, 58);
 	}
 
 	@Override

@@ -1,0 +1,33 @@
+{
+  "group": "spider_man",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:red_dye"
+    },
+    "1": {
+      "item": "minecraft:red_dye"
+    },
+    "2": {
+      "item": "minecraft:red_dye"
+    },
+    "3": {
+      "item": "marvel:reinforced_leather"
+    },
+    "5": {
+      "item": "marvel:reinforced_leather"
+    },
+    "7": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:spider_man_suit_helmet",
+    "count": 1
+  }
+}

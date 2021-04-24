@@ -12,12 +12,7 @@ import net.minecraft.entity.Entity;
 
 import java.util.Map;
 
-import com.ulto.marvel.item.VibraniumShieldItem;
-import com.ulto.marvel.item.CapsShieldRedItem;
-import com.ulto.marvel.item.CapsShieldBlueItem;
-import com.ulto.marvel.item.BloodyVibraniumShieldItem;
-import com.ulto.marvel.item.BloodyCapsShieldRedItem;
-import com.ulto.marvel.item.BloodyCapsShieldBlueItem;
+import com.ulto.marvel.item.*;
 import com.ulto.marvel.MarvelModElements;
 import com.ulto.marvel.MarvelMod;
 
@@ -92,6 +87,30 @@ public class VibraniumShieldHitsBlockProcedure extends MarvelModElements.ModElem
 		} else if (shield instanceof BloodyCapsShieldBlueItem.ArrowCustomEntity) {
 			if (entity instanceof PlayerEntity) {
 				ItemStack _setstack = new ItemStack(BloodyCapsShieldBlueItem.block, (int) (1));
+				_setstack.setCount((int) 1);
+				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			}
+		} else if (shield instanceof RedGuardianShieldItem.ArrowCustomEntity) {
+			if (entity instanceof PlayerEntity) {
+				ItemStack _setstack = new ItemStack(RedGuardianShieldItem.block, (int) (1));
+				_setstack.setCount((int) 1);
+				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			}
+		} else if (shield instanceof BloodyRedGuardianShieldItem.ArrowCustomEntity) {
+			if (entity instanceof PlayerEntity) {
+				ItemStack _setstack = new ItemStack(BloodyRedGuardianShieldItem.block, (int) (1));
+				_setstack.setCount((int) 1);
+				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			}
+		} else if (shield instanceof TaskmasterShieldItem.ArrowCustomEntity) {
+			if (entity instanceof PlayerEntity) {
+				ItemStack _setstack = new ItemStack(TaskmasterShieldItem.block, (int) (1));
+				_setstack.setCount((int) 1);
+				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			}
+		} else if (shield instanceof BloodyTaskmasterShieldItem.ArrowCustomEntity) {
+			if (entity instanceof PlayerEntity) {
+				ItemStack _setstack = new ItemStack(BloodyTaskmasterShieldItem.block, (int) (1));
 				_setstack.setCount((int) 1);
 				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
 			}

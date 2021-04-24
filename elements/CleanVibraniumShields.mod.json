@@ -1,0 +1,29 @@
+{
+  "_fv": 17,
+  "_type": "tag",
+  "definition": {
+    "type": "Items",
+    "items": [
+      {
+        "value": "CUSTOM:VibraniumShield"
+      },
+      {
+        "value": "CUSTOM:CapsShieldRed"
+      },
+      {
+        "value": "CUSTOM:CapsShieldBlue"
+      },
+      {
+        "value": "CUSTOM:RedGuardianShield"
+      },
+      {
+        "value": "CUSTOM:TaskmasterShield"
+      }
+    ],
+    "blocks": [],
+    "functions": [],
+    "entities": [],
+    "name": "clean_vibranium_shields",
+    "namespace": "mod"
+  }
+}

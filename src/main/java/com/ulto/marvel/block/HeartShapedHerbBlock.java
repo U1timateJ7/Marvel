@@ -54,7 +54,7 @@ public class HeartShapedHerbBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:heart_shaped_herb")
 	public static final Block block = null;
 	public HeartShapedHerbBlock(MarvelModElements instance) {
-		super(instance, 6);
+		super(instance, 14);
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new FeatureRegisterHandler());
 	}

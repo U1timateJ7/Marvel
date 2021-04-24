@@ -8,7 +8,7 @@
     "name": "Titanium",
     "rarity": "COMMON",
     "creativeTab": {
-      "value": "MISC"
+      "value": "CUSTOM:MarvelItems"
     },
     "stackSize": 64,
     "enchantability": 0,

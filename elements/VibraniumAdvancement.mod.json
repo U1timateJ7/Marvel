@@ -2,8 +2,8 @@
   "_fv": 17,
   "_type": "achievement",
   "definition": {
-    "achievementName": "The most versatile substance on the planet...",
-    "achievementDescription": "Refine Vibranium",
+    "achievementName": "Refine Vibranium",
+    "achievementDescription": "The most versatile substance on the planet...",
     "achievementIcon": {
       "value": "CUSTOM:Vibranium"
     },

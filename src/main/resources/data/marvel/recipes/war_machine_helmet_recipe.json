@@ -1,0 +1,30 @@
+{
+  "group": "warmachine",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "1": {
+      "item": "marvel:titanium_ingot"
+    },
+    "3": {
+      "item": "marvel:titanium_ingot"
+    },
+    "4": {
+      "item": "marvel:iron_man_mark_2_helmet"
+    },
+    "5": {
+      "item": "marvel:titanium_ingot"
+    },
+    "7": {
+      "item": "marvel:titanium_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:war_machine_helmet",
+    "count": 1
+  }
+}

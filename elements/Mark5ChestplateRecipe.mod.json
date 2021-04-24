@@ -19,22 +19,22 @@
         "value": "CUSTOM:GoldTitaniumAlloy"
       },
       {
-        "value": "CUSTOM:GoldTitaniumAlloy"
+        "value": "Items.IRON_INGOT"
       },
       {
         "value": "CUSTOM:PalladiumArcReactor"
       },
       {
-        "value": "CUSTOM:GoldTitaniumAlloy"
-      },
-      {
         "value": "Items.IRON_INGOT"
       },
       {
         "value": "CUSTOM:GoldTitaniumAlloy"
       },
       {
-        "value": "Items.IRON_INGOT"
+        "value": "CUSTOM:IronManMark3.body"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
       }
     ],
     "recipeReturnStack": {

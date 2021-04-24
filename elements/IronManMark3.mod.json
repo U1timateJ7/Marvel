@@ -13,6 +13,9 @@
     "onBodyTick": {
       "name": "IronManBodyTickEvent"
     },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
     "creativeTab": {
       "value": "CUSTOM:IronManArmor"
     },

@@ -29,7 +29,15 @@
       "marvel:john_walker_helmet_recipe",
       "marvel:john_walker_chestplate_recipe",
       "marvel:john_walker_legs_recipe",
-      "marvel:john_walker_feet_recipe"
+      "marvel:john_walker_feet_recipe",
+      "marvel:spider_man_helmet_recipe",
+      "marvel:spider_man_chestplate_recipe",
+      "marvel:spider_man_legs_recipe",
+      "marvel:spider_man_feet_recipe",
+      "marvel:red_guardian_helmet_recipe",
+      "marvel:red_guardian_chestplate_recipe",
+      "marvel:red_guardian_legs_recipe",
+      "marvel:red_guardian_feet_recipe"
     ]
   },
   "parent": "marvel:vibranium_ore_recipes"

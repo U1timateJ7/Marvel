@@ -21,7 +21,12 @@
       "marvel:mark_3_helmet_recipe",
       "marvel:mark_3_chestplate_recipe",
       "marvel:mark_3_legs_recipe",
-      "marvel:mark_3_feet_recipe"
+      "marvel:mark_3_feet_recipe",
+      "marvel:war_machine_helmet_recipe",
+      "marvel:war_machine_chestplate_recipe",
+      "marvel:war_machine_legs_recipe",
+      "marvel:war_machine_feet_recipe",
+      "marvel:bullet_recipe"
     ]
   }
 }

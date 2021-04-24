@@ -16,7 +16,7 @@ public class VibraniumHoeItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_hoe")
 	public static final Item block = null;
 	public VibraniumHoeItem(MarvelModElements instance) {
-		super(instance, 15);
+		super(instance, 31);
 	}
 
 	@Override

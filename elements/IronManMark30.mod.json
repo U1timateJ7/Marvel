@@ -1,0 +1,78 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "mark30_helmet",
+    "enableBody": true,
+    "textureBody": "mark30_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "mark30_leggings",
+    "enableBoots": true,
+    "textureBoots": "mark30_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
+    "onBodyTick": {
+      "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
+    "creativeTab": {
+      "value": "CUSTOM:IronManArmor"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Iron Man Helmet",
+    "bodyName": "Iron Man Chestplate",
+    "leggingsName": "Iron Man Leggings",
+    "bootsName": "Iron Man Boots",
+    "helmetSpecialInfo": [
+      "Mark XXX"
+    ],
+    "bodySpecialInfo": [
+      "Mark XXX"
+    ],
+    "leggingsSpecialInfo": [
+      "Mark XXX"
+    ],
+    "bootsSpecialInfo": [
+      "Mark XXX"
+    ],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "mark30_helmet.png",
+    "bodyModelName": "ModelCenturion",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "mark30_layer_1.png",
+    "leggingsModelName": "ModelCenturion",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "mark30_layer_2.png",
+    "bootsModelName": "ModelCenturion",
+    "bootsModelPartL": "LeftLeg",
+    "bootsModelPartR": "RightLeg",
+    "bootsModelTexture": "mark30_layer_1.png",
+    "maxDamage": 25,
+    "damageValueHelmet": 3,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 3,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.1,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:TitaniumIngot"
+      }
+    ]
+  }
+}

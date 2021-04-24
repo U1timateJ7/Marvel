@@ -10,9 +10,6 @@
     "recipeShapeless": false,
     "recipeSlots": [
       {
-        "value": "CUSTOM:TitaniumIngot"
-      },
-      {
         "value": "Items.IRON_INGOT"
       },
       {
@@ -22,10 +19,13 @@
         "value": "Items.IRON_INGOT"
       },
       {
-        "value": ""
+        "value": "CUSTOM:TitaniumIngot"
       },
       {
-        "value": "Items.IRON_INGOT"
+        "value": "CUSTOM:IronManMark1.helmet"
+      },
+      {
+        "value": "CUSTOM:TitaniumIngot"
       },
       {
         "value": ""

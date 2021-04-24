@@ -32,7 +32,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class BoneMealProcedureProcedure extends MarvelModElements.ModElement {
 	public BoneMealProcedureProcedure(MarvelModElements instance) {
-		super(instance, 99);
+		super(instance, 140);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 

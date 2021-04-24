@@ -11,7 +11,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbEatenProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbEatenProcedure(MarvelModElements instance) {
-		super(instance, 82);
+		super(instance, 123);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -21,12 +21,17 @@ public class HeartShapedHerbEatenProcedure extends MarvelModElements.ModElement 
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		{
-			boolean _setval = (boolean) (true);
-			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-				capability.hasEatenHeartShapedHerb = _setval;
-				capability.syncPlayerVariables(entity);
-			});
+		if ((!(((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MarvelModVariables.PlayerVariables())).superSoldier)
+				&& ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MarvelModVariables.PlayerVariables())).radioactive)))) {
+			{
+				boolean _setval = (boolean) (true);
+				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.hasEatenHeartShapedHerb = _setval;
+					capability.syncPlayerVariables(entity);
+				});
+			}
 		}
 	}
 }

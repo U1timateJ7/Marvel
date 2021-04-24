@@ -1,0 +1,79 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "textfield",
+        "data": {
+          "placeholder": "Player Name",
+          "width": 120,
+          "height": 20,
+          "name": "Destination",
+          "x": 150,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Enter Destination Name",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Enter Destination Name",
+          "x": 155,
+          "y": 93
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "(Case Sensitive)",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "(Case Sensitive)",
+          "x": 170,
+          "y": 131
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Confirm",
+          "onClick": {
+            "name": "Mark42UIConfirm"
+          },
+          "width": 60,
+          "height": 20,
+          "name": "Confirm",
+          "x": 180,
+          "y": 161
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 42 Controller",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 42 Controller",
+          "x": 169,
+          "y": 53
+        }
+      }
+    ]
+  }
+}

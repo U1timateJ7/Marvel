@@ -16,7 +16,7 @@ public class DrivingWithTheTopDownItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:driving_with_the_top_down")
 	public static final Item block = null;
 	public DrivingWithTheTopDownItem(MarvelModElements instance) {
-		super(instance, 182);
+		super(instance, 56);
 	}
 
 	@Override

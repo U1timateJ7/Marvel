@@ -37,7 +37,7 @@ public class CaptainAmericaSuitItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:captain_america_suit_boots")
 	public static final Item boots = null;
 	public CaptainAmericaSuitItem(MarvelModElements instance) {
-		super(instance, 23);
+		super(instance, 44);
 	}
 
 	@Override

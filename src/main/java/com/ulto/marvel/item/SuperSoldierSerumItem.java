@@ -25,7 +25,7 @@ public class SuperSoldierSerumItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:super_soldier_serum")
 	public static final Item block = null;
 	public SuperSoldierSerumItem(MarvelModElements instance) {
-		super(instance, 9);
+		super(instance, 17);
 	}
 
 	@Override

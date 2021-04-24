@@ -10,7 +10,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class IronManFlamethrowerBulletHitsLivingEntityProcedure extends MarvelModElements.ModElement {
 	public IronManFlamethrowerBulletHitsLivingEntityProcedure(MarvelModElements instance) {
-		super(instance, 123);
+		super(instance, 160);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

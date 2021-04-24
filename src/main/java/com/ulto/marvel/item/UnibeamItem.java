@@ -47,7 +47,7 @@ public class UnibeamItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:entitybulletunibeam")
 	public static final EntityType arrow = null;
 	public UnibeamItem(MarvelModElements instance) {
-		super(instance, 165);
+		super(instance, 186);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.ulto.marvel.procedures.IronManAbilityOnKeyReleasedProcedure;
+import com.ulto.marvel.procedures.IronManAbilityKeyProcedure;
 import com.ulto.marvel.MarvelModElements;
 import com.ulto.marvel.MarvelMod;
 
@@ -31,7 +31,7 @@ public class IronManAbilityKeyBinding extends MarvelModElements.ModElement {
 	@OnlyIn(Dist.CLIENT)
 	private KeyBinding keys;
 	public IronManAbilityKeyBinding(MarvelModElements instance) {
-		super(instance, 179);
+		super(instance, 195);
 		elements.addNetworkMessage(KeyBindingPressedMessage.class, KeyBindingPressedMessage::buffer, KeyBindingPressedMessage::new,
 				KeyBindingPressedMessage::handler);
 	}
@@ -97,7 +97,7 @@ public class IronManAbilityKeyBinding extends MarvelModElements.ModElement {
 				$_dependencies.put("y", y);
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
-				IronManAbilityOnKeyReleasedProcedure.executeProcedure($_dependencies);
+				IronManAbilityKeyProcedure.executeProcedure($_dependencies);
 			}
 		}
 	}

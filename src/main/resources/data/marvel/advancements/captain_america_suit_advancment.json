@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "marvel:captain_america_suit_chestplate"
+    },
+    "title": {
+      "translate": "advancements.captain_america_suit_advancment.title"
+    },
+    "description": {
+      "translate": "advancements.captain_america_suit_advancment.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "captain_america_suit_advancment": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:captain_america_suit_chestplate",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  },
+  "parent": "marvel:iron_leather_advancement"
+}

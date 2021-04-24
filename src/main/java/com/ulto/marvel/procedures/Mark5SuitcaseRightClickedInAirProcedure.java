@@ -2,6 +2,9 @@ package com.ulto.marvel.procedures;
 
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
@@ -18,7 +21,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.block.Blocks;
 
 import java.util.Map;
+import java.util.HashMap;
 
+import com.ulto.marvel.item.Mark5OpenItem;
 import com.ulto.marvel.item.IronManMark5Item;
 import com.ulto.marvel.MarvelModElements;
 import com.ulto.marvel.MarvelMod;
@@ -26,7 +31,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.ModElement {
 	public Mark5SuitcaseRightClickedInAirProcedure(MarvelModElements instance) {
-		super(instance, 178);
+		super(instance, 193);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
@@ -60,12 +65,21 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-		if (entity instanceof PlayerEntity) {
-			ItemStack _setstack = ((entity instanceof LivingEntity)
-					? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-					: ItemStack.EMPTY);
+		if (entity instanceof LivingEntity) {
+			ItemStack _setstack = new ItemStack(Blocks.AIR, (int) (1));
 			_setstack.setCount((int) 1);
-			ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			((LivingEntity) entity).setHeldItem(Hand.MAIN_HAND, _setstack);
+			if (entity instanceof ServerPlayerEntity)
+				((ServerPlayerEntity) entity).inventory.markDirty();
+		}
+		if (world instanceof World && !world.isRemote()) {
+			((World) world).playSound(null, new BlockPos((int) x, (int) y, (int) z),
+					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")),
+					SoundCategory.NEUTRAL, (float) 1, (float) 1);
+		} else {
+			((World) world).playSound(x, y, z,
+					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")),
+					SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
 		}
 		if (entity instanceof PlayerEntity) {
 			ItemStack _setstack = ((entity instanceof LivingEntity)
@@ -73,29 +87,6 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 					: ItemStack.EMPTY);
 			_setstack.setCount((int) 1);
 			ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-		}
-		if (entity instanceof PlayerEntity) {
-			ItemStack _setstack = ((entity instanceof LivingEntity)
-					? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
-					: ItemStack.EMPTY);
-			_setstack.setCount((int) 1);
-			ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-		}
-		if (entity instanceof PlayerEntity) {
-			ItemStack _setstack = ((entity instanceof LivingEntity)
-					? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
-					: ItemStack.EMPTY);
-			_setstack.setCount((int) 1);
-			ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-		}
-		if (entity instanceof LivingEntity) {
-			if (entity instanceof PlayerEntity)
-				((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark5Item.helmet, (int) (1)));
-			else
-				((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-						new ItemStack(IronManMark5Item.helmet, (int) (1)));
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
 		}
 		if (entity instanceof LivingEntity) {
 			if (entity instanceof PlayerEntity)
@@ -106,39 +97,159 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 			if (entity instanceof ServerPlayerEntity)
 				((ServerPlayerEntity) entity).inventory.markDirty();
 		}
-		if (entity instanceof LivingEntity) {
-			if (entity instanceof PlayerEntity)
-				((PlayerEntity) entity).inventory.armorInventory.set((int) 1, new ItemStack(IronManMark5Item.legs, (int) (1)));
-			else
-				((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1),
-						new ItemStack(IronManMark5Item.legs, (int) (1)));
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
-		}
-		if (entity instanceof LivingEntity) {
-			if (entity instanceof PlayerEntity)
-				((PlayerEntity) entity).inventory.armorInventory.set((int) 0, new ItemStack(IronManMark5Item.boots, (int) (1)));
-			else
-				((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0),
-						new ItemStack(IronManMark5Item.boots, (int) (1)));
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
-		}
-		if (world instanceof World && !world.isRemote()) {
-			((World) world).playSound(null, new BlockPos((int) x, (int) y, (int) z),
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1);
-		} else {
-			((World) world).playSound(x, y, z,
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
-		}
-		if (entity instanceof LivingEntity) {
-			ItemStack _setstack = new ItemStack(Blocks.AIR, (int) (1));
-			_setstack.setCount((int) 1);
-			((LivingEntity) entity).setHeldItem(Hand.MAIN_HAND, _setstack);
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
-		}
+		new Object() {
+			private int ticks = 0;
+			private float waitTicks;
+			private IWorld world;
+			public void start(IWorld world, int waitTicks) {
+				this.waitTicks = waitTicks;
+				MinecraftForge.EVENT_BUS.register(this);
+				this.world = world;
+			}
+
+			@SubscribeEvent
+			public void tick(TickEvent.ServerTickEvent event) {
+				if (event.phase == TickEvent.Phase.END) {
+					this.ticks += 1;
+					if (this.ticks >= this.waitTicks)
+						run();
+				}
+			}
+
+			private void run() {
+				if (entity instanceof PlayerEntity) {
+					ItemStack _setstack = ((entity instanceof LivingEntity)
+							? ((LivingEntity) entity)
+									.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
+							: ItemStack.EMPTY);
+					_setstack.setCount((int) 1);
+					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+				}
+				if (entity instanceof LivingEntity) {
+					if (entity instanceof PlayerEntity)
+						((PlayerEntity) entity).inventory.armorInventory.set((int) 1, new ItemStack(IronManMark5Item.legs, (int) (1)));
+					else
+						((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1),
+								new ItemStack(IronManMark5Item.legs, (int) (1)));
+					if (entity instanceof ServerPlayerEntity)
+						((ServerPlayerEntity) entity).inventory.markDirty();
+				}
+				new Object() {
+					private int ticks = 0;
+					private float waitTicks;
+					private IWorld world;
+					public void start(IWorld world, int waitTicks) {
+						this.waitTicks = waitTicks;
+						MinecraftForge.EVENT_BUS.register(this);
+						this.world = world;
+					}
+
+					@SubscribeEvent
+					public void tick(TickEvent.ServerTickEvent event) {
+						if (event.phase == TickEvent.Phase.END) {
+							this.ticks += 1;
+							if (this.ticks >= this.waitTicks)
+								run();
+						}
+					}
+
+					private void run() {
+						if (entity instanceof PlayerEntity) {
+							ItemStack _setstack = ((entity instanceof LivingEntity)
+									? ((LivingEntity) entity)
+											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+									: ItemStack.EMPTY);
+							_setstack.setCount((int) 1);
+							ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+						}
+						if (entity instanceof LivingEntity) {
+							if (entity instanceof PlayerEntity)
+								((PlayerEntity) entity).inventory.armorInventory.set((int) 0, new ItemStack(IronManMark5Item.boots, (int) (1)));
+							else
+								((LivingEntity) entity).setItemStackToSlot(
+										EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0),
+										new ItemStack(IronManMark5Item.boots, (int) (1)));
+							if (entity instanceof ServerPlayerEntity)
+								((ServerPlayerEntity) entity).inventory.markDirty();
+						}
+						new Object() {
+							private int ticks = 0;
+							private float waitTicks;
+							private IWorld world;
+							public void start(IWorld world, int waitTicks) {
+								this.waitTicks = waitTicks;
+								MinecraftForge.EVENT_BUS.register(this);
+								this.world = world;
+							}
+
+							@SubscribeEvent
+							public void tick(TickEvent.ServerTickEvent event) {
+								if (event.phase == TickEvent.Phase.END) {
+									this.ticks += 1;
+									if (this.ticks >= this.waitTicks)
+										run();
+								}
+							}
+
+							private void run() {
+								if (entity instanceof PlayerEntity) {
+									ItemStack _setstack = ((entity instanceof LivingEntity)
+											? ((LivingEntity) entity).getItemStackFromSlot(
+													EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
+											: ItemStack.EMPTY);
+									_setstack.setCount((int) 1);
+									ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+								}
+								if (entity instanceof LivingEntity) {
+									if (entity instanceof PlayerEntity)
+										((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+									else
+										((LivingEntity) entity).setItemStackToSlot(
+												EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
+												new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+									if (entity instanceof ServerPlayerEntity)
+										((ServerPlayerEntity) entity).inventory.markDirty();
+								}
+								new Object() {
+									private int ticks = 0;
+									private float waitTicks;
+									private IWorld world;
+									public void start(IWorld world, int waitTicks) {
+										this.waitTicks = waitTicks;
+										MinecraftForge.EVENT_BUS.register(this);
+										this.world = world;
+									}
+
+									@SubscribeEvent
+									public void tick(TickEvent.ServerTickEvent event) {
+										if (event.phase == TickEvent.Phase.END) {
+											this.ticks += 1;
+											if (this.ticks >= this.waitTicks)
+												run();
+										}
+									}
+
+									private void run() {
+										{
+											Map<String, Object> $_dependencies = new HashMap<>();
+											$_dependencies.put("entity", entity);
+											$_dependencies.put("world", world);
+											$_dependencies.put("x", x);
+											$_dependencies.put("y", y);
+											$_dependencies.put("z", z);
+											ToggleHelmetOnKeyProcedure.executeProcedure($_dependencies);
+										}
+										MinecraftForge.EVENT_BUS.unregister(this);
+									}
+								}.start(world, (int) 10);
+								MinecraftForge.EVENT_BUS.unregister(this);
+							}
+						}.start(world, (int) 10);
+						MinecraftForge.EVENT_BUS.unregister(this);
+					}
+				}.start(world, (int) 10);
+				MinecraftForge.EVENT_BUS.unregister(this);
+			}
+		}.start(world, (int) 10);
 	}
 }

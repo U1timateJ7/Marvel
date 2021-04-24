@@ -25,7 +25,7 @@ public class AntiSerumItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:anti_serum")
 	public static final Item block = null;
 	public AntiSerumItem(MarvelModElements instance) {
-		super(instance, 10);
+		super(instance, 18);
 	}
 
 	@Override

@@ -1,0 +1,29 @@
+{
+  "group": "mark_2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:titanium_ingot"
+    },
+    "2": {
+      "item": "marvel:titanium_ingot"
+    },
+    "3": {
+      "item": "minecraft:iron_ingot"
+    },
+    "4": {
+      "item": "marvel:iron_man_mark_1_boots"
+    },
+    "5": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_2_boots",
+    "count": 1
+  }
+}

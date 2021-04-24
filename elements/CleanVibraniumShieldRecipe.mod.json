@@ -10,7 +10,7 @@
     "recipeShapeless": true,
     "recipeSlots": [
       {
-        "value": "CUSTOM:BloodyVibraniumShield"
+        "value": "TAG:marvel:vibranium_shields"
       },
       {
         "value": "Items.WATER_BUCKET"

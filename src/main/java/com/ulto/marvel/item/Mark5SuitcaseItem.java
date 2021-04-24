@@ -24,7 +24,7 @@ public class Mark5SuitcaseItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:mark_5_suitcase")
 	public static final Item block = null;
 	public Mark5SuitcaseItem(MarvelModElements instance) {
-		super(instance, 178);
+		super(instance, 26);
 	}
 
 	@Override

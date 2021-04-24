@@ -47,7 +47,7 @@ public class IronManFlamethrowerItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:entitybulletflamethrower")
 	public static final EntityType arrow = null;
 	public IronManFlamethrowerItem(MarvelModElements instance) {
-		super(instance, 122);
+		super(instance, 159);
 	}
 
 	@Override

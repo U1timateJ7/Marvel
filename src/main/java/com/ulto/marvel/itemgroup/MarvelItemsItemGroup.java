@@ -13,7 +13,7 @@ import com.ulto.marvel.MarvelModElements;
 @MarvelModElements.ModElement.Tag
 public class MarvelItemsItemGroup extends MarvelModElements.ModElement {
 	public MarvelItemsItemGroup(MarvelModElements instance) {
-		super(instance, 92);
+		super(instance, 133);
 	}
 
 	@Override

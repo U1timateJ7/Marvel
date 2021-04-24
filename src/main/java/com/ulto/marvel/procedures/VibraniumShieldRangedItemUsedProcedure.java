@@ -18,7 +18,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class VibraniumShieldRangedItemUsedProcedure extends MarvelModElements.ModElement {
 	public VibraniumShieldRangedItemUsedProcedure(MarvelModElements instance) {
-		super(instance, 51);
+		super(instance, 92);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

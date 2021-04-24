@@ -16,7 +16,7 @@ public class VibraniumSwordItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_sword")
 	public static final Item block = null;
 	public VibraniumSwordItem(MarvelModElements instance) {
-		super(instance, 11);
+		super(instance, 27);
 	}
 
 	@Override

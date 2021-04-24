@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/mark25_drill",
+  "textures": {
+    "0": "marvel:blocks/mark25_drill",
+    "particle": "marvel:items/mark25_drill"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "mark30_helmet",
+    "enableBody": true,
+    "textureBody": "mark30_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "mark30_leggings",
+    "enableBoots": true,
+    "textureBoots": "mark30_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
+    "onBodyTick": {
+      "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
+    "creativeTab": {
+      "value": "No creative tab entry"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Iron Man Helmet",
+    "bodyName": "Iron Man Chestplate",
+    "leggingsName": "Iron Man Leggings",
+    "bootsName": "Iron Man Boots",
+    "helmetSpecialInfo": [
+      "Mark XXX - Invisible"
+    ],
+    "bodySpecialInfo": [
+      "Mark XXX - Invisible"
+    ],
+    "leggingsSpecialInfo": [
+      "Mark XXX - Invisible"
+    ],
+    "bootsSpecialInfo": [
+      "Mark XXX - Invisible"
+    ],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "From armor",
+    "bodyModelName": "ModelCenturion",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "From armor",
+    "leggingsModelName": "ModelCenturion",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "From armor",
+    "bootsModelName": "ModelCenturion",
+    "bootsModelPartL": "LeftLeg",
+    "bootsModelPartR": "RightLeg",
+    "bootsModelTexture": "From armor",
+    "maxDamage": 25,
+    "damageValueHelmet": 3,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 3,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.1,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:TitaniumIngot"
+      }
+    ]
+  }
+}

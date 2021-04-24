@@ -5,8 +5,8 @@
     "triggerKey": "H",
     "keyBindingName": "Toggle Helmet",
     "keyBindingCategoryKey": "misc",
-    "onKeyReleased": {
-      "name": "ToggleHelmetKey"
+    "onKeyPressed": {
+      "name": "ToggleHelmetOnKeyPressed"
     }
   }
 }

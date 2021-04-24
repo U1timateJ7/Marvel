@@ -27,7 +27,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class SSSGivenToOthersProcedure extends MarvelModElements.ModElement {
 	public SSSGivenToOthersProcedure(MarvelModElements instance) {
-		super(instance, 105);
+		super(instance, 146);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -47,12 +47,17 @@ public class SSSGivenToOthersProcedure extends MarvelModElements.ModElement {
 		if ((((sourceentity instanceof LivingEntity) ? ((LivingEntity) sourceentity).getHeldItemMainhand() : ItemStack.EMPTY)
 				.getItem() == new ItemStack(SuperSoldierSerumItem.block, (int) (1)).getItem())) {
 			if ((entity instanceof PlayerEntity)) {
-				{
-					boolean _setval = (boolean) (true);
-					entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.superSoldier = _setval;
-						capability.syncPlayerVariables(entity);
-					});
+				if ((!(((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb)
+						&& ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).radioactive)))) {
+					{
+						boolean _setval = (boolean) (true);
+						entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+							capability.superSoldier = _setval;
+							capability.syncPlayerVariables(entity);
+						});
+					}
 				}
 			} else {
 				if (entity instanceof LivingEntity)
@@ -81,6 +86,13 @@ public class SSSGivenToOthersProcedure extends MarvelModElements.ModElement {
 					boolean _setval = (boolean) (false);
 					entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 						capability.superSoldier = _setval;
+						capability.syncPlayerVariables(entity);
+					});
+				}
+				{
+					boolean _setval = (boolean) (false);
+					entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+						capability.radioactive = _setval;
 						capability.syncPlayerVariables(entity);
 					});
 				}

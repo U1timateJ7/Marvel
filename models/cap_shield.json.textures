@@ -35,6 +35,30 @@
         "0": "bloody_shield_blue"
       },
       "name": "bloody_blue"
+    },
+    "red_guardian": {
+      "map": {
+        "0": "red_guardian_shield"
+      },
+      "name": "red_guardian"
+    },
+    "bloody_red_guardian": {
+      "map": {
+        "0": "bloody_red_guardian_shield"
+      },
+      "name": "bloody_red_guardian"
+    },
+    "taskmaster": {
+      "map": {
+        "0": "taskmaster_shield"
+      },
+      "name": "taskmaster"
+    },
+    "bloody_task_master": {
+      "map": {
+        "0": "bloody_taskmaster_shield"
+      },
+      "name": "bloody_task_master"
     }
   }
 }

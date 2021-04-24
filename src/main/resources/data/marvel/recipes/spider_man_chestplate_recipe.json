@@ -1,0 +1,39 @@
+{
+  "group": "spider_man",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "marvel:reinforced_leather"
+    },
+    "2": {
+      "item": "marvel:reinforced_leather"
+    },
+    "3": {
+      "item": "minecraft:blue_dye"
+    },
+    "4": {
+      "item": "marvel:reinforced_leather"
+    },
+    "5": {
+      "item": "minecraft:blue_dye"
+    },
+    "6": {
+      "item": "minecraft:red_dye"
+    },
+    "7": {
+      "item": "marvel:reinforced_leather"
+    },
+    "8": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:spider_man_suit_chestplate",
+    "count": 1
+  }
+}

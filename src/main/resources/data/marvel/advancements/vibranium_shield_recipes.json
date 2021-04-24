@@ -18,11 +18,11 @@
   "rewards": {
     "experience": 0,
     "recipes": [
-      "marvel:captain_americas_shield_red",
-      "marvel:captain_americas_shield_blue",
       "marvel:clean_vibranium_shield_recipe",
-      "marvel:clean_red_shield_recipe",
-      "marvel:clean_blue_shield_recipe"
+      "marvel:caps_shield_recipe",
+      "marvel:caps_stealth_shield_recipe",
+      "marvel:red_guardian_shield_recipe",
+      "marvel:taskmaster_shield_recipe"
     ]
   }
 }

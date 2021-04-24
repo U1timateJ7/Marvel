@@ -1,14 +1,17 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'eclipse'
 
 version = '1.0'
@@ -23,6 +26,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+			arg "-mixin.config=marvel.mixins.json"
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
@@ -49,8 +53,22 @@ minecraft {
     }
 }
 
+mixin {
+    add sourceSets.main, "marvel.refmap.json"
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
+}
+
+jar {
+    manifest {
+        attributes([
+            // Existing properties here
+            "MixinConfigs": "marvel.mixins.json"
+        ])
+    }
 }
 
 apply from: 'mcreator.gradle'

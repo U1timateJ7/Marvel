@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "web_recipe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:string",
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:web_shooter_recipe",
+      "marvel:web_fluid_recipe"
+    ]
+  },
+  "parent": "marvel:vibranium_ore_recipes"
+}

@@ -1,0 +1,19 @@
+{
+  "group": "adamantium",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:vibranium_ingot"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "marvel:adamantium",
+    "count": 2
+  }
+}

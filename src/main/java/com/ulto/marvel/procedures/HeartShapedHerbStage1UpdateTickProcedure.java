@@ -24,7 +24,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbStage1UpdateTickProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbStage1UpdateTickProcedure(MarvelModElements instance) {
-		super(instance, 97);
+		super(instance, 138);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

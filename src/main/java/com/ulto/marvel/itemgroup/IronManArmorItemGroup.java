@@ -13,7 +13,7 @@ import com.ulto.marvel.MarvelModElements;
 @MarvelModElements.ModElement.Tag
 public class IronManArmorItemGroup extends MarvelModElements.ModElement {
 	public IronManArmorItemGroup(MarvelModElements instance) {
-		super(instance, 120);
+		super(instance, 155);
 	}
 
 	@Override

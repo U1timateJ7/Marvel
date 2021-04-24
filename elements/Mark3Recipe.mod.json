@@ -17,7 +17,12 @@
       "Mark3HelmetRecipe",
       "Mark3ChestplateRecipe",
       "Mark3LegsRecipe",
-      "Mark3FeetRecipe"
+      "Mark3FeetRecipe",
+      "WarMachineHelmetRecipe",
+      "WarMachineChestplateRecipe",
+      "WarMachineLegsRecipe",
+      "WarMachineFeetRecipe",
+      "BulletRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

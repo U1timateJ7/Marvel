@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "marvel:vibranium_shield"
+    },
+    "title": {
+      "translate": "advancements.vibranium_shield_advancement.title"
+    },
+    "description": {
+      "translate": "advancements.vibranium_shield_advancement.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "vibranium_shield_advancement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "marvel:vibranium_shield",
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  },
+  "parent": "marvel:vibranium_advancement"
+}

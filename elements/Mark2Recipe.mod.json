@@ -17,7 +17,7 @@
       "Mark2HelmetRecipe",
       "Mark2ChestplateRecipe",
       "Mark2LegsRecipe",
-      "Mark2BootsRecipe"
+      "Mark2FeetRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

@@ -16,7 +16,7 @@ public class PalladiumArcReactorItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:palladium_arc_reactor")
 	public static final Item block = null;
 	public PalladiumArcReactorItem(MarvelModElements instance) {
-		super(instance, 138);
+		super(instance, 20);
 	}
 
 	@Override

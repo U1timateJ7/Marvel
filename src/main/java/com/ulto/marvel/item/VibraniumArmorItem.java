@@ -29,7 +29,7 @@ public class VibraniumArmorItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_armor_boots")
 	public static final Item boots = null;
 	public VibraniumArmorItem(MarvelModElements instance) {
-		super(instance, 22);
+		super(instance, 43);
 	}
 
 	@Override

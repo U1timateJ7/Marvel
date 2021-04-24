@@ -1,0 +1,29 @@
+{
+  "group": "mark_22",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_ingot"
+    },
+    "2": {
+      "item": "minecraft:gold_ingot"
+    },
+    "3": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "4": {
+      "item": "marvel:iron_man_mark_6_boots"
+    },
+    "5": {
+      "item": "marvel:gold_titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_22_boots",
+    "count": 1
+  }
+}

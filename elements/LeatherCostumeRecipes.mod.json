@@ -25,7 +25,15 @@
       "JohnWalkerHelmetRecipe",
       "JohnWalkerChestplateRecipe",
       "JohnWalkerLegsRecipe",
-      "JohnWalkerFeetRecipe"
+      "JohnWalkerFeetRecipe",
+      "SpiderManHelmetRecipe",
+      "SpiderManChestplateRecipe",
+      "SpiderManLegsRecipe",
+      "SpiderManFeetRecipe",
+      "RedGuardianHelmetRecipe",
+      "RedGuardianChestplateRecipe",
+      "RedGuardianLegsRecipe",
+      "RedGuardianFeetRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

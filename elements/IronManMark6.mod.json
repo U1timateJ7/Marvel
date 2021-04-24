@@ -3,15 +3,21 @@
   "_type": "armor",
   "definition": {
     "enableHelmet": true,
-    "textureHelmet": "mark3_helmet",
+    "textureHelmet": "mark6_helmet",
     "enableBody": true,
-    "textureBody": "mark3_chestplate",
+    "textureBody": "mark6_chestplate",
     "enableLeggings": true,
-    "textureLeggings": "mark3_leggings",
+    "textureLeggings": "mark6_leggings",
     "enableBoots": true,
-    "textureBoots": "mark3_boots",
+    "textureBoots": "mark6_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
     "onBodyTick": {
       "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
     },
     "creativeTab": {
       "value": "CUSTOM:IronManArmor"
@@ -35,20 +41,20 @@
     ],
     "helmetModelName": "ModelHelmet",
     "helmetModelPart": "Head",
-    "helmetModelTexture": "mark3_helmet.png",
+    "helmetModelTexture": "mark6_helmet.png",
     "bodyModelName": "ModelCostume",
     "bodyModelPart": "Body",
     "armsModelPartL": "LeftArm",
     "armsModelPartR": "RightArm",
-    "bodyModelTexture": "mark3_layer_1.png",
+    "bodyModelTexture": "mark6_layer_1.png",
     "leggingsModelName": "ModelCostume",
     "leggingsModelPartL": "LeftLeg",
     "leggingsModelPartR": "RightLeg",
-    "leggingsModelTexture": "mark3_layer_2.png",
+    "leggingsModelTexture": "mark6_layer_2.png",
     "bootsModelName": "ModelCostume",
     "bootsModelPartL": "LeftBoot",
     "bootsModelPartR": "RightBoot",
-    "bootsModelTexture": "mark3_layer_1.png",
+    "bootsModelTexture": "mark6_layer_1.png",
     "maxDamage": 25,
     "damageValueHelmet": 2,
     "damageValueBody": 8,

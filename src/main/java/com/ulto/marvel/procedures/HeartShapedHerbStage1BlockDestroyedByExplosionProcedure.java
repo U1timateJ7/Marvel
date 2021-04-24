@@ -14,7 +14,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbStage1BlockDestroyedByExplosionProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbStage1BlockDestroyedByExplosionProcedure(MarvelModElements instance) {
-		super(instance, 73);
+		super(instance, 114);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

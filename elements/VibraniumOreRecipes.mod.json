@@ -28,7 +28,8 @@
       "VibraniumArmorBootsRecipe",
       "VibraniumRecipe",
       "VibraniumShieldRecipe",
-      "VibraniumWeaveRecipe"
+      "VibraniumWeaveRecipe",
+      "AdamantiumRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 0,

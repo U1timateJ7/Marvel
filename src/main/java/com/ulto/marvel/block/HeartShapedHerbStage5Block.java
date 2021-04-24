@@ -78,7 +78,7 @@ public class HeartShapedHerbStage5Block extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:heart_shaped_herb_stage_5")
 	public static final TileEntityType<CustomTileEntity> tileEntityType = null;
 	public HeartShapedHerbStage5Block(MarvelModElements instance) {
-		super(instance, 78);
+		super(instance, 119);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new TileEntityRegisterHandler());
 	}
 

@@ -14,11 +14,11 @@
     "hideIfNotCompleted": false,
     "rewardLoot": [],
     "rewardRecipes": [
-      "CapsShieldRedRecipe",
-      "CapsShieldBlueRecipe",
       "CleanVibraniumShieldRecipe",
-      "CleanRedShieldRecipe",
-      "CleanBlueShieldRecipe"
+      "CapsShieldRecipe",
+      "CapsStealthShieldRecipe",
+      "RedGuardianShieldRecipe",
+      "TaskmasterShieldRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 0,

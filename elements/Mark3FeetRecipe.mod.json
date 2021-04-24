@@ -10,16 +10,10 @@
     "recipeShapeless": false,
     "recipeSlots": [
       {
-        "value": "Items.GOLD_INGOT"
-      },
-      {
         "value": ""
       },
       {
-        "value": "Items.GOLD_INGOT"
-      },
-      {
-        "value": "CUSTOM:GoldTitaniumAlloy"
+        "value": ""
       },
       {
         "value": ""
@@ -28,10 +22,16 @@
         "value": "CUSTOM:GoldTitaniumAlloy"
       },
       {
+        "value": ""
+      },
+      {
         "value": "CUSTOM:GoldTitaniumAlloy"
       },
       {
-        "value": ""
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:IronManMark2.boots"
       },
       {
         "value": "CUSTOM:GoldTitaniumAlloy"

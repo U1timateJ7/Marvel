@@ -16,7 +16,7 @@ public class WakandaItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:wakanda")
 	public static final Item block = null;
 	public WakandaItem(MarvelModElements instance) {
-		super(instance, 28);
+		super(instance, 54);
 	}
 
 	@Override

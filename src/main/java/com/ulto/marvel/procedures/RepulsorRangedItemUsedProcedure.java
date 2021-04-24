@@ -12,7 +12,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class RepulsorRangedItemUsedProcedure extends MarvelModElements.ModElement {
 	public RepulsorRangedItemUsedProcedure(MarvelModElements instance) {
-		super(instance, 164);
+		super(instance, 185);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

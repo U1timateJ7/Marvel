@@ -18,7 +18,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class HeartShapedHerbSeedsRightClickedOnBlockProcedure extends MarvelModElements.ModElement {
 	public HeartShapedHerbSeedsRightClickedOnBlockProcedure(MarvelModElements instance) {
-		super(instance, 95);
+		super(instance, 136);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

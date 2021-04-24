@@ -16,7 +16,7 @@ public class ReinforcedLeatherItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:reinforced_leather")
 	public static final Item block = null;
 	public ReinforcedLeatherItem(MarvelModElements instance) {
-		super(instance, 27);
+		super(instance, 53);
 	}
 
 	@Override

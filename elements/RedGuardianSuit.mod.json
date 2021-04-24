@@ -1,0 +1,58 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "red_guardian_helmet",
+    "enableBody": true,
+    "textureBody": "red_guardian_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "red_guardian_leggings",
+    "enableBoots": true,
+    "textureBoots": "red_guardian_boots",
+    "creativeTab": {
+      "value": "CUSTOM:MarvelCostumes"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Red Guardian's Helmet",
+    "bodyName": "Red Guardian's Suit",
+    "leggingsName": "Red Guardian's Pants",
+    "bootsName": "Red Guardian's Boots",
+    "helmetSpecialInfo": [],
+    "bodySpecialInfo": [],
+    "leggingsSpecialInfo": [],
+    "bootsSpecialInfo": [],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "red_guardian_helmet.png",
+    "bodyModelName": "ModelCostume",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "red_guardian_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "red_guardian_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "red_guardian_layer_1.png",
+    "maxDamage": 25,
+    "damageValueHelmet": 2,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 2,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.0,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      }
+    ]
+  }
+}

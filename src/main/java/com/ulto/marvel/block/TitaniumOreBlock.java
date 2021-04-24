@@ -46,7 +46,7 @@ public class TitaniumOreBlock extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:titanium_ore")
 	public static final Block block = null;
 	public TitaniumOreBlock(MarvelModElements instance) {
-		super(instance, 132);
+		super(instance, 8);
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLJavaModLoadingContext.get().getModEventBus().register(new FeatureRegisterHandler());
 	}

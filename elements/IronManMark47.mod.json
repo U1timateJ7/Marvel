@@ -1,0 +1,78 @@
+{
+  "_fv": 17,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "mark47_helmet",
+    "enableBody": true,
+    "textureBody": "mark47_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "mark47_leggings",
+    "enableBoots": true,
+    "textureBoots": "mark47_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
+    "onBodyTick": {
+      "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
+    "creativeTab": {
+      "value": "CUSTOM:IronManArmor"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Iron Man Helmet",
+    "bodyName": "Iron Man Chestplate",
+    "leggingsName": "Iron Man Leggings",
+    "bootsName": "Iron Man Boots",
+    "helmetSpecialInfo": [
+      "Mark XLVII"
+    ],
+    "bodySpecialInfo": [
+      "Mark XLVII"
+    ],
+    "leggingsSpecialInfo": [
+      "Mark XLVII"
+    ],
+    "bootsSpecialInfo": [
+      "Mark XLVII"
+    ],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "mark47_helmet.png",
+    "bodyModelName": "ModelCostume",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "mark47_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "mark47_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "mark47_layer_1.png",
+    "maxDamage": 25,
+    "damageValueHelmet": 3,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 3,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.1,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:TitaniumIngot"
+      }
+    ]
+  }
+}

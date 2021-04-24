@@ -1,0 +1,16 @@
+{
+  "group": "vibranium_shield_dye",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "marvel:clean_vibranium_shields"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    }
+  ],
+  "result": {
+    "item": "marvel:taskmaster_shield",
+    "count": 1
+  }
+}

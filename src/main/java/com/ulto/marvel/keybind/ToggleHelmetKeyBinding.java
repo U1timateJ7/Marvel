@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.ulto.marvel.procedures.ToggleHelmetKeyProcedure;
+import com.ulto.marvel.procedures.ToggleHelmetOnKeyPressedProcedure;
 import com.ulto.marvel.MarvelModElements;
 import com.ulto.marvel.MarvelMod;
 
@@ -30,9 +30,8 @@ import com.ulto.marvel.MarvelMod;
 public class ToggleHelmetKeyBinding extends MarvelModElements.ModElement {
 	@OnlyIn(Dist.CLIENT)
 	private KeyBinding keys;
-	private long lastpress = 0;
 	public ToggleHelmetKeyBinding(MarvelModElements instance) {
-		super(instance, 161);
+		super(instance, 182);
 		elements.addNetworkMessage(KeyBindingPressedMessage.class, KeyBindingPressedMessage::buffer, KeyBindingPressedMessage::new,
 				KeyBindingPressedMessage::handler);
 	}
@@ -51,11 +50,8 @@ public class ToggleHelmetKeyBinding extends MarvelModElements.ModElement {
 		if (Minecraft.getInstance().currentScreen == null) {
 			if (event.getKey() == keys.getKey().getKeyCode()) {
 				if (event.getAction() == GLFW.GLFW_PRESS) {
-					lastpress = System.currentTimeMillis();
-				} else if (event.getAction() == GLFW.GLFW_RELEASE) {
-					int dt = (int) (System.currentTimeMillis() - lastpress);
-					MarvelMod.PACKET_HANDLER.sendToServer(new KeyBindingPressedMessage(1, dt));
-					pressAction(Minecraft.getInstance().player, 1, dt);
+					MarvelMod.PACKET_HANDLER.sendToServer(new KeyBindingPressedMessage(0, 0));
+					pressAction(Minecraft.getInstance().player, 0, 0);
 				}
 			}
 		}
@@ -93,7 +89,7 @@ public class ToggleHelmetKeyBinding extends MarvelModElements.ModElement {
 		// security measure to prevent arbitrary chunk generation
 		if (!world.isBlockLoaded(new BlockPos(x, y, z)))
 			return;
-		if (type == 1) {
+		if (type == 0) {
 			{
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
@@ -101,7 +97,7 @@ public class ToggleHelmetKeyBinding extends MarvelModElements.ModElement {
 				$_dependencies.put("y", y);
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
-				ToggleHelmetKeyProcedure.executeProcedure($_dependencies);
+				ToggleHelmetOnKeyPressedProcedure.executeProcedure($_dependencies);
 			}
 		}
 	}

@@ -5,10 +5,10 @@ import net.minecraftforge.registries.ObjectHolder;
 
 import net.minecraft.item.Rarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item;
 import net.minecraft.block.BlockState;
 
+import com.ulto.marvel.itemgroup.MarvelItemsItemGroup;
 import com.ulto.marvel.MarvelModElements;
 
 @MarvelModElements.ModElement.Tag
@@ -16,7 +16,7 @@ public class TitaniumIngotItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:titanium_ingot")
 	public static final Item block = null;
 	public TitaniumIngotItem(MarvelModElements instance) {
-		super(instance, 131);
+		super(instance, 3);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class TitaniumIngotItem extends MarvelModElements.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			super(new Item.Properties().group(ItemGroup.MISC).maxStackSize(64).rarity(Rarity.COMMON));
+			super(new Item.Properties().group(MarvelItemsItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));
 			setRegistryName("titanium_ingot");
 		}
 

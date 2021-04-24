@@ -43,7 +43,7 @@ public class Mark2OpenItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:mark_2_open_boots")
 	public static final Item boots = null;
 	public Mark2OpenItem(MarvelModElements instance) {
-		super(instance, 159);
+		super(instance, 180);
 	}
 
 	@Override

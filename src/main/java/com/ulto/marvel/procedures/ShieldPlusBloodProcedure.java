@@ -19,9 +19,13 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.ulto.marvel.item.VibraniumShieldItem;
+import com.ulto.marvel.item.TaskmasterShieldItem;
+import com.ulto.marvel.item.RedGuardianShieldItem;
 import com.ulto.marvel.item.CapsShieldRedItem;
 import com.ulto.marvel.item.CapsShieldBlueItem;
 import com.ulto.marvel.item.BloodyVibraniumShieldItem;
+import com.ulto.marvel.item.BloodyTaskmasterShieldItem;
+import com.ulto.marvel.item.BloodyRedGuardianShieldItem;
 import com.ulto.marvel.item.BloodyCapsShieldRedItem;
 import com.ulto.marvel.item.BloodyCapsShieldBlueItem;
 import com.ulto.marvel.MarvelModElements;
@@ -30,7 +34,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class ShieldPlusBloodProcedure extends MarvelModElements.ModElement {
 	public ShieldPlusBloodProcedure(MarvelModElements instance) {
-		super(instance, 104);
+		super(instance, 145);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -77,6 +81,28 @@ public class ShieldPlusBloodProcedure extends MarvelModElements.ModElement {
 				if (((entity instanceof PlayerEntity) || ((entity instanceof WolfEntity) || (entity instanceof CatEntity)))) {
 					if (sourceentity instanceof LivingEntity) {
 						ItemStack _setstack = new ItemStack(BloodyCapsShieldBlueItem.block, (int) (1));
+						_setstack.setCount((int) 1);
+						((LivingEntity) sourceentity).setHeldItem(Hand.MAIN_HAND, _setstack);
+						if (sourceentity instanceof ServerPlayerEntity)
+							((ServerPlayerEntity) sourceentity).inventory.markDirty();
+					}
+				}
+			} else if ((((sourceentity instanceof LivingEntity) ? ((LivingEntity) sourceentity).getHeldItemMainhand() : ItemStack.EMPTY)
+					.getItem() == new ItemStack(RedGuardianShieldItem.block, (int) (1)).getItem())) {
+				if (((entity instanceof PlayerEntity) || ((entity instanceof WolfEntity) || (entity instanceof CatEntity)))) {
+					if (sourceentity instanceof LivingEntity) {
+						ItemStack _setstack = new ItemStack(BloodyRedGuardianShieldItem.block, (int) (1));
+						_setstack.setCount((int) 1);
+						((LivingEntity) sourceentity).setHeldItem(Hand.MAIN_HAND, _setstack);
+						if (sourceentity instanceof ServerPlayerEntity)
+							((ServerPlayerEntity) sourceentity).inventory.markDirty();
+					}
+				}
+			} else if ((((sourceentity instanceof LivingEntity) ? ((LivingEntity) sourceentity).getHeldItemMainhand() : ItemStack.EMPTY)
+					.getItem() == new ItemStack(TaskmasterShieldItem.block, (int) (1)).getItem())) {
+				if (((entity instanceof PlayerEntity) || ((entity instanceof WolfEntity) || (entity instanceof CatEntity)))) {
+					if (sourceentity instanceof LivingEntity) {
+						ItemStack _setstack = new ItemStack(BloodyTaskmasterShieldItem.block, (int) (1));
 						_setstack.setCount((int) 1);
 						((LivingEntity) sourceentity).setHeldItem(Hand.MAIN_HAND, _setstack);
 						if (sourceentity instanceof ServerPlayerEntity)

@@ -20,7 +20,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class SSSGiveProcedure extends MarvelModElements.ModElement {
 	public SSSGiveProcedure(MarvelModElements instance) {
-		super(instance, 66);
+		super(instance, 107);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 

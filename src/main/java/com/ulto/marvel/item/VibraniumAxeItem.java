@@ -16,7 +16,7 @@ public class VibraniumAxeItem extends MarvelModElements.ModElement {
 	@ObjectHolder("marvel:vibranium_axe")
 	public static final Item block = null;
 	public VibraniumAxeItem(MarvelModElements instance) {
-		super(instance, 13);
+		super(instance, 29);
 	}
 
 	@Override

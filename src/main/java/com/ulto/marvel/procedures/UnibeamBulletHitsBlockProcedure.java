@@ -12,7 +12,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class UnibeamBulletHitsBlockProcedure extends MarvelModElements.ModElement {
 	public UnibeamBulletHitsBlockProcedure(MarvelModElements instance) {
-		super(instance, 167);
+		super(instance, 188);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {

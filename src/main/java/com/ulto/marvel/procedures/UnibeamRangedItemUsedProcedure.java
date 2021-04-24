@@ -12,7 +12,7 @@ import com.ulto.marvel.MarvelMod;
 @MarvelModElements.ModElement.Tag
 public class UnibeamRangedItemUsedProcedure extends MarvelModElements.ModElement {
 	public UnibeamRangedItemUsedProcedure(MarvelModElements instance) {
-		super(instance, 166);
+		super(instance, 187);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
