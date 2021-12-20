@@ -2,20 +2,14 @@
   "group": "cap",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "3 5"
+    "R R",
+    "B B"
   ],
   "key": {
-    "0": {
+    "R": {
       "item": "marvel:reinforced_leather"
     },
-    "2": {
-      "item": "marvel:reinforced_leather"
-    },
-    "3": {
-      "item": "minecraft:brown_dye"
-    },
-    "5": {
+    "B": {
       "item": "minecraft:brown_dye"
     }
   },

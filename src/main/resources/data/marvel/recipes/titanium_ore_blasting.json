@@ -1,0 +1,12 @@
+{
+  "group": "titanium_blast",
+  "type": "minecraft:blasting",
+  "experience": 0.7,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "marvel:titanium_ore"
+  },
+  "result": {
+    "item": "marvel:titanium_ingot"
+  }
+}

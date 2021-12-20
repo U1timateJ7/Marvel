@@ -1,0 +1,12 @@
+{
+  "_fv": 24,
+  "_type": "keybind",
+  "definition": {
+    "triggerKey": "X",
+    "keyBindingName": "Ability 2",
+    "keyBindingCategoryKey": "misc",
+    "onKeyPressed": {
+      "name": "SentryModeKeyOnKeyPressed"
+    }
+  }
+}

@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "item": "marvel:titanium_ore",
+            "items": [
+              "marvel:titanium_ore"
+            ],
             "count": {
               "min": 1,
               "max": 64
@@ -21,7 +23,8 @@
       "marvel:titanium_ore_block_recipe",
       "marvel:titanium_block_ore_recipe",
       "marvel:titanium_ore_smelting",
-      "marvel:gold_titanium_alloy_recipe"
+      "marvel:gold_titanium_alloy_recipe",
+      "marvel:titanium_ore_blasting"
     ]
   }
 }

@@ -1,20 +1,12 @@
 package com.ulto.marvel.procedures;
 
 import java.util.Random;
-import java.util.Map;
 
-import com.ulto.marvel.MarvelModElements;
-
-@MarvelModElements.ModElement.Tag
-public class HeartShapedHerbAdditionalGenerationConditionProcedure extends MarvelModElements.ModElement {
-	public HeartShapedHerbAdditionalGenerationConditionProcedure(MarvelModElements instance) {
-		super(instance, 139);
-	}
-
-	public static boolean executeProcedure(Map<String, Object> dependencies) {
-		if ((((new Random()).nextInt((int) 9 + 1)) == 4)) {
-			return (true);
+public class HeartShapedHerbAdditionalGenerationConditionProcedure {
+	public static boolean execute() {
+		if (new Random().nextInt(9 + 1) == 4) {
+			return true;
 		}
-		return (false);
+		return false;
 	}
 }

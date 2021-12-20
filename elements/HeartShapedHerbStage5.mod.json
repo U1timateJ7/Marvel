@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "block",
   "definition": {
     "texture": "heart_shaped_herb_stage_3",
@@ -49,7 +49,7 @@
     "useLootTableForDrops": false,
     "enchantPowerBonus": 0.0,
     "plantsGrowOn": false,
-    "canProvidePower": false,
+    "canRedstoneConnect": false,
     "lightOpacity": 0,
     "material": {
       "value": "PLANTS"
@@ -57,6 +57,7 @@
     "tickRate": 1,
     "tickRandomly": false,
     "isReplaceable": false,
+    "canProvidePower": false,
     "colorOnMap": "DEFAULT",
     "creativePickItem": {
       "value": "CUSTOM:HeartShapedHerbSeeds"
@@ -71,6 +72,7 @@
     "jumpFactor": 1.0,
     "reactionToPushing": "DESTROY",
     "isNotColidable": true,
+    "isCustomSoundType": false,
     "soundOnStep": {
       "value": "PLANT"
     },

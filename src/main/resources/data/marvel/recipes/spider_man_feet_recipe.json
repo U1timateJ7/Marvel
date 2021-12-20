@@ -2,20 +2,14 @@
   "group": "spider_man",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "3 5"
+    "R R",
+    "E E"
   ],
   "key": {
-    "0": {
+    "R": {
       "item": "marvel:reinforced_leather"
     },
-    "2": {
-      "item": "marvel:reinforced_leather"
-    },
-    "3": {
-      "item": "minecraft:red_dye"
-    },
-    "5": {
+    "E": {
       "item": "minecraft:red_dye"
     }
   },

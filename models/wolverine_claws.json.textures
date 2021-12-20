@@ -1,0 +1,10 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "wolverine_claws"
+      },
+      "name": "default"
+    }
+  }
+}

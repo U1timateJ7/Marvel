@@ -1,0 +1,46 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "iron_spider",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:SpiderManSuit.boots"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:IronSpiderSuit.boots"
+    },
+    "name": "iron_spider_feet_recipe",
+    "namespace": "mod"
+  }
+}

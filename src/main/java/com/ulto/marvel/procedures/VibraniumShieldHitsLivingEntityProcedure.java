@@ -3,131 +3,91 @@ package com.ulto.marvel.procedures;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.entity.VibraniumShieldEntity;
+import com.ulto.marvel.entity.CapsShieldRedEntity;
+import com.ulto.marvel.entity.CapsShieldBlueEntity;
+import com.ulto.marvel.entity.RedGuardianShieldEntity;
+import com.ulto.marvel.entity.TaskmasterShieldEntity;
+import com.ulto.marvel.entity.BloodyVibraniumShieldEntity;
+import com.ulto.marvel.entity.BloodyCapsShieldRedEntity;
+import com.ulto.marvel.entity.BloodyCapsShieldBlueEntity;
+import com.ulto.marvel.entity.BloodyRedGuardianShieldEntity;
+import com.ulto.marvel.entity.BloodyTaskmasterShieldEntity;
 
-import com.ulto.marvel.item.*;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-import java.util.Random;
-
-@MarvelModElements.ModElement.Tag
-public class VibraniumShieldHitsLivingEntityProcedure extends MarvelModElements.ModElement {
-	public VibraniumShieldHitsLivingEntityProcedure(MarvelModElements instance) {
-		super(instance, 39);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("sourceentity") == null) {
-			if (!dependencies.containsKey("sourceentity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency sourceentity for procedure VibraniumShieldHitsLivingEntity!");
+public class VibraniumShieldHitsLivingEntityProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity imediatesourceentity, Entity sourceentity) {
+		if (imediatesourceentity == null || sourceentity == null)
 			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure VibraniumShieldHitsLivingEntity!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure VibraniumShieldHitsLivingEntity!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure VibraniumShieldHitsLivingEntity!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure VibraniumShieldHitsLivingEntity!");
-			return;
-		}
-		Random random = new Random();
-		Entity entity = (Entity) dependencies.get("entity");
-		Entity sourceentity = (Entity) dependencies.get("sourceentity");
-		Entity shield = (Entity) dependencies.get("shield");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if (shield instanceof VibraniumShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(VibraniumShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		if (imediatesourceentity instanceof VibraniumShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.VIBRANIUM_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof CapsShieldRedItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(CapsShieldRedItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof CapsShieldRedEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_RED);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof CapsShieldBlueItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(CapsShieldBlueItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof CapsShieldBlueEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_BLUE);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof BloodyVibraniumShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(BloodyVibraniumShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof BloodyVibraniumShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_VIBRANIUM_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof BloodyCapsShieldRedItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(BloodyCapsShieldRedItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof BloodyCapsShieldRedEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_CAPTAIN_AMERICAS_SHIELD_RED);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof BloodyCapsShieldBlueItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(BloodyCapsShieldBlueItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof BloodyCapsShieldBlueEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_CAPTAIN_AMERICAS_SHIELD_BLUE);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof RedGuardianShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(RedGuardianShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof RedGuardianShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.RED_GUARDIAN_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof BloodyRedGuardianShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(BloodyRedGuardianShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof BloodyRedGuardianShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_RED_GUARDIAN_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof TaskmasterShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(TaskmasterShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof TaskmasterShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.TASKMASTER_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (shield instanceof BloodyTaskmasterShieldItem.ArrowCustomEntity) {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = new ItemStack(BloodyTaskmasterShieldItem.block, (int) (1));
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+		} else if (imediatesourceentity instanceof BloodyTaskmasterShieldEntity) {
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_TASKMASTER_SHIELD);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		}
-		if (world instanceof World && !world.isRemote()) {
-			((World) world).playSound(null, new BlockPos((int) x, (int) y, (int) z),
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.vibranium_shield.hit")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1);
-		} else {
-			((World) world).playSound(x, y, z,
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.vibranium_shield.hit")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
 		}
 	}
 }

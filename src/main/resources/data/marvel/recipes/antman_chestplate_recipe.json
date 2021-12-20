@@ -1,0 +1,24 @@
+{
+  "group": "antman",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "BEB",
+    "RER"
+  ],
+  "key": {
+    "R": {
+      "item": "marvel:reinforced_leather"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    },
+    "E": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:antman_suit_chestplate",
+    "count": 1
+  }
+}

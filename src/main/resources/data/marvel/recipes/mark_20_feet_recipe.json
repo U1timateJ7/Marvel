@@ -1,0 +1,23 @@
+{
+  "group": "mark_20",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "GRG"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "marvel:iron_man_mark_19_boots"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_20_boots",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "group": "mark_85",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "OIO",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "O": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_50_helmet"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_85_helmet",
+    "count": 1
+  }
+}

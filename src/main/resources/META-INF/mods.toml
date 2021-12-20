@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[37,)"
 license="Academic Free License v3.0"
 
 [[mods]]
 modId="marvel"
-version="Phase 2 a1.1.1"
+version="2.0-alpha.1"
 displayName="Marvel Mod"
 credits="Created using mod maker MCreator - https://mcreator.net/about"
 displayURL="https://www.curseforge.com/members/u1timatej7/projects"
@@ -13,7 +13,7 @@ authors="U1timateJ7, Alextimus9"
 [[dependencies.marvel]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5]"
+    versionRange="[1.17.1]"
     ordering="NONE"
     side="BOTH"
 

@@ -1,8 +1,8 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "function",
   "definition": {
-    "code": "replaceitem entity @p armor.head marvel:mark_30_stealth_helmet\nreplaceitem entity @p armor.chest marvel:mark_30_stealth_chestplate\nreplaceitem entity @p armor.legs marvel:mark_30_stealth_leggings\nreplaceitem entity @p armor.feet marvel:mark_30_stealth_boots\neffect give @p minecraft:invisibility 1000000 0 true",
+    "code": "replaceitem entity @p armor.head marvel:mark_16_stealth_helmet\nreplaceitem entity @p armor.chest marvel:mark_16_stealth_chestplate\nreplaceitem entity @p armor.legs marvel:mark_16_stealth_leggings\nreplaceitem entity @p armor.feet marvel:mark_16_stealth_boots\neffect give @p minecraft:invisibility 1000000 0 true",
     "name": "mark_30_ability",
     "namespace": "mod"
   }

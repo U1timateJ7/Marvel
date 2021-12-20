@@ -1,0 +1,18 @@
+{
+  "group": "uru_blockk",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "marvel:uru_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:uru_block",
+    "count": 1
+  }
+}

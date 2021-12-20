@@ -1,76 +1,50 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ObjectHolder;
-
-import net.minecraft.world.World;
-import net.minecraft.item.UseAction;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.item.Food;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-
-import java.util.Map;
-import java.util.HashMap;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 
 import com.ulto.marvel.procedures.AntiSerumTakenProcedure;
-import com.ulto.marvel.itemgroup.MarvelItemsItemGroup;
-import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.init.MarvelModTabs;
 
-@MarvelModElements.ModElement.Tag
-public class AntiSerumItem extends MarvelModElements.ModElement {
-	@ObjectHolder("marvel:anti_serum")
-	public static final Item block = null;
-	public AntiSerumItem(MarvelModElements instance) {
-		super(instance, 18);
+public class AntiSerumItem extends Item {
+	public AntiSerumItem() {
+		super(new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_ITEMS).stacksTo(1).rarity(Rarity.COMMON)
+				.food((new FoodProperties.Builder()).nutrition(0).saturationMod(0f).alwaysEat()
+
+						.build()));
+		setRegistryName("anti_serum");
 	}
 
 	@Override
-	public void initElements() {
-		elements.items.add(() -> new FoodItemCustom());
+	public UseAnim getUseAnimation(ItemStack itemstack) {
+		return UseAnim.DRINK;
 	}
-	public static class FoodItemCustom extends Item {
-		public FoodItemCustom() {
-			super(new Item.Properties().group(MarvelItemsItemGroup.tab).maxStackSize(1).rarity(Rarity.COMMON)
-					.food((new Food.Builder()).hunger(0).saturation(0f).setAlwaysEdible().build()));
-			setRegistryName("anti_serum");
-		}
 
-		@Override
-		public UseAction getUseAction(ItemStack itemstack) {
-			return UseAction.DRINK;
-		}
+	@Override
+	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+		ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
+		super.finishUsingItem(itemstack, world, entity);
+		double x = entity.getX();
+		double y = entity.getY();
+		double z = entity.getZ();
 
-		@Override
-		public net.minecraft.util.SoundEvent getEatSound() {
-			return net.minecraft.util.SoundEvents.ENTITY_GENERIC_DRINK;
-		}
-
-		@Override
-		public ItemStack onItemUseFinish(ItemStack itemstack, World world, LivingEntity entity) {
-			ItemStack retval = new ItemStack(Items.GLASS_BOTTLE, (int) (1));
-			super.onItemUseFinish(itemstack, world, entity);
-			double x = entity.getPosX();
-			double y = entity.getPosY();
-			double z = entity.getPosZ();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				AntiSerumTakenProcedure.executeProcedure($_dependencies);
+		AntiSerumTakenProcedure.execute(entity);
+		if (itemstack.isEmpty()) {
+			return retval;
+		} else {
+			if (entity instanceof Player player && !player.getAbilities().instabuild) {
+				if (!player.getInventory().add(retval))
+					player.drop(retval, false);
 			}
-			if (itemstack.isEmpty()) {
-				return retval;
-			} else {
-				if (entity instanceof PlayerEntity) {
-					PlayerEntity player = (PlayerEntity) entity;
-					if (!player.isCreative() && !player.inventory.addItemStackToInventory(retval))
-						player.dropItem(retval, false);
-				}
-				return itemstack;
-			}
+			return itemstack;
 		}
 	}
 }

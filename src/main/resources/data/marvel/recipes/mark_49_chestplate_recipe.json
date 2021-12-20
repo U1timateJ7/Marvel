@@ -1,0 +1,27 @@
+{
+  "group": "mark_49",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "TUT",
+    "TIT"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "T": {
+      "item": "marvel:titanium_ingot"
+    },
+    "U": {
+      "item": "marvel:upgraded_arc_reactor"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_47_chestplate"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_49_chestplate",
+    "count": 1
+  }
+}

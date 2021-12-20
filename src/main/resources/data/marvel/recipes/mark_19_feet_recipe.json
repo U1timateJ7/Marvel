@@ -1,0 +1,23 @@
+{
+  "group": "mark_19",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "IRI"
+  ],
+  "key": {
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "marvel:iron_man_mark_17_boots"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_19_boots",
+    "count": 1
+  }
+}

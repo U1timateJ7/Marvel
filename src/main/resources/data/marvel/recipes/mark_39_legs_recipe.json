@@ -1,0 +1,24 @@
+{
+  "group": "mark_39",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "G G",
+    "I I"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "marvel:iron_man_mark_37_leggings"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_39_leggings",
+    "count": 1
+  }
+}

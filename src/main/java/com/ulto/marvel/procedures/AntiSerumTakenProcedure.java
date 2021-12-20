@@ -1,42 +1,43 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 
-import java.util.Map;
+import com.ulto.marvel.network.MarvelModVariables;
 
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class AntiSerumTakenProcedure extends MarvelModElements.ModElement {
-	public AntiSerumTakenProcedure(MarvelModElements instance) {
-		super(instance, 108);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure AntiSerumTaken!");
+public class AntiSerumTakenProcedure {
+	public static void execute(Entity entity) {
+		if (entity == null)
 			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
 		{
-			boolean _setval = (boolean) (false);
+			boolean _setval = false;
 			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 				capability.superSoldier = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}
 		{
-			boolean _setval = (boolean) (false);
+			boolean _setval = false;
 			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 				capability.radioactive = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}
-		if (entity instanceof LivingEntity)
-			((LivingEntity) entity).clearActivePotions();
+		{
+			boolean _setval = false;
+			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				capability.isMutantWovlerine = _setval;
+				capability.syncPlayerVariables(entity);
+			});
+		}
+		{
+			boolean _setval = false;
+			entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				capability.isMutantQuicksilver = _setval;
+				capability.syncPlayerVariables(entity);
+			});
+		}
+		if (entity instanceof LivingEntity _entity)
+			_entity.removeAllEffects();
 	}
 }

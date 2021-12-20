@@ -1,0 +1,19 @@
+{
+  "group": "growing",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:pym_particle"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:blue_dye"
+    }
+  ],
+  "result": {
+    "item": "marvel:growing_disk",
+    "count": 4
+  }
+}

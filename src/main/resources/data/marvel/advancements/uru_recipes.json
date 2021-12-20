@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "uru_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "marvel:uru_ore"
+            ],
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:uru_ore_block_recipe",
+      "marvel:uru_block_ore_recipe",
+      "marvel:uru_ore_blast"
+    ]
+  }
+}

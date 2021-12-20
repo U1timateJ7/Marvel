@@ -1,0 +1,24 @@
+{
+  "group": "mark_7",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GOG",
+    "GIG",
+    " O "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "O": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_6_helmet"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_7_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "1": "mjolnir_handle",
+        "2": "mjolnir"
+      },
+      "name": "default"
+    }
+  }
+}

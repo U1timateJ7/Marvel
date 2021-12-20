@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/wolverine_claws",
+  "textures": {
+    "0": "marvel:blocks/wolverine_claws",
+    "particle": "marvel:items/wolverine_claws"
+  }
+}

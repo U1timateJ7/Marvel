@@ -1,0 +1,24 @@
+{
+  "group": "antman2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "RAR",
+    "ERE"
+  ],
+  "key": {
+    "R": {
+      "item": "marvel:reinforced_leather"
+    },
+    "A": {
+      "item": "marvel:antman_suit_chestplate"
+    },
+    "E": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:antman_v_2_suit_chestplate",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "group": "mark_37",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TIT",
+    "G G",
+    "T T"
+  ],
+  "key": {
+    "T": {
+      "item": "marvel:titanium_ingot"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_33_leggings"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_37_leggings",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "experience": 0.7,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "marvel:palladium_ore"
+  },
+  "result": {
+    "item": "marvel:palladium_ingot"
+  }
+}

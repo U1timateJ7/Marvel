@@ -1,249 +1,99 @@
 package com.ulto.marvel.procedures;
 
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.World;
-import net.minecraft.util.DamageSource;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.damagesource.DamageSource;
 
-import java.util.Map;
-import java.util.HashMap;
+import javax.annotation.Nullable;
 
-import com.ulto.marvel.item.WarMachineMark2Item;
-import com.ulto.marvel.item.WarMachineItem;
-import com.ulto.marvel.item.Mark30StealthItem;
-import com.ulto.marvel.item.IronPatriotItem;
-import com.ulto.marvel.item.IronManMark6Item;
-import com.ulto.marvel.item.IronManMark5Item;
-import com.ulto.marvel.item.IronManMark47Item;
-import com.ulto.marvel.item.IronManMark46Item;
-import com.ulto.marvel.item.IronManMark43Item;
-import com.ulto.marvel.item.IronManMark42Item;
-import com.ulto.marvel.item.IronManMark3Item;
-import com.ulto.marvel.item.IronManMark33Item;
-import com.ulto.marvel.item.IronManMark30Item;
-import com.ulto.marvel.item.IronManMark2Item;
-import com.ulto.marvel.item.IronManMark25Item;
-import com.ulto.marvel.item.IronManMark23Item;
-import com.ulto.marvel.item.IronManMark22Item;
-import com.ulto.marvel.item.IronManMark21Item;
-import com.ulto.marvel.item.IronManMark1Item;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
+import com.ulto.marvel.init.MarvelModItems;
 
-@MarvelModElements.ModElement.Tag
-public class IronManSlapProcedure extends MarvelModElements.ModElement {
-	public IronManSlapProcedure(MarvelModElements instance) {
-		super(instance, 200);
-		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure IronManSlap!");
-			return;
-		}
-		if (dependencies.get("imediatesourceentity") == null) {
-			if (!dependencies.containsKey("imediatesourceentity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency imediatesourceentity for procedure IronManSlap!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		Entity imediatesourceentity = (Entity) dependencies.get("imediatesourceentity");
-		if ((((imediatesourceentity instanceof LivingEntity) ? ((LivingEntity) imediatesourceentity).getHeldItemMainhand() : ItemStack.EMPTY)
-				.getItem() == new ItemStack(Blocks.AIR, (int) (1)).getItem())) {
-			if (((((imediatesourceentity instanceof LivingEntity)
-					? ((LivingEntity) imediatesourceentity)
-							.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-					: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark1Item.body, (int) (1)).getItem())
-					|| ((((imediatesourceentity instanceof LivingEntity)
-							? ((LivingEntity) imediatesourceentity)
-									.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-							: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark2Item.body, (int) (1)).getItem())
-							|| ((((imediatesourceentity instanceof LivingEntity)
-									? ((LivingEntity) imediatesourceentity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-									: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark3Item.body, (int) (1)).getItem())
-									|| ((((imediatesourceentity instanceof LivingEntity)
-											? ((LivingEntity) imediatesourceentity).getItemStackFromSlot(
-													EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-											: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark5Item.body, (int) (1)).getItem())
-											|| ((((imediatesourceentity instanceof LivingEntity)
-													? ((LivingEntity) imediatesourceentity).getItemStackFromSlot(
-															EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-													: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark6Item.body, (int) (1)).getItem())
-													|| ((((imediatesourceentity instanceof LivingEntity)
-															? ((LivingEntity) imediatesourceentity).getItemStackFromSlot(
-																	EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-															: ItemStack.EMPTY)
-																	.getItem() == new ItemStack(IronManMark21Item.body, (int) (1)).getItem())
-															|| ((((imediatesourceentity instanceof LivingEntity)
-																	? ((LivingEntity) imediatesourceentity).getItemStackFromSlot(EquipmentSlotType
-																			.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-																	: ItemStack.EMPTY)
-																			.getItem() == new ItemStack(WarMachineItem.body, (int) (1)).getItem())
-																	|| ((((imediatesourceentity instanceof LivingEntity)
-																			? ((LivingEntity) imediatesourceentity)
-																					.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(
-																							EquipmentSlotType.Group.ARMOR, (int) 2))
-																			: ItemStack.EMPTY)
-																					.getItem() == new ItemStack(IronManMark22Item.body, (int) (1))
-																							.getItem())
-																			|| ((((imediatesourceentity instanceof LivingEntity)
-																					? ((LivingEntity) imediatesourceentity).getItemStackFromSlot(
-																							EquipmentSlotType.fromSlotTypeAndIndex(
-																									EquipmentSlotType.Group.ARMOR, (int) 2))
-																					: ItemStack.EMPTY)
-																							.getItem() == new ItemStack(IronManMark23Item.body,
-																									(int) (1)).getItem())
-																					|| ((((imediatesourceentity instanceof LivingEntity)
-																							? ((LivingEntity) imediatesourceentity)
-																									.getItemStackFromSlot(
-																											EquipmentSlotType.fromSlotTypeAndIndex(
-																													EquipmentSlotType.Group.ARMOR,
-																													(int) 2))
-																							: ItemStack.EMPTY)
-																									.getItem() == new ItemStack(IronPatriotItem.body,
-																											(int) (1)).getItem())
-																							|| ((((imediatesourceentity instanceof LivingEntity)
-																									? ((LivingEntity) imediatesourceentity)
-																											.getItemStackFromSlot(EquipmentSlotType
-																													.fromSlotTypeAndIndex(
-																															EquipmentSlotType.Group.ARMOR,
-																															(int) 2))
-																									: ItemStack.EMPTY)
-																											.getItem() == new ItemStack(
-																													IronManMark25Item.body, (int) (1))
-																															.getItem())
-																									|| ((((imediatesourceentity instanceof LivingEntity)
-																											? ((LivingEntity) imediatesourceentity)
-																													.getItemStackFromSlot(
-																															EquipmentSlotType
-																																	.fromSlotTypeAndIndex(
-																																			EquipmentSlotType.Group.ARMOR,
-																																			(int) 2))
-																											: ItemStack.EMPTY)
-																													.getItem() == new ItemStack(
-																															IronManMark30Item.body,
-																															(int) (1)).getItem())
-																											|| ((((imediatesourceentity instanceof LivingEntity)
-																													? ((LivingEntity) imediatesourceentity)
-																															.getItemStackFromSlot(
-																																	EquipmentSlotType
-																																			.fromSlotTypeAndIndex(
-																																					EquipmentSlotType.Group.ARMOR,
-																																					(int) 2))
-																													: ItemStack.EMPTY)
-																															.getItem() == new ItemStack(
-																																	Mark30StealthItem.body,
-																																	(int) (1))
-																																			.getItem())
-																													|| ((((imediatesourceentity instanceof LivingEntity)
-																															? ((LivingEntity) imediatesourceentity)
-																																	.getItemStackFromSlot(
-																																			EquipmentSlotType
-																																					.fromSlotTypeAndIndex(
-																																							EquipmentSlotType.Group.ARMOR,
-																																							(int) 2))
-																															: ItemStack.EMPTY)
-																																	.getItem() == new ItemStack(
-																																			IronManMark33Item.body,
-																																			(int) (1))
-																																					.getItem())
-																															|| ((((imediatesourceentity instanceof LivingEntity)
-																																	? ((LivingEntity) imediatesourceentity)
-																																			.getItemStackFromSlot(
-																																					EquipmentSlotType
-																																							.fromSlotTypeAndIndex(
-																																									EquipmentSlotType.Group.ARMOR,
-																																									(int) 2))
-																																	: ItemStack.EMPTY)
-																																			.getItem() == new ItemStack(
-																																					IronManMark42Item.body,
-																																					(int) (1))
-																																							.getItem())
-																																	|| ((((imediatesourceentity instanceof LivingEntity)
-																																			? ((LivingEntity) imediatesourceentity)
-																																					.getItemStackFromSlot(
-																																							EquipmentSlotType
-																																									.fromSlotTypeAndIndex(
-																																											EquipmentSlotType.Group.ARMOR,
-																																											(int) 2))
-																																			: ItemStack.EMPTY)
-																																					.getItem() == new ItemStack(
-																																							IronManMark43Item.body,
-																																							(int) (1))
-																																									.getItem())
-																																			|| ((((imediatesourceentity instanceof LivingEntity)
-																																					? ((LivingEntity) imediatesourceentity)
-																																							.getItemStackFromSlot(
-																																									EquipmentSlotType
-																																											.fromSlotTypeAndIndex(
-																																													EquipmentSlotType.Group.ARMOR,
-																																													(int) 2))
-																																					: ItemStack.EMPTY)
-																																							.getItem() == new ItemStack(
-																																									IronManMark46Item.body,
-																																									(int) (1))
-																																											.getItem())
-																																					|| ((((imediatesourceentity instanceof LivingEntity)
-																																							? ((LivingEntity) imediatesourceentity)
-																																									.getItemStackFromSlot(
-																																											EquipmentSlotType
-																																													.fromSlotTypeAndIndex(
-																																															EquipmentSlotType.Group.ARMOR,
-																																															(int) 2))
-																																							: ItemStack.EMPTY)
-																																									.getItem() == new ItemStack(
-																																											IronManMark47Item.body,
-																																											(int) (1))
-																																													.getItem())
-																																							|| (((imediatesourceentity instanceof LivingEntity)
-																																									? ((LivingEntity) imediatesourceentity)
-																																											.getItemStackFromSlot(
-																																													EquipmentSlotType
-																																															.fromSlotTypeAndIndex(
-																																																	EquipmentSlotType.Group.ARMOR,
-																																																	(int) 2))
-																																									: ItemStack.EMPTY)
-																																											.getItem() == new ItemStack(
-																																													WarMachineMark2Item.body,
-																																													(int) (1))
-																																															.getItem())))))))))))))))))))) {
-				entity.attackEntityFrom(DamageSource.GENERIC, (float) 6);
-			}
-		}
-	}
-
+@Mod.EventBusSubscriber
+public class IronManSlapProcedure {
 	@SubscribeEvent
-	public void onEntityAttacked(LivingAttackEvent event) {
+	public static void onEntityAttacked(LivingAttackEvent event) {
 		if (event != null && event.getEntity() != null) {
 			Entity entity = event.getEntity();
-			Entity sourceentity = event.getSource().getTrueSource();
-			Entity imediatesourceentity = event.getSource().getImmediateSource();
-			double i = entity.getPosX();
-			double j = entity.getPosY();
-			double k = entity.getPosZ();
-			double amount = event.getAmount();
-			World world = entity.world;
-			Map<String, Object> dependencies = new HashMap<>();
-			dependencies.put("x", i);
-			dependencies.put("y", j);
-			dependencies.put("z", k);
-			dependencies.put("amount", amount);
-			dependencies.put("world", world);
-			dependencies.put("entity", entity);
-			dependencies.put("sourceentity", sourceentity);
-			dependencies.put("imediatesourceentity", imediatesourceentity);
-			dependencies.put("event", event);
-			this.executeProcedure(dependencies);
+			execute(event, entity, event.getSource().getDirectEntity());
+		}
+	}
+
+	public static void execute(Entity entity, Entity imediatesourceentity) {
+		execute(null, entity, imediatesourceentity);
+	}
+
+	private static void execute(@Nullable Event event, Entity entity, Entity imediatesourceentity) {
+		if (entity == null || imediatesourceentity == null)
+			return;
+		if ((imediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Blocks.AIR.asItem()) {
+			if ((imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+					.getItem() == MarvelModItems.IRON_MAN_MARK_1_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_7_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_16_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.MARK_16_STEALTH_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_19_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_20_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_21_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.WAR_MACHINE_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_22_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_23_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_PATRIOT_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_25_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_30_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_33_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_37_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_39_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE
+					|| (imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+							.getItem() == MarvelModItems.IRON_MAN_MARK_85_CHESTPLATE) {
+				entity.hurt(DamageSource.GENERIC, 6);
+			}
 		}
 	}
 }

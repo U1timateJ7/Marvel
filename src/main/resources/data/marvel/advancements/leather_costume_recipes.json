@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "item": "marvel:reinforced_leather",
+            "items": [
+              "marvel:reinforced_leather"
+            ],
             "count": {
               "min": 1,
               "max": 64
@@ -37,7 +39,15 @@
       "marvel:red_guardian_helmet_recipe",
       "marvel:red_guardian_chestplate_recipe",
       "marvel:red_guardian_legs_recipe",
-      "marvel:red_guardian_feet_recipe"
+      "marvel:red_guardian_feet_recipe",
+      "marvel:antman_helmet_recipe",
+      "marvel:antman_chestplate_recipe",
+      "marvel:antman_leg_recipe",
+      "marvel:antman_feet_recipe",
+      "marvel:antman_v_2_helmet_recipe",
+      "marvel:antman_v_2_chestplate_recipe",
+      "marvel:antman_v_2_legs_recipe",
+      "marvel:antman_v_2_feet_recipe"
     ]
   },
   "parent": "marvel:vibranium_ore_recipes"

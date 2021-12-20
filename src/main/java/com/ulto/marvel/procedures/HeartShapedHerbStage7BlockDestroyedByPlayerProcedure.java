@@ -1,97 +1,56 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.GameType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.network.play.NetworkPlayerInfo;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.client.Minecraft;
 
-import java.util.Map;
+import com.ulto.marvel.init.MarvelModItems;
 
-import com.ulto.marvel.item.HeartShapedHerbSeedsItem;
-import com.ulto.marvel.item.HeartShapedHerbItemItem;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class HeartShapedHerbStage7BlockDestroyedByPlayerProcedure extends MarvelModElements.ModElement {
-	public HeartShapedHerbStage7BlockDestroyedByPlayerProcedure(MarvelModElements instance) {
-		super(instance, 122);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure HeartShapedHerbStage7BlockDestroyedByPlayer!");
+public class HeartShapedHerbStage7BlockDestroyedByPlayerProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		if (entity == null)
 			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure HeartShapedHerbStage7BlockDestroyedByPlayer!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure HeartShapedHerbStage7BlockDestroyedByPlayer!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure HeartShapedHerbStage7BlockDestroyedByPlayer!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure HeartShapedHerbStage7BlockDestroyedByPlayer!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
 		double dropChance = 0;
-		if ((!(new Object() {
+		if (!(new Object() {
 			public boolean checkGamemode(Entity _ent) {
-				if (_ent instanceof ServerPlayerEntity) {
-					return ((ServerPlayerEntity) _ent).interactionManager.getGameType() == GameType.CREATIVE;
-				} else if (_ent instanceof PlayerEntity && _ent.world.isRemote()) {
-					NetworkPlayerInfo _npi = Minecraft.getInstance().getConnection()
-							.getPlayerInfo(((AbstractClientPlayerEntity) _ent).getGameProfile().getId());
-					return _npi != null && _npi.getGameType() == GameType.CREATIVE;
+				if (_ent instanceof ServerPlayer _serverPlayer) {
+					return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
+				} else if (_ent.level.isClientSide() && _ent instanceof Player _player) {
+					return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null && Minecraft.getInstance()
+							.getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.CREATIVE;
 				}
 				return false;
 			}
-		}.checkGamemode(entity)))) {
-			dropChance = (double) Math.random();
-			if (((dropChance) >= 0.9)) {
+		}.checkGamemode(entity))) {
+			dropChance = Math.random();
+			if (dropChance >= 0.9) {
 				for (int index0 = 0; index0 < (int) (2); index0++) {
-					if (world instanceof World && !world.isRemote()) {
-						ItemEntity entityToSpawn = new ItemEntity((World) world, (x + 0.5), (y + 0.5), (z + 0.5),
-								new ItemStack(HeartShapedHerbSeedsItem.block, (int) (1)));
-						entityToSpawn.setPickupDelay((int) 10);
-						world.addEntity(entityToSpawn);
+					if (world instanceof Level _level && !_level.isClientSide()) {
+						ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5),
+								new ItemStack(MarvelModItems.HEART_SHAPED_HERB_SEEDS));
+						entityToSpawn.setPickUpDelay(10);
+						_level.addFreshEntity(entityToSpawn);
 					}
 				}
-			} else if (((dropChance) >= 0.1)) {
-				if (world instanceof World && !world.isRemote()) {
-					ItemEntity entityToSpawn = new ItemEntity((World) world, (x + 0.5), (y + 0.5), (z + 0.5),
-							new ItemStack(HeartShapedHerbSeedsItem.block, (int) (1)));
-					entityToSpawn.setPickupDelay((int) 10);
-					world.addEntity(entityToSpawn);
+			} else if (dropChance >= 0.1) {
+				if (world instanceof Level _level && !_level.isClientSide()) {
+					ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5),
+							new ItemStack(MarvelModItems.HEART_SHAPED_HERB_SEEDS));
+					entityToSpawn.setPickUpDelay(10);
+					_level.addFreshEntity(entityToSpawn);
 				}
 			}
-			if (world instanceof World && !world.isRemote()) {
-				ItemEntity entityToSpawn = new ItemEntity((World) world, (x + 0.5), (y + 0.5), (z + 0.5),
-						new ItemStack(HeartShapedHerbItemItem.block, (int) (1)));
-				entityToSpawn.setPickupDelay((int) 10);
-				world.addEntity(entityToSpawn);
+			if (world instanceof Level _level && !_level.isClientSide()) {
+				ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5),
+						new ItemStack(MarvelModItems.HEART_SHAPED_HERB_ITEM));
+				entityToSpawn.setPickUpDelay(10);
+				_level.addFreshEntity(entityToSpawn);
 			}
 		}
 	}

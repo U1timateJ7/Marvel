@@ -1,0 +1,82 @@
+{
+  "_fv": 24,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "mark7_helmet",
+    "enableBody": true,
+    "textureBody": "mark7_chestplate",
+    "enableLeggings": true,
+    "textureLeggings": "mark7_leggings",
+    "enableBoots": true,
+    "textureBoots": "mark7_boots",
+    "onHelmetTick": {
+      "name": "IronManWaterBreathing"
+    },
+    "onBodyTick": {
+      "name": "IronManBodyTickEvent"
+    },
+    "onBootsTick": {
+      "name": "IronManFallDamage"
+    },
+    "creativeTab": {
+      "value": "CUSTOM:IronManArmor"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Iron Man Helmet",
+    "bodyName": "Iron Man Chestplate",
+    "leggingsName": "Iron Man Leggings",
+    "bootsName": "Iron Man Boots",
+    "helmetSpecialInfo": [
+      "Mark VII"
+    ],
+    "bodySpecialInfo": [
+      "Mark VII"
+    ],
+    "leggingsSpecialInfo": [
+      "Mark VII"
+    ],
+    "bootsSpecialInfo": [
+      "Mark VII"
+    ],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "mark7_helmet.png",
+    "bodyModelName": "ModelCostume",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "mark7_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "mark7_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "mark7_layer_1.png",
+    "helmetImmuneToFire": false,
+    "bodyImmuneToFire": false,
+    "leggingsImmuneToFire": false,
+    "bootsImmuneToFire": false,
+    "maxDamage": 25,
+    "damageValueHelmet": 2,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 2,
+    "enchantability": 9,
+    "toughness": 2.0,
+    "knockbackResistance": 0.1,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:TitaniumIngot"
+      }
+    ]
+  }
+}

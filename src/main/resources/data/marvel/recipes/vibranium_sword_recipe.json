@@ -2,18 +2,15 @@
   "group": "marvel",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0",
-    "1",
-    "2"
+    "V",
+    "V",
+    "S"
   ],
   "key": {
-    "0": {
+    "V": {
       "item": "marvel:vibranium_ingot"
     },
-    "1": {
-      "item": "marvel:vibranium_ingot"
-    },
-    "2": {
+    "S": {
       "item": "minecraft:stick"
     }
   },

@@ -1,0 +1,24 @@
+{
+  "group": "mark_50",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "OIO",
+    " O "
+  ],
+  "key": {
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "O": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_49_helmet"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_50_helmet",
+    "count": 1
+  }
+}

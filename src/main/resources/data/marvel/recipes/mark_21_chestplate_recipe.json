@@ -2,34 +2,22 @@
   "group": "mark_21",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345",
-    "678"
+    "G G",
+    "GUG",
+    "TIT"
   ],
   "key": {
-    "0": {
+    "G": {
       "item": "minecraft:gold_ingot"
     },
-    "2": {
-      "item": "minecraft:gold_ingot"
-    },
-    "3": {
-      "item": "minecraft:gold_ingot"
-    },
-    "4": {
+    "U": {
       "item": "marvel:upgraded_arc_reactor"
     },
-    "5": {
-      "item": "minecraft:gold_ingot"
-    },
-    "6": {
+    "T": {
       "item": "marvel:titanium_ingot"
     },
-    "7": {
-      "item": "marvel:iron_man_mark_6_chestplate"
-    },
-    "8": {
-      "item": "marvel:titanium_ingot"
+    "I": {
+      "item": "marvel:iron_man_mark_20_chestplate"
     }
   },
   "result": {

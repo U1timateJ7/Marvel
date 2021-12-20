@@ -1,8 +1,8 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "function",
   "definition": {
-    "code": "replaceitem entity @p armor.head marvel:iron_man_mark_30_helmet\nreplaceitem entity @p armor.chest marvel:iron_man_mark_30_chestplate\nreplaceitem entity @p armor.legs marvel:iron_man_mark_30_leggings\nreplaceitem entity @p armor.feet marvel:iron_man_mark_30_boots\neffect clear @p minecraft:invisibility",
+    "code": "replaceitem entity @p armor.head marvel:iron_man_mark_16_helmet\nreplaceitem entity @p armor.chest marvel:iron_man_mark_16_chestplate\nreplaceitem entity @p armor.legs marvel:iron_man_mark_16_leggings\nreplaceitem entity @p armor.feet marvel:iron_man_mark_16_boots\neffect clear @p minecraft:invisibility",
     "name": "mark_30_ability_2",
     "namespace": "mod"
   }

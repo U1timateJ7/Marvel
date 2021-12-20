@@ -2,23 +2,11 @@
   "group": "panther",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "3 5"
+    "###",
+    "# #"
   ],
   "key": {
-    "0": {
-      "item": "marvel:vibranium_weave"
-    },
-    "1": {
-      "item": "marvel:vibranium_weave"
-    },
-    "2": {
-      "item": "marvel:vibranium_weave"
-    },
-    "3": {
-      "item": "marvel:vibranium_weave"
-    },
-    "5": {
+    "#": {
       "item": "marvel:vibranium_weave"
     }
   },

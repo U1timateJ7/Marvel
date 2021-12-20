@@ -1,0 +1,20 @@
+{
+  "group": "iron_spider",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "GSG"
+  ],
+  "key": {
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "S": {
+      "item": "marvel:spider_man_suit_boots"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_spider_suit_boots",
+    "count": 1
+  }
+}

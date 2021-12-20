@@ -1,80 +1,31 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ObjectHolder;
-
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.block.BlockState;
-
-import java.util.Map;
-import java.util.HashMap;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.InteractionResult;
 
 import com.ulto.marvel.procedures.HeartShapedHerbSeedsRightClickedOnBlockProcedure;
-import com.ulto.marvel.itemgroup.MarvelItemsItemGroup;
-import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.init.MarvelModTabs;
 
-@MarvelModElements.ModElement.Tag
-public class HeartShapedHerbSeedsItem extends MarvelModElements.ModElement {
-	@ObjectHolder("marvel:heart_shaped_herb_seeds")
-	public static final Item block = null;
-	public HeartShapedHerbSeedsItem(MarvelModElements instance) {
-		super(instance, 15);
+public class HeartShapedHerbSeedsItem extends Item {
+	public HeartShapedHerbSeedsItem() {
+		super(new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_ITEMS).stacksTo(64).rarity(Rarity.COMMON));
+		setRegistryName("heart_shaped_herb_seeds");
 	}
 
 	@Override
-	public void initElements() {
-		elements.items.add(() -> new ItemCustom());
+	public int getUseDuration(ItemStack itemstack) {
+		return 0;
 	}
-	public static class ItemCustom extends Item {
-		public ItemCustom() {
-			super(new Item.Properties().group(MarvelItemsItemGroup.tab).maxStackSize(64).rarity(Rarity.COMMON));
-			setRegistryName("heart_shaped_herb_seeds");
-		}
 
-		@Override
-		public int getItemEnchantability() {
-			return 0;
-		}
-
-		@Override
-		public int getUseDuration(ItemStack itemstack) {
-			return 0;
-		}
-
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, BlockState par2Block) {
-			return 1F;
-		}
-
-		@Override
-		public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext context) {
-			ActionResultType retval = super.onItemUseFirst(stack, context);
-			World world = context.getWorld();
-			BlockPos pos = context.getPos();
-			PlayerEntity entity = context.getPlayer();
-			Direction direction = context.getFace();
-			int x = pos.getX();
-			int y = pos.getY();
-			int z = pos.getZ();
-			ItemStack itemstack = context.getItem();
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				$_dependencies.put("x", x);
-				$_dependencies.put("y", y);
-				$_dependencies.put("z", z);
-				$_dependencies.put("world", world);
-				HeartShapedHerbSeedsRightClickedOnBlockProcedure.executeProcedure($_dependencies);
-			}
-			return retval;
-		}
+	@Override
+	public InteractionResult useOn(UseOnContext context) {
+		InteractionResult retval = super.useOn(context);
+		HeartShapedHerbSeedsRightClickedOnBlockProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(),
+				context.getClickedPos().getZ(), context.getPlayer());
+		return retval;
 	}
 }

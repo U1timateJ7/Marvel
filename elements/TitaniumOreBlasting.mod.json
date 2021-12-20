@@ -1,0 +1,20 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Blasting",
+    "xpReward": 0.7,
+    "cookingTime": 100,
+    "recipeRetstackSize": 1,
+    "group": "titanium_blast",
+    "recipeShapeless": false,
+    "blastingInputStack": {
+      "value": "CUSTOM:TitaniumOre"
+    },
+    "blastingReturnStack": {
+      "value": "CUSTOM:TitaniumIngot"
+    },
+    "name": "titanium_ore_blasting",
+    "namespace": "mod"
+  }
+}

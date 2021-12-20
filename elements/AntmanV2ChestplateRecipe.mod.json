@@ -1,0 +1,46 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "antman2",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      },
+      {
+        "value": "CUSTOM:AntmanSuit.body"
+      },
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      },
+      {
+        "value": "Items.DYE#1"
+      },
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      },
+      {
+        "value": "Items.DYE#1"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:AntmanV2Suit.body"
+    },
+    "name": "antman_v_2_chestplate_recipe",
+    "namespace": "mod"
+  }
+}

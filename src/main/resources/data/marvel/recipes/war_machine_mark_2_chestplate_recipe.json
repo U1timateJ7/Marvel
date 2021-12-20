@@ -2,34 +2,22 @@
   "group": "warmachine2",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345",
-    "678"
+    "B I",
+    "TRT",
+    "ITI"
   ],
   "key": {
-    "0": {
+    "B": {
       "item": "minecraft:bow"
     },
-    "2": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "3": {
+    "T": {
       "item": "marvel:titanium_ingot"
     },
-    "4": {
+    "R": {
       "item": "marvel:iron_man_mark_22_chestplate"
-    },
-    "5": {
-      "item": "marvel:titanium_ingot"
-    },
-    "6": {
-      "item": "minecraft:iron_ingot"
-    },
-    "7": {
-      "item": "marvel:titanium_ingot"
-    },
-    "8": {
-      "item": "minecraft:iron_ingot"
     }
   },
   "result": {

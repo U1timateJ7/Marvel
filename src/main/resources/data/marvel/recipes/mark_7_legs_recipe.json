@@ -1,0 +1,27 @@
+{
+  "group": "mark_7",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GIG",
+    "R R",
+    "O O"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_6_leggings"
+    },
+    "R": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "marvel:gold_titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_7_leggings",
+    "count": 1
+  }
+}

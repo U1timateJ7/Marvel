@@ -2,24 +2,18 @@
   "group": "mark_33",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345"
+    "I I",
+    "GRG"
   ],
   "key": {
-    "0": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "2": {
-      "item": "minecraft:iron_ingot"
-    },
-    "3": {
+    "G": {
       "item": "marvel:gold_titanium_alloy"
     },
-    "4": {
-      "item": "marvel:iron_man_mark_6_boots"
-    },
-    "5": {
-      "item": "marvel:gold_titanium_alloy"
+    "R": {
+      "item": "marvel:iron_man_mark_30_boots"
     }
   },
   "result": {

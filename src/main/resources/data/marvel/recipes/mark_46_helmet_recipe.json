@@ -2,30 +2,21 @@
   "group": "mark_46",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "345",
-    " 7 "
+    "GGG",
+    "OIO",
+    " R "
   ],
   "key": {
-    "0": {
+    "G": {
       "item": "marvel:gold_titanium_alloy"
     },
-    "1": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "2": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "3": {
+    "O": {
       "item": "minecraft:gold_ingot"
     },
-    "4": {
+    "I": {
       "item": "marvel:iron_man_mark_43_helmet"
     },
-    "5": {
-      "item": "minecraft:gold_ingot"
-    },
-    "7": {
+    "R": {
       "item": "minecraft:iron_ingot"
     }
   },

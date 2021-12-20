@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "recipe",
   "definition": {
     "recipeType": "Crafting",
@@ -13,7 +13,7 @@
         "value": "CUSTOM:TitaniumIngot"
       },
       {
-        "value": "CUSTOM:IronManMark6.legs"
+        "value": "CUSTOM:IronManMark25.legs"
       },
       {
         "value": "CUSTOM:TitaniumIngot"

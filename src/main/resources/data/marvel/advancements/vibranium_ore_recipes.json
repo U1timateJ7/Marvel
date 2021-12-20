@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "item": "marvel:vibranium_ore",
+            "items": [
+              "marvel:vibranium_ore"
+            ],
             "count": {
               "min": 1,
               "max": 64

@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "uru_weapons_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "marvel:uru_ingot"
+            ],
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:mjolnir_recipe",
+      "marvel:stormbreaker_recipe"
+    ]
+  }
+}

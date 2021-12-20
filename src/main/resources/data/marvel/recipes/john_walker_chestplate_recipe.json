@@ -2,34 +2,22 @@
   "group": "john_walker",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345",
-    "678"
+    "R R",
+    "IEE",
+    "RBR"
   ],
   "key": {
-    "0": {
+    "R": {
       "item": "marvel:reinforced_leather"
     },
-    "2": {
-      "item": "marvel:reinforced_leather"
-    },
-    "3": {
+    "I": {
       "item": "minecraft:iron_nugget"
     },
-    "4": {
+    "E": {
       "item": "minecraft:red_dye"
     },
-    "5": {
-      "item": "minecraft:red_dye"
-    },
-    "6": {
-      "item": "marvel:reinforced_leather"
-    },
-    "7": {
+    "B": {
       "item": "minecraft:blue_dye"
-    },
-    "8": {
-      "item": "marvel:reinforced_leather"
     }
   },
   "result": {

@@ -2,25 +2,16 @@
   "group": "warmachine",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " 1 ",
-    "345",
-    " 7 "
+    " T ",
+    "TIT",
+    " T "
   ],
   "key": {
-    "1": {
+    "T": {
       "item": "marvel:titanium_ingot"
     },
-    "3": {
-      "item": "marvel:titanium_ingot"
-    },
-    "4": {
+    "I": {
       "item": "marvel:iron_man_mark_2_boots"
-    },
-    "5": {
-      "item": "marvel:titanium_ingot"
-    },
-    "7": {
-      "item": "marvel:titanium_ingot"
     }
   },
   "result": {

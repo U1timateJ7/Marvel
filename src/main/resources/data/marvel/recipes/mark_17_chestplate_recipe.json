@@ -1,0 +1,30 @@
+{
+  "group": "mark_17",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "DUD",
+    "OIO"
+  ],
+  "key": {
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "U": {
+      "item": "marvel:upgraded_arc_reactor"
+    },
+    "O": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "marvel:iron_man_mark_16_chestplate"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_17_chestplate",
+    "count": 1
+  }
+}

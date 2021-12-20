@@ -2,20 +2,14 @@
   "group": "red_guardian",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "3 5"
+    "R R",
+    "W W"
   ],
   "key": {
-    "0": {
+    "R": {
       "item": "marvel:reinforced_leather"
     },
-    "2": {
-      "item": "marvel:reinforced_leather"
-    },
-    "3": {
-      "item": "minecraft:white_dye"
-    },
-    "5": {
+    "W": {
       "item": "minecraft:white_dye"
     }
   },

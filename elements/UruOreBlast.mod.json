@@ -1,0 +1,20 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Blasting",
+    "xpReward": 1.4,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "uru_smelttt",
+    "recipeShapeless": false,
+    "blastingInputStack": {
+      "value": "CUSTOM:UruOre"
+    },
+    "blastingReturnStack": {
+      "value": "CUSTOM:UruIngot"
+    },
+    "name": "uru_ore_blast",
+    "namespace": "mod"
+  }
+}

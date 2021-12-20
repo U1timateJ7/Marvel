@@ -1,0 +1,46 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "mark_19",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:IronManMark17.legs"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "Items.IRON_INGOT"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "Items.IRON_INGOT"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:IronManMark19.legs"
+    },
+    "name": "mark_19_legs_recipe",
+    "namespace": "mod"
+  }
+}

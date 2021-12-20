@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "antman_disk_recipes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "marvel:pym_particle"
+            ],
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1,
+    "recipes": [
+      "marvel:shrinking_disc_reicpe",
+      "marvel:growing_disk_recipe"
+    ]
+  }
+}

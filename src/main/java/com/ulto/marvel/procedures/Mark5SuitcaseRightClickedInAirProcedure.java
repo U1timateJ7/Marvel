@@ -6,102 +6,61 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Hand;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
-import java.util.HashMap;
+import com.ulto.marvel.init.MarvelModItems;
 
-import com.ulto.marvel.item.Mark5OpenItem;
-import com.ulto.marvel.item.IronManMark5Item;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.ModElement {
-	public Mark5SuitcaseRightClickedInAirProcedure(MarvelModElements instance) {
-		super(instance, 193);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure Mark5SuitcaseRightClickedInAir!");
+public class Mark5SuitcaseRightClickedInAirProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		if (entity == null)
 			return;
+		if (entity instanceof LivingEntity _entity) {
+			ItemStack _setstack = new ItemStack(Blocks.AIR);
+			_setstack.setCount(1);
+			_entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+			if (_entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.getInventory().setChanged();
 		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure Mark5SuitcaseRightClickedInAir!");
-			return;
+		if (world instanceof Level _level) {
+			if (!_level.isClientSide()) {
+				_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")), SoundSource.NEUTRAL, 1, 1);
+			} else {
+				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")),
+						SoundSource.NEUTRAL, 1, 1, false);
+			}
 		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure Mark5SuitcaseRightClickedInAir!");
-			return;
+		if (entity instanceof Player _player) {
+			ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY);
+			_setstack.setCount(1);
+			ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure Mark5SuitcaseRightClickedInAir!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure Mark5SuitcaseRightClickedInAir!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if (entity instanceof LivingEntity) {
-			ItemStack _setstack = new ItemStack(Blocks.AIR, (int) (1));
-			_setstack.setCount((int) 1);
-			((LivingEntity) entity).setHeldItem(Hand.MAIN_HAND, _setstack);
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
-		}
-		if (world instanceof World && !world.isRemote()) {
-			((World) world).playSound(null, new BlockPos((int) x, (int) y, (int) z),
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1);
-		} else {
-			((World) world).playSound(x, y, z,
-					(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.mark5.suit_up")),
-					SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
-		}
-		if (entity instanceof PlayerEntity) {
-			ItemStack _setstack = ((entity instanceof LivingEntity)
-					? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-					: ItemStack.EMPTY);
-			_setstack.setCount((int) 1);
-			ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-		}
-		if (entity instanceof LivingEntity) {
-			if (entity instanceof PlayerEntity)
-				((PlayerEntity) entity).inventory.armorInventory.set((int) 2, new ItemStack(IronManMark5Item.body, (int) (1)));
+		if (entity instanceof LivingEntity _entity) {
+			if (_entity instanceof Player _player)
+				_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE));
 			else
-				((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2),
-						new ItemStack(IronManMark5Item.body, (int) (1)));
-			if (entity instanceof ServerPlayerEntity)
-				((ServerPlayerEntity) entity).inventory.markDirty();
+				_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE));
+			if (_entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.getInventory().setChanged();
 		}
 		new Object() {
 			private int ticks = 0;
 			private float waitTicks;
-			private IWorld world;
-			public void start(IWorld world, int waitTicks) {
+			private LevelAccessor world;
+
+			public void start(LevelAccessor world, int waitTicks) {
 				this.waitTicks = waitTicks;
 				MinecraftForge.EVENT_BUS.register(this);
 				this.world = world;
@@ -117,28 +76,27 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 			}
 
 			private void run() {
-				if (entity instanceof PlayerEntity) {
-					ItemStack _setstack = ((entity instanceof LivingEntity)
-							? ((LivingEntity) entity)
-									.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
+				if (entity instanceof Player _player) {
+					ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor
+							? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS)
 							: ItemStack.EMPTY);
-					_setstack.setCount((int) 1);
-					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+					_setstack.setCount(1);
+					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
-				if (entity instanceof LivingEntity) {
-					if (entity instanceof PlayerEntity)
-						((PlayerEntity) entity).inventory.armorInventory.set((int) 1, new ItemStack(IronManMark5Item.legs, (int) (1)));
+				if (entity instanceof LivingEntity _entity) {
+					if (_entity instanceof Player _player)
+						_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_LEGGINGS));
 					else
-						((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1),
-								new ItemStack(IronManMark5Item.legs, (int) (1)));
-					if (entity instanceof ServerPlayerEntity)
-						((ServerPlayerEntity) entity).inventory.markDirty();
+						_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_LEGGINGS));
+					if (_entity instanceof ServerPlayer _serverPlayer)
+						_serverPlayer.getInventory().setChanged();
 				}
 				new Object() {
 					private int ticks = 0;
 					private float waitTicks;
-					private IWorld world;
-					public void start(IWorld world, int waitTicks) {
+					private LevelAccessor world;
+
+					public void start(LevelAccessor world, int waitTicks) {
 						this.waitTicks = waitTicks;
 						MinecraftForge.EVENT_BUS.register(this);
 						this.world = world;
@@ -154,29 +112,27 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 					}
 
 					private void run() {
-						if (entity instanceof PlayerEntity) {
-							ItemStack _setstack = ((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+						if (entity instanceof Player _player) {
+							ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor
+									? _entGetArmor.getItemBySlot(EquipmentSlot.FEET)
 									: ItemStack.EMPTY);
-							_setstack.setCount((int) 1);
-							ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 						}
-						if (entity instanceof LivingEntity) {
-							if (entity instanceof PlayerEntity)
-								((PlayerEntity) entity).inventory.armorInventory.set((int) 0, new ItemStack(IronManMark5Item.boots, (int) (1)));
+						if (entity instanceof LivingEntity _entity) {
+							if (_entity instanceof Player _player)
+								_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_BOOTS));
 							else
-								((LivingEntity) entity).setItemStackToSlot(
-										EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0),
-										new ItemStack(IronManMark5Item.boots, (int) (1)));
-							if (entity instanceof ServerPlayerEntity)
-								((ServerPlayerEntity) entity).inventory.markDirty();
+								_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_BOOTS));
+							if (_entity instanceof ServerPlayer _serverPlayer)
+								_serverPlayer.getInventory().setChanged();
 						}
 						new Object() {
 							private int ticks = 0;
 							private float waitTicks;
-							private IWorld world;
-							public void start(IWorld world, int waitTicks) {
+							private LevelAccessor world;
+
+							public void start(LevelAccessor world, int waitTicks) {
 								this.waitTicks = waitTicks;
 								MinecraftForge.EVENT_BUS.register(this);
 								this.world = world;
@@ -192,29 +148,27 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 							}
 
 							private void run() {
-								if (entity instanceof PlayerEntity) {
-									ItemStack _setstack = ((entity instanceof LivingEntity)
-											? ((LivingEntity) entity).getItemStackFromSlot(
-													EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
+								if (entity instanceof Player _player) {
+									ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor
+											? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
 											: ItemStack.EMPTY);
-									_setstack.setCount((int) 1);
-									ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+									_setstack.setCount(1);
+									ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 								}
-								if (entity instanceof LivingEntity) {
-									if (entity instanceof PlayerEntity)
-										((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+								if (entity instanceof LivingEntity _entity) {
+									if (_entity instanceof Player _player)
+										_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
 									else
-										((LivingEntity) entity).setItemStackToSlot(
-												EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-												new ItemStack(Mark5OpenItem.helmet, (int) (1)));
-									if (entity instanceof ServerPlayerEntity)
-										((ServerPlayerEntity) entity).inventory.markDirty();
+										_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
+									if (_entity instanceof ServerPlayer _serverPlayer)
+										_serverPlayer.getInventory().setChanged();
 								}
 								new Object() {
 									private int ticks = 0;
 									private float waitTicks;
-									private IWorld world;
-									public void start(IWorld world, int waitTicks) {
+									private LevelAccessor world;
+
+									public void start(LevelAccessor world, int waitTicks) {
 										this.waitTicks = waitTicks;
 										MinecraftForge.EVENT_BUS.register(this);
 										this.world = world;
@@ -230,26 +184,18 @@ public class Mark5SuitcaseRightClickedInAirProcedure extends MarvelModElements.M
 									}
 
 									private void run() {
-										{
-											Map<String, Object> $_dependencies = new HashMap<>();
-											$_dependencies.put("entity", entity);
-											$_dependencies.put("world", world);
-											$_dependencies.put("x", x);
-											$_dependencies.put("y", y);
-											$_dependencies.put("z", z);
-											ToggleHelmetOnKeyProcedure.executeProcedure($_dependencies);
-										}
+										ToggleHelmetOnKeyProcedure.execute(world, x, y, z, entity);
 										MinecraftForge.EVENT_BUS.unregister(this);
 									}
-								}.start(world, (int) 10);
+								}.start(world, 10);
 								MinecraftForge.EVENT_BUS.unregister(this);
 							}
-						}.start(world, (int) 10);
+						}.start(world, 10);
 						MinecraftForge.EVENT_BUS.unregister(this);
 					}
-				}.start(world, (int) 10);
+				}.start(world, 10);
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
-		}.start(world, (int) 10);
+		}.start(world, 10);
 	}
 }

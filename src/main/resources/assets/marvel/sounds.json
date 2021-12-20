@@ -194,5 +194,210 @@
         "stream": false
       }
     ]
+  },
+  "item.antman.helmet_open": {
+    "category": "player",
+    "subtitle": "subtitles.item.antman.helmet_open",
+    "sounds": [
+      {
+        "name": "marvel:antman_helmet_open",
+        "stream": false
+      }
+    ]
+  },
+  "item.antman.helmet_close": {
+    "category": "player",
+    "subtitle": "subtitles.item.antman.helmet_close",
+    "sounds": [
+      {
+        "name": "marvel:antman_helmet_close",
+        "stream": false
+      }
+    ]
+  },
+  "antman.shrink": {
+    "category": "player",
+    "subtitle": "subtitles.antman.shrink",
+    "sounds": [
+      {
+        "name": "marvel:shrink",
+        "stream": false
+      }
+    ]
+  },
+  "antman.grow": {
+    "category": "player",
+    "subtitle": "subtitles.antman.grow",
+    "sounds": [
+      {
+        "name": "marvel:grow",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_man_helmet.nanotech_open": {
+    "category": "player",
+    "subtitle": "subtitles.item.iron_man_helmet.nanotech_open",
+    "sounds": [
+      {
+        "name": "marvel:nano_helmet_off",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_man_helmet.nanotech_close": {
+    "category": "player",
+    "subtitle": "subtitles.item.iron_man_helmet.nanotech_close",
+    "sounds": [
+      {
+        "name": "marvel:nano_helmet_on",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark50.suit_up": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:nano_suit_up",
+        "stream": false
+      }
+    ]
+  },
+  "iron_spider.suit_up": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:iron_spider_suit_up",
+        "stream": false
+      }
+    ]
+  },
+  "iron_man.mark85.suit_up": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:mark85_suit_up",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_spider_arms.deactivate": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:iron_spider_arms_off",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_spider_arms.activate": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "marvel:iron_spider_arms_on",
+        "stream": false
+      }
+    ]
+  },
+  "item.iron_spider_arms.attack": {
+    "category": "player",
+    "subtitle": "subtitles.item.iron_spider_arms.attack",
+    "sounds": [
+      {
+        "name": "marvel:iron_spider_arms_attack",
+        "stream": false
+      }
+    ]
+  },
+  "item.stormbreaker.hit": {
+    "category": "player",
+    "subtitle": "subtitles.item.stormbreaker.hit",
+    "sounds": [
+      {
+        "name": "marvel:stormbreaker_hit",
+        "stream": false
+      }
+    ]
+  },
+  "item.stormbreaker.catch": {
+    "category": "player",
+    "subtitle": "subtitles.item.stormbreaker.catch",
+    "sounds": [
+      {
+        "name": "marvel:stormbreaker_call",
+        "stream": false
+      }
+    ]
+  },
+  "item.mjolnir.hit_shield": {
+    "category": "player",
+    "subtitle": "subtitles.item.mjolnir.hit_shield",
+    "sounds": [
+      {
+        "name": "marvel:mjolnir_hit_shield",
+        "stream": false
+      }
+    ]
+  },
+  "item.mjolnir.catch": {
+    "category": "player",
+    "subtitle": "subtitles.item.mjolnir.catch",
+    "sounds": [
+      {
+        "name": "marvel:mjolnir_call",
+        "stream": false
+      }
+    ]
+  },
+  "item.mjolnir.hit": {
+    "category": "player",
+    "subtitle": "subtitles.item.mjolnir.hit",
+    "sounds": [
+      {
+        "name": "marvel:mjolnir_hit",
+        "stream": false
+      }
+    ]
+  },
+  "item.mjolnir.throw": {
+    "category": "player",
+    "subtitle": "subtitles.item.mjolnir.throw",
+    "sounds": [
+      {
+        "name": "marvel:mjolnir_throw",
+        "stream": false
+      }
+    ]
+  },
+  "item.stormbreaker.thorw": {
+    "category": "player",
+    "subtitle": "subtitles.item.stormbreaker.thorw",
+    "sounds": [
+      {
+        "name": "marvel:stormbreaker_throw",
+        "stream": false
+      }
+    ]
+  },
+  "item.adamantium_claws.retract": {
+    "category": "player",
+    "subtitle": "subtitles.item.adamantium_claws.retract",
+    "sounds": [
+      {
+        "name": "marvel:claws_in",
+        "stream": false
+      }
+    ]
+  },
+  "item.adamantium_claws.activate": {
+    "category": "player",
+    "subtitle": "subtitles.item.adamantium_claws.activate",
+    "sounds": [
+      {
+        "name": "marvel:claws_out",
+        "stream": false
+      }
+    ]
   }
 }

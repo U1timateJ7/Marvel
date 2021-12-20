@@ -2,30 +2,18 @@
   "group": "mark_47",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "3 5",
-    "6 8"
+    "IRI",
+    "I I",
+    "G G"
   ],
   "key": {
-    "0": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "1": {
+    "R": {
       "item": "marvel:iron_man_mark_46_leggings"
     },
-    "2": {
-      "item": "minecraft:iron_ingot"
-    },
-    "3": {
-      "item": "minecraft:iron_ingot"
-    },
-    "5": {
-      "item": "minecraft:iron_ingot"
-    },
-    "6": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "8": {
+    "G": {
       "item": "marvel:gold_titanium_alloy"
     }
   },

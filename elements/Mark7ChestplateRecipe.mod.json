@@ -1,0 +1,46 @@
+{
+  "_fv": 24,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "recipeRetstackSize": 1,
+    "group": "mark_7",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "CUSTOM:UpgradedArcReactor"
+      },
+      {
+        "value": "CUSTOM:GoldTitaniumAlloy"
+      },
+      {
+        "value": "Items.GOLD_INGOT"
+      },
+      {
+        "value": "CUSTOM:IronManMark6.body"
+      },
+      {
+        "value": "Items.GOLD_INGOT"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:IronManMark7.body"
+    },
+    "name": "mark_7_chestplate_recipe",
+    "namespace": "mod"
+  }
+}

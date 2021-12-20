@@ -20,7 +20,9 @@
       "conditions": {
         "items": [
           {
-            "item": "marvel:reinforced_leather",
+            "items": [
+              "marvel:reinforced_leather"
+            ],
             "count": {
               "min": 1,
               "max": 64

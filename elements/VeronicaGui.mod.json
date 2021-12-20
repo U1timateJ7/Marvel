@@ -1,9 +1,9 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "gui",
   "definition": {
     "type": 0,
-    "width": 300,
+    "width": 424,
     "height": 200,
     "inventoryOffsetX": 0,
     "inventoryOffsetY": 0,
@@ -29,8 +29,8 @@
           "image": "veronica_mark21.png",
           "use1Xscale": false,
           "name": "veronica_mark21.png",
-          "x": 78,
-          "y": 53
+          "x": 150,
+          "y": 80
         }
       },
       {
@@ -45,8 +45,8 @@
             "name": "Mark21Available"
           },
           "name": "Available",
-          "x": 96,
-          "y": 62
+          "x": 168,
+          "y": 89
         }
       },
       {
@@ -61,8 +61,8 @@
             "name": "Mark21Unavailable"
           },
           "name": "Unavailable",
-          "x": 96,
-          "y": 62
+          "x": 168,
+          "y": 89
         }
       },
       {
@@ -74,8 +74,8 @@
             "falpha": 0.0
           },
           "name": "Mark 21",
-          "x": 96,
-          "y": 53
+          "x": 168,
+          "y": 80
         }
       },
       {
@@ -88,8 +88,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
-          "y": 53
+          "x": 231,
+          "y": 80
         }
       },
       {
@@ -98,8 +98,8 @@
           "image": "veronica_mark23.png",
           "use1Xscale": false,
           "name": "veronica_mark23.png",
-          "x": 78,
-          "y": 80
+          "x": 6,
+          "y": 107
         }
       },
       {
@@ -114,8 +114,8 @@
             "name": "Mark23Available"
           },
           "name": "Available",
-          "x": 96,
-          "y": 89
+          "x": 24,
+          "y": 116
         }
       },
       {
@@ -130,8 +130,8 @@
             "name": "Mark23Unavailable"
           },
           "name": "Unavailable",
-          "x": 96,
-          "y": 89
+          "x": 24,
+          "y": 116
         }
       },
       {
@@ -143,8 +143,8 @@
             "falpha": 0.0
           },
           "name": "Mark 23",
-          "x": 96,
-          "y": 80
+          "x": 24,
+          "y": 107
         }
       },
       {
@@ -157,8 +157,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
-          "y": 80
+          "x": 87,
+          "y": 107
         }
       },
       {
@@ -167,7 +167,7 @@
           "image": "veronica_mark30.png",
           "use1Xscale": false,
           "name": "veronica_mark30.png",
-          "x": 78,
+          "x": 294,
           "y": 107
         }
       },
@@ -183,7 +183,7 @@
             "name": "Mark30Available"
           },
           "name": "Available",
-          "x": 96,
+          "x": 312,
           "y": 116
         }
       },
@@ -199,7 +199,7 @@
             "name": "Mark30Unavailable"
           },
           "name": "Unavailable",
-          "x": 96,
+          "x": 312,
           "y": 116
         }
       },
@@ -212,7 +212,7 @@
             "falpha": 0.0
           },
           "name": "Mark 30",
-          "x": 96,
+          "x": 312,
           "y": 107
         }
       },
@@ -226,7 +226,7 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
+          "x": 375,
           "y": 107
         }
       },
@@ -236,8 +236,8 @@
           "image": "veronica_mark42.png",
           "use1Xscale": false,
           "name": "veronica_mark42.png",
-          "x": 78,
-          "y": 134
+          "x": 6,
+          "y": 161
         }
       },
       {
@@ -252,8 +252,8 @@
             "name": "Mark42Available"
           },
           "name": "Available",
-          "x": 96,
-          "y": 143
+          "x": 24,
+          "y": 170
         }
       },
       {
@@ -268,8 +268,8 @@
             "name": "Mark42Unavailable"
           },
           "name": "Unavailable",
-          "x": 96,
-          "y": 143
+          "x": 24,
+          "y": 170
         }
       },
       {
@@ -281,8 +281,8 @@
             "falpha": 0.0
           },
           "name": "Mark 42",
-          "x": 96,
-          "y": 134
+          "x": 24,
+          "y": 161
         }
       },
       {
@@ -295,8 +295,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
-          "y": 134
+          "x": 87,
+          "y": 161
         }
       },
       {
@@ -305,7 +305,7 @@
           "image": "veronica_mark46.png",
           "use1Xscale": false,
           "name": "veronica_mark46.png",
-          "x": 78,
+          "x": 294,
           "y": 161
         }
       },
@@ -321,7 +321,7 @@
             "name": "Mark46Available"
           },
           "name": "Available",
-          "x": 96,
+          "x": 312,
           "y": 170
         }
       },
@@ -337,7 +337,7 @@
             "name": "Mark46Unavailable"
           },
           "name": "Unavailable",
-          "x": 96,
+          "x": 312,
           "y": 170
         }
       },
@@ -350,7 +350,7 @@
             "falpha": 0.0
           },
           "name": "Mark 46",
-          "x": 96,
+          "x": 312,
           "y": 161
         }
       },
@@ -364,7 +364,7 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
+          "x": 375,
           "y": 161
         }
       },
@@ -374,7 +374,7 @@
           "image": "veronica_iron_patriot.png",
           "use1Xscale": false,
           "name": "veronica_iron_patriot.png",
-          "x": 78,
+          "x": 150,
           "y": 188
         }
       },
@@ -390,7 +390,7 @@
             "name": "IronPatriotAvailable"
           },
           "name": "Available",
-          "x": 96,
+          "x": 168,
           "y": 197
         }
       },
@@ -406,7 +406,7 @@
             "name": "IronPatriotUnavailable"
           },
           "name": "Unavailable",
-          "x": 96,
+          "x": 168,
           "y": 197
         }
       },
@@ -419,7 +419,7 @@
             "falpha": 0.0
           },
           "name": "Iron Patriot",
-          "x": 96,
+          "x": 168,
           "y": 188
         }
       },
@@ -433,7 +433,7 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 159,
+          "x": 231,
           "y": 188
         }
       },
@@ -443,8 +443,8 @@
           "image": "veronica_mark22.png",
           "use1Xscale": false,
           "name": "veronica_mark22.png",
-          "x": 222,
-          "y": 53
+          "x": 294,
+          "y": 80
         }
       },
       {
@@ -459,8 +459,8 @@
             "name": "Mark22Available"
           },
           "name": "Available",
-          "x": 240,
-          "y": 62
+          "x": 312,
+          "y": 89
         }
       },
       {
@@ -475,8 +475,8 @@
             "name": "Mark22Unavailable"
           },
           "name": "Unavailable",
-          "x": 240,
-          "y": 62
+          "x": 312,
+          "y": 89
         }
       },
       {
@@ -488,8 +488,8 @@
             "falpha": 0.0
           },
           "name": "Mark 22",
-          "x": 240,
-          "y": 53
+          "x": 312,
+          "y": 80
         }
       },
       {
@@ -502,8 +502,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
-          "y": 53
+          "x": 375,
+          "y": 80
         }
       },
       {
@@ -512,8 +512,8 @@
           "image": "veronica_mark25.png",
           "use1Xscale": false,
           "name": "veronica_mark25.png",
-          "x": 222,
-          "y": 80
+          "x": 150,
+          "y": 107
         }
       },
       {
@@ -528,8 +528,8 @@
             "name": "Mark25Available"
           },
           "name": "Available",
-          "x": 240,
-          "y": 89
+          "x": 168,
+          "y": 116
         }
       },
       {
@@ -544,8 +544,8 @@
             "name": "Mark25Unavailable"
           },
           "name": "Unavailable",
-          "x": 240,
-          "y": 89
+          "x": 168,
+          "y": 116
         }
       },
       {
@@ -557,8 +557,8 @@
             "falpha": 0.0
           },
           "name": "Mark 25",
-          "x": 240,
-          "y": 80
+          "x": 168,
+          "y": 107
         }
       },
       {
@@ -571,8 +571,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
-          "y": 80
+          "x": 231,
+          "y": 107
         }
       },
       {
@@ -581,8 +581,8 @@
           "image": "veronica_mark33.png",
           "use1Xscale": false,
           "name": "veronica_mark33.png",
-          "x": 222,
-          "y": 107
+          "x": 6,
+          "y": 134
         }
       },
       {
@@ -597,8 +597,8 @@
             "name": "Mark33Available"
           },
           "name": "Available",
-          "x": 240,
-          "y": 116
+          "x": 24,
+          "y": 143
         }
       },
       {
@@ -613,8 +613,8 @@
             "name": "Mark33Unavailable"
           },
           "name": "Unavailable",
-          "x": 240,
-          "y": 116
+          "x": 24,
+          "y": 143
         }
       },
       {
@@ -626,8 +626,8 @@
             "falpha": 0.0
           },
           "name": "Mark 33",
-          "x": 240,
-          "y": 107
+          "x": 24,
+          "y": 134
         }
       },
       {
@@ -640,8 +640,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
-          "y": 107
+          "x": 87,
+          "y": 134
         }
       },
       {
@@ -650,8 +650,8 @@
           "image": "veronica_mark43.png",
           "use1Xscale": false,
           "name": "veronica_mark43.png",
-          "x": 222,
-          "y": 134
+          "x": 150,
+          "y": 161
         }
       },
       {
@@ -666,8 +666,8 @@
             "name": "Mark43Available"
           },
           "name": "Available",
-          "x": 240,
-          "y": 143
+          "x": 168,
+          "y": 170
         }
       },
       {
@@ -682,8 +682,8 @@
             "name": "Mark43Unavailable"
           },
           "name": "Unavailable",
-          "x": 240,
-          "y": 143
+          "x": 168,
+          "y": 170
         }
       },
       {
@@ -695,8 +695,8 @@
             "falpha": 0.0
           },
           "name": "Mark 43",
-          "x": 240,
-          "y": 134
+          "x": 168,
+          "y": 161
         }
       },
       {
@@ -709,8 +709,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
-          "y": 134
+          "x": 231,
+          "y": 161
         }
       },
       {
@@ -719,8 +719,8 @@
           "image": "veronica_mark47.png",
           "use1Xscale": false,
           "name": "veronica_mark47.png",
-          "x": 222,
-          "y": 161
+          "x": 6,
+          "y": 188
         }
       },
       {
@@ -735,8 +735,8 @@
             "name": "Mark47Available"
           },
           "name": "Available",
-          "x": 240,
-          "y": 170
+          "x": 24,
+          "y": 197
         }
       },
       {
@@ -751,8 +751,8 @@
             "name": "Mark47Unavailable"
           },
           "name": "Unavailable",
-          "x": 240,
-          "y": 170
+          "x": 24,
+          "y": 197
         }
       },
       {
@@ -764,8 +764,8 @@
             "falpha": 0.0
           },
           "name": "Mark 47",
-          "x": 240,
-          "y": 161
+          "x": 24,
+          "y": 188
         }
       },
       {
@@ -778,8 +778,8 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
-          "y": 161
+          "x": 87,
+          "y": 188
         }
       },
       {
@@ -788,7 +788,7 @@
           "image": "veronica_war_machine_v2.png",
           "use1Xscale": false,
           "name": "veronica_war_machine_v2.png",
-          "x": 222,
+          "x": 294,
           "y": 188
         }
       },
@@ -804,7 +804,7 @@
             "name": "WarMachineAvailable"
           },
           "name": "Available",
-          "x": 240,
+          "x": 312,
           "y": 197
         }
       },
@@ -820,7 +820,7 @@
             "name": "WarMachineUnavailable"
           },
           "name": "Unavailable",
-          "x": 240,
+          "x": 312,
           "y": 197
         }
       },
@@ -833,7 +833,7 @@
             "falpha": 0.0
           },
           "name": "War Machine",
-          "x": 240,
+          "x": 312,
           "y": 188
         }
       },
@@ -847,8 +847,422 @@
           "width": 45,
           "height": 20,
           "name": "Summon",
-          "x": 303,
+          "x": 375,
           "y": 188
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark16.png",
+          "use1Xscale": false,
+          "name": "veronica_mark16.png",
+          "x": 6,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark16Available"
+          },
+          "name": "Available",
+          "x": 24,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark16Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 24,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 16",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 16",
+          "x": 24,
+          "y": 53
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark16SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 87,
+          "y": 53
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark17.png",
+          "use1Xscale": false,
+          "name": "veronica_mark17.png",
+          "x": 150,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark17Available"
+          },
+          "name": "Available",
+          "x": 168,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark17Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 168,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 17",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 17",
+          "x": 168,
+          "y": 53
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark17SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 231,
+          "y": 53
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark19.png",
+          "use1Xscale": false,
+          "name": "veronica_mark19.png",
+          "x": 294,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark19Available"
+          },
+          "name": "Available",
+          "x": 312,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark19Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 312,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 19",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 19",
+          "x": 312,
+          "y": 53
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark19SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 375,
+          "y": 53
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark20.png",
+          "use1Xscale": false,
+          "name": "veronica_mark20.png",
+          "x": 6,
+          "y": 80
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark20Available"
+          },
+          "name": "Available",
+          "x": 24,
+          "y": 89
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark20Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 24,
+          "y": 89
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 20",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 20",
+          "x": 24,
+          "y": 80
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark20SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 87,
+          "y": 80
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark37.png",
+          "use1Xscale": false,
+          "name": "veronica_mark37.png",
+          "x": 150,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark37Available"
+          },
+          "name": "Available",
+          "x": 168,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark37Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 168,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 37",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 37",
+          "x": 168,
+          "y": 134
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark37SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 231,
+          "y": 134
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "veronica_mark39.png",
+          "use1Xscale": false,
+          "name": "veronica_mark39.png",
+          "x": 294,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Available",
+          "color": {
+            "value": -16738048,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark39Available"
+          },
+          "name": "Available",
+          "x": 312,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Unavailable",
+          "color": {
+            "value": -3407872,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "Mark39Unavailable"
+          },
+          "name": "Unavailable",
+          "x": 312,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Mark 39",
+          "color": {
+            "value": -12829636,
+            "falpha": 0.0
+          },
+          "name": "Mark 39",
+          "x": 312,
+          "y": 134
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Summon",
+          "onClick": {
+            "name": "Mark39SummonSummon"
+          },
+          "width": 45,
+          "height": 20,
+          "name": "Summon",
+          "x": 375,
+          "y": 134
         }
       },
       {
@@ -858,13 +1272,20 @@
           "onClick": {
             "name": "HousePartyProtocol"
           },
-          "width": 110,
+          "width": 125,
           "height": 20,
           "name": "House Party Protocol",
-          "x": 67,
-          "y": 24
+          "x": 6,
+          "y": 26
         }
       }
-    ]
+    ],
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
   }
 }

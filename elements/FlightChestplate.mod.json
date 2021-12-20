@@ -1,0 +1,86 @@
+{
+  "_fv": 24,
+  "_type": "tag",
+  "definition": {
+    "type": "Items",
+    "items": [
+      {
+        "value": "CUSTOM:IronManMark2.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark3.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark5.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark6.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark21.body"
+      },
+      {
+        "value": "CUSTOM:WarMachine.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark22.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark23.body"
+      },
+      {
+        "value": "CUSTOM:IronPatriot.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark25.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark30.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark33.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark42.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark43.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark46.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark47.body"
+      },
+      {
+        "value": "CUSTOM:WarMachineMark2.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark49.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark50.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark85.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark7.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark16.body"
+      },
+      {
+        "value": "CUSTOM:Mark16Stealth.body"
+      },
+      {
+        "value": "CUSTOM:IronManMark17.body"
+      }
+    ],
+    "blocks": [],
+    "functions": [],
+    "entities": [],
+    "name": "flying/chestplates",
+    "namespace": "forge"
+  }
+}

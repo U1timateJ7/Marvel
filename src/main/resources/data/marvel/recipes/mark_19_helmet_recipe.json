@@ -1,0 +1,27 @@
+{
+  "group": "mark_19",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ITI",
+    "IRI",
+    " G "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "item": "marvel:titanium_ingot"
+    },
+    "R": {
+      "item": "marvel:iron_man_mark_17_helmet"
+    },
+    "G": {
+      "item": "marvel:gold_titanium_alloy"
+    }
+  },
+  "result": {
+    "item": "marvel:iron_man_mark_19_helmet",
+    "count": 1
+  }
+}

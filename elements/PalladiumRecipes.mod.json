@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "achievement",
   "definition": {
     "achievementName": "Palladium Recipes",
@@ -17,7 +17,8 @@
       "PalladiumOreBlockRecipe",
       "PalladiumBlockOreRecipe",
       "PalladiumOreSmelting",
-      "PalladiumArcReactorRecipe"
+      "PalladiumArcReactorRecipe",
+      "PalladiumOreBlasting"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

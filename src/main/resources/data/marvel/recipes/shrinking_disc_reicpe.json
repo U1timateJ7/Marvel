@@ -1,0 +1,19 @@
+{
+  "group": "shrinking",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:pym_particle"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "result": {
+    "item": "marvel:shrinking_disk",
+    "count": 4
+  }
+}

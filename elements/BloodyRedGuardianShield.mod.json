@@ -1,6 +1,6 @@
 {
-  "_fv": 17,
-  "_type": "gun",
+  "_fv": 24,
+  "_type": "rangeditem",
   "definition": {
     "renderType": 1,
     "texture": "bloody_red_guardian_shield",

@@ -5,198 +5,197 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.potion.Effects;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
-
-import com.ulto.marvel.item.WarMachineMark2Item;
-import com.ulto.marvel.item.IronPatriotItem;
-import com.ulto.marvel.item.IronManMark47Item;
-import com.ulto.marvel.item.IronManMark46Item;
-import com.ulto.marvel.item.IronManMark43Item;
-import com.ulto.marvel.item.IronManMark42Item;
-import com.ulto.marvel.item.IronManMark33Item;
-import com.ulto.marvel.item.IronManMark30Item;
-import com.ulto.marvel.item.IronManMark25Item;
-import com.ulto.marvel.item.IronManMark23Item;
-import com.ulto.marvel.item.IronManMark22Item;
-import com.ulto.marvel.item.IronManMark21Item;
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.network.MarvelModVariables;
+import com.ulto.marvel.init.MarvelModItems;
 import com.ulto.marvel.MarvelMod;
 
-@MarvelModElements.ModElement.Tag
-public class VeronicaSendProcedure extends MarvelModElements.ModElement {
-	public VeronicaSendProcedure(MarvelModElements instance) {
-		super(instance, 365);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure VeronicaSend!");
+public class VeronicaSendProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
+		if (entity == null || sourceentity == null)
 			return;
+		MarvelMod.LOGGER.info(sourceentity.getDisplayName().getString() + " Just sent a suit to space");
+		if (world instanceof Level _level) {
+			if (!_level.isClientSide()) {
+				_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.fly")), SoundSource.NEUTRAL, 1, 1);
+			} else {
+				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.fly")),
+						SoundSource.NEUTRAL, 1, 1, false);
+			}
 		}
-		if (dependencies.get("sourceentity") == null) {
-			if (!dependencies.containsKey("sourceentity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency sourceentity for procedure VeronicaSend!");
-			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure VeronicaSend!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure VeronicaSend!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure VeronicaSend!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure VeronicaSend!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		Entity sourceentity = (Entity) dependencies.get("sourceentity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if (entity instanceof LivingEntity)
-			((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.LEVITATION, (int) 100, (int) 19, (false), (false)));
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark21Item.body, (int) (1)).getItem())) {
+		if (entity instanceof LivingEntity _entity)
+			_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 19, (false), (false)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_21_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark21Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark22Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_22_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark22Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark23Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_23_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark23Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark25Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_25_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark25Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark30Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_30_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark30Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark33Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_33_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark33Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark42Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark42Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark43Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark43Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark46Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark46Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark47Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.mark47Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronPatriotItem.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_PATRIOT_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.ironPatriotReady = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-				: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineMark2Item.body, (int) (1)).getItem())) {
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_CHESTPLATE) {
 			{
-				boolean _setval = (boolean) (true);
+				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.warMachineMark2Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_16_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark16Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark17Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_19_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark19Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_20_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark20Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_37_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark37Ready = _setval;
+					capability.syncPlayerVariables(sourceentity);
+				});
+			}
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_39_CHESTPLATE) {
+			{
+				boolean _setval = true;
+				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.mark39Ready = _setval;
 					capability.syncPlayerVariables(sourceentity);
 				});
 			}
@@ -204,8 +203,9 @@ public class VeronicaSendProcedure extends MarvelModElements.ModElement {
 		new Object() {
 			private int ticks = 0;
 			private float waitTicks;
-			private IWorld world;
-			public void start(IWorld world, int waitTicks) {
+			private LevelAccessor world;
+
+			public void start(LevelAccessor world, int waitTicks) {
 				this.waitTicks = waitTicks;
 				MinecraftForge.EVENT_BUS.register(this);
 				this.world = world;
@@ -221,10 +221,10 @@ public class VeronicaSendProcedure extends MarvelModElements.ModElement {
 			}
 
 			private void run() {
-				if (!entity.world.isRemote())
-					entity.remove();
+				if (!entity.level.isClientSide())
+					entity.discard();
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
-		}.start(world, (int) 100);
+		}.start(world, 100);
 	}
 }

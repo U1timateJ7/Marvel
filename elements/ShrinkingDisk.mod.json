@@ -1,0 +1,40 @@
+{
+  "_fv": 24,
+  "_type": "rangeditem",
+  "definition": {
+    "renderType": 0,
+    "texture": "shrinking_disc",
+    "customModelName": "Normal",
+    "name": "Shrinking Disk",
+    "specialInfo": [],
+    "creativeTab": {
+      "value": "CUSTOM:MarvelWeapons"
+    },
+    "stackSize": 64,
+    "ammoItem": {
+      "value": "CUSTOM:ShrinkingDisk"
+    },
+    "shootConstantly": false,
+    "usageCount": 0,
+    "actionSound": {
+      "value": "entity.experience_bottle.throw"
+    },
+    "hasGlow": false,
+    "animation": "spear",
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "bulletPower": 1.0,
+    "bulletDamage": 0.0,
+    "bulletKnockback": 0,
+    "bulletParticles": false,
+    "bulletIgnitesFire": false,
+    "bulletItemTexture": {
+      "value": "CUSTOM:ShrinkingDisk"
+    },
+    "bulletModel": "Default",
+    "customBulletModelTexture": "",
+    "onBulletHitsEntity": {
+      "name": "ShrinkingDiskHitsLivingEntity"
+    }
+  }
+}

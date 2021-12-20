@@ -2,34 +2,22 @@
   "group": "mark_3",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345",
-    "678"
+    "G G",
+    "GPG",
+    "OIO"
   ],
   "key": {
-    "0": {
+    "G": {
       "item": "marvel:gold_titanium_alloy"
     },
-    "2": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "3": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "4": {
+    "P": {
       "item": "marvel:palladium_arc_reactor"
     },
-    "5": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "6": {
+    "O": {
       "item": "minecraft:gold_ingot"
     },
-    "7": {
+    "I": {
       "item": "marvel:iron_man_mark_2_chestplate"
-    },
-    "8": {
-      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

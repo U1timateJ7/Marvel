@@ -2,30 +2,18 @@
   "group": "mark_42",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "3 5",
-    "6 8"
+    "GIG",
+    "O O",
+    "O O"
   ],
   "key": {
-    "0": {
+    "G": {
       "item": "marvel:gold_titanium_alloy"
     },
-    "1": {
-      "item": "marvel:iron_man_mark_6_leggings"
+    "I": {
+      "item": "marvel:iron_man_mark_39_leggings"
     },
-    "2": {
-      "item": "marvel:gold_titanium_alloy"
-    },
-    "3": {
-      "item": "minecraft:gold_ingot"
-    },
-    "5": {
-      "item": "minecraft:gold_ingot"
-    },
-    "6": {
-      "item": "minecraft:gold_ingot"
-    },
-    "8": {
+    "O": {
       "item": "minecraft:gold_ingot"
     }
   },

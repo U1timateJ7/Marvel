@@ -1,0 +1,21 @@
+{
+  "group": "antman2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "IAI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "marvel:antman_suit_helmet"
+    }
+  },
+  "result": {
+    "item": "marvel:antman_v_2_suit_helmet",
+    "count": 1
+  }
+}

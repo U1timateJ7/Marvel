@@ -1,0 +1,24 @@
+{
+  "group": "antman2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RAR",
+    "B B",
+    "R R"
+  ],
+  "key": {
+    "R": {
+      "item": "marvel:reinforced_leather"
+    },
+    "A": {
+      "item": "marvel:antman_suit_leggings"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    }
+  },
+  "result": {
+    "item": "marvel:antman_v_2_suit_leggings",
+    "count": 1
+  }
+}

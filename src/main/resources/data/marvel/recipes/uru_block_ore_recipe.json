@@ -1,0 +1,13 @@
+{
+  "group": "uru_block",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:uru_block"
+    }
+  ],
+  "result": {
+    "item": "marvel:uru_ingot",
+    "count": 9
+  }
+}

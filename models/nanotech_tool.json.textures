@@ -1,0 +1,22 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "mark49_tool"
+      },
+      "name": "default"
+    },
+    "mark50": {
+      "map": {
+        "0": "mark50_tool"
+      },
+      "name": "mark50"
+    },
+    "mark85": {
+      "map": {
+        "0": "mark85_tool"
+      },
+      "name": "mark85"
+    }
+  }
+}

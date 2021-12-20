@@ -1,87 +1,71 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
-import net.minecraft.world.World;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.Minecraft;
 
 import java.util.Map;
 import java.util.List;
-import java.util.HashMap;
+import java.util.Collections;
 
 import com.ulto.marvel.procedures.IronManWaterBreathingProcedure;
+import com.ulto.marvel.procedures.IronManMark47LeggingsTickEventProcedure;
 import com.ulto.marvel.procedures.IronManFallDamageProcedure;
 import com.ulto.marvel.procedures.IronManBodyTickEventProcedure;
-import com.ulto.marvel.itemgroup.IronManArmorItemGroup;
-import com.ulto.marvel.MarvelModElements;
+import com.ulto.marvel.init.MarvelModTabs;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.client.model.ModelCostume;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.mojang.blaze3d.matrix.MatrixStack;
-
-@MarvelModElements.ModElement.Tag
-public class IronManMark47Item extends MarvelModElements.ModElement {
-	@ObjectHolder("marvel:iron_man_mark_47_helmet")
-	public static final Item helmet = null;
-	@ObjectHolder("marvel:iron_man_mark_47_chestplate")
-	public static final Item body = null;
-	@ObjectHolder("marvel:iron_man_mark_47_leggings")
-	public static final Item legs = null;
-	@ObjectHolder("marvel:iron_man_mark_47_boots")
-	public static final Item boots = null;
-	public IronManMark47Item(MarvelModElements instance) {
-		super(instance, 72);
-	}
-
-	@Override
-	public void initElements() {
-		IArmorMaterial armormaterial = new IArmorMaterial() {
+public abstract class IronManMark47Item extends ArmorItem {
+	public IronManMark47Item(EquipmentSlot slot, Item.Properties properties) {
+		super(new ArmorMaterial() {
 			@Override
-			public int getDurability(EquipmentSlotType slot) {
+			public int getDurabilityForSlot(EquipmentSlot slot) {
 				return new int[]{13, 15, 16, 11}[slot.getIndex()] * 25;
 			}
 
 			@Override
-			public int getDamageReductionAmount(EquipmentSlotType slot) {
+			public int getDefenseForSlot(EquipmentSlot slot) {
 				return new int[]{3, 6, 8, 3}[slot.getIndex()];
 			}
 
 			@Override
-			public int getEnchantability() {
+			public int getEnchantmentValue() {
 				return 9;
 			}
 
 			@Override
-			public net.minecraft.util.SoundEvent getSoundEvent() {
-				return (net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+			public SoundEvent getEquipSound() {
+				return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
 			}
 
 			@Override
-			public Ingredient getRepairMaterial() {
-				return Ingredient.fromStacks(new ItemStack(GoldTitaniumAlloyItem.block, (int) (1)),
-						new ItemStack(TitaniumIngotItem.block, (int) (1)));
+			public Ingredient getRepairIngredient() {
+				return Ingredient.of(new ItemStack(MarvelModItems.GOLD_TITANIUM_ALLOY), new ItemStack(MarvelModItems.TITANIUM_INGOT));
 			}
 
-			@OnlyIn(Dist.CLIENT)
 			@Override
 			public String getName() {
 				return "iron_man_mark_47";
@@ -96,235 +80,181 @@ public class IronManMark47Item extends MarvelModElements.ModElement {
 			public float getKnockbackResistance() {
 				return 0.1f;
 			}
-		};
-		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.HEAD, new Item.Properties().group(IronManArmorItemGroup.tab)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-				BipedModel armorModel = new BipedModel(1);
-				armorModel.bipedHead = new ModelHelmet().Head;
-				armorModel.isSneak = living.isSneaking();
-				armorModel.isSitting = defaultModel.isSitting;
-				armorModel.isChild = living.isChild();
-				return armorModel;
-			}
-
-			@Override
-			public void addInformation(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
-				super.addInformation(itemstack, world, list, flag);
-				list.add(new StringTextComponent("Mark XLVII"));
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "marvel:textures/mark47_helmet.png";
-			}
-
-			@Override
-			public void onArmorTick(ItemStack itemstack, World world, PlayerEntity entity) {
-				super.onArmorTick(itemstack, world, entity);
-				double x = entity.getPosX();
-				double y = entity.getPosY();
-				double z = entity.getPosZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					IronManWaterBreathingProcedure.executeProcedure($_dependencies);
-				}
-			}
-		}.setRegistryName("iron_man_mark_47_helmet"));
-		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.CHEST, new Item.Properties().group(IronManArmorItemGroup.tab)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-				BipedModel armorModel = new BipedModel(1);
-				armorModel.bipedBody = new ModelCostume().Body;
-				armorModel.bipedLeftArm = new ModelCostume().LeftArm;
-				armorModel.bipedRightArm = new ModelCostume().RightArm;
-				armorModel.isSneak = living.isSneaking();
-				armorModel.isSitting = defaultModel.isSitting;
-				armorModel.isChild = living.isChild();
-				return armorModel;
-			}
-
-			@Override
-			public void addInformation(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
-				super.addInformation(itemstack, world, list, flag);
-				list.add(new StringTextComponent("Mark XLVII"));
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "marvel:textures/mark47_layer_1.png";
-			}
-
-			@Override
-			public void onArmorTick(ItemStack itemstack, World world, PlayerEntity entity) {
-				double x = entity.getPosX();
-				double y = entity.getPosY();
-				double z = entity.getPosZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					$_dependencies.put("world", world);
-					IronManBodyTickEventProcedure.executeProcedure($_dependencies);
-				}
-			}
-		}.setRegistryName("iron_man_mark_47_chestplate"));
-		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.LEGS, new Item.Properties().group(IronManArmorItemGroup.tab)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-				BipedModel armorModel = new BipedModel(1);
-				armorModel.bipedLeftLeg = new ModelCostume().LeftLeg;
-				armorModel.bipedRightLeg = new ModelCostume().RightLeg;
-				armorModel.isSneak = living.isSneaking();
-				armorModel.isSitting = defaultModel.isSitting;
-				armorModel.isChild = living.isChild();
-				return armorModel;
-			}
-
-			@Override
-			public void addInformation(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
-				super.addInformation(itemstack, world, list, flag);
-				list.add(new StringTextComponent("Mark XLVII"));
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "marvel:textures/mark47_layer_2.png";
-			}
-		}.setRegistryName("iron_man_mark_47_leggings"));
-		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.FEET, new Item.Properties().group(IronManArmorItemGroup.tab)) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
-				BipedModel armorModel = new BipedModel(1);
-				armorModel.bipedLeftLeg = new ModelCostume().LeftBoot;
-				armorModel.bipedRightLeg = new ModelCostume().RightBoot;
-				armorModel.isSneak = living.isSneaking();
-				armorModel.isSitting = defaultModel.isSitting;
-				armorModel.isChild = living.isChild();
-				return armorModel;
-			}
-
-			@Override
-			public void addInformation(ItemStack itemstack, World world, List<ITextComponent> list, ITooltipFlag flag) {
-				super.addInformation(itemstack, world, list, flag);
-				list.add(new StringTextComponent("Mark XLVII"));
-			}
-
-			@Override
-			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "marvel:textures/mark47_layer_1.png";
-			}
-
-			@Override
-			public void onArmorTick(ItemStack itemstack, World world, PlayerEntity entity) {
-				double x = entity.getPosX();
-				double y = entity.getPosY();
-				double z = entity.getPosZ();
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					IronManFallDamageProcedure.executeProcedure($_dependencies);
-				}
-			}
-		}.setRegistryName("iron_man_mark_47_boots"));
+		}, slot, properties);
 	}
-	// Made with Blockbench 3.8.3
-	// Exported for Minecraft version 1.15 - 1.16
-	// Paste this class into your mod and generate all required imports
-	public static class ModelCostume extends EntityModel<Entity> {
-		private final ModelRenderer Body;
-		private final ModelRenderer RightArm;
-		private final ModelRenderer LeftArm;
-		private final ModelRenderer RightLeg;
-		private final ModelRenderer LeftLeg;
-		private final ModelRenderer RightBoot;
-		private final ModelRenderer LeftBoot;
-		public ModelCostume() {
-			textureWidth = 64;
-			textureHeight = 32;
-			Body = new ModelRenderer(this);
-			Body.setRotationPoint(0.0F, 0.0F, 0.0F);
-			Body.setTextureOffset(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, 0.52F, false);
-			RightArm = new ModelRenderer(this);
-			RightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-			RightArm.setTextureOffset(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.51F, false);
-			LeftArm = new ModelRenderer(this);
-			LeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-			LeftArm.setTextureOffset(40, 16).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.51F, true);
-			RightLeg = new ModelRenderer(this);
-			RightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
-			RightLeg.setTextureOffset(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.51F, false);
-			LeftLeg = new ModelRenderer(this);
-			LeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
-			LeftLeg.setTextureOffset(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.51F, true);
-			RightBoot = new ModelRenderer(this);
-			RightBoot.setRotationPoint(-1.9F, 12.0F, 0.0F);
-			RightBoot.setTextureOffset(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.52F, false);
-			LeftBoot = new ModelRenderer(this);
-			LeftBoot.setRotationPoint(1.9F, 12.0F, 0.0F);
-			LeftBoot.setTextureOffset(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.52F, true);
+
+	public static class Helmet extends IronManMark47Item {
+		public Helmet() {
+			super(EquipmentSlot.HEAD, new Item.Properties().tab(MarvelModTabs.TAB_IRON_MAN_ARMOR));
+			setRegistryName("iron_man_mark_47_helmet");
+		}
+
+		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
+			consumer.accept(new IItemRenderProperties() {
+				@Override
+				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
+					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
+							Map.of("head", new ModelHelmet(Minecraft.getInstance().getEntityModels().bakeLayer(ModelHelmet.LAYER_LOCATION)).Head,
+									"hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
+									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
+									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
+									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg",
+									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",
+									new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+					armorModel.crouching = living.isShiftKeyDown();
+					armorModel.riding = defaultModel.riding;
+					armorModel.young = living.isBaby();
+					return armorModel;
+				}
+			});
 		}
 
 		@Override
-		public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue,
-				float alpha) {
-			Body.render(matrixStack, buffer, packedLight, packedOverlay);
-			RightArm.render(matrixStack, buffer, packedLight, packedOverlay);
-			LeftArm.render(matrixStack, buffer, packedLight, packedOverlay);
-			RightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-			LeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-			RightBoot.render(matrixStack, buffer, packedLight, packedOverlay);
-			LeftBoot.render(matrixStack, buffer, packedLight, packedOverlay);
-		}
-
-		public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-			modelRenderer.rotateAngleX = x;
-			modelRenderer.rotateAngleY = y;
-			modelRenderer.rotateAngleZ = z;
-		}
-
-		public void setRotationAngles(Entity e, float f, float f1, float f2, float f3, float f4) {
-			this.RightArm.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * f1;
-			this.LeftLeg.rotateAngleX = MathHelper.cos(f * 1.0F) * -1.0F * f1;
-			this.LeftArm.rotateAngleX = MathHelper.cos(f * 0.6662F) * f1;
-			this.RightLeg.rotateAngleX = MathHelper.cos(f * 1.0F) * 1.0F * f1;
-			this.LeftBoot.rotateAngleX = MathHelper.cos(f * 1.0F) * -1.0F * f1;
-			this.RightBoot.rotateAngleX = MathHelper.cos(f * 1.0F) * 1.0F * f1;
-		}
-	}
-
-	// Made with Blockbench 3.8.3
-	// Exported for Minecraft version 1.15 - 1.16
-	// Paste this class into your mod and generate all required imports
-	public static class ModelHelmet extends EntityModel<Entity> {
-		private final ModelRenderer Head;
-		public ModelHelmet() {
-			textureWidth = 64;
-			textureHeight = 64;
-			Head = new ModelRenderer(this);
-			Head.setRotationPoint(0.0F, 0.0F, 0.0F);
-			Head.setTextureOffset(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, 0.51F, false);
+		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+			super.appendHoverText(itemstack, world, list, flag);
+			list.add(new TextComponent("Mark XLVII"));
 		}
 
 		@Override
-		public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue,
-				float alpha) {
-			Head.render(matrixStack, buffer, packedLight, packedOverlay);
+		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+			return "marvel:textures/mark47_helmet.png";
 		}
 
-		public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-			modelRenderer.rotateAngleX = x;
-			modelRenderer.rotateAngleY = y;
-			modelRenderer.rotateAngleZ = z;
+		@Override
+		public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
+			IronManWaterBreathingProcedure.execute(entity);
+		}
+	}
+
+	public static class Chestplate extends IronManMark47Item {
+		public Chestplate() {
+			super(EquipmentSlot.CHEST, new Item.Properties().tab(MarvelModTabs.TAB_IRON_MAN_ARMOR));
+			setRegistryName("iron_man_mark_47_chestplate");
 		}
 
-		public void setRotationAngles(Entity e, float f, float f1, float f2, float f3, float f4) {
-			this.Head.rotateAngleY = f3 / (180F / (float) Math.PI);
-			this.Head.rotateAngleX = f4 / (180F / (float) Math.PI);
+		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
+			consumer.accept(new IItemRenderProperties() {
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
+					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("body",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).Body, "left_arm",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftArm, "right_arm",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightArm, "head",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+					armorModel.crouching = living.isShiftKeyDown();
+					armorModel.riding = defaultModel.riding;
+					armorModel.young = living.isBaby();
+					return armorModel;
+				}
+			});
+		}
+
+		@Override
+		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+			super.appendHoverText(itemstack, world, list, flag);
+			list.add(new TextComponent("Mark XLVII"));
+		}
+
+		@Override
+		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+			return "marvel:textures/mark47_layer_1.png";
+		}
+
+		@Override
+		public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
+			IronManBodyTickEventProcedure.execute(world, entity);
+		}
+	}
+
+	public static class Leggings extends IronManMark47Item {
+		public Leggings() {
+			super(EquipmentSlot.LEGS, new Item.Properties().tab(MarvelModTabs.TAB_IRON_MAN_ARMOR));
+			setRegistryName("iron_man_mark_47_leggings");
+		}
+
+		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
+			consumer.accept(new IItemRenderProperties() {
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
+					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("left_leg",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftLeg, "right_leg",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightLeg, "head",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+					armorModel.crouching = living.isShiftKeyDown();
+					armorModel.riding = defaultModel.riding;
+					armorModel.young = living.isBaby();
+					return armorModel;
+				}
+			});
+		}
+
+		@Override
+		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+			super.appendHoverText(itemstack, world, list, flag);
+			list.add(new TextComponent("Mark XLVII"));
+		}
+
+		@Override
+		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+			return "marvel:textures/mark47_layer_2.png";
+		}
+
+		@Override
+		public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
+			IronManMark47LeggingsTickEventProcedure.execute(entity);
+		}
+	}
+
+	public static class Boots extends IronManMark47Item {
+		public Boots() {
+			super(EquipmentSlot.FEET, new Item.Properties().tab(MarvelModTabs.TAB_IRON_MAN_ARMOR));
+			setRegistryName("iron_man_mark_47_boots");
+		}
+
+		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
+			consumer.accept(new IItemRenderProperties() {
+				@Override
+				@OnlyIn(Dist.CLIENT)
+				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
+					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("left_leg",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftBoot, "right_leg",
+							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightBoot, "head",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
+							new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+					armorModel.crouching = living.isShiftKeyDown();
+					armorModel.riding = defaultModel.riding;
+					armorModel.young = living.isBaby();
+					return armorModel;
+				}
+			});
+		}
+
+		@Override
+		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+			super.appendHoverText(itemstack, world, list, flag);
+			list.add(new TextComponent("Mark XLVII"));
+		}
+
+		@Override
+		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+			return "marvel:textures/mark47_layer_1.png";
+		}
+
+		@Override
+		public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
+			IronManFallDamageProcedure.execute(entity);
 		}
 	}
 }

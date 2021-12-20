@@ -2,34 +2,22 @@
   "group": "mark_2",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345",
-    "678"
+    "I I",
+    "TPT",
+    "IRI"
   ],
   "key": {
-    "0": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "2": {
-      "item": "minecraft:iron_ingot"
-    },
-    "3": {
+    "T": {
       "item": "marvel:titanium_ingot"
     },
-    "4": {
+    "P": {
       "item": "marvel:palladium_arc_reactor"
     },
-    "5": {
-      "item": "marvel:titanium_ingot"
-    },
-    "6": {
-      "item": "minecraft:iron_ingot"
-    },
-    "7": {
+    "R": {
       "item": "marvel:iron_man_mark_1_chestplate"
-    },
-    "8": {
-      "item": "minecraft:iron_ingot"
     }
   },
   "result": {

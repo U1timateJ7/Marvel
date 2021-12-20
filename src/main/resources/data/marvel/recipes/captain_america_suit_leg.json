@@ -2,30 +2,18 @@
   "group": "cap",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "3 5",
-    "6 8"
+    "RRR",
+    "E E",
+    "B B"
   ],
   "key": {
-    "0": {
+    "R": {
       "item": "marvel:reinforced_leather"
     },
-    "1": {
-      "item": "marvel:reinforced_leather"
-    },
-    "2": {
-      "item": "marvel:reinforced_leather"
-    },
-    "3": {
+    "E": {
       "item": "minecraft:red_dye"
     },
-    "5": {
-      "item": "minecraft:red_dye"
-    },
-    "6": {
-      "item": "minecraft:blue_dye"
-    },
-    "8": {
+    "B": {
       "item": "minecraft:blue_dye"
     }
   },

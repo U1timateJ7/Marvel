@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "achievement",
   "definition": {
     "achievementName": "Leather Costume Recipes",
@@ -33,7 +33,15 @@
       "RedGuardianHelmetRecipe",
       "RedGuardianChestplateRecipe",
       "RedGuardianLegsRecipe",
-      "RedGuardianFeetRecipe"
+      "RedGuardianFeetRecipe",
+      "AntmanHelmetRecipe",
+      "AntmanChestplateRecipe",
+      "AntmanLegRecipe",
+      "AntmanFeetRecipe",
+      "AntmanV2HelmetRecipe",
+      "AntmanV2ChestplateRecipe",
+      "AntmanV2LegsRecipe",
+      "AntmanV2FeetRecipe"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

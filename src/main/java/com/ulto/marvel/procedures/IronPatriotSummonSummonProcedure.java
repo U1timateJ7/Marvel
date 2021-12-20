@@ -4,59 +4,23 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.IWorld;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.entity.Entity;
 
 import java.util.Random;
-import java.util.Map;
-import java.util.HashMap;
 
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
+import com.ulto.marvel.network.MarvelModVariables;
 
-@MarvelModElements.ModElement.Tag
-public class IronPatriotSummonSummonProcedure extends MarvelModElements.ModElement {
-	public IronPatriotSummonSummonProcedure(MarvelModElements instance) {
-		super(instance, 358);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure IronPatriotSummonSummon!");
+public class IronPatriotSummonSummonProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		if (entity == null)
 			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure IronPatriotSummonSummon!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure IronPatriotSummonSummon!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure IronPatriotSummonSummon!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure IronPatriotSummonSummon!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
 		new Object() {
 			private int ticks = 0;
 			private float waitTicks;
-			private IWorld world;
-			public void start(IWorld world, int waitTicks) {
+			private LevelAccessor world;
+
+			public void start(LevelAccessor world, int waitTicks) {
 				this.waitTicks = waitTicks;
 				MinecraftForge.EVENT_BUS.register(this);
 				this.world = world;
@@ -72,20 +36,12 @@ public class IronPatriotSummonSummonProcedure extends MarvelModElements.ModEleme
 			}
 
 			private void run() {
-				if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady)) {
-					{
-						Map<String, Object> $_dependencies = new HashMap<>();
-						$_dependencies.put("entity", entity);
-						$_dependencies.put("world", world);
-						$_dependencies.put("x", x);
-						$_dependencies.put("y", y);
-						$_dependencies.put("z", z);
-						IronPatriotSummonProcedure.executeProcedure($_dependencies);
-					}
+				if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady) {
+					IronPatriotSummonProcedure.execute(world, x, z, entity);
 				}
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
-		}.start(world, (int) (((new Random()).nextInt((int) 60 + 1)) + 60));
+		}.start(world, (int) (new Random().nextInt(60 + 1) + 60));
 	}
 }

@@ -3,190 +3,107 @@ package com.ulto.marvel.procedures;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
-import java.util.HashMap;
+import com.ulto.marvel.init.MarvelModItems;
 
-import com.ulto.marvel.item.VeronicaRemoteItem;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class SentryModeSuitUpProcedure extends MarvelModElements.ModElement {
-	public SentryModeSuitUpProcedure(MarvelModElements instance) {
-		super(instance, 209);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure SentryModeSuitUp!");
+public class SentryModeSuitUpProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
+		if (entity == null || sourceentity == null)
 			return;
-		}
-		if (dependencies.get("sourceentity") == null) {
-			if (!dependencies.containsKey("sourceentity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency sourceentity for procedure SentryModeSuitUp!");
-			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure SentryModeSuitUp!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure SentryModeSuitUp!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure SentryModeSuitUp!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure SentryModeSuitUp!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		Entity sourceentity = (Entity) dependencies.get("sourceentity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if ((((sourceentity instanceof LivingEntity) ? ((LivingEntity) sourceentity).getHeldItemMainhand() : ItemStack.EMPTY)
-				.getItem() == new ItemStack(VeronicaRemoteItem.block, (int) (1)).getItem())) {
-			{
-				Map<String, Object> $_dependencies = new HashMap<>();
-				$_dependencies.put("entity", entity);
-				$_dependencies.put("sourceentity", sourceentity);
-				$_dependencies.put("world", world);
-				$_dependencies.put("x", x);
-				$_dependencies.put("y", y);
-				$_dependencies.put("z", z);
-				VeronicaSendProcedure.executeProcedure($_dependencies);
-			}
+		if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.VERONICA_REMOTE) {
+			VeronicaSendProcedure.execute(world, x, y, z, entity, sourceentity);
 		} else {
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = ((sourceentity instanceof LivingEntity)
-						? ((LivingEntity) sourceentity)
-								.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = (sourceentity instanceof LivingEntity _entGetArmor
+						? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
 						: ItemStack.EMPTY);
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = ((sourceentity instanceof LivingEntity)
-						? ((LivingEntity) sourceentity)
-								.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
+			if (sourceentity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY));
+				else
+					_entity.setItemSlot(EquipmentSlot.HEAD,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
+			}
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = (sourceentity instanceof LivingEntity _entGetArmor
+						? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST)
 						: ItemStack.EMPTY);
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = ((sourceentity instanceof LivingEntity)
-						? ((LivingEntity) sourceentity)
-								.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
+			if (sourceentity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(2,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY));
+				else
+					_entity.setItemSlot(EquipmentSlot.CHEST,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
+			}
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = (sourceentity instanceof LivingEntity _entGetArmor
+						? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS)
 						: ItemStack.EMPTY);
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-			if (sourceentity instanceof PlayerEntity) {
-				ItemStack _setstack = ((sourceentity instanceof LivingEntity)
-						? ((LivingEntity) sourceentity)
-								.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
+			if (sourceentity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(1,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY));
+				else
+					_entity.setItemSlot(EquipmentSlot.LEGS,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
+			}
+			if (sourceentity instanceof Player _player) {
+				ItemStack _setstack = (sourceentity instanceof LivingEntity _entGetArmor
+						? _entGetArmor.getItemBySlot(EquipmentSlot.FEET)
 						: ItemStack.EMPTY);
-				_setstack.setCount((int) 1);
-				ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) sourceentity), _setstack);
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-			if (sourceentity instanceof LivingEntity) {
-				if (sourceentity instanceof PlayerEntity)
-					((PlayerEntity) sourceentity).inventory.armorInventory.set((int) 3,
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-									: ItemStack.EMPTY));
+			if (sourceentity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(0,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY));
 				else
-					((LivingEntity) sourceentity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-									: ItemStack.EMPTY));
-				if (sourceentity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) sourceentity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.FEET,
+							(entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (sourceentity instanceof LivingEntity) {
-				if (sourceentity instanceof PlayerEntity)
-					((PlayerEntity) sourceentity).inventory.armorInventory.set((int) 2,
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-									: ItemStack.EMPTY));
-				else
-					((LivingEntity) sourceentity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2),
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 2))
-									: ItemStack.EMPTY));
-				if (sourceentity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) sourceentity).inventory.markDirty();
-			}
-			if (sourceentity instanceof LivingEntity) {
-				if (sourceentity instanceof PlayerEntity)
-					((PlayerEntity) sourceentity).inventory.armorInventory.set((int) 1,
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
-									: ItemStack.EMPTY));
-				else
-					((LivingEntity) sourceentity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1),
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 1))
-									: ItemStack.EMPTY));
-				if (sourceentity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) sourceentity).inventory.markDirty();
-			}
-			if (sourceentity instanceof LivingEntity) {
-				if (sourceentity instanceof PlayerEntity)
-					((PlayerEntity) sourceentity).inventory.armorInventory.set((int) 0,
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
-									: ItemStack.EMPTY));
-				else
-					((LivingEntity) sourceentity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0),
-							((entity instanceof LivingEntity)
-									? ((LivingEntity) entity)
-											.getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 0))
-									: ItemStack.EMPTY));
-				if (sourceentity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) sourceentity).inventory.markDirty();
-			}
-			if (!entity.world.isRemote())
-				entity.remove();
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (!entity.level.isClientSide())
+				entity.discard();
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
 	}

@@ -1,0 +1,64 @@
+{
+  "_fv": 24,
+  "_type": "armor",
+  "definition": {
+    "enableHelmet": true,
+    "textureHelmet": "antman_v2_helmet",
+    "enableBody": false,
+    "textureBody": "antman_chestplate",
+    "enableLeggings": false,
+    "textureLeggings": "antman_leggings",
+    "enableBoots": false,
+    "textureBoots": "antman_boots",
+    "creativeTab": {
+      "value": "No creative tab entry"
+    },
+    "armorTextureFile": "empty",
+    "helmetName": "Antman's Helmet",
+    "bodyName": "Antman's Suit",
+    "leggingsName": "Antman's Pants",
+    "bootsName": "Antman's Boots",
+    "helmetSpecialInfo": [
+      "Upgraded - Open"
+    ],
+    "bodySpecialInfo": [],
+    "leggingsSpecialInfo": [],
+    "bootsSpecialInfo": [],
+    "helmetModelName": "ModelHelmet",
+    "helmetModelPart": "Head",
+    "helmetModelTexture": "From armor",
+    "bodyModelName": "ModelCostume",
+    "bodyModelPart": "Body",
+    "armsModelPartL": "LeftArm",
+    "armsModelPartR": "RightArm",
+    "bodyModelTexture": "antman_layer_1.png",
+    "leggingsModelName": "ModelCostume",
+    "leggingsModelPartL": "LeftLeg",
+    "leggingsModelPartR": "RightLeg",
+    "leggingsModelTexture": "antman_layer_2.png",
+    "bootsModelName": "ModelCostume",
+    "bootsModelPartL": "LeftBoot",
+    "bootsModelPartR": "RightBoot",
+    "bootsModelTexture": "antman_layer_1.png",
+    "helmetImmuneToFire": false,
+    "bodyImmuneToFire": false,
+    "leggingsImmuneToFire": false,
+    "bootsImmuneToFire": false,
+    "maxDamage": 25,
+    "damageValueHelmet": 1,
+    "damageValueBody": 8,
+    "damageValueLeggings": 6,
+    "damageValueBoots": 2,
+    "enchantability": 9,
+    "toughness": 1.0,
+    "knockbackResistance": 0.0,
+    "equipSound": {
+      "value": ""
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:ReinforcedLeather"
+      }
+    ]
+  }
+}

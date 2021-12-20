@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "recipe",
   "definition": {
     "recipeType": "Crafting",
@@ -31,7 +31,7 @@
         "value": "Items.IRON_INGOT"
       },
       {
-        "value": "CUSTOM:IronManMark6.body"
+        "value": "CUSTOM:IronManMark30.body"
       },
       {
         "value": "Items.IRON_INGOT"

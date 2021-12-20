@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "tool",
   "definition": {
     "renderType": 0,
@@ -8,7 +8,7 @@
     "name": "Vibranium Sword",
     "specialInfo": [],
     "creativeTab": {
-      "value": "CUSTOM:MarvelWeapons"
+      "value": "COMBAT"
     },
     "toolType": "Sword",
     "harvestLevel": 4,

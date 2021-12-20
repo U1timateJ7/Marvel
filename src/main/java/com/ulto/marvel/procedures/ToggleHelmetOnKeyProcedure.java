@@ -2,517 +2,391 @@ package com.ulto.marvel.procedures;
 
 import net.minecraftforge.registries.ForgeRegistries;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
+import com.ulto.marvel.init.MarvelModItems;
 
-import com.ulto.marvel.item.WarMachineOpenItem;
-import com.ulto.marvel.item.WarMachineItem;
-import com.ulto.marvel.item.Mark6OpenItem;
-import com.ulto.marvel.item.Mark5OpenItem;
-import com.ulto.marvel.item.Mark3OpenItem;
-import com.ulto.marvel.item.Mark2OpenItem;
-import com.ulto.marvel.item.Mark23OpenItem;
-import com.ulto.marvel.item.Mark22OpenItem;
-import com.ulto.marvel.item.Mark21OpenItem;
-import com.ulto.marvel.item.IronPatriotOpenItem;
-import com.ulto.marvel.item.IronPatriotItem;
-import com.ulto.marvel.item.IronManMark6Item;
-import com.ulto.marvel.item.IronManMark5Item;
-import com.ulto.marvel.item.IronManMark3Item;
-import com.ulto.marvel.item.IronManMark2Item;
-import com.ulto.marvel.item.IronManMark23Item;
-import com.ulto.marvel.item.IronManMark22Item;
-import com.ulto.marvel.item.IronManMark21Item;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class ToggleHelmetOnKeyProcedure extends MarvelModElements.ModElement {
-	public ToggleHelmetOnKeyProcedure(MarvelModElements instance) {
-		super(instance, 237);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure ToggleHelmetOnKey!");
+public class ToggleHelmetOnKeyProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		if (entity == null)
 			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure ToggleHelmetOnKey!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure ToggleHelmetOnKey!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure ToggleHelmetOnKey!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure ToggleHelmetOnKey!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark2Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark2OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_2_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_2_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark2OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_2_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark2OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark2Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_2_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_2_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark2Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_2_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark3Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark3OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_3_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_3_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark3OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_3_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark3OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark3Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_3_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_3_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark3Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_3_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark5Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark5OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_5_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark5OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark5OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark5Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_5_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark5Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark6Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark6OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_6_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark6OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_6_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark6OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark6Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_6_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_6_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark6Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_6_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark21Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark21OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_21_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_21_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark21OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_21_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark21OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark21Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_21_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_21_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark21Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_21_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(WarMachineOpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.WAR_MACHINE_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.WAR_MACHINE_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(WarMachineOpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.WAR_MACHINE_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(WarMachineOpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(WarMachineItem.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.WAR_MACHINE_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.WAR_MACHINE_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(WarMachineItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.WAR_MACHINE_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark22Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark22OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_22_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_22_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark22OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_22_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark22OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark22Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_22_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_22_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark22Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_22_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronManMark23Item.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(Mark23OpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_MAN_MARK_23_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_23_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(Mark23OpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_23_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(Mark23OpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronManMark23Item.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.MARK_23_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_23_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronManMark23Item.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_23_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
-		if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronPatriotItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronPatriotOpenItem.helmet, (int) (1)));
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_PATRIOT_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_PATRIOT_OPEN_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronPatriotOpenItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_PATRIOT_OPEN_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.open")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
-		} else if ((((entity instanceof LivingEntity)
-				? ((LivingEntity) entity).getItemStackFromSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3))
-				: ItemStack.EMPTY).getItem() == new ItemStack(IronPatriotOpenItem.helmet, (int) (1)).getItem())) {
-			if (entity instanceof LivingEntity) {
-				if (entity instanceof PlayerEntity)
-					((PlayerEntity) entity).inventory.armorInventory.set((int) 3, new ItemStack(IronPatriotItem.helmet, (int) (1)));
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+				.getItem() == MarvelModItems.IRON_PATRIOT_OPEN_HELMET) {
+			if (entity instanceof LivingEntity _entity) {
+				if (_entity instanceof Player _player)
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_PATRIOT_HELMET));
 				else
-					((LivingEntity) entity).setItemStackToSlot(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, (int) 3),
-							new ItemStack(IronPatriotItem.helmet, (int) (1)));
-				if (entity instanceof ServerPlayerEntity)
-					((ServerPlayerEntity) entity).inventory.markDirty();
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_PATRIOT_HELMET));
+				if (_entity instanceof ServerPlayer _serverPlayer)
+					_serverPlayer.getInventory().setChanged();
 			}
-			if (world instanceof World && !world.isRemote()) {
-				((World) world)
-						.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-										.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-								SoundCategory.NEUTRAL, (float) 1, (float) 1);
-			} else {
-				((World) world).playSound(x, y, z,
-						(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-								.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
-						SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+			if (world instanceof Level _level) {
+				if (!_level.isClientSide()) {
+					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")), SoundSource.NEUTRAL, 1,
+							1);
+				} else {
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_man_helmet.close")),
+							SoundSource.NEUTRAL, 1, 1, false);
+				}
 			}
 		}
 	}

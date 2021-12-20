@@ -2,23 +2,14 @@
   "group": "vibranium_shield",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "012",
-    "3 5"
+    "AVA",
+    "V V"
   ],
   "key": {
-    "0": {
+    "A": {
       "item": "marvel:adamantium"
     },
-    "1": {
-      "item": "marvel:vibranium"
-    },
-    "2": {
-      "item": "marvel:adamantium"
-    },
-    "3": {
-      "item": "marvel:vibranium"
-    },
-    "5": {
+    "V": {
       "item": "marvel:vibranium"
     }
   },

@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "recipe",
   "definition": {
     "recipeType": "Crafting",
@@ -22,7 +22,7 @@
         "value": "Items.GOLD_INGOT"
       },
       {
-        "value": "CUSTOM:IronManMark6.helmet"
+        "value": "CUSTOM:IronManMark39.helmet"
       },
       {
         "value": "Items.GOLD_INGOT"

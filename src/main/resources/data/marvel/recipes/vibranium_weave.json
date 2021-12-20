@@ -2,21 +2,15 @@
   "group": "weave_vibranium",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "01",
-    "23"
+    "VS",
+    "SV"
   ],
   "key": {
-    "0": {
+    "V": {
       "item": "marvel:vibranium"
     },
-    "1": {
+    "S": {
       "item": "minecraft:string"
-    },
-    "2": {
-      "item": "minecraft:string"
-    },
-    "3": {
-      "item": "marvel:vibranium"
     }
   },
   "result": {

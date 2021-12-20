@@ -2,27 +2,18 @@
   "group": "mark_1",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "3 5",
-    "6 8"
+    "L L",
+    "I I",
+    "T T"
   ],
   "key": {
-    "0": {
+    "L": {
       "item": "minecraft:leather"
     },
-    "2": {
-      "item": "minecraft:leather"
-    },
-    "3": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "5": {
-      "item": "minecraft:iron_ingot"
-    },
-    "6": {
-      "item": "marvel:titanium_ingot"
-    },
-    "8": {
+    "T": {
       "item": "marvel:titanium_ingot"
     }
   },

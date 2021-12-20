@@ -1,50 +1,38 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Item;
 
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.IItemTier;
-
-import com.ulto.marvel.MarvelModElements;
-
-@MarvelModElements.ModElement.Tag
-public class Mark25DrillItem extends MarvelModElements.ModElement {
-	@ObjectHolder("marvel:mark_25_drill")
-	public static final Item block = null;
-	public Mark25DrillItem(MarvelModElements instance) {
-		super(instance, 283);
-	}
-
-	@Override
-	public void initElements() {
-		elements.items.add(() -> new PickaxeItem(new IItemTier() {
-			public int getMaxUses() {
+public class Mark25DrillItem extends PickaxeItem {
+	public Mark25DrillItem() {
+		super(new Tier() {
+			public int getUses() {
 				return 0;
 			}
 
-			public float getEfficiency() {
+			public float getSpeed() {
 				return 12f;
 			}
 
-			public float getAttackDamage() {
+			public float getAttackDamageBonus() {
 				return 3f;
 			}
 
-			public int getHarvestLevel() {
+			public int getLevel() {
 				return 2;
 			}
 
-			public int getEnchantability() {
+			public int getEnchantmentValue() {
 				return 2;
 			}
 
-			public Ingredient getRepairMaterial() {
+			public Ingredient getRepairIngredient() {
 				return Ingredient.EMPTY;
 			}
-		}, 1, -2.7f, new Item.Properties().group(null)) {
-		}.setRegistryName("mark_25_drill"));
+		}, 1, -2.7f, new Item.Properties().tab(null));
+		setRegistryName("mark_25_drill");
 	}
 }

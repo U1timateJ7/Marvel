@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 24,
   "_type": "achievement",
   "definition": {
     "achievementName": "Titanium Recipes",
@@ -17,7 +17,8 @@
       "TitaniumOreBlockRecipe",
       "TitaniumBlockOreRecipe",
       "TitaniumOreSmelting",
-      "GoldTitaniumAlloyRecipe"
+      "GoldTitaniumAlloyRecipe",
+      "TitaniumOreBlasting"
     ],
     "rewardFunction": "No function",
     "rewardXP": 1,

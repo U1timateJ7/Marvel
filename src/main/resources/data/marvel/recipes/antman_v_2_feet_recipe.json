@@ -1,0 +1,23 @@
+{
+  "group": "antman2",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "EAE"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "E": {
+      "item": "marvel:reinforced_leather"
+    },
+    "A": {
+      "item": "marvel:antman_suit_boots"
+    }
+  },
+  "result": {
+    "item": "marvel:antman_v_2_suit_boots",
+    "count": 1
+  }
+}

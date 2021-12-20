@@ -5,62 +5,25 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-import net.minecraft.world.World;
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
 
-import java.util.Map;
-import java.util.HashMap;
+import com.ulto.marvel.network.MarvelModVariables;
 
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class HousePartyProtocolProcedure extends MarvelModElements.ModElement {
-	public HousePartyProtocolProcedure(MarvelModElements instance) {
-		super(instance, 413);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure HousePartyProtocol!");
+public class HousePartyProtocolProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+		if (entity == null)
 			return;
-		}
-		if (dependencies.get("x") == null) {
-			if (!dependencies.containsKey("x"))
-				MarvelMod.LOGGER.warn("Failed to load dependency x for procedure HousePartyProtocol!");
-			return;
-		}
-		if (dependencies.get("y") == null) {
-			if (!dependencies.containsKey("y"))
-				MarvelMod.LOGGER.warn("Failed to load dependency y for procedure HousePartyProtocol!");
-			return;
-		}
-		if (dependencies.get("z") == null) {
-			if (!dependencies.containsKey("z"))
-				MarvelMod.LOGGER.warn("Failed to load dependency z for procedure HousePartyProtocol!");
-			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure HousePartyProtocol!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-		IWorld world = (IWorld) dependencies.get("world");
 		new Object() {
 			private int ticks = 0;
 			private float waitTicks;
-			private IWorld world;
-			public void start(IWorld world, int waitTicks) {
+			private LevelAccessor world;
+
+			public void start(LevelAccessor world, int waitTicks) {
 				this.waitTicks = waitTicks;
 				MinecraftForge.EVENT_BUS.register(this);
 				this.world = world;
@@ -76,22 +39,23 @@ public class HousePartyProtocolProcedure extends MarvelModElements.ModElement {
 			}
 
 			private void run() {
-				if (world instanceof World && !world.isRemote()) {
-					((World) world).playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-									.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
-							SoundCategory.NEUTRAL, (float) 1, (float) 1);
-				} else {
-					((World) world).playSound(x, y, z,
-							(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS
-									.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
-							SoundCategory.NEUTRAL, (float) 1, (float) 1, false);
+				if (world instanceof Level _level) {
+					if (!_level.isClientSide()) {
+						_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
+								ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
+								SoundSource.NEUTRAL, 1, 1);
+					} else {
+						_level.playLocalSound(x, y, z,
+								ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
+								SoundSource.NEUTRAL, 1, 1, false);
+					}
 				}
 				new Object() {
 					private int ticks = 0;
 					private float waitTicks;
-					private IWorld world;
-					public void start(IWorld world, int waitTicks) {
+					private LevelAccessor world;
+
+					public void start(LevelAccessor world, int waitTicks) {
 						this.waitTicks = waitTicks;
 						MinecraftForge.EVENT_BUS.register(this);
 						this.world = world;
@@ -107,155 +71,83 @@ public class HousePartyProtocolProcedure extends MarvelModElements.ModElement {
 					}
 
 					private void run() {
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark21Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark21SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark21Ready) {
+							Mark21SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark22Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark22SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark22Ready) {
+							Mark22SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark23Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark23SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark23Ready) {
+							Mark23SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark25Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark25SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark25Ready) {
+							Mark25SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark30Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark30SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark30Ready) {
+							Mark30SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark33Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark33SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark33Ready) {
+							Mark33SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark42Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark42SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark42Ready) {
+							Mark42SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark43Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark43SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark43Ready) {
+							Mark43SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark46Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark46SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark46Ready) {
+							Mark46SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark47Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								Mark47SummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark47Ready) {
+							Mark47SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								IronPatriotSummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady) {
+							IronPatriotSummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).warMachineMark2Ready)) {
-							{
-								Map<String, Object> $_dependencies = new HashMap<>();
-								$_dependencies.put("entity", entity);
-								$_dependencies.put("x", x);
-								$_dependencies.put("y", y);
-								$_dependencies.put("z", z);
-								$_dependencies.put("world", world);
-								WarMachineSummonSummonProcedure.executeProcedure($_dependencies);
-							}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).warMachineMark2Ready) {
+							WarMachineSummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark16Ready) {
+							Mark16SummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark17Ready) {
+							Mark17SummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark19Ready) {
+							Mark19SummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark20Ready) {
+							Mark20SummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark37Ready) {
+							Mark37SummonSummonProcedure.execute(world, x, y, z, entity);
+						}
+						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+								.orElse(new MarvelModVariables.PlayerVariables())).mark39Ready) {
+							Mark39SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
 						MinecraftForge.EVENT_BUS.unregister(this);
 					}
-				}.start(world, (int) 60);
+				}.start(world, 60);
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
-		}.start(world, (int) 20);
+		}.start(world, 20);
 	}
 }

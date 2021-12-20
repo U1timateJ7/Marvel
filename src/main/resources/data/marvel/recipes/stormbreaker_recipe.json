@@ -1,0 +1,21 @@
+{
+  "group": "stormbreaker",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "UU ",
+    "USU",
+    " S "
+  ],
+  "key": {
+    "U": {
+      "item": "marvel:uru_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "marvel:stormbreaker",
+    "count": 1
+  }
+}

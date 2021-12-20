@@ -2,24 +2,21 @@
   "group": "mark_23",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
-    "345"
+    "N I",
+    "TRT"
   ],
   "key": {
-    "0": {
+    "N": {
       "item": "minecraft:netherite_scrap"
     },
-    "2": {
+    "I": {
       "item": "minecraft:iron_ingot"
     },
-    "3": {
+    "T": {
       "item": "marvel:titanium_ingot"
     },
-    "4": {
-      "item": "marvel:iron_man_mark_6_boots"
-    },
-    "5": {
-      "item": "marvel:titanium_ingot"
+    "R": {
+      "item": "marvel:iron_man_mark_22_boots"
     }
   },
   "result": {

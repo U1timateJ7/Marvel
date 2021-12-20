@@ -1,27 +1,14 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
-import java.util.Map;
+import com.ulto.marvel.network.MarvelModVariables;
 
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
-
-@MarvelModElements.ModElement.Tag
-public class Mark22AvailableProcedure extends MarvelModElements.ModElement {
-	public Mark22AvailableProcedure(MarvelModElements instance) {
-		super(instance, 313);
-	}
-
-	public static boolean executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure Mark22Available!");
+public class Mark22AvailableProcedure {
+	public static boolean execute(Entity entity) {
+		if (entity == null)
 			return false;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		return ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).mark22Ready);
+		return (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MarvelModVariables.PlayerVariables())).mark22Ready;
 	}
 }

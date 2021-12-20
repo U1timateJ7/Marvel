@@ -4,47 +4,28 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-import net.minecraft.world.IWorld;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Entity;
 
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.Map;
 
-import com.ulto.marvel.item.WarMachineGunItem;
-import com.ulto.marvel.item.UnibeamItem;
-import com.ulto.marvel.item.RepulsorItem;
-import com.ulto.marvel.item.Mark25DrillItem;
-import com.ulto.marvel.item.CenturionBladeItem;
-import com.ulto.marvel.MarvelModVariables;
-import com.ulto.marvel.MarvelModElements;
-import com.ulto.marvel.MarvelMod;
+import com.ulto.marvel.network.MarvelModVariables;
+import com.ulto.marvel.init.MarvelModItems;
 
-@MarvelModElements.ModElement.Tag
-public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement {
-	public IronManBodyTickEventProcedure(MarvelModElements instance) {
-		super(instance, 189);
-	}
-
-	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				MarvelMod.LOGGER.warn("Failed to load dependency entity for procedure IronManBodyTickEvent!");
+public class IronManBodyTickEventProcedure {
+	public static void execute(LevelAccessor world, Entity entity) {
+		if (entity == null)
 			return;
-		}
-		if (dependencies.get("world") == null) {
-			if (!dependencies.containsKey("world"))
-				MarvelMod.LOGGER.warn("Failed to load dependency world for procedure IronManBodyTickEvent!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		IWorld world = (IWorld) dependencies.get("world");
 		double count = 0;
 		double count2 = 0;
 		double count3 = 0;
 		double count4 = 0;
 		double count5 = 0;
+		double count6 = 0;
 		boolean bl = false;
 		boolean hasRepulsor = false;
 		boolean bl2 = false;
@@ -55,84 +36,47 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 		boolean hasDrill = false;
 		boolean bl5 = false;
 		boolean hasBlade = false;
-		if ((entity.isAlive())) {
-			hasRepulsor = (boolean) (false);
+		boolean bl6 = false;
+		boolean hasNanotool = false;
+		if (entity.isAlive()) {
+			hasRepulsor = false;
 			{
 				AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
 				entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
 				if (_iitemhandlerref.get() != null) {
 					for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
 						ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-						if (((hasRepulsor) == (false))) {
-							if (((itemstackiterator).getItem() == new ItemStack(RepulsorItem.block, (int) (1)).getItem())) {
-								bl = (boolean) (true);
-								count = (double) ((count) + 1);
+						if (hasRepulsor == false) {
+							if (itemstackiterator.getItem() == MarvelModItems.REPULSOR) {
+								bl = true;
+								count = count + 1;
 							}
 						}
 					}
 				}
 			}
-			if (((bl) == (true))) {
-				hasRepulsor = (boolean) (true);
+			if (bl == true) {
+				hasRepulsor = true;
 			}
-			if (((hasRepulsor) == (false))) {
-				if (entity instanceof PlayerEntity) {
-					ItemStack _setstack = new ItemStack(RepulsorItem.block, (int) (1));
-					_setstack.setCount((int) 1);
-					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+			if (hasRepulsor == false) {
+				if (entity instanceof Player _player) {
+					ItemStack _setstack = new ItemStack(MarvelModItems.REPULSOR);
+					_setstack.setCount(1);
+					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
 			}
-			if (((hasRepulsor) == (true))) {
-				if (((count) > 1)) {
-					if (entity instanceof PlayerEntity) {
-						ItemStack _stktoremove = new ItemStack(RepulsorItem.block, (int) (1));
-						((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count) - 1),
-								((PlayerEntity) entity).container.func_234641_j_());
+			if (hasRepulsor == true) {
+				if (count > 1) {
+					if (entity instanceof Player _player) {
+						ItemStack _stktoremove = new ItemStack(MarvelModItems.REPULSOR);
+						_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count - 1),
+								_player.inventoryMenu.getCraftSlots());
 					}
 				}
 			}
-			hasUnibeam = (boolean) (false);
-			{
-				AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
-				entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> _iitemhandlerref.set(capability));
-				if (_iitemhandlerref.get() != null) {
-					for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
-						ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-						if (((hasUnibeam) == (false))) {
-							if (((itemstackiterator).getItem() == new ItemStack(UnibeamItem.block, (int) (1)).getItem())) {
-								bl2 = (boolean) (true);
-								count2 = (double) ((count2) + 1);
-							}
-						}
-					}
-				}
-			}
-			if (((bl2) == (true))) {
-				hasUnibeam = (boolean) (true);
-			}
-			if (((hasUnibeam) == (false))) {
-				if (entity instanceof PlayerEntity) {
-					ItemStack _setstack = new ItemStack(UnibeamItem.block, (int) (1));
-					_setstack.setCount((int) 1);
-					ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-				}
-			}
-			if (((hasUnibeam) == (true))) {
-				if (((count2) > 1)) {
-					if (entity instanceof PlayerEntity) {
-						ItemStack _stktoremove = new ItemStack(UnibeamItem.block, (int) (1));
-						((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count2) - 1),
-								((PlayerEntity) entity).container.func_234641_j_());
-					}
-				}
-			}
-			if (((((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == (-1))
-					|| ((((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-							.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == (-2))
-							|| (((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-									.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == (-3))))) {
-				hasMinigun = (boolean) (false);
+			if (!((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+					.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE)) {
+				hasUnibeam = false;
 				{
 					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
 					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
@@ -140,38 +84,38 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 					if (_iitemhandlerref.get() != null) {
 						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
 							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-							if (((hasMinigun) == (false))) {
-								if (((itemstackiterator).getItem() == new ItemStack(WarMachineGunItem.block, (int) (1)).getItem())) {
-									bl3 = (boolean) (true);
-									count3 = (double) ((count3) + 1);
+							if (hasUnibeam == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.UNIBEAM) {
+									bl2 = true;
+									count2 = count2 + 1;
 								}
 							}
 						}
 					}
 				}
-				if (((bl3) == (true))) {
-					hasMinigun = (boolean) (true);
+				if (bl2 == true) {
+					hasUnibeam = true;
 				}
-				if (((hasMinigun) == (false))) {
-					if (entity instanceof PlayerEntity) {
-						ItemStack _setstack = new ItemStack(WarMachineGunItem.block, (int) (1));
-						_setstack.setCount((int) 1);
-						ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+				if (hasUnibeam == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.UNIBEAM);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 					}
 				}
-				if (((hasMinigun) == (true))) {
-					if (((count3) > 1)) {
-						if (entity instanceof PlayerEntity) {
-							ItemStack _stktoremove = new ItemStack(WarMachineGunItem.block, (int) (1));
-							((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count3) - 1),
-									((PlayerEntity) entity).container.func_234641_j_());
+				if (hasUnibeam == true) {
+					if (count2 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.UNIBEAM);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count2 - 1),
+									_player.inventoryMenu.getCraftSlots());
 						}
 					}
 				}
 			}
-			if ((((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == 25)) {
-				hasDrill = (boolean) (false);
+			if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
+					.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE) {
+				hasUnibeam = false;
 				{
 					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
 					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
@@ -179,38 +123,42 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 					if (_iitemhandlerref.get() != null) {
 						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
 							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-							if (((hasDrill) == (false))) {
-								if (((itemstackiterator).getItem() == new ItemStack(Mark25DrillItem.block, (int) (1)).getItem())) {
-									bl4 = (boolean) (true);
-									count4 = (double) ((count4) + 1);
+							if (hasUnibeam == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.MARK_17_UNIBEAM) {
+									bl2 = true;
+									count2 = count2 + 1;
 								}
 							}
 						}
 					}
 				}
-				if (((bl4) == (true))) {
-					hasDrill = (boolean) (true);
+				if (bl2 == true) {
+					hasUnibeam = true;
 				}
-				if (((hasDrill) == (false))) {
-					if (entity instanceof PlayerEntity) {
-						ItemStack _setstack = new ItemStack(Mark25DrillItem.block, (int) (1));
-						_setstack.setCount((int) 1);
-						ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+				if (hasUnibeam == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.MARK_17_UNIBEAM);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 					}
 				}
-				if (((hasDrill) == (true))) {
-					if (((count4) > 1)) {
-						if (entity instanceof PlayerEntity) {
-							ItemStack _stktoremove = new ItemStack(Mark25DrillItem.block, (int) (1));
-							((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count4) - 1),
-									((PlayerEntity) entity).container.func_234641_j_());
+				if (hasUnibeam == true) {
+					if (count2 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.MARK_17_UNIBEAM);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count2 - 1),
+									_player.inventoryMenu.getCraftSlots());
 						}
 					}
 				}
 			}
-			if ((((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum) == 33)) {
-				hasBlade = (boolean) (false);
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == -1
+					|| (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+							.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == -2
+					|| (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+							.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == -3) {
+				hasMinigun = false;
 				{
 					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
 					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
@@ -218,31 +166,228 @@ public class IronManBodyTickEventProcedure extends MarvelModElements.ModElement 
 					if (_iitemhandlerref.get() != null) {
 						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
 							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
-							if (((hasBlade) == (false))) {
-								if (((itemstackiterator).getItem() == new ItemStack(CenturionBladeItem.block, (int) (1)).getItem())) {
-									bl5 = (boolean) (true);
-									count5 = (double) ((count5) + 1);
+							if (hasMinigun == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.WAR_MACHINE_GUN) {
+									bl3 = true;
+									count3 = count3 + 1;
 								}
 							}
 						}
 					}
 				}
-				if (((bl5) == (true))) {
-					hasBlade = (boolean) (true);
+				if (bl3 == true) {
+					hasMinigun = true;
 				}
-				if (((hasBlade) == (false))) {
-					if (entity instanceof PlayerEntity) {
-						ItemStack _setstack = new ItemStack(CenturionBladeItem.block, (int) (1));
-						_setstack.setCount((int) 1);
-						ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
+				if (hasMinigun == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.WAR_MACHINE_GUN);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 					}
 				}
-				if (((hasBlade) == (true))) {
-					if (((count5) > 1)) {
-						if (entity instanceof PlayerEntity) {
-							ItemStack _stktoremove = new ItemStack(CenturionBladeItem.block, (int) (1));
-							((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) ((count5) - 1),
-									((PlayerEntity) entity).container.func_234641_j_());
+				if (hasMinigun == true) {
+					if (count3 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.WAR_MACHINE_GUN);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count3 - 1),
+									_player.inventoryMenu.getCraftSlots());
+						}
+					}
+				}
+			}
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 25) {
+				hasDrill = false;
+				{
+					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+							.ifPresent(capability -> _iitemhandlerref.set(capability));
+					if (_iitemhandlerref.get() != null) {
+						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+							if (hasDrill == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.MARK_25_DRILL) {
+									bl4 = true;
+									count4 = count4 + 1;
+								}
+							}
+						}
+					}
+				}
+				if (bl4 == true) {
+					hasDrill = true;
+				}
+				if (hasDrill == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.MARK_25_DRILL);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				}
+				if (hasDrill == true) {
+					if (count4 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.MARK_25_DRILL);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count4 - 1),
+									_player.inventoryMenu.getCraftSlots());
+						}
+					}
+				}
+			}
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 30
+					|| (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+							.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 33) {
+				hasBlade = false;
+				{
+					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+							.ifPresent(capability -> _iitemhandlerref.set(capability));
+					if (_iitemhandlerref.get() != null) {
+						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+							if (hasBlade == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.CENTURION_BLADE) {
+									bl5 = true;
+									count5 = count5 + 1;
+								}
+							}
+						}
+					}
+				}
+				if (bl5 == true) {
+					hasBlade = true;
+				}
+				if (hasBlade == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.CENTURION_BLADE);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				}
+				if (hasBlade == true) {
+					if (count5 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.CENTURION_BLADE);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count5 - 1),
+									_player.inventoryMenu.getCraftSlots());
+						}
+					}
+				}
+			}
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 49) {
+				hasNanotool = false;
+				{
+					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+							.ifPresent(capability -> _iitemhandlerref.set(capability));
+					if (_iitemhandlerref.get() != null) {
+						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+							if (hasNanotool == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.MARK_49_NANO_TOOL) {
+									bl6 = true;
+									count6 = count6 + 1;
+								}
+							}
+						}
+					}
+				}
+				if (bl6 == true) {
+					hasNanotool = true;
+				}
+				if (hasNanotool == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.MARK_49_NANO_TOOL);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				}
+				if (hasNanotool == true) {
+					if (count6 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.MARK_49_NANO_TOOL);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count6 - 1),
+									_player.inventoryMenu.getCraftSlots());
+						}
+					}
+				}
+			}
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 50) {
+				hasNanotool = false;
+				{
+					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+							.ifPresent(capability -> _iitemhandlerref.set(capability));
+					if (_iitemhandlerref.get() != null) {
+						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+							if (hasNanotool == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.MARK_50_NANO_TOOL) {
+									bl6 = true;
+									count6 = count6 + 1;
+								}
+							}
+						}
+					}
+				}
+				if (bl6 == true) {
+					hasNanotool = true;
+				}
+				if (hasNanotool == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.MARK_50_NANO_TOOL);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				}
+				if (hasNanotool == true) {
+					if (count6 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.MARK_50_NANO_TOOL);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count6 - 1),
+									_player.inventoryMenu.getCraftSlots());
+						}
+					}
+				}
+			}
+			if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 85) {
+				hasNanotool = false;
+				{
+					AtomicReference<IItemHandler> _iitemhandlerref = new AtomicReference<>();
+					entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+							.ifPresent(capability -> _iitemhandlerref.set(capability));
+					if (_iitemhandlerref.get() != null) {
+						for (int _idx = 0; _idx < _iitemhandlerref.get().getSlots(); _idx++) {
+							ItemStack itemstackiterator = _iitemhandlerref.get().getStackInSlot(_idx).copy();
+							if (hasNanotool == false) {
+								if (itemstackiterator.getItem() == MarvelModItems.MARK_85_NANO_TOOL) {
+									bl6 = true;
+									count6 = count6 + 1;
+								}
+							}
+						}
+					}
+				}
+				if (bl6 == true) {
+					hasNanotool = true;
+				}
+				if (hasNanotool == false) {
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(MarvelModItems.MARK_85_NANO_TOOL);
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				}
+				if (hasNanotool == true) {
+					if (count6 > 1) {
+						if (entity instanceof Player _player) {
+							ItemStack _stktoremove = new ItemStack(MarvelModItems.MARK_85_NANO_TOOL);
+							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), (int) (count6 - 1),
+									_player.inventoryMenu.getCraftSlots());
 						}
 					}
 				}

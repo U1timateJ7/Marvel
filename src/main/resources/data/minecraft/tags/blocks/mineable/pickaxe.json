@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "marvel:vibranium_ore",
+    "marvel:vibranium_block",
+    "marvel:titanium_ore",
+    "marvel:titanium_block",
+    "marvel:palladium_ore",
+    "marvel:palladium_block",
+    "marvel:uru_ore",
+    "marvel:uru_block"
+  ]
+}
