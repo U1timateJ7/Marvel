@@ -4,27 +4,25 @@
  */
 package com.ulto.marvel.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.RegistryEvent;
-
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.data.BuiltinRegistries;
-import net.minecraft.core.Registry;
-
-import java.util.Set;
-import java.util.Map;
-import java.util.HashMap;
-
-import com.ulto.marvel.world.features.plants.HeartShapedHerbFeature;
-import com.ulto.marvel.world.features.ores.VibraniumOreFeature;
-import com.ulto.marvel.world.features.ores.UruOreFeature;
-import com.ulto.marvel.world.features.ores.TitaniumOreFeature;
 import com.ulto.marvel.world.features.ores.PalladiumOreFeature;
+import com.ulto.marvel.world.features.ores.TitaniumOreFeature;
+import com.ulto.marvel.world.features.ores.UruOreFeature;
+import com.ulto.marvel.world.features.ores.VibraniumOreFeature;
+import com.ulto.marvel.world.features.plants.HeartShapedHerbFeature;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModFeatures {

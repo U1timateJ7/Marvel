@@ -4,24 +4,15 @@
  */
 package com.ulto.marvel.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegistryEvent;
-
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import com.ulto.marvel.block.entity.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
 import java.util.ArrayList;
-
-import com.ulto.marvel.block.entity.MjolnirBlockBlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage7BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage6BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage5BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage4BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage3BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage2BlockEntity;
-import com.ulto.marvel.block.entity.HeartShapedHerbStage1BlockEntity;
+import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModBlockEntities {

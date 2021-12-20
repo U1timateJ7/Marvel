@@ -4,41 +4,18 @@
  */
 package com.ulto.marvel.init;
 
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.RegistryEvent;
-
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.EntityType;
+import com.ulto.marvel.entity.*;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import java.util.List;
 import java.util.ArrayList;
-
-import com.ulto.marvel.entity.WebShooterTrapEntity;
-import com.ulto.marvel.entity.WebShooterSwingEntity;
-import com.ulto.marvel.entity.WarMachineGunEntity;
-import com.ulto.marvel.entity.VibraniumShieldEntity;
-import com.ulto.marvel.entity.UnibeamEntity;
-import com.ulto.marvel.entity.TaskmasterShieldEntity;
-import com.ulto.marvel.entity.StormbreakerEntity;
-import com.ulto.marvel.entity.ShrinkingDiskEntity;
-import com.ulto.marvel.entity.SentryModeEntity;
-import com.ulto.marvel.entity.RepulsorEntity;
-import com.ulto.marvel.entity.RedGuardianShieldEntity;
-import com.ulto.marvel.entity.MjolnirEntity;
-import com.ulto.marvel.entity.Mark17UnibeamEntity;
-import com.ulto.marvel.entity.IronManFlamethrowerEntity;
-import com.ulto.marvel.entity.GrowingDiskEntity;
-import com.ulto.marvel.entity.CapsShieldRedEntity;
-import com.ulto.marvel.entity.CapsShieldBlueEntity;
-import com.ulto.marvel.entity.BloodyVibraniumShieldEntity;
-import com.ulto.marvel.entity.BloodyTaskmasterShieldEntity;
-import com.ulto.marvel.entity.BloodyRedGuardianShieldEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldRedEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldBlueEntity;
+import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModEntities {

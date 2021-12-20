@@ -4,35 +4,16 @@
  */
 package com.ulto.marvel.init;
 
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.api.distmarker.Dist;
-
+import com.ulto.marvel.block.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-import java.util.List;
 import java.util.ArrayList;
-
-import com.ulto.marvel.block.VibraniumOreBlock;
-import com.ulto.marvel.block.VibraniumBlockBlock;
-import com.ulto.marvel.block.UruOreBlock;
-import com.ulto.marvel.block.UruBlockBlock;
-import com.ulto.marvel.block.TitaniumOreBlock;
-import com.ulto.marvel.block.TitaniumBlockBlock;
-import com.ulto.marvel.block.TemporaryWebBlock;
-import com.ulto.marvel.block.PalladiumOreBlock;
-import com.ulto.marvel.block.PalladiumBlockBlock;
-import com.ulto.marvel.block.MjolnirBlockBlock;
-import com.ulto.marvel.block.HeartShapedHerbStage7Block;
-import com.ulto.marvel.block.HeartShapedHerbStage6Block;
-import com.ulto.marvel.block.HeartShapedHerbStage5Block;
-import com.ulto.marvel.block.HeartShapedHerbStage4Block;
-import com.ulto.marvel.block.HeartShapedHerbStage3Block;
-import com.ulto.marvel.block.HeartShapedHerbStage2Block;
-import com.ulto.marvel.block.HeartShapedHerbStage1Block;
-import com.ulto.marvel.block.HeartShapedHerbBlock;
+import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModBlocks {

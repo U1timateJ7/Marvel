@@ -1,12 +1,12 @@
 modLoader="javafml"
 loaderVersion="[37,)"
-license="Academic Free License v3.0"
+license="Public Domain"
 
 [[mods]]
 modId="marvel"
 version="2.0-alpha.1"
 displayName="Marvel Mod"
-credits="Created using mod maker MCreator - https://mcreator.net/about"
+credits="R.I.P. Chadwick Boseman"
 displayURL="https://www.curseforge.com/members/u1timatej7/projects"
 authors="U1timateJ7, Alextimus9"
 
