@@ -44,10 +44,10 @@
       "marvel:antman_chestplate_recipe",
       "marvel:antman_leg_recipe",
       "marvel:antman_feet_recipe",
-      "marvel:antman_v_2_helmet_recipe",
-      "marvel:antman_v_2_chestplate_recipe",
-      "marvel:antman_v_2_legs_recipe",
-      "marvel:antman_v_2_feet_recipe"
+      "marvel:antman_v2_helmet_recipe",
+      "marvel:antman_v2_chestplate_recipe",
+      "marvel:antman_v2_legs_recipe",
+      "marvel:antman_v2_feet_recipe"
     ]
   },
   "parent": "marvel:vibranium_ore_recipes"

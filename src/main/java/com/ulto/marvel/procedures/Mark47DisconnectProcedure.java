@@ -1,35 +1,33 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.CapabilityItemHandler;
-
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.commands.CommandSourceStack;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Collections;
-
-import com.ulto.marvel.network.MarvelModVariables;
-import com.ulto.marvel.init.MarvelModItems;
 
 public class Mark47DisconnectProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
 		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).controllingMark47 == true) {
+				.orElse(new MarvelModVariables.PlayerVariables())).controllingMark47) {
 			Mark47SentryModeProcedure.execute(world, x, y, z, entity);
 			{
 				final ItemStack _setstack = ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
@@ -469,15 +467,14 @@ public class Mark47DisconnectProcedure {
 				_entity.setHealth((float) (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 						.orElse(new MarvelModVariables.PlayerVariables())).health);
 			{
-				Entity _ent = entity;
-				_ent.teleportTo(
+				entity.teleportTo(
 						((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 								.orElse(new MarvelModVariables.PlayerVariables())).posX),
 						((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 								.orElse(new MarvelModVariables.PlayerVariables())).posY),
 						((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 								.orElse(new MarvelModVariables.PlayerVariables())).posZ));
-				if (_ent instanceof ServerPlayer _serverPlayer) {
+				if (entity instanceof ServerPlayer _serverPlayer) {
 					_serverPlayer.connection.teleport(
 							((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 									.orElse(new MarvelModVariables.PlayerVariables())).posX),
@@ -485,20 +482,19 @@ public class Mark47DisconnectProcedure {
 									.orElse(new MarvelModVariables.PlayerVariables())).posY),
 							((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 									.orElse(new MarvelModVariables.PlayerVariables())).posZ),
-							_ent.getYRot(), _ent.getXRot(), Collections.emptySet());
+							entity.getYRot(), entity.getXRot(), Collections.emptySet());
 				}
 			}
 			{
-				Entity _ent = entity;
-				_ent.setYRot((float) (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				entity.setYRot((float) (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 						.orElse(new MarvelModVariables.PlayerVariables())).yaw);
-				_ent.setXRot((float) (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				entity.setXRot((float) (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 						.orElse(new MarvelModVariables.PlayerVariables())).pitch);
-				_ent.setYBodyRot(_ent.getYRot());
-				_ent.setYHeadRot(_ent.getYRot());
-				_ent.yRotO = _ent.getYRot();
-				_ent.xRotO = _ent.getXRot();
-				if (_ent instanceof LivingEntity _entity) {
+				entity.setYBodyRot(entity.getYRot());
+				entity.setYHeadRot(entity.getYRot());
+				entity.yRotO = entity.getYRot();
+				entity.xRotO = entity.getXRot();
+				if (entity instanceof LivingEntity _entity) {
 					_entity.yBodyRotO = _entity.getYRot();
 					_entity.yHeadRotO = _entity.getYRot();
 				}

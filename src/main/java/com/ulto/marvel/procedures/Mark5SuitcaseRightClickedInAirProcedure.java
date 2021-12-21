@@ -1,26 +1,24 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
-
 import com.ulto.marvel.init.MarvelModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class Mark5SuitcaseRightClickedInAirProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -149,17 +147,18 @@ public class Mark5SuitcaseRightClickedInAirProcedure {
 
 							private void run() {
 								if (entity instanceof Player _player) {
-									ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor
-											? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
-											: ItemStack.EMPTY);
+									LivingEntity _entGetArmor = (LivingEntity) entity;
+									ItemStack _setstack = _entGetArmor.getItemBySlot(EquipmentSlot.HEAD);
 									_setstack.setCount(1);
 									ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 								}
 								if (entity instanceof LivingEntity _entity) {
 									if (_entity instanceof Player _player)
-										_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
-									else
-										_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.MARK_5_OPEN_HELMET));
+										_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET)).getOrCreateTag().putBoolean("Open", true);
+									else {
+										_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET));
+										_entity.getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().putBoolean("Open", true);
+									}
 									if (_entity instanceof ServerPlayer _serverPlayer)
 										_serverPlayer.getInventory().setChanged();
 								}

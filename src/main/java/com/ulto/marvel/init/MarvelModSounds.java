@@ -4,15 +4,15 @@
  */
 package com.ulto.marvel.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegistryEvent;
-
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModSounds {
@@ -84,12 +84,16 @@ public class MarvelModSounds {
 		REGISTRY.put(new ResourceLocation("marvel", "item.mjolnir.catch"), new SoundEvent(new ResourceLocation("marvel", "item.mjolnir.catch")));
 		REGISTRY.put(new ResourceLocation("marvel", "item.mjolnir.hit"), new SoundEvent(new ResourceLocation("marvel", "item.mjolnir.hit")));
 		REGISTRY.put(new ResourceLocation("marvel", "item.mjolnir.throw"), new SoundEvent(new ResourceLocation("marvel", "item.mjolnir.throw")));
-		REGISTRY.put(new ResourceLocation("marvel", "item.stormbreaker.thorw"),
-				new SoundEvent(new ResourceLocation("marvel", "item.stormbreaker.thorw")));
+		REGISTRY.put(new ResourceLocation("marvel", "item.stormbreaker.throw"),
+				new SoundEvent(new ResourceLocation("marvel", "item.stormbreaker.throw")));
 		REGISTRY.put(new ResourceLocation("marvel", "item.adamantium_claws.retract"),
 				new SoundEvent(new ResourceLocation("marvel", "item.adamantium_claws.retract")));
 		REGISTRY.put(new ResourceLocation("marvel", "item.adamantium_claws.activate"),
 				new SoundEvent(new ResourceLocation("marvel", "item.adamantium_claws.activate")));
+	}
+
+	public static SoundEvent get(String id) {
+		return REGISTRY.getOrDefault(new ResourceLocation(id), SoundEvents.ANVIL_DESTROY);
 	}
 
 	@SubscribeEvent

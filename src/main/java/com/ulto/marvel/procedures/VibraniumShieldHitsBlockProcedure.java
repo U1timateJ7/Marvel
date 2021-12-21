@@ -1,22 +1,11 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-
+import com.ulto.marvel.entity.*;
 import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.entity.VibraniumShieldEntity;
-import com.ulto.marvel.entity.CapsShieldRedEntity;
-import com.ulto.marvel.entity.CapsShieldBlueEntity;
-import com.ulto.marvel.entity.RedGuardianShieldEntity;
-import com.ulto.marvel.entity.TaskmasterShieldEntity;
-import com.ulto.marvel.entity.BloodyVibraniumShieldEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldRedEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldBlueEntity;
-import com.ulto.marvel.entity.BloodyRedGuardianShieldEntity;
-import com.ulto.marvel.entity.BloodyTaskmasterShieldEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class VibraniumShieldHitsBlockProcedure {
 	public static void execute(Entity entity, Entity imediatesourceentity) {

@@ -1,41 +1,35 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.client.IItemRenderProperties;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.Minecraft;
-
-import java.util.Map;
-import java.util.List;
-import java.util.Collections;
-
-import com.ulto.marvel.procedures.IronManWaterBreathingProcedure;
-import com.ulto.marvel.procedures.IronManFallDamageProcedure;
-import com.ulto.marvel.procedures.IronManBodyTickEventProcedure;
-import com.ulto.marvel.init.MarvelModTabs;
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.client.model.ModelHelmet;
 import com.ulto.marvel.client.model.ModelCostume;
+import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.init.MarvelModTabs;
+import com.ulto.marvel.procedures.IronManBodyTickEventProcedure;
+import com.ulto.marvel.procedures.IronManFallDamageProcedure;
+import com.ulto.marvel.procedures.IronManWaterBreathingProcedure;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public abstract class IronManMark20Item extends ArmorItem {
 	public IronManMark20Item(EquipmentSlot slot, Item.Properties properties) {
@@ -111,12 +105,12 @@ public abstract class IronManMark20Item extends ArmorItem {
 		@Override
 		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 			super.appendHoverText(itemstack, world, list, flag);
-			list.add(new TextComponent("Mark XX"));
+			list.add(new TextComponent(itemstack.getOrCreateTag().getBoolean("Open") ? "Mark XX - Open" : "Mark XX"));
 		}
 
 		@Override
 		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-			return "marvel:textures/mark20_helmet.png";
+			return stack.getOrCreateTag().getBoolean("Open") ? "marvel:textures/mark20_open.png" : "marvel:textures/mark20_helmet.png";
 		}
 
 		@Override

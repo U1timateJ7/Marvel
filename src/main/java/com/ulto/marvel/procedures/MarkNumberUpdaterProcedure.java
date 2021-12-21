@@ -1,19 +1,17 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.TickEvent;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
-
-import com.ulto.marvel.network.MarvelModVariables;
-import com.ulto.marvel.init.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class MarkNumberUpdaterProcedure {
@@ -47,10 +45,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_2_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_2_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_2_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -64,10 +60,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_3_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_3_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_3_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -81,10 +75,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_5_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_5_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_5_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -98,10 +90,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_6_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -115,10 +105,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_21_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_21_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_21_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_21_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -132,10 +120,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_22_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_22_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_22_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_22_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -149,10 +135,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.WAR_MACHINE_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.WAR_MACHINE_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.WAR_MACHINE_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.WAR_MACHINE_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -166,10 +150,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_PATRIOT_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.IRON_PATRIOT_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_PATRIOT_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_PATRIOT_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -183,10 +165,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_25_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_25_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_25_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_25_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -200,10 +180,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_30_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_30_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_30_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_30_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -217,10 +195,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_33_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_33_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_33_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_33_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -234,10 +210,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_42_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_42_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_42_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -251,10 +225,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_43_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_43_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_43_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -268,10 +240,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_46_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -285,10 +255,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_47_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -302,10 +270,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -319,10 +285,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_49_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_49_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_49_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -336,10 +300,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_50_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_50_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_50_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -362,10 +324,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_85_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_85_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_85_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_85_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -388,10 +348,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_SPIDER_SUIT_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.IRON_SPIDER_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_SPIDER_SUIT_HELMET
 				&& ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_SPIDER_SUIT_CHESTPLATE
 						|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
@@ -416,10 +374,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_7_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_7_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_7_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_7_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -442,10 +398,8 @@ public class MarkNumberUpdaterProcedure {
 				});
 			}
 		}
-		if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_16_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_16_OPEN_HELMET)
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_16_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_16_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -453,31 +407,15 @@ public class MarkNumberUpdaterProcedure {
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_16_BOOTS) {
 			{
-				double _setval = 16;
+				LivingEntity _entGetArmor = (LivingEntity) entity;
+				double _setval = _entGetArmor.getItemBySlot(EquipmentSlot.CHEST).getOrCreateTag().getBoolean("Invisible") ? -16 : 16;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.ironManMkNum = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.MARK_16_STEALTH_HELMET
-				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_16_STEALTH_CHESTPLATE
-				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_16_STEALTH_LEGGINGS
-				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_16_STEALTH_BOOTS) {
-			{
-				double _setval = -16;
-				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.ironManMkNum = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_17_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_17_OPEN_HELMET)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_17_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -491,10 +429,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_19_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_19_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_19_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_19_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -508,10 +444,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_20_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_20_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_20_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_20_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -525,10 +459,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_37_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_37_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_37_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_37_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
@@ -542,10 +474,8 @@ public class MarkNumberUpdaterProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_39_HELMET
-				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.MARK_39_OPEN_HELMET)
+		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
+						.getItem() == MarvelModItems.IRON_MAN_MARK_39_HELMET
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
 						.getItem() == MarvelModItems.IRON_MAN_MARK_39_CHESTPLATE
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)

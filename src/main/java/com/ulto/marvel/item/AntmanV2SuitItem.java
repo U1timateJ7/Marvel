@@ -1,39 +1,33 @@
 
 package com.ulto.marvel.item;
 
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.client.IItemRenderProperties;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.Minecraft;
-
-import java.util.Map;
-import java.util.List;
-import java.util.Collections;
-
-import com.ulto.marvel.procedures.AntmanGiveItemsProcedure;
-import com.ulto.marvel.init.MarvelModTabs;
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.client.model.ModelHelmet;
 import com.ulto.marvel.client.model.ModelCostume;
+import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.init.MarvelModTabs;
+import com.ulto.marvel.procedures.AntmanGiveItemsProcedure;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public abstract class AntmanV2SuitItem extends ArmorItem {
 	public AntmanV2SuitItem(EquipmentSlot slot, Item.Properties properties) {
@@ -65,7 +59,7 @@ public abstract class AntmanV2SuitItem extends ArmorItem {
 
 			@Override
 			public String getName() {
-				return "antman_v_2_suit";
+				return "antman_v2_suit";
 			}
 
 			@Override
@@ -83,7 +77,7 @@ public abstract class AntmanV2SuitItem extends ArmorItem {
 	public static class Helmet extends AntmanV2SuitItem {
 		public Helmet() {
 			super(EquipmentSlot.HEAD, new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_COSTUMES));
-			setRegistryName("antman_v_2_suit_helmet");
+			setRegistryName("antman_v2_suit_helmet");
 		}
 
 		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
@@ -109,19 +103,19 @@ public abstract class AntmanV2SuitItem extends ArmorItem {
 		@Override
 		public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
 			super.appendHoverText(itemstack, world, list, flag);
-			list.add(new TextComponent("Upgraded"));
+			list.add(new TextComponent(itemstack.getOrCreateTag().getBoolean("Open") ? "Upgraded - Open" : "Upgraded"));
 		}
 
 		@Override
 		public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-			return "marvel:textures/antman_v2_helmet.png";
+			return stack.getOrCreateTag().getBoolean("Open") ? "marvel:textures/models/armor/empty_layer_1.png" : "marvel:textures/antman_v2_helmet.png";
 		}
 	}
 
 	public static class Chestplate extends AntmanV2SuitItem {
 		public Chestplate() {
 			super(EquipmentSlot.CHEST, new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_COSTUMES));
-			setRegistryName("antman_v_2_suit_chestplate");
+			setRegistryName("antman_v2_suit_chestplate");
 		}
 
 		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
@@ -165,7 +159,7 @@ public abstract class AntmanV2SuitItem extends ArmorItem {
 	public static class Leggings extends AntmanV2SuitItem {
 		public Leggings() {
 			super(EquipmentSlot.LEGS, new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_COSTUMES));
-			setRegistryName("antman_v_2_suit_leggings");
+			setRegistryName("antman_v2_suit_leggings");
 		}
 
 		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
@@ -204,7 +198,7 @@ public abstract class AntmanV2SuitItem extends ArmorItem {
 	public static class Boots extends AntmanV2SuitItem {
 		public Boots() {
 			super(EquipmentSlot.FEET, new Item.Properties().tab(MarvelModTabs.TAB_MARVEL_COSTUMES));
-			setRegistryName("antman_v_2_suit_boots");
+			setRegistryName("antman_v2_suit_boots");
 		}
 
 		public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {

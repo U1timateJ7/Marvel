@@ -370,9 +370,9 @@
       }
     ]
   },
-  "item.stormbreaker.thorw": {
+  "item.stormbreaker.throw": {
     "category": "player",
-    "subtitle": "subtitles.item.stormbreaker.thorw",
+    "subtitle": "subtitles.item.stormbreaker.throw",
     "sounds": [
       {
         "name": "marvel:stormbreaker_throw",

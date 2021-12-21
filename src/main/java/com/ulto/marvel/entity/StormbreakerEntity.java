@@ -1,30 +1,28 @@
 
 package com.ulto.marvel.entity;
 
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
-import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
+import com.ulto.marvel.init.MarvelModEntities;
+import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.procedures.StormbreakerHitsBlockProcedure;
+import com.ulto.marvel.procedures.StormbreakerHitsLivingEntityProcedure;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fmllegacy.network.FMLPlayMessages;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
-
-import com.ulto.marvel.procedures.StormbreakerHitsLivingEntityProcedure;
-import com.ulto.marvel.procedures.StormbreakerHitsBlockProcedure;
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.init.MarvelModEntities;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 public class StormbreakerEntity extends AbstractArrow implements ItemSupplier {
@@ -99,7 +97,7 @@ public class StormbreakerEntity extends AbstractArrow implements ItemSupplier {
 		entityarrow.setKnockback(knockback);
 		world.addFreshEntity(entityarrow);
 		world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(),
-				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.thorw")), SoundSource.PLAYERS, 1,
+				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.throw")), SoundSource.PLAYERS, 1,
 				1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
 		return entityarrow;
 	}
@@ -119,7 +117,7 @@ public class StormbreakerEntity extends AbstractArrow implements ItemSupplier {
 		double y = entity.getY();
 		double z = entity.getZ();
 		entity.level.playSound((Player) null, (double) x, (double) y, (double) z,
-				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.thorw")), SoundSource.PLAYERS, 1,
+				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.throw")), SoundSource.PLAYERS, 1,
 				1f / (new Random().nextFloat() * 0.5f + 1));
 		return entityarrow;
 	}

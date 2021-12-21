@@ -1,45 +1,23 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.vehicle.MinecartTNT;
-import net.minecraft.world.entity.vehicle.MinecartSpawner;
-import net.minecraft.world.entity.vehicle.MinecartHopper;
-import net.minecraft.world.entity.vehicle.MinecartFurnace;
-import net.minecraft.world.entity.vehicle.MinecartCommandBlock;
-import net.minecraft.world.entity.vehicle.MinecartChest;
-import net.minecraft.world.entity.vehicle.Minecart;
-import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.entity.vehicle.AbstractMinecartContainer;
-import net.minecraft.world.entity.projectile.LargeFireball;
-import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.decoration.Painting;
-import net.minecraft.world.entity.decoration.ItemFrame;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
+import com.ulto.marvel.entity.*;
+import com.ulto.marvel.init.MarvelModItems;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.decoration.ItemFrame;
+import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.LargeFireball;
+import net.minecraft.world.entity.vehicle.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
-
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.entity.VibraniumShieldEntity;
-import com.ulto.marvel.entity.CapsShieldRedEntity;
-import com.ulto.marvel.entity.CapsShieldBlueEntity;
-import com.ulto.marvel.entity.RedGuardianShieldEntity;
-import com.ulto.marvel.entity.TaskmasterShieldEntity;
-import com.ulto.marvel.entity.BloodyVibraniumShieldEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldRedEntity;
-import com.ulto.marvel.entity.BloodyCapsShieldBlueEntity;
-import com.ulto.marvel.entity.BloodyRedGuardianShieldEntity;
-import com.ulto.marvel.entity.BloodyTaskmasterShieldEntity;
-import com.ulto.marvel.entity.MjolnirEntity;
-import com.ulto.marvel.entity.StormbreakerEntity;
 
 @Mod.EventBusSubscriber
 public class AntiProjectileDeleteProcedure {
