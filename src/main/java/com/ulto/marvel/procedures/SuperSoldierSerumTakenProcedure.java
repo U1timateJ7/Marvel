@@ -8,10 +8,8 @@ public class SuperSoldierSerumTakenProcedure {
 	public static void execute(Entity entity) {
 		if (entity == null)
 			return;
-		if (!(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).radioactive) {
+		if (!MarvelModVariables.getPlayerVariables(entity).hasEatenHeartShapedHerb
+				&& !MarvelModVariables.getPlayerVariables(entity).radioactive) {
 			{
 				boolean _setval = true;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {

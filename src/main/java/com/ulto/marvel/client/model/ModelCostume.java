@@ -15,6 +15,8 @@ import net.minecraft.client.model.EntityModel;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 
+import java.util.Set;
+
 // Made with Blockbench 4.0.5
 // Exported for Minecraft version 1.17 with Mojang mappings
 // Paste this class into your mod and generate all required imports
@@ -44,7 +46,7 @@ public class ModelCostume<T extends Entity> extends EntityModel<T> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 		PartDefinition Body = partdefinition.addOrReplaceChild("Body",
-				CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.52F)),
+				CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)),
 				PartPose.offset(0.0F, 0.0F, 0.0F));
 		PartDefinition RightArm = partdefinition.addOrReplaceChild("RightArm",
 				CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)),
@@ -57,10 +59,10 @@ public class ModelCostume<T extends Entity> extends EntityModel<T> {
 		PartDefinition LeftLeg = partdefinition.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(0, 16).mirror()
 				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)).mirror(false), PartPose.offset(1.9F, 12.0F, 0.0F));
 		PartDefinition RightBoot = partdefinition.addOrReplaceChild("RightBoot",
-				CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.52F)),
+				CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)),
 				PartPose.offset(-1.9F, 12.0F, 0.0F));
 		PartDefinition LeftBoot = partdefinition.addOrReplaceChild("LeftBoot", CubeListBuilder.create().texOffs(0, 16).mirror()
-				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.52F)).mirror(false), PartPose.offset(1.9F, 12.0F, 0.0F));
+				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)).mirror(false), PartPose.offset(1.9F, 12.0F, 0.0F));
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
@@ -77,5 +79,9 @@ public class ModelCostume<T extends Entity> extends EntityModel<T> {
 	}
 
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	}
+
+	public Set<ModelPart> getParts() {
+		return Set.of(Body, RightArm, LeftArm, RightLeg, LeftLeg, RightBoot, LeftBoot);
 	}
 }

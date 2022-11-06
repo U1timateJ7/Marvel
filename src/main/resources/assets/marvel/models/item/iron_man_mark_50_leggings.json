@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/mark50_leggings"
+    "layer0": "marvel:item/mark50_leggings"
   }
 }

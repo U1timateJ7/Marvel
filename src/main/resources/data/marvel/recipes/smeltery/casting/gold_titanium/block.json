@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "fluid": {
+    "name": "marvel:molten_gold_titanium",
+    "amount": 810
+  },
+  "result": "marvel:gold_titanium_block",
+  "cooling_time": 225
+}

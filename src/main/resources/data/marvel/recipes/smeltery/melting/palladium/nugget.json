@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "tag": "forge:nuggets/palladium"
+  },
+  "result": {
+    "fluid": "marvel:molten_palladium",
+    "amount": 10
+  },
+  "temperature": 1000,
+  "time": 17
+}

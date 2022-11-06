@@ -1,7 +1,7 @@
 {
   "parent": "marvel:custom/cap_shield",
   "textures": {
-    "0": "marvel:blocks/bloody_taskmaster_shield",
-    "particle": "marvel:items/bloody_taskmaster_shield"
+    "0": "marvel:block/bloody_taskmaster_shield",
+    "particle": "marvel:item/bloody_taskmaster_shield"
   }
 }

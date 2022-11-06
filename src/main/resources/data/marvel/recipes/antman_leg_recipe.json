@@ -8,13 +8,13 @@
   ],
   "key": {
     "R": {
-      "item": "minecraft:red_dye"
+      "tag": "forge:dyes/red"
     },
     "E": {
       "item": "marvel:reinforced_leather"
     },
     "B": {
-      "item": "minecraft:black_dye"
+      "tag": "forge:dyes/black"
     }
   },
   "result": {

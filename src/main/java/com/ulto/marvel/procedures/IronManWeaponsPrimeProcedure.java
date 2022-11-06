@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -18,7 +18,7 @@ import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class IronManWeaponsPrimeProcedure {
@@ -37,25 +37,25 @@ public class IronManWeaponsPrimeProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.REPULSOR
-				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.REPULSOR) {
+		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.REPULSOR.get()
+				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.REPULSOR.get()) {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.repulsor.use")), SoundSource.NEUTRAL, 1, 1);
+							MarvelModSounds.get(new ResourceLocation("marvel:item.repulsor.use")), SoundSource.NEUTRAL, 1, 1);
 				} else {
-					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.repulsor.use")),
+					_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:item.repulsor.use")),
 							SoundSource.NEUTRAL, 1, 1, false);
 				}
 			}
-		} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.UNIBEAM
-				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.UNIBEAM) {
+		} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.UNIBEAM.get()
+				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.UNIBEAM.get()) {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.unibeam.use")), SoundSource.NEUTRAL, 1, 1);
+							MarvelModSounds.get(new ResourceLocation("marvel:item.unibeam.use")), SoundSource.NEUTRAL, 1, 1);
 				} else {
-					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.unibeam.use")),
+					_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:item.unibeam.use")),
 							SoundSource.NEUTRAL, 1, 1, false);
 				}
 			}

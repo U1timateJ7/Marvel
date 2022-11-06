@@ -8,7 +8,6 @@ public class Mark42AvailableProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).mark42Ready;
+		return MarvelModVariables.getPlayerVariables(entity).mark42Ready;
 	}
 }

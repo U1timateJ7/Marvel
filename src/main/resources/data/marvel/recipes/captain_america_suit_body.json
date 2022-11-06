@@ -11,10 +11,10 @@
       "item": "marvel:reinforced_leather"
     },
     "W": {
-      "item": "minecraft:white_dye"
+      "tag": "forge:dyes/white"
     },
     "E": {
-      "item": "minecraft:red_dye"
+      "tag": "forge:dyes/red"
     }
   },
   "result": {

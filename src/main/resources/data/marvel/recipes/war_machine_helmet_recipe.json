@@ -8,7 +8,7 @@
   ],
   "key": {
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "I": {
       "item": "marvel:iron_man_mark_2_helmet"

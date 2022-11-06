@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "marvel:items/vibranium_hoe"
+    "layer0": "marvel:item/vibranium_hoe"
   }
 }

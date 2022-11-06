@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/cap_shield",
+  "textures": {
+    "0": "marvel:block/bloody_us_agent_shield",
+    "particle": "marvel:item/bloody_us_agent_shield"
+  }
+}

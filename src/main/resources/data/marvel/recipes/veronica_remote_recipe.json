@@ -11,7 +11,7 @@
       "item": "minecraft:redstone_torch"
     },
     "G": {
-      "item": "marvel:gold_titanium_alloy"
+      "tag": "forge:ingots/gold_titanium_alloy"
     },
     "E": {
       "item": "minecraft:repeater"

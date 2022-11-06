@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.sounds.MarvelModSounds;import com.ulto.marvel.world.item.MarvelModItems;
 import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
@@ -18,30 +18,29 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ShrinkItemUsedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if (!(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new MarvelModVariables.PlayerVariables())).isSmall) {
+		if (!MarvelModVariables.getPlayerVariables(entity).isSmall) {
 			if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-					.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET
+					.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET.get()
 					&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-							.getItem() == MarvelModItems.ANTMAN_SUIT_CHESTPLATE
+							.getItem() == MarvelModItems.ANTMAN_SUIT_CHESTPLATE.get()
 					&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-							.getItem() == MarvelModItems.ANTMAN_SUIT_LEGGINGS
+							.getItem() == MarvelModItems.ANTMAN_SUIT_LEGGINGS.get()
 					&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-							.getItem() == MarvelModItems.ANTMAN_SUIT_BOOTS
+							.getItem() == MarvelModItems.ANTMAN_SUIT_BOOTS.get()
 					|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-							.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_HELMET
+							.getItem() == MarvelModItems.ANTMAN_V2_SUIT_HELMET.get()
 							&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-									.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_CHESTPLATE
+									.getItem() == MarvelModItems.ANTMAN_V2_SUIT_CHESTPLATE.get()
 							&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-									.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_LEGGINGS
+									.getItem() == MarvelModItems.ANTMAN_V2_SUIT_LEGGINGS.get()
 							&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-									.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_BOOTS) {
-				if (entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.PYM_PARTICLE))) {
+									.getItem() == MarvelModItems.ANTMAN_V2_SUIT_BOOTS.get()) {
+				if (entity instanceof Player _playerHasItem && (_playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.PYM_PARTICLE.get())) || _playerHasItem.isCreative())) {
 					if (((LivingEntity)entity).getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().getBoolean("Open")) ToggleHelmetOnKeyProcedure.execute(world, x, y, z, entity);
 					if (world instanceof ServerLevel _level)
 						_level.getServer().getCommands()
@@ -81,9 +80,9 @@ public class ShrinkItemUsedProcedure {
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
 							_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-									ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.shrink")), SoundSource.NEUTRAL, 1, 1);
+									MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")), SoundSource.NEUTRAL, 1, 1);
 						} else {
-							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.shrink")),
+							_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")),
 									SoundSource.NEUTRAL, 1, 1, false);
 						}
 					}
@@ -101,29 +100,27 @@ public class ShrinkItemUsedProcedure {
 							capability.syncPlayerVariables(entity);
 						});
 					}
-					if (entity instanceof Player _player) {
-						ItemStack _stktoremove = new ItemStack(MarvelModItems.PYM_PARTICLE);
-						_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1,
-								_player.inventoryMenu.getCraftSlots());
-					}
+					ItemStack _stktoremove = new ItemStack(MarvelModItems.PYM_PARTICLE.get());
+					_playerHasItem.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1,
+							_playerHasItem.inventoryMenu.getCraftSlots());
 				}
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET
+				.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET.get()
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.ANTMAN_SUIT_CHESTPLATE
+						.getItem() == MarvelModItems.ANTMAN_SUIT_CHESTPLATE.get()
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.ANTMAN_SUIT_LEGGINGS
+						.getItem() == MarvelModItems.ANTMAN_SUIT_LEGGINGS.get()
 				&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.ANTMAN_SUIT_BOOTS
+						.getItem() == MarvelModItems.ANTMAN_SUIT_BOOTS.get()
 				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_HELMET
+						.getItem() == MarvelModItems.ANTMAN_V2_SUIT_HELMET.get()
 						&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-								.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_CHESTPLATE
+								.getItem() == MarvelModItems.ANTMAN_V2_SUIT_CHESTPLATE.get()
 						&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-								.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_LEGGINGS
+								.getItem() == MarvelModItems.ANTMAN_V2_SUIT_LEGGINGS.get()
 						&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-								.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_BOOTS) {
+								.getItem() == MarvelModItems.ANTMAN_V2_SUIT_BOOTS.get()) {
 			if (world instanceof ServerLevel _level)
 				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
 						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
@@ -151,9 +148,9 @@ public class ShrinkItemUsedProcedure {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL, 1, 1);
+							MarvelModSounds.get(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL, 1, 1);
 				} else {
-					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.grow")),
+					_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:antman.grow")),
 							SoundSource.NEUTRAL, 1, 1, false);
 				}
 			}

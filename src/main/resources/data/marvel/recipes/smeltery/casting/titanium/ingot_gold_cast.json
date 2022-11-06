@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/ingot"
+  },
+  "fluid": {
+    "name": "marvel:molten_titanium",
+    "amount": 90
+  },
+  "result": "marvel:titanium_ingot",
+  "cooling_time": 50
+}

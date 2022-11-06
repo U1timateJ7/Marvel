@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/captain_america_stealth_chestplate"
+    "layer0": "marvel:item/captain_america_stealth_chestplate"
   }
 }

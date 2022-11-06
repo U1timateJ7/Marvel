@@ -7,7 +7,7 @@
   ],
   "key": {
     "G": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "I": {
       "item": "marvel:iron_man_mark_20_boots"

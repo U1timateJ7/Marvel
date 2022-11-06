@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
@@ -13,9 +13,9 @@ public class ShrinkingStartedappliedProcedure {
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
 				_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.shrink")), SoundSource.NEUTRAL, 1, 1);
+						MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")), SoundSource.NEUTRAL, 1, 1);
 			} else {
-				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.shrink")),
+				_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")),
 						SoundSource.NEUTRAL, 1, 1, false);
 			}
 		}

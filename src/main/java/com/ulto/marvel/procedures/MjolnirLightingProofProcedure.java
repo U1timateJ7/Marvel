@@ -1,17 +1,15 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
+import com.ulto.marvel.world.item.MarvelModItems;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
-
-import com.ulto.marvel.init.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class MjolnirLightingProofProcedure {
@@ -28,9 +26,9 @@ public class MjolnirLightingProofProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.MJOLNIR)) : false)
+		if ((entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.MJOLNIR.get())) : false)
 				|| (entity instanceof Player _playerHasItem
-						? _playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.STORMBREAKER))
+						? _playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.STORMBREAKER.get()))
 						: false)) {
 			if (event != null && event.isCancelable()) {
 				event.setCanceled(true);

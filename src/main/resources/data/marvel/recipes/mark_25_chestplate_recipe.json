@@ -8,7 +8,7 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "R": {
       "item": "minecraft:iron_pickaxe"
@@ -17,7 +17,7 @@
       "item": "marvel:upgraded_arc_reactor"
     },
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "O": {
       "item": "marvel:iron_man_mark_23_chestplate"

@@ -1,34 +1,28 @@
 package com.ulto.marvel.network;
 
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.Capability;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.Direction;
+import com.ulto.marvel.common.MarvelMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.*;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.PacketDistributor;
 
 import java.util.function.Supplier;
-
-import com.ulto.marvel.MarvelMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModVariables {
@@ -89,10 +83,6 @@ public class MarvelModVariables {
 			clone.mark47Ready = original.mark47Ready;
 			clone.warMachineMark2Ready = original.warMachineMark2Ready;
 			clone.ironPatriotReady = original.ironPatriotReady;
-			clone.adamantiumClaws = original.adamantiumClaws;
-			clone.isMutantWovlerine = original.isMutantWovlerine;
-			clone.isMutantQuicksilver = original.isMutantQuicksilver;
-			clone.isMutant = original.isMutant;
 			clone.inventory0 = original.inventory0;
 			clone.inventory1 = original.inventory1;
 			clone.inventory2 = original.inventory2;
@@ -143,6 +133,7 @@ public class MarvelModVariables {
 			clone.inventory7 = original.inventory7;
 			clone.hunger = original.hunger;
 			clone.saturation = original.saturation;
+			clone.xpProgress = original.xpProgress;
 			clone.xpLevels = original.xpLevels;
 			clone.mark16Ready = original.mark16Ready;
 			clone.mark17Ready = original.mark17Ready;
@@ -206,10 +197,6 @@ public class MarvelModVariables {
 		public boolean ironPatriotReady = false;
 		public boolean isSmall = false;
 		public boolean isBig = false;
-		public boolean adamantiumClaws = false;
-		public boolean isMutantWovlerine = false;
-		public boolean isMutantQuicksilver = false;
-		public boolean isMutant = false;
 		public ItemStack inventory0 = ItemStack.EMPTY;
 		public ItemStack inventory1 = ItemStack.EMPTY;
 		public ItemStack inventory2 = ItemStack.EMPTY;
@@ -260,6 +247,7 @@ public class MarvelModVariables {
 		public ItemStack inventory7 = ItemStack.EMPTY;
 		public double hunger = 0;
 		public double saturation = 0;
+		public double xpProgress = 0;
 		public double xpLevels = 0;
 		public boolean mark16Ready = false;
 		public boolean mark17Ready = false;
@@ -267,6 +255,53 @@ public class MarvelModVariables {
 		public boolean mark20Ready = false;
 		public boolean mark37Ready = false;
 		public boolean mark39Ready = false;
+
+		public boolean getVeronicaVariable(String suitName) {
+			return switch (suitName) {
+				case "iron_man_mark_16" -> mark16Ready;
+				case "iron_man_mark_17" -> mark17Ready;
+				case "iron_man_mark_19" -> mark19Ready;
+				case "iron_man_mark_20" -> mark20Ready;
+				case "iron_man_mark_21" -> mark21Ready;
+				case "iron_man_mark_22" -> mark22Ready;
+				case "iron_man_mark_23" -> mark23Ready;
+				case "iron_man_mark_25" -> mark25Ready;
+				case "iron_man_mark_30" -> mark30Ready;
+				case "iron_man_mark_33" -> mark33Ready;
+				case "iron_man_mark_37" -> mark37Ready;
+				case "iron_man_mark_39" -> mark39Ready;
+				case "iron_man_mark_42" -> mark42Ready;
+				case "iron_man_mark_43" -> mark43Ready;
+				case "iron_man_mark_46" -> mark46Ready;
+				case "iron_man_mark_47" -> mark47Ready;
+				case "iron_patriot" -> ironPatriotReady;
+				case "war_machine_mark_2" -> warMachineMark2Ready;
+				default -> false;
+			};
+		}
+
+		public void setVeronicaVariable(String suitName, boolean value) {
+			switch (suitName) {
+				case "iron_man_mark_16" -> mark16Ready = value;
+				case "iron_man_mark_17" -> mark17Ready = value;
+				case "iron_man_mark_19" -> mark19Ready = value;
+				case "iron_man_mark_20" -> mark20Ready = value;
+				case "iron_man_mark_21" -> mark21Ready = value;
+				case "iron_man_mark_22" -> mark22Ready = value;
+				case "iron_man_mark_23" -> mark23Ready = value;
+				case "iron_man_mark_25" -> mark25Ready = value;
+				case "iron_man_mark_30" -> mark30Ready = value;
+				case "iron_man_mark_33" -> mark33Ready = value;
+				case "iron_man_mark_37" -> mark37Ready = value;
+				case "iron_man_mark_39" -> mark39Ready = value;
+				case "iron_man_mark_42" -> mark42Ready = value;
+				case "iron_man_mark_43" -> mark43Ready = value;
+				case "iron_man_mark_46" -> mark46Ready = value;
+				case "iron_man_mark_47" -> mark47Ready = value;
+				case "iron_patriot" -> ironPatriotReady = value;
+				case "war_machine_mark_2" -> warMachineMark2Ready = value;
+			};
+		}
 
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
@@ -293,10 +328,6 @@ public class MarvelModVariables {
 			nbt.putBoolean("ironPatriotReady", ironPatriotReady);
 			nbt.putBoolean("isSmall", isSmall);
 			nbt.putBoolean("isBig", isBig);
-			nbt.putBoolean("adamantiumClaws", adamantiumClaws);
-			nbt.putBoolean("isMutantWovlerine", isMutantWovlerine);
-			nbt.putBoolean("isMutantQuicksilver", isMutantQuicksilver);
-			nbt.putBoolean("isMutant", isMutant);
 			nbt.put("inventory0", inventory0.save(new CompoundTag()));
 			nbt.put("inventory1", inventory1.save(new CompoundTag()));
 			nbt.put("inventory2", inventory2.save(new CompoundTag()));
@@ -347,6 +378,7 @@ public class MarvelModVariables {
 			nbt.put("inventory7", inventory7.save(new CompoundTag()));
 			nbt.putDouble("hunger", hunger);
 			nbt.putDouble("saturation", saturation);
+			nbt.putDouble("xpProgress", xpProgress);
 			nbt.putDouble("xpLevels", xpLevels);
 			nbt.putBoolean("mark16Ready", mark16Ready);
 			nbt.putBoolean("mark17Ready", mark17Ready);
@@ -377,10 +409,6 @@ public class MarvelModVariables {
 			ironPatriotReady = nbt.getBoolean("ironPatriotReady");
 			isSmall = nbt.getBoolean("isSmall");
 			isBig = nbt.getBoolean("isBig");
-			adamantiumClaws = nbt.getBoolean("adamantiumClaws");
-			isMutantWovlerine = nbt.getBoolean("isMutantWovlerine");
-			isMutantQuicksilver = nbt.getBoolean("isMutantQuicksilver");
-			isMutant = nbt.getBoolean("isMutant");
 			inventory0 = ItemStack.of(nbt.getCompound("inventory0"));
 			inventory1 = ItemStack.of(nbt.getCompound("inventory1"));
 			inventory2 = ItemStack.of(nbt.getCompound("inventory2"));
@@ -431,6 +459,7 @@ public class MarvelModVariables {
 			inventory7 = ItemStack.of(nbt.getCompound("inventory7"));
 			hunger = nbt.getDouble("hunger");
 			saturation = nbt.getDouble("saturation");
+			xpProgress = nbt.getDouble("xpProgress");
 			xpLevels = nbt.getDouble("xpLevels");
 			mark16Ready = nbt.getBoolean("mark16Ready");
 			mark17Ready = nbt.getBoolean("mark17Ready");
@@ -481,10 +510,6 @@ public class MarvelModVariables {
 					variables.ironPatriotReady = message.data.ironPatriotReady;
 					variables.isSmall = message.data.isSmall;
 					variables.isBig = message.data.isBig;
-					variables.adamantiumClaws = message.data.adamantiumClaws;
-					variables.isMutantWovlerine = message.data.isMutantWovlerine;
-					variables.isMutantQuicksilver = message.data.isMutantQuicksilver;
-					variables.isMutant = message.data.isMutant;
 					variables.inventory0 = message.data.inventory0;
 					variables.inventory1 = message.data.inventory1;
 					variables.inventory2 = message.data.inventory2;
@@ -535,6 +560,7 @@ public class MarvelModVariables {
 					variables.inventory7 = message.data.inventory7;
 					variables.hunger = message.data.hunger;
 					variables.saturation = message.data.saturation;
+					variables.xpProgress = message.data.xpProgress;
 					variables.xpLevels = message.data.xpLevels;
 					variables.mark16Ready = message.data.mark16Ready;
 					variables.mark17Ready = message.data.mark17Ready;
@@ -546,5 +572,10 @@ public class MarvelModVariables {
 			});
 			context.setPacketHandled(true);
 		}
+	}
+
+	public static MarvelModVariables.PlayerVariables getPlayerVariables(Entity entity) {
+		return entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MarvelModVariables.PlayerVariables());
 	}
 }

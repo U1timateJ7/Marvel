@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "marvel:blocks/vibranium_ore",
-    "particle": "marvel:blocks/vibranium_ore"
+    "all": "marvel:block/vibranium_ore",
+    "particle": "marvel:block/vibranium_ore"
   }
 }

@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
@@ -14,15 +14,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 public class ClawsInProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.ADAMANTIUM_CLAWS
+		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.ADAMANTIUM_CLAWS.get()
 				&& (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.ADAMANTIUM_CLAWS) {
+						.getItem() == MarvelModItems.ADAMANTIUM_CLAWS.get()) {
 			if (entity instanceof LivingEntity _entity) {
 				ItemStack _setstack = new ItemStack(Blocks.AIR);
 				_setstack.setCount(1);
@@ -40,11 +40,11 @@ public class ClawsInProcedure {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.adamantium_claws.retract")), SoundSource.NEUTRAL,
+							MarvelModSounds.get(new ResourceLocation("marvel:item.adamantium_claws.retract")), SoundSource.NEUTRAL,
 							1, 1);
 				} else {
 					_level.playLocalSound(x, y, z,
-							ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.adamantium_claws.retract")), SoundSource.NEUTRAL,
+							MarvelModSounds.get(new ResourceLocation("marvel:item.adamantium_claws.retract")), SoundSource.NEUTRAL,
 							1, 1, false);
 				}
 			}

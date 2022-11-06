@@ -8,7 +8,7 @@
   ],
   "key": {
     "G": {
-      "item": "marvel:gold_titanium_alloy"
+      "tag": "forge:ingots/gold_titanium_alloy"
     },
     "S": {
       "item": "marvel:spider_man_suit_helmet"

@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.Vec2;
@@ -57,9 +57,9 @@ public class ShrinkingExpiresProcedure {
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
 				_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL, 1, 1);
+						MarvelModSounds.get(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL, 1, 1);
 			} else {
-				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL,
+				_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:antman.grow")), SoundSource.NEUTRAL,
 						1, 1, false);
 			}
 		}

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/vibranium_weave"
+    "layer0": "marvel:item/vibranium_weave"
   }
 }

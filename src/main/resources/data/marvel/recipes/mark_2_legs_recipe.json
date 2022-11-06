@@ -8,13 +8,13 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "R": {
       "item": "marvel:iron_man_mark_1_leggings"
     },
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     }
   },
   "result": {

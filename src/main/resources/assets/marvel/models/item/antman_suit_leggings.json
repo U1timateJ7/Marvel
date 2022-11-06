@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/antman_leggings"
+    "layer0": "marvel:item/antman_leggings"
   }
 }

@@ -13,7 +13,7 @@ import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
 
-import com.ulto.marvel.init.MarvelModBlocks;
+import com.ulto.marvel.world.level.block.MarvelModBlocks;
 
 @Mod.EventBusSubscriber
 public class TemporaryWebTickProcedure {
@@ -32,7 +32,7 @@ public class TemporaryWebTickProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == MarvelModBlocks.TEMPORARY_WEB) {
+		if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == MarvelModBlocks.TEMPORARY_WEB.get()) {
 			entity.makeStuckInBlock(Blocks.AIR.defaultBlockState(), new Vec3(0.25, 0.05, 0.25));
 		}
 	}

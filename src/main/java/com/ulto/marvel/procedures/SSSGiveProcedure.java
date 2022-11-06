@@ -31,8 +31,7 @@ public class SSSGiveProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).superSoldier) {
+		if (MarvelModVariables.getPlayerVariables(entity).superSoldier) {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 10, 0, (false), (false)));
 			if (entity instanceof LivingEntity _entity)

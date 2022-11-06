@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/shrinking_disc"
+    "layer0": "marvel:item/shrinking_disc"
   },
   "display": {
     "thirdperson_righthand": {

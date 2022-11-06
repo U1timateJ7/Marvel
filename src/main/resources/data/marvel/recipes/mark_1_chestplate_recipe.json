@@ -8,10 +8,10 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "P": {
       "item": "marvel:palladium_arc_reactor"

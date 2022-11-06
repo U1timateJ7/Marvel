@@ -8,7 +8,6 @@ public class IronPatriotUnavailableProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady;
+		return !MarvelModVariables.getPlayerVariables(entity).ironPatriotReady;
 	}
 }

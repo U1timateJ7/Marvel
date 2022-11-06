@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "marvel:vibranium_ore"
+    "#marvel:vibranium_ores",
+    "marvel:vibranium_block"
   ]
 }

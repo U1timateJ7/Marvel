@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -14,19 +14,18 @@ public class IronManWaterBreathingProcedure {
 		if (entity == null)
 			return;
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET
+				.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET.get()
 				|| (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.IRON_MAN_MARK_39_HELMET) {
+						.getItem() == MarvelModItems.IRON_MAN_MARK_39_HELMET.get()) {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 10, 0, (false), (false)));
 		}
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_25_HELMET) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_25_HELMET.get()) {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 110, 0, (false), (false)));
 		}
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == 37
+		if (MarvelModVariables.getPlayerVariables(entity).ironManMkNum == 37
 				&& !((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
 				.getOrCreateTag().getBoolean("Open"))) {
 			if (entity instanceof LivingEntity _entity)
@@ -34,8 +33,7 @@ public class IronManWaterBreathingProcedure {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 10, 0, (false), (false)));
 		}
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).ironManMkNum == -16) {
+		if (MarvelModVariables.getPlayerVariables(entity).ironManMkNum == -16) {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 10, 0, (false), (false)));
 		}

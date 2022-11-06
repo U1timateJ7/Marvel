@@ -11,10 +11,10 @@
       "item": "minecraft:bow"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "R": {
       "item": "marvel:iron_man_mark_22_chestplate"

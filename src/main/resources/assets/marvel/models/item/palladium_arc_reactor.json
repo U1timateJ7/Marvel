@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/palladium_arc_reactor"
+    "layer0": "marvel:item/palladium_arc_reactor"
   }
 }

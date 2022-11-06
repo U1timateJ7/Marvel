@@ -1,7 +1,7 @@
 {
   "parent": "marvel:custom/nanotech_tool",
   "textures": {
-    "0": "marvel:blocks/mark50_tool",
-    "particle": "marvel:items/mark50_tool"
+    "0": "marvel:block/mark50_tool",
+    "particle": "marvel:item/mark50_tool"
   }
 }

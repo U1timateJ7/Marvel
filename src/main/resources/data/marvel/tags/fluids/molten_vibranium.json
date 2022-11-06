@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "marvel:molten_vibranium",
+      "required": false
+    },
+    {
+      "id": "marvel:flowing_molten_vibranium",
+      "required": false
+    }
+  ]
+}

@@ -1,7 +1,5 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
-
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +15,7 @@ import net.minecraft.core.BlockPos;
 import io.netty.buffer.Unpooled;
 
 import com.ulto.marvel.world.inventory.VeronicaGuiMenu;
+import net.minecraftforge.network.NetworkHooks;
 
 public class VeronicaRemoteRightClickedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {

@@ -1,0 +1,13 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:adamantium_ingot"
+    }
+  ],
+  "result": {
+    "item": "marvel:adamantium_nugget",
+    "count": 9
+  }
+}

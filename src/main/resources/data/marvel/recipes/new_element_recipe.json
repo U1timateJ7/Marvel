@@ -6,13 +6,13 @@
       "item": "minecraft:diamond"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     {
-      "item": "marvel:palladium_ingot"
+      "tag": "forge:ingots/palladium"
     },
     {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     }
   ],
   "result": {

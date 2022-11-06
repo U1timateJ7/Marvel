@@ -1,0 +1,21 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#V#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/vibranium"
+    },
+    "V": {
+      "item": "marvel:vibranium_nugget"
+    }
+  },
+  "result": {
+    "item": "marvel:vibranium_ingot",
+    "count": 1
+  }
+}

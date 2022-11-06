@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/repulser",
+  "textures": {
+    "0": "marvel:block/shrink_item",
+    "particle": "marvel:item/shrink_item"
+  }
+}

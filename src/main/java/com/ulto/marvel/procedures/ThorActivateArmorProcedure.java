@@ -15,20 +15,20 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.BlockPos;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 public class ThorActivateArmorProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if (((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.STORMBREAKER
-				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.MJOLNIR)
+		if (((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.STORMBREAKER.get()
+				|| (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.MJOLNIR.get())
 				&& !((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.THOR_ARMOR_CHESTPLATE)
+						.getItem() == MarvelModItems.THOR_ARMOR_CHESTPLATE.get())
 				&& !((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.THOR_ARMOR_LEGGINGS)
+						.getItem() == MarvelModItems.THOR_ARMOR_LEGGINGS.get())
 				&& !((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
-						.getItem() == MarvelModItems.THOR_ARMOR_BOOTS)) {
+						.getItem() == MarvelModItems.THOR_ARMOR_BOOTS.get())) {
 			if (entity instanceof Player _player) {
 				ItemStack _setstack = (entity instanceof LivingEntity _entGetArmor
 						? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
@@ -59,25 +59,25 @@ public class ThorActivateArmorProcedure {
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.THOR_ARMOR_CHESTPLATE));
+					_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.THOR_ARMOR_CHESTPLATE.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.THOR_ARMOR_CHESTPLATE));
+					_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.THOR_ARMOR_CHESTPLATE.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.THOR_ARMOR_LEGGINGS));
+					_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.THOR_ARMOR_LEGGINGS.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.THOR_ARMOR_LEGGINGS));
+					_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.THOR_ARMOR_LEGGINGS.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.THOR_ARMOR_BOOTS));
+					_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.THOR_ARMOR_BOOTS.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.THOR_ARMOR_BOOTS));
+					_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.THOR_ARMOR_BOOTS.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/music_disc_star_spangled_man"
+    "layer0": "marvel:item/music_disc_star_spangled_man"
   }
 }

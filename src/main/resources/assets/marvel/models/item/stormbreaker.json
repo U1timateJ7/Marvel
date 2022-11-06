@@ -1,7 +1,7 @@
 {
   "parent": "marvel:custom/stormbreaker",
   "textures": {
-    "0": "marvel:blocks/storm_breaker",
-    "particle": "marvel:items/storm_breaker"
+    "0": "marvel:block/storm_breaker",
+    "particle": "marvel:item/storm_breaker"
   }
 }

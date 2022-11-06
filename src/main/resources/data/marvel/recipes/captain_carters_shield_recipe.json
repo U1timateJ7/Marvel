@@ -1,0 +1,19 @@
+{
+  "group": "vibranium_shield_dye",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "marvel:clean_vibranium_shields"
+    },
+    {
+      "tag": "forge:dyes/red"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    }
+  ],
+  "result": {
+    "item": "marvel:captain_carters_shield",
+    "count": 1
+  }
+}

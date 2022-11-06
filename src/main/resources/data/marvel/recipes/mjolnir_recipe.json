@@ -8,7 +8,7 @@
   ],
   "key": {
     "U": {
-      "item": "marvel:uru_ingot"
+      "tag": "forge:ingots/uru"
     },
     "S": {
       "item": "minecraft:stick"

@@ -8,7 +8,7 @@
   ],
   "key": {
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "U": {
       "item": "marvel:upgraded_arc_reactor"

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "marvel:items/vibranium_pickaxe"
+    "layer0": "marvel:item/vibranium_pickaxe"
   }
 }

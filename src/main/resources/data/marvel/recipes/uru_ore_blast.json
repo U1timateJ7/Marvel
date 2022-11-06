@@ -1,11 +1,16 @@
 {
-  "group": "uru_smelttt",
   "type": "minecraft:blasting",
+  "group": "uru_ingot",
   "experience": 1.4,
   "cookingtime": 200,
-  "ingredient": {
-    "item": "marvel:uru_ore"
-  },
+  "ingredient": [
+    {
+      "tag": "marvel:uru_ores"
+    },
+    {
+      "item": "marvel:raw_uru"
+    }
+  ],
   "result": {
     "item": "marvel:uru_ingot"
   }

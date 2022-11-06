@@ -1,14 +1,12 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.init.MarvelModSounds;
+import com.ulto.marvel.world.item.MarvelModItems;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,41 +20,38 @@ public class ToggleHelmetOnKeyProcedure {
 		if (entity == null)
 			return;
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET.get()) {
 			if (entity instanceof LivingEntity _entity) {
 				switchHelmet(_entity);
 				playSound(world, x, y, z, _entity, MarvelModSounds.get("marvel:item.iron_man_helmet.open"), MarvelModSounds.get("marvel:item.iron_man_helmet.close_46"));
 			}
 		}
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).isSmall) {
+				.getItem() == MarvelModItems.ANTMAN_SUIT_HELMET.get()
+				&& !MarvelModVariables.getPlayerVariables(entity).isSmall) {
 			if (entity instanceof LivingEntity _entity) {
 				switchHelmet(_entity);
 				playSound(world, x, y, z, _entity, MarvelModSounds.get("marvel:item.antman.helmet_open"), MarvelModSounds.get("marvel:item.antman.helmet_close"));
 			}
 		}
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.ANTMAN_V_2_SUIT_HELMET
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).isSmall
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).isBig) {
+				.getItem() == MarvelModItems.ANTMAN_V2_SUIT_HELMET.get()
+				&& !MarvelModVariables.getPlayerVariables(entity).isSmall
+				&& !MarvelModVariables.getPlayerVariables(entity).isBig) {
 			if (entity instanceof LivingEntity _entity) {
 				switchHelmet(_entity);
 				playSound(world, x, y, z, _entity, MarvelModSounds.get("marvel:item.antman.helmet_open"), MarvelModSounds.get("marvel:item.antman.helmet_close"));
 			}
 		}
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.is(ItemTags.getAllTags().getTagOrEmpty(new ResourceLocation("marvel:iron_man_helmets")))) {
+				.is(MarvelModItems.Tags.IRON_MAN_HELMETS)) {
 			if (entity instanceof LivingEntity _entity) {
 				switchHelmet(_entity);
 				playSound(world, x, y, z, _entity, MarvelModSounds.get("marvel:item.iron_man_helmet.open"), MarvelModSounds.get("marvel:item.iron_man_helmet.close"));
 			}
 		}
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-				.is(ItemTags.getAllTags().getTagOrEmpty(new ResourceLocation("marvel:nanotech_helmets")))) {
+				.is(MarvelModItems.Tags.NANOTECH_HELMETS)) {
 			if (entity instanceof LivingEntity _entity) {
 				switchHelmet(_entity);
 				playSound(world, x, y, z, _entity, MarvelModSounds.get("marvel:item.iron_man_helmet.nanotech_open"), MarvelModSounds.get("marvel:item.iron_man_helmet.nanotech_close"));

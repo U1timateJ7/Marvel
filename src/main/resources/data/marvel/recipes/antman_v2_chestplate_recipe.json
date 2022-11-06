@@ -14,7 +14,7 @@
       "item": "marvel:antman_suit_chestplate"
     },
     "E": {
-      "item": "minecraft:red_dye"
+      "tag": "forge:dyes/red"
     }
   },
   "result": {

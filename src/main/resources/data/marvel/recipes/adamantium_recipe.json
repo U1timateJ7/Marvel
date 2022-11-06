@@ -3,17 +3,17 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "marvel:vibranium_ingot"
+      "tag": "forge:ingots/vibranium"
     },
     {
-      "item": "minecraft:netherite_scrap"
+      "tag": "forge:ingots/netherite"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   ],
   "result": {
-    "item": "marvel:adamantium",
+    "item": "marvel:adamantium_ingot",
     "count": 2
   }
 }

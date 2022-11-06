@@ -1,0 +1,18 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "marvel:molten_titanium",
+      "amount": 90
+    },
+    {
+      "name": "tconstruct:molten_gold",
+      "amount": 90
+    }
+  ],
+  "result": {
+    "fluid": "marvel:molten_gold_titanium",
+    "amount": 180
+  },
+  "temperature": 800
+}

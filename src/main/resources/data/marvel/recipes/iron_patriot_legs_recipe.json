@@ -6,13 +6,13 @@
       "item": "marvel:war_machine_leggings"
     },
     {
-      "item": "marvel:gold_titanium_alloy"
+      "tag": "forge:ingots/gold_titanium_alloy"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   ],
   "result": {

@@ -28,8 +28,7 @@ public class OnDeathProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb) {
+		if (MarvelModVariables.getPlayerVariables(entity).hasEatenHeartShapedHerb) {
 			{
 				boolean _setval = false;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {

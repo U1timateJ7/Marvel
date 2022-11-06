@@ -1,7 +1,7 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.entity.SentryModeEntity;
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.entity.SentryModeEntity;
+import com.ulto.marvel.world.item.MarvelModItems;
 import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
@@ -29,8 +29,7 @@ public class Mark47ConnectProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).mark47Ready) {
+		if (MarvelModVariables.getPlayerVariables(entity).mark47Ready) {
 			{
 				ItemStack _setval = (new Object() {
 					public ItemStack getItemStack(int sltid, Entity entity) {
@@ -591,6 +590,13 @@ public class Mark47ConnectProcedure {
 				});
 			}
 			{
+				double _setval = entity instanceof Player _plr ? _plr.experienceProgress : 0;
+				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.xpProgress = _setval;
+					capability.syncPlayerVariables(entity);
+				});
+			}
+			{
 				double _setval = entity instanceof Player _plr ? _plr.experienceLevel : 0;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.xpLevels = _setval;
@@ -611,33 +617,33 @@ public class Mark47ConnectProcedure {
 						("clear " + entity.getDisplayName().getString()));
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET));
+					_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET));
+					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE));
+					_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE));
+					_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS));
+					_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS));
+					_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
 			if (entity instanceof LivingEntity _entity) {
 				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS));
+					_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()));
 				else
-					_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS));
+					_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()));
 				if (_entity instanceof ServerPlayer _serverPlayer)
 					_serverPlayer.getInventory().setChanged();
 			}
@@ -671,28 +677,28 @@ public class Mark47ConnectProcedure {
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 							? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
-							: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET
+							: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET.get()
 					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST)
-									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE
+									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()
 					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS)
-									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_LEGGINGS
+									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()
 					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.FEET)
-									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_BOOTS) {
+									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()) {
 				if ((((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 					Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 						return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
@@ -1283,33 +1289,33 @@ public class Mark47ConnectProcedure {
 										("clear " + entity.getDisplayName().getString()));
 					if (entity instanceof LivingEntity _entity) {
 						if (_entity instanceof Player _player)
-							_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET));
+							_player.getInventory().armor.set(3, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET.get()));
 						else
-							_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET));
+							_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET.get()));
 						if (_entity instanceof ServerPlayer _serverPlayer)
 							_serverPlayer.getInventory().setChanged();
 					}
 					if (entity instanceof LivingEntity _entity) {
 						if (_entity instanceof Player _player)
-							_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE));
+							_player.getInventory().armor.set(2, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()));
 						else
-							_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE));
+							_entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()));
 						if (_entity instanceof ServerPlayer _serverPlayer)
 							_serverPlayer.getInventory().setChanged();
 					}
 					if (entity instanceof LivingEntity _entity) {
 						if (_entity instanceof Player _player)
-							_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS));
+							_player.getInventory().armor.set(1, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()));
 						else
-							_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS));
+							_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()));
 						if (_entity instanceof ServerPlayer _serverPlayer)
 							_serverPlayer.getInventory().setChanged();
 					}
 					if (entity instanceof LivingEntity _entity) {
 						if (_entity instanceof Player _player)
-							_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS));
+							_player.getInventory().armor.set(0, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()));
 						else
-							_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS));
+							_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()));
 						if (_entity instanceof ServerPlayer _serverPlayer)
 							_serverPlayer.getInventory().setChanged();
 					}

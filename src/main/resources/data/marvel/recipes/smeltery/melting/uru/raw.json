@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:ore_melting",
+  "rate": "metal",
+  "ingredient": {
+    "tag": "forge:raw_materials/uru"
+  },
+  "result": {
+    "fluid": "marvel:molten_uru",
+    "amount": 90
+  },
+  "temperature": 1500,
+  "time": 75,
+  "byproducts": [
+    {
+      "fluid": "tconstruct:molten_gold",
+      "amount": 30
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/repulsor_bullet"
+    "layer0": "marvel:item/repulsor_bullet"
   }
 }

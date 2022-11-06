@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.client.Minecraft;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 public class BloodyTaskmasterShieldRangedItemUsedProcedure {
 	public static void execute(Entity entity) {
@@ -25,7 +25,7 @@ public class BloodyTaskmasterShieldRangedItemUsedProcedure {
 			}
 		}.checkGamemode(entity)) {
 			if (entity instanceof Player _player) {
-				ItemStack _stktoremove = new ItemStack(MarvelModItems.BLOODY_TASKMASTER_SHIELD);
+				ItemStack _stktoremove = new ItemStack(MarvelModItems.BLOODY_TASKMASTER_SHIELD.get());
 				_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1,
 						_player.inventoryMenu.getCraftSlots());
 			}

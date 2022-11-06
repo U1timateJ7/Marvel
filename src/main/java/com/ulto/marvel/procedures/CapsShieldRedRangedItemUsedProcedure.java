@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.client.Minecraft;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 public class CapsShieldRedRangedItemUsedProcedure {
 	public static void execute(Entity entity) {
@@ -25,7 +25,7 @@ public class CapsShieldRedRangedItemUsedProcedure {
 			}
 		}.checkGamemode(entity)) {
 			if (entity instanceof Player _player) {
-				ItemStack _stktoremove = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_RED);
+				ItemStack _stktoremove = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_RED.get());
 				_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1,
 						_player.inventoryMenu.getCraftSlots());
 			}

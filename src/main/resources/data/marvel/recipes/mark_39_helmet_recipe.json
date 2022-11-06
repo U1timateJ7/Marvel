@@ -8,10 +8,10 @@
   ],
   "key": {
     "G": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "R": {
       "item": "marvel:iron_man_mark_37_helmet"

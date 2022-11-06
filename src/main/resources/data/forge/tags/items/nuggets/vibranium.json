@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "marvel:vibranium_nugget",
+      "required": false
+    }
+  ]
+}

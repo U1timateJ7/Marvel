@@ -1,0 +1,14 @@
+{
+  "modifier.marvel": {
+    "absorbent": "#8282d8"
+  },
+
+  "harvest_tier.marvel": {
+    "blade":              "#838383",
+    "drill":              "#877830",
+    "nano_tool":          "#1E059B",
+    "claws":              "#9D9D9D",
+    "upgraded_nano_tool": "#771D1D",
+    "vibranium":          "#8282D8"
+  }
+}

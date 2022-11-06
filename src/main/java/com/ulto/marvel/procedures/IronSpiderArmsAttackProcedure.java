@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -21,8 +21,6 @@ import net.minecraft.core.BlockPos;
 
 import javax.annotation.Nullable;
 
-import com.ulto.marvel.init.MarvelModItems;
-
 @Mod.EventBusSubscriber
 public class IronSpiderArmsAttackProcedure {
 	@SubscribeEvent
@@ -41,7 +39,7 @@ public class IronSpiderArmsAttackProcedure {
 		if (entity == null || sourceentity == null)
 			return;
 		if ((sourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_SPIDER_ARMS_CHESTPLATE) {
+				.getOrCreateTag().getBoolean("ArmsExtended")) {
 			new Object() {
 				private int ticks = 0;
 				private float waitTicks;
@@ -66,11 +64,11 @@ public class IronSpiderArmsAttackProcedure {
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
 							_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-									ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_spider_arms.attack")),
+									MarvelModSounds.get(new ResourceLocation("marvel:item.iron_spider_arms.attack")),
 									SoundSource.NEUTRAL, 1, 1);
 						} else {
 							_level.playLocalSound(x, y, z,
-									ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.iron_spider_arms.attack")),
+									MarvelModSounds.get(new ResourceLocation("marvel:item.iron_spider_arms.attack")),
 									SoundSource.NEUTRAL, 1, 1, false);
 						}
 					}

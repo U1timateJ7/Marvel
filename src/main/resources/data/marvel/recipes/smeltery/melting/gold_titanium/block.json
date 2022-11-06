@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "tag": "forge:storage_blocks/gold_titanium"
+  },
+  "result": {
+    "fluid": "marvel:molten_gold_titanium",
+    "amount": 810
+  },
+  "temperature": 800,
+  "time": 150
+}

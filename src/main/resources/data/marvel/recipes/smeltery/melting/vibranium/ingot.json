@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "tag": "forge:ingots/vibranium"
+  },
+  "result": {
+    "fluid": "marvel:molten_vibranium",
+    "amount": 90
+  },
+  "temperature": 800,
+  "time": 50
+}

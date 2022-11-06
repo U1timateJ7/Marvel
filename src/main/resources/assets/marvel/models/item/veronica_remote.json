@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/veronica_remote"
+    "layer0": "marvel:item/veronica_remote"
   }
 }

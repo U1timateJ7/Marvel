@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "fluid": {
+    "name": "marvel:molten_vibranium",
+    "amount": 810
+  },
+  "result": "marvel:vibranium_block",
+  "cooling_time": 245
+}

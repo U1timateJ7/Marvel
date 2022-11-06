@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 
-import com.ulto.marvel.init.MarvelModBlocks;
+import com.ulto.marvel.world.level.block.MarvelModBlocks;
 
 public class WebShooterTrapHitsBlockProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
@@ -12,7 +12,7 @@ public class WebShooterTrapHitsBlockProcedure {
 				|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.VOID_AIR
 				|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.CAVE_AIR
 				|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.SNOW) {
-			world.setBlock(new BlockPos((int) x, (int) y, (int) z), MarvelModBlocks.TEMPORARY_WEB.defaultBlockState(), 3);
+			world.setBlock(new BlockPos((int) x, (int) y, (int) z), MarvelModBlocks.TEMPORARY_WEB.get().defaultBlockState(), 3);
 		}
 	}
 }

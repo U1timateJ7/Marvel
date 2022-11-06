@@ -1,24 +1,22 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.InteractionHand;
+import com.ulto.marvel.world.item.MarvelModItems;
+import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
-
-import com.ulto.marvel.network.MarvelModVariables;
-import com.ulto.marvel.init.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class SSSGivenToOthersProcedure {
@@ -38,12 +36,10 @@ public class SSSGivenToOthersProcedure {
 		if (entity == null || sourceentity == null)
 			return;
 		if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.SUPER_SOLDIER_SERUM) {
+				.getItem() == MarvelModItems.SUPER_SOLDIER_SERUM.get()) {
 			if (entity instanceof Player) {
-				if (!((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb
-						&& (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).radioactive)) {
+				if (!(MarvelModVariables.getPlayerVariables(entity).hasEatenHeartShapedHerb
+						&& MarvelModVariables.getPlayerVariables(entity).radioactive)) {
 					{
 						boolean _setval = true;
 						entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -72,7 +68,7 @@ public class SSSGivenToOthersProcedure {
 					_serverPlayer.getInventory().setChanged();
 			}
 		}
-		if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.ANTI_SERUM) {
+		if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == MarvelModItems.ANTI_SERUM.get()) {
 			if (entity instanceof Player) {
 				{
 					boolean _setval = false;

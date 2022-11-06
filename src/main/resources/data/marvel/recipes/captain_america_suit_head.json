@@ -7,7 +7,7 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:blue_dye"
+      "tag": "forge:dyes/blue"
     },
     "R": {
       "item": "marvel:reinforced_leather"

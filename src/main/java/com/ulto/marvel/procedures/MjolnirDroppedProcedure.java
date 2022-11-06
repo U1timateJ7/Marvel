@@ -1,7 +1,7 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.init.MarvelModBlocks;
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.level.block.MarvelModBlocks;
+import com.ulto.marvel.world.item.MarvelModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -35,8 +35,8 @@ public class MjolnirDroppedProcedure {
 					|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.CAVE_AIR
 					|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.GRASS
 					|| (world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == Blocks.TALL_GRASS) {
-				if (_itemEntity.getItem().getItem() == MarvelModItems.MJOLNIR) {
-					world.setBlock(new BlockPos((int) x, (int) y, (int) z), MarvelModBlocks.MJOLNIR_BLOCK.defaultBlockState(), 3);
+				if (_itemEntity.getItem().getItem() == MarvelModItems.MJOLNIR.get()) {
+					world.setBlock(new BlockPos((int) x, (int) y, (int) z), MarvelModBlocks.MJOLNIR_BLOCK.get().defaultBlockState(), 3);
 					if (!entity.level.isClientSide())
 						entity.discard();
 				}

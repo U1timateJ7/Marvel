@@ -1,7 +1,7 @@
 {
   "parent": "marvel:custom/warmachine_gun",
   "textures": {
-    "0": "marvel:blocks/warmachine_gun",
-    "particle": "marvel:items/warmachine_gun"
+    "0": "marvel:block/warmachine_gun",
+    "particle": "marvel:item/warmachine_gun"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:raw_materials/titanium",
+    "#forge:raw_materials/palladium",
+    "#forge:raw_materials/uru",
+    "#forge:raw_materials/vibranium"
+  ]
+}

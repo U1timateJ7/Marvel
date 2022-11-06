@@ -8,10 +8,10 @@
   ],
   "key": {
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "G": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/copper"
     },
     "U": {
       "item": "marvel:upgraded_arc_reactor"

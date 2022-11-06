@@ -1,15 +1,13 @@
 {
   "replace": false,
   "values": [
-    "marvel:bloody_red_guardian_shield",
-    "marvel:bloody_captain_americas_shield_blue",
-    "marvel:vibranium_shield",
-    "marvel:taskmaster_shield",
-    "marvel:bloody_captain_americas_shield_red",
-    "marvel:bloody_taskmaster_shield",
-    "marvel:captain_americas_shield_blue",
-    "marvel:red_guardian_shield",
+    "#marvel:clean_vibranium_shields",
     "marvel:bloody_vibranium_shield",
-    "marvel:captain_americas_shield_red"
+    "marvel:bloody_captain_americas_shield_red",
+    "marvel:bloody_captain_americas_shield_blue",
+    "marvel:bloody_captain_carters_shield",
+    "marvel:bloody_us_agents_shield",
+    "marvel:bloody_red_guardian_shield",
+    "marvel:bloody_taskmaster_shield"
   ]
 }

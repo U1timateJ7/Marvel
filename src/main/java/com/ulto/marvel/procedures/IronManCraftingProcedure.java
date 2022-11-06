@@ -1,18 +1,16 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
+import com.ulto.marvel.world.item.MarvelModItems;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
-
-import com.ulto.marvel.init.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class IronManCraftingProcedure {
@@ -29,277 +27,277 @@ public class IronManCraftingProcedure {
 	private static void execute(@Nullable Event event, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return;
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_2_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_BOOTS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_HELMET) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_HELMET);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_LEGGINGS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_LEGGINGS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_BOOTS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_1_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
 		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_3_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_BOOTS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_LEGGINGS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_LEGGINGS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_BOOTS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_2_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
 		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_5_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_BOOTS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_HELMET) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_HELMET);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_LEGGINGS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_LEGGINGS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_BOOTS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_3_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
 		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_6_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_BOOTS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_HELMET);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_LEGGINGS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_LEGGINGS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_BOOTS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_5_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
 		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_7_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_HELMET) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_HELMET);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_LEGGINGS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_LEGGINGS);
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_BOOTS) {
-			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_6_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
 		}
-		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_HELMET) {
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_HELMET.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_HELMET);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_HELMET.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_CHESTPLATE) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_LEGGINGS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_LEGGINGS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_LEGGINGS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_LEGGINGS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
-		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_BOOTS) {
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_43_BOOTS.get()) {
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_BOOTS);
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_42_BOOTS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		}
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_HELMET.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_HELMET.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_LEGGINGS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_LEGGINGS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_46_BOOTS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_43_BOOTS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		}
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_HELMET.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_LEGGINGS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_46_BOOTS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		}
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_HELMET.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_HELMET.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_LEGGINGS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_49_BOOTS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_47_BOOTS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		}
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_HELMET.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_HELMET.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_CHESTPLATE.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_LEGGINGS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_LEGGINGS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_50_BOOTS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_49_BOOTS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		}
+		if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_HELMET.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_HELMET.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_CHESTPLATE.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_CHESTPLATE.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_LEGGINGS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_LEGGINGS.get());
+				_setstack.setCount(1);
+				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+			}
+		} else if (itemstack.getItem() == MarvelModItems.IRON_MAN_MARK_85_BOOTS.get()) {
+			if (entity instanceof Player _player) {
+				ItemStack _setstack = new ItemStack(MarvelModItems.IRON_MAN_MARK_50_BOOTS.get());
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}

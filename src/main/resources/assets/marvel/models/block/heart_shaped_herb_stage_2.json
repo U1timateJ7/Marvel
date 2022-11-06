@@ -1,7 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "marvel:blocks/heart_shaped_herb_stage_1",
-    "particle": "marvel:blocks/heart_shaped_herb_stage_1"
-  }
-}

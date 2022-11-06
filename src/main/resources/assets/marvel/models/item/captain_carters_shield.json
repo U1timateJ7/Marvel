@@ -1,0 +1,7 @@
+{
+  "parent": "marvel:custom/cap_shield",
+  "textures": {
+    "0": "marvel:block/carter_shield",
+    "particle": "marvel:item/carter_shield"
+  }
+}

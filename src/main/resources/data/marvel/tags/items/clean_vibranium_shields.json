@@ -2,9 +2,11 @@
   "replace": false,
   "values": [
     "marvel:vibranium_shield",
-    "marvel:taskmaster_shield",
+    "marvel:captain_americas_shield_red",
     "marvel:captain_americas_shield_blue",
+    "marvel:captain_carters_shield",
+    "marvel:us_agents_shield",
     "marvel:red_guardian_shield",
-    "marvel:captain_americas_shield_red"
+    "marvel:taskmaster_shield"
   ]
 }

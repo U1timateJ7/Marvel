@@ -1,15 +1,13 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraft.world.level.LevelAccessor;
+import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
-
-import com.ulto.marvel.network.MarvelModVariables;
 
 public class Mark42SummonSummonProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -36,9 +34,8 @@ public class Mark42SummonSummonProcedure {
 			}
 
 			private void run() {
-				if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).mark42Ready) {
-					Mark42SummonProcedure.execute(world, x, z, entity);
+				if (MarvelModVariables.getPlayerVariables(entity).mark42Ready) {
+					SuitSummonProcedure.execute(world, x, z, entity, "iron_man_mark_42");
 				}
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}

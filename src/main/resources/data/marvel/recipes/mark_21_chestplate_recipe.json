@@ -8,13 +8,13 @@
   ],
   "key": {
     "G": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "U": {
       "item": "marvel:upgraded_arc_reactor"
     },
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "I": {
       "item": "marvel:iron_man_mark_20_chestplate"

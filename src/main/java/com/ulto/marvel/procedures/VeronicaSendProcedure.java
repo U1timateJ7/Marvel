@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,8 +18,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 
 import com.ulto.marvel.network.MarvelModVariables;
-import com.ulto.marvel.init.MarvelModItems;
-import com.ulto.marvel.MarvelMod;
+import com.ulto.marvel.world.item.MarvelModItems;
+import com.ulto.marvel.common.MarvelMod;
 
 public class VeronicaSendProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
@@ -29,16 +29,16 @@ public class VeronicaSendProcedure {
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
 				_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.fly")), SoundSource.NEUTRAL, 1, 1);
+						MarvelModSounds.get(new ResourceLocation("marvel:iron_man.fly")), SoundSource.NEUTRAL, 1, 1);
 			} else {
-				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.fly")),
+				_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:iron_man.fly")),
 						SoundSource.NEUTRAL, 1, 1, false);
 			}
 		}
 		if (entity instanceof LivingEntity _entity)
 			_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 19, (false), (false)));
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_21_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_21_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -47,7 +47,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_22_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_22_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -56,7 +56,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_23_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_23_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -65,7 +65,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_25_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_25_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -74,7 +74,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_30_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_30_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -83,7 +83,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_33_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_33_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -92,7 +92,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_42_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -101,7 +101,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_43_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -110,7 +110,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_46_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -119,7 +119,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -128,7 +128,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_PATRIOT_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_PATRIOT_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -137,7 +137,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_CHESTPLATE) {
+				.getItem() == MarvelModItems.WAR_MACHINE_MARK_2_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -146,7 +146,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_16_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_16_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -155,7 +155,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_17_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -164,7 +164,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_19_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_19_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -173,7 +173,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_20_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_20_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -182,7 +182,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_37_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_37_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -191,7 +191,7 @@ public class VeronicaSendProcedure {
 				});
 			}
 		} else if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.IRON_MAN_MARK_39_CHESTPLATE) {
+				.getItem() == MarvelModItems.IRON_MAN_MARK_39_CHESTPLATE.get()) {
 			{
 				boolean _setval = true;
 				sourceentity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {

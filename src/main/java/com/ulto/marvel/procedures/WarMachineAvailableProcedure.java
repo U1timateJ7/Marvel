@@ -8,7 +8,6 @@ public class WarMachineAvailableProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).warMachineMark2Ready;
+		return MarvelModVariables.getPlayerVariables(entity).warMachineMark2Ready;
 	}
 }

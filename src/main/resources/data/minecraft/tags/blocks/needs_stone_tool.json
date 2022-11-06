@@ -1,7 +1,12 @@
 {
   "replace": false,
   "values": [
-    "marvel:titanium_ore",
-    "marvel:palladium_ore"
+    "#marvel:titanium_ores",
+    "marvel:titanium_block",
+    "marvel:raw_titanium_block",
+    "#marvel:palladium_ores",
+    "marvel:palladium_block",
+    "marvel:raw_palladium_block",
+    "marvel:iron_man_suit_charger"
   ]
 }

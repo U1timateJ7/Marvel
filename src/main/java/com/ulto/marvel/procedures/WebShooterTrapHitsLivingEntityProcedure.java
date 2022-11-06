@@ -5,7 +5,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 
-import com.ulto.marvel.init.MarvelModBlocks;
+import com.ulto.marvel.world.level.block.MarvelModBlocks;
 
 public class WebShooterTrapHitsLivingEntityProcedure {
 	public static void execute(LevelAccessor world, Entity entity) {
@@ -19,7 +19,7 @@ public class WebShooterTrapHitsLivingEntityProcedure {
 				|| (world.getBlockState(new BlockPos((int) (entity.getX()), (int) (entity.getY()), (int) (entity.getZ()))))
 						.getBlock() == Blocks.SNOW) {
 			world.setBlock(new BlockPos((int) (entity.getX()), (int) (entity.getY()), (int) (entity.getZ())),
-					MarvelModBlocks.TEMPORARY_WEB.defaultBlockState(), 3);
+					MarvelModBlocks.TEMPORARY_WEB.get().defaultBlockState(), 3);
 		}
 	}
 }

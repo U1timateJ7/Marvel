@@ -6,10 +6,10 @@
       "item": "marvel:pym_particle"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     {
-      "item": "minecraft:blue_dye"
+      "tag": "forge:dyes/blue"
     }
   ],
   "result": {

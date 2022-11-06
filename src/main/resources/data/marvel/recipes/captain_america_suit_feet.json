@@ -10,7 +10,7 @@
       "item": "marvel:reinforced_leather"
     },
     "B": {
-      "item": "minecraft:brown_dye"
+      "tag": "forge:dyes/brown"
     }
   },
   "result": {

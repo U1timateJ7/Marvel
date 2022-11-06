@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:storage_blocks/titanium",
+    "#forge:storage_blocks/palladium",
+    "#forge:storage_blocks/uru",
+    "#forge:storage_blocks/vibranium",
+    "#forge:storage_blocks/adamantium",
+    "#forge:storage_blocks/gold_titanium",
+    "#forge:storage_blocks/raw_titanium",
+    "#forge:storage_blocks/raw_palladium",
+    "#forge:storage_blocks/raw_uru"
+  ]
+}

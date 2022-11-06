@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/pym_particle"
+    "layer0": "marvel:item/pym_particle"
   }
 }

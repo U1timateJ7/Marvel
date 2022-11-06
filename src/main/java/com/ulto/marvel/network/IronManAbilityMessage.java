@@ -1,7 +1,6 @@
 
 package com.ulto.marvel.network;
 
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -10,10 +9,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
 
-import java.util.function.Supplier;
+import com.ulto.marvel.procedures.AbilityKeyV;
+import com.ulto.marvel.common.MarvelMod;
+import net.minecraftforge.network.NetworkEvent;
 
-import com.ulto.marvel.procedures.IronManAbilityKeyProcedure;
-import com.ulto.marvel.MarvelMod;
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class IronManAbilityMessage {
@@ -51,8 +51,7 @@ public class IronManAbilityMessage {
 		if (!world.hasChunkAt(entity.blockPosition()))
 			return;
 		if (type == 0) {
-
-			IronManAbilityKeyProcedure.execute(world, x, y, z, entity);
+			AbilityKeyV.execute(world, x, y, z, entity);
 		}
 	}
 

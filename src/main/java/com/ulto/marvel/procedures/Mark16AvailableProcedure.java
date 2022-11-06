@@ -1,14 +1,12 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraft.world.entity.Entity;
-
 import com.ulto.marvel.network.MarvelModVariables;
+import net.minecraft.world.entity.Entity;
 
 public class Mark16AvailableProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).mark16Ready;
+		return MarvelModVariables.getPlayerVariables(entity).mark16Ready;
 	}
 }

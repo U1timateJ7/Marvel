@@ -1,0 +1,13 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:raw_titanium_block"
+    }
+  ],
+  "result": {
+    "item": "marvel:raw_titanium",
+    "count": 9
+  }
+}

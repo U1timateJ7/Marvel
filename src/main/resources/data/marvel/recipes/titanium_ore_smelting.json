@@ -1,10 +1,16 @@
 {
   "type": "minecraft:smelting",
+  "group": "titanium_ingot",
   "experience": 0.7,
   "cookingtime": 200,
-  "ingredient": {
-    "item": "marvel:titanium_ore"
-  },
+  "ingredient": [
+    {
+      "tag": "marvel:titanium_ores"
+    },
+    {
+      "item": "marvel:raw_titanium"
+    }
+  ],
   "result": {
     "item": "marvel:titanium_ingot"
   }

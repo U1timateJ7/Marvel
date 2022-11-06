@@ -1,10 +1,16 @@
 {
   "type": "minecraft:blasting",
+  "group": "palladium_ingot",
   "experience": 0.7,
   "cookingtime": 100,
-  "ingredient": {
-    "item": "marvel:palladium_ore"
-  },
+  "ingredient": [
+    {
+      "tag": "marvel:palladium_ores"
+    },
+    {
+      "item": "marvel:raw_palladium"
+    }
+  ],
   "result": {
     "item": "marvel:palladium_ingot"
   }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/warmachine_v2_helmet"
+    "layer0": "marvel:item/warmachine_v2_helmet"
   }
 }

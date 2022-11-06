@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "tag": "forge:ingots/palladium"
+  },
+  "result": {
+    "fluid": "marvel:molten_palladium",
+    "amount": 90
+  },
+  "temperature": 1000,
+  "time": 50
+}

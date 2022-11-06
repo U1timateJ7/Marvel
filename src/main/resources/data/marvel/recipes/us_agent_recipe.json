@@ -1,0 +1,22 @@
+{
+  "group": "john_walker",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:john_walker_suit_helmet"
+    },
+    {
+      "item": "marvel:john_walker_suit_chestplate"
+    },
+    {
+      "item": "marvel:john_walker_suit_leggings"
+    },
+    {
+      "item": "marvel:john_walker_suit_boots"
+    }
+  ],
+  "result": {
+    "item": "marvel:us_agent_suit_chestplate",
+    "count": 1
+  }
+}

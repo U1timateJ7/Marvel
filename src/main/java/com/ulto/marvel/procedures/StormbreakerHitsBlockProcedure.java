@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import net.minecraft.world.phys.Vec3;
@@ -16,14 +16,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 public class StormbreakerHitsBlockProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
 		if (entity instanceof Player _player) {
-			ItemStack _setstack = new ItemStack(MarvelModItems.STORMBREAKER);
+			ItemStack _setstack = new ItemStack(MarvelModItems.STORMBREAKER.get());
 			_setstack.setCount(1);
 			ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 		}
@@ -36,10 +36,10 @@ public class StormbreakerHitsBlockProcedure {
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
 				_level.playSound(null, new BlockPos((int) (entity.getX()), (int) (entity.getY()), (int) (entity.getZ())),
-						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.catch")), SoundSource.NEUTRAL, 1, 1);
+						MarvelModSounds.get(new ResourceLocation("marvel:item.stormbreaker.catch")), SoundSource.NEUTRAL, 1, 1);
 			} else {
 				_level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()),
-						ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:item.stormbreaker.catch")), SoundSource.NEUTRAL, 1, 1,
+						MarvelModSounds.get(new ResourceLocation("marvel:item.stormbreaker.catch")), SoundSource.NEUTRAL, 1, 1,
 						false);
 			}
 		}

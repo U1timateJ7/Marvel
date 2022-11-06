@@ -8,7 +8,7 @@
   ],
   "key": {
     "G": {
-      "item": "marvel:gold_titanium_alloy"
+      "tag": "forge:ingots/gold_titanium_alloy"
     },
     "I": {
       "item": "minecraft:iron_sword"
@@ -17,7 +17,7 @@
       "item": "marvel:upgraded_arc_reactor"
     },
     "R": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "O": {
       "item": "marvel:iron_man_mark_30_chestplate"

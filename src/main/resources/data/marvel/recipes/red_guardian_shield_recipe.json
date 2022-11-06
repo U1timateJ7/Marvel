@@ -6,7 +6,7 @@
       "tag": "marvel:clean_vibranium_shields"
     },
     {
-      "item": "minecraft:red_dye"
+      "tag": "forge:dyes/red"
     }
   ],
   "result": {

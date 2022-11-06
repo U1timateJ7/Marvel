@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/red_guardian_boots"
+    "layer0": "marvel:item/red_guardian_boots"
   }
 }

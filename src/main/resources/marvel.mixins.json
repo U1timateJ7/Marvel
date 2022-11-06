@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.ulto.marvel.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "marvel.refmap.json",
+  "mixins": [],
+  "client": [
+    "AbstractClientPlayerMixin",
+    "HumanoidArmorLayerAccessor",
+    "HumanoidArmorLayerMixin",
+    "PlayerMixin",
+    "LivingEntityRendererMixin"
+  ],
+  "minVersion": "0.8"
+}

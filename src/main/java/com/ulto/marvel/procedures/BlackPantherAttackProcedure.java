@@ -13,7 +13,7 @@ import net.minecraft.world.damagesource.DamageSource;
 
 import javax.annotation.Nullable;
 
-import com.ulto.marvel.init.MarvelModItems;
+import com.ulto.marvel.world.item.MarvelModItems;
 
 @Mod.EventBusSubscriber
 public class BlackPantherAttackProcedure {
@@ -33,7 +33,7 @@ public class BlackPantherAttackProcedure {
 		if (entity == null || imediatesourceentity == null)
 			return;
 		if ((imediatesourceentity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)
-				.getItem() == MarvelModItems.BLACK_PANTHER_SUIT_CHESTPLATE) {
+				.getItem() == MarvelModItems.BLACK_PANTHER_SUIT_CHESTPLATE.get()) {
 			entity.hurt(DamageSource.mobAttack((LivingEntity) imediatesourceentity), 6);
 		}
 	}

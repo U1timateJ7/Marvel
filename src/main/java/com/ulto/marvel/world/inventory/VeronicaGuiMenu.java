@@ -1,22 +1,19 @@
 
 package com.ulto.marvel.world.inventory;
 
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.IItemHandler;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-import java.util.function.Supplier;
-import java.util.Map;
 import java.util.HashMap;
-
-import com.ulto.marvel.init.MarvelModMenus;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class VeronicaGuiMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
 	public final static HashMap<String, Object> guistate = new HashMap<>();
@@ -28,7 +25,7 @@ public class VeronicaGuiMenu extends AbstractContainerMenu implements Supplier<M
 	private boolean bound = false;
 
 	public VeronicaGuiMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(MarvelModMenus.VERONICA_GUI, id);
+		super(MarvelModMenus.VERONICA_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level;
 		this.internal = new ItemStackHandler(0);

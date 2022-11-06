@@ -8,13 +8,13 @@
   ],
   "key": {
     "T": {
-      "item": "marvel:titanium_ingot"
+      "tag": "forge:ingots/titanium"
     },
     "R": {
       "item": "minecraft:redstone_lamp"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "O": {
       "item": "marvel:iron_man_mark_23_helmet"

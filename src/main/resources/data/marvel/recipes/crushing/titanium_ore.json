@@ -1,0 +1,28 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:crushed_titanium_ore"
+    },
+    {
+      "item": "create:crushed_titanium_ore",
+      "chance": 0.75
+    },
+    {
+      "item": "create:experience_nugget",
+      "chance": 0.75
+    }
+  ],
+  "processingTime": 250,
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

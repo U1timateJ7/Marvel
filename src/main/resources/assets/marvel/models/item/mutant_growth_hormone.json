@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/mutant_growth_horome"
+    "layer0": "marvel:item/mutant_growth_horome"
   }
 }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "marvel:mjolnir"
+    "marvel:mjolnir",
+    "marvel:stormbreaker"
   ]
 }

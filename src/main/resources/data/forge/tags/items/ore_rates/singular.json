@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "marvel:titanium_ore",
+    "marvel:palladium_ore",
+    "marvel:uru_ore",
+    "marvel:vibranium_ore",
+    "marvel:deepslate_titanium_ore",
+    "marvel:deepslate_palladium_ore",
+    "marvel:deepslate_uru_ore",
+    "marvel:deepslate_vibranium_ore"
+  ]
+}

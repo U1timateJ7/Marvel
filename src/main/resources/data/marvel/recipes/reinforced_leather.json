@@ -6,7 +6,7 @@
       "item": "minecraft:leather"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   ],
   "result": {

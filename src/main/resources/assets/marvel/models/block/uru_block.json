@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "marvel:blocks/uru_ore_block",
-    "particle": "marvel:blocks/uru_ore_block"
+    "all": "marvel:block/uru_ore_block",
+    "particle": "marvel:block/uru_ore_block"
   }
 }

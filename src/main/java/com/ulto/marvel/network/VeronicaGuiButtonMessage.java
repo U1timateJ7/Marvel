@@ -1,7 +1,6 @@
 
 package com.ulto.marvel.network;
 
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,7 +33,8 @@ import com.ulto.marvel.procedures.Mark17SummonSummonProcedure;
 import com.ulto.marvel.procedures.Mark16SummonSummonProcedure;
 import com.ulto.marvel.procedures.IronPatriotSummonSummonProcedure;
 import com.ulto.marvel.procedures.HousePartyProtocolProcedure;
-import com.ulto.marvel.MarvelMod;
+import com.ulto.marvel.common.MarvelMod;
+import net.minecraftforge.network.NetworkEvent;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class VeronicaGuiButtonMessage {

@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/nugget"
+  },
+  "fluid": {
+    "name": "marvel:molten_uru",
+    "amount": 10
+  },
+  "result": {
+    "tag": "forge:nuggets/uru"
+  },
+  "cooling_time": 17
+}

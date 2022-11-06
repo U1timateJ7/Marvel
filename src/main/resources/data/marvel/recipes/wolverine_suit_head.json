@@ -1,0 +1,24 @@
+{
+  "group": "cap",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B B",
+    "YRY",
+    "R R"
+  ],
+  "key": {
+    "Y": {
+      "tag": "forge:dyes/yellow"
+    },
+    "B": {
+      "tag": "forge:dyes/black"
+    },
+    "R": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "result": {
+    "item": "marvel:wolverine_suit_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:ore_melting",
+  "rate": "metal",
+  "ingredient": {
+    "tag": "forge:raw_materials/titanium"
+  },
+  "result": {
+    "fluid": "marvel:molten_titanium",
+    "amount": 90
+  },
+  "temperature": 1000,
+  "time": 75,
+  "byproducts": [
+    {
+      "fluid": "tconstruct:molten_iron",
+      "amount": 30
+    }
+  ]
+}

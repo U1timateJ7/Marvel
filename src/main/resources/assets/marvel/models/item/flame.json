@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/flame"
+    "layer0": "marvel:item/flame"
   }
 }

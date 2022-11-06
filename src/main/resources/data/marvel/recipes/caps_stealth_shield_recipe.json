@@ -6,13 +6,13 @@
       "tag": "marvel:clean_vibranium_shields"
     },
     {
-      "item": "minecraft:cyan_dye"
+      "tag": "forge:dyes/cyan"
     },
     {
-      "item": "minecraft:blue_dye"
+      "tag": "forge:dyes/white"
     },
     {
-      "item": "minecraft:white_dye"
+      "tag": "forge:dyes/blue"
     }
   ],
   "result": {

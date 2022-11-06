@@ -1,0 +1,33 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "marvel:deepslate_uru_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:crushed_uru_ore",
+      "count": 2
+    },
+    {
+      "item": "create:crushed_uru_ore",
+      "chance": 0.25
+    },
+    {
+      "item": "create:experience_nugget",
+      "chance": 0.75
+    },
+    {
+      "item": "minecraft:cobbled_deepslate",
+      "chance": 0.125
+    }
+  ],
+  "processingTime": 550,
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

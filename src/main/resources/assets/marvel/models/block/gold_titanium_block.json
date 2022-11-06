@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "marvel:block/gold_titanium_block",
+    "particle": "marvel:block/gold_titanium_block"
+  }
+}

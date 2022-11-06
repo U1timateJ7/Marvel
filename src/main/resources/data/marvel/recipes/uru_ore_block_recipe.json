@@ -3,11 +3,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "###",
+    "#U#",
     "###"
   ],
   "key": {
     "#": {
+      "tag": "forge:ingots/uru"
+    },
+    "U": {
       "item": "marvel:uru_ingot"
     }
   },

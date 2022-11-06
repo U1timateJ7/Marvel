@@ -1,21 +1,22 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[40,)"
 license="Public Domain"
 
 [[mods]]
 modId="marvel"
-version="2.0-alpha.1"
-displayName="Marvel Mod"
+version="${file.jarVersion}"
+displayName="Marvel Superheroes"
 credits="R.I.P. Chadwick Boseman"
 displayURL="https://www.curseforge.com/members/u1timatej7/projects"
 authors="U1timateJ7, Alextimus9"
+logoFile="icon.png"
 
 [[dependencies.marvel]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.17.1]"
-    ordering="NONE"
-    side="BOTH"
+modId="minecraft"
+mandatory=true
+versionRange="[1.18.2,1.19)"
+ordering="NONE"
+side="BOTH"
 
 
 

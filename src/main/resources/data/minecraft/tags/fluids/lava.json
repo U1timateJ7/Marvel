@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:molten_titanium",
+    "#forge:molten_palladium",
+    "#forge:molten_uru",
+    "#forge:molten_vibranium",
+    "#forge:molten_adamantium",
+    "#forge:molten_gold_titanium"
+  ]
+}

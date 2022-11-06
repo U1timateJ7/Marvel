@@ -1,0 +1,21 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#R#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:raw_materials/titanium"
+    },
+    "R": {
+      "item": "marvel:raw_titanium"
+    }
+  },
+  "result": {
+    "item": "marvel:raw_titanium_block",
+    "count": 1
+  }
+}

@@ -8,13 +8,13 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/copper"
     },
     "G": {
       "item": "minecraft:glass"
     },
     "P": {
-      "item": "marvel:palladium_ingot"
+      "tag": "forge:ingots/palladium"
     }
   },
   "result": {

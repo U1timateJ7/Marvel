@@ -1,12 +1,10 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class TemporaryWebBlockAddedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
@@ -31,7 +29,7 @@ public class TemporaryWebBlockAddedProcedure {
 			}
 
 			private void run() {
-				world.setBlock(new BlockPos((int) x, (int) y, (int) z), Blocks.AIR.defaultBlockState(), 3);
+				world.removeBlock(new BlockPos((int) x, (int) y, (int) z), true);
 				MinecraftForge.EVENT_BUS.unregister(this);
 			}
 		}.start(world, 100);

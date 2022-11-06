@@ -31,8 +31,7 @@ public class RadioactivePowersProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).radioactive) {
+		if (MarvelModVariables.getPlayerVariables(entity).radioactive) {
 			if (entity instanceof LivingEntity _entity)
 				_entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 10, 2, (false), (false)));
 			if (entity instanceof LivingEntity _entity)

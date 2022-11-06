@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": {
+    "tag": "tconstruct:casts/multi_use/ingot"
+  },
+  "fluid": {
+    "name": "marvel:molten_vibranium",
+    "amount": 90
+  },
+  "result": "marvel:vibranium_ingot",
+  "cooling_time": 50
+}

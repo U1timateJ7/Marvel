@@ -1,0 +1,37 @@
+{
+  "type": "tconstruct:ore_melting",
+  "conditions": [
+    {
+      "registry": "minecraft:item",
+      "tags": [
+        "forge:ores/vibranium",
+        "forge:ore_rates/sparse"
+      ],
+      "type": "tconstruct:tag_intersection_present"
+    }
+  ],
+  "rate": "metal",
+  "ingredient": {
+    "type": "forge:intersection",
+    "children": [
+      {
+        "tag": "forge:ores/vibranium"
+      },
+      {
+        "tag": "forge:ore_rates/sparse"
+      }
+    ]
+  },
+  "result": {
+    "fluid": "marvel:molten_vibranium",
+    "amount": 90
+  },
+  "temperature": 800,
+  "time": 75,
+  "byproducts": [
+    {
+      "fluid": "tconstruct:molten_iron",
+      "amount": 30
+    }
+  ]
+}

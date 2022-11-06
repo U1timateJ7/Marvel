@@ -8,12 +8,9 @@ public class HeartShapedHerbEatenProcedure {
 	public static void execute(Entity entity) {
 		if (entity == null)
 			return;
-		if (!(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).superSoldier
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).radioactive) {
+		if (!MarvelModVariables.getPlayerVariables(entity).superSoldier
+				&& !MarvelModVariables.getPlayerVariables(entity).hasEatenHeartShapedHerb
+				&& !MarvelModVariables.getPlayerVariables(entity).radioactive) {
 			{
 				boolean _setval = true;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -21,12 +18,9 @@ public class HeartShapedHerbEatenProcedure {
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if (!(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).superSoldier
-				&& (entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).hasEatenHeartShapedHerb
-				&& !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-						.orElse(new MarvelModVariables.PlayerVariables())).radioactive) {
+		} else if (!MarvelModVariables.getPlayerVariables(entity).superSoldier
+				&& MarvelModVariables.getPlayerVariables(entity).hasEatenHeartShapedHerb
+				&& !MarvelModVariables.getPlayerVariables(entity).radioactive) {
 			{
 				boolean _setval = false;
 				entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {

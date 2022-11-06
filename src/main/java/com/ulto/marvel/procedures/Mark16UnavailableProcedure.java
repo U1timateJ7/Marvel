@@ -8,7 +8,6 @@ public class Mark16UnavailableProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return !(entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-				.orElse(new MarvelModVariables.PlayerVariables())).mark16Ready;
+		return !MarvelModVariables.getPlayerVariables(entity).mark16Ready;
 	}
 }

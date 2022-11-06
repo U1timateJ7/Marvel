@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "fluid": {
+    "name": "marvel:molten_adamantium",
+    "amount": 810
+  },
+  "result": "marvel:adamantium_block",
+  "cooling_time": 225
+}

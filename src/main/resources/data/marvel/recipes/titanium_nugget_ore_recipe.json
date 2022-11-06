@@ -1,0 +1,21 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#T#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/titanium"
+    },
+    "T": {
+      "item": "marvel:titanium_nugget"
+    }
+  },
+  "result": {
+    "item": "marvel:titanium_ingot",
+    "count": 1
+  }
+}

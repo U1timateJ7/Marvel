@@ -1,0 +1,8 @@
+{
+    "loader": "mantle:fluid_texture",
+    "textures": {
+        "still": "marvel:block/fluid/vibranium/still",
+        "flowing": "marvel:block/fluid/vibranium/flowing"
+    }
+}
+

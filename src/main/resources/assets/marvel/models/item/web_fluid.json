@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "marvel:items/web_fluid"
+    "layer0": "marvel:item/web_fluid"
   }
 }

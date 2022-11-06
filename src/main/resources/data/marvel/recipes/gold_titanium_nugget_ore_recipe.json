@@ -1,0 +1,21 @@
+{
+  "group": "marvel",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#G#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/gold_titanium"
+    },
+    "G": {
+      "item": "marvel:gold_titanium_nugget"
+    }
+  },
+  "result": {
+    "item": "marvel:gold_titanium_alloy",
+    "count": 1
+  }
+}

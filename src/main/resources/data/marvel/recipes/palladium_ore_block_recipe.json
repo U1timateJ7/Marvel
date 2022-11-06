@@ -3,11 +3,14 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "###",
+    "#P#",
     "###"
   ],
   "key": {
     "#": {
+      "tag": "forge:ingots/palladium"
+    },
+    "P": {
       "item": "marvel:palladium_ingot"
     }
   },

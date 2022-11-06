@@ -14,7 +14,7 @@
       "item": "marvel:antman_suit_leggings"
     },
     "B": {
-      "item": "minecraft:black_dye"
+      "tag": "forge:dyes/black"
     }
   },
   "result": {

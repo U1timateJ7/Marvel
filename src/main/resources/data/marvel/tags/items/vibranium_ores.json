@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "marvel:vibranium_ore",
+    "marvel:deepslate_vibranium_ore",
+    {
+      "id": "create:crushed_vibranium_ore",
+      "required": false
+    }
+  ]
+}

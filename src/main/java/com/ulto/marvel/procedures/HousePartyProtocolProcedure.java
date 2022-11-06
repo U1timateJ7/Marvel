@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import net.minecraftforge.registries.ForgeRegistries;
+import com.ulto.marvel.sounds.MarvelModSounds;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,11 +42,11 @@ public class HousePartyProtocolProcedure {
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
 						_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-								ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
+								MarvelModSounds.get(new ResourceLocation("marvel:iron_man.house_party_protocol")),
 								SoundSource.NEUTRAL, 1, 1);
 					} else {
 						_level.playLocalSound(x, y, z,
-								ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("marvel:iron_man.house_party_protocol")),
+								MarvelModSounds.get(new ResourceLocation("marvel:iron_man.house_party_protocol")),
 								SoundSource.NEUTRAL, 1, 1, false);
 					}
 				}
@@ -71,76 +71,58 @@ public class HousePartyProtocolProcedure {
 					}
 
 					private void run() {
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark21Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark21Ready) {
 							Mark21SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark22Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark22Ready) {
 							Mark22SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark23Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark23Ready) {
 							Mark23SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark25Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark25Ready) {
 							Mark25SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark30Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark30Ready) {
 							Mark30SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark33Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark33Ready) {
 							Mark33SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark42Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark42Ready) {
 							Mark42SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark43Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark43Ready) {
 							Mark43SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark46Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark46Ready) {
 							Mark46SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark47Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark47Ready) {
 							Mark47SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).ironPatriotReady) {
+						if (MarvelModVariables.getPlayerVariables(entity).ironPatriotReady) {
 							IronPatriotSummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).warMachineMark2Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).warMachineMark2Ready) {
 							WarMachineSummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark16Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark16Ready) {
 							Mark16SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark17Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark17Ready) {
 							Mark17SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark19Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark19Ready) {
 							Mark19SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark20Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark20Ready) {
 							Mark20SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark37Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark37Ready) {
 							Mark37SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
-						if ((entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-								.orElse(new MarvelModVariables.PlayerVariables())).mark39Ready) {
+						if (MarvelModVariables.getPlayerVariables(entity).mark39Ready) {
 							Mark39SummonSummonProcedure.execute(world, x, y, z, entity);
 						}
 						MinecraftForge.EVENT_BUS.unregister(this);
