@@ -91,9 +91,9 @@ public class MarvelModEntityTypes {
 	public static final RegistryObject<EntityType<GrowingDiskEntity>> GROWING_DISK = register("growing_disk",
 			EntityType.Builder.<GrowingDiskEntity>of(GrowingDiskEntity::new, MobCategory.MISC).setCustomClientFactory(GrowingDiskEntity::new)
 					.setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
-	public static final RegistryObject<EntityType<SentryModeEntity>> SENTRY_MODE = register("sentry_mode",
-			EntityType.Builder.<SentryModeEntity>of(SentryModeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-					.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SentryModeEntity::new).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SentryMode>> SENTRY_MODE = register("sentry_mode",
+			EntityType.Builder.<SentryMode>of(SentryMode::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
+					.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SentryMode::new).sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<IronManFlamethrowerEntity>> FLAMETHROWER = register("flamethrower",
 			EntityType.Builder.<IronManFlamethrowerEntity>of(IronManFlamethrowerEntity::new, MobCategory.MISC)
 					.setCustomClientFactory(IronManFlamethrowerEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
@@ -121,6 +121,6 @@ public class MarvelModEntityTypes {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(SENTRY_MODE.get(), SentryModeEntity.createAttributes().build());
+		event.put(SENTRY_MODE.get(), SentryMode.createAttributes().build());
 	}
 }

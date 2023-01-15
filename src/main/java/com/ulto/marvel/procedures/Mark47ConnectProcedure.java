@@ -1,6 +1,6 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.world.entity.SentryModeEntity;
+import com.ulto.marvel.world.entity.SentryMode;
 import com.ulto.marvel.world.item.MarvelModItems;
 import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.commands.CommandSource;
@@ -666,40 +666,40 @@ public class Mark47ConnectProcedure {
 						new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""),
 								_level.getServer(), null).withSuppressedOutput(),
 						("tellraw " + entity.getDisplayName().getString() + " {\"translate\":\"iron_man.mark_47.remote.success\"}"));
-		} else if (!(((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+		} else if (!(((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 			Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 				return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 			}
 		}.compareDistOf(x, y, z)).orElse(null)) == (null))) {
-			if ((((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+			if ((((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 							? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD)
 							: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_HELMET.get()
-					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+					&& (((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST)
 									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_CHESTPLATE.get()
-					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+					&& (((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS)
 									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_LEGGINGS.get()
-					&& (((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+					&& (((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 				Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 					return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 				}
 			}.compareDistOf(x, y, z)).orElse(null))instanceof LivingEntity _entGetArmor
 									? _entGetArmor.getItemBySlot(EquipmentSlot.FEET)
 									: ItemStack.EMPTY).getItem() == MarvelModItems.IRON_MAN_MARK_47_BOOTS.get()) {
-				if ((((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+				if ((((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 					Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 						return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 					}
@@ -1321,19 +1321,19 @@ public class Mark47ConnectProcedure {
 					}
 					{
 						entity.teleportTo(
-								(((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+								(((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 										.stream().min(new Object() {
 											Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 												return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 											}
 										}.compareDistOf(x, y, z)).orElse(null)).getX()),
-								(((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+								(((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 										.stream().min(new Object() {
 											Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 												return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 											}
 										}.compareDistOf(x, y, z)).orElse(null)).getY()),
-								(((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+								(((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 										.stream().min(new Object() {
 											Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 												return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
@@ -1341,20 +1341,20 @@ public class Mark47ConnectProcedure {
 										}.compareDistOf(x, y, z)).orElse(null)).getZ()));
 						if (entity instanceof ServerPlayer _serverPlayer) {
 							_serverPlayer.connection.teleport((((Entity) world
-											.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+											.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 												Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 													return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 												}
 											}.compareDistOf(x, y, z)).orElse(null)).getX()),
 									(((Entity) world
-											.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+											.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 											.stream().min(new Object() {
 												Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 													return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 												}
 											}.compareDistOf(x, y, z)).orElse(null)).getY()),
 									(((Entity) world
-											.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+											.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 											.stream().min(new Object() {
 												Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 													return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
@@ -1365,14 +1365,14 @@ public class Mark47ConnectProcedure {
 					}
 					{
 						entity.setYRot(
-								((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+								((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 										.stream().min(new Object() {
 											Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 												return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 											}
 										}.compareDistOf(x, y, z)).orElse(null)).getYRot());
 						entity.setXRot(
-								((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
+								((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true)
 										.stream().min(new Object() {
 											Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 												return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
@@ -1387,12 +1387,12 @@ public class Mark47ConnectProcedure {
 							_entity.yHeadRotO = _entity.getYRot();
 						}
 					}
-					if (!((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+					if (!((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 						Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 							return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 						}
 					}.compareDistOf(x, y, z)).orElse(null)).level.isClientSide())
-						((Entity) world.getEntitiesOfClass(SentryModeEntity.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
+						((Entity) world.getEntitiesOfClass(SentryMode.class, AABB.ofSize(new Vec3(x, y, z), 400, 400, 400), e -> true).stream().min(new Object() {
 							Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
 								return Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_x, _y, _z));
 							}

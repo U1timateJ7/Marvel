@@ -1,10 +1,9 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.world.entity.SentryModeEntity;
-import com.ulto.marvel.world.entity.MarvelModEntityTypes;
 import com.ulto.marvel.sounds.MarvelModSounds;
+import com.ulto.marvel.world.entity.MarvelModEntityTypes;
+import com.ulto.marvel.world.entity.SentryMode;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -31,9 +30,11 @@ public class SentryModeProcedure {
 		if (entity == null)
 			return;
 		if (world instanceof ServerLevel serverLevel && entity instanceof Player player) {
-			SentryModeEntity sentry = MarvelModEntityTypes.SENTRY_MODE.get().spawn(serverLevel, null, new TranslatableComponent("suit.marvel." + name), null, entity.blockPosition(), MobSpawnType.TRIGGERED, false, true);
+			SentryMode sentry = MarvelModEntityTypes.SENTRY_MODE.get().spawn(serverLevel, null, null, null, entity.blockPosition(), MobSpawnType.TRIGGERED, false, true);
 			if (sentry != null) {
 				sentry.setPos(entity.position());
+
+				sentry.setSuit(name);
 
 				sentry.setItemSlot(EquipmentSlot.HEAD, player.getInventory().armor.get(3).copy());
 				sentry.setItemSlot(EquipmentSlot.CHEST, player.getInventory().armor.get(2).copy());

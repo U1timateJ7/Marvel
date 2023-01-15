@@ -319,6 +319,7 @@ public class MarvelModItems {
 		public static final TagKey<Item> IRON_MAN_HELMETS = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "iron_man_helmets"));
 		public static final TagKey<Item> NANOTECH_HELMETS = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "nanotech_helmets"));
 		public static final TagKey<Item> PALLADIUM_ORES = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "palladium_ores"));
+		public static final TagKey<Item> SPIDER_MAN_ARMOR = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "spider_man_armor"));
 		public static final TagKey<Item> TITANIUM_ORES = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "titanium_ores"));
 		public static final TagKey<Item> URU_ORES = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "uru_ores"));
 		public static final TagKey<Item> VIBRANIUM_ORES = REGISTRY.createTagKey(new ResourceLocation(MarvelMod.MOD_ID, "vibranium_ores"));

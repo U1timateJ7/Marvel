@@ -30,9 +30,9 @@ public class Mark50SuitDownProcedure {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-							MarvelModSounds.get(new ResourceLocation("marvel:iron_man.mark50.suit_down")), SoundSource.NEUTRAL, 1, 1);
+							MarvelModSounds.get(new ResourceLocation("marvel:iron_man.mark50.suit_up")), SoundSource.NEUTRAL, 1, 1);
 				} else {
-					_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:iron_man.mark50.suit_down")),
+					_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:iron_man.mark50.suit_up")),
 							SoundSource.NEUTRAL, 1, 1, false);
 				}
 			}

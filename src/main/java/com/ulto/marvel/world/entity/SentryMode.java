@@ -1,10 +1,18 @@
 
 package com.ulto.marvel.world.entity;
 
+import com.ulto.marvel.common.MarvelMod;
 import com.ulto.marvel.procedures.SentryModeEntityDiesProcedure;
 import com.ulto.marvel.procedures.SentryModeSuitUpProcedure;
 import com.ulto.marvel.procedures.SentryTeleportProcedure;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -19,9 +27,7 @@ import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
@@ -29,16 +35,53 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
-public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
-	public SentryModeEntity(PlayMessages.SpawnEntity packet, Level world) {
+public class SentryMode extends TamableAnimal implements RangedAttackMob {
+	public static final EntityDataAccessor<String> DATA_SUIT_ID = SynchedEntityData.defineId(SentryMode.class, EntityDataSerializers.STRING);
+
+	public SentryMode(PlayMessages.SpawnEntity packet, Level world) {
 		this(MarvelModEntityTypes.SENTRY_MODE.get(), world);
 	}
 
-	public SentryModeEntity(EntityType<SentryModeEntity> type, Level world) {
+	public SentryMode(EntityType<SentryMode> type, Level world) {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
 		setPersistenceRequired();
+	}
+
+	@Override
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_SUIT_ID, "none");
+	}
+
+	public String getSuit() {
+		return entityData.get(DATA_SUIT_ID);
+	}
+
+	public void setSuit(String name) {
+		entityData.set(DATA_SUIT_ID, name);
+		setItemSlot(EquipmentSlot.HEAD, ForgeRegistries.ITEMS.getValue(new ResourceLocation(MarvelMod.MOD_ID, name + "_helmet")).getDefaultInstance());
+		setItemSlot(EquipmentSlot.CHEST, ForgeRegistries.ITEMS.getValue(new ResourceLocation(MarvelMod.MOD_ID, name + "_chestplate")).getDefaultInstance());
+		setItemSlot(EquipmentSlot.LEGS, ForgeRegistries.ITEMS.getValue(new ResourceLocation(MarvelMod.MOD_ID, name + "_leggings")).getDefaultInstance());
+		setItemSlot(EquipmentSlot.FEET, ForgeRegistries.ITEMS.getValue(new ResourceLocation(MarvelMod.MOD_ID, name + "_boots")).getDefaultInstance());
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag p_21819_) {
+		super.addAdditionalSaveData(p_21819_);
+		p_21819_.putString("Suit", getSuit());
+	}
+
+	@Override
+	protected Component getTypeName() {
+		return new TranslatableComponent("suit.marvel." + getSuit());
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag p_21815_) {
+		super.readAdditionalSaveData(p_21815_);
+		if (p_21815_.contains("Suit", Tag.TAG_STRING)) setSuit(p_21815_.getString("Suit"));
 	}
 
 	@Override
@@ -52,21 +95,17 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 		this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 1, (float) 10, (float) 2, false) {
 			@Override
 			public boolean canUse() {
-				double x = SentryModeEntity.this.getX();
-				double y = SentryModeEntity.this.getY();
-				double z = SentryModeEntity.this.getZ();
-				Entity entity = SentryModeEntity.this;
-				Level world = SentryModeEntity.this.level;
+				double x = SentryMode.this.getX();
+				double y = SentryMode.this.getY();
+				double z = SentryMode.this.getZ();
+				Entity entity = SentryMode.this;
+				Level world = SentryMode.this.level;
 				return super.canUse() && SentryTeleportProcedure.execute(entity);
 			}
 
 			@Override
 			public boolean canContinueToUse() {
-				double x = SentryModeEntity.this.getX();
-				double y = SentryModeEntity.this.getY();
-				double z = SentryModeEntity.this.getZ();
-				Entity entity = SentryModeEntity.this;
-				Level world = SentryModeEntity.this.level;
+				Entity entity = SentryMode.this;
 				return super.canContinueToUse() && SentryTeleportProcedure.execute(entity);
 			}
 		});
@@ -84,16 +123,6 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 	}
 
 	@Override
-	public MobType getMobType() {
-		return MobType.UNDEFINED;
-	}
-
-	@Override
-	public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-		return false;
-	}
-
-	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
 		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.item.break"));
 	}
@@ -105,7 +134,7 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (source == DamageSource.FALL || (source.getEntity() != null && source.getEntity() instanceof SentryModeEntity))
+		if (source == DamageSource.FALL || (source.getEntity() != null && source.getEntity() instanceof SentryMode))
 			return false;
 		return super.hurt(source, amount);
 	}
@@ -116,7 +145,6 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 		double x = this.getX();
 		double y = this.getY();
 		double z = this.getZ();
-		Entity sourceentity = source.getEntity();
 		Entity entity = this;
 		Level world = this.level;
 
@@ -125,46 +153,6 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 
 	@Override
 	public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
-		ItemStack itemstack = sourceentity.getItemInHand(hand);
-		InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-		Item item = itemstack.getItem();
-		if (itemstack.getItem() instanceof SpawnEggItem) {
-			retval = super.mobInteract(sourceentity, hand);
-		} else if (this.level.isClientSide()) {
-			retval = (this.isTame() && this.isOwnedBy(sourceentity) || this.isFood(itemstack))
-					? InteractionResult.sidedSuccess(this.level.isClientSide())
-					: InteractionResult.PASS;
-		} else {
-			if (this.isTame()) {
-				if (this.isOwnedBy(sourceentity)) {
-					if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-						this.usePlayerItem(sourceentity, hand, itemstack);
-						this.heal((float) item.getFoodProperties(itemstack, this).getNutrition());
-						retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-					} else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-						this.usePlayerItem(sourceentity, hand, itemstack);
-						this.heal(4);
-						retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-					} else {
-						retval = super.mobInteract(sourceentity, hand);
-					}
-				}
-			} else if (this.isFood(itemstack)) {
-				this.usePlayerItem(sourceentity, hand, itemstack);
-				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-					this.tame(sourceentity);
-					this.level.broadcastEntityEvent(this, (byte) 7);
-				} else {
-					this.level.broadcastEntityEvent(this, (byte) 6);
-				}
-				this.setPersistenceRequired();
-				retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-			} else {
-				retval = super.mobInteract(sourceentity, hand);
-				if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME)
-					this.setPersistenceRequired();
-			}
-		}
 		double x = this.getX();
 		double y = this.getY();
 		double z = this.getZ();
@@ -172,7 +160,7 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 		Level world = this.level;
 
 		SentryModeSuitUpProcedure.execute(world, x, y, z, entity, sourceentity);
-		return retval;
+		return InteractionResult.sidedSuccess(level.isClientSide());
 	}
 
 	@Override
@@ -182,7 +170,7 @@ public class SentryModeEntity extends TamableAnimal implements RangedAttackMob {
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-		SentryModeEntity retval = MarvelModEntityTypes.SENTRY_MODE.get().create(serverWorld);
+		SentryMode retval = MarvelModEntityTypes.SENTRY_MODE.get().create(serverWorld);
 		retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
 		return retval;
 	}

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "marvel:spider_man_suit_helmet",
+    "marvel:spider_man_suit_chestplate",
+    "marvel:spider_man_suit_leggings",
+    "marvel:spider_man_suit_boots",
+    "marvel:iron_spider_suit_helmet",
+    "marvel:iron_spider_suit_chestplate",
+    "marvel:iron_spider_suit_leggings",
+    "marvel:iron_spider_suit_boots"
+  ]
+}
