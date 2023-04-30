@@ -1,6 +1,7 @@
 
 package com.ulto.marvel.world.item;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.ItemStack;
@@ -40,10 +41,7 @@ public class UnibeamItem extends Item {
 	@Override
 	public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entityLiving, int timeLeft) {
 		if (!world.isClientSide() && entityLiving instanceof ServerPlayer entity) {
-			double x = entity.getX();
-			double y = entity.getY();
-			double z = entity.getZ();
-			if (true) {
+			if (IronManSuitItem.getBatteryOfEntity(entity, EquipmentSlot.CHEST) > 10 || entity.isCreative()) {
 				UnibeamEntity entityarrow = UnibeamEntity.shoot(world, entity, world.getRandom(), 2f, 4, 5);
 				itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
 				entityarrow.pickup = AbstractArrow.Pickup.DISALLOWED;

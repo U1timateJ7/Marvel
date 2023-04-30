@@ -77,6 +77,9 @@ public abstract class IronManSuitItem extends ArmorItem implements GlowingArmor 
     }
 
     protected void onBatteryRunOut(ItemStack stack, Level level, Entity entity, EquipmentSlot slot) {
+        if (isNanotech()) {
+            
+        }
     }
 
     public static float getBattery(ItemStack stack) {
@@ -97,6 +100,17 @@ public abstract class IronManSuitItem extends ArmorItem implements GlowingArmor 
 
     public static float getBatteryOfEntity(LivingEntity entity, EquipmentSlot slot) {
         return entity instanceof Player player && player.isCreative() ? 100 : getBattery(entity.getItemBySlot(slot));
+    }
+
+    public static boolean hasPower(LivingEntity entity, float power) {
+        boolean hasPower = true;
+        for (ItemStack stack : entity.getArmorSlots()) {
+            if (stack.getItem() instanceof IronManSuitItem) {
+                hasPower = hasPower && IronManSuitItem.getBattery(stack) > power;
+            }
+        }
+        if (entity instanceof Player player && player.isCreative()) hasPower = true;
+        return hasPower;
     }
 
     @Override

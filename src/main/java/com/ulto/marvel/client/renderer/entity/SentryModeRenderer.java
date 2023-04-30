@@ -1,7 +1,7 @@
 package com.ulto.marvel.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.ulto.marvel.client.renderer.layer.GlowingHumanoidArmorLayer;
+import com.ulto.marvel.client.renderer.entity.layer.GlowingHumanoidArmorLayer;
 import com.ulto.marvel.world.entity.SentryMode;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;

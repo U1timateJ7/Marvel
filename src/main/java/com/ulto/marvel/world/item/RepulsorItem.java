@@ -1,6 +1,7 @@
 
 package com.ulto.marvel.world.item;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.ItemStack;
@@ -40,11 +41,13 @@ public class RepulsorItem extends Item {
 	@Override
 	public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entityLiving, int timeLeft) {
 		if (!world.isClientSide() && entityLiving instanceof ServerPlayer entity) {
-			RepulsorEntity entityarrow = RepulsorEntity.shoot(world, entity, world.getRandom(), 2f, 2, 2);
-			itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
-			entityarrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+			if (IronManSuitItem.getBatteryOfEntity(entity, EquipmentSlot.CHEST) > 1.5f || entity.isCreative()) {
+				RepulsorEntity entityarrow = RepulsorEntity.shoot(world, entity, world.getRandom(), 2f, 2, 2);
+				itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
+				entityarrow.pickup = AbstractArrow.Pickup.DISALLOWED;
 
-			RepulsorRangedItemUsedProcedure.execute(entity, itemstack);
+				RepulsorRangedItemUsedProcedure.execute(entity, itemstack);
+			}
 		}
 	}
 }

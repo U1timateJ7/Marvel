@@ -1,4 +1,4 @@
-package com.ulto.marvel.client.renderer.layer;
+package com.ulto.marvel.client.renderer.entity.layer;
 
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,10 +38,16 @@ public class GlowingHumanoidArmorLayer<T extends LivingEntity, M extends Humanoi
     }
 
     public void render(PoseStack p_117096_, MultiBufferSource p_117097_, int p_117098_, T p_117099_, float p_117100_, float p_117101_, float p_117102_, float p_117103_, float p_117104_, float p_117105_) {
-        this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.CHEST, this.getArmorModel(EquipmentSlot.CHEST));
-        this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.LEGS, this.getArmorModel(EquipmentSlot.LEGS));
-        this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.FEET, this.getArmorModel(EquipmentSlot.FEET));
-        this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.HEAD, this.getArmorModel(EquipmentSlot.HEAD));
+        if (shouldRender(p_117099_)) {
+            this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.CHEST, this.getArmorModel(EquipmentSlot.CHEST));
+            this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.LEGS, this.getArmorModel(EquipmentSlot.LEGS));
+            this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.FEET, this.getArmorModel(EquipmentSlot.FEET));
+            this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.HEAD, this.getArmorModel(EquipmentSlot.HEAD));
+        }
+    }
+
+    private boolean shouldRender(T entity) {
+        return IronManSuitItem.hasPower(entity, 0);
     }
 
     private void renderArmorPiece(PoseStack p_117119_, MultiBufferSource p_117120_, int packedLight, T p_117121_, EquipmentSlot p_117122_, A p_117124_) {

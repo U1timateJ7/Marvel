@@ -1,6 +1,6 @@
 package com.ulto.marvel.mixin;
 
-import com.ulto.marvel.client.renderer.layer.GlowingHumanoidArmorLayer;
+import com.ulto.marvel.client.renderer.entity.layer.GlowingHumanoidArmorLayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
