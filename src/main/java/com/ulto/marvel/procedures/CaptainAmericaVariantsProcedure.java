@@ -16,7 +16,6 @@ import javax.annotation.Nullable;
 public class CaptainAmericaVariantsProcedure {
 	@SubscribeEvent
 	public static void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
-		Entity entity = event.getPlayer();
 		execute(event, event.getPlayer(), event.getCrafting());
 	}
 
@@ -52,8 +51,7 @@ public class CaptainAmericaVariantsProcedure {
 				ItemHandlerHelper.giveItemToPlayer(_player, new ItemStack(MarvelModItems.JOHN_WALKER_SUIT_LEGGINGS.get()));
 				ItemHandlerHelper.giveItemToPlayer(_player, new ItemStack(MarvelModItems.JOHN_WALKER_SUIT_BOOTS.get()));
 			}
-		}
-		if (itemstack.getItem() == MarvelModItems.US_AGENT_SUIT_CHESTPLATE.get()) {
+		} else if (itemstack.getItem() == MarvelModItems.US_AGENT_SUIT_CHESTPLATE.get()) {
 			if (entity instanceof Player _player) {
 				ItemHandlerHelper.giveItemToPlayer(_player, new ItemStack(MarvelModItems.US_AGENT_SUIT_HELMET.get()));
 				ItemHandlerHelper.giveItemToPlayer(_player, new ItemStack(MarvelModItems.US_AGENT_SUIT_LEGGINGS.get()));

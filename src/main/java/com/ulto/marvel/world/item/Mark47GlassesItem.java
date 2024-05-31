@@ -1,7 +1,8 @@
 
 package com.ulto.marvel.world.item;
 
-import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.client.model.MarvelModModels;
+import com.ulto.marvel.client.model.HelmetModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -63,7 +64,7 @@ public class Mark47GlassesItem extends ArmorItem {
 			public float getKnockbackResistance() {
 				return 0f;
 			}
-		}, EquipmentSlot.CHEST, properties);
+		}, EquipmentSlot.HEAD, properties);
 	}
 
 	public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.IItemRenderProperties> consumer) {
@@ -71,7 +72,7 @@ public class Mark47GlassesItem extends ArmorItem {
 			@Override
 			public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 				HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
-						Map.of("head", new ModelHelmet(Minecraft.getInstance().getEntityModels().bakeLayer(ModelHelmet.LAYER_LOCATION)).Head,
+						Map.of("head", new HelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.HELMET)).Head,
 								"hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 								new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
 								new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",

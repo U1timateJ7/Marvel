@@ -1,7 +1,3 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package com.ulto.marvel.world.item;
 
 import net.minecraftforge.api.distmarker.OnlyIn;

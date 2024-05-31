@@ -3,6 +3,7 @@ package com.ulto.marvel.world.level.block.entity;
 import com.ulto.marvel.world.level.block.IronManSuitChargerBlock;
 import com.ulto.marvel.world.level.block.MarvelModBlocks;
 import com.ulto.marvel.world.item.IronManSuitItem;
+import com.ulto.marvel.world.level.block.state.properties.PowerStage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -20,6 +21,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -51,6 +54,12 @@ public class IronManSuitChargerBlockEntity extends RandomizableContainerBlockEnt
 		if (!this.trySaveLootTable(compound)) {
 			ContainerHelper.saveAllItems(compound, this.stacks);
 		}
+	}
+
+	@Override
+	public AABB getRenderBoundingBox() {
+		VoxelShape occlusionShape = getBlockState().getOcclusionShape(level, getBlockPos());
+		return occlusionShape.bounds().move(getBlockPos());
 	}
 
 	@Override
@@ -148,6 +157,9 @@ public class IronManSuitChargerBlockEntity extends RandomizableContainerBlockEnt
 					if (stack.getItem() instanceof IronManSuitItem) IronManSuitItem.addBattery(stack, 5f / 60f / 20f);
 				}
 			}
+			float minimumBattery = Math.min(Math.min(suitCharger.getItem(0).isEmpty() ? 100 : suitCharger.getItem(0).getOrCreateTag().getFloat("Battery"), suitCharger.getItem(1).isEmpty() ? 100 : suitCharger.getItem(1).getOrCreateTag().getFloat("Battery")), Math.min(suitCharger.getItem(2).isEmpty() ? 100 : suitCharger.getItem(2).getOrCreateTag().getFloat("Battery"), suitCharger.getItem(3).isEmpty() ? 100 : suitCharger.getItem(3).getOrCreateTag().getFloat("Battery")));
+			if (suitCharger.getItem(0).isEmpty() && suitCharger.getItem(1).isEmpty() && suitCharger.getItem(2).isEmpty() && suitCharger.getItem(3).isEmpty()) minimumBattery = 0;
+			level.setBlock(pos, state.setValue(IronManSuitChargerBlock.ACTIVE, suitCharger.active).setValue(IronManSuitChargerBlock.POWER_STAGE, PowerStage.getStage(minimumBattery)), 2);
 		}
 	}
 

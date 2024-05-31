@@ -51,20 +51,54 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     private boolean isCurrentBlockClimbable(BlockState state, BlockPos pos) {
-        if (!state.getCollisionShape(level, pos).isEmpty() || ForgeHooks.isLivingOnLadder(state, level, pos, (LivingEntity)(Object)this).isPresent()) return true;
+        if (ForgeHooks.isLivingOnLadder(state, level, pos, (LivingEntity)(Object)this).isPresent()) return true;
         else {
-            if (level.getBlockState(pos.below()).isCollisionShapeFullBlock(level, pos.below())) {
-                boolean north = level.getBlockState(pos.north()).isCollisionShapeFullBlock(level, pos.north()) && level.getBlockState(pos.north().above()).isCollisionShapeFullBlock(level, pos.north().above());
-                boolean east = level.getBlockState(pos.east()).isCollisionShapeFullBlock(level, pos.east()) && level.getBlockState(pos.east().above()).isCollisionShapeFullBlock(level, pos.east().above());
-                boolean south = level.getBlockState(pos.south()).isCollisionShapeFullBlock(level, pos.south()) && level.getBlockState(pos.south().above()).isCollisionShapeFullBlock(level, pos.south().above());
-                boolean west = level.getBlockState(pos.west()).isCollisionShapeFullBlock(level, pos.west()) && level.getBlockState(pos.west().above()).isCollisionShapeFullBlock(level, pos.west().above());
-                return north || east || south || west;
+            if (state.getCollisionShape(level, pos).isEmpty()) {
+                if (!level.getBlockState(pos.below()).getCollisionShape(level, pos.below()).isEmpty()) {
+                    boolean north = !level.getBlockState(pos.north()).getCollisionShape(level, pos.north()).isEmpty() && !level.getBlockState(pos.north().above()).getCollisionShape(level, pos.north().above()).isEmpty();
+                    boolean east = !level.getBlockState(pos.east()).getCollisionShape(level, pos.east()).isEmpty() && !level.getBlockState(pos.east().above()).getCollisionShape(level, pos.east().above()).isEmpty();
+                    boolean south = !level.getBlockState(pos.south()).getCollisionShape(level, pos.south()).isEmpty() && !level.getBlockState(pos.south().above()).getCollisionShape(level, pos.south().above()).isEmpty();
+                    boolean west = !level.getBlockState(pos.west()).getCollisionShape(level, pos.west()).isEmpty() && !level.getBlockState(pos.west().above()).getCollisionShape(level, pos.west().above()).isEmpty();
+                    return north || east || south || west;
+                } else {
+                    boolean north = !level.getBlockState(pos.north()).getCollisionShape(level, pos.north()).isEmpty();
+                    boolean east = !level.getBlockState(pos.east()).getCollisionShape(level, pos.east()).isEmpty();
+                    boolean south = !level.getBlockState(pos.south()).getCollisionShape(level, pos.south()).isEmpty();
+                    boolean west = !level.getBlockState(pos.west()).getCollisionShape(level, pos.west()).isEmpty();
+                    boolean north1 = !level.getBlockState(pos.north().above()).getCollisionShape(level, pos.north().above()).isEmpty();
+                    boolean east1 = !level.getBlockState(pos.east().above()).getCollisionShape(level, pos.east().above()).isEmpty();
+                    boolean south1 = !level.getBlockState(pos.south().above()).getCollisionShape(level, pos.south().above()).isEmpty();
+                    boolean west1 = !level.getBlockState(pos.west().above()).getCollisionShape(level, pos.west().above()).isEmpty();
+                    boolean north2 = !level.getBlockState(pos.north().above(2)).getCollisionShape(level, pos.north().above(2)).isEmpty();
+                    boolean east2 = !level.getBlockState(pos.east().above(2)).getCollisionShape(level, pos.east().above(2)).isEmpty();
+                    boolean south2 = !level.getBlockState(pos.south().above(2)).getCollisionShape(level, pos.south().above(2)).isEmpty();
+                    boolean west2 = !level.getBlockState(pos.west().above(2)).getCollisionShape(level, pos.west().above(2)).isEmpty();
+                    boolean above = !level.getBlockState(pos.above(2)).getCollisionShape(level, pos.above(2)).isEmpty();
+                    return north || east || south || west || north1 || east1 || south1 || west1 || north2 || east2 || south2 || west2 || above;
+                }
             } else {
-                boolean north = level.getBlockState(pos.north()).isCollisionShapeFullBlock(level, pos.north());
-                boolean east = level.getBlockState(pos.east()).isCollisionShapeFullBlock(level, pos.east());
-                boolean south = level.getBlockState(pos.south()).isCollisionShapeFullBlock(level, pos.south());
-                boolean west = level.getBlockState(pos.west()).isCollisionShapeFullBlock(level, pos.west());
-                return north || east || south || west;
+                if (!level.getBlockState(pos.below()).getCollisionShape(level, pos.below()).isEmpty()) {
+                    boolean north = !level.getBlockState(pos.north().above()).getCollisionShape(level, pos.north().above()).isEmpty() && !level.getBlockState(pos.north().above(2)).getCollisionShape(level, pos.north().above(2)).isEmpty();
+                    boolean east = !level.getBlockState(pos.east().above()).getCollisionShape(level, pos.east().above()).isEmpty() && !level.getBlockState(pos.east().above(2)).getCollisionShape(level, pos.east().above(2)).isEmpty();
+                    boolean south = !level.getBlockState(pos.south().above()).getCollisionShape(level, pos.south().above()).isEmpty() && !level.getBlockState(pos.south().above(2)).getCollisionShape(level, pos.south().above(2)).isEmpty();
+                    boolean west = !level.getBlockState(pos.west().above()).getCollisionShape(level, pos.west().above()).isEmpty() && !level.getBlockState(pos.west().above(2)).getCollisionShape(level, pos.west().above(2)).isEmpty();
+                    return north || east || south || west;
+                } else {
+                    boolean north = !level.getBlockState(pos.north().above()).getCollisionShape(level, pos.north().above()).isEmpty();
+                    boolean east = !level.getBlockState(pos.east().above()).getCollisionShape(level, pos.east().above()).isEmpty();
+                    boolean south = !level.getBlockState(pos.south().above()).getCollisionShape(level, pos.south().above()).isEmpty();
+                    boolean west = !level.getBlockState(pos.west().above()).getCollisionShape(level, pos.west().above()).isEmpty();
+                    boolean north1 = !level.getBlockState(pos.north().above(2)).getCollisionShape(level, pos.north().above(2)).isEmpty();
+                    boolean east1 = !level.getBlockState(pos.east().above(2)).getCollisionShape(level, pos.east().above(2)).isEmpty();
+                    boolean south1 = !level.getBlockState(pos.south().above(2)).getCollisionShape(level, pos.south().above(2)).isEmpty();
+                    boolean west1 = !level.getBlockState(pos.west().above(2)).getCollisionShape(level, pos.west().above(2)).isEmpty();
+                    boolean north2 = !level.getBlockState(pos.north().above(3)).getCollisionShape(level, pos.north().above(3)).isEmpty();
+                    boolean east2 = !level.getBlockState(pos.east().above(3)).getCollisionShape(level, pos.east().above(3)).isEmpty();
+                    boolean south2 = !level.getBlockState(pos.south().above(3)).getCollisionShape(level, pos.south().above(3)).isEmpty();
+                    boolean west2 = !level.getBlockState(pos.west().above(3)).getCollisionShape(level, pos.west().above(3)).isEmpty();
+                    boolean above = !level.getBlockState(pos.above(3)).getCollisionShape(level, pos.above(3)).isEmpty();
+                    return north || east || south || west || north1 || east1 || south1 || west1 || north2 || east2 || south2 || west2 || above;
+                }
             }
         }
     }

@@ -34,8 +34,7 @@ public class ShieldPlusBloodProcedure {
 	private static void execute(@Nullable Event event, Entity entity, Entity sourceentity) {
 		if (entity == null || sourceentity == null)
 			return;
-		double randomNumber = 0;
-		randomNumber = new Random().nextInt(1 + 1);
+		double randomNumber = new Random().nextInt(1 + 1);
 		if (randomNumber == 1) {
 			if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)
 					.getItem() == MarvelModItems.VIBRANIUM_SHIELD.get()) {

@@ -1,5 +1,6 @@
 package com.ulto.marvel.procedures;
 
+import com.ulto.marvel.network.MarvelModVariables;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -17,7 +18,9 @@ public class RemoteControlDieProcedure {
     private static void execute(Event event, LivingEntity entity) {
         if (entity == null)
             return;
-        event.setCanceled(true);
-        Mark47DisconnectProcedure.execute(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity);
+        if (MarvelModVariables.getPlayerVariables(entity).controllingMark47) {
+            event.setCanceled(true);
+            Mark47DisconnectProcedure.execute(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity);
+        }
     }
 }

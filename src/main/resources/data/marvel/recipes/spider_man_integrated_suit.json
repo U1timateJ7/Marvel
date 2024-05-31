@@ -1,0 +1,22 @@
+{
+  "group": "spider_man",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "marvel:spider_man_advanced_suit_helmet"
+    },
+    {
+      "item": "marvel:spider_man_advanced_suit_chestplate"
+    },
+    {
+      "item": "marvel:spider_man_advanced_suit_leggings"
+    },
+    {
+      "item": "marvel:spider_man_advanced_suit_boots"
+    }
+  ],
+  "result": {
+    "item": "marvel:spider_man_integrated_suit_chestplate",
+    "count": 1
+  }
+}

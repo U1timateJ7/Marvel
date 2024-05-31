@@ -1,9 +1,10 @@
 
 package com.ulto.marvel.world.level.block;
 
+import com.ulto.marvel.world.item.IronManSuitItem;
 import com.ulto.marvel.world.level.block.entity.IronManSuitChargerBlockEntity;
 import com.ulto.marvel.world.level.block.entity.MarvelModBlockEntityTypes;
-import com.ulto.marvel.world.item.IronManSuitItem;
+import com.ulto.marvel.world.level.block.state.properties.PowerStage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -18,37 +19,47 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 public class IronManSuitChargerBlock extends BaseEntityBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+	public static final EnumProperty<PowerStage> POWER_STAGE = EnumProperty.create("power_stage", PowerStage.class);
 
 	public IronManSuitChargerBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false).setValue(POWER_STAGE, PowerStage.STAGE_0));
+	}
+
+	public RenderShape getRenderShape(BlockState p_49232_) {
+		return RenderShape.MODEL;
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
-		p_49915_.add(FACING);
+		p_49915_.add(FACING, ACTIVE, POWER_STAGE);
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
 		return switch (state.getValue(FACING)) {
-			case EAST, WEST -> Shapes.box(4f/16f, 0, 1f/16f, 12f/16f, 4f/16f, 15f/16f);
-			default -> Shapes.box(1f/16f, 0, 4f/16f, 15f/16f, 4f/16f, 12f/16f);
+			case EAST, WEST -> box(4, 0, 1, 12, 4, 15);
+			default -> box(1, 0, 4, 15, 4, 12);
 		};
 	}
 
@@ -105,12 +116,35 @@ public class IronManSuitChargerBlock extends BaseEntityBlock {
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 		ItemStack handStack = player.getItemInHand(hand);
-		if (handStack.getItem() instanceof IronManSuitItem suitItem && !suitItem.isNanotech() || handStack.isEmpty()) {
-			IronManSuitChargerBlockEntity blockEntity = (IronManSuitChargerBlockEntity) level.getBlockEntity(pos);
-			if (blockEntity != null) {
-				if (swapItem(blockEntity, player, handStack.getItem() instanceof IronManSuitItem suitItem ? suitItem.getSlot() : blockEntity.hasItemInSlot(EquipmentSlot.FEET) ? EquipmentSlot.FEET : blockEntity.hasItemInSlot(EquipmentSlot.LEGS) ? EquipmentSlot.LEGS : blockEntity.hasItemInSlot(EquipmentSlot.CHEST) ? EquipmentSlot.CHEST : EquipmentSlot.HEAD, handStack, hand)) {
-					if (!level.isClientSide()) player.getInventory().setChanged();
-					return InteractionResult.sidedSuccess(level.isClientSide);
+		IronManSuitChargerBlockEntity blockEntity = (IronManSuitChargerBlockEntity) level.getBlockEntity(pos);
+		if (blockEntity != null) {
+			if (player.isSecondaryUseActive()) {
+				if (blockEntity.isEmpty()) {
+					for (ItemStack armorItem : player.getArmorSlots()) {
+						if (armorItem.getItem() instanceof IronManSuitItem ironManSuitItem && !ironManSuitItem.isNanotech()) {
+							swapItem(blockEntity, player, ironManSuitItem.getSlot(), armorItem);
+						}
+					}
+				} else {
+					for (EquipmentSlot slot : Arrays.stream(EquipmentSlot.values()).filter(equipmentSlot -> equipmentSlot.getType() == EquipmentSlot.Type.ARMOR).toList()) {
+						ItemStack itemstack = blockEntity.getItemBySlot(slot);
+						ItemStack armorItem = player.getItemBySlot(slot);
+						if (armorItem.getItem() instanceof IronManSuitItem ironManSuitItem && !ironManSuitItem.isNanotech()) {
+							swapItem(blockEntity, player, slot, armorItem);
+						} else {
+							player.setItemSlot(slot, itemstack);
+							ItemHandlerHelper.giveItemToPlayer(player, armorItem);
+							blockEntity.setItemSlot(slot, ItemStack.EMPTY);
+						}
+					}
+				}
+				return InteractionResult.sidedSuccess(level.isClientSide);
+			} else {
+				if (handStack.getItem() instanceof IronManSuitItem suitItem && !suitItem.isNanotech() || handStack.isEmpty()) {
+					if (swapItem(blockEntity, player, handStack.getItem() instanceof IronManSuitItem suitItem ? suitItem.getSlot() : blockEntity.hasItemInSlot(EquipmentSlot.HEAD) ? EquipmentSlot.HEAD : blockEntity.hasItemInSlot(EquipmentSlot.CHEST) ? EquipmentSlot.CHEST : blockEntity.hasItemInSlot(EquipmentSlot.LEGS) ? EquipmentSlot.LEGS : EquipmentSlot.FEET, handStack, hand)) {
+						if (!level.isClientSide()) player.getInventory().setChanged();
+						return InteractionResult.sidedSuccess(level.isClientSide);
+					}
 				}
 			}
 		}
@@ -136,6 +170,25 @@ public class IronManSuitChargerBlock extends BaseEntityBlock {
 		}
 	}
 
+		private boolean swapItem(IronManSuitChargerBlockEntity blockEntity, Player p_31589_, EquipmentSlot p_31590_, ItemStack p_31591_) {
+			ItemStack itemstack = blockEntity.getItemBySlot(p_31590_);
+			if (!p_31591_.isEmpty() && p_31591_.getCount() > 1) {
+				if (!itemstack.isEmpty()) {
+					return false;
+				} else {
+					ItemStack itemstack1 = p_31591_.copy();
+					itemstack1.setCount(1);
+					blockEntity.setItemSlot(p_31590_, itemstack1);
+					p_31591_.shrink(1);
+					return true;
+				}
+			} else {
+				blockEntity.setItemSlot(p_31590_, p_31591_);
+				p_31589_.setItemSlot(p_31590_, itemstack);
+				return true;
+			}
+		}
+
 	@Override
 	public boolean propagatesSkylightDown(BlockState p_49928_, BlockGetter p_49929_, BlockPos p_49930_) {
 		return true;
@@ -143,5 +196,15 @@ public class IronManSuitChargerBlock extends BaseEntityBlock {
 
 	public float getShadeBrightness(BlockState p_48731_, BlockGetter p_48732_, BlockPos p_48733_) {
 		return 1.0F;
+	}
+
+	@Override
+	public VoxelShape getVisualShape(BlockState p_60479_, BlockGetter p_60480_, BlockPos p_60481_, CollisionContext p_60482_) {
+		return box(0, 0, 0, 16, 32, 16);
+	}
+
+	@Override
+	public VoxelShape getOcclusionShape(BlockState p_60578_, BlockGetter p_60579_, BlockPos p_60580_) {
+		return box(0, 0, 0, 16, 32, 16);
 	}
 }

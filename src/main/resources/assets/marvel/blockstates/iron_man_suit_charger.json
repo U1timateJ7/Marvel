@@ -1,7 +1,94 @@
 {
   "variants": {
-    "": {
+    "facing=north,active=false": {
       "model": "marvel:block/iron_man_suit_charger"
+    },
+    "facing=north,active=true,power_stage=0": {
+      "model": "marvel:block/iron_man_suit_charger_0"
+    },
+    "facing=north,active=true,power_stage=25": {
+      "model": "marvel:block/iron_man_suit_charger_25"
+    },
+    "facing=north,active=true,power_stage=50": {
+      "model": "marvel:block/iron_man_suit_charger_50"
+    },
+    "facing=north,active=true,power_stage=75": {
+      "model": "marvel:block/iron_man_suit_charger_75"
+    },
+    "facing=north,active=true,power_stage=100": {
+      "model": "marvel:block/iron_man_suit_charger_100"
+    },
+    "facing=east,active=false": {
+      "model": "marvel:block/iron_man_suit_charger",
+      "y": 90
+    },
+    "facing=east,active=true,power_stage=0": {
+      "model": "marvel:block/iron_man_suit_charger_0",
+      "y": 90
+    },
+    "facing=east,active=true,power_stage=25": {
+      "model": "marvel:block/iron_man_suit_charger_25",
+      "y": 90
+    },
+    "facing=east,active=true,power_stage=50": {
+      "model": "marvel:block/iron_man_suit_charger_50",
+      "y": 90
+    },
+    "facing=east,active=true,power_stage=75": {
+      "model": "marvel:block/iron_man_suit_charger_75",
+      "y": 90
+    },
+    "facing=east,active=true,power_stage=100": {
+      "model": "marvel:block/iron_man_suit_charger_100",
+      "y": 90
+    },
+    "facing=south,active=false": {
+      "model": "marvel:block/iron_man_suit_charger",
+      "y": 180
+    },
+    "facing=south,active=true,power_stage=0": {
+      "model": "marvel:block/iron_man_suit_charger_0",
+      "y": 180
+    },
+    "facing=south,active=true,power_stage=25": {
+      "model": "marvel:block/iron_man_suit_charger_25",
+      "y": 180
+    },
+    "facing=south,active=true,power_stage=50": {
+      "model": "marvel:block/iron_man_suit_charger_50",
+      "y": 180
+    },
+    "facing=south,active=true,power_stage=75": {
+      "model": "marvel:block/iron_man_suit_charger_75",
+      "y": 180
+    },
+    "facing=south,active=true,power_stage=100": {
+      "model": "marvel:block/iron_man_suit_charger_100",
+      "y": 180
+    },
+    "facing=west,active=false": {
+      "model": "marvel:block/iron_man_suit_charger",
+      "y": 270
+    },
+    "facing=west,active=true,power_stage=0": {
+      "model": "marvel:block/iron_man_suit_charger_0",
+      "y": 270
+    },
+    "facing=west,active=true,power_stage=25": {
+      "model": "marvel:block/iron_man_suit_charger_25",
+      "y": 270
+    },
+    "facing=west,active=true,power_stage=50": {
+      "model": "marvel:block/iron_man_suit_charger_50",
+      "y": 270
+    },
+    "facing=west,active=true,power_stage=75": {
+      "model": "marvel:block/iron_man_suit_charger_75",
+      "y": 270
+    },
+    "facing=west,active=true,power_stage=100": {
+      "model": "marvel:block/iron_man_suit_charger_100",
+      "y": 270
     }
   }
 }

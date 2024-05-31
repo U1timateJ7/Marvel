@@ -23,11 +23,7 @@
           {
             "items": [
               "minecraft:oak_log"
-            ],
-            "count": {
-              "min": 1,
-              "max": 64
-            }
+            ]
           }
         ]
       }

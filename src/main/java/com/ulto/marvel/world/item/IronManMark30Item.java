@@ -1,9 +1,10 @@
 
 package com.ulto.marvel.world.item;
 
+import com.ulto.marvel.client.model.MarvelModModels;
 import com.ulto.marvel.common.MarvelMod;
-import com.ulto.marvel.client.model.ModelCenturion;
-import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.client.model.CenturionModel;
+import com.ulto.marvel.client.model.HelmetModel;
 import com.ulto.marvel.procedures.IronManBodyTickEventProcedure;
 import com.ulto.marvel.procedures.IronManFallDamageProcedure;
 import com.ulto.marvel.procedures.IronManWaterBreathingProcedure;
@@ -50,7 +51,7 @@ public abstract class IronManMark30Item extends IronManSuitItem {
 				@Override
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
-							Map.of("head", new ModelHelmet(Minecraft.getInstance().getEntityModels().bakeLayer(ModelHelmet.LAYER_LOCATION)).Head,
+							Map.of("head", new HelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.HELMET)).Head,
 									"hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
@@ -94,10 +95,10 @@ public abstract class IronManMark30Item extends IronManSuitItem {
 				@OnlyIn(Dist.CLIENT)
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("body",
-							new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).Body, "left_arm",
-							new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).LeftArm,
+							new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).Body, "left_arm",
+							new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).LeftArm,
 							"right_arm",
-							new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).RightArm, "head",
+							new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).RightArm, "head",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",
@@ -140,9 +141,9 @@ public abstract class IronManMark30Item extends IronManSuitItem {
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
 							Map.of("left_leg",
-									new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).LeftLeg,
+									new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).LeftLeg,
 									"right_leg",
-									new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).RightLeg,
+									new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).RightLeg,
 									"head", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
@@ -180,9 +181,9 @@ public abstract class IronManMark30Item extends IronManSuitItem {
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
 							Map.of("left_leg",
-									new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).LeftLeg,
+									new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).LeftLeg,
 									"right_leg",
-									new ModelCenturion(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCenturion.LAYER_LOCATION)).RightLeg,
+									new CenturionModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.CENTURION)).RightLeg,
 									"head", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",

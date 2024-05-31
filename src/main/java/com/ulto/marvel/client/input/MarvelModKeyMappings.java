@@ -1,7 +1,3 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package com.ulto.marvel.client.input;
 
 import net.minecraftforge.client.ClientRegistry;

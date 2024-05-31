@@ -111,7 +111,7 @@ public class Mark85SuitDownProcedure {
 								}
 
 								private void run() {
-									player.getInventory().armor.set(2, new ItemStack(Blocks.AIR));
+									player.getInventory().armor.set(2, arcReactor);
 									if (player instanceof ServerPlayer _serverPlayer)
 										_serverPlayer.getInventory().setChanged();
 									MinecraftForge.EVENT_BUS.unregister(this);

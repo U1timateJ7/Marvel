@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,9 +38,17 @@ public class GlowingHumanoidArmorLayer<T extends LivingEntity, M extends Humanoi
 
     public void render(PoseStack p_117096_, MultiBufferSource p_117097_, int p_117098_, T p_117099_, float p_117100_, float p_117101_, float p_117102_, float p_117103_, float p_117104_, float p_117105_) {
         if (shouldRender(p_117099_)) {
+            p_117096_.scale(1.0075f, 1.0075f, 1.0075f);
+            p_117096_.translate(0,  -0.005, 0);
             this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.CHEST, this.getArmorModel(EquipmentSlot.CHEST));
+            p_117096_.scale(1.002f, 1.002f, 1.002f);
+            p_117096_.translate(0,  -0.005, 0);
             this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.LEGS, this.getArmorModel(EquipmentSlot.LEGS));
+            p_117096_.scale(1.002f, 1.002f, 1.002f);
+            p_117096_.translate(0,  -0.005, 0);
             this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.FEET, this.getArmorModel(EquipmentSlot.FEET));
+            p_117096_.scale(1.002f, 1.002f, 1.002f);
+            p_117096_.translate(0,  0.02, 0);
             this.renderArmorPiece(p_117096_, p_117097_, p_117098_, p_117099_, EquipmentSlot.HEAD, this.getArmorModel(EquipmentSlot.HEAD));
         }
     }
@@ -57,15 +64,7 @@ public class GlowingHumanoidArmorLayer<T extends LivingEntity, M extends Humanoi
                 this.getParentModel().copyPropertiesTo(p_117124_);
                 this.setPartVisibility(p_117124_, p_117122_);
                 net.minecraft.client.model.Model model = getArmorModelHook(p_117121_, itemstack, p_117122_, p_117124_);
-                float scale = switch (p_117122_) {
-                    case FEET, LEGS, HEAD -> 1.002f;
-                    case CHEST -> 1.0075f;
-                    default -> 1f;
-                };
-                p_117119_.scale(scale, scale, scale);
-                if (p_117122_ == EquipmentSlot.HEAD) p_117119_.translate(0,  0.02, 0);
-                if (p_117122_ == EquipmentSlot.CHEST || p_117122_ == EquipmentSlot.LEGS || p_117122_ == EquipmentSlot.FEET) p_117119_.translate(0,  -0.005, 0);
-                this.renderModel(p_117119_, p_117120_, p_117121_, packedLight, model, this.getArmorResource(p_117121_, itemstack, p_117122_, p_117122_ == EquipmentSlot.HEAD && armoritem instanceof IronManSuitItem ? (itemstack.getOrCreateTag().getBoolean("Open") ? "open" : null) : null));
+                this.renderModel(p_117119_, p_117120_, packedLight, model, this.getArmorResource(p_117121_, itemstack, p_117122_, p_117122_ == EquipmentSlot.HEAD && armoritem instanceof IronManSuitItem ? (itemstack.getOrCreateTag().getBoolean("Open") ? "open" : null) : null));
             }
         }
     }
@@ -95,7 +94,7 @@ public class GlowingHumanoidArmorLayer<T extends LivingEntity, M extends Humanoi
 
     }
 
-    private void renderModel(PoseStack p_117107_, MultiBufferSource p_117108_, T entity, int packedLight, net.minecraft.client.model.Model p_117112_, ResourceLocation armorResource) {
+    private void renderModel(PoseStack p_117107_, MultiBufferSource p_117108_, int packedLight, net.minecraft.client.model.Model p_117112_, ResourceLocation armorResource) {
         VertexConsumer vertexconsumer = p_117108_.getBuffer(RenderType.eyes(armorResource));
         p_117112_.renderToBuffer(p_117107_, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
     }

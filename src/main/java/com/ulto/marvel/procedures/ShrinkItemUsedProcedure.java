@@ -1,13 +1,10 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.sounds.MarvelModSounds;import com.ulto.marvel.world.item.MarvelModItems;
 import com.ulto.marvel.network.MarvelModVariables;
-import net.minecraft.commands.CommandSource;
-import net.minecraft.commands.CommandSourceStack;
+import com.ulto.marvel.sounds.MarvelModSounds;
+import com.ulto.marvel.world.item.MarvelModItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,8 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class ShrinkItemUsedProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -42,50 +38,13 @@ public class ShrinkItemUsedProcedure {
 									.getItem() == MarvelModItems.ANTMAN_V2_SUIT_BOOTS.get()) {
 				if (entity instanceof Player _playerHasItem && (_playerHasItem.getInventory().contains(new ItemStack(MarvelModItems.PYM_PARTICLE.get())) || _playerHasItem.isCreative())) {
 					if (((LivingEntity)entity).getItemBySlot(EquipmentSlot.HEAD).getOrCreateTag().getBoolean("Open")) ToggleHelmetOnKeyProcedure.execute(world, x, y, z, entity);
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands()
-								.performCommand(
-										new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-												_level.getServer(), null).withSuppressedOutput(),
-										"scale set pehkui:height 0.1 " + entity.getStringUUID());
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands()
-								.performCommand(
-										new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-												_level.getServer(), null).withSuppressedOutput(),
-										"scale set pehkui:width 0.1 " + entity.getStringUUID());
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands()
-								.performCommand(
-										new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-												_level.getServer(), null).withSuppressedOutput(),
-										"scale set pehkui:reach 0.5 " + entity.getStringUUID());
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands()
-								.performCommand(
-										new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-												_level.getServer(), null).withSuppressedOutput(),
-										"scale set pehkui:drops 0.1 " + entity.getStringUUID());
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands().performCommand(
-								new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-										_level.getServer(), null).withSuppressedOutput(),
-								"scale set pehkui:projectiles 0.1 " + entity.getStringUUID());
-					if (world instanceof ServerLevel _level)
-						_level.getServer().getCommands()
-								.performCommand(
-										new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "", new TextComponent(""),
-												_level.getServer(), null).withSuppressedOutput(),
-										"scale set pehkui:motion 1 " + entity.getStringUUID());
-					if (world instanceof Level _level) {
-						if (!_level.isClientSide()) {
-							_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
-									MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")), SoundSource.NEUTRAL, 1, 1);
-						} else {
-							_level.playLocalSound(x, y, z, MarvelModSounds.get(new ResourceLocation("marvel:antman.shrink")),
-									SoundSource.NEUTRAL, 1, 1, false);
-						}
-					}
+					ScaleTypes.HEIGHT.getScaleData(entity).setTargetScale(0.1f);
+					ScaleTypes.WIDTH.getScaleData(entity).setTargetScale(0.1f);
+					ScaleTypes.REACH.getScaleData(entity).setTargetScale(0.5f);
+					ScaleTypes.DROPS.getScaleData(entity).setTargetScale(0.1f);
+					ScaleTypes.PROJECTILES.getScaleData(entity).setTargetScale(0.1f);
+					ScaleTypes.MOTION.getScaleData(entity).setTargetScale(1);
+					ScaleTypes.EXPLOSIONS.getScaleData(entity).setTargetScale(1);
 					{
 						boolean _setval = true;
 						entity.getCapability(MarvelModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -121,30 +80,13 @@ public class ShrinkItemUsedProcedure {
 								.getItem() == MarvelModItems.ANTMAN_V2_SUIT_LEGGINGS.get()
 						&& (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)
 								.getItem() == MarvelModItems.ANTMAN_V2_SUIT_BOOTS.get()) {
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:height 1 " + entity.getStringUUID());
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:width 1 " + entity.getStringUUID());
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:reach 1 " + entity.getStringUUID());
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:drops 1 " + entity.getStringUUID());
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:projectiles 1 " + entity.getStringUUID());
-			if (world instanceof ServerLevel _level)
-				_level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, Vec3.ZERO, Vec2.ZERO, _level, 4, "",
-						new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-						"scale set pehkui:motion 1 " + entity.getStringUUID());
+			ScaleTypes.HEIGHT.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.WIDTH.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.REACH.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.DROPS.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.PROJECTILES.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.MOTION.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.EXPLOSIONS.getScaleData(entity).setTargetScale(1);
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),

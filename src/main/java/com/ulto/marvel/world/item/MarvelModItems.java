@@ -1,18 +1,25 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package com.ulto.marvel.world.item;
 
 import com.ulto.marvel.common.MarvelMod;
+import com.ulto.marvel.world.entity.MjolnirEntity;
+import com.ulto.marvel.world.entity.StormbreakerEntity;
+import com.ulto.marvel.world.entity.VibraniumShieldEntity;
 import com.ulto.marvel.world.level.block.MarvelModBlocks;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,7 +28,6 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 import static com.ulto.marvel.world.item.MarvelModTabs.*;
-import static net.minecraft.world.item.CreativeModeTab.TAB_BUILDING_BLOCKS;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MarvelModItems {
@@ -41,24 +47,25 @@ public class MarvelModItems {
 	}
 
 	public static final RegistryObject<Item> HEART_SHAPED_HERB_FLOWER = block(MarvelModBlocks.HEART_SHAPED_HERB_FLOWER, TAB_MARVEL_ITEMS);
-	public static final RegistryObject<Item> TITANIUM_ORE = block(MarvelModBlocks.TITANIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> DEEPSLATE_TITANIUM_ORE = block(MarvelModBlocks.DEEPSLATE_TITANIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> TITANIUM_BLOCK = block(MarvelModBlocks.TITANIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> RAW_TITANIUM_BLOCK = block(MarvelModBlocks.RAW_TITANIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> PALLADIUM_ORE = block(MarvelModBlocks.PALLADIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> DEEPSLATE_PALLADIUM_ORE = block(MarvelModBlocks.DEEPSLATE_PALLADIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> PALLADIUM_BLOCK = block(MarvelModBlocks.PALLADIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> RAW_PALLADIUM_BLOCK = block(MarvelModBlocks.RAW_PALLADIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> URU_ORE = block(MarvelModBlocks.URU_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> DEEPSLATE_URU_ORE = block(MarvelModBlocks.DEEPSLATE_URU_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> URU_BLOCK = block(MarvelModBlocks.URU_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> RAW_URU_BLOCK = block(MarvelModBlocks.RAW_URU_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> VIBRANIUM_ORE = block(MarvelModBlocks.VIBRANIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> DEEPSLATE_VIBRANIUM_ORE = block(MarvelModBlocks.DEEPSLATE_VIBRANIUM_ORE, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> VIBRANIUM_BLOCK = block(MarvelModBlocks.VIBRANIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> ADAMANTIUM_BLOCK = block(MarvelModBlocks.ADAMANTIUM_BLOCK, TAB_BUILDING_BLOCKS);
-	public static final RegistryObject<Item> GOLD_TITANIUM_BLOCK = block(MarvelModBlocks.GOLD_TITANIUM_BLOCK, TAB_BUILDING_BLOCKS);
+	public static final RegistryObject<Item> TITANIUM_ORE = block(MarvelModBlocks.TITANIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> DEEPSLATE_TITANIUM_ORE = block(MarvelModBlocks.DEEPSLATE_TITANIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> TITANIUM_BLOCK = block(MarvelModBlocks.TITANIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> RAW_TITANIUM_BLOCK = block(MarvelModBlocks.RAW_TITANIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> PALLADIUM_ORE = block(MarvelModBlocks.PALLADIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> DEEPSLATE_PALLADIUM_ORE = block(MarvelModBlocks.DEEPSLATE_PALLADIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> PALLADIUM_BLOCK = block(MarvelModBlocks.PALLADIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> RAW_PALLADIUM_BLOCK = block(MarvelModBlocks.RAW_PALLADIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> URU_ORE = block(MarvelModBlocks.URU_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> DEEPSLATE_URU_ORE = block(MarvelModBlocks.DEEPSLATE_URU_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> URU_BLOCK = block(MarvelModBlocks.URU_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> RAW_URU_BLOCK = block(MarvelModBlocks.RAW_URU_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> VIBRANIUM_ORE = block(MarvelModBlocks.VIBRANIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> DEEPSLATE_VIBRANIUM_ORE = block(MarvelModBlocks.DEEPSLATE_VIBRANIUM_ORE, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> VIBRANIUM_BLOCK = block(MarvelModBlocks.VIBRANIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> ADAMANTIUM_BLOCK = block(MarvelModBlocks.ADAMANTIUM_BLOCK, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> GOLD_TITANIUM_BLOCK = block(MarvelModBlocks.GOLD_TITANIUM_BLOCK, TAB_MARVEL_ITEMS);
 	public static final RegistryObject<Item> IRON_MAN_SUIT_CHARGER = block(MarvelModBlocks.IRON_MAN_SUIT_CHARGER, TAB_MARVEL_ITEMS);
+	public static final RegistryObject<Item> IRON_MAN_NANOTECH_SUIT_CHARGER = block(MarvelModBlocks.IRON_MAN_NANOTECH_SUIT_CHARGER, TAB_MARVEL_ITEMS);
 	public static final RegistryObject<Item> VIBRANIUM = REGISTRY.register("vibranium", vibraniumItem);
 	public static final RegistryObject<Item> VIBRANIUM_INGOT = REGISTRY.register("vibranium_ingot", vibraniumItem);
 	public static final RegistryObject<Item> URU_INGOT = REGISTRY.register("uru_ingot", defaultItem);
@@ -90,19 +97,19 @@ public class MarvelModItems {
 	public static final RegistryObject<Item> STORMBREAKER = REGISTRY.register("stormbreaker", () -> new StormbreakerItem(weaponProperties));
 	public static final RegistryObject<Item> WEB_SHOOTER_SWING = REGISTRY.register("web_shooter_swing", () -> new WebShooterSwingItem(weaponProperties));
 	public static final RegistryObject<Item> VIBRANIUM_SHIELD = REGISTRY.register("vibranium_shield", () -> new VibraniumShieldItem(weaponProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICAS_SHIELD_RED = REGISTRY.register("captain_americas_shield_red", () -> new CapsShieldRedItem(weaponProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICAS_SHIELD_BLUE = REGISTRY.register("captain_americas_shield_blue", () -> new CapsShieldBlueItem(weaponProperties));
-	public static final RegistryObject<Item> CAPTAIN_CARTERS_SHIELD = REGISTRY.register("captain_carters_shield", () -> new CaptainCartersShieldItem(weaponProperties));
-	public static final RegistryObject<Item> US_AGENTS_SHIELD = REGISTRY.register("us_agents_shield", () -> new USAgentsShieldItem(weaponProperties));
-	public static final RegistryObject<Item> RED_GUARDIAN_SHIELD = REGISTRY.register("red_guardian_shield", () -> new RedGuardianShieldItem(weaponProperties));
-	public static final RegistryObject<Item> TASKMASTER_SHIELD = REGISTRY.register("taskmaster_shield", () -> new TaskmasterShieldItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_VIBRANIUM_SHIELD = REGISTRY.register("bloody_vibranium_shield", () -> new BloodyVibraniumShieldItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_CAPTAIN_AMERICAS_SHIELD_RED = REGISTRY.register("bloody_captain_americas_shield_red", () -> new BloodyCapsShieldRedItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_CAPTAIN_AMERICAS_SHIELD_BLUE = REGISTRY.register("bloody_captain_americas_shield_blue", () -> new BloodyCapsShieldBlueItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_CAPTAIN_CARTERS_SHIELD = REGISTRY.register("bloody_captain_carters_shield", () -> new BloodyCaptainCartersShieldItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_US_AGENTS_SHIELD = REGISTRY.register("bloody_us_agents_shield", () -> new BloodyUSAgentsShieldItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_RED_GUARDIAN_SHIELD = REGISTRY.register("bloody_red_guardian_shield", () -> new BloodyRedGuardianShieldItem(weaponProperties));
-	public static final RegistryObject<Item> BLOODY_TASKMASTER_SHIELD = REGISTRY.register("bloody_taskmaster_shield", () -> new BloodyTaskmasterShieldItem(weaponProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICAS_SHIELD_RED = REGISTRY.register("captain_americas_shield_red", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICAS_SHIELD_BLUE = REGISTRY.register("captain_americas_shield_blue", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> CAPTAIN_CARTERS_SHIELD = REGISTRY.register("captain_carters_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> US_AGENTS_SHIELD = REGISTRY.register("us_agents_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> RED_GUARDIAN_SHIELD = REGISTRY.register("red_guardian_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> TASKMASTER_SHIELD = REGISTRY.register("taskmaster_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_VIBRANIUM_SHIELD = REGISTRY.register("bloody_vibranium_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_CAPTAIN_AMERICAS_SHIELD_RED = REGISTRY.register("bloody_captain_americas_shield_red", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_CAPTAIN_AMERICAS_SHIELD_BLUE = REGISTRY.register("bloody_captain_americas_shield_blue", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_CAPTAIN_CARTERS_SHIELD = REGISTRY.register("bloody_captain_carters_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_US_AGENTS_SHIELD = REGISTRY.register("bloody_us_agents_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_RED_GUARDIAN_SHIELD = REGISTRY.register("bloody_red_guardian_shield", () -> new VibraniumShieldItem(weaponProperties));
+	public static final RegistryObject<Item> BLOODY_TASKMASTER_SHIELD = REGISTRY.register("bloody_taskmaster_shield", () -> new VibraniumShieldItem(weaponProperties));
 	public static final RegistryObject<Item> SHRINKING_DISK = REGISTRY.register("shrinking_disk", () -> new ShrinkingDiskItem(defaultProperties));
 	public static final RegistryObject<Item> GROWING_DISK = REGISTRY.register("growing_disk", () -> new GrowingDiskItem(defaultProperties));
 	public static final RegistryObject<Item> VIBRANIUM_SWORD = REGISTRY.register("vibranium_sword", () -> new SwordItem(MarvelModTiers.VIBRANIUM, 3, -2.4f, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).fireResistant()));
@@ -114,38 +121,59 @@ public class MarvelModItems {
 	public static final RegistryObject<Item> VIBRANIUM_CHESTPLATE = REGISTRY.register("vibranium_chestplate", () -> new ArmorItem(MarvelModArmorMaterials.VIBRANIUM, EquipmentSlot.CHEST, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).fireResistant()));
 	public static final RegistryObject<Item> VIBRANIUM_LEGGINGS = REGISTRY.register("vibranium_leggings", () -> new ArmorItem(MarvelModArmorMaterials.VIBRANIUM, EquipmentSlot.LEGS, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).fireResistant()));
 	public static final RegistryObject<Item> VIBRANIUM_BOOTS = REGISTRY.register("vibranium_boots", () -> new ArmorItem(MarvelModArmorMaterials.VIBRANIUM, EquipmentSlot.FEET, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).fireResistant()));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT = REGISTRY.register("captain_america_suit", () -> new CaptainAmericaSuitItem.Suit(new Item.Properties()));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_HELMET = REGISTRY.register("captain_america_suit_helmet", () -> new CaptainAmericaSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_CHESTPLATE = REGISTRY.register("captain_america_suit_chestplate", () -> new CaptainAmericaSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_LEGGINGS = REGISTRY.register("captain_america_suit_leggings", () -> new CaptainAmericaSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_BOOTS = REGISTRY.register("captain_america_suit_boots", () -> new CaptainAmericaSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_HELMET = REGISTRY.register("captain_america_stealth_suit_helmet", () -> new CaptainAmericaStealthSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_CHESTPLATE = REGISTRY.register("captain_america_stealth_suit_chestplate", () -> new CaptainAmericaStealthSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_LEGGINGS = REGISTRY.register("captain_america_stealth_suit_leggings", () -> new CaptainAmericaStealthSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_BOOTS = REGISTRY.register("captain_america_stealth_suit_boots", () -> new CaptainAmericaStealthSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_CHESTPLATE = REGISTRY.register("captain_carter_suit_chestplate", () -> new CaptainCarterSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_LEGGINGS = REGISTRY.register("captain_carter_suit_leggings", () -> new CaptainCarterSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_BOOTS = REGISTRY.register("captain_carter_suit_boots", () -> new CaptainCarterSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> JOHN_WALKER_SUIT_HELMET = REGISTRY.register("john_walker_suit_helmet", () -> new JohnWalkerSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> JOHN_WALKER_SUIT_CHESTPLATE = REGISTRY.register("john_walker_suit_chestplate", () -> new JohnWalkerSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> JOHN_WALKER_SUIT_LEGGINGS = REGISTRY.register("john_walker_suit_leggings", () -> new JohnWalkerSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> JOHN_WALKER_SUIT_BOOTS = REGISTRY.register("john_walker_suit_boots", () -> new JohnWalkerSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> US_AGENT_SUIT_HELMET = REGISTRY.register("us_agent_suit_helmet", () -> new USAgentSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> US_AGENT_SUIT_CHESTPLATE = REGISTRY.register("us_agent_suit_chestplate", () -> new USAgentSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> US_AGENT_SUIT_LEGGINGS = REGISTRY.register("us_agent_suit_leggings", () -> new USAgentSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> US_AGENT_SUIT_BOOTS = REGISTRY.register("us_agent_suit_boots", () -> new USAgentSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_HELMET = REGISTRY.register("red_guardian_suit_helmet", () -> new RedGuardianSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_CHESTPLATE = REGISTRY.register("red_guardian_suit_chestplate", () -> new RedGuardianSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_LEGGINGS = REGISTRY.register("red_guardian_suit_leggings", () -> new RedGuardianSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_BOOTS = REGISTRY.register("red_guardian_suit_boots", () -> new RedGuardianSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_HELMET = REGISTRY.register("black_panther_suit_helmet", () -> new BlackPantherSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_CHESTPLATE = REGISTRY.register("black_panther_suit_chestplate", () -> new BlackPantherSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_LEGGINGS = REGISTRY.register("black_panther_suit_leggings", () -> new BlackPantherSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_BOOTS = REGISTRY.register("black_panther_suit_boots", () -> new BlackPantherSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> SPIDER_MAN_SUIT_HELMET = REGISTRY.register("spider_man_suit_helmet", () -> new SpiderManSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> SPIDER_MAN_SUIT_CHESTPLATE = REGISTRY.register("spider_man_suit_chestplate", () -> new SpiderManSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> SPIDER_MAN_SUIT_LEGGINGS = REGISTRY.register("spider_man_suit_leggings", () -> new SpiderManSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> SPIDER_MAN_SUIT_BOOTS = REGISTRY.register("spider_man_suit_boots", () -> new SpiderManSuitItem.Boots(costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT = REGISTRY.register("captain_america_suit", () -> new SuitItem("captain_america", EquipmentSlot.CHEST, new Item.Properties()));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_HELMET = REGISTRY.register("captain_america_suit_helmet", () -> new SuitItem("captain_america", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_CHESTPLATE = REGISTRY.register("captain_america_suit_chestplate", () -> new SuitItem("captain_america", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_LEGGINGS = REGISTRY.register("captain_america_suit_leggings", () -> new SuitItem("captain_america", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_SUIT_BOOTS = REGISTRY.register("captain_america_suit_boots", () -> new SuitItem("captain_america", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_HELMET = REGISTRY.register("captain_america_stealth_suit_helmet", () -> new SuitItem("captain_america_stealth", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_CHESTPLATE = REGISTRY.register("captain_america_stealth_suit_chestplate", () -> new SuitItem("captain_america_stealth", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_LEGGINGS = REGISTRY.register("captain_america_stealth_suit_leggings", () -> new SuitItem("captain_america_stealth", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_AMERICA_STEALTH_SUIT_BOOTS = REGISTRY.register("captain_america_stealth_suit_boots", () -> new SuitItem("captain_america_stealth", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_CHESTPLATE = REGISTRY.register("captain_carter_suit_chestplate", () -> new SuitItem("captain_carter", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_LEGGINGS = REGISTRY.register("captain_carter_suit_leggings", () -> new SuitItem("captain_carter", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> CAPTAIN_CARTER_SUIT_BOOTS = REGISTRY.register("captain_carter_suit_boots", () -> new SuitItem("captain_carter", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> JOHN_WALKER_SUIT_HELMET = REGISTRY.register("john_walker_suit_helmet", () -> new SuitItem("john_walker", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> JOHN_WALKER_SUIT_CHESTPLATE = REGISTRY.register("john_walker_suit_chestplate", () -> new SuitItem("john_walker", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> JOHN_WALKER_SUIT_LEGGINGS = REGISTRY.register("john_walker_suit_leggings", () -> new SuitItem("john_walker", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> JOHN_WALKER_SUIT_BOOTS = REGISTRY.register("john_walker_suit_boots", () -> new SuitItem("john_walker", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> US_AGENT_SUIT_HELMET = REGISTRY.register("us_agent_suit_helmet", () -> new SuitItem("us_agent", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> US_AGENT_SUIT_CHESTPLATE = REGISTRY.register("us_agent_suit_chestplate", () -> new SuitItem("us_agent", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> US_AGENT_SUIT_LEGGINGS = REGISTRY.register("us_agent_suit_leggings", () -> new SuitItem("us_agent", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> US_AGENT_SUIT_BOOTS = REGISTRY.register("us_agent_suit_boots", () -> new SuitItem("us_agent", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_HELMET = REGISTRY.register("red_guardian_suit_helmet", () -> new SuitItem("red_guardian", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_CHESTPLATE = REGISTRY.register("red_guardian_suit_chestplate", () -> new SuitItem("red_guardian", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_LEGGINGS = REGISTRY.register("red_guardian_suit_leggings", () -> new SuitItem("red_guardian", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> RED_GUARDIAN_SUIT_BOOTS = REGISTRY.register("red_guardian_suit_boots", () -> new SuitItem("red_guardian", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_HELMET = REGISTRY.register("black_panther_suit_helmet", () -> new SuitItem(MarvelModArmorMaterials.VIBRANIUM, "black_panther", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_CHESTPLATE = REGISTRY.register("black_panther_suit_chestplate", () -> new SuitItem(MarvelModArmorMaterials.VIBRANIUM, "black_panther", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_LEGGINGS = REGISTRY.register("black_panther_suit_leggings", () -> new SuitItem(MarvelModArmorMaterials.VIBRANIUM, "black_panther", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> BLACK_PANTHER_SUIT_BOOTS = REGISTRY.register("black_panther_suit_boots", () -> new SuitItem(MarvelModArmorMaterials.VIBRANIUM, "black_panther", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_SUIT = REGISTRY.register("spider_man_suit", () -> new SuitItem("spider_man", EquipmentSlot.CHEST, new Item.Properties()));
+	public static final RegistryObject<Item> SPIDER_MAN_SUIT_HELMET = REGISTRY.register("spider_man_suit_helmet", () -> new SuitItem("spider_man", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_SUIT_CHESTPLATE = REGISTRY.register("spider_man_suit_chestplate", () -> new SuitItem("spider_man", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_SUIT_LEGGINGS = REGISTRY.register("spider_man_suit_leggings", () -> new SuitItem("spider_man", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_SUIT_BOOTS = REGISTRY.register("spider_man_suit_boots", () -> new SuitItem("spider_man", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ADVANCED_SUIT_HELMET = REGISTRY.register("spider_man_advanced_suit_helmet", () -> new SuitItem("spider_man_advanced", "Advanced", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ADVANCED_SUIT_CHESTPLATE = REGISTRY.register("spider_man_advanced_suit_chestplate", () -> new SuitItem("spider_man_advanced", "Advanced", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ADVANCED_SUIT_LEGGINGS = REGISTRY.register("spider_man_advanced_suit_leggings", () -> new SuitItem("spider_man_advanced", "Advanced", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ADVANCED_SUIT_BOOTS = REGISTRY.register("spider_man_advanced_suit_boots", () -> new SuitItem("spider_man_advanced", "Advanced", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_INTEGRATED_SUIT_HELMET = REGISTRY.register("spider_man_integrated_suit_helmet", () -> new SuitItem("spider_man_integrated", "Integrated", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_INTEGRATED_SUIT_CHESTPLATE = REGISTRY.register("spider_man_integrated_suit_chestplate", () -> new SuitItem("spider_man_integrated", "Integrated", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_INTEGRATED_SUIT_LEGGINGS = REGISTRY.register("spider_man_integrated_suit_leggings", () -> new SuitItem("spider_man_integrated", "Integrated", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_INTEGRATED_SUIT_BOOTS = REGISTRY.register("spider_man_integrated_suit_boots", () -> new SuitItem("spider_man_integrated", "Integrated", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ANDREW_SUIT_HELMET = REGISTRY.register("spider_man_andrew_suit_helmet", () -> new SuitItem("spider_man_andrew", "Andrew Garfield", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ANDREW_SUIT_CHESTPLATE = REGISTRY.register("spider_man_andrew_suit_chestplate", () -> new SuitItem("spider_man_andrew", "Andrew Garfield", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ANDREW_SUIT_LEGGINGS = REGISTRY.register("spider_man_andrew_suit_leggings", () -> new SuitItem("spider_man_andrew", "Andrew Garfield", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_ANDREW_SUIT_BOOTS = REGISTRY.register("spider_man_andrew_suit_boots", () -> new SuitItem("spider_man_andrew", "Andrew Garfield", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_MILES_SUIT_HELMET = REGISTRY.register("spider_man_miles_suit_helmet", () -> new SuitItem("spider_man_miles", "Miles Morales", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_MILES_SUIT_CHESTPLATE = REGISTRY.register("spider_man_miles_suit_chestplate", () -> new SuitItem("spider_man_miles", "Miles Morales", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_MILES_SUIT_LEGGINGS = REGISTRY.register("spider_man_miles_suit_leggings", () -> new SuitItem("spider_man_miles", "Miles Morales", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_MILES_SUIT_BOOTS = REGISTRY.register("spider_man_miles_suit_boots", () -> new SuitItem("spider_man_miles", "Miles Morales", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_TOBEY_SUIT_HELMET = REGISTRY.register("spider_man_tobey_suit_helmet", () -> new SuitItem("spider_man_tobey", "Tobey Maguire", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_TOBEY_SUIT_CHESTPLATE = REGISTRY.register("spider_man_tobey_suit_chestplate", () -> new SuitItem("spider_man_tobey", "Tobey Maguire", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_TOBEY_SUIT_LEGGINGS = REGISTRY.register("spider_man_tobey_suit_leggings", () -> new SuitItem("spider_man_tobey", "Tobey Maguire", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> SPIDER_MAN_TOBEY_SUIT_BOOTS = REGISTRY.register("spider_man_tobey_suit_boots", () -> new SuitItem("spider_man_tobey", "Tobey Maguire", EquipmentSlot.FEET, costumeProperties));
 	public static final RegistryObject<Item> IRON_SPIDER_SUIT_HELMET = REGISTRY.register("iron_spider_suit_helmet", () -> new IronSpiderSuitItem.Helmet(costumeProperties));
 	public static final RegistryObject<Item> IRON_SPIDER_SUIT_CHESTPLATE = REGISTRY.register("iron_spider_suit_chestplate", () -> new IronSpiderSuitItem.Chestplate(costumeProperties));
 	public static final RegistryObject<Item> IRON_SPIDER_SUIT_LEGGINGS = REGISTRY.register("iron_spider_suit_leggings", () -> new IronSpiderSuitItem.Leggings(costumeProperties));
@@ -162,25 +190,25 @@ public class MarvelModItems {
 	public static final RegistryObject<Item> WAR_MACHINE_MARK_2_CHESTPLATE = REGISTRY.register("war_machine_mark_2_chestplate", () -> new WarMachineMark2Item.Chestplate(costumeProperties));
 	public static final RegistryObject<Item> WAR_MACHINE_MARK_2_LEGGINGS = REGISTRY.register("war_machine_mark_2_leggings", () -> new WarMachineMark2Item.Leggings(costumeProperties));
 	public static final RegistryObject<Item> WAR_MACHINE_MARK_2_BOOTS = REGISTRY.register("war_machine_mark_2_boots", () -> new WarMachineMark2Item.Boots(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_SUIT_HELMET = REGISTRY.register("antman_suit_helmet", () -> new AntmanSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_SUIT_CHESTPLATE = REGISTRY.register("antman_suit_chestplate", () -> new AntmanSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_SUIT_LEGGINGS = REGISTRY.register("antman_suit_leggings", () -> new AntmanSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_SUIT_BOOTS = REGISTRY.register("antman_suit_boots", () -> new AntmanSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_V2_SUIT_HELMET = REGISTRY.register("antman_v2_suit_helmet", () -> new AntmanV2SuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_V2_SUIT_CHESTPLATE = REGISTRY.register("antman_v2_suit_chestplate", () -> new AntmanV2SuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_V2_SUIT_LEGGINGS = REGISTRY.register("antman_v2_suit_leggings", () -> new AntmanV2SuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> ANTMAN_V2_SUIT_BOOTS = REGISTRY.register("antman_v2_suit_boots", () -> new AntmanV2SuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> WOLVERINE_SUIT_HELMET = REGISTRY.register("wolverine_suit_helmet", () -> new WolverineSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> WOLVERINE_SUIT_CHESTPLATE = REGISTRY.register("wolverine_suit_chestplate", () -> new WolverineSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> WOLVERINE_SUIT_LEGGINGS = REGISTRY.register("wolverine_suit_leggings", () -> new WolverineSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> WOLVERINE_SUIT_BOOTS = REGISTRY.register("wolverine_suit_boots", () -> new WolverineSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> QUICKSILVER_SUIT_CHESTPLATE = REGISTRY.register("quicksilver_suit_chestplate", () -> new QuicksilverSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> QUICKSILVER_SUIT_LEGGINGS = REGISTRY.register("quicksilver_suit_leggings", () -> new QuicksilverSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> QUICKSILVER_SUIT_BOOTS = REGISTRY.register("quicksilver_suit_boots", () -> new QuicksilverSuitItem.Boots(costumeProperties));
-	public static final RegistryObject<Item> TASKMASTER_SUIT_HELMET = REGISTRY.register("taskmaster_suit_helmet", () -> new TaskmasterSuitItem.Helmet(costumeProperties));
-	public static final RegistryObject<Item> TASKMASTER_SUIT_CHESTPLATE = REGISTRY.register("taskmaster_suit_chestplate", () -> new TaskmasterSuitItem.Chestplate(costumeProperties));
-	public static final RegistryObject<Item> TASKMASTER_SUIT_LEGGINGS = REGISTRY.register("taskmaster_suit_leggings", () -> new TaskmasterSuitItem.Leggings(costumeProperties));
-	public static final RegistryObject<Item> TASKMASTER_SUIT_BOOTS = REGISTRY.register("taskmaster_suit_boots", () -> new TaskmasterSuitItem.Boots(costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_SUIT_HELMET = REGISTRY.register("antman_suit_helmet", () -> new OpenHelmetSuitItem("antman", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_SUIT_CHESTPLATE = REGISTRY.register("antman_suit_chestplate", () -> new OpenHelmetSuitItem("antman", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_SUIT_LEGGINGS = REGISTRY.register("antman_suit_leggings", () -> new OpenHelmetSuitItem("antman", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_SUIT_BOOTS = REGISTRY.register("antman_suit_boots", () -> new OpenHelmetSuitItem("antman", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_V2_SUIT_HELMET = REGISTRY.register("antman_v2_suit_helmet", () -> new OpenHelmetSuitItem("antman_v2", "Upgraded", EquipmentSlot.HEAD, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_V2_SUIT_CHESTPLATE = REGISTRY.register("antman_v2_suit_chestplate", () -> new OpenHelmetSuitItem("antman_v2", "Upgraded", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_V2_SUIT_LEGGINGS = REGISTRY.register("antman_v2_suit_leggings", () -> new OpenHelmetSuitItem("antman_v2", "Upgraded", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> ANTMAN_V2_SUIT_BOOTS = REGISTRY.register("antman_v2_suit_boots", () -> new OpenHelmetSuitItem("antman_v2", "Upgraded", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> WOLVERINE_SUIT_HELMET = REGISTRY.register("wolverine_suit_helmet", () -> new WolverineHelmetItem(costumeProperties));
+	public static final RegistryObject<Item> WOLVERINE_SUIT_CHESTPLATE = REGISTRY.register("wolverine_suit_chestplate", () -> new SuitItem("wolverine", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> WOLVERINE_SUIT_LEGGINGS = REGISTRY.register("wolverine_suit_leggings", () -> new SuitItem("wolverine", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> WOLVERINE_SUIT_BOOTS = REGISTRY.register("wolverine_suit_boots", () -> new SuitItem("wolverine", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> QUICKSILVER_SUIT_CHESTPLATE = REGISTRY.register("quicksilver_suit_chestplate", () -> new SuitItem("quicksilver", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> QUICKSILVER_SUIT_LEGGINGS = REGISTRY.register("quicksilver_suit_leggings", () -> new SuitItem("quicksilver", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> QUICKSILVER_SUIT_BOOTS = REGISTRY.register("quicksilver_suit_boots", () -> new SuitItem("quicksilver", EquipmentSlot.FEET, costumeProperties));
+	public static final RegistryObject<Item> TASKMASTER_SUIT_HELMET = REGISTRY.register("taskmaster_suit_helmet", () -> new TaskmasterHelmetItem(costumeProperties));
+	public static final RegistryObject<Item> TASKMASTER_SUIT_CHESTPLATE = REGISTRY.register("taskmaster_suit_chestplate", () -> new SuitItem("taskmaster", EquipmentSlot.CHEST, costumeProperties));
+	public static final RegistryObject<Item> TASKMASTER_SUIT_LEGGINGS = REGISTRY.register("taskmaster_suit_leggings", () -> new SuitItem("taskmaster", EquipmentSlot.LEGS, costumeProperties));
+	public static final RegistryObject<Item> TASKMASTER_SUIT_BOOTS = REGISTRY.register("taskmaster_suit_boots", () -> new SuitItem("taskmaster", EquipmentSlot.FEET, costumeProperties));
 	public static final RegistryObject<Item> REINFORCED_LEATHER = REGISTRY.register("reinforced_leather", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 	public static final RegistryObject<Item> IRON_MAN_MARK_1_HELMET = REGISTRY.register("iron_man_mark_1_helmet", () -> new IronManMark1Item.Helmet(ironManProperties));
 	public static final RegistryObject<Item> IRON_MAN_MARK_1_CHESTPLATE = REGISTRY.register("iron_man_mark_1_chestplate", () -> new IronManMark1Item.Chestplate(ironManProperties));
@@ -297,13 +325,49 @@ public class MarvelModItems {
 	public static final RegistryObject<Item> MARK_50_NANO_TOOL = REGISTRY.register("mark_50_nano_tool", () -> new Mark50NanoToolItem(new Item.Properties()));
 	public static final RegistryObject<Item> MARK_85_NANO_TOOL = REGISTRY.register("mark_85_nano_tool", () -> new Mark85NanoToolItem(new Item.Properties()));
 	public static final RegistryObject<Item> ADAMANTIUM_CLAWS = REGISTRY.register("adamantium_claws", () -> new SwordItem(MarvelModTiers.CLAWS, 3, -2f, new Item.Properties()));
-	public static final RegistryObject<Item> THOR_ARMOR_CHESTPLATE = REGISTRY.register("thor_armor_chestplate", () -> new ThorArmorItem.Chestplate(new Item.Properties()));
-	public static final RegistryObject<Item> THOR_ARMOR_LEGGINGS = REGISTRY.register("thor_armor_leggings", () -> new ThorArmorItem.Leggings(new Item.Properties()));
-	public static final RegistryObject<Item> THOR_ARMOR_BOOTS = REGISTRY.register("thor_armor_boots", () -> new ThorArmorItem.Boots(new Item.Properties()));
+	public static final RegistryObject<Item> THOR_ARMOR_CHESTPLATE = REGISTRY.register("thor_armor_chestplate", () -> new SuitItem(MarvelModArmorMaterials.THOR, "thor", EquipmentSlot.CHEST, new Item.Properties()));
+	public static final RegistryObject<Item> THOR_ARMOR_LEGGINGS = REGISTRY.register("thor_armor_leggings", () -> new SuitItem(MarvelModArmorMaterials.THOR, "thor", EquipmentSlot.LEGS, new Item.Properties()));
+	public static final RegistryObject<Item> THOR_ARMOR_BOOTS = REGISTRY.register("thor_armor_boots", () -> new SuitItem(MarvelModArmorMaterials.THOR, "thor", EquipmentSlot.FEET, new Item.Properties()));
 	public static final RegistryObject<Item> MARK_17_UNIBEAM = REGISTRY.register("mark_17_unibeam", () -> new Mark17UnibeamItem(new Item.Properties().stacksTo(1)));
 
 	private static RegistryObject<Item> block(RegistryObject<Block> block, CreativeModeTab tab) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+	}
+
+	@SubscribeEvent
+	public static void register(FMLCommonSetupEvent event) {
+		DispenseItemBehavior shieldBehavior = new AbstractProjectileDispenseBehavior() {
+			@Override
+			protected Projectile getProjectile(Level p_123360_, Position p_123361_, ItemStack p_123362_) {
+				return new VibraniumShieldEntity(p_123360_, p_123361_.x(), p_123361_.y(), p_123361_.z(), p_123362_);
+			}
+		};
+		DispenserBlock.registerBehavior(VIBRANIUM_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(CAPTAIN_AMERICAS_SHIELD_RED.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(CAPTAIN_AMERICAS_SHIELD_BLUE.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(CAPTAIN_CARTERS_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(US_AGENTS_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(RED_GUARDIAN_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(TASKMASTER_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_VIBRANIUM_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_CAPTAIN_AMERICAS_SHIELD_RED.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_CAPTAIN_AMERICAS_SHIELD_BLUE.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_CAPTAIN_CARTERS_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_US_AGENTS_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_RED_GUARDIAN_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(BLOODY_TASKMASTER_SHIELD.get(), shieldBehavior);
+		DispenserBlock.registerBehavior(MJOLNIR.get(), new AbstractProjectileDispenseBehavior() {
+			@Override
+			protected Projectile getProjectile(Level p_123360_, Position p_123361_, ItemStack p_123362_) {
+				return new MjolnirEntity(p_123360_, p_123361_.x(), p_123361_.y(), p_123361_.z(), p_123362_);
+			}
+		});
+		DispenserBlock.registerBehavior(STORMBREAKER.get(), new AbstractProjectileDispenseBehavior() {
+			@Override
+			protected Projectile getProjectile(Level p_123360_, Position p_123361_, ItemStack p_123362_) {
+				return new StormbreakerEntity(p_123360_, p_123361_.x(), p_123361_.y(), p_123361_.z(), p_123362_);
+			}
+		});
 	}
 
 	public static class Tags {

@@ -1,8 +1,9 @@
 
 package com.ulto.marvel.world.item;
 
+import com.ulto.marvel.client.model.MarvelModModels;
 import com.ulto.marvel.common.MarvelMod;
-import com.ulto.marvel.client.model.ModelCostume;
+import com.ulto.marvel.client.model.CostumeModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -112,9 +113,9 @@ public class Mark85ArcReactorItem extends ArmorItem implements GlowingArmor {
 			@OnlyIn(Dist.CLIENT)
 			public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 				HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("body",
-						new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).Body, "left_arm",
-						new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftArm, "right_arm",
-						new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightArm, "head",
+						new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).Body, "left_arm",
+						new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).LeftArm, "right_arm",
+						new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).RightArm, "head",
 						new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 						new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg",
 						new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",

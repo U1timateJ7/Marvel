@@ -7,11 +7,7 @@
           {
             "items": [
               "marvel:reinforced_leather"
-            ],
-            "count": {
-              "min": 1,
-              "max": 64
-            }
+            ]
           }
         ]
       }
@@ -24,22 +20,21 @@
       "marvel:captain_america_suit_body",
       "marvel:captain_america_suit_leg",
       "marvel:captain_america_suit_feet",
-      "marvel:captain_america_stealth_suit_head",
-      "marvel:captain_america_stealth_suit_body",
-      "marvel:captain_america_stealth_suit_legs",
-      "marvel:captain_america_stealth_suit_feet",
-      "marvel:john_walker_helmet_recipe",
-      "marvel:john_walker_chestplate_recipe",
-      "marvel:john_walker_legs_recipe",
-      "marvel:john_walker_feet_recipe",
+      "marvel:captain_america_suit_recipe",
+      "marvel:captain_america_stealth_suit",
+      "marvel:captain_carter_suit",
+      "marvel:john_walker_recipe",
+      "marvel:red_guardian_recipe",
+      "marvel:us_agent_recipe",
       "marvel:spider_man_helmet_recipe",
       "marvel:spider_man_chestplate_recipe",
       "marvel:spider_man_legs_recipe",
       "marvel:spider_man_feet_recipe",
-      "marvel:red_guardian_helmet_recipe",
-      "marvel:red_guardian_chestplate_recipe",
-      "marvel:red_guardian_legs_recipe",
-      "marvel:red_guardian_feet_recipe",
+      "marvel:spider_man_suit",
+      "marvel:spider_man_advanced_suit",
+      "marvel:spider_man_integrated_suit",
+      "marvel:spider_man_andrew_suit",
+      "marvel:spider_man_miles_suit",
       "marvel:antman_helmet_recipe",
       "marvel:antman_chestplate_recipe",
       "marvel:antman_leg_recipe",

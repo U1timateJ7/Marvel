@@ -1,8 +1,8 @@
 package com.ulto.marvel.procedures;
 
-import com.ulto.marvel.world.item.MarvelModItems;
-import com.ulto.marvel.sounds.MarvelModSounds;
 import com.ulto.marvel.network.MarvelModVariables;
+import com.ulto.marvel.sounds.MarvelModSounds;
+import com.ulto.marvel.world.item.MarvelModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -36,6 +36,7 @@ public class GrowItemUsedProcedure {
 					ScaleTypes.DROPS.getScaleData(entity).setTargetScale(10);
 					ScaleTypes.PROJECTILES.getScaleData(entity).setTargetScale(10);
 					ScaleTypes.MOTION.getScaleData(entity).setTargetScale(4);
+					ScaleTypes.EXPLOSIONS.getScaleData(entity).setTargetScale(10);
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
 							_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),
@@ -78,6 +79,7 @@ public class GrowItemUsedProcedure {
 			ScaleTypes.DROPS.getScaleData(entity).setTargetScale(1);
 			ScaleTypes.PROJECTILES.getScaleData(entity).setTargetScale(1);
 			ScaleTypes.MOTION.getScaleData(entity).setTargetScale(1);
+			ScaleTypes.EXPLOSIONS.getScaleData(entity).setTargetScale(1);
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, new BlockPos((int) x, (int) y, (int) z),

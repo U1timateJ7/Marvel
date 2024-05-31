@@ -1,7 +1,3 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package com.ulto.marvel.world.level.block.entity;
 
 import com.ulto.marvel.common.MarvelMod;
@@ -23,4 +19,5 @@ public class MarvelModBlockEntityTypes {
 	}
 
 	public static final RegistryObject<BlockEntityType<IronManSuitChargerBlockEntity>> IRON_MAN_SUIT_CHARGER = REGISTRY.register("iron_man_suit_charger", () -> BlockEntityType.Builder.of(IronManSuitChargerBlockEntity::new, MarvelModBlocks.IRON_MAN_SUIT_CHARGER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<IronManNanotechSuitChargerBlockEntity>> IRON_MAN_NANOTECH_SUIT_CHARGER = REGISTRY.register("iron_man_nanotech_suit_charger", () -> BlockEntityType.Builder.of(IronManNanotechSuitChargerBlockEntity::new, MarvelModBlocks.IRON_MAN_NANOTECH_SUIT_CHARGER.get()).build(null));
 }

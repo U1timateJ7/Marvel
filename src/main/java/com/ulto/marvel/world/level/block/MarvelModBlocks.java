@@ -28,7 +28,7 @@ public class MarvelModBlocks {
 		REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
-	public static final RegistryObject<Block> HEART_SHAPED_HERB_FLOWER = REGISTRY.register("heart_shaped_herb_flower", () -> new FlowerBlock(MobEffects.SATURATION, 0, BlockBehaviour.Properties.of(Material.PLANT).noCollission().sound(SoundType.GRASS).instabreak()));
+	public static final RegistryObject<Block> HEART_SHAPED_HERB_FLOWER = REGISTRY.register("heart_shaped_herb_flower", () -> new FlowerBlock(() -> MobEffects.SATURATION, 0, BlockBehaviour.Properties.of(Material.PLANT).noCollission().sound(SoundType.GRASS).instabreak()));
 	public static final RegistryObject<Block> TITANIUM_ORE = REGISTRY.register("titanium_ore", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(3f, 3f).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> DEEPSLATE_TITANIUM_ORE = REGISTRY.register("deepslate_titanium_ore", () -> new Block(BlockBehaviour.Properties.copy(TITANIUM_ORE.get()).sound(SoundType.DEEPSLATE).destroyTime(4.5f)));
 	public static final RegistryObject<Block> TITANIUM_BLOCK = REGISTRY.register("titanium_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f, 10f).requiresCorrectToolForDrops()));
@@ -47,9 +47,10 @@ public class MarvelModBlocks {
 	public static final RegistryObject<Block> ADAMANTIUM_BLOCK = REGISTRY.register("adamantium_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(10f, 1200f).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> GOLD_TITANIUM_BLOCK = REGISTRY.register("gold_titanium_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_RED).sound(SoundType.METAL).strength(5f, 10f).requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> HEART_SHAPED_HERB_CROP = REGISTRY.register("heart_shaped_herb_crop", () -> new HeartShapedHerbCropBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
-	public static final RegistryObject<Block> TEMPORARY_WEB = REGISTRY.register("temporary_web", () -> new TemporaryWebBlock(BlockBehaviour.Properties.copy(Blocks.COBWEB).dropsLike(Blocks.COBWEB)));
-	public static final RegistryObject<Block> MJOLNIR_BLOCK = REGISTRY.register("mjolnir_block", () -> new TemporaryWebBlock(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(-1, 3600000).noOcclusion().isRedstoneConductor((bs, br, bp) -> false)));
+	public static final RegistryObject<Block> TEMPORARY_WEB = REGISTRY.register("temporary_web", () -> new TemporaryWebBlock(BlockBehaviour.Properties.copy(Blocks.COBWEB).lootFrom(() -> Blocks.COBWEB)));
+	public static final RegistryObject<Block> MJOLNIR_BLOCK = REGISTRY.register("mjolnir_block", () -> new MjolnirBlock(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(-1, 3600000).noOcclusion().isRedstoneConductor((bs, br, bp) -> false)));
 	public static final RegistryObject<Block> IRON_MAN_SUIT_CHARGER = REGISTRY.register("iron_man_suit_charger", () -> new IronManSuitChargerBlock(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f, 10f).requiresCorrectToolForDrops().noOcclusion().isValidSpawn((s, g, p, e) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false)));
+	public static final RegistryObject<Block> IRON_MAN_NANOTECH_SUIT_CHARGER = REGISTRY.register("iron_man_nanotech_suit_charger", () -> new IronManNanotechSuitChargerBlock(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5f, 10f).requiresCorrectToolForDrops().noOcclusion().isValidSpawn((s, g, p, e) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false)));
 
 	@SubscribeEvent
 	public static void setup(FMLLoadCompleteEvent event) {
@@ -65,6 +66,7 @@ public class MarvelModBlocks {
 			ItemBlockRenderTypes.setRenderLayer(MarvelModBlocks.TEMPORARY_WEB.get(), RenderType.cutoutMipped());
 			ItemBlockRenderTypes.setRenderLayer(MarvelModBlocks.MJOLNIR_BLOCK.get(), RenderType.cutout());
 			ItemBlockRenderTypes.setRenderLayer(MarvelModBlocks.IRON_MAN_SUIT_CHARGER.get(), RenderType.cutout());
+			ItemBlockRenderTypes.setRenderLayer(MarvelModBlocks.IRON_MAN_NANOTECH_SUIT_CHARGER.get(), RenderType.translucent());
 		}
 	}
 

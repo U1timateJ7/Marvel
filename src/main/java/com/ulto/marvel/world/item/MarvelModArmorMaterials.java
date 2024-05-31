@@ -421,6 +421,47 @@ public class MarvelModArmorMaterials {
             return 0.1f;
         }
     };
+    public static final ArmorMaterial THOR = new ArmorMaterial() {
+        @Override
+        public int getDurabilityForSlot(EquipmentSlot slot) {
+            return new int[]{13, 15, 16, 11}[slot.getIndex()] * 33;
+        }
+
+        @Override
+        public int getDefenseForSlot(EquipmentSlot slot) {
+            return new int[]{3, 6, 8, 3}[slot.getIndex()];
+        }
+
+        @Override
+        public int getEnchantmentValue() {
+            return 9;
+        }
+
+        @Override
+        public SoundEvent getEquipSound() {
+            return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+        }
+
+        @Override
+        public Ingredient getRepairIngredient() {
+            return Ingredient.EMPTY;
+        }
+
+        @Override
+        public String getName() {
+            return "thor_armor";
+        }
+
+        @Override
+        public float getToughness() {
+            return 3f;
+        }
+
+        @Override
+        public float getKnockbackResistance() {
+            return 0.1f;
+        }
+    };
     public static final ArmorMaterial VIBRANIUM = new ArmorMaterial() {
         @Override
         public int getDurabilityForSlot(EquipmentSlot slot) {
@@ -449,7 +490,7 @@ public class MarvelModArmorMaterials {
 
         @Override
         public String getName() {
-            return "vibranium";
+            return "marvel:vibranium";
         }
 
         @Override

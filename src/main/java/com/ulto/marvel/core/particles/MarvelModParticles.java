@@ -1,7 +1,3 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package com.ulto.marvel.core.particles;
 
 import com.ulto.marvel.client.particle.IronManFlightParticle;

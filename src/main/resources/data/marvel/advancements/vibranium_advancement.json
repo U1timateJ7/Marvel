@@ -22,11 +22,7 @@
           {
             "items": [
               "marvel:vibranium"
-            ],
-            "count": {
-              "min": 1,
-              "max": 64
-            }
+            ]
           }
         ]
       }

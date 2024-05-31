@@ -43,14 +43,9 @@ public class Mark50SuitDownProcedure {
 			armorList.addTag(2, player.getInventory().armor.get(2).save(new CompoundTag()));
 			armorList.addTag(3, player.getInventory().armor.get(3).save(new CompoundTag()));
 			arcReactor.getOrCreateTag().put("ArmorItems", armorList);
-			if (entity instanceof LivingEntity _entity) {
-				if (_entity instanceof Player _player)
-					_player.getInventory().armor.set(3, new ItemStack(Blocks.AIR));
-				else
-					_entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
-				if (_entity instanceof ServerPlayer _serverPlayer)
-					_serverPlayer.getInventory().setChanged();
-			}
+			player.getInventory().armor.set(3, new ItemStack(Blocks.AIR));
+			if (player instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.getInventory().setChanged();
 			new Object() {
 				private int ticks = 0;
 				private float waitTicks;
@@ -72,14 +67,9 @@ public class Mark50SuitDownProcedure {
 				}
 
 				private void run() {
-					if (entity instanceof LivingEntity _entity) {
-						if (_entity instanceof Player _player)
-							_player.getInventory().armor.set(0, new ItemStack(Blocks.AIR));
-						else
-							_entity.setItemSlot(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
-						if (_entity instanceof ServerPlayer _serverPlayer)
-							_serverPlayer.getInventory().setChanged();
-					}
+					player.getInventory().armor.set(0, new ItemStack(Blocks.AIR));
+					if (player instanceof ServerPlayer _serverPlayer)
+						_serverPlayer.getInventory().setChanged();
 					new Object() {
 						private int ticks = 0;
 						private float waitTicks;
@@ -101,14 +91,9 @@ public class Mark50SuitDownProcedure {
 						}
 
 						private void run() {
-							if (entity instanceof LivingEntity _entity) {
-								if (_entity instanceof Player _player)
-									_player.getInventory().armor.set(1, new ItemStack(Blocks.AIR));
-								else
-									_entity.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));
-								if (_entity instanceof ServerPlayer _serverPlayer)
-									_serverPlayer.getInventory().setChanged();
-							}
+							player.getInventory().armor.set(1, new ItemStack(Blocks.AIR));
+							if (player instanceof ServerPlayer _serverPlayer)
+								_serverPlayer.getInventory().setChanged();
 							new Object() {
 								private int ticks = 0;
 								private float waitTicks;
@@ -130,14 +115,9 @@ public class Mark50SuitDownProcedure {
 								}
 
 								private void run() {
-									if (entity instanceof LivingEntity _entity) {
-										if (_entity instanceof Player _player)
-											_player.getInventory().armor.set(2, arcReactor);
-										else
-											_entity.setItemSlot(EquipmentSlot.CHEST, arcReactor);
-										if (_entity instanceof ServerPlayer _serverPlayer)
-											_serverPlayer.getInventory().setChanged();
-									}
+									player.getInventory().armor.set(2, arcReactor);
+									if (player instanceof ServerPlayer _serverPlayer)
+										_serverPlayer.getInventory().setChanged();
 									MinecraftForge.EVENT_BUS.unregister(this);
 								}
 							}.start(world, 10);

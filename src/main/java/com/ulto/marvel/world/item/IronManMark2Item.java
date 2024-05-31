@@ -1,9 +1,10 @@
 
 package com.ulto.marvel.world.item;
 
+import com.ulto.marvel.client.model.MarvelModModels;
 import com.ulto.marvel.common.MarvelMod;
-import com.ulto.marvel.client.model.ModelCostume;
-import com.ulto.marvel.client.model.ModelHelmet;
+import com.ulto.marvel.client.model.CostumeModel;
+import com.ulto.marvel.client.model.HelmetModel;
 import com.ulto.marvel.procedures.IronManFallDamageProcedure;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -48,7 +49,7 @@ public abstract class IronManMark2Item extends IronManSuitItem {
 				@Override
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(),
-							Map.of("head", new ModelHelmet(Minecraft.getInstance().getEntityModels().bakeLayer(ModelHelmet.LAYER_LOCATION)).Head,
+							Map.of("head", new HelmetModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.HELMET)).Head,
 									"hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
 									new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
@@ -86,9 +87,9 @@ public abstract class IronManMark2Item extends IronManSuitItem {
 				@OnlyIn(Dist.CLIENT)
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("body",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).Body, "left_arm",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftArm, "right_arm",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightArm, "head",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).Body, "left_arm",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).LeftArm, "right_arm",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).RightArm, "head",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",
@@ -124,8 +125,8 @@ public abstract class IronManMark2Item extends IronManSuitItem {
 				@OnlyIn(Dist.CLIENT)
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("left_leg",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftLeg, "right_leg",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightLeg, "head",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).LeftLeg, "right_leg",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).RightLeg, "head",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",
@@ -162,8 +163,8 @@ public abstract class IronManMark2Item extends IronManSuitItem {
 				@OnlyIn(Dist.CLIENT)
 				public HumanoidModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel defaultModel) {
 					HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("left_leg",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).LeftBoot, "right_leg",
-							new ModelCostume(Minecraft.getInstance().getEntityModels().bakeLayer(ModelCostume.LAYER_LOCATION)).RightBoot, "head",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).LeftBoot, "right_leg",
+							new CostumeModel(Minecraft.getInstance().getEntityModels().bakeLayer(MarvelModModels.COSTUME)).RightBoot, "head",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "hat",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
 							new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm",

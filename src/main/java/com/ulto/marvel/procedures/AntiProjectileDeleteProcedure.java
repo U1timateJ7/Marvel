@@ -37,67 +37,7 @@ public class AntiProjectileDeleteProcedure {
 		if (entity == null || imediatesourceentity == null || sourceentity == null)
 			return;
 		if (entity instanceof EnderDragon || entity instanceof EndCrystal || entity instanceof Minecart || entity instanceof Boat || entity instanceof ItemFrame || entity instanceof Painting || entity instanceof MinecartCommandBlock || entity instanceof AbstractMinecartContainer || entity instanceof MinecartFurnace || entity instanceof MinecartSpawner || entity instanceof MinecartTNT || entity instanceof LargeFireball) {
-			if (imediatesourceentity instanceof VibraniumShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.VIBRANIUM_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof BloodyVibraniumShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_VIBRANIUM_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof CapsShieldRedEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_RED.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof BloodyCapsShieldRedEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_CAPTAIN_AMERICAS_SHIELD_RED.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof CapsShieldBlueEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.CAPTAIN_AMERICAS_SHIELD_BLUE.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof BloodyCapsShieldBlueEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_CAPTAIN_AMERICAS_SHIELD_BLUE.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof RedGuardianShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.RED_GUARDIAN_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof BloodyRedGuardianShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_RED_GUARDIAN_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof TaskmasterShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.TASKMASTER_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof BloodyTaskmasterShieldEntity) {
-				if (sourceentity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(MarvelModItems.BLOODY_TASKMASTER_SHIELD.get());
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
-				}
-			} else if (imediatesourceentity instanceof MjolnirEntity) {
+			if (imediatesourceentity instanceof MjolnirEntity) {
 				if (sourceentity instanceof Player _player) {
 					ItemStack _setstack = new ItemStack(MarvelModItems.MJOLNIR.get());
 					_setstack.setCount(1);
