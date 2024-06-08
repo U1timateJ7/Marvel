@@ -1,9 +1,0 @@
-{
-  "type": "tconstruct:casting_basin",
-  "fluid": {
-    "name": "marvel:molten_titanium",
-    "amount": 810
-  },
-  "result": "marvel:titanium_block",
-  "cooling_time": 225
-}

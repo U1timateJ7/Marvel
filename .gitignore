@@ -1,17 +1,27 @@
-# Gradle build system ignores
-.gradle/
-build/
-out/
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-# Other IDE related folders
-.idea/
-.settings/
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-# MCreator workspace
-.mcreator/
+# gradle
+build
+.gradle
 
-# Minecraft client/server files
-run/
+# other
+eclipse
+run
+runs
+run-data
 
-# MacOS system files
-.DS_STORE
+repo
+src/generated/resources/.cache/

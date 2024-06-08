@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "marvel:gold_titanium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "marvel:gold_titanium_nugget"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "asset_name": "titanium",
+  "description": {
+    "color": "#4B4B65",
+    "translate": "trim_material.marvel.titanium"
+  },
+  "ingredient": "marvel:titanium_ingot",
+  "item_model_index": 0.9
+}

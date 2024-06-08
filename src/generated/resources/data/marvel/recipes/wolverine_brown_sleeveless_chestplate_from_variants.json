@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:wolverine_brown_sleeveless_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:wolverine_chestplate"
+  }
+}

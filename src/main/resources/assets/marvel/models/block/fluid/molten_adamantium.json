@@ -1,8 +1,0 @@
-{
-    "loader": "mantle:fluid_texture",
-    "textures": {
-        "still": "marvel:block/fluid/adamantium/still",
-        "flowing": "marvel:block/fluid/adamantium/flowing"
-    }
-}
-

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:wolverine_brown_boots_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wolverine_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wolverine_boots"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:wolverine_brown_boots_from_variants"
+    ]
+  }
+}

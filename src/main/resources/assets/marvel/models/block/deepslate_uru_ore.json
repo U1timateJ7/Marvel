@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "marvel:block/deepslate_uru_ore",
-    "particle": "marvel:block/deepslate_uru_ore"
-  }
-}

@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:wolverine_brown_leggings"
+  },
+  "suit": {
+    "tag": "marvel:wolverine_leggings"
+  }
+}

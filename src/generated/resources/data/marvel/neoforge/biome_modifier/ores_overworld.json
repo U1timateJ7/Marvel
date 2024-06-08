@@ -1,0 +1,11 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "marvel:ore_vibranium",
+    "marvel:ore_vibranium_buried",
+    "marvel:ore_titanium",
+    "marvel:ore_palladium"
+  ],
+  "step": "underground_ores"
+}

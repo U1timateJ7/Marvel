@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "titanium_ingot",
+  "key": {
+    "#": {
+      "item": "marvel:titanium_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:titanium_ingot"
+  }
+}

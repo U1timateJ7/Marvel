@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "palladium_ingot",
+  "key": {
+    "#": {
+      "item": "marvel:palladium_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:palladium_ingot"
+  }
+}

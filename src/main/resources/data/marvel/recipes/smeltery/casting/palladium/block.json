@@ -1,9 +1,0 @@
-{
-  "type": "tconstruct:casting_basin",
-  "fluid": {
-    "name": "marvel:molten_palladium",
-    "amount": 810
-  },
-  "result": "marvel:palladium_block",
-  "cooling_time": 205
-}

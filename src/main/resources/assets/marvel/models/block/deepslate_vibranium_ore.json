@@ -1,7 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "marvel:block/deepslate_vibranium_ore",
-    "particle": "marvel:block/deepslate_vibranium_ore"
+    "all": "marvel:block/deepslate_vibranium_ore"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:leathers"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "X": {
+      "tag": "c:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "XIX",
+    "X#X",
+    "XIX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:reinforced_leather"
+  }
+}

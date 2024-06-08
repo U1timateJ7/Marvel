@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_captain_america_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:captain_america_stealth_boots_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_captain_america_boots"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:captain_america_stealth_boots_from_variants"
+    ]
+  }
+}

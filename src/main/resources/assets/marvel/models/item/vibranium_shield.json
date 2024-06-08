@@ -1,7 +1,6 @@
 {
-  "parent": "marvel:custom/cap_shield",
+  "parent": "marvel:item/template_shield",
   "textures": {
-    "0": "marvel:block/cap_shield_blank",
-    "particle": "marvel:item/cap_shield_blank"
+    "particle": "marvel:block/vibranium_block"
   }
 }

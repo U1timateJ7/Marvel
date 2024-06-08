@@ -1,402 +1,82 @@
 {
   "item.vibranium_shield.throw": {
-    "category": "player",
     "subtitle": "subtitles.item.vibranium_shield.throw",
     "sounds": [
-      {
-        "name": "marvel:shield_throw",
-        "stream": false
-      }
+      "marvel:item/vibranium_shield/throw"
     ]
   },
   "item.vibranium_shield.hit": {
-    "category": "player",
     "subtitle": "subtitles.item.vibranium_shield.hit",
     "sounds": [
-      {
-        "name": "marvel:shield_hit2",
-        "stream": false
-      }
+      "marvel:item/vibranium_shield/hit"
     ]
   },
-  "music.marvel.star_spangled_man": {
-    "category": "record",
+  "suit.kinetic_black_panther.suit_up": {
+    "subtitle": "subtitles.suit.kinetic_black_panther.suit_up",
     "sounds": [
-      {
-        "name": "marvel:star_spangled_man",
-        "stream": true
-      }
+      "marvel:suit/kinetic_black_panther/suit_up"
     ]
   },
-  "music.marvel.wakanda": {
-    "category": "record",
+  "suit.kinetic_black_panther.suit_down": {
+    "subtitle": "subtitles.suit.kinetic_black_panther.suit_down",
     "sounds": [
-      {
-        "name": "marvel:wakanda",
-        "stream": true
-      }
+      "marvel:suit/kinetic_black_panther/suit_down"
     ]
   },
-  "item.iron_man_helmet.open": {
-    "category": "player",
-    "subtitle": "subtitles.item.iron_man_helmet.open",
+  "suit.kinetic_black_panther.helmet_up": {
+    "subtitle": "subtitles.suit.kinetic_black_panther.helmet_up",
     "sounds": [
-      {
-        "name": "marvel:iron_man_helmet_opens",
-        "stream": false
-      }
+      "marvel:suit/kinetic_black_panther/helmet"
     ]
   },
-  "item.iron_man_helmet.close": {
-    "category": "ambient",
-    "subtitle": "subtitles.item.iron_man_helmet.close",
+  "suit.kinetic_black_panther.helmet_down": {
+    "subtitle": "subtitles.suit.kinetic_black_panther.helmet_down",
     "sounds": [
-      {
-        "name": "marvel:iron_man_helmet_closes",
-        "stream": false
-      }
+      "marvel:suit/kinetic_black_panther/helmet"
     ]
   },
-  "item.repulsor.shoot": {
-    "category": "player",
-    "subtitle": "subtitles.item.repulsor.shoot",
+  "suit.wolverine.claws_out": {
+    "subtitle": "subtitles.suit.wolverine.claws_out",
     "sounds": [
-      {
-        "name": "marvel:repulser_shoot",
-        "stream": false
-      }
+      "marvel:suit/wolverine/claws_out"
     ]
   },
-  "item.repulsor.use": {
-    "category": "player",
+  "suit.wolverine.claws_in": {
+    "subtitle": "subtitles.suit.wolverine.claws_in",
     "sounds": [
-      {
-        "name": "marvel:repulser_use",
-        "stream": false
-      }
+      "marvel:suit/wolverine/claws_in"
     ]
   },
-  "item.unibeam.fire": {
-    "category": "player",
-    "subtitle": "subtitles.item.unibeam.fire",
+  "suit.cyclops.optic_blast": {
+    "subtitle": "subtitles.suit.cyclops.optic_blast",
     "sounds": [
-      {
-        "name": "marvel:unibeam_shoot",
-        "stream": false
-      }
+      "marvel:suit/cyclops/optic_blast"
     ]
   },
-  "item.unibeam.use": {
-    "category": "player",
+  "suit.cyclops.optic_blast_big": {
+    "subtitle": "subtitles.suit.cyclops.optic_blast_big",
     "sounds": [
-      {
-        "name": "marvel:unibeam_use",
-        "stream": false
-      }
+      "marvel:suit/cyclops/optic_blast_big"
     ]
   },
-  "music.marvel.driving_with_the_top_down": {
-    "category": "record",
+  "suit.cyclops.optic_blast_explosion": {
+    "subtitle": "subtitles.entity.generic.explode",
     "sounds": [
       {
-        "name": "marvel:driving_with_the_top_down",
-        "stream": true
-      }
-    ]
-  },
-  "item.war_machine_gun.fire": {
-    "category": "player",
-    "sounds": [
+        "name": "minecraft:random/explode1",
+        "volume": 0.4
+      },
       {
-        "name": "marvel:war_machine_gun_fire",
-        "stream": false
-      }
-    ]
-  },
-  "item.web_shooter.fire": {
-    "category": "player",
-    "sounds": [
+        "name": "minecraft:random/explode2",
+        "volume": 0.4
+      },
       {
-        "name": "marvel:web_shoot",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark30.invisible": {
-    "category": "player",
-    "sounds": [
+        "name": "minecraft:random/explode3",
+        "volume": 0.4
+      },
       {
-        "name": "marvel:invisible_activate",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark30.visible": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:invisible_deactivate",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.fly": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:iron_man_flight",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_man_helmet.close_46": {
-    "category": "player",
-    "subtitle": "subtitles.item.iron_man_helmet.close_46",
-    "sounds": [
-      {
-        "name": "marvel:mark46_helmet_close",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark5.suit_up": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:mark5_suit_up",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark42.arrive": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:mark42_arrive",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark42.depart": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:mark42_depart",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.house_party_protocol": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:house_party_protocol",
-        "stream": false
-      }
-    ]
-  },
-  "item.antman.helmet_open": {
-    "category": "player",
-    "subtitle": "subtitles.item.antman.helmet_open",
-    "sounds": [
-      {
-        "name": "marvel:antman_helmet_open",
-        "stream": false
-      }
-    ]
-  },
-  "item.antman.helmet_close": {
-    "category": "player",
-    "subtitle": "subtitles.item.antman.helmet_close",
-    "sounds": [
-      {
-        "name": "marvel:antman_helmet_close",
-        "stream": false
-      }
-    ]
-  },
-  "antman.shrink": {
-    "category": "player",
-    "subtitle": "subtitles.antman.shrink",
-    "sounds": [
-      {
-        "name": "marvel:shrink",
-        "stream": false
-      }
-    ]
-  },
-  "antman.grow": {
-    "category": "player",
-    "subtitle": "subtitles.antman.grow",
-    "sounds": [
-      {
-        "name": "marvel:grow",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_man_helmet.nanotech_open": {
-    "category": "player",
-    "subtitle": "subtitles.item.iron_man_helmet.nanotech_open",
-    "sounds": [
-      {
-        "name": "marvel:nano_helmet_off",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_man_helmet.nanotech_close": {
-    "category": "player",
-    "subtitle": "subtitles.item.iron_man_helmet.nanotech_close",
-    "sounds": [
-      {
-        "name": "marvel:nano_helmet_on",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark50.suit_up": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:nano_suit_up",
-        "stream": false
-      }
-    ]
-  },
-  "iron_spider.suit_up": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:iron_spider_suit_up",
-        "stream": false
-      }
-    ]
-  },
-  "iron_man.mark85.suit_up": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:mark85_suit_up",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_spider_arms.deactivate": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:iron_spider_arms_off",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_spider_arms.activate": {
-    "category": "player",
-    "sounds": [
-      {
-        "name": "marvel:iron_spider_arms_on",
-        "stream": false
-      }
-    ]
-  },
-  "item.iron_spider_arms.attack": {
-    "category": "player",
-    "subtitle": "subtitles.item.iron_spider_arms.attack",
-    "sounds": [
-      {
-        "name": "marvel:iron_spider_arms_attack",
-        "stream": false
-      }
-    ]
-  },
-  "item.stormbreaker.hit": {
-    "category": "player",
-    "subtitle": "subtitles.item.stormbreaker.hit",
-    "sounds": [
-      {
-        "name": "marvel:stormbreaker_hit",
-        "stream": false
-      }
-    ]
-  },
-  "item.stormbreaker.catch": {
-    "category": "player",
-    "subtitle": "subtitles.item.stormbreaker.catch",
-    "sounds": [
-      {
-        "name": "marvel:stormbreaker_call",
-        "stream": false
-      }
-    ]
-  },
-  "item.mjolnir.hit_shield": {
-    "category": "player",
-    "subtitle": "subtitles.item.mjolnir.hit_shield",
-    "sounds": [
-      {
-        "name": "marvel:mjolnir_hit_shield",
-        "stream": false
-      }
-    ]
-  },
-  "item.mjolnir.catch": {
-    "category": "player",
-    "subtitle": "subtitles.item.mjolnir.catch",
-    "sounds": [
-      {
-        "name": "marvel:mjolnir_call",
-        "stream": false
-      }
-    ]
-  },
-  "item.mjolnir.hit": {
-    "category": "player",
-    "subtitle": "subtitles.item.mjolnir.hit",
-    "sounds": [
-      {
-        "name": "marvel:mjolnir_hit",
-        "stream": false
-      }
-    ]
-  },
-  "item.mjolnir.throw": {
-    "category": "player",
-    "subtitle": "subtitles.item.mjolnir.throw",
-    "sounds": [
-      {
-        "name": "marvel:mjolnir_throw",
-        "stream": false
-      }
-    ]
-  },
-  "item.stormbreaker.throw": {
-    "category": "player",
-    "subtitle": "subtitles.item.stormbreaker.throw",
-    "sounds": [
-      {
-        "name": "marvel:stormbreaker_throw",
-        "stream": false
-      }
-    ]
-  },
-  "item.adamantium_claws.retract": {
-    "category": "player",
-    "subtitle": "subtitles.item.adamantium_claws.retract",
-    "sounds": [
-      {
-        "name": "marvel:claws_in",
-        "stream": false
-      }
-    ]
-  },
-  "item.adamantium_claws.activate": {
-    "category": "player",
-    "subtitle": "subtitles.item.adamantium_claws.activate",
-    "sounds": [
-      {
-        "name": "marvel:claws_out",
-        "stream": false
+        "name": "minecraft:random/explode4",
+        "volume": 0.4
       }
     ]
   }

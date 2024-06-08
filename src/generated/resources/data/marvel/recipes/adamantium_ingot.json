@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "item": "minecraft:magma_cream"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:adamantium_ingot"
+  }
+}

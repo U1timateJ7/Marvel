@@ -1,7 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "marvel:block/adamantium_block",
-    "particle": "marvel:block/adamantium_block"
+    "all": "marvel:block/adamantium_block"
   }
 }

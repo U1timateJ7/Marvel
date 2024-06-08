@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:titanium_ingot_from_blasting_titanium_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_titanium_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:titanium_ore"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_titanium_ore"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:titanium_ingot_from_blasting_titanium_ore"
+    ]
+  }
+}

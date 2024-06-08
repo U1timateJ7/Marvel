@@ -1,7 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "marvel:block/palladium_ore_block",
-    "particle": "marvel:block/palladium_ore_block"
+    "all": "marvel:block/palladium_block"
   }
 }

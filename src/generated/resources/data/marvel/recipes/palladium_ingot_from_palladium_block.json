@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "palladium_ingot",
+  "ingredients": [
+    {
+      "item": "marvel:palladium_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "marvel:palladium_ingot"
+  }
+}

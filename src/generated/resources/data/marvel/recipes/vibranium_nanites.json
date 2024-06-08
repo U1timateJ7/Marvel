@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:dusts/redstone"
+    },
+    "X": {
+      "item": "marvel:vibranium_nugget"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "result": {
+    "count": 4,
+    "id": "marvel:vibranium_nanites"
+  }
+}

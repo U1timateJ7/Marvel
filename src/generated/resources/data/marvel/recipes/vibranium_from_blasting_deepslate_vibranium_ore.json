@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "vibranium",
+  "ingredient": {
+    "item": "marvel:deepslate_vibranium_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "marvel:vibranium"
+  }
+}

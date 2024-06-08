@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:ores/titanium",
-    "#forge:ores/palladium",
-    "#forge:ores/uru",
-    "#forge:ores/vibranium"
-  ]
-}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "marvel:block/suit_table_front",
+    "south": "marvel:block/suit_table_back",
+    "east": "marvel:block/suit_table_side",
+    "west": "marvel:block/suit_table_side",
+    "up": "marvel:block/suit_table_top",
+    "down": "marvel:block/suit_table_bottom",
+    "particle": "#down"
+  }
+}

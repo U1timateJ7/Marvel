@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:storage_blocks/vibranium",
-    "#forge:storage_blocks/uru",
-    "#forge:storage_blocks/adamantium"
-  ]
-}

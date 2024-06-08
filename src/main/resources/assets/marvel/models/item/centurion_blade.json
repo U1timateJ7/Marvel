@@ -1,7 +1,0 @@
-{
-  "parent": "marvel:custom/centurion_blade",
-  "textures": {
-    "0": "marvel:block/centurion_blade",
-    "particle": "marvel:item/centurion_blade"
-  }
-}

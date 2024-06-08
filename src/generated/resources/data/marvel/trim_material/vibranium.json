@@ -1,0 +1,12 @@
+{
+  "asset_name": "vibranium",
+  "description": {
+    "color": "#8E75F0",
+    "translate": "trim_material.marvel.vibranium"
+  },
+  "ingredient": "marvel:vibranium_ingot",
+  "item_model_index": 1.0,
+  "override_armor_materials": {
+    "marvel:vibranium": "vibranium_darker"
+  }
+}

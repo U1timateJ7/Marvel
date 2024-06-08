@@ -1,8 +1,0 @@
-{
-  "parent": "marvel:custom/mjolnir",
-  "textures": {
-    "1": "marvel:block/mjolnir_handle",
-    "2": "marvel:block/mjolnir",
-    "particle": "marvel:item/mjolnir"
-  }
-}

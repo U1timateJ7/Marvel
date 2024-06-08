@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_proto_adamantium_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:proto_adamantium_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:proto_adamantium_shield"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_proto_adamantium_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:proto_adamantium_shield"
+    ]
+  }
+}

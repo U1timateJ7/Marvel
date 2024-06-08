@@ -1,9 +1,0 @@
-{
-  "type": "tconstruct:casting_basin",
-  "fluid": {
-    "name": "marvel:molten_uru",
-    "amount": 810
-  },
-  "result": "marvel:uru_block",
-  "cooling_time": 255
-}

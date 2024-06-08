@@ -1,0 +1,39 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "item": "marvel:vibranium_nanites"
+    },
+    {
+      "tag": "c:gems/amethyst"
+    }
+  ],
+  "results": {
+    "id": "marvel:kinetic_black_panther_leggings"
+  },
+  "suit": {
+    "tag": "marvel:black_panther_leggings"
+  }
+}

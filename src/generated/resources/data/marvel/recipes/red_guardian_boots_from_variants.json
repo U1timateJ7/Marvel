@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:red_guardian_boots"
+  },
+  "suit": {
+    "tag": "marvel:captain_america_boots"
+  }
+}

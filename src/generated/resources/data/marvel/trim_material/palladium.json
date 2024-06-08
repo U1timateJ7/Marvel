@@ -1,0 +1,9 @@
+{
+  "asset_name": "palladium",
+  "description": {
+    "color": "#4B4B4B",
+    "translate": "trim_material.marvel.palladium"
+  },
+  "ingredient": "marvel:palladium_ingot",
+  "item_model_index": 0.3
+}

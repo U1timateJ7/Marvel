@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_captain_america_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:red_guardian_helmet_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_captain_america_helmet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:red_guardian_helmet_from_variants"
+    ]
+  }
+}

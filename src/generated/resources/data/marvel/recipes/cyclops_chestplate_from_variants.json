@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:cyclops_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:cyclops_chestplate"
+  }
+}

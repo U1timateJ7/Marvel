@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:killmonger_helmet"
+  },
+  "suit": {
+    "tag": "marvel:kinetic_black_panther_helmet"
+  }
+}

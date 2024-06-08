@@ -1,7 +1,0 @@
-{
-  "parent": "marvel:custom/web_shooter",
-  "textures": {
-    "0": "marvel:block/web_shooter",
-    "particle": "marvel:item/web_shooter"
-  }
-}

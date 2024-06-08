@@ -1,7 +1,0 @@
-{
-  "parent": "marvel:custom/repulser",
-  "textures": {
-    "0": "marvel:block/unibeam",
-    "particle": "marvel:item/unibeam"
-  }
-}

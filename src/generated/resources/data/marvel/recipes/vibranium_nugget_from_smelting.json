@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "marvel:vibranium_pickaxe"
+    },
+    {
+      "item": "marvel:vibranium_shovel"
+    },
+    {
+      "item": "marvel:vibranium_axe"
+    },
+    {
+      "item": "marvel:vibranium_hoe"
+    },
+    {
+      "item": "marvel:vibranium_sword"
+    },
+    {
+      "item": "marvel:vibranium_helmet"
+    },
+    {
+      "item": "marvel:vibranium_chestplate"
+    },
+    {
+      "item": "marvel:vibranium_leggings"
+    },
+    {
+      "item": "marvel:vibranium_boots"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:vibranium_nugget"
+  }
+}

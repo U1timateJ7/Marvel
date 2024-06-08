@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "palladium_ingot",
+  "ingredient": {
+    "item": "marvel:raw_palladium"
+  },
+  "result": {
+    "count": 1,
+    "id": "marvel:palladium_ingot"
+  }
+}

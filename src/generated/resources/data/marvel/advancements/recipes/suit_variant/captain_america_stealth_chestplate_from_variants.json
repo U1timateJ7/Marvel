@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_captain_america_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:captain_america_stealth_chestplate_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_captain_america_chestplate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:captain_america_stealth_chestplate_from_variants"
+    ]
+  }
+}
