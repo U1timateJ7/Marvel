@@ -34,7 +34,7 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return ingredients;
+        return NonNullList.copyOf(ingredients);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
             }
         }
 
-        return i == this.ingredients.size() && this.suit.test(p_44262_.getItem(0)) && (stackedcontents.canCraft(this, null));
+        return i == this.ingredients.size() && this.suit.test(p_44262_.getItem(0)) && stackedcontents.canCraft(this, null);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
                 p_340779_ -> p_340779_.group(
                         Ingredient.CODEC_NONEMPTY.fieldOf("suit").forGetter(p_300975_ -> p_300975_.suit),
                         ItemStack.STRICT_SINGLE_ITEM_CODEC.fieldOf("results").forGetter(p_301142_ -> p_301142_.result),
-                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap(ingredientList -> {Ingredient[] array = ingredientList.toArray(Ingredient[]::new);if (array.length == 0) {return DataResult.error(() -> "No ingredients for upgrade recipe");} else {return array.length > 4 ? DataResult.error(() -> "Too many ingredients for upgrade recipe. The maximum is: %s".formatted(4)) : DataResult.success(NonNullList.of(Ingredient.EMPTY, array));}}, DataResult::success).forGetter(p_300975_ -> p_300975_.ingredients),
+                        Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").flatXmap(ingredientList -> {Ingredient[] array = ingredientList.toArray(Ingredient[]::new);if (array.length == 0) {return DataResult.error(() -> "No ingredients for upgrade recipe");} else {return array.length > 9 ? DataResult.error(() -> "Too many ingredients for upgrade recipe. The maximum is: %s".formatted(9)) : DataResult.success(NonNullList.of(Ingredient.EMPTY, array));}}, DataResult::success).forGetter(p_300975_ -> p_300975_.ingredients),
                         Codec.BOOL.fieldOf("consume_suit").forGetter(recipe -> recipe.consumeSuit))
                         .apply(p_340779_, SuitUpgradingRecipe::new));
         public static final StreamCodec<RegistryFriendlyByteBuf, SuitUpgradingRecipe> STREAM_CODEC = StreamCodec.of(

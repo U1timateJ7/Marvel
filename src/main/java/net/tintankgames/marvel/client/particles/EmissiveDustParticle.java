@@ -33,7 +33,7 @@ public class EmissiveDustParticle extends DustParticleBase<EmissiveDustParticleO
 
     @Override
     public int getLightColor(float p_106821_) {
-        return 0xFFFFFF;
+        return 15728880;
     }
 
     @OnlyIn(Dist.CLIENT)

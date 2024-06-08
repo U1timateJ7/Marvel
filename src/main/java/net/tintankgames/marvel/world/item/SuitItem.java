@@ -72,6 +72,9 @@ public abstract class SuitItem extends ArmorItem {
                         if (!player.getInventory().contains(itemStack -> itemStack.is(powerItem)) && !player.getSlot(499).get().is(powerItem)) {
                             player.addItem(new ItemStack(powerItem));
                         }
+                        if (player.getInventory().countItem(powerItem) > 1) {
+                            player.getInventory().removeItem(player.getInventory().getItem(findSlotMatchingItem(player.getInventory().items, powerItem)));
+                        }
                     }
                 }
             } else {

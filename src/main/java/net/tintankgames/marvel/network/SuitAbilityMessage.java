@@ -6,13 +6,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
-import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
 import net.tintankgames.marvel.world.level.KineticExplosionDamageCalculator;
@@ -39,13 +37,6 @@ public class SuitAbilityMessage implements CustomPacketPayload {
                 }
                 if (absorbed > 0.0F) {
                     player.serverLevel().explode(player, player.damageSources().source(MarvelDamageTypes.KINETIC_BLAST, player), new KineticExplosionDamageCalculator(absorbed / 5f), player.position(), absorbed/6.25f, false, Level.ExplosionInteraction.NONE);
-                }
-                if (chestplate.has(MarvelDataComponents.CLAWS_OUT)) {
-                    chestplate.update(MarvelDataComponents.CLAWS_OUT, false, open -> {
-                        if (open) player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.WOLVERINE_CLAWS_IN.get(), SoundSource.PLAYERS);
-                        else player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.WOLVERINE_CLAWS_OUT.get(), SoundSource.PLAYERS);
-                        return !open;
-                    });
                 }
                 if (helmet.has(MarvelDataComponents.OPTIC_BLAST_MODE)) {
                     helmet.update(MarvelDataComponents.OPTIC_BLAST_MODE, OpticBlastMode.NARROW, mode -> {

@@ -74,8 +74,8 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                     }
 
                     if (model instanceof SuitModel<?> suitModel && suitModel.rightArm.hasChild("right_claws") && suitModel.leftArm.hasChild("left_claws")) {
-                        suitModel.rightArm.getChild("right_claws").visible = itemstack.getOrDefault(MarvelDataComponents.CLAWS_OUT, false);
-                        suitModel.leftArm.getChild("left_claws").visible = itemstack.getOrDefault(MarvelDataComponents.CLAWS_OUT, false);
+                        suitModel.rightArm.getChild("right_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
+                        suitModel.leftArm.getChild("left_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
                     }
 
                     ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, armormaterial$layer, false, equipmentSlot);

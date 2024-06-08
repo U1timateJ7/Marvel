@@ -32,7 +32,7 @@ public class MarvelPlacements {
     public static void bootstrap(BootstrapContext<PlacedFeature> bootstrapContext) {
         register(bootstrapContext, ORE_VIBRANIUM, MarvelConfiguredFeatures.ORE_VIBRANIUM, CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), BiomeFilter.biome());
         register(bootstrapContext, ORE_VIBRANIUM_BURIED, MarvelConfiguredFeatures.ORE_VIBRANIUM_BURIED, CountPlacement.of(3), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80)), BiomeFilter.biome());
-        register(bootstrapContext, ORE_VIBRANIUM_EXTRA, MarvelConfiguredFeatures.ORE_VIBRANIUM_EXTRA, CountPlacement.of(8), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(48)), BiomeFilter.biome());
+        register(bootstrapContext, ORE_VIBRANIUM_EXTRA, MarvelConfiguredFeatures.ORE_VIBRANIUM_EXTRA, CountPlacement.of(3), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(48)), BiomeFilter.biome());
         register(bootstrapContext, ORE_TITANIUM, MarvelConfiguredFeatures.ORE_TITANIUM, CountPlacement.of(8), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56)), BiomeFilter.biome());
         register(bootstrapContext, ORE_PALLADIUM, MarvelConfiguredFeatures.ORE_PALLADIUM, CountPlacement.of(8), InSquarePlacement.spread(), HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(96)), BiomeFilter.biome());
     }

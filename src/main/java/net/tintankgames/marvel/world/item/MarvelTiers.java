@@ -9,7 +9,8 @@ import net.minecraft.world.level.block.Block;
 import java.util.function.Supplier;
 
 public enum MarvelTiers implements Tier {
-    VIBRANIUM(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 4063, 9.0F, 4.0F, 7, () -> Ingredient.of(MarvelItems.VIBRANIUM_INGOT));
+    VIBRANIUM(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 4063, 9.0F, 4.0F, 7, () -> Ingredient.of(MarvelItems.VIBRANIUM_INGOT)),
+    ADAMANTIUM_CLAWS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 9.0F, 4.0F, 0, () -> Ingredient.EMPTY);
 
     private final TagKey<Block> incorrectBlocksForDrops;
     private final int uses;

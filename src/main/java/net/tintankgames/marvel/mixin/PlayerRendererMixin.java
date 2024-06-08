@@ -64,8 +64,8 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
                 }
 
                 if (model.rightArm.hasChild("right_claws") && model.leftArm.hasChild("left_claws")) {
-                    model.rightArm.getChild("right_claws").visible = stack.getOrDefault(MarvelDataComponents.CLAWS_OUT, false);
-                    model.leftArm.getChild("left_claws").visible = stack.getOrDefault(MarvelDataComponents.CLAWS_OUT, false);
+                    model.rightArm.getChild("right_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
+                    model.leftArm.getChild("left_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
                 }
 
                 ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, armormaterial$layer, false, EquipmentSlot.CHEST);

@@ -38,12 +38,7 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
         this.recipes = player.level().getRecipeManager().getAllRecipesFor(MarvelRecipeTypes.SUIT_UPGRADING.get());
         this.addSlot(new SuitUpgradingResultSlot(inventory.player, this.craftSlots, this.resultSlot, 0, 143, 33));
 
-        this.addSlot(new Slot(this.craftSlots, 0, 20, 33) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return recipes.stream().anyMatch(recipe -> recipe.value().getSuit().test(stack));
-            }
-        });
+        this.addSlot(new Slot(this.craftSlots, 0, 20, 33));
 
         this.addSlot(new Slot(this.craftSlots, 1, 59, 15));
         this.addSlot(new Slot(this.craftSlots, 2, 77, 15));
@@ -120,8 +115,21 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
                 }
 
                 slot.onQuickCraft(itemstack1, itemstack);
+            } else if (p_39391_.level().getRecipeManager().getAllRecipesFor(MarvelRecipeTypes.SUIT_UPGRADING.get()).stream().anyMatch(recipe -> recipe.value().getSuit().test(itemstack1))) {
+                if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
+                    return ItemStack.EMPTY;
+                }
             } else if (p_39392_ >= 11 && p_39392_ < 47) {
-                if (!this.moveItemStackTo(itemstack1, 1, 10, false)) {
+                if (!this.moveItemStackTo(itemstack1, 2, 10, false)) {
+                    if (p_39392_ < 38) {
+                        if (!this.moveItemStackTo(itemstack1, 38, 47, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (!this.moveItemStackTo(itemstack1, 11, 38, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (!this.moveItemStackTo(itemstack1, 2, 10, false)) {
                     if (p_39392_ < 38) {
                         if (!this.moveItemStackTo(itemstack1, 38, 47, false)) {
                             return ItemStack.EMPTY;

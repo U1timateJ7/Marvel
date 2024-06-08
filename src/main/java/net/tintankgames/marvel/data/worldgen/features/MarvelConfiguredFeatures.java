@@ -48,7 +48,7 @@ public class MarvelConfiguredFeatures {
         );
         register(bootstrapContext, ORE_VIBRANIUM, Feature.ORE, new OreConfiguration(vibraniumOres, 4, 0.7F));
         register(bootstrapContext, ORE_VIBRANIUM_BURIED, Feature.ORE, new OreConfiguration(vibraniumOres, 4, 1.0F));
-        register(bootstrapContext, ORE_VIBRANIUM_EXTRA, Feature.ORE, new OreConfiguration(vibraniumOres, 8));
+        register(bootstrapContext, ORE_VIBRANIUM_EXTRA, Feature.ORE, new OreConfiguration(vibraniumOres, 4));
         register(bootstrapContext, ORE_TITANIUM, Feature.ORE, new OreConfiguration(titaniumOres, 9));
         register(bootstrapContext, ORE_PALLADIUM, Feature.ORE, new OreConfiguration(palladiumOres, 8));
     }
