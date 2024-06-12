@@ -1,18 +1,26 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Unit;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 
 public class AdamantiumClawsItem extends SuitPowerItem {
     public AdamantiumClawsItem(Properties properties) {
         super(properties.attributes(SwordItem.createAttributes(MarvelTiers.ADAMANTIUM_CLAWS, 3, -2.2F)));
+    }
+
+    @Override
+    public boolean canAttackBlock(BlockState p_43291_, Level p_43292_, BlockPos p_43293_, Player p_43294_) {
+        return !p_43294_.isCreative();
     }
 
     @Override

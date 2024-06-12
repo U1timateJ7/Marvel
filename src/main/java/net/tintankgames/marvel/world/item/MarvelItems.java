@@ -1,7 +1,6 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -11,8 +10,6 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
 import java.util.function.Supplier;
-
-import static net.tintankgames.marvel.world.item.SuitItem.effect;
 
 public class MarvelItems {
     private static final DeferredRegister.Items REGISTER = DeferredRegister.createItems(MarvelSuperheroes.MOD_ID);
@@ -43,21 +40,21 @@ public class MarvelItems {
     public static final DeferredItem<Item> REINFORCED_LEATHER = register("reinforced_leather", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> VIBRANIUM_WEAVE = register("vibranium_weave", () -> new Item(new Item.Properties().fireResistant()));
     public static final DeferredItem<Item> VIBRANIUM_NANITES = register("vibranium_nanites", () -> new Item(new Item.Properties().fireResistant()));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_HELMET = register("captain_america_helmet", () -> new LeatherSuitItem(ArmorItem.Type.HELMET, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_CHESTPLATE = register("captain_america_chestplate", () -> new LeatherSuitItem(ArmorItem.Type.CHESTPLATE, false, Tags.CAPTAIN_AMERICA_ARMOR, List.of(effect(MobEffects.JUMP, 0), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)), new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_LEGGINGS = register("captain_america_leggings", () -> new LeatherSuitItem(ArmorItem.Type.LEGGINGS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_BOOTS = register("captain_america_boots", () -> new LeatherSuitItem(ArmorItem.Type.BOOTS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_HELMET = register("captain_america_stealth_helmet", () -> new LeatherSuitItem(ArmorItem.Type.HELMET, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_CHESTPLATE = register("captain_america_stealth_chestplate", () -> new LeatherSuitItem(ArmorItem.Type.CHESTPLATE, false, Tags.CAPTAIN_AMERICA_ARMOR, List.of(effect(MobEffects.JUMP, 0), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)), new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_LEGGINGS = register("captain_america_stealth_leggings", () -> new LeatherSuitItem(ArmorItem.Type.LEGGINGS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_BOOTS = register("captain_america_stealth_boots", () -> new LeatherSuitItem(ArmorItem.Type.BOOTS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_CARTER_CHESTPLATE = register("captain_carter_chestplate", () -> new LeatherSuitItem(ArmorItem.Type.CHESTPLATE, false, Tags.CAPTAIN_AMERICA_ARMOR, List.of(effect(MobEffects.JUMP, 0), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)), new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_CARTER_LEGGINGS = register("captain_carter_leggings", () -> new LeatherSuitItem(ArmorItem.Type.LEGGINGS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25))));
-    public static final DeferredItem<Item> CAPTAIN_CARTER_BOOTS = register("captain_carter_boots", () -> new LeatherSuitItem(ArmorItem.Type.BOOTS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25))));
-    public static final DeferredItem<Item> RED_GUARDIAN_HELMET = register("red_guardian_helmet", () -> new LeatherSuitItem(ArmorItem.Type.HELMET, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(25))));
-    public static final DeferredItem<Item> RED_GUARDIAN_CHESTPLATE = register("red_guardian_chestplate", () -> new LeatherSuitItem(ArmorItem.Type.CHESTPLATE, false, Tags.CAPTAIN_AMERICA_ARMOR, List.of(effect(MobEffects.JUMP, 0), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)), new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25))));
-    public static final DeferredItem<Item> RED_GUARDIAN_LEGGINGS = register("red_guardian_leggings", () -> new LeatherSuitItem(ArmorItem.Type.LEGGINGS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25))));
-    public static final DeferredItem<Item> RED_GUARDIAN_BOOTS = register("red_guardian_boots", () -> new LeatherSuitItem(ArmorItem.Type.BOOTS, false, Tags.CAPTAIN_AMERICA_ARMOR, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_HELMET = register("captain_america_helmet", () -> new CaptainAmericaSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_CHESTPLATE = register("captain_america_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_LEGGINGS = register("captain_america_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_BOOTS = register("captain_america_boots", () -> new CaptainAmericaSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_HELMET = register("captain_america_stealth_helmet", () -> new CaptainAmericaSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_CHESTPLATE = register("captain_america_stealth_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_LEGGINGS = register("captain_america_stealth_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_AMERICA_STEALTH_BOOTS = register("captain_america_stealth_boots", () -> new CaptainAmericaSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_CARTER_CHESTPLATE = register("captain_carter_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_CARTER_LEGGINGS = register("captain_carter_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_CARTER_BOOTS = register("captain_carter_boots", () -> new CaptainAmericaSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> RED_GUARDIAN_HELMET = register("red_guardian_helmet", () -> new CaptainAmericaSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> RED_GUARDIAN_CHESTPLATE = register("red_guardian_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> RED_GUARDIAN_LEGGINGS = register("red_guardian_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> RED_GUARDIAN_BOOTS = register("red_guardian_boots", () -> new CaptainAmericaSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> VIBRANIUM_SHIELD = register("vibranium_shield", () -> new VibraniumShieldItem(VIBRANIUM_INGOT, new Item.Properties().durability(4063).attributes(VibraniumShieldItem.vibraniumAttributes()).fireResistant()));
     public static final DeferredItem<Item> PROTO_ADAMANTIUM_SHIELD = register("proto_adamantium_shield", () -> new VibraniumShieldItem(VIBRANIUM_INGOT, new Item.Properties().stacksTo(1).attributes(VibraniumShieldItem.protoAdamantiumAttributes()).fireResistant()));
     public static final DeferredItem<Item> BLACK_PANTHER_HELMET = register("black_panther_helmet", () -> new BlackPantherSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
@@ -94,6 +91,12 @@ public class MarvelItems {
     public static final DeferredItem<Item> CYCLOPS_DARK_CHESTPLATE = register("cyclops_dark_chestplate", () -> new CyclopsSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> CYCLOPS_DARK_LEGGINGS = register("cyclops_dark_leggings", () -> new CyclopsSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> CYCLOPS_DARK_BOOTS = register("cyclops_dark_boots", () -> new CyclopsSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> WEB_SHOOTER = register("web_shooter", () -> new WebShooterItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> WEB_FLUID = register("web_fluid", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SPIDER_MAN_HELMET = register("spider_man_helmet", () -> new SpiderManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_CHESTPLATE = register("spider_man_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_LEGGINGS = register("spider_man_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_BOOTS = register("spider_man_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -135,6 +138,11 @@ public class MarvelItems {
         public static final TagKey<Item> CYCLOPS_CHESTPLATE = create("cyclops_chestplate");
         public static final TagKey<Item> CYCLOPS_LEGGINGS = create("cyclops_leggings");
         public static final TagKey<Item> CYCLOPS_BOOTS = create("cyclops_boots");
+        public static final TagKey<Item> SPIDER_MAN_ARMOR = create("spider_man_armor");
+        public static final TagKey<Item> SPIDER_MAN_HELMET = create("spider_man_helmet");
+        public static final TagKey<Item> SPIDER_MAN_CHESTPLATE = create("spider_man_chestplate");
+        public static final TagKey<Item> SPIDER_MAN_LEGGINGS = create("spider_man_leggings");
+        public static final TagKey<Item> SPIDER_MAN_BOOTS = create("spider_man_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

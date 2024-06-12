@@ -7,35 +7,38 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.IntFunction;
+import java.util.stream.Stream;
 
 public enum ShieldArt implements StringRepresentable {
     BLANK("blank"),
-    CAPTAIN_AMERICA("captain_america"),
-    CAPTAIN_AMERICA_STEALTH("captain_america_stealth"),
-    CAPTAIN_CARTER("captain_carter"),
-    RED_GUARDIAN("red_guardian");
+    CAPTAIN_AMERICA("captain_america", DyeColor.RED, DyeColor.WHITE, DyeColor.BLUE),
+    CAPTAIN_AMERICA_STEALTH("captain_america_stealth", DyeColor.LIGHT_BLUE, DyeColor.WHITE, DyeColor.BLUE),
+    CAPTAIN_CARTER("captain_carter", DyeColor.RED, DyeColor.BLUE),
+    RED_GUARDIAN("red_guardian", DyeColor.RED);
 
     private static final IntFunction<ShieldArt> SHIELD_ART_BY_ID = ByIdMap.continuous(ShieldArt::ordinal, ShieldArt.values(), ByIdMap.OutOfBoundsStrategy.ZERO);
     public static final Codec<ShieldArt> CODEC = StringRepresentable.fromEnum(ShieldArt::values);
     public static final StreamCodec<ByteBuf, ShieldArt> STREAM_CODEC = ByteBufCodecs.idMapper(SHIELD_ART_BY_ID, ShieldArt::ordinal);
     private final String name;
+    private final List<DyeColor> colors;
 
-    ShieldArt(String name) {
+    ShieldArt(String name, DyeColor... colors) {
         this.name = name;
+        this.colors = Arrays.asList(colors);
     }
 
     public static ShieldArt getFromColors(List<DyeColor> colors) {
-        if (colors.size() == 3 && colors.contains(DyeColor.RED) && colors.contains(DyeColor.WHITE) && colors.contains(DyeColor.BLUE)) {
-            return CAPTAIN_AMERICA;
-        } else if (colors.size() == 3 && colors.contains(DyeColor.LIGHT_BLUE) && colors.contains(DyeColor.WHITE) && colors.contains(DyeColor.BLUE)) {
-            return CAPTAIN_AMERICA_STEALTH;
-        } else if (colors.size() == 2 && colors.contains(DyeColor.RED) && colors.contains(DyeColor.BLUE)) {
-            return CAPTAIN_CARTER;
-        } else if (colors.size() == 1 && colors.contains(DyeColor.RED)) {
-            return RED_GUARDIAN;
+        for (ShieldArt art : values()) {
+            if (colors.size() == art.colors.size() && new HashSet<>(colors).containsAll(art.colors)) {
+                return art;
+            }
         }
         return null;
     }
@@ -47,5 +50,22 @@ public enum ShieldArt implements StringRepresentable {
     @Override
     public String getSerializedName() {
         return name;
+    }
+
+    public List<DyeColor> colors() {
+        return List.copyOf(colors);
+    }
+
+    public List<DyeItem> dyes() {
+        List<DyeItem> dyes = new ArrayList<>();
+        List<DyeColor> colors = new ArrayList<>(this.colors);
+        for (DyeItem dyeItem : Stream.of(DyeColor.values()).map(DyeItem::byColor).toList()) {
+            if (colors.contains(dyeItem.getDyeColor())) {
+                dyes.add(dyeItem);
+                colors.remove(dyeItem.getDyeColor());
+                if (colors.isEmpty()) break;
+            }
+        }
+        return dyes;
     }
 }

@@ -1,17 +1,21 @@
 package net.tintankgames.marvel.network;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
+import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
 import net.tintankgames.marvel.world.level.KineticExplosionDamageCalculator;
 
@@ -28,6 +32,8 @@ public class SuitAbilityMessage implements CustomPacketPayload {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
                 ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
                 ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
+                ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
+                ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 float absorbed = 0.0F;
                 for (ItemStack stack : player.getInventory().armor) {
                     if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) {
@@ -36,7 +42,7 @@ public class SuitAbilityMessage implements CustomPacketPayload {
                     }
                 }
                 if (absorbed > 0.0F) {
-                    player.serverLevel().explode(player, player.damageSources().source(MarvelDamageTypes.KINETIC_BLAST, player), new KineticExplosionDamageCalculator(absorbed / 5f), player.position(), absorbed/6.25f, false, Level.ExplosionInteraction.NONE);
+                    player.serverLevel().explode(player, player.damageSources().source(MarvelDamageTypes.KINETIC_BLAST, player), new KineticExplosionDamageCalculator(absorbed / 5f), player.getX(), player.getY(), player.getZ(), absorbed/20f, false, Level.ExplosionInteraction.NONE, ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), SoundEvents.GENERIC_EXPLODE);
                 }
                 if (helmet.has(MarvelDataComponents.OPTIC_BLAST_MODE)) {
                     helmet.update(MarvelDataComponents.OPTIC_BLAST_MODE, OpticBlastMode.NARROW, mode -> {
@@ -44,6 +50,9 @@ public class SuitAbilityMessage implements CustomPacketPayload {
                         else if (mode == OpticBlastMode.NARROW) player.sendSystemMessage(Component.translatable("item.marvel.optic_blast.wide").withStyle(ChatFormatting.RED), true);
                         return mode == OpticBlastMode.NARROW ? OpticBlastMode.WIDE : OpticBlastMode.NARROW;
                     });
+                }
+                if (!chestplate.has(MarvelDataComponents.SPIDER_SENSE) && chestplate.is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && leggings.is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && boots.is(MarvelItems.Tags.SPIDER_MAN_ARMOR)) {
+                    chestplate.set(MarvelDataComponents.SPIDER_SENSE, 100);
                 }
             }
         });

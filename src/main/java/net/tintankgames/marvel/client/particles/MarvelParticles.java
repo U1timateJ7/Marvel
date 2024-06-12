@@ -14,5 +14,7 @@ public class MarvelParticles {
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(MarvelParticleTypes.EMISSIVE_DUST.get(), EmissiveDustParticle.Provider::new);
+        event.registerSpecial(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), new KineticBlastEmitterParticle.Provider());
+        event.registerSpriteSet(MarvelParticleTypes.KINETIC_BLAST.get(), KineticBlastParticle.Provider::new);
     }
 }

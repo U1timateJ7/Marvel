@@ -14,5 +14,6 @@ public class MarvelEntityRenderers {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), VibraniumShieldRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.WEB_SHOT.get(), WebShotRenderer::new);
     }
 }

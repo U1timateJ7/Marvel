@@ -67,6 +67,7 @@ public class MarvelRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.SUIT_TABLE).define('#', Blocks.ANVIL).define('X', MarvelItems.TITANIUM_INGOT).pattern("XXX").pattern("X#X").pattern("XXX").unlockedBy("has_titanium", has(MarvelItems.TITANIUM_INGOT)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.VIBRANIUM_SHIELD).define('X', MarvelItems.VIBRANIUM_INGOT).define('#', Tags.Items.LEATHERS).pattern("XXX").pattern("X#X").unlockedBy("has_vibranium", has(MarvelItems.VIBRANIUM)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.PROTO_ADAMANTIUM_SHIELD).define('X', MarvelItems.PROTO_ADAMANTIUM_INGOT).define('#', Tags.Items.LEATHERS).pattern("XXX").pattern("X#X").unlockedBy("has_proto_adamantium_ingot", has(MarvelItems.PROTO_ADAMANTIUM_INGOT)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.WEB_FLUID, 4).define('#', Tags.Items.SLIMEBALLS).define('X', Tags.Items.STRINGS).pattern("X#").pattern("#X").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
 
         SpecialRecipeBuilder.special(ShieldArtRecipe::new).save(output, MarvelSuperheroes.id("shield_art"));
         SpecialRecipeBuilder.special(ShieldCleanRecipe::new).save(output, MarvelSuperheroes.id("shield_clean"));
@@ -137,6 +138,11 @@ public class MarvelRecipeProvider extends RecipeProvider {
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.CYCLOPS_CHESTPLATE), MarvelItems.CYCLOPS_DARK_CHESTPLATE).unlockedBy("has_cyclops_chestplate", has(MarvelItems.Tags.CYCLOPS_CHESTPLATE)).save(output);
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.CYCLOPS_LEGGINGS), MarvelItems.CYCLOPS_DARK_LEGGINGS).unlockedBy("has_cyclops_leggings", has(MarvelItems.Tags.CYCLOPS_LEGGINGS)).save(output);
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.CYCLOPS_BOOTS), MarvelItems.CYCLOPS_DARK_BOOTS).unlockedBy("has_cyclops_boots", has(MarvelItems.Tags.CYCLOPS_BOOTS)).save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.SPIDER_MAN_HELMET).define('#', Tags.Items.DYES_RED).define('W', Tags.Items.DYES_WHITE).define('X', MarvelItems.REINFORCED_LEATHER).pattern("#X#").pattern("XWX").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.SPIDER_MAN_CHESTPLATE).define('#', Tags.Items.DYES_RED).define('B', Tags.Items.DYES_BLUE).define('T', MarvelItems.TITANIUM_INGOT).define('X', MarvelItems.REINFORCED_LEATHER).pattern("X X").pattern("#T#").pattern("XBX").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.SPIDER_MAN_LEGGINGS).define('#', Tags.Items.DYES_BLUE).define('X', MarvelItems.REINFORCED_LEATHER).pattern("X#X").pattern("# #").pattern("X X").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.SPIDER_MAN_BOOTS).define('#', Tags.Items.DYES_RED).define('X', MarvelItems.REINFORCED_LEATHER).pattern("X X").pattern("# #").pattern("X X").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
     }
 
     public static void mvnineBlockStorageRecipesRecipesWithCustomUnpacking(RecipeOutput consumer, RecipeCategory recipeCategory, ItemLike item, RecipeCategory recipeCategory2, ItemLike item2, String name, String group) {

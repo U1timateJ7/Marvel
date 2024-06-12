@@ -75,33 +75,38 @@ public class MarvelTagProvider {
             copy(MarvelBlocks.Tags.VIBRANIUM_ORES, MarvelItems.Tags.VIBRANIUM_ORES);
             copy(MarvelBlocks.Tags.TITANIUM_ORES, MarvelItems.Tags.TITANIUM_ORES);
             copy(MarvelBlocks.Tags.PALLADIUM_ORES, MarvelItems.Tags.PALLADIUM_ORES);
-            tag(MarvelItems.Tags.RENDER_HAND).add(MarvelItems.ADAMANTIUM_CLAWS.get(), MarvelItems.OPTIC_BLAST.get());
-            tag(MarvelItems.Tags.HIDES_OUTER_LAYER).add(MarvelItems.CAPTAIN_AMERICA_HELMET.get(), MarvelItems.CAPTAIN_AMERICA_CHESTPLATE.get(), MarvelItems.CAPTAIN_AMERICA_LEGGINGS.get(), MarvelItems.CAPTAIN_AMERICA_BOOTS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_HELMET.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_CHESTPLATE.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_LEGGINGS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_BOOTS.get(), MarvelItems.CAPTAIN_CARTER_CHESTPLATE.get(), MarvelItems.CAPTAIN_CARTER_LEGGINGS.get(), MarvelItems.CAPTAIN_CARTER_BOOTS.get(), MarvelItems.RED_GUARDIAN_HELMET.get(), MarvelItems.RED_GUARDIAN_CHESTPLATE.get(), MarvelItems.RED_GUARDIAN_LEGGINGS.get(), MarvelItems.RED_GUARDIAN_BOOTS.get(), MarvelItems.BLACK_PANTHER_HELMET.get(), MarvelItems.BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.BLACK_PANTHER_LEGGINGS.get(), MarvelItems.BLACK_PANTHER_BOOTS.get(), MarvelItems.KINETIC_BLACK_PANTHER_HELMET.get(), MarvelItems.KINETIC_BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.KINETIC_BLACK_PANTHER_LEGGINGS.get(), MarvelItems.KINETIC_BLACK_PANTHER_BOOTS.get(), MarvelItems.KILLMONGER_HELMET.get(), MarvelItems.KILLMONGER_CHESTPLATE.get(), MarvelItems.KILLMONGER_LEGGINGS.get(), MarvelItems.KILLMONGER_BOOTS.get(), MarvelItems.WOLVERINE_HELMET.get(), MarvelItems.WOLVERINE_CHESTPLATE.get(), MarvelItems.WOLVERINE_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_LEGGINGS.get(), MarvelItems.WOLVERINE_BOOTS.get(), MarvelItems.WOLVERINE_BROWN_HELMET.get(), MarvelItems.WOLVERINE_BROWN_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_LEGGINGS.get(), MarvelItems.WOLVERINE_BROWN_BOOTS.get(), MarvelItems.CYCLOPS_CHESTPLATE.get(), MarvelItems.CYCLOPS_LEGGINGS.get(), MarvelItems.CYCLOPS_BOOTS.get(), MarvelItems.CYCLOPS_DARK_HELMET.get(), MarvelItems.CYCLOPS_DARK_CHESTPLATE.get(), MarvelItems.CYCLOPS_DARK_LEGGINGS.get(), MarvelItems.CYCLOPS_DARK_BOOTS.get());
+            tag(MarvelItems.Tags.RENDER_HAND).add(MarvelItems.ADAMANTIUM_CLAWS.get(), MarvelItems.OPTIC_BLAST.get(), MarvelItems.WEB_SHOOTER.get());
+            tag(MarvelItems.Tags.HIDES_OUTER_LAYER).add(MarvelItems.CAPTAIN_AMERICA_HELMET.get(), MarvelItems.CAPTAIN_AMERICA_CHESTPLATE.get(), MarvelItems.CAPTAIN_AMERICA_LEGGINGS.get(), MarvelItems.CAPTAIN_AMERICA_BOOTS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_HELMET.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_CHESTPLATE.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_LEGGINGS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_BOOTS.get(), MarvelItems.CAPTAIN_CARTER_CHESTPLATE.get(), MarvelItems.CAPTAIN_CARTER_LEGGINGS.get(), MarvelItems.CAPTAIN_CARTER_BOOTS.get(), MarvelItems.RED_GUARDIAN_HELMET.get(), MarvelItems.RED_GUARDIAN_CHESTPLATE.get(), MarvelItems.RED_GUARDIAN_LEGGINGS.get(), MarvelItems.RED_GUARDIAN_BOOTS.get(), MarvelItems.BLACK_PANTHER_HELMET.get(), MarvelItems.BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.BLACK_PANTHER_LEGGINGS.get(), MarvelItems.BLACK_PANTHER_BOOTS.get(), MarvelItems.KINETIC_BLACK_PANTHER_HELMET.get(), MarvelItems.KINETIC_BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.KINETIC_BLACK_PANTHER_LEGGINGS.get(), MarvelItems.KINETIC_BLACK_PANTHER_BOOTS.get(), MarvelItems.KILLMONGER_HELMET.get(), MarvelItems.KILLMONGER_CHESTPLATE.get(), MarvelItems.KILLMONGER_LEGGINGS.get(), MarvelItems.KILLMONGER_BOOTS.get(), MarvelItems.WOLVERINE_HELMET.get(), MarvelItems.WOLVERINE_CHESTPLATE.get(), MarvelItems.WOLVERINE_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_LEGGINGS.get(), MarvelItems.WOLVERINE_BOOTS.get(), MarvelItems.WOLVERINE_BROWN_HELMET.get(), MarvelItems.WOLVERINE_BROWN_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_LEGGINGS.get(), MarvelItems.WOLVERINE_BROWN_BOOTS.get(), MarvelItems.CYCLOPS_CHESTPLATE.get(), MarvelItems.CYCLOPS_LEGGINGS.get(), MarvelItems.CYCLOPS_BOOTS.get(), MarvelItems.CYCLOPS_DARK_HELMET.get(), MarvelItems.CYCLOPS_DARK_CHESTPLATE.get(), MarvelItems.CYCLOPS_DARK_LEGGINGS.get(), MarvelItems.CYCLOPS_DARK_BOOTS.get(), MarvelItems.SPIDER_MAN_HELMET.get(), MarvelItems.SPIDER_MAN_CHESTPLATE.get(), MarvelItems.SPIDER_MAN_LEGGINGS.get(), MarvelItems.SPIDER_MAN_BOOTS.get());
             tag(MarvelItems.Tags.CAPTAIN_AMERICA_HELMET).add(MarvelItems.CAPTAIN_AMERICA_HELMET.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_HELMET.get(), MarvelItems.RED_GUARDIAN_HELMET.get());
-            tag(MarvelItems.Tags.BLACK_PANTHER_HELMET).add(MarvelItems.BLACK_PANTHER_HELMET.get());
-            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_HELMET).add(MarvelItems.KINETIC_BLACK_PANTHER_HELMET.get(), MarvelItems.KILLMONGER_HELMET.get());
-            tag(MarvelItems.Tags.WOLVERINE_HELMET).add(MarvelItems.WOLVERINE_HELMET.get(), MarvelItems.WOLVERINE_BROWN_HELMET.get());
-            tag(MarvelItems.Tags.CYCLOPS_HELMET).add(MarvelItems.CYCLOPS_HELMET.get(), MarvelItems.CYCLOPS_DARK_HELMET.get());
             tag(MarvelItems.Tags.CAPTAIN_AMERICA_CHESTPLATE).add(MarvelItems.CAPTAIN_AMERICA_CHESTPLATE.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_CHESTPLATE.get(), MarvelItems.CAPTAIN_CARTER_CHESTPLATE.get(), MarvelItems.RED_GUARDIAN_CHESTPLATE.get());
-            tag(MarvelItems.Tags.BLACK_PANTHER_CHESTPLATE).add(MarvelItems.BLACK_PANTHER_CHESTPLATE.get());
-            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_CHESTPLATE).add(MarvelItems.KINETIC_BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.KILLMONGER_CHESTPLATE.get());
-            tag(MarvelItems.Tags.WOLVERINE_CHESTPLATE).add(MarvelItems.WOLVERINE_CHESTPLATE.get(), MarvelItems.WOLVERINE_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE.get());
-            tag(MarvelItems.Tags.CYCLOPS_CHESTPLATE).add(MarvelItems.CYCLOPS_CHESTPLATE.get(), MarvelItems.CYCLOPS_DARK_CHESTPLATE.get());
             tag(MarvelItems.Tags.CAPTAIN_AMERICA_LEGGINGS).add(MarvelItems.CAPTAIN_AMERICA_LEGGINGS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_LEGGINGS.get(), MarvelItems.CAPTAIN_CARTER_LEGGINGS.get(), MarvelItems.RED_GUARDIAN_LEGGINGS.get());
-            tag(MarvelItems.Tags.BLACK_PANTHER_LEGGINGS).add(MarvelItems.BLACK_PANTHER_LEGGINGS.get());
-            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_LEGGINGS).add(MarvelItems.KINETIC_BLACK_PANTHER_LEGGINGS.get(), MarvelItems.KILLMONGER_LEGGINGS.get());
-            tag(MarvelItems.Tags.WOLVERINE_LEGGINGS).add(MarvelItems.WOLVERINE_LEGGINGS.get(), MarvelItems.WOLVERINE_BROWN_LEGGINGS.get());
-            tag(MarvelItems.Tags.CYCLOPS_LEGGINGS).add(MarvelItems.CYCLOPS_LEGGINGS.get(), MarvelItems.CYCLOPS_DARK_LEGGINGS.get());
             tag(MarvelItems.Tags.CAPTAIN_AMERICA_BOOTS).add(MarvelItems.CAPTAIN_AMERICA_BOOTS.get(), MarvelItems.CAPTAIN_AMERICA_STEALTH_BOOTS.get(), MarvelItems.CAPTAIN_CARTER_BOOTS.get(), MarvelItems.RED_GUARDIAN_BOOTS.get());
+            tag(MarvelItems.Tags.BLACK_PANTHER_HELMET).add(MarvelItems.BLACK_PANTHER_HELMET.get());
+            tag(MarvelItems.Tags.BLACK_PANTHER_CHESTPLATE).add(MarvelItems.BLACK_PANTHER_CHESTPLATE.get());
+            tag(MarvelItems.Tags.BLACK_PANTHER_LEGGINGS).add(MarvelItems.BLACK_PANTHER_LEGGINGS.get());
             tag(MarvelItems.Tags.BLACK_PANTHER_BOOTS).add(MarvelItems.BLACK_PANTHER_BOOTS.get());
+            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_HELMET).add(MarvelItems.KINETIC_BLACK_PANTHER_HELMET.get(), MarvelItems.KILLMONGER_HELMET.get());
+            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_CHESTPLATE).add(MarvelItems.KINETIC_BLACK_PANTHER_CHESTPLATE.get(), MarvelItems.KILLMONGER_CHESTPLATE.get());
+            tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_LEGGINGS).add(MarvelItems.KINETIC_BLACK_PANTHER_LEGGINGS.get(), MarvelItems.KILLMONGER_LEGGINGS.get());
             tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_BOOTS).add(MarvelItems.KINETIC_BLACK_PANTHER_BOOTS.get(), MarvelItems.KILLMONGER_BOOTS.get());
+            tag(MarvelItems.Tags.WOLVERINE_HELMET).add(MarvelItems.WOLVERINE_HELMET.get(), MarvelItems.WOLVERINE_BROWN_HELMET.get());
+            tag(MarvelItems.Tags.WOLVERINE_CHESTPLATE).add(MarvelItems.WOLVERINE_CHESTPLATE.get(), MarvelItems.WOLVERINE_SLEEVELESS_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_CHESTPLATE.get(), MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE.get());
+            tag(MarvelItems.Tags.WOLVERINE_LEGGINGS).add(MarvelItems.WOLVERINE_LEGGINGS.get(), MarvelItems.WOLVERINE_BROWN_LEGGINGS.get());
             tag(MarvelItems.Tags.WOLVERINE_BOOTS).add(MarvelItems.WOLVERINE_BOOTS.get(), MarvelItems.WOLVERINE_BROWN_BOOTS.get());
+            tag(MarvelItems.Tags.CYCLOPS_HELMET).add(MarvelItems.CYCLOPS_HELMET.get(), MarvelItems.CYCLOPS_DARK_HELMET.get());
+            tag(MarvelItems.Tags.CYCLOPS_CHESTPLATE).add(MarvelItems.CYCLOPS_CHESTPLATE.get(), MarvelItems.CYCLOPS_DARK_CHESTPLATE.get());
+            tag(MarvelItems.Tags.CYCLOPS_LEGGINGS).add(MarvelItems.CYCLOPS_LEGGINGS.get(), MarvelItems.CYCLOPS_DARK_LEGGINGS.get());
             tag(MarvelItems.Tags.CYCLOPS_BOOTS).add(MarvelItems.CYCLOPS_BOOTS.get(), MarvelItems.CYCLOPS_DARK_BOOTS.get());
+            tag(MarvelItems.Tags.SPIDER_MAN_HELMET).add(MarvelItems.SPIDER_MAN_HELMET.get());
+            tag(MarvelItems.Tags.SPIDER_MAN_CHESTPLATE).add(MarvelItems.SPIDER_MAN_CHESTPLATE.get());
+            tag(MarvelItems.Tags.SPIDER_MAN_LEGGINGS).add(MarvelItems.SPIDER_MAN_LEGGINGS.get());
+            tag(MarvelItems.Tags.SPIDER_MAN_BOOTS).add(MarvelItems.SPIDER_MAN_BOOTS.get());
             tag(MarvelItems.Tags.CAPTAIN_AMERICA_ARMOR).addTag(MarvelItems.Tags.CAPTAIN_AMERICA_HELMET).addTag(MarvelItems.Tags.CAPTAIN_AMERICA_CHESTPLATE).addTag(MarvelItems.Tags.CAPTAIN_AMERICA_LEGGINGS).addTag(MarvelItems.Tags.CAPTAIN_AMERICA_BOOTS);
             tag(MarvelItems.Tags.BLACK_PANTHER_ARMOR).addTag(MarvelItems.Tags.BLACK_PANTHER_HELMET).addTag(MarvelItems.Tags.BLACK_PANTHER_CHESTPLATE).addTag(MarvelItems.Tags.BLACK_PANTHER_LEGGINGS).addTag(MarvelItems.Tags.BLACK_PANTHER_BOOTS);
             tag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR).addTag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_HELMET).addTag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_CHESTPLATE).addTag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_LEGGINGS).addTag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_BOOTS);
             tag(MarvelItems.Tags.WOLVERINE_ARMOR).addTag(MarvelItems.Tags.WOLVERINE_HELMET).addTag(MarvelItems.Tags.WOLVERINE_CHESTPLATE).addTag(MarvelItems.Tags.WOLVERINE_LEGGINGS).addTag(MarvelItems.Tags.WOLVERINE_BOOTS);
             tag(MarvelItems.Tags.CYCLOPS_ARMOR).addTag(MarvelItems.Tags.CYCLOPS_HELMET).addTag(MarvelItems.Tags.CYCLOPS_CHESTPLATE).addTag(MarvelItems.Tags.CYCLOPS_LEGGINGS).addTag(MarvelItems.Tags.CYCLOPS_BOOTS);
+            tag(MarvelItems.Tags.SPIDER_MAN_ARMOR).addTag(MarvelItems.Tags.SPIDER_MAN_HELMET).addTag(MarvelItems.Tags.SPIDER_MAN_CHESTPLATE).addTag(MarvelItems.Tags.SPIDER_MAN_LEGGINGS).addTag(MarvelItems.Tags.SPIDER_MAN_BOOTS);
             tag(MarvelItems.Tags.SOUND_DAMPENING_BOOTS).addTag(MarvelItems.Tags.KINETIC_BLACK_PANTHER_BOOTS);
         }
     }
@@ -126,12 +131,12 @@ public class MarvelTagProvider {
 
         @Override
         protected void addTags(HolderLookup.Provider arg) {
-            tag(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS).add(MarvelDamageTypes.KINETIC_BLAST, MarvelDamageTypes.VIBRANIUM_SHIELD, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
+            tag(DamageTypeTags.ALWAYS_HURTS_ENDER_DRAGONS).add(MarvelDamageTypes.KINETIC_BLAST, MarvelDamageTypes.VIBRANIUM_SHIELD, MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
             tag(DamageTypeTags.AVOIDS_GUARDIAN_THORNS).add(MarvelDamageTypes.KINETIC_BLAST, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
             tag(DamageTypeTags.IS_EXPLOSION).add(MarvelDamageTypes.KINETIC_BLAST);
             tag(DamageTypeTags.IS_PLAYER_ATTACK).add(MarvelDamageTypes.KINETIC_BLAST, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
-            tag(DamageTypeTags.IS_PROJECTILE).add(MarvelDamageTypes.VIBRANIUM_SHIELD);
-            tag(DamageTypeTags.ALWAYS_KILLS_ARMOR_STANDS).add(MarvelDamageTypes.VIBRANIUM_SHIELD, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
+            tag(DamageTypeTags.IS_PROJECTILE).add(MarvelDamageTypes.VIBRANIUM_SHIELD, MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER);
+            tag(DamageTypeTags.ALWAYS_KILLS_ARMOR_STANDS).add(MarvelDamageTypes.VIBRANIUM_SHIELD, MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER, MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
             tag(DamageTypeTags.NO_KNOCKBACK).add(MarvelDamageTypes.OPTIC_BLAST, MarvelDamageTypes.OPTIC_BLAST_GOOFY);
             tag(DamageTypeTags.BYPASSES_ARMOR).add(MarvelDamageTypes.OPTIC_BLAST_GOOFY);
             tag(DamageTypeTags.BYPASSES_COOLDOWN).add(MarvelDamageTypes.OPTIC_BLAST_GOOFY);

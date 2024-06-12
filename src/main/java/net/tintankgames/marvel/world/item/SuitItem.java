@@ -89,7 +89,7 @@ public abstract class SuitItem extends ArmorItem {
         }
     }
 
-    public int findSlotMatchingItem(List<ItemStack> items, Item item) {
+    public static int findSlotMatchingItem(List<ItemStack> items, Item item) {
         for (int i = 0; i < items.size(); i++) {
             if (!items.get(i).isEmpty() && item == items.get(i).getItem()) {
                 return i;

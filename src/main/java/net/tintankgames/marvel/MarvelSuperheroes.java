@@ -8,6 +8,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
@@ -44,6 +45,7 @@ public class MarvelSuperheroes {
         MarvelEntityTypes.register(bus);
         MarvelArmorMaterials.register(bus);
         MarvelDataComponents.register(bus);
+        MarvelAttachmentTypes.register(bus);
         MarvelBlockEntityTypes.register(bus);
         MarvelBlocks.register(bus);
         MarvelItems.register(bus);

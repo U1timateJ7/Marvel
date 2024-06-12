@@ -123,6 +123,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.CYCLOPS_DARK_CHESTPLATE);
         output.accept(MarvelItems.CYCLOPS_DARK_LEGGINGS);
         output.accept(MarvelItems.CYCLOPS_DARK_BOOTS);
+        output.accept(MarvelItems.SPIDER_MAN_HELMET);
+        output.accept(MarvelItems.SPIDER_MAN_CHESTPLATE);
+        output.accept(MarvelItems.SPIDER_MAN_LEGGINGS);
+        output.accept(MarvelItems.SPIDER_MAN_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

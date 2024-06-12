@@ -6,16 +6,20 @@
   "mixins": [
     "EntityMixin",
     "LivingEntityMixin",
+    "PlayerMixin",
     "ServerLevelMixin",
     "VanillaRegistriesMixin",
     "VanillaRegistriesMixin$DamageTypesMixin",
     "VanillaRegistriesMixin$FeatureUtilsMixin",
-    "VanillaRegistriesMixin$PlacementUtilsMixin"
+    "VanillaRegistriesMixin$PlacementUtilsMixin",
+    "WebBlockMixin"
   ],
   "client": [
     "BlockEntityWithoutLevelRendererMixin",
     "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",
+    "LevelRendererMixin",
+    "MinecraftMixin",
     "PlayerModelMixin",
     "PlayerRendererMixin"
   ],

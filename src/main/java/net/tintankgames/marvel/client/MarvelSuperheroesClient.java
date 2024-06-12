@@ -1,6 +1,8 @@
 package net.tintankgames.marvel.client;
 
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -11,6 +13,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @OnlyIn(Dist.CLIENT)
@@ -30,6 +33,8 @@ public class MarvelSuperheroesClient {
     public static void setupClient(FMLClientSetupEvent event) {
         CuriosRendererRegistry.register(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get(), NecklaceRenderer::new);
         CuriosRendererRegistry.register(MarvelItems.KILLMONGER_NECKLACE.get(), NecklaceRenderer::new);
+
+        ItemBlockRenderTypes.setRenderLayer(MarvelBlocks.SPIDER_WEB.get(), RenderType.cutoutMipped());
     }
 
     @OnlyIn(Dist.CLIENT)

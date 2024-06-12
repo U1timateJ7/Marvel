@@ -29,6 +29,7 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<MobEffectInstance>>> SUIT_EFFECTS = register("suit_effects", () -> DataComponentType.<List<MobEffectInstance>>builder().persistent(Codec.withAlternative(MobEffectInstance.CODEC.listOf(), MobEffectInstance.CODEC, List::of)).networkSynchronized(MobEffectInstance.STREAM_CODEC.apply(ByteBufCodecs.list())).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<Item>>> POWER_ITEMS = register("power_items", () -> DataComponentType.<List<Item>>builder().persistent(Codec.withAlternative(BuiltInRegistries.ITEM.byNameCodec().listOf(), BuiltInRegistries.ITEM.byNameCodec(), List::of)).networkSynchronized(ByteBufCodecs.registry(Registries.ITEM).apply(ByteBufCodecs.list())).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<OpticBlastMode>> OPTIC_BLAST_MODE = register("optic_blast_mode", () -> DataComponentType.<OpticBlastMode>builder().persistent(OpticBlastMode.CODEC).networkSynchronized(OpticBlastMode.STREAM_CODEC).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> SPIDER_SENSE = register("spider_sense", () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);

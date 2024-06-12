@@ -1,14 +1,20 @@
 package net.tintankgames.marvel.world.level.block;
 
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,6 +26,7 @@ import java.util.function.Supplier;
 public class MarvelBlocks {
     public static final DeferredRegister.Blocks REGISTER = DeferredRegister.createBlocks(MarvelSuperheroes.MOD_ID);
     private static final DeferredRegister.Items REGISTER_ITEMS = DeferredRegister.createItems(MarvelSuperheroes.MOD_ID);
+    private static final DeferredRegister<MapCodec<? extends Block>> REGISTER_TYPE = DeferredRegister.create(Registries.BLOCK_TYPE, MarvelSuperheroes.MOD_ID);
 
     public static final DeferredBlock<Block> VIBRANIUM_ORE = register("vibranium_ore", () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(6.0F, 1200.0F)), () -> new Item.Properties().fireResistant());
     public static final DeferredBlock<Block> DEEPSLATE_VIBRANIUM_ORE = register("deepslate_vibranium_ore", () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.ofLegacyCopy(MarvelBlocks.VIBRANIUM_ORE.get()).mapColor(MapColor.DEEPSLATE).strength(7.5F, 1200.0F).sound(SoundType.DEEPSLATE)), () -> new Item.Properties().fireResistant());
@@ -34,7 +41,18 @@ public class MarvelBlocks {
     public static final DeferredBlock<Block> RAW_PALLADIUM_BLOCK = register("raw_palladium_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
     public static final DeferredBlock<Block> GOLD_TITANIUM_BLOCK = register("gold_titanium_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final DeferredBlock<Block> ADAMANTIUM_BLOCK = register("adamantium_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).sound(SoundType.METAL)), () -> new Item.Properties().fireResistant());
-    public static final DeferredBlock<Block> SUIT_TABLE = register("suit_table", () -> new SuitTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> SUIT_TABLE = registerWithType("suit_table", () -> SuitTableBlock.CODEC, () -> new SuitTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> SPIDER_WEB = registerBlockOnlyWithType("spider_web", () -> SpiderWebBlock.CODEC, () -> new SpiderWebBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).sound(SoundType.COBWEB).forceSolidOn().noCollission().requiresCorrectToolForDrops().strength(4.0F).pushReaction(PushReaction.DESTROY)));
+
+    private static <T extends Block> DeferredBlock<T> registerWithType(String id, Supplier<MapCodec<? extends Block>> type, Supplier<T> supplier) {
+        REGISTER_TYPE.register(id, type);
+        return register(id, supplier);
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerBlockOnlyWithType(String id, Supplier<MapCodec<? extends Block>> type, Supplier<T> supplier) {
+        REGISTER_TYPE.register(id, type);
+        return registerBlockOnly(id, supplier);
+    }
 
     private static <T extends Block> DeferredBlock<T> register(String id, Supplier<T> supplier) {
         return register(id, supplier, Item.Properties::new);
@@ -55,6 +73,7 @@ public class MarvelBlocks {
     public static void register(IEventBus bus) {
         REGISTER.register(bus);
         REGISTER_ITEMS.register(bus);
+        REGISTER_TYPE.register(bus);
     }
 
     public static class Tags {

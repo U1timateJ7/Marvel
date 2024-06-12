@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:slimeballs"
+    },
+    "X": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "X#",
+    "#X"
+  ],
+  "result": {
+    "count": 4,
+    "id": "marvel:web_fluid"
+  }
+}

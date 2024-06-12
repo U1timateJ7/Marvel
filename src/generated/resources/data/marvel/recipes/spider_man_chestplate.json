@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:dyes/red"
+    },
+    "B": {
+      "tag": "c:dyes/blue"
+    },
+    "T": {
+      "item": "marvel:titanium_ingot"
+    },
+    "X": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "pattern": [
+    "X X",
+    "#T#",
+    "XBX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:spider_man_chestplate"
+  }
+}

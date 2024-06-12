@@ -43,7 +43,7 @@ public class KineticBlackPantherSuitItem extends SuitItem {
     private final int color;
 
     public KineticBlackPantherSuitItem(int color, Type type, Properties properties) {
-        super(MarvelArmorMaterials.VIBRANIUM_NANITE, type, true, MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F));
+        super(MarvelArmorMaterials.VIBRANIUM_NANITE, type, true, MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F));
         this.color = color;
         this.defaultModifiers = Suppliers.memoize(
                 () -> {

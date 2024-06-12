@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:dyes/red"
+    },
+    "X": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "pattern": [
+    "X X",
+    "# #",
+    "X X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:spider_man_boots"
+  }
+}

@@ -133,7 +133,7 @@ public class ThrownVibraniumShield extends AbstractArrow {
             f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingentity.getType());
         }
         Entity entity1 = this.getOwner();
-        DamageSource damagesource = this.damageSources().source(MarvelDamageTypes.VIBRANIUM_SHIELD, this, entity1 == null ? this : entity1);
+        DamageSource damagesource = this.damageSources().source(entity1 == null ? MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER : MarvelDamageTypes.VIBRANIUM_SHIELD, this, entity1 == null ? this : entity1);
         this.dealtDamage = true;
         SoundEvent soundevent = MarvelSoundEvents.VIBRANIUM_SHIELD_HIT.get();
         if (entity.hurt(damagesource, f)) {

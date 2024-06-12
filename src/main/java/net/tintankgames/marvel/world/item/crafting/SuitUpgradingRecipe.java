@@ -91,7 +91,7 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
     public NonNullList<ItemStack> getRemainingItems(Container container) {
         NonNullList<ItemStack> list = NonNullList.withSize(container.getContainerSize(), ItemStack.EMPTY);
 
-        if (!consumeSuit) {
+        if (consumeSuit) {
             list.set(0, container.getItem(0));
         }
 

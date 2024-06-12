@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.133'
+    id 'net.neoforged.gradle.userdev' version '7.0.142'
 }
 
 version = mod_version
@@ -13,6 +13,10 @@ repositories {
     mavenLocal()
     maven {
         url = 'https://maven.theillusivec4.top/'
+    }
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
     }
 }
 
@@ -102,7 +106,9 @@ dependencies {
     // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
     // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}"
-    compileOnlyApi "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}:api"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}:api"
+    runtimeOnly "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}"
+    compileOnly "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}:api"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
