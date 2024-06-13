@@ -21,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
@@ -107,7 +106,7 @@ public abstract class SuitItem extends ArmorItem {
         consumer.accept(new IClientItemExtensions() {
             @Override
             public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                SuitModel<?> suitModel = new SuitModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(itemStack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? MarvelModels.SUIT_EMPTY : modelFactory(getType(), itemStack)));
+                SuitModel<?> suitModel = new SuitModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(modelFactory(getType(), itemStack)));
                 copyPropertiesTo(original, suitModel);
                 return suitModel;
             }
@@ -132,6 +131,6 @@ public abstract class SuitItem extends ArmorItem {
 
     @Override
     public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-        return BuiltInRegistries.ITEM.getKey(this).withPath(id -> "textures/models/suit/" + id.replace("_" + getType().getName(), "") + ".png");
+        return BuiltInRegistries.ITEM.getKey(this).withPath(id -> "textures/models/suit/" + id.replace("_" + getType().getName(), "") + (slot == EquipmentSlot.HEAD && stack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? "_open" : "") + ".png");
     }
 }

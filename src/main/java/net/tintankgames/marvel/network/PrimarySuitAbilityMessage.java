@@ -19,15 +19,15 @@ import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
 import net.tintankgames.marvel.world.level.KineticExplosionDamageCalculator;
 
-public class SuitAbilityMessage implements CustomPacketPayload {
-    public static final SuitAbilityMessage INSTANCE = new SuitAbilityMessage();
-    public static final StreamCodec<RegistryFriendlyByteBuf, SuitAbilityMessage> CODEC = StreamCodec.unit(INSTANCE);
+public class PrimarySuitAbilityMessage implements CustomPacketPayload {
+    public static final PrimarySuitAbilityMessage INSTANCE = new PrimarySuitAbilityMessage();
+    public static final StreamCodec<RegistryFriendlyByteBuf, PrimarySuitAbilityMessage> CODEC = StreamCodec.unit(INSTANCE);
 
-    private SuitAbilityMessage() {
+    private PrimarySuitAbilityMessage() {
 
     }
 
-    public static void handle(SuitAbilityMessage message, IPayloadContext context) {
+    public static void handle(PrimarySuitAbilityMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
                 ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
@@ -59,7 +59,7 @@ public class SuitAbilityMessage implements CustomPacketPayload {
     }
 
     @Override
-    public Type<SuitAbilityMessage> type() {
-        return MarvelNetworking.SUIT_ABILITY;
+    public Type<PrimarySuitAbilityMessage> type() {
+        return MarvelNetworking.PRIMARY_SUIT_ABILITY;
     }
 }

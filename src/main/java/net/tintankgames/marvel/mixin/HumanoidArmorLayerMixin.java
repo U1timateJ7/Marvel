@@ -41,7 +41,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
     @Inject(at = @At("HEAD"), method = "renderModel(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/model/Model;FFFLnet/minecraft/resources/ResourceLocation;)V", cancellable = true)
     private void changeTightRenderType(PoseStack poseStack, MultiBufferSource multiBufferSource, int light, Model model, float red, float green, float blue, ResourceLocation texture, CallbackInfo ci) {
-        if (model instanceof SuitModel<?>) {
+        if (model instanceof SuitModel<?> suitModel) {
             VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
             model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
             ci.cancel();

@@ -82,12 +82,13 @@ public abstract class LivingEntityMixin extends Entity {
         if (hasSpiderManArmor()) {
             if (this.isSpectator()) {
                 cir.setReturnValue(false);
-            }
-            BlockPos pos = this.blockPosition();
-            BlockState feet = this.getInBlockState();
-            if (isCurrentBlockClimbable(feet, pos) && (!hasData(MarvelAttachmentTypes.GRAPPLING.get()) || getData(MarvelAttachmentTypes.GRAPPLING.get()).entity == null)) {
-                this.lastClimbablePos = Optional.of(pos);
-                cir.setReturnValue(true);
+            } else {
+                BlockPos pos = this.blockPosition();
+                BlockState feet = this.getInBlockState();
+                if (isCurrentBlockClimbable(feet, pos) && (!hasData(MarvelAttachmentTypes.GRAPPLING.get()) || getData(MarvelAttachmentTypes.GRAPPLING.get()).entity == null)) {
+                    this.lastClimbablePos = Optional.of(pos);
+                    cir.setReturnValue(true);
+                }
             }
         }
     }

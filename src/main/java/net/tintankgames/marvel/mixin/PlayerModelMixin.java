@@ -28,7 +28,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
 
     @Inject(at = @At("RETURN"), method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V")
     private void hideOuterLayer(T entity, float p_103396_, float p_103397_, float p_103398_, float p_103399_, float p_103400_, CallbackInfo ci) {
-        if (!entity.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && entity.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.HIDES_OUTER_LAYER)) {
+        if ((!entity.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) || !entity.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN)) && entity.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.HIDES_OUTER_LAYER)) {
             this.hat.visible = false;
         }
         if (entity.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.HIDES_OUTER_LAYER)) {

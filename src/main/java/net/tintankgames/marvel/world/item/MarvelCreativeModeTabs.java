@@ -60,6 +60,8 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.VIBRANIUM_NANITES);
         output.accept(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE);
         output.accept(MarvelItems.KILLMONGER_NECKLACE);
+        output.accept(MarvelItems.WEB_FLUID);
+        output.accept(MarvelItems.PYM_PARTICLE);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
         ItemStack stack = MarvelItems.PROTO_ADAMANTIUM_SHIELD.toStack();
@@ -127,6 +129,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.SPIDER_MAN_CHESTPLATE);
         output.accept(MarvelItems.SPIDER_MAN_LEGGINGS);
         output.accept(MarvelItems.SPIDER_MAN_BOOTS);
+        output.accept(MarvelItems.SPIDER_MAN_MCU_HELMET);
+        output.accept(MarvelItems.SPIDER_MAN_MCU_CHESTPLATE);
+        output.accept(MarvelItems.SPIDER_MAN_MCU_LEGGINGS);
+        output.accept(MarvelItems.SPIDER_MAN_MCU_BOOTS);
+        output.accept(MarvelItems.ANT_MAN_HELMET);
+        output.accept(MarvelItems.ANT_MAN_CHESTPLATE);
+        output.accept(MarvelItems.ANT_MAN_LEGGINGS);
+        output.accept(MarvelItems.ANT_MAN_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

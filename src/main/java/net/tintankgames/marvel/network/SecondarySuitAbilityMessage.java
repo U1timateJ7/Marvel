@@ -19,15 +19,15 @@ import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 
-public class SuitTransformationMessage implements CustomPacketPayload {
-    public static final SuitTransformationMessage INSTANCE = new SuitTransformationMessage();
-    public static final StreamCodec<RegistryFriendlyByteBuf, SuitTransformationMessage> CODEC = StreamCodec.unit(INSTANCE);
+public class SecondarySuitAbilityMessage implements CustomPacketPayload {
+    public static final SecondarySuitAbilityMessage INSTANCE = new SecondarySuitAbilityMessage();
+    public static final StreamCodec<RegistryFriendlyByteBuf, SecondarySuitAbilityMessage> CODEC = StreamCodec.unit(INSTANCE);
 
-    private SuitTransformationMessage() {
+    private SecondarySuitAbilityMessage() {
 
     }
 
-    public static void handle(SuitTransformationMessage message, IPayloadContext context) {
+    public static void handle(SecondarySuitAbilityMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
                 boolean noArmor = true;
@@ -88,7 +88,7 @@ public class SuitTransformationMessage implements CustomPacketPayload {
     }
 
     @Override
-    public Type<SuitTransformationMessage> type() {
-        return MarvelNetworking.SUIT_TRANSFORMATION;
+    public Type<SecondarySuitAbilityMessage> type() {
+        return MarvelNetworking.SECONDARY_SUIT_ABILITY;
     }
 }

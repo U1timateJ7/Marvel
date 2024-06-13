@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:spider_man_mcu_helmet"
+  },
+  "suit": {
+    "tag": "marvel:spider_man_helmet"
+  }
+}

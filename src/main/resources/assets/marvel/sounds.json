@@ -79,5 +79,29 @@
         "volume": 0.4
       }
     ]
+  },
+  "suit.ant_man.helmet_open": {
+    "subtitle": "subtitles.suit.ant_man.helmet_open",
+    "sounds": [
+      "marvel:suit/ant_man/helmet_open"
+    ]
+  },
+  "suit.ant_man.helmet_close": {
+    "subtitle": "subtitles.suit.ant_man.helmet_close",
+    "sounds": [
+      "marvel:suit/ant_man/helmet_close"
+    ]
+  },
+  "suit.ant_man.shrink": {
+    "subtitle": "subtitles.suit.ant_man.shrink",
+    "sounds": [
+      "marvel:suit/ant_man/shrink"
+    ]
+  },
+  "suit.ant_man.grow": {
+    "subtitle": "subtitles.suit.ant_man.grow",
+    "sounds": [
+      "marvel:suit/ant_man/grow"
+    ]
   }
 }

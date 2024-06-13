@@ -16,6 +16,8 @@
   ],
   "client": [
     "BlockEntityWithoutLevelRendererMixin",
+    "CameraMixin",
+    "GameRendererMixin",
     "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",

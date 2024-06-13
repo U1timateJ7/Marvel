@@ -7,6 +7,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.item.component.Size;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -97,6 +98,17 @@ public class MarvelItems {
     public static final DeferredItem<Item> SPIDER_MAN_CHESTPLATE = register("spider_man_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> SPIDER_MAN_LEGGINGS = register("spider_man_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> SPIDER_MAN_BOOTS = register("spider_man_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_MCU_HELMET = register("spider_man_mcu_helmet", () -> new SpiderManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_MCU_CHESTPLATE = register("spider_man_mcu_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_MCU_LEGGINGS = register("spider_man_mcu_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_MAN_MCU_BOOTS = register("spider_man_mcu_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> SHRINK = register("shrink", () -> new SizeItem(Size.SMALL, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> GROW = register("grow", () -> new SizeItem(Size.BIG, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> PYM_PARTICLE = register("pym_particle", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ANT_MAN_HELMET = register("ant_man_helmet", () -> new AntManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> ANT_MAN_CHESTPLATE = register("ant_man_chestplate", () -> new AntManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> ANT_MAN_LEGGINGS = register("ant_man_leggings", () -> new AntManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> ANT_MAN_BOOTS = register("ant_man_boots", () -> new AntManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -111,6 +123,7 @@ public class MarvelItems {
         public static final TagKey<Item> TITANIUM_ORES = create("titanium_ores");
         public static final TagKey<Item> PALLADIUM_ORES = create("palladium_ores");
         public static final TagKey<Item> HIDES_OUTER_LAYER = create("hides_outer_layer");
+        public static final TagKey<Item> INVISIBLE_WHEN_OPEN = create("invisible_when_open");
         public static final TagKey<Item> SOUND_DAMPENING_BOOTS = create("sound_dampening_boots");
         public static final TagKey<Item> RENDER_HAND = create("render_hand");
         public static final TagKey<Item> CAPTAIN_AMERICA_ARMOR = create("captain_america_armor");
@@ -143,6 +156,11 @@ public class MarvelItems {
         public static final TagKey<Item> SPIDER_MAN_CHESTPLATE = create("spider_man_chestplate");
         public static final TagKey<Item> SPIDER_MAN_LEGGINGS = create("spider_man_leggings");
         public static final TagKey<Item> SPIDER_MAN_BOOTS = create("spider_man_boots");
+        public static final TagKey<Item> ANT_MAN_ARMOR = create("ant_man_armor");
+        public static final TagKey<Item> ANT_MAN_HELMET = create("ant_man_helmet");
+        public static final TagKey<Item> ANT_MAN_CHESTPLATE = create("ant_man_chestplate");
+        public static final TagKey<Item> ANT_MAN_LEGGINGS = create("ant_man_leggings");
+        public static final TagKey<Item> ANT_MAN_BOOTS = create("ant_man_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);
