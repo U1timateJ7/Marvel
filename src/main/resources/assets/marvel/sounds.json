@@ -80,6 +80,18 @@
       }
     ]
   },
+  "suit.spider_man.web_shoot": {
+    "subtitle": "subtitles.suit.spider_man.web_shoot",
+    "sounds": [
+      "marvel:suit/spider_man/web_shoot"
+    ]
+  },
+  "suit.spider_man.spider_sense": {
+    "subtitle": "subtitles.suit.spider_man.spider_sense",
+    "sounds": [
+      "marvel:suit/spider_man/spider_sense"
+    ]
+  },
   "suit.ant_man.helmet_open": {
     "subtitle": "subtitles.suit.ant_man.helmet_open",
     "sounds": [

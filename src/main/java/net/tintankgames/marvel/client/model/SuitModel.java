@@ -179,4 +179,41 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         }
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
+
+    public static LayerDefinition createSpiderManBodyLayer(ArmorItem.Type... types) {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        List<ArmorItem.Type> armorTypes = Arrays.asList(types);
+        if (armorTypes.contains(ArmorItem.Type.HELMET)) {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.01f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.51f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(5.0F, 2.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.02F)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.02F)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 64);
+    }
 }

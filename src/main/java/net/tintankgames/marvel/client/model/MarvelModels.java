@@ -29,6 +29,10 @@ public class MarvelModels {
     public static final ModelLayerLocation CYCLOPS_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_chestplate"), "main");
     public static final ModelLayerLocation CYCLOPS_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_leggings"), "main");
     public static final ModelLayerLocation CYCLOPS_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_boots"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_helmet"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_chestplate"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_leggings"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_boots"), "main");
     public static final ModelLayerLocation VIBRANIUM_SHIELD = new ModelLayerLocation(MarvelSuperheroes.id("vibranium_shield"), "main");
 
     @SubscribeEvent
@@ -50,6 +54,10 @@ public class MarvelModels {
         event.registerLayerDefinition(CYCLOPS_SUIT_CHESTPLATE, () -> SuitModel.createCyclopsBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(CYCLOPS_SUIT_LEGGINGS, () -> SuitModel.createCyclopsBodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(CYCLOPS_SUIT_BOOTS, () -> SuitModel.createCyclopsBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(SPIDER_MAN_SUIT_HELMET, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(SPIDER_MAN_SUIT_CHESTPLATE, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(SPIDER_MAN_SUIT_LEGGINGS, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(SPIDER_MAN_SUIT_BOOTS, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.BOOTS));
         event.registerLayerDefinition(VIBRANIUM_SHIELD, VibraniumShieldModel::createBodyLayer);
     }
 
@@ -86,6 +94,15 @@ public class MarvelModels {
             case CHESTPLATE, BODY -> CYCLOPS_SUIT_CHESTPLATE;
             case LEGGINGS -> CYCLOPS_SUIT_LEGGINGS;
             case BOOTS -> CYCLOPS_SUIT_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation spiderManSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> SPIDER_MAN_SUIT_HELMET;
+            case CHESTPLATE, BODY -> SPIDER_MAN_SUIT_CHESTPLATE;
+            case LEGGINGS -> SPIDER_MAN_SUIT_LEGGINGS;
+            case BOOTS -> SPIDER_MAN_SUIT_BOOTS;
         };
     }
 }

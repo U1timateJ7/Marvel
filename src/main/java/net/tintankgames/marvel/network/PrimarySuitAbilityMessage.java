@@ -8,12 +8,14 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
+import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
@@ -52,6 +54,7 @@ public class PrimarySuitAbilityMessage implements CustomPacketPayload {
                     });
                 }
                 if (!chestplate.has(MarvelDataComponents.SPIDER_SENSE) && chestplate.is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && leggings.is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && boots.is(MarvelItems.Tags.SPIDER_MAN_ARMOR)) {
+                    player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.SPIDER_MAN_SPIDER_SENSE.get(), SoundSource.PLAYERS);
                     chestplate.set(MarvelDataComponents.SPIDER_SENSE, 100);
                 }
             }

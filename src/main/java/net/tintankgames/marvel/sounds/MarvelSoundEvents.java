@@ -21,6 +21,8 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> CYCLOPS_OPTIC_BLAST = register("suit.cyclops.optic_blast");
     public static final DeferredHolder<SoundEvent, SoundEvent> CYCLOPS_OPTIC_BLAST_BIG = register("suit.cyclops.optic_blast_big");
     public static final DeferredHolder<SoundEvent, SoundEvent> CYCLOPS_OPTIC_BLAST_EXPLOSION = register("suit.cyclops.optic_blast_explosion");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIDER_MAN_WEB_SHOOT = register("suit.spider_man.web_shoot");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPIDER_MAN_SPIDER_SENSE = register("suit.spider_man.spider_sense");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_HELMET_OPEN = register("suit.ant_man.helmet_open");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_HELMET_CLOSE = register("suit.ant_man.helmet_close");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_SHRINK = register("suit.ant_man.shrink");

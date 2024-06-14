@@ -7,7 +7,6 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +20,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.tintankgames.marvel.attachment.EntityHolder;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -84,7 +84,7 @@ public class WebShot extends Projectile {
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
         if (getPlayerOwner() != null) {
-            entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 2);
+            entityHitResult.getEntity().hurt(damageSources().source(MarvelDamageTypes.WEB_SHOT, this, getOwner() == null ? this : getOwner()), 2);
             if (level().getBlockState(entityHitResult.getEntity().blockPosition()).canBeReplaced()) level().setBlockAndUpdate(entityHitResult.getEntity().blockPosition(), MarvelBlocks.SPIDER_WEB.get().defaultBlockState().setValue(SpiderWebBlock.WATERLOGGED, level().getFluidState(entityHitResult.getEntity().blockPosition()).is(Fluids.WATER)).setValue(SpiderWebBlock.LAVALOGGED, level().getFluidState(entityHitResult.getEntity().blockPosition()).is(Fluids.LAVA)));
             getPlayerOwner().setData(MarvelAttachmentTypes.GRAPPLING, new EntityHolder<>(null));
             discard();

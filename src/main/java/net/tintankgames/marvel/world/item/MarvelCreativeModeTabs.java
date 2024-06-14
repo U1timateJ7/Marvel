@@ -133,10 +133,22 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.SPIDER_MAN_MCU_CHESTPLATE);
         output.accept(MarvelItems.SPIDER_MAN_MCU_LEGGINGS);
         output.accept(MarvelItems.SPIDER_MAN_MCU_BOOTS);
+        output.accept(MarvelItems.MILES_MORALES_HELMET);
+        output.accept(MarvelItems.MILES_MORALES_CHESTPLATE);
+        output.accept(MarvelItems.MILES_MORALES_LEGGINGS);
+        output.accept(MarvelItems.MILES_MORALES_BOOTS);
+        output.accept(MarvelItems.SPIDER_GWEN_HELMET);
+        output.accept(MarvelItems.SPIDER_GWEN_CHESTPLATE);
+        output.accept(MarvelItems.SPIDER_GWEN_LEGGINGS);
+        output.accept(MarvelItems.SPIDER_GWEN_BOOTS);
         output.accept(MarvelItems.ANT_MAN_HELMET);
         output.accept(MarvelItems.ANT_MAN_CHESTPLATE);
         output.accept(MarvelItems.ANT_MAN_LEGGINGS);
         output.accept(MarvelItems.ANT_MAN_BOOTS);
+        output.accept(MarvelItems.ANT_MAN_UPGRADED_HELMET);
+        output.accept(MarvelItems.ANT_MAN_UPGRADED_CHESTPLATE);
+        output.accept(MarvelItems.ANT_MAN_UPGRADED_LEGGINGS);
+        output.accept(MarvelItems.ANT_MAN_UPGRADED_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

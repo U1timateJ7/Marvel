@@ -102,6 +102,14 @@ public class MarvelItems {
     public static final DeferredItem<Item> SPIDER_MAN_MCU_CHESTPLATE = register("spider_man_mcu_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> SPIDER_MAN_MCU_LEGGINGS = register("spider_man_mcu_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> SPIDER_MAN_MCU_BOOTS = register("spider_man_mcu_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> MILES_MORALES_HELMET = register("miles_morales_suit_helmet", () -> new SpiderManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> MILES_MORALES_CHESTPLATE = register("miles_morales_suit_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> MILES_MORALES_LEGGINGS = register("miles_morales_suit_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> MILES_MORALES_BOOTS = register("miles_morales_suit_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_GWEN_HELMET = register("spider_gwen_helmet", () -> new SpiderManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_GWEN_CHESTPLATE = register("spider_gwen_chestplate", () -> new SpiderManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_GWEN_LEGGINGS = register("spider_gwen_leggings", () -> new SpiderManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> SPIDER_GWEN_BOOTS = register("spider_gwen_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> SHRINK = register("shrink", () -> new SizeItem(Size.SMALL, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> GROW = register("grow", () -> new SizeItem(Size.BIG, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> PYM_PARTICLE = register("pym_particle", () -> new Item(new Item.Properties()));
@@ -109,6 +117,10 @@ public class MarvelItems {
     public static final DeferredItem<Item> ANT_MAN_CHESTPLATE = register("ant_man_chestplate", () -> new AntManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> ANT_MAN_LEGGINGS = register("ant_man_leggings", () -> new AntManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> ANT_MAN_BOOTS = register("ant_man_boots", () -> new AntManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> ANT_MAN_UPGRADED_HELMET = register("ant_man_upgraded_helmet", () -> new AntManUpgradedSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> ANT_MAN_UPGRADED_CHESTPLATE = register("ant_man_upgraded_chestplate", () -> new AntManUpgradedSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> ANT_MAN_UPGRADED_LEGGINGS = register("ant_man_upgraded_leggings", () -> new AntManUpgradedSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> ANT_MAN_UPGRADED_BOOTS = register("ant_man_upgraded_boots", () -> new AntManUpgradedSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -161,6 +173,11 @@ public class MarvelItems {
         public static final TagKey<Item> ANT_MAN_CHESTPLATE = create("ant_man_chestplate");
         public static final TagKey<Item> ANT_MAN_LEGGINGS = create("ant_man_leggings");
         public static final TagKey<Item> ANT_MAN_BOOTS = create("ant_man_boots");
+        public static final TagKey<Item> ANT_MAN_UPGRADED_ARMOR = create("ant_man_upgraded_armor");
+        public static final TagKey<Item> ANT_MAN_UPGRADED_HELMET = create("ant_man_upgraded_helmet");
+        public static final TagKey<Item> ANT_MAN_UPGRADED_CHESTPLATE = create("ant_man_upgraded_chestplate");
+        public static final TagKey<Item> ANT_MAN_UPGRADED_LEGGINGS = create("ant_man_upgraded_leggings");
+        public static final TagKey<Item> ANT_MAN_UPGRADED_BOOTS = create("ant_man_upgraded_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

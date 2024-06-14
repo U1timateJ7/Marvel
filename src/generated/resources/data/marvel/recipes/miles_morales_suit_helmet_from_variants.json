@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:miles_morales_suit_helmet"
+  },
+  "suit": {
+    "tag": "marvel:spider_man_helmet"
+  }
+}

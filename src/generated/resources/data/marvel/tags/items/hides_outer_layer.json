@@ -52,9 +52,21 @@
     "marvel:spider_man_mcu_chestplate",
     "marvel:spider_man_mcu_leggings",
     "marvel:spider_man_mcu_boots",
+    "marvel:miles_morales_suit_helmet",
+    "marvel:miles_morales_suit_chestplate",
+    "marvel:miles_morales_suit_leggings",
+    "marvel:miles_morales_suit_boots",
+    "marvel:spider_gwen_helmet",
+    "marvel:spider_gwen_chestplate",
+    "marvel:spider_gwen_leggings",
+    "marvel:spider_gwen_boots",
     "marvel:ant_man_helmet",
     "marvel:ant_man_chestplate",
     "marvel:ant_man_leggings",
-    "marvel:ant_man_boots"
+    "marvel:ant_man_boots",
+    "marvel:ant_man_upgraded_helmet",
+    "marvel:ant_man_upgraded_chestplate",
+    "marvel:ant_man_upgraded_leggings",
+    "marvel:ant_man_upgraded_boots"
   ]
 }

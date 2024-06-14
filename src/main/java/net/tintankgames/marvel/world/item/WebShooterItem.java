@@ -3,7 +3,6 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -16,6 +15,7 @@ import net.minecraft.world.phys.Vec3;
 import net.tintankgames.marvel.attachment.EntityHolder;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
+import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.WebShot;
 import org.joml.Vector3f;
 
@@ -49,7 +49,7 @@ public class WebShooterItem extends SuitPowerItem {
         }
 
         player.awardStat(Stats.ITEM_USED.get(this));
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.SPIDER_MAN_WEB_SHOOT.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         player.gameEvent(GameEvent.ITEM_INTERACT_START);
     }
 
@@ -59,7 +59,6 @@ public class WebShooterItem extends SuitPowerItem {
             player.setData(MarvelAttachmentTypes.GRAPPLING, new EntityHolder<>(null));
         }
 
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1.0F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         player.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
     }
 }

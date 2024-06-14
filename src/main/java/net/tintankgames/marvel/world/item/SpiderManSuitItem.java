@@ -1,13 +1,16 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
@@ -21,6 +24,11 @@ public class SpiderManSuitItem extends LeatherSuitItem {
 
     public SpiderManSuitItem(Type type, Properties properties) {
         super(type, false, MarvelItems.Tags.SPIDER_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.WEB_SHOOTER.get())));
+    }
+
+    @Override
+    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+        return MarvelModels.spiderManSuit(type);
     }
 
     @SubscribeEvent

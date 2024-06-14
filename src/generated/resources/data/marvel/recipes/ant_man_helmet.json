@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "item": "minecraft:red_stained_glass_pane"
+    },
+    "X": {
+      "item": "minecraft:repeater"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "#R#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:ant_man_helmet"
+  }
+}

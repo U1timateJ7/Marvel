@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:dyes/red"
+    },
+    "B": {
+      "tag": "c:dyes/black"
+    },
+    "S": {
+      "item": "minecraft:stone_button"
+    },
+    "X": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "pattern": [
+    "X X",
+    "##S",
+    "XBX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:ant_man_chestplate"
+  }
+}
