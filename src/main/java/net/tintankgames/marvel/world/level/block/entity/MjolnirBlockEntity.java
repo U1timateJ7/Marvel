@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tintankgames.marvel.MarvelConfig;
 import net.tintankgames.marvel.world.entity.projectile.ThrownMjolnir;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.jetbrains.annotations.Nullable;
@@ -77,7 +78,7 @@ public class MjolnirBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, MjolnirBlockEntity blockEntity) {
-        if (!level.isClientSide() && blockEntity.getOwner(level) != null && blockEntity.getOwner(level).isCrouching() && Math.sqrt(pos.distToCenterSqr(blockEntity.getOwner(level).position())) <= 64) {
+        if (!level.isClientSide() && blockEntity.getOwner(level) != null && blockEntity.getOwner(level).isCrouching() && Math.sqrt(pos.distToCenterSqr(blockEntity.getOwner(level).position())) <= MarvelConfig.mjolnirCallRange) {
             ThrownMjolnir thrownMjolnir = new ThrownMjolnir(level, blockEntity.getOwner(level), blockEntity.getStack());
             thrownMjolnir.setPos(pos.getX(), pos.getY(), pos.getZ());
             thrownMjolnir.setBaseDamage(blockEntity.getStack().get(DataComponents.ATTRIBUTE_MODIFIERS).modifiers().stream().filter(modifier -> modifier.attribute().is(Attributes.ATTACK_DAMAGE)).toList().getFirst().modifier().amount() + 1);

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "marvel:cyclops_dark_helmet_from_variants"
+        "recipe": "marvel:cyclops_astonishing_helmet_from_variants"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "marvel:cyclops_dark_helmet_from_variants"
+      "marvel:cyclops_astonishing_helmet_from_variants"
     ]
   }
 }

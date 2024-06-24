@@ -28,8 +28,8 @@
     "marvel:wolverine_boots",
     "marvel:vibranium_helmet",
     "marvel:vibranium_axe",
-    "marvel:cyclops_dark_helmet_from_variants",
-    "marvel:cyclops_dark_leggings_from_variants",
+    "marvel:cyclops_astonishing_helmet_from_variants",
+    "marvel:cyclops_astonishing_leggings_from_variants",
     "marvel:raw_titanium_block",
     "marvel:titanium_nugget",
     "marvel:vibranium_hoe",
@@ -45,7 +45,7 @@
     "marvel:adamantium_nugget",
     "marvel:kinetic_black_panther_boots",
     "marvel:raw_palladium_block",
-    "marvel:cyclops_dark_chestplate_from_variants",
+    "marvel:cyclops_astonishing_chestplate_from_variants",
     "marvel:red_guardian_boots_from_variants",
     "marvel:vibranium_leggings",
     "marvel:vibranium_block",
@@ -69,7 +69,7 @@
     "marvel:titanium_block",
     "marvel:captain_america_chestplate",
     "marvel:wolverine_brown_leggings_from_variants",
-    "marvel:cyclops_dark_boots_from_variants",
+    "marvel:cyclops_astonishing_boots_from_variants",
     "marvel:cyclops_boots",
     "marvel:spider_man_chestplate",
     "marvel:cyclops_leggings",
@@ -118,6 +118,7 @@
     "marvel:spider_man_insomniac_boots_from_variants",
     "marvel:spider_man_insomniac_helmet_from_variants",
     "marvel:black_panther_shuri_chestplate_from_variants",
-    "marvel:stormbreaker"
+    "marvel:stormbreaker",
+    "marvel:web_fluid"
   ]
 }

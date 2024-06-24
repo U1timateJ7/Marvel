@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cyclops_chestplate": {
+    "has_cyclops_leggings": {
       "conditions": {
         "items": [
           {
-            "items": "#marvel:cyclops_chestplate"
+            "items": "#marvel:cyclops_leggings"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "marvel:cyclops_dark_chestplate_from_variants"
+        "recipe": "marvel:cyclops_astonishing_leggings_from_variants"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_cyclops_chestplate"
+      "has_cyclops_leggings"
     ]
   ],
   "rewards": {
     "recipes": [
-      "marvel:cyclops_dark_chestplate_from_variants"
+      "marvel:cyclops_astonishing_leggings_from_variants"
     ]
   }
 }

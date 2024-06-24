@@ -132,10 +132,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.CYCLOPS_CHESTPLATE);
         output.accept(MarvelItems.CYCLOPS_LEGGINGS);
         output.accept(MarvelItems.CYCLOPS_BOOTS);
-        output.accept(MarvelItems.CYCLOPS_DARK_HELMET);
-        output.accept(MarvelItems.CYCLOPS_DARK_CHESTPLATE);
-        output.accept(MarvelItems.CYCLOPS_DARK_LEGGINGS);
-        output.accept(MarvelItems.CYCLOPS_DARK_BOOTS);
+        output.accept(MarvelItems.CYCLOPS_ASTONISHING_HELMET);
+        output.accept(MarvelItems.CYCLOPS_ASTONISHING_CHESTPLATE);
+        output.accept(MarvelItems.CYCLOPS_ASTONISHING_LEGGINGS);
+        output.accept(MarvelItems.CYCLOPS_ASTONISHING_BOOTS);
         output.accept(MarvelItems.SPIDER_MAN_HELMET);
         output.accept(MarvelItems.SPIDER_MAN_CHESTPLATE);
         output.accept(MarvelItems.SPIDER_MAN_LEGGINGS);
