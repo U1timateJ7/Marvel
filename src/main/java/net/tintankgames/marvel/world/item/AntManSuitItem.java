@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -22,8 +24,8 @@ import java.util.UUID;
 public class AntManSuitItem extends LeatherSuitItem {
     public static final UUID ANT_MAN_UUID = UUID.fromString("710B5334-5538-4E7E-A658-B13B18859A29");
     private static final AttributeModifier smallScaleModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man scale modifier", -0.9375, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-    private static final AttributeModifier smallEntityInteractionRangeModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man entity interaction range modifier", -2.0, AttributeModifier.Operation.ADD_VALUE);
-    private static final AttributeModifier smallBlockInteractionRangeModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man block interaction range modifier", -3.5, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier smallEntityInteractionRangeModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man entity interaction range modifier", -1.0, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier smallBlockInteractionRangeModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man block interaction range modifier", -2.5, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier smallMovementSpeedModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man movement speed modifier", -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
     private static final AttributeModifier bigScaleModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man scale modifier", 9.0, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
     private static final AttributeModifier bigEntityInteractionRangeModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man entity interaction range modifier", 33.0, AttributeModifier.Operation.ADD_VALUE);
@@ -34,9 +36,10 @@ public class AntManSuitItem extends LeatherSuitItem {
     private static final AttributeModifier bigSafeFallDistanceModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man safe fall distance modifier", 27, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier bigFallDamageMultiplierModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man fall damage multiplier modifier", -0.9, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
     private static final AttributeModifier attackDamageModifier = new AttributeModifier(ANT_MAN_UUID, "Ant-Man attack damage modifier", 3.0, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier creativeFlightModifier = new AttributeModifier(ANT_MAN_UUID, "Wasp creative flight modifier", 1.0, AttributeModifier.Operation.ADD_VALUE);
 
     public AntManSuitItem(Type type, Properties properties) {
-        super(type, true, MarvelItems.Tags.ANT_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get())));
+        super(type, MarvelItems.Tags.ANT_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get())));
     }
 
     @Override
@@ -47,13 +50,22 @@ public class AntManSuitItem extends LeatherSuitItem {
 
     @SubscribeEvent
     public static void collide(PlayerTickEvent.Post event) {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.BIG) {
-            if (event.getEntity().isSprinting()) {
-                for (LivingEntity living : event.getEntity().level().getEntitiesOfClass(LivingEntity.class, event.getEntity().getBoundingBox().inflate(1.0), entity -> entity != event.getEntity())) {
-                    living.hurt(living.damageSources().source(MarvelDamageTypes.GIANT_MAN, event.getEntity()), 2.0F);
-                }
-            }
+        Size size = event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL);
+        if (size != Size.NORMAL) {
             event.getEntity().addEffect(effect(MobEffects.DAMAGE_RESISTANCE, 1));
+            if (size == Size.BIG) {
+                if (event.getEntity().isSprinting()) {
+                    for (LivingEntity living : event.getEntity().level().getEntitiesOfClass(LivingEntity.class, event.getEntity().getBoundingBox().inflate(1.0), entity -> entity != event.getEntity())) {
+                        living.hurt(living.damageSources().source(MarvelDamageTypes.GIANT_MAN, event.getEntity()), 2.0F);
+                    }
+                }
+            } else if (size == Size.SMALL) {
+                if (event.getEntity() instanceof ServerPlayer player && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WASP_CHESTPLATE)) {
+                    player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, player.getAbilities().flying);
+                }
+            } else {
+                if (event.getEntity() instanceof ServerPlayer player) player.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+            }
         }
     }
 
@@ -75,6 +87,7 @@ public class AntManSuitItem extends LeatherSuitItem {
                     event.removeModifier(Attributes.SAFE_FALL_DISTANCE, bigSafeFallDistanceModifier);
                     event.removeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, bigFallDamageMultiplierModifier);
                     event.removeModifier(Attributes.ATTACK_DAMAGE, attackDamageModifier);
+                    event.removeModifier(NeoForgeMod.CREATIVE_FLIGHT, creativeFlightModifier);
                 }
                 case SMALL -> {
                     event.addModifier(Attributes.SCALE, smallScaleModifier);
@@ -90,6 +103,11 @@ public class AntManSuitItem extends LeatherSuitItem {
                     event.removeModifier(Attributes.SAFE_FALL_DISTANCE, bigSafeFallDistanceModifier);
                     event.removeModifier(Attributes.FALL_DAMAGE_MULTIPLIER, bigFallDamageMultiplierModifier);
                     event.addModifier(Attributes.ATTACK_DAMAGE, attackDamageModifier);
+                    if (event.getItemStack().is(MarvelItems.Tags.WASP_CHESTPLATE)) {
+                        event.addModifier(NeoForgeMod.CREATIVE_FLIGHT, creativeFlightModifier);
+                    } else {
+                        event.removeModifier(NeoForgeMod.CREATIVE_FLIGHT, creativeFlightModifier);
+                    }
                 }
                 case BIG -> {
                     event.removeModifier(Attributes.SCALE, smallScaleModifier);
@@ -105,6 +123,7 @@ public class AntManSuitItem extends LeatherSuitItem {
                     event.addModifier(Attributes.SAFE_FALL_DISTANCE, bigSafeFallDistanceModifier);
                     event.addModifier(Attributes.FALL_DAMAGE_MULTIPLIER, bigFallDamageMultiplierModifier);
                     event.addModifier(Attributes.ATTACK_DAMAGE, attackDamageModifier);
+                    event.removeModifier(NeoForgeMod.CREATIVE_FLIGHT, creativeFlightModifier);
                 }
             }
         }

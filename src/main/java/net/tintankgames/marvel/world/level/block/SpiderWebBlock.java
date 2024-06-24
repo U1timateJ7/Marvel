@@ -31,7 +31,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 import net.tintankgames.marvel.world.item.MarvelItems;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class SpiderWebBlock extends Block implements BucketPickup, LiquidBlockContainer {

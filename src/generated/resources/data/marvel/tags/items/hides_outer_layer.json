@@ -27,6 +27,10 @@
     "marvel:killmonger_chestplate",
     "marvel:killmonger_leggings",
     "marvel:killmonger_boots",
+    "marvel:black_panther_shuri_helmet",
+    "marvel:black_panther_shuri_chestplate",
+    "marvel:black_panther_shuri_leggings",
+    "marvel:black_panther_shuri_boots",
     "marvel:wolverine_helmet",
     "marvel:wolverine_chestplate",
     "marvel:wolverine_sleeveless_chestplate",
@@ -60,6 +64,10 @@
     "marvel:spider_gwen_chestplate",
     "marvel:spider_gwen_leggings",
     "marvel:spider_gwen_boots",
+    "marvel:spider_man_insomniac_helmet",
+    "marvel:spider_man_insomniac_chestplate",
+    "marvel:spider_man_insomniac_leggings",
+    "marvel:spider_man_insomniac_boots",
     "marvel:ant_man_helmet",
     "marvel:ant_man_chestplate",
     "marvel:ant_man_leggings",
@@ -67,6 +75,14 @@
     "marvel:ant_man_upgraded_helmet",
     "marvel:ant_man_upgraded_chestplate",
     "marvel:ant_man_upgraded_leggings",
-    "marvel:ant_man_upgraded_boots"
+    "marvel:ant_man_upgraded_boots",
+    "marvel:wasp_helmet",
+    "marvel:wasp_chestplate",
+    "marvel:wasp_leggings",
+    "marvel:wasp_boots",
+    "marvel:thor_helmet",
+    "marvel:thor_chestplate",
+    "marvel:thor_leggings",
+    "marvel:thor_boots"
   ]
 }

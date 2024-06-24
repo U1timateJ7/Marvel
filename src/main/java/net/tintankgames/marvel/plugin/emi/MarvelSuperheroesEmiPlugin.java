@@ -56,5 +56,6 @@ public class MarvelSuperheroesEmiPlugin implements EmiPlugin {
         registry.addRecipe(new EmiShieldCleanRecipe(MarvelItems.PROTO_ADAMANTIUM_SHIELD.get(), MarvelSuperheroes.id("proto_adamantium_shield_clean")));
         registry.addRecipe(new EmiNecklaceRecipe(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get(), MarvelSuperheroes.id("kinetic_black_panther_necklace")));
         registry.addRecipe(new EmiNecklaceRecipe(MarvelItems.KILLMONGER_NECKLACE.get(), MarvelSuperheroes.id("killmonger_necklace")));
+        registry.addRecipe(new EmiNecklaceRecipe(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get(), MarvelSuperheroes.id("black_panther_shuri_necklace")));
     }
 }

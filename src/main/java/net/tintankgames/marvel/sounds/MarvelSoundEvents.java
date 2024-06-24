@@ -10,6 +10,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 public class MarvelSoundEvents {
     public static final DeferredRegister<SoundEvent> REGISTER = DeferredRegister.create(Registries.SOUND_EVENT, MarvelSuperheroes.MOD_ID);
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> EMPTY = register("empty");
     public static final DeferredHolder<SoundEvent, SoundEvent> VIBRANIUM_SHIELD_THROW = register("item.vibranium_shield.throw");
     public static final DeferredHolder<SoundEvent, SoundEvent> VIBRANIUM_SHIELD_HIT = register("item.vibranium_shield.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> KINETIC_BLACK_PANTHER_SUIT_UP = register("suit.kinetic_black_panther.suit_up");
@@ -27,6 +28,11 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_HELMET_CLOSE = register("suit.ant_man.helmet_close");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_SHRINK = register("suit.ant_man.shrink");
     public static final DeferredHolder<SoundEvent, SoundEvent> ANT_MAN_GROW = register("suit.ant_man.grow");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WASP_STING = register("suit.wasp.sting");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_THROW = register("item.mjolnir.throw");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_HIT = register("item.mjolnir.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_HIT_SHIELD = register("item.mjolnir.hit_shield");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_CALL = register("item.mjolnir.call");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

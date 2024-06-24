@@ -3,13 +3,16 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public enum MarvelTiers implements Tier {
     VIBRANIUM(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 4063, 9.0F, 4.0F, 7, () -> Ingredient.of(MarvelItems.VIBRANIUM_INGOT)),
+    URU(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 9.0F, 4.0F, 0, () -> Ingredient.of(MarvelItems.URU_INGOT)),
     ADAMANTIUM_CLAWS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 9.0F, 4.0F, 0, () -> Ingredient.EMPTY);
 
     private final TagKey<Block> incorrectBlocksForDrops;
@@ -51,5 +54,9 @@ public enum MarvelTiers implements Tier {
 
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
+    }
+
+    public Tool createToolProperties(TagKey<Block> p_335416_) {
+        return new Tool(List.of(Tool.Rule.deniesDrops(this.getIncorrectBlocksForDrops()), Tool.Rule.minesAndDrops(p_335416_, this.getSpeed())), 1.0F, 0);
     }
 }

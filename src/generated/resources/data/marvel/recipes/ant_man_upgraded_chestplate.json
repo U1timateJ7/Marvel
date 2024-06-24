@@ -1,0 +1,39 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:dyes/red"
+    },
+    {
+      "tag": "c:dyes/black"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "results": {
+    "id": "marvel:ant_man_upgraded_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:ant_man_chestplate"
+  }
+}

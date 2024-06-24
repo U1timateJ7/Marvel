@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:uru_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_uru_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:uru_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_uru_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:uru_block"
+    ]
+  }
+}

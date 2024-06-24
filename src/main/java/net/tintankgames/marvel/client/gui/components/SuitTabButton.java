@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class SuitTabButton extends SpriteIconButton {
     protected SuitTabButton(int p_295914_, int p_294852_, Component p_295609_, int p_294922_, int p_296462_, ResourceLocation p_295554_, Button.OnPress p_294427_, @Nullable Button.CreateNarration p_330653_) {

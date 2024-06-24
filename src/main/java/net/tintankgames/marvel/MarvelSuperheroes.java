@@ -30,10 +30,12 @@ import org.slf4j.Logger;
 @Mod(MarvelSuperheroes.MOD_ID)
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
+    public static final String MOD_NAME = "Marvel Superheroes";
     public static final String MOD_VERSION = "2.0.0";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
+        LOGGER.info("Initializing {} version {}...", MOD_NAME, MOD_VERSION);
         bus.addListener(this::setup);
 
         MarvelSoundEvents.register(bus);

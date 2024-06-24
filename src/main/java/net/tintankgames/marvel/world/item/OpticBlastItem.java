@@ -14,10 +14,7 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 import net.tintankgames.marvel.MarvelConfig;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
@@ -28,6 +25,9 @@ import net.tintankgames.marvel.world.level.MarvelGameRules;
 import net.tintankgames.marvel.world.level.OpticBlastExplosionDamageCalculator;
 import org.joml.Vector3f;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class OpticBlastItem extends SuitPowerItem {
@@ -43,7 +43,7 @@ public class OpticBlastItem extends SuitPowerItem {
             HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, 0f);
             if (hit instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
                 living.knockback(0.5, player.getX() - living.getX(), player.getZ() - living.getZ());
-                living.hurt(living.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), !MarvelConfig.goofyOpticBlast ? 7.0F : 20.0F);
+                living.hurt(living.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), !MarvelConfig.goofyOpticBlast ? 6.0F : 20.0F);
                 if (!level.isClientSide) {
                     level.explode(player, player.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), new OpticBlastExplosionDamageCalculator(), hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 0, false, Level.ExplosionInteraction.TNT, ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_EXPLOSION);
                 }
@@ -65,8 +65,7 @@ public class OpticBlastItem extends SuitPowerItem {
         } else if (player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.OPTIC_BLAST_MODE, OpticBlastMode.NARROW) == OpticBlastMode.WIDE) {
             if (!level.isClientSide()) level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_BIG.get(), SoundSource.PLAYERS);
             for (float f = -45 * Mth.DEG_TO_RAD; f < 45 * Mth.DEG_TO_RAD; f += 0.025F) {
-                HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, f);
-                if (hit instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
+                for (LivingEntity living : getEntitiesInSight(player, 15f, f)) {
                     living.knockback(1.0, player.getX() - living.getX(), player.getZ() - living.getZ());
                     living.hurt(living.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), !MarvelConfig.goofyOpticBlast ? 4.0F : 20.0F);
                 }
@@ -99,5 +98,33 @@ public class OpticBlastItem extends SuitPowerItem {
         }
 
         return hitResult;
+    }
+
+    private static List<LivingEntity> getEntitiesInSight(Entity entity, double d, float rotation) {
+        Vec3 vec33 = entity.getEyePosition().add(entity.getViewVector(0.0F).yRot(rotation).scale(d));
+        HitResult hitResult = entity.level().clip(new ClipContext(entity.getEyePosition(), vec33, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+        if (hitResult.getType() != HitResult.Type.MISS) {
+            vec33 = hitResult.getLocation();
+        }
+        return getEntities(entity.level(), entity, entity.getEyePosition(), vec33, entity.getBoundingBox().expandTowards(entity.getViewVector(0.0F).scale(d)).inflate(1.0), entity1 -> entity1 instanceof LivingEntity).stream().map(entity1 -> (LivingEntity) entity1).toList();
+    }
+
+    public static List<Entity> getEntities(Level p_150176_, Entity p_150177_, Vec3 p_150178_, Vec3 p_150179_, AABB p_150180_, Predicate<Entity> p_150181_) {
+        double d0 = Double.MAX_VALUE;
+        List<Entity> entities = new ArrayList<>();
+
+        for (Entity entity : p_150176_.getEntities(p_150177_, p_150180_, p_150181_)) {
+            AABB aabb = entity.getBoundingBox().inflate(0.3);
+            Optional<Vec3> optional = aabb.clip(p_150178_, p_150179_);
+            if (optional.isPresent()) {
+                double d1 = p_150178_.distanceToSqr(optional.get());
+                if (d1 < d0) {
+                    entities.add(entity);
+                    d0 = d1;
+                }
+            }
+        }
+
+        return entities;
     }
 }

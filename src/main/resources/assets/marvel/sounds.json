@@ -1,4 +1,7 @@
 {
+  "empty": {
+    "sounds": []
+  },
   "item.vibranium_shield.throw": {
     "subtitle": "subtitles.item.vibranium_shield.throw",
     "sounds": [
@@ -114,6 +117,36 @@
     "subtitle": "subtitles.suit.ant_man.grow",
     "sounds": [
       "marvel:suit/ant_man/grow"
+    ]
+  },
+  "suit.wasp.sting": {
+    "subtitle": "subtitles.suit.wasp.sting",
+    "sounds": [
+      "marvel:suit/wasp/sting"
+    ]
+  },
+  "item.mjolnir.throw": {
+    "subtitle": "subtitles.item.mjolnir.throw",
+    "sounds": [
+      "marvel:item/mjolnir/throw"
+    ]
+  },
+  "item.mjolnir.hit": {
+    "subtitle": "subtitles.item.mjolnir.hit",
+    "sounds": [
+      "marvel:item/mjolnir/hit"
+    ]
+  },
+  "item.mjolnir.hit_shield": {
+    "subtitle": "subtitles.item.mjolnir.hit_shield",
+    "sounds": [
+      "marvel:item/mjolnir/hit_shield"
+    ]
+  },
+  "item.mjolnir.call": {
+    "subtitle": "subtitles.item.mjolnir.call",
+    "sounds": [
+      "marvel:item/mjolnir/call"
     ]
   }
 }

@@ -21,6 +21,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
@@ -29,24 +30,14 @@ import java.util.function.Consumer;
 
 public abstract class SuitItem extends ArmorItem {
     private final TagKey<Item> suitPieces;
-    private final boolean needsHelmet;
 
     public SuitItem(Holder<ArmorMaterial> material, Type type, TagKey<Item> suitPieces, Properties properties) {
-        this(material, type, true, suitPieces, List.of(), properties);
-    }
-
-    public SuitItem(Holder<ArmorMaterial> material, Type type, boolean needsHelmet, TagKey<Item> suitPieces, Properties properties) {
-        this(material, type, needsHelmet, suitPieces, List.of(), properties);
+        this(material, type, suitPieces, List.of(), properties);
     }
 
     public SuitItem(Holder<ArmorMaterial> material, Type type, TagKey<Item> suitPieces, List<MobEffectInstance> effects, Properties properties) {
-        this(material, type, true, suitPieces, effects, properties);
-    }
-
-    public SuitItem(Holder<ArmorMaterial> material, Type type, boolean needsHelmet, TagKey<Item> suitPieces, List<MobEffectInstance> effects, Properties properties) {
         super(material, type, properties.component(MarvelDataComponents.SUIT_EFFECTS, effects));
         this.suitPieces = suitPieces;
-        this.needsHelmet = needsHelmet;
     }
 
     public static MobEffectInstance effect(Holder<MobEffect> effect, int amplifier) {
@@ -60,7 +51,7 @@ public abstract class SuitItem extends ArmorItem {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean p_41408_) {
         if (entity instanceof LivingEntity living) {
-            if ((living.getItemBySlot(EquipmentSlot.HEAD).is(suitPieces) || !needsHelmet) && living.getItemBySlot(EquipmentSlot.CHEST).is(suitPieces) && living.getItemBySlot(EquipmentSlot.LEGS).is(suitPieces) && living.getItemBySlot(EquipmentSlot.FEET).is(suitPieces)) {
+            if (living.getItemBySlot(EquipmentSlot.HEAD).is(suitPieces) && living.getItemBySlot(EquipmentSlot.CHEST).is(suitPieces) && living.getItemBySlot(EquipmentSlot.LEGS).is(suitPieces) && living.getItemBySlot(EquipmentSlot.FEET).is(suitPieces)) {
                 if (living.getItemBySlot(EquipmentSlot.CHEST) == stack) {
                     for (MobEffectInstance instance : stack.getOrDefault(MarvelDataComponents.SUIT_EFFECTS, List.<MobEffectInstance>of())) {
                         living.addEffect(new MobEffectInstance(instance));
@@ -131,6 +122,6 @@ public abstract class SuitItem extends ArmorItem {
 
     @Override
     public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-        return BuiltInRegistries.ITEM.getKey(this).withPath(id -> "textures/models/suit/" + id.replace("_" + getType().getName(), "") + (slot == EquipmentSlot.HEAD && stack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? "_open" : "") + ".png");
+        return stack.is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN) && slot == EquipmentSlot.HEAD && stack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? MarvelSuperheroes.id("textures/models/suit/empty.png") : BuiltInRegistries.ITEM.getKey(this).withPath(id -> "textures/models/suit/" + id.replace("_" + getType().getName(), "") + (slot == EquipmentSlot.HEAD && stack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? "_open" : "") + ".png");
     }
 }

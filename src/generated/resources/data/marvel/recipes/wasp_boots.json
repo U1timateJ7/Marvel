@@ -1,0 +1,39 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "tag": "c:dyes/black"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "results": {
+    "id": "marvel:wasp_boots"
+  },
+  "suit": {
+    "tag": "marvel:ant_man_boots"
+  }
+}

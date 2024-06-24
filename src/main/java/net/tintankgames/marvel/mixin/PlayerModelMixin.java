@@ -21,6 +21,7 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
     @Shadow @Final public ModelPart rightPants;
     @Shadow @Final public ModelPart leftSleeve;
     @Shadow @Final public ModelPart rightSleeve;
+    @Shadow @Final private ModelPart cloak;
 
     public PlayerModelMixin(ModelPart p_170677_) {
         super(p_170677_);
@@ -35,6 +36,13 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
             this.leftSleeve.visible = false;
             this.rightSleeve.visible = false;
             this.jacket.visible = false;
+            if (entity.isCrouching()) {
+                this.cloak.z = 1.4F;
+                this.cloak.y = 1.85F;
+            } else {
+                this.cloak.z = 0.0F;
+                this.cloak.y = 0.0F;
+            }
         }
         if (entity.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.HIDES_OUTER_LAYER) || entity.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.HIDES_OUTER_LAYER)) {
             this.leftPants.visible = false;

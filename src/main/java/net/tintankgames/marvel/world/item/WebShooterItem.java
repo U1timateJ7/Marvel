@@ -49,7 +49,7 @@ public class WebShooterItem extends SuitPowerItem {
         }
 
         player.awardStat(Stats.ITEM_USED.get(this));
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.SPIDER_MAN_WEB_SHOOT.get(), SoundSource.NEUTRAL, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.SPIDER_MAN_WEB_SHOOT.get(), SoundSource.NEUTRAL);
         player.gameEvent(GameEvent.ITEM_INTERACT_START);
     }
 

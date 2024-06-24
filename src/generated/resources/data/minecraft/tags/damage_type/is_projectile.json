@@ -2,6 +2,10 @@
   "values": [
     "marvel:vibranium_shield",
     "marvel:vibranium_shield_dispenser",
-    "marvel:web_shot"
+    "marvel:web_shot",
+    "marvel:mjolnir",
+    "marvel:mjolnir_dispenser",
+    "marvel:stormbreaker",
+    "marvel:stormbreaker_dispenser"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_kinetic_black_panther_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:kinetic_black_panther_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:black_panther_shuri_leggings_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_kinetic_black_panther_leggings"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:black_panther_shuri_leggings_from_variants"
+    ]
+  }
+}

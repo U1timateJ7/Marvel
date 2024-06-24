@@ -23,7 +23,7 @@ public class SpiderManSuitItem extends LeatherSuitItem {
     private static final AttributeModifier fallDamageMultiplierModifier = new AttributeModifier(SPIDER_MAN_UUID, "Spider-Man fall damage multiplier modifier", -0.5, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
     public SpiderManSuitItem(Type type, Properties properties) {
-        super(type, false, MarvelItems.Tags.SPIDER_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.WEB_SHOOTER.get())));
+        super(type, MarvelItems.Tags.SPIDER_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.WEB_SHOOTER.get())));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SpiderManSuitItem extends LeatherSuitItem {
                     living.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.SPIDER_SENSE);
                 }
             }
-            if (living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.SPIDER_MAN_ARMOR)) {
+            if (living.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.SPIDER_MAN_ARMOR)) {
                 living.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFallDistanceModifier);
                 living.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
             } else {

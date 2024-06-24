@@ -28,7 +28,7 @@ public class BlackPantherSuitItem extends SuitItem {
     private final Supplier<ItemAttributeModifiers> defaultModifiers;
 
     public BlackPantherSuitItem(Type type, Properties properties) {
-        super(MarvelArmorMaterials.VIBRANIUM_WEAVE, type, true, MarvelItems.Tags.BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties);
+        super(MarvelArmorMaterials.VIBRANIUM_WEAVE, type, MarvelItems.Tags.BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties);
         this.defaultModifiers = Suppliers.memoize(
                 () -> {
                     int i = MarvelArmorMaterials.VIBRANIUM_WEAVE.value().getDefense(type);

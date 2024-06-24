@@ -43,7 +43,7 @@ public class KineticBlackPantherSuitItem extends SuitItem {
     private final int color;
 
     public KineticBlackPantherSuitItem(int color, Type type, Properties properties) {
-        super(MarvelArmorMaterials.VIBRANIUM_NANITE, type, true, MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F));
+        super(MarvelArmorMaterials.VIBRANIUM_NANITE, type, MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 2), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F));
         this.color = color;
         this.defaultModifiers = Suppliers.memoize(
                 () -> {
@@ -121,10 +121,5 @@ public class KineticBlackPantherSuitItem extends SuitItem {
     @Override
     public ItemAttributeModifiers getDefaultAttributeModifiers() {
         return defaultModifiers.get();
-    }
-
-    @Override
-    public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-        return slot == EquipmentSlot.HEAD && stack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) ? MarvelSuperheroes.id("textures/models/suit/empty.png") : super.getArmorTexture(stack, entity, slot, layer, innerModel);
     }
 }

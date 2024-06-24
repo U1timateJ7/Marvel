@@ -14,6 +14,10 @@ public class MarvelDamageTypes {
     public static final ResourceKey<DamageType> OPTIC_BLAST_GOOFY = create("optic_blast_goofy");
     public static final ResourceKey<DamageType> WEB_SHOT = create("web_shot");
     public static final ResourceKey<DamageType> GIANT_MAN = create("giant_man");
+    public static final ResourceKey<DamageType> MJOLNIR = create("mjolnir");
+    public static final ResourceKey<DamageType> MJOLNIR_DISPENSER = create("mjolnir_dispenser");
+    public static final ResourceKey<DamageType> STORMBREAKER = create("stormbreaker");
+    public static final ResourceKey<DamageType> STORMBREAKER_DISPENSER = create("stormbreaker_dispenser");
 
     public static ResourceKey<DamageType> create(String id) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, MarvelSuperheroes.id(id));
@@ -27,5 +31,9 @@ public class MarvelDamageTypes {
         bootstrapContext.register(OPTIC_BLAST_GOOFY, new DamageType("optic_blast_goofy", 0.1f));
         bootstrapContext.register(WEB_SHOT, new DamageType("web_shot", 0.1f));
         bootstrapContext.register(GIANT_MAN, new DamageType("giant_man", 0.1f));
+        bootstrapContext.register(MJOLNIR, new DamageType("mjolnir", 0.1f));
+        bootstrapContext.register(MJOLNIR_DISPENSER, new DamageType("mjolnir_dispenser", 0.1f));
+        bootstrapContext.register(STORMBREAKER, new DamageType("stormbreaker", 0.1f));
+        bootstrapContext.register(STORMBREAKER_DISPENSER, new DamageType("stormbreaker_dispenser", 0.1f));
     }
 }

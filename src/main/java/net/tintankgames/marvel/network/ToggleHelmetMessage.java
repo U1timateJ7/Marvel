@@ -39,7 +39,7 @@ public class ToggleHelmetMessage implements CustomPacketPayload {
                             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_DOWN.get(), SoundSource.PLAYERS);
                         else
                             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_UP.get(), SoundSource.PLAYERS);
-                    } else if (helmet.is(MarvelItems.Tags.ANT_MAN_HELMET) || helmet.is(MarvelItems.Tags.ANT_MAN_UPGRADED_HELMET)) {
+                    } else if (helmet.is(MarvelItems.Tags.ANT_MAN_HELMET) || helmet.is(MarvelItems.Tags.ANT_MAN_UPGRADED_HELMET) || helmet.is(MarvelItems.Tags.WASP_HELMET)) {
                         if (open)
                             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
                         else

@@ -29,11 +29,21 @@ public class MarvelModels {
     public static final ModelLayerLocation CYCLOPS_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_chestplate"), "main");
     public static final ModelLayerLocation CYCLOPS_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_leggings"), "main");
     public static final ModelLayerLocation CYCLOPS_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("cyclops_suit_boots"), "main");
-    public static final ModelLayerLocation SPIDER_MAN_SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_helmet"), "main");
-    public static final ModelLayerLocation SPIDER_MAN_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_chestplate"), "main");
-    public static final ModelLayerLocation SPIDER_MAN_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_leggings"), "main");
-    public static final ModelLayerLocation SPIDER_MAN_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("spider_mam_suit_boots"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("spider_man_suit_helmet"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("spider_man_suit_chestplate"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("spider_man_suit_leggings"), "main");
+    public static final ModelLayerLocation SPIDER_MAN_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("spider_man_suit_boots"), "main");
+    public static final ModelLayerLocation WASP_SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("wasp_suit_helmet"), "main");
+    public static final ModelLayerLocation WASP_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("wasp_suit_chestplate"), "main");
+    public static final ModelLayerLocation WASP_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("wasp_suit_leggings"), "main");
+    public static final ModelLayerLocation WASP_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("wasp_suit_boots"), "main");
+    public static final ModelLayerLocation THOR_SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("thor_suit_helmet"), "main");
+    public static final ModelLayerLocation THOR_SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("thor_suit_chestplate"), "main");
+    public static final ModelLayerLocation THOR_SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("thor_suit_leggings"), "main");
+    public static final ModelLayerLocation THOR_SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("thor_suit_boots"), "main");
     public static final ModelLayerLocation VIBRANIUM_SHIELD = new ModelLayerLocation(MarvelSuperheroes.id("vibranium_shield"), "main");
+    public static final ModelLayerLocation MJOLNIR = new ModelLayerLocation(MarvelSuperheroes.id("mjolnir"), "main");
+    public static final ModelLayerLocation STORMBREAKER = new ModelLayerLocation(MarvelSuperheroes.id("stormbreaker"), "main");
 
     @SubscribeEvent
     public static void registerModels(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -58,7 +68,17 @@ public class MarvelModels {
         event.registerLayerDefinition(SPIDER_MAN_SUIT_CHESTPLATE, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(SPIDER_MAN_SUIT_LEGGINGS, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(SPIDER_MAN_SUIT_BOOTS, () -> SuitModel.createSpiderManBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(WASP_SUIT_HELMET, () -> SuitModel.createWaspBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(WASP_SUIT_CHESTPLATE, () -> SuitModel.createWaspBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(WASP_SUIT_LEGGINGS, () -> SuitModel.createWaspBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(WASP_SUIT_BOOTS, () -> SuitModel.createWaspBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(THOR_SUIT_HELMET, () -> SuitModel.createThorBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(THOR_SUIT_CHESTPLATE, () -> SuitModel.createThorBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(THOR_SUIT_LEGGINGS, () -> SuitModel.createThorBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(THOR_SUIT_BOOTS, () -> SuitModel.createThorBodyLayer(ArmorItem.Type.BOOTS));
         event.registerLayerDefinition(VIBRANIUM_SHIELD, VibraniumShieldModel::createBodyLayer);
+        event.registerLayerDefinition(MJOLNIR, MjolnirModel::createBodyLayer);
+        event.registerLayerDefinition(STORMBREAKER, StormbreakerModel::createBodyLayer);
     }
 
     public static ModelLayerLocation suit(ArmorItem.Type type) {
@@ -103,6 +123,24 @@ public class MarvelModels {
             case CHESTPLATE, BODY -> SPIDER_MAN_SUIT_CHESTPLATE;
             case LEGGINGS -> SPIDER_MAN_SUIT_LEGGINGS;
             case BOOTS -> SPIDER_MAN_SUIT_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation waspSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> WASP_SUIT_HELMET;
+            case CHESTPLATE, BODY -> WASP_SUIT_CHESTPLATE;
+            case LEGGINGS -> WASP_SUIT_LEGGINGS;
+            case BOOTS -> WASP_SUIT_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation thorSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> THOR_SUIT_HELMET;
+            case CHESTPLATE, BODY -> THOR_SUIT_CHESTPLATE;
+            case LEGGINGS -> THOR_SUIT_LEGGINGS;
+            case BOOTS -> THOR_SUIT_BOOTS;
         };
     }
 }

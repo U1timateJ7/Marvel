@@ -24,7 +24,7 @@ import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class ThrownVibraniumShield extends AbstractArrow {
     private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(ThrownVibraniumShield.class, EntityDataSerializers.BOOLEAN);
@@ -77,9 +77,13 @@ public class ThrownVibraniumShield extends AbstractArrow {
         setDeltaMovement(getDeltaMovement().multiply(-1, -1, -1));
     }
 
+    public boolean returningToOwner() {
+        return this.dealtDamage;
+    }
+
     @Override
     public void tick() {
-        if (this.inGroundTime > 0) {
+        if (this.inGroundTime > 0 || getY() <= level().dimensionType().minY() - 48) {
             this.dealtDamage = true;
         }
 

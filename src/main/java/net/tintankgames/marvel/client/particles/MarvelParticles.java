@@ -16,5 +16,6 @@ public class MarvelParticles {
         event.registerSpriteSet(MarvelParticleTypes.EMISSIVE_DUST.get(), EmissiveDustParticle.Provider::new);
         event.registerSpecial(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), new KineticBlastEmitterParticle.Provider());
         event.registerSpriteSet(MarvelParticleTypes.KINETIC_BLAST.get(), KineticBlastParticle.Provider::new);
+        event.registerSpriteSet(MarvelParticleTypes.SPIDER_SENSE.get(), SpiderSenseParticle.Provider::new);
     }
 }

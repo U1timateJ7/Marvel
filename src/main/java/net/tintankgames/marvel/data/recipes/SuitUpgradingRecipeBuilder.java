@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -51,6 +51,10 @@ public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
 
     public SuitUpgradingRecipeBuilder requires(TagKey<Item> p_206420_) {
         return this.requires(Ingredient.of(p_206420_));
+    }
+
+    public SuitUpgradingRecipeBuilder requires(TagKey<Item> p_206420_, int count) {
+        return this.requires(Ingredient.of(p_206420_), count);
     }
 
     public SuitUpgradingRecipeBuilder requires(ItemLike p_126210_) {

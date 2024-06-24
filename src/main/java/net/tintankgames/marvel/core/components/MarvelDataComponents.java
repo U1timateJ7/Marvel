@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.core.components;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -13,11 +14,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.world.item.component.ItemStackHolder;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
 import net.tintankgames.marvel.world.item.component.Size;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public class MarvelDataComponents {
@@ -32,6 +35,9 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<OpticBlastMode>> OPTIC_BLAST_MODE = register("optic_blast_mode", () -> DataComponentType.<OpticBlastMode>builder().persistent(OpticBlastMode.CODEC).networkSynchronized(OpticBlastMode.STREAM_CODEC).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> SPIDER_SENSE = register("spider_sense", () -> DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Size>> SIZE = register("size", () -> DataComponentType.<Size>builder().persistent(Size.CODEC).networkSynchronized(Size.STREAM_CODEC).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> FLYING = register("flying", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemStackHolder>> ITEM_STACK = register("item_stack", () -> DataComponentType.<ItemStackHolder>builder().persistent(ItemStackHolder.CODEC).networkSynchronized(ItemStackHolder.STREAM_CODEC).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<UUID>> OWNER = register("owner", () -> DataComponentType.<UUID>builder().persistent(UUIDUtil.LENIENT_CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC).cacheEncoding().build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);

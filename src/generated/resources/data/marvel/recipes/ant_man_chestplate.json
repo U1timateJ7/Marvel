@@ -8,6 +8,9 @@
     "B": {
       "tag": "c:dyes/black"
     },
+    "C": {
+      "item": "minecraft:comparator"
+    },
     "S": {
       "item": "minecraft:stone_button"
     },
@@ -17,8 +20,8 @@
   },
   "pattern": [
     "X X",
-    "##S",
-    "XBX"
+    "#BS",
+    "XCX"
   ],
   "result": {
     "count": 1,

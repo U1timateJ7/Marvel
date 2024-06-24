@@ -9,14 +9,16 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
-import net.tintankgames.marvel.world.entity.projectile.WebShot;
+import net.tintankgames.marvel.world.entity.projectile.*;
 
 public class MarvelEntityTypes {
     private static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(Registries.ENTITY_TYPE, MarvelSuperheroes.MOD_ID);
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownVibraniumShield>> VIBRANIUM_SHIELD = register("vibranium_shield", EntityType.Builder.<ThrownVibraniumShield>of(ThrownVibraniumShield::new, MobCategory.MISC).sized(0.75F, 0.125F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<WebShot>> WEB_SHOT = register("web_shot", EntityType.Builder.<WebShot>of(WebShot::new, MobCategory.MISC).noSave().noSummon().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
+    public static final DeferredHolder<EntityType<?>, EntityType<WaspSting>> WASP_STING = register("wasp_sting", EntityType.Builder.<WaspSting>of(WaspSting::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrownMjolnir>> MJOLNIR = register("mjolnir", EntityType.Builder.<ThrownMjolnir>of(ThrownMjolnir::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
+    public static final DeferredHolder<EntityType<?>, EntityType<ThrownStormbreaker>> STORMBREAKER = register("stormbreaker", EntityType.Builder.<ThrownStormbreaker>of(ThrownStormbreaker::new, MobCategory.MISC).sized(0.5F, 0.25F).clientTrackingRange(4).updateInterval(20));
 
     private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String id, EntityType.Builder<T> entityTypeBuilder) {
         return REGISTER.register(id, () -> entityTypeBuilder.build(id));

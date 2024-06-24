@@ -6,6 +6,7 @@
     "#c:storage_blocks/palladium",
     "#c:storage_blocks/raw_palladium",
     "#c:storage_blocks/gold_titanium",
-    "#c:storage_blocks/adamantium"
+    "#c:storage_blocks/adamantium",
+    "#c:storage_blocks/uru"
   ]
 }

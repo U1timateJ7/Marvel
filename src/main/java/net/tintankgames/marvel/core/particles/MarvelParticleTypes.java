@@ -51,6 +51,7 @@ public class MarvelParticleTypes {
             return ColorParticleOption.streamCodec(KINETIC_BLAST.get());
         }
     });
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPIDER_SENSE = register("spider_sense", true);
 
     private static <T extends ParticleOptions> DeferredHolder<ParticleType<?>, ParticleType<T>> register(String id, Supplier<ParticleType<T>> supplier) {
         return REGISTER.register(id, supplier);

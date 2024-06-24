@@ -4,7 +4,9 @@
   "package": "net.tintankgames.marvel.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EnchantmentHelperMixin",
     "EntityMixin",
+    "FallingBlockEntityMixin",
     "LivingEntityMixin",
     "PlayerMixin",
     "ServerLevelMixin",
@@ -17,6 +19,7 @@
   "client": [
     "BlockEntityWithoutLevelRendererMixin",
     "CameraMixin",
+    "CapeLayerMixin",
     "GameRendererMixin",
     "HumanoidArmorLayerMixin",
     "ItemInHandRendererMixin",

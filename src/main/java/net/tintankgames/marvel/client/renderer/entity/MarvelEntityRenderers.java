@@ -13,7 +13,10 @@ import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 public class MarvelEntityRenderers {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), VibraniumShieldRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), ThrownVibraniumShieldRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.WEB_SHOT.get(), WebShotRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.WASP_STING.get(), WaspStingRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.MJOLNIR.get(), ThrownMjolnirRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.STORMBREAKER.get(), ThrownStormbreakerRenderer::new);
     }
 }

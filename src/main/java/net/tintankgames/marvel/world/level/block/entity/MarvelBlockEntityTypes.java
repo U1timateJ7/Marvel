@@ -15,6 +15,7 @@ public class MarvelBlockEntityTypes {
     private static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MarvelSuperheroes.MOD_ID);
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SuitTableBlockEntity>> SUIT_TABLE = register("suit_table", () -> BlockEntityType.Builder.of(SuitTableBlockEntity::new, MarvelBlocks.SUIT_TABLE.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MjolnirBlockEntity>> MJOLNIR = register("mjolnir", () -> BlockEntityType.Builder.of(MjolnirBlockEntity::new, MarvelBlocks.MJOLNIR.get()).build(null));
 
     private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(String id, Supplier<BlockEntityType<T>> supplier) {
         return REGISTER.register(id, supplier);

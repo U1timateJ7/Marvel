@@ -11,19 +11,11 @@ import java.util.List;
 
 public class LeatherSuitItem extends SuitItem {
     public LeatherSuitItem(Type type, TagKey<Item> suitPieces, Properties properties) {
-        this(type, true, suitPieces, List.of(), properties);
-    }
-
-    public LeatherSuitItem(Type type, boolean needsHelmet, TagKey<Item> suitPieces, Properties properties) {
-        this(type, needsHelmet, suitPieces, List.of(), properties);
+        this(type, suitPieces, List.of(), properties);
     }
 
     public LeatherSuitItem(Type type, TagKey<Item> suitPieces, List<MobEffectInstance> effects, Properties properties) {
-        this(type, true, suitPieces, effects, properties);
-    }
-
-    public LeatherSuitItem(Type type, boolean needsHelmet, TagKey<Item> suitPieces, List<MobEffectInstance> effects, Properties properties) {
-        super(MarvelArmorMaterials.REINFORCED_LEATHER, type, needsHelmet, suitPieces, effects, properties);
+        super(MarvelArmorMaterials.REINFORCED_LEATHER, type, suitPieces, effects, properties);
     }
 
     @Override

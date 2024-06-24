@@ -9,7 +9,7 @@
       "tag": "c:ingots/gold"
     },
     "R": {
-      "item": "minecraft:red_stained_glass_pane"
+      "tag": "c:gems/quartz"
     },
     "X": {
       "item": "marvel:reinforced_leather"

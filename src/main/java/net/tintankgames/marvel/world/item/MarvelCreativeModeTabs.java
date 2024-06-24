@@ -31,6 +31,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.RAW_PALLADIUM_BLOCK);
         output.accept(MarvelBlocks.GOLD_TITANIUM_BLOCK);
         output.accept(MarvelBlocks.ADAMANTIUM_BLOCK);
+        output.accept(MarvelBlocks.URU_BLOCK);
         output.accept(MarvelBlocks.SUIT_TABLE);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
@@ -55,12 +56,16 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.ADAMANTIUM_INGOT);
         output.accept(MarvelItems.ADAMANTIUM_NUGGET);
         output.accept(MarvelItems.PROTO_ADAMANTIUM_INGOT);
+        output.accept(MarvelItems.URU_INGOT);
+        output.accept(MarvelItems.URU_NUGGET);
         output.accept(MarvelItems.REINFORCED_LEATHER);
         output.accept(MarvelItems.VIBRANIUM_WEAVE);
         output.accept(MarvelItems.VIBRANIUM_NANITES);
         output.accept(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE);
         output.accept(MarvelItems.KILLMONGER_NECKLACE);
+        output.accept(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE);
         output.accept(MarvelItems.WEB_FLUID);
+        output.accept(MarvelItems.UNSTABLE_PYM_PARTICLE);
         output.accept(MarvelItems.PYM_PARTICLE);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
@@ -78,6 +83,8 @@ public class MarvelCreativeModeTabs {
             stack.set(MarvelDataComponents.SHIELD_ART, art);
             output.accept(stack);
         }
+        output.accept(MarvelItems.MJOLNIR);
+        output.accept(MarvelItems.STORMBREAKER);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SUITS = register("suits", builder -> builder.withTabsBefore(WEAPONS.getKey()).icon(MarvelItems.CAPTAIN_AMERICA_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.CAPTAIN_AMERICA_HELMET);
@@ -107,6 +114,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.KILLMONGER_CHESTPLATE);
         output.accept(MarvelItems.KILLMONGER_LEGGINGS);
         output.accept(MarvelItems.KILLMONGER_BOOTS);
+        output.accept(MarvelItems.BLACK_PANTHER_SHURI_HELMET);
+        output.accept(MarvelItems.BLACK_PANTHER_SHURI_CHESTPLATE);
+        output.accept(MarvelItems.BLACK_PANTHER_SHURI_LEGGINGS);
+        output.accept(MarvelItems.BLACK_PANTHER_SHURI_BOOTS);
         output.accept(MarvelItems.WOLVERINE_HELMET);
         output.accept(MarvelItems.WOLVERINE_CHESTPLATE);
         output.accept(MarvelItems.WOLVERINE_SLEEVELESS_CHESTPLATE);
@@ -141,6 +152,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.SPIDER_GWEN_CHESTPLATE);
         output.accept(MarvelItems.SPIDER_GWEN_LEGGINGS);
         output.accept(MarvelItems.SPIDER_GWEN_BOOTS);
+        output.accept(MarvelItems.SPIDER_MAN_INSOMNIAC_HELMET);
+        output.accept(MarvelItems.SPIDER_MAN_INSOMNIAC_CHESTPLATE);
+        output.accept(MarvelItems.SPIDER_MAN_INSOMNIAC_LEGGINGS);
+        output.accept(MarvelItems.SPIDER_MAN_INSOMNIAC_BOOTS);
         output.accept(MarvelItems.ANT_MAN_HELMET);
         output.accept(MarvelItems.ANT_MAN_CHESTPLATE);
         output.accept(MarvelItems.ANT_MAN_LEGGINGS);
@@ -149,6 +164,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.ANT_MAN_UPGRADED_CHESTPLATE);
         output.accept(MarvelItems.ANT_MAN_UPGRADED_LEGGINGS);
         output.accept(MarvelItems.ANT_MAN_UPGRADED_BOOTS);
+        output.accept(MarvelItems.WASP_HELMET);
+        output.accept(MarvelItems.WASP_CHESTPLATE);
+        output.accept(MarvelItems.WASP_LEGGINGS);
+        output.accept(MarvelItems.WASP_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

@@ -25,11 +25,11 @@ import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
 
 @OnlyIn(Dist.CLIENT)
-public class VibraniumShieldRenderer extends EntityRenderer<ThrownVibraniumShield> {
+public class ThrownVibraniumShieldRenderer extends EntityRenderer<ThrownVibraniumShield> {
     private final VibraniumShieldModel model;
     private final VibraniumShieldModel overlayModel;
 
-    public VibraniumShieldRenderer(EntityRendererProvider.Context p_174420_) {
+    public ThrownVibraniumShieldRenderer(EntityRendererProvider.Context p_174420_) {
         super(p_174420_);
         this.model = new VibraniumShieldModel(p_174420_.bakeLayer(MarvelModels.VIBRANIUM_SHIELD));
         this.overlayModel = new VibraniumShieldModel(RenderType::entityCutoutNoCull, p_174420_.bakeLayer(MarvelModels.VIBRANIUM_SHIELD));
@@ -38,7 +38,7 @@ public class VibraniumShieldRenderer extends EntityRenderer<ThrownVibraniumShiel
     public void render(ThrownVibraniumShield shield, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
         poseStack.pushPose();
         poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, shield.yRotO, shield.getYRot())));
-        poseStack.mulPose(Axis.XP.rotationDegrees(Mth.lerp(g, shield.xRotO, shield.getXRot()) + 180));
+        poseStack.mulPose(Axis.XP.rotationDegrees((shield.returningToOwner() ? 1 : -1) * Mth.lerp(g, shield.xRotO, shield.getXRot()) + 180));
         ItemStack stack = shield.getItem();
         VertexConsumer shieldBaseConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(BuiltInRegistries.ITEM.getKey(stack.getItem()).withPath(name -> "textures/entity/shield/" + name.replace("_shield", "") + ".png")), false, shield.isFoil() && !stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK);
         this.model.renderToBuffer(poseStack, shieldBaseConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

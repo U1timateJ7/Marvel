@@ -20,6 +20,7 @@ public class MarvelRecipeSerializers {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ShieldCleanRecipe>> SHIELD_CLEAN = register("crafting_special_shieldclean", () -> new SimpleCraftingRecipeSerializer<>(ShieldCleanRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<KineticBlackPantherNecklaceRecipe>> KINETIC_BLACK_PANTHER_NECKLACE = register("crafting_special_kineticblackpanthernecklace", () -> new SimpleCraftingRecipeSerializer<>(KineticBlackPantherNecklaceRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<KillmongerNecklaceRecipe>> KILLMONGER_NECKLACE = register("crafting_special_killmongernecklace", () -> new SimpleCraftingRecipeSerializer<>(KillmongerNecklaceRecipe::new));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BlackPantherShuriNecklaceRecipe>> BLACK_PANTHER_SHURI_NECKLACE = register("crafting_special_blackpanthershurinecklace", () -> new SimpleCraftingRecipeSerializer<>(BlackPantherShuriNecklaceRecipe::new));
 
     private static <T extends Recipe<?>> DeferredHolder<RecipeSerializer<?>, RecipeSerializer<T>> register(String id, Supplier<RecipeSerializer<T>> supplier) {
         return REGISTER.register(id, supplier);

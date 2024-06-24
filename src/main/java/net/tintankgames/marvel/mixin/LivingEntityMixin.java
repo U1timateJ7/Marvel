@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.mixin;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -45,7 +46,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(at = @At("HEAD"), method = "isDamageSourceBlocked", cancellable = true)
     private void shieldBlock(DamageSource p_21276_, CallbackInfoReturnable<Boolean> cir) {
         if (p_21276_.is(DamageTypeTags.IS_PROJECTILE)) {
-            if (processHand(this.getMainHandItem(), p_21276_.getDirectEntity()) || processHand(getOffhandItem(), p_21276_.getDirectEntity())) {
+            if (marvel$processHand(this.getMainHandItem(), p_21276_.getDirectEntity()) || marvel$processHand(getOffhandItem(), p_21276_.getDirectEntity())) {
                 Vec3 vec32 = p_21276_.getSourcePosition();
                 if (vec32 != null) {
                     Vec3 vec3 = this.calculateViewVector(0.0F, this.getYHeadRot());
@@ -54,6 +55,14 @@ public abstract class LivingEntityMixin extends Entity {
                     cir.setReturnValue(vec31.dot(vec3) < 0.0);
                 }
             }
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "handleEntityEvent", cancellable = true)
+    private void shieldBlockSound(byte p_20975_, CallbackInfo ci) {
+        if (p_20975_ == 29 && (marvel$isShield(getMainHandItem()) || marvel$isShield(getOffhandItem()))) {
+            this.playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
+            ci.cancel();
         }
     }
 
@@ -66,8 +75,9 @@ public abstract class LivingEntityMixin extends Entity {
         }
     }
 
-    private static boolean processHand(ItemStack stack, Entity source) {
-        if (stack.getItem() instanceof VibraniumShieldItem) {
+    @Unique
+    private static boolean marvel$processHand(ItemStack stack, Entity source) {
+        if (marvel$isShield(stack)) {
             if (!stack.isDamageableItem()) {
                 return true;
             } else {
@@ -75,6 +85,11 @@ public abstract class LivingEntityMixin extends Entity {
             }
         }
         return false;
+    }
+
+    @Unique
+    private static boolean marvel$isShield(ItemStack stack) {
+        return stack.getItem() instanceof VibraniumShieldItem;
     }
 
     @Inject(at = @At("HEAD"), method = "onClimbable", cancellable = true)
