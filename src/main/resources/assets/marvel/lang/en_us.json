@@ -308,7 +308,11 @@
   "subtitles.item.mjolnir.throw": "Mjölnir is thrown",
   "subtitles.item.mjolnir.hit": "Mjölnir hits",
   "subtitles.item.mjolnir.hit_shield": "Mjölnir hits shield",
-  "subtitles.item.mjolnir.call": "Mjölnir is called back",
+  "subtitles.item.mjolnir.catch": "Mjölnir is caught",
+  "subtitles.item.stormbreaker.throw": "Stormbreaker is thrown",
+  "subtitles.item.stormbreaker.hit": "Stormbreaker hits",
+  "subtitles.item.stormbreaker.hit_shield": "Stormbreaker hits shield",
+  "subtitles.item.stormbreaker.catch": "Stormbreaker is caught",
 
   "advancements.marvel.root.title": "Marvel Superheroes",
   "advancements.marvel.root.description": "“You've become part of a bigger universe. You just don't know it yet.” - Nick Fury",

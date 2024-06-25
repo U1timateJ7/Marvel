@@ -71,7 +71,7 @@ public class StormbreakerItem extends Item implements ProjectileItem {
                     thrownStormbreaker.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 }
                 level.addFreshEntity(thrownStormbreaker);
-                level.playSound(null, thrownStormbreaker, MarvelSoundEvents.MJOLNIR_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                level.playSound(null, thrownStormbreaker, MarvelSoundEvents.STORMBREAKER_THROW.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!player.hasInfiniteMaterials()) {
                     player.getInventory().removeItem(stack);
                 }

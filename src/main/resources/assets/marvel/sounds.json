@@ -153,10 +153,34 @@
       "marvel:item/mjolnir/hit_shield"
     ]
   },
-  "item.mjolnir.call": {
-    "subtitle": "subtitles.item.mjolnir.call",
+  "item.mjolnir.catch": {
+    "subtitle": "subtitles.item.mjolnir.catch",
     "sounds": [
-      "marvel:item/mjolnir/call"
+      "marvel:item/mjolnir/catch"
+    ]
+  },
+  "item.stormbreaker.throw": {
+    "subtitle": "subtitles.item.stormbreaker.throw",
+    "sounds": [
+      "marvel:item/mjolnir/throw"
+    ]
+  },
+  "item.stormbreaker.hit": {
+    "subtitle": "subtitles.item.stormbreaker.hit",
+    "sounds": [
+      "marvel:item/mjolnir/hit"
+    ]
+  },
+  "item.stormbreaker.hit_shield": {
+    "subtitle": "subtitles.item.stormbreaker.hit_shield",
+    "sounds": [
+      "marvel:item/mjolnir/hit_shield"
+    ]
+  },
+  "item.stormbreaker.catch": {
+    "subtitle": "subtitles.item.stormbreaker.catch",
+    "sounds": [
+      "marvel:item/mjolnir/catch"
     ]
   }
 }

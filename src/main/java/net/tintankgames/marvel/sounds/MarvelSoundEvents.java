@@ -33,7 +33,11 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_THROW = register("item.mjolnir.throw");
     public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_HIT = register("item.mjolnir.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_HIT_SHIELD = register("item.mjolnir.hit_shield");
-    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_CALL = register("item.mjolnir.call");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MJOLNIR_CATCH = register("item.mjolnir.catch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_THROW = register("item.stormbreaker.throw");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_HIT = register("item.stormbreaker.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_HIT_SHIELD = register("item.stormbreaker.hit_shield");
+    public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_CATCH = register("item.stormbreaker.catch");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

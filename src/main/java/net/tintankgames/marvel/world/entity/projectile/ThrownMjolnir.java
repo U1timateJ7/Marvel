@@ -177,7 +177,7 @@ public class ThrownMjolnir extends AbstractArrow {
     @Override
     protected boolean tryPickup(Player p_150196_) {
         if (super.tryPickup(p_150196_) || this.isNoPhysics() && this.ownedBy(p_150196_) && p_150196_.getInventory().add(this.getPickupItem())) {
-            playSound(MarvelSoundEvents.MJOLNIR_CALL.get());
+            playSound(MarvelSoundEvents.MJOLNIR_CATCH.get());
             return true;
         }
         return false;

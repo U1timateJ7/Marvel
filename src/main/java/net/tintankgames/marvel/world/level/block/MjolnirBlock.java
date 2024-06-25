@@ -150,7 +150,7 @@ public class MjolnirBlock extends FallingBlock implements EntityBlock, BucketPic
             if ((blockEntity.getOwner() == null || Objects.equals(blockEntity.getOwner().toString(), p_60506_.getUUID().toString())) && p_60506_.getMainHandItem().isEmpty()) {
                 p_60506_.setItemInHand(InteractionHand.MAIN_HAND, blockEntity.getStack().copy());
                 p_60504_.setBlockAndUpdate(p_60505_, p_60504_.getFluidState(p_60505_).createLegacyBlock());
-                p_60504_.playSound(null, p_60505_, MarvelSoundEvents.MJOLNIR_CALL.get(), SoundSource.BLOCKS);
+                p_60504_.playSound(null, p_60505_, MarvelSoundEvents.MJOLNIR_CATCH.get(), SoundSource.BLOCKS);
             }
         });
         return InteractionResult.sidedSuccess(p_60504_.isClientSide);

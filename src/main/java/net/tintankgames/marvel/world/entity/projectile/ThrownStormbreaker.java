@@ -145,7 +145,8 @@ public class ThrownStormbreaker extends AbstractArrow {
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().source(entity1 == null ? MarvelDamageTypes.STORMBREAKER_DISPENSER : MarvelDamageTypes.STORMBREAKER, this, entity1 == null ? this : entity1);
         this.dealtDamage = true;
-        SoundEvent soundevent = MarvelSoundEvents.MJOLNIR_HIT.get();
+        SoundEvent soundevent = MarvelSoundEvents.STORMBREAKER_HIT.get();
+        boolean hitShield = false;
         if (entity.hurt(damagesource, f)) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
@@ -158,12 +159,13 @@ public class ThrownStormbreaker extends AbstractArrow {
                 this.doPostHurtEffects(livingentity1);
             }
         } else if (entity instanceof LivingEntity living && (processHand(living.getItemInHand(InteractionHand.MAIN_HAND)) || processHand(living.getItemInHand(InteractionHand.OFF_HAND))))  {
-            soundevent = MarvelSoundEvents.MJOLNIR_HIT_SHIELD.get();
+            soundevent = MarvelSoundEvents.STORMBREAKER_HIT_SHIELD.get();
             if (level() instanceof ServerLevel serverLevel) {
                 serverLevel.explode(entity1 == null ? this : entity1, damagesource, new MjolnirExplosionDamageCalculator(entity1 == null ? this : entity1), getX(), getY(), getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
             }
+            hitShield = true;
         }
-        if (level() instanceof ServerLevel serverLevel) {
+        if (level() instanceof ServerLevel serverLevel && !hitShield) {
             BlockPos blockpos = entity.blockPosition();
             LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(this.level());
             if (lightningBolt != null) {
@@ -183,7 +185,7 @@ public class ThrownStormbreaker extends AbstractArrow {
     @Override
     protected boolean tryPickup(Player p_150196_) {
         if (super.tryPickup(p_150196_) || this.isNoPhysics() && this.ownedBy(p_150196_) && p_150196_.getInventory().add(this.getPickupItem())) {
-            playSound(MarvelSoundEvents.MJOLNIR_CALL.get());
+            playSound(MarvelSoundEvents.STORMBREAKER_CATCH.get());
             return true;
         }
         return false;
@@ -196,7 +198,7 @@ public class ThrownStormbreaker extends AbstractArrow {
 
     @Override
     protected SoundEvent getDefaultHitGroundSoundEvent() {
-        return MarvelSoundEvents.MJOLNIR_HIT.get();
+        return MarvelSoundEvents.STORMBREAKER_HIT.get();
     }
 
     @Override
