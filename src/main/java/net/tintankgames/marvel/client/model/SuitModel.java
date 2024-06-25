@@ -113,8 +113,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         List<ArmorItem.Type> armorTypes = Arrays.asList(types);
         if (armorTypes.contains(ArmorItem.Type.HELMET)) {
             PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
-            head.addOrReplaceChild("mask", CubeListBuilder.create().texOffs(33, 9).addBox(-1.2F, -4.0F, -0.5F, 7.0F, 6.0F, 0.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(4.1F, -4.0F, -2.8F, 0.0F, -1.0908F, 0.0F));
-            head.addOrReplaceChild("mask2", CubeListBuilder.create().texOffs(33, 9).mirror().addBox(-6.5F, -4.0F, -0.9F, 7.0F, 6.0F, 0.0F, new CubeDeformation(0.01F)).mirror(false), PartPose.offsetAndRotation(-3.4F, -4.0F, -3.2F, 0.0F, 1.0908F, 0.0F));
+            head.addOrReplaceChild("mask", CubeListBuilder.create().texOffs(33, 9).addBox(-1.2F, -4.0F, -0.5F, 7.0F, 6.0F, 0.0F), PartPose.offsetAndRotation(4.1F, -4.0F, -2.8F, 0.0F, -1.0908F, 0.0F));
+            head.addOrReplaceChild("mask2", CubeListBuilder.create().texOffs(33, 9).mirror().addBox(-6.5F, -4.0F, -0.9F, 7.0F, 6.0F, 0.0F).mirror(false), PartPose.offsetAndRotation(-3.4F, -4.0F, -3.2F, 0.0F, 1.0908F, 0.0F));
             partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
         } else {
             partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
@@ -123,9 +123,9 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
             PartDefinition right_arm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)).texOffs(46, 1).addBox(-4.0F, -2.0F, -2.0F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.02F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
-            right_arm.addOrReplaceChild("right_claws", CubeListBuilder.create().texOffs(55, 55).addBox(-1.0F, -3.0F, 0.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)), PartPose.offset(-2.5F, 11.5F, -1.0F));
+            right_arm.addOrReplaceChild("right_claws", CubeListBuilder.create().texOffs(55, 55).addBox(-1.0F, -3.0F, 0.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F), PartPose.offset(-2.5F, 11.5F, -1.0F));
             PartDefinition left_arm = partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)).mirror().texOffs(46, 1).addBox(-1.0F, -2.0F, -2.0F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.02F)).mirror(false), PartPose.offset(5.0F, 2.0F, 0.0F));
-            left_arm.addOrReplaceChild("left_claws", CubeListBuilder.create().texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 3.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F, new CubeDeformation(0.01F)).mirror(false), PartPose.offset(2.5F, 11.5F, -2.0F));
+            left_arm.addOrReplaceChild("left_claws", CubeListBuilder.create().texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 3.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F).mirror(false), PartPose.offset(2.5F, 11.5F, -2.0F));
         } else {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
@@ -235,8 +235,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         }
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(0.0F, 0.0F, 0.0F));
-            partdefinition.addOrReplaceChild("left_wing", CubeListBuilder.create().texOffs(32, 32).mirror().addBox(0.0F, -16.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false).texOffs(0, 32).mirror().addBox(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.0F, 5.0F, 2.0F, 0.0F, -0.2618F, 0.0F));
-            partdefinition.addOrReplaceChild("right_wing", CubeListBuilder.create().texOffs(32, 32).addBox(-16.0F, -16.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)).texOffs(0, 32).addBox(-16.0F, 0.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, 5.0F, 2.0F, 0.0F, 0.2618F, 0.0F));
+            partdefinition.addOrReplaceChild("left_wing", CubeListBuilder.create().texOffs(32, 32).mirror().addBox(0.0F, -16.0F, 0.0F, 16.0F, 16.0F, 0.0F).mirror(false).texOffs(0, 32).mirror().addBox(0.0F, 0.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.0F, 5.0F, 2.0F, 0.0F, -0.2618F, 0.0F));
+            partdefinition.addOrReplaceChild("right_wing", CubeListBuilder.create().texOffs(32, 32).addBox(-16.0F, -16.0F, 0.0F, 16.0F, 16.0F, 0.0F).texOffs(0, 32).addBox(-16.0F, 0.0F, 0.0F, 16.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, 5.0F, 2.0F, 0.0F, 0.2618F, 0.0F));
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(5.0F, 2.0F, 0.0F));
             partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
         } else {
@@ -266,9 +266,9 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         PartDefinition partdefinition = meshdefinition.getRoot();
         List<ArmorItem.Type> armorTypes = Arrays.asList(types);
         if (armorTypes.contains(ArmorItem.Type.HELMET)) {
-            PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.01f)), PartPose.offset(0.0F, 0.0F, 0.0F));
-            head.addOrReplaceChild("helmet1", CubeListBuilder.create().texOffs(32, -9).addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 9.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(-4.0F, -3.0F, -2.0F, 0.0F, -0.2618F, 0.0F));
-            head.addOrReplaceChild("helmet2", CubeListBuilder.create().texOffs(32, -9).addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 9.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(4.0F, -3.0F, -2.0F, 0.0F, 0.2618F, 0.0F));
+            PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.16f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            head.addOrReplaceChild("helmet1", CubeListBuilder.create().texOffs(32, -9).addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 9.0F), PartPose.offsetAndRotation(-4.2F, -3.0F, -2.0F, 0.0F, -0.2618F, 0.0F));
+            head.addOrReplaceChild("helmet2", CubeListBuilder.create().texOffs(32, -9).addBox(0.0F, -9.0F, 0.0F, 0.0F, 9.0F, 9.0F), PartPose.offsetAndRotation(4.2F, -3.0F, -2.0F, 0.0F, 0.2618F, 0.0F));
             partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
         } else {
             partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);

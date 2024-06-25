@@ -1,7 +1,6 @@
 package net.tintankgames.marvel.mixin;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
@@ -71,7 +71,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(at = @At("HEAD"), method = "handleEntityEvent", cancellable = true)
     private void shieldBlockSound(byte p_20975_, CallbackInfo ci) {
         if (p_20975_ == 29 && (marvel$isShield(getMainHandItem()) || marvel$isShield(getOffhandItem()))) {
-            this.playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
+            this.playSound(MarvelSoundEvents.VIBRANIUM_SHIELD_HIT.get(), 1.0F, 0.8F + this.level().random.nextFloat() * 0.4F);
             ci.cancel();
         }
     }

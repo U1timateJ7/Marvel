@@ -13,6 +13,7 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> EMPTY = register("empty");
     public static final DeferredHolder<SoundEvent, SoundEvent> VIBRANIUM_SHIELD_THROW = register("item.vibranium_shield.throw");
     public static final DeferredHolder<SoundEvent, SoundEvent> VIBRANIUM_SHIELD_HIT = register("item.vibranium_shield.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VIBRANIUM_SHIELD_CATCH = register("item.vibranium_shield.catch");
     public static final DeferredHolder<SoundEvent, SoundEvent> KINETIC_BLACK_PANTHER_SUIT_UP = register("suit.kinetic_black_panther.suit_up");
     public static final DeferredHolder<SoundEvent, SoundEvent> KINETIC_BLACK_PANTHER_SUIT_DOWN = register("suit.kinetic_black_panther.suit_down");
     public static final DeferredHolder<SoundEvent, SoundEvent> KINETIC_BLACK_PANTHER_HELMET_UP = register("suit.kinetic_black_panther.helmet_up");

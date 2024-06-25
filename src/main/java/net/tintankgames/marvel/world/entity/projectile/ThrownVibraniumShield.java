@@ -158,7 +158,11 @@ public class ThrownVibraniumShield extends AbstractArrow {
 
     @Override
     protected boolean tryPickup(Player p_150196_) {
-        return super.tryPickup(p_150196_) || this.isNoPhysics() && this.ownedBy(p_150196_) && p_150196_.getInventory().add(this.getPickupItem());
+        if (super.tryPickup(p_150196_) || this.isNoPhysics() && this.ownedBy(p_150196_) && p_150196_.getInventory().add(this.getPickupItem())) {
+            playSound(MarvelSoundEvents.VIBRANIUM_SHIELD_CATCH.get());
+            return true;
+        }
+        return false;
     }
 
     @Override

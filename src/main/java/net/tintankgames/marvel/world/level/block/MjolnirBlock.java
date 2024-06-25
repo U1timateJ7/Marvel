@@ -147,7 +147,7 @@ public class MjolnirBlock extends FallingBlock implements EntityBlock, BucketPic
     @Override
     protected InteractionResult useWithoutItem(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, BlockHitResult p_60508_) {
         p_60504_.getBlockEntity(p_60505_, MarvelBlockEntityTypes.MJOLNIR.get()).ifPresent(blockEntity -> {
-            if ((Objects.equals(blockEntity.getOwner().toString(), p_60506_.getUUID().toString()) || blockEntity.getOwner() == null) && p_60506_.getMainHandItem().isEmpty()) {
+            if ((blockEntity.getOwner() == null || Objects.equals(blockEntity.getOwner().toString(), p_60506_.getUUID().toString())) && p_60506_.getMainHandItem().isEmpty()) {
                 p_60506_.setItemInHand(InteractionHand.MAIN_HAND, blockEntity.getStack().copy());
                 p_60504_.setBlockAndUpdate(p_60505_, p_60504_.getFluidState(p_60505_).createLegacyBlock());
                 p_60504_.playSound(null, p_60505_, MarvelSoundEvents.MJOLNIR_CALL.get(), SoundSource.BLOCKS);
@@ -182,6 +182,11 @@ public class MjolnirBlock extends FallingBlock implements EntityBlock, BucketPic
             fallingblockentity.blockData = blockData;
             this.falling(fallingblockentity);
         }
+    }
+
+    @Override
+    protected void falling(FallingBlockEntity p_48779_) {
+        p_48779_.setHurtsEntities(4.0F, 40);
     }
 
     @Override

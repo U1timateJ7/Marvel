@@ -5,13 +5,23 @@
   "item.vibranium_shield.throw": {
     "subtitle": "subtitles.item.vibranium_shield.throw",
     "sounds": [
-      "marvel:item/vibranium_shield/throw"
+      "marvel:item/vibranium_shield/throw1",
+      "marvel:item/vibranium_shield/throw2",
+      "marvel:item/vibranium_shield/throw3"
     ]
   },
   "item.vibranium_shield.hit": {
     "subtitle": "subtitles.item.vibranium_shield.hit",
     "sounds": [
-      "marvel:item/vibranium_shield/hit"
+      "marvel:item/vibranium_shield/hit1",
+      "marvel:item/vibranium_shield/hit2"
+    ]
+  },
+  "item.vibranium_shield.catch": {
+    "subtitle": "subtitles.item.vibranium_shield.catch",
+    "sounds": [
+      "marvel:item/vibranium_shield/catch1",
+      "marvel:item/vibranium_shield/catch2"
     ]
   },
   "suit.kinetic_black_panther.suit_up": {
