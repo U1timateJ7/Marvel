@@ -20,7 +20,7 @@ import java.util.List;
 @EventBusSubscriber
 public class WolverineSuitItem extends LeatherSuitItem {
     public WolverineSuitItem(Type type, Properties properties) {
-        super(type, MarvelItems.Tags.WOLVERINE_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.ADAMANTIUM_CLAWS.get())));
+        super(type, MarvelItems.Tags.WOLVERINE_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.DAMAGE_RESISTANCE, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.ADAMANTIUM_CLAWS.get())));
     }
 
     @SubscribeEvent

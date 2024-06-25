@@ -7,6 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
@@ -24,6 +25,11 @@ public class ThorSuitItem extends SuitItem {
 
     public ThorSuitItem(Type type, Properties properties) {
         super(MarvelArmorMaterials.UPGRADED_REINFORCED_LEATHER, type, MarvelItems.Tags.THOR_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties);
+    }
+
+    @Override
+    public int getEntityLifespan(ItemStack itemStack, Level level) {
+        return 1;
     }
 
     @Override
