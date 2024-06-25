@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "marvel:textures/block/gold_titanium_block.png",
+    "description": {
+      "translate": "advancements.marvel.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:gold_titanium_block"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.marvel.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

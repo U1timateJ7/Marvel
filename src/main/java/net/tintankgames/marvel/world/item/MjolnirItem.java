@@ -4,14 +4,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -25,9 +24,12 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
+import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.projectile.ThrownMjolnir;
+import net.tintankgames.marvel.world.level.MjolnirExplosionDamageCalculator;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 
@@ -118,6 +120,28 @@ public class MjolnirItem extends Item implements ProjectileItem {
     public boolean hurtEnemy(ItemStack p_43390_, LivingEntity p_43391_, LivingEntity p_43392_) {
         if (p_43390_.isDamageableItem()) p_43390_.hurtAndBreak(1, p_43392_, EquipmentSlot.MAINHAND);
         return true;
+    }
+
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        if (entity instanceof LivingEntity living && (processHand(living.getItemInHand(InteractionHand.MAIN_HAND)) || processHand(living.getItemInHand(InteractionHand.OFF_HAND))))  {
+            if (player.level() instanceof ServerLevel serverLevel) {
+                serverLevel.explode(null, player.damageSources().source(MarvelDamageTypes.MJOLNIR, player), new MjolnirExplosionDamageCalculator(living), living.getX(), living.getY(), living.getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
+                LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(serverLevel);
+                if (lightningBolt != null) {
+                    lightningBolt.moveTo(Vec3.atBottomCenterOf(living.blockPosition()));
+                    lightningBolt.setVisualOnly(true);
+                    serverLevel.addFreshEntity(lightningBolt);
+                }
+                serverLevel.playSound(null, living.getX(), living.getY(), living.getZ(), MarvelSoundEvents.MJOLNIR_HIT_SHIELD.get(), SoundSource.PLAYERS);
+            }
+            return true;
+        }
+        return super.onLeftClickEntity(stack, player, entity);
+    }
+
+    private static boolean processHand(ItemStack stack) {
+        return stack.getItem() instanceof VibraniumShieldItem && !stack.isDamageableItem();
     }
 
     @Override

@@ -121,7 +121,7 @@ dependencies {
     // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}"
     compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}:api"
-    localRuntime "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}"
+    //localRuntime "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}"
     compileOnly "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}:api"
     localRuntime "mezz.jei:jei-${project.minecraft_version}-neoforge:${project.jei_version}"
     compileOnly "mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}"

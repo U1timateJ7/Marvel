@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:reinforced_leather",
+  "criteria": {
+    "has_cyclops_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:cyclops_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cyclops_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:cyclops_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cyclops_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:cyclops_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cyclops_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:cyclops_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.cyclops.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:cyclops_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.cyclops.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_cyclops_helmet"
+    ],
+    [
+      "has_cyclops_chestplate"
+    ],
+    [
+      "has_cyclops_leggings"
+    ],
+    [
+      "has_cyclops_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

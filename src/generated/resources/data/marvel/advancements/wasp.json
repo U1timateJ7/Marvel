@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:ant_man",
+  "criteria": {
+    "has_wasp_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wasp_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wasp_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wasp_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wasp_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wasp_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wasp_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wasp_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.wasp.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:wasp_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.wasp.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_wasp_helmet"
+    ],
+    [
+      "has_wasp_chestplate"
+    ],
+    [
+      "has_wasp_leggings"
+    ],
+    [
+      "has_wasp_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

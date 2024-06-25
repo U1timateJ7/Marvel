@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:root",
+  "criteria": {
+    "has_reinforced_leather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:reinforced_leather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.reinforced_leather.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:reinforced_leather"
+    },
+    "title": {
+      "translate": "advancements.marvel.reinforced_leather.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_reinforced_leather"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

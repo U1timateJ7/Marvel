@@ -1,0 +1,73 @@
+{
+  "parent": "marvel:vibranium",
+  "criteria": {
+    "has_vibranium_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vibranium_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vibranium_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vibranium_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.cover_me_in_vibranium.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "marvel:vibranium_chestplate"
+    },
+    "title": {
+      "translate": "advancements.marvel.cover_me_in_vibranium.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_vibranium_helmet"
+    ],
+    [
+      "has_vibranium_chestplate"
+    ],
+    [
+      "has_vibranium_leggings"
+    ],
+    [
+      "has_vibranium_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

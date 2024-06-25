@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:uru",
+  "criteria": {
+    "has_mjolnir": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:mjolnir"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.mjolnir.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:mjolnir"
+    },
+    "title": {
+      "translate": "advancements.marvel.mjolnir.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_mjolnir"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

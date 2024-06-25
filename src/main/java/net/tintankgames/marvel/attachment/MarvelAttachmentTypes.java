@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.attachment;
 
+import com.mojang.serialization.Codec;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -14,6 +15,7 @@ public class MarvelAttachmentTypes {
     private static final DeferredRegister<AttachmentType<?>> REGISTER = DeferredRegister.create(NeoForgeRegistries.ATTACHMENT_TYPES, MarvelSuperheroes.MOD_ID);
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<EntityHolder<WebShot>>> GRAPPLING = register("grappling", () -> AttachmentType.builder(() -> new EntityHolder<WebShot>(null)).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> HEALING_FACTOR_TRACKER = register("healing_factor_tracker", () -> AttachmentType.builder(() -> 20.0F).serialize(Codec.floatRange(0, Float.MAX_VALUE)).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
         return REGISTER.register(id, supplier);

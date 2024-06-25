@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:vibranium",
+  "criteria": {
+    "has_black_panther_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:black_panther_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_black_panther_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:black_panther_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_black_panther_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:black_panther_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_black_panther_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:black_panther_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.black_panther.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:black_panther_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.black_panther.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_black_panther_helmet"
+    ],
+    [
+      "has_black_panther_chestplate"
+    ],
+    [
+      "has_black_panther_leggings"
+    ],
+    [
+      "has_black_panther_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

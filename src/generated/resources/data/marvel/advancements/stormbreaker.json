@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:uru",
+  "criteria": {
+    "has_stormbreaker": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:stormbreaker"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.stormbreaker.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:stormbreaker"
+    },
+    "title": {
+      "translate": "advancements.marvel.stormbreaker.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_stormbreaker"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

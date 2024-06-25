@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -34,6 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 import net.tintankgames.marvel.world.level.block.entity.MjolnirBlockEntity;
@@ -148,6 +150,7 @@ public class MjolnirBlock extends FallingBlock implements EntityBlock, BucketPic
             if ((Objects.equals(blockEntity.getOwner().toString(), p_60506_.getUUID().toString()) || blockEntity.getOwner() == null) && p_60506_.getMainHandItem().isEmpty()) {
                 p_60506_.setItemInHand(InteractionHand.MAIN_HAND, blockEntity.getStack().copy());
                 p_60504_.setBlockAndUpdate(p_60505_, p_60504_.getFluidState(p_60505_).createLegacyBlock());
+                p_60504_.playSound(null, p_60505_, MarvelSoundEvents.MJOLNIR_CALL.get(), SoundSource.BLOCKS);
             }
         });
         return InteractionResult.sidedSuccess(p_60504_.isClientSide);

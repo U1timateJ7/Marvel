@@ -1,0 +1,114 @@
+{
+  "parent": "marvel:cyclops",
+  "criteria": {
+    "kill_cod_with_optic_blast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:cod"
+            }
+          }
+        ],
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "marvel:optic_blast"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_pufferfish_with_optic_blast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:pufferfish"
+            }
+          }
+        ],
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "marvel:optic_blast"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_salmon_with_optic_blast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:salmon"
+            }
+          }
+        ],
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "marvel:optic_blast"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "kill_tropical_fish_with_optic_blast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:tropical_fish"
+            }
+          }
+        ],
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "marvel:optic_blast"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.cyclops_tactical_fishing.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:salmon"
+    },
+    "title": {
+      "translate": "advancements.marvel.cyclops_tactical_fishing.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_cod_with_optic_blast",
+      "kill_salmon_with_optic_blast",
+      "kill_pufferfish_with_optic_blast",
+      "kill_tropical_fish_with_optic_blast"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

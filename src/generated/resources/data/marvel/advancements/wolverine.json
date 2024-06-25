@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:reinforced_leather",
+  "criteria": {
+    "has_wolverine_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wolverine_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wolverine_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_wolverine_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.wolverine.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:wolverine_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.wolverine.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_wolverine_helmet"
+    ],
+    [
+      "has_wolverine_chestplate"
+    ],
+    [
+      "has_wolverine_leggings"
+    ],
+    [
+      "has_wolverine_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

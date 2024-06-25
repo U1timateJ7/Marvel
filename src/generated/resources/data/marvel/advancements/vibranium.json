@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:root",
+  "criteria": {
+    "has_vibranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.vibranium.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:vibranium"
+    },
+    "title": {
+      "translate": "advancements.marvel.vibranium.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_vibranium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

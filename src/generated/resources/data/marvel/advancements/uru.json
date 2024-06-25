@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:root",
+  "criteria": {
+    "has_uru_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:uru_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.uru.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:uru_ingot"
+    },
+    "title": {
+      "translate": "advancements.marvel.uru.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_uru_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

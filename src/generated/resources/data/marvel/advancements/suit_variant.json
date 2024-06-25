@@ -1,0 +1,33 @@
+{
+  "parent": "marvel:root",
+  "criteria": {
+    "has_suit_variant": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:suit_variants"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.suit_variant.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:captain_carter_chestplate"
+    },
+    "title": {
+      "translate": "advancements.marvel.suit_variant.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_suit_variant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "marvel:ant_man",
+  "criteria": {
+    "use_grow": {
+      "conditions": {
+        "item": {
+          "items": "marvel:grow"
+        }
+      },
+      "trigger": "minecraft:using_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.larger_than_life.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:ant_man_upgraded_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.larger_than_life.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_grow"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

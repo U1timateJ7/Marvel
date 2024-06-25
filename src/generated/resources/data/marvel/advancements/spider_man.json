@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:reinforced_leather",
+  "criteria": {
+    "has_spider_man_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:spider_man_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spider_man_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:spider_man_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spider_man_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:spider_man_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spider_man_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:spider_man_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.spider_man.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:spider_man_helmet"
+    },
+    "title": {
+      "translate": "advancements.marvel.spider_man.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_spider_man_helmet"
+    ],
+    [
+      "has_spider_man_chestplate"
+    ],
+    [
+      "has_spider_man_leggings"
+    ],
+    [
+      "has_spider_man_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

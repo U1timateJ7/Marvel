@@ -1,0 +1,30 @@
+{
+  "parent": "marvel:wolverine",
+  "criteria": {
+    "heal_from_one": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.canadian_healthcare.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "marvel:wolverine_chestplate"
+    },
+    "title": {
+      "translate": "advancements.marvel.canadian_healthcare.title"
+    }
+  },
+  "requirements": [
+    [
+      "heal_from_one"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": true
+}

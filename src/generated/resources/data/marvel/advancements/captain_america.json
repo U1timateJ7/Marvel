@@ -1,0 +1,72 @@
+{
+  "parent": "marvel:reinforced_leather",
+  "criteria": {
+    "has_captain_america_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_captain_america_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_captain_america_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_captain_america_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_america_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.captain_america.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:captain_america_chestplate"
+    },
+    "title": {
+      "translate": "advancements.marvel.captain_america.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_captain_america_helmet"
+    ],
+    [
+      "has_captain_america_chestplate"
+    ],
+    [
+      "has_captain_america_leggings"
+    ],
+    [
+      "has_captain_america_boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

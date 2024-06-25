@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,6 +46,7 @@ public class SizeItem extends SuitPowerItem {
                     }
                     return size == this.size ? Size.NORMAL : this.size;
                 });
+                CriteriaTriggers.USING_ITEM.trigger(serverPlayer, handItem);
             } else {
                 player.displayClientMessage(Component.translatable(BuiltInRegistries.ITEM.getKey(this).toLanguageKey("item", "fail")).withStyle(ChatFormatting.RED), true);
             }

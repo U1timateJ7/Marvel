@@ -1,0 +1,44 @@
+{
+  "parent": "marvel:vibranium",
+  "criteria": {
+    "has_proto_adamantium_shield": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:proto_adamantium_shield"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vibranium_shield": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:vibranium_shield"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.marvel.vibranium_shield.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "marvel:proto_adamantium_shield"
+    },
+    "title": {
+      "translate": "advancements.marvel.vibranium_shield.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_vibranium_shield",
+      "has_proto_adamantium_shield"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

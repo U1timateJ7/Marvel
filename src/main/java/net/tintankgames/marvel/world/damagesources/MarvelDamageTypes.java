@@ -3,6 +3,7 @@ package net.tintankgames.marvel.world.damagesources;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.tintankgames.marvel.MarvelSuperheroes;
 
@@ -35,5 +36,13 @@ public class MarvelDamageTypes {
         bootstrapContext.register(MJOLNIR_DISPENSER, new DamageType("mjolnir_dispenser", 0.1f));
         bootstrapContext.register(STORMBREAKER, new DamageType("stormbreaker", 0.1f));
         bootstrapContext.register(STORMBREAKER_DISPENSER, new DamageType("stormbreaker_dispenser", 0.1f));
+    }
+
+    public static class Tags {
+        public static final TagKey<DamageType> OPTIC_BLAST = create("optic_blast");
+
+        private static TagKey<DamageType> create(String id) {
+            return TagKey.create(Registries.DAMAGE_TYPE, MarvelSuperheroes.id(id));
+        }
     }
 }

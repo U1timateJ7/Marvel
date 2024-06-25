@@ -167,6 +167,7 @@ public class MarvelItems {
         public static final TagKey<Item> VIBRANIUM_ORES = create("vibranium_ores");
         public static final TagKey<Item> TITANIUM_ORES = create("titanium_ores");
         public static final TagKey<Item> PALLADIUM_ORES = create("palladium_ores");
+        public static final TagKey<Item> SUIT_VARIANTS = create("suit_variants");
         public static final TagKey<Item> HIDES_OUTER_LAYER = create("hides_outer_layer");
         public static final TagKey<Item> INVISIBLE_WHEN_OPEN = create("invisible_when_open");
         public static final TagKey<Item> HAS_CAPE = create("has_cape");
