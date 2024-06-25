@@ -157,13 +157,12 @@ public class ThrownMjolnir extends AbstractArrow {
             }
             hitShield = true;
         }
-        if (level() instanceof ServerLevel serverLevel) {
+        if (level() instanceof ServerLevel serverLevel && !hitShield) {
             BlockPos blockpos = entity.blockPosition();
             LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(this.level());
             if (lightningBolt != null) {
                 lightningBolt.moveTo(Vec3.atBottomCenterOf(blockpos));
                 lightningBolt.setCause(entity1 instanceof ServerPlayer ? (ServerPlayer)entity1 : null);
-                lightningBolt.setVisualOnly(hitShield);
                 serverLevel.addFreshEntity(lightningBolt);
             }
         }

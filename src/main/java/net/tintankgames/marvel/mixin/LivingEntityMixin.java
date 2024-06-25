@@ -44,10 +44,20 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(at = @At("HEAD"), method = "isDamageSourceBlocked", cancellable = true)
-    private void shieldBlock(DamageSource p_21276_, CallbackInfoReturnable<Boolean> cir) {
-        if (p_21276_.is(DamageTypeTags.IS_PROJECTILE)) {
-            if (marvel$processHand(this.getMainHandItem(), p_21276_.getDirectEntity()) || marvel$processHand(getOffhandItem(), p_21276_.getDirectEntity())) {
-                Vec3 vec32 = p_21276_.getSourcePosition();
+    private void shieldBlock(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+        if (source.is(DamageTypeTags.IS_PROJECTILE)) {
+            if (marvel$processHand(getMainHandItem(), source.getDirectEntity()) || marvel$processHand(getOffhandItem(), source.getDirectEntity())) {
+                Vec3 vec32 = source.getSourcePosition();
+                if (vec32 != null) {
+                    Vec3 vec3 = this.calculateViewVector(0.0F, this.getYHeadRot());
+                    Vec3 vec31 = vec32.vectorTo(this.position());
+                    vec31 = new Vec3(vec31.x, 0.0, vec31.z).normalize();
+                    cir.setReturnValue(vec31.dot(vec3) < 0.0);
+                }
+            }
+        } else if (source.getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && !source.isIndirect()) {
+            if (getMainHandItem().is(MarvelItems.PROTO_ADAMANTIUM_SHIELD) || getOffhandItem().is(MarvelItems.PROTO_ADAMANTIUM_SHIELD)) {
+                Vec3 vec32 = source.getSourcePosition();
                 if (vec32 != null) {
                     Vec3 vec3 = this.calculateViewVector(0.0F, this.getYHeadRot());
                     Vec3 vec31 = vec32.vectorTo(this.position());
