@@ -3,15 +3,12 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.tintankgames.marvel.MarvelSuperheroes;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.component.Size;
@@ -24,6 +21,7 @@ public class AntManUpgradedSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.suit(type);
     }

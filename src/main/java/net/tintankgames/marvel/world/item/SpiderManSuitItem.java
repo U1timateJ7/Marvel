@@ -7,6 +7,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
@@ -27,6 +29,7 @@ public class SpiderManSuitItem extends LeatherSuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.spiderManSuit(type);
     }

@@ -3,23 +3,20 @@ package net.tintankgames.marvel.world.item;
 import com.google.common.base.Suppliers;
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import org.jetbrains.annotations.Nullable;
@@ -114,6 +111,7 @@ public class KineticBlackPantherSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.pantherSuit(type);
     }

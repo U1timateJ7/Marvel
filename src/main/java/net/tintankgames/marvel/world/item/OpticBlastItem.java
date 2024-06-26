@@ -45,11 +45,11 @@ public class OpticBlastItem extends SuitPowerItem {
                 living.knockback(0.5, player.getX() - living.getX(), player.getZ() - living.getZ());
                 living.hurt(living.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), !MarvelConfig.goofyOpticBlast ? 6.0F : 20.0F);
                 if (!level.isClientSide) {
-                    level.explode(player, player.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), new OpticBlastExplosionDamageCalculator(), hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 0, false, Level.ExplosionInteraction.MOB, ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_EXPLOSION);
+                    level.explode(player, player.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), new OpticBlastExplosionDamageCalculator(), hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 0, false, Level.ExplosionInteraction.TNT, ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_EXPLOSION);
                 }
             }
             if (hit instanceof BlockHitResult blockHitResult && blockHitResult.getType() != HitResult.Type.MISS && !level.isClientSide) {
-                level.explode(player, player.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), new OpticBlastExplosionDamageCalculator(), hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), level.getGameRules().getBoolean(MarvelGameRules.RULE_SUPERPOWERGRIEFING) ? 1 : 0, false, Level.ExplosionInteraction.MOB, ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_EXPLOSION);
+                level.explode(player, player.damageSources().source(MarvelConfig.goofyOpticBlast ? MarvelDamageTypes.OPTIC_BLAST_GOOFY : MarvelDamageTypes.OPTIC_BLAST, player), new OpticBlastExplosionDamageCalculator(), hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), level.getGameRules().getBoolean(MarvelGameRules.RULE_SUPERPOWERGRIEFING) ? 1 : 0, false, Level.ExplosionInteraction.TNT, ParticleTypes.EXPLOSION, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.CYCLOPS_OPTIC_BLAST_EXPLOSION);
             }
             for (double d = 0; d < Math.abs(player.getEyePosition().distanceTo(hit.getLocation())); d += 0.2) {
                 Vec3 vec3 = player.getEyePosition().add(player.getViewVector(0.0F).scale(d));

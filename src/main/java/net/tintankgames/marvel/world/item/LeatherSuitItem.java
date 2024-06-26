@@ -5,6 +5,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class LeatherSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.suit(type);
     }

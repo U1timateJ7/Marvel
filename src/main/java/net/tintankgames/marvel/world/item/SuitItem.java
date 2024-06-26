@@ -89,6 +89,7 @@ public abstract class SuitItem extends ArmorItem {
         return -1;
     }
 
+    @OnlyIn(Dist.CLIENT)
     protected abstract ModelLayerLocation modelFactory(Type type, ItemStack itemStack);
 
     @Override

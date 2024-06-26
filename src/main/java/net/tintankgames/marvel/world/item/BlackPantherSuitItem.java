@@ -10,6 +10,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.EnumMap;
@@ -66,6 +68,7 @@ public class BlackPantherSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.pantherSuit(type);
     }

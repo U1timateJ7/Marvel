@@ -153,7 +153,7 @@ public class ThrownMjolnir extends AbstractArrow {
         } else if (entity instanceof LivingEntity living && (processHand(living.getItemInHand(InteractionHand.MAIN_HAND)) || processHand(living.getItemInHand(InteractionHand.OFF_HAND))))  {
             soundevent = MarvelSoundEvents.MJOLNIR_HIT_SHIELD.get();
             if (level() instanceof ServerLevel serverLevel) {
-                serverLevel.explode(entity1 == null ? this : entity1, damagesource, new MjolnirExplosionDamageCalculator(living), getX(), getY(), getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
+                serverLevel.explode(null, damagesource, new MjolnirExplosionDamageCalculator(living, entity1 == null ? this : entity1), getX(), getY(), getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
             }
             hitShield = true;
         }

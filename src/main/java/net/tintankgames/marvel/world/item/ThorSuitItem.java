@@ -1,17 +1,23 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +30,13 @@ public class ThorSuitItem extends SuitItem {
     private static final AttributeModifier creativeFlightModifier = new AttributeModifier(THOR_UUID, "Thor creative flight modifier", 1, AttributeModifier.Operation.ADD_VALUE);
 
     public ThorSuitItem(Type type, Properties properties) {
-        super(MarvelArmorMaterials.UPGRADED_REINFORCED_LEATHER, type, MarvelItems.Tags.THOR_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties);
+        super(MarvelArmorMaterials.THOR, type, MarvelItems.Tags.THOR_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
+        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
+        if (type == Type.HELMET) p_41423_.add(Component.translatable("item.marvel.invisible_helmet.description", Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -33,6 +45,7 @@ public class ThorSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.thorSuit(type);
     }

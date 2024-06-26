@@ -18,6 +18,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.SuitPowerItem;
 import net.tintankgames.marvel.world.item.component.ItemStackHolder;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
@@ -69,6 +70,10 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         player.setItemSlot(EquipmentSlot.CHEST, thorChestplate);
                         player.setItemSlot(EquipmentSlot.LEGS, thorLeggings);
                         player.setItemSlot(EquipmentSlot.FEET, thorBoots);
+                        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                            ItemStack item = player.getInventory().getItem(i);
+                            if (item.getItem() instanceof SuitPowerItem) player.getInventory().removeItem(i, 1);
+                        }
                         LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(player.serverLevel());
                         if (lightningBolt != null) {
                             lightningBolt.moveTo(Vec3.atBottomCenterOf(player.blockPosition()));

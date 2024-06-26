@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -35,15 +36,14 @@ public class ToggleHelmetMessage implements CustomPacketPayload {
             helmet.update(MarvelDataComponents.HELMET_OPEN, false, open -> {
                 if (!player.level().isClientSide) {
                     if (helmet.is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_HELMET)) {
-                        if (open)
-                            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_DOWN.get(), SoundSource.PLAYERS);
-                        else
-                            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_UP.get(), SoundSource.PLAYERS);
+                        if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_DOWN.get(), SoundSource.PLAYERS);
+                        else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_HELMET_UP.get(), SoundSource.PLAYERS);
                     } else if (helmet.is(MarvelItems.Tags.ANT_MAN_HELMET) || helmet.is(MarvelItems.Tags.ANT_MAN_UPGRADED_HELMET) || helmet.is(MarvelItems.Tags.WASP_HELMET)) {
-                        if (open)
-                            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
-                        else
-                            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                        if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
+                        else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                    } else if (helmet.getItem() instanceof ArmorItem armorItem) {
+                        if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), armorItem.getEquipSound().value(), SoundSource.PLAYERS);
+                        else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), armorItem.getEquipSound().value(), SoundSource.PLAYERS);
                     }
                 }
                 return !open;

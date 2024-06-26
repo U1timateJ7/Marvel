@@ -4,6 +4,7 @@
   "package": "net.tintankgames.marvel.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockBehaviourMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
     "FallingBlockEntityMixin",

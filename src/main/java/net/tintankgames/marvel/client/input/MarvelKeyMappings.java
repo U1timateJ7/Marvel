@@ -47,7 +47,7 @@ public class MarvelKeyMappings {
             isDownOld = isDown;
         }
     };
-    private static final KeyMapping TOGGLE_HELMET = new KeyMapping(MarvelSuperheroes.id("toggle_helmet").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "key.categories.marvel") {
+    public static final KeyMapping TOGGLE_HELMET = new KeyMapping(MarvelSuperheroes.id("toggle_helmet").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "key.categories.marvel") {
         private boolean isDownOld = false;
 
         @Override

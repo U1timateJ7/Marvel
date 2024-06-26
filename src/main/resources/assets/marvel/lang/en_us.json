@@ -55,6 +55,7 @@
   "item.marvel.captain_america_stealth_chestplate": "Captain America Stealth Suit",
   "item.marvel.captain_america_stealth_leggings": "Captain America Stealth Pants",
   "item.marvel.captain_america_stealth_boots": "Captain America Stealth Boots",
+  "item.marvel.captain_carter_helmet": "Captain Carter Helmet",
   "item.marvel.captain_carter_chestplate": "Captain Carter Suit",
   "item.marvel.captain_carter_leggings": "Captain Carter Pants",
   "item.marvel.captain_carter_boots": "Captain Carter Boots",
@@ -161,6 +162,7 @@
   "item.marvel.thor_chestplate": "Thor Suit",
   "item.marvel.thor_leggings": "Thor Pants",
   "item.marvel.thor_boots": "Thor Boots",
+  "item.marvel.invisible_helmet.description": "Press %s to hide",
   "item.suit.upgraded": "Upgraded",
 
   "itemGroup.marvel.blocks_and_items": "Marvel Blocks & Items",
