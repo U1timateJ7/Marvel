@@ -1,9 +1,12 @@
 package net.tintankgames.marvel.client;
 
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,6 +17,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
+import org.joml.Vector3f;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 @OnlyIn(Dist.CLIENT)
@@ -28,6 +32,11 @@ public class MarvelSuperheroesClient {
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_full_blinking"),
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_half"),
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_half_blinking"));
+    public static final HumanoidModel.ArmPose VIBRANIUM_SHIELD_POSE = HumanoidModel.ArmPose.create("VIBRANIUM_SHIELD", false, (model, entity, arm) -> {
+        ModelPart armModel = arm == HumanoidArm.RIGHT ? model.rightArm : model.leftArm;
+        armModel.offsetPos(new Vector3f(arm == HumanoidArm.RIGHT ? -1.0F : 1.0F, 0.0F, 0.0F));
+        armModel.setRotation(-1.309F, 2.3562F * (arm == HumanoidArm.LEFT ? -1.0F : 1.0F), 0.3927F * (arm == HumanoidArm.RIGHT ? -1.0F : 1.0F));
+    });
 
     @SubscribeEvent
     public static void setupClient(FMLClientSetupEvent event) {

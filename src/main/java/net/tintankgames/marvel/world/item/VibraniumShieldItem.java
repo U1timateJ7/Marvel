@@ -1,7 +1,6 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
@@ -13,7 +12,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,12 +29,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.tintankgames.marvel.client.MarvelSuperheroesClient;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
 import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
 
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -44,12 +42,6 @@ import java.util.function.Supplier;
 
 public class VibraniumShieldItem extends Item implements ProjectileItem {
     public static final UUID BASE_KNOCKBACK_RESISTANCE_UUID = UUID.fromString("C26B7D67-BAAC-4A21-A524-84586E374DFB");
-    @OnlyIn(Dist.CLIENT)
-    public static final HumanoidModel.ArmPose VIBRANIUM_SHIELD_POSE = HumanoidModel.ArmPose.create("VIBRANIUM_SHIELD", false, (model, entity, arm) -> {
-        ModelPart armModel = arm == HumanoidArm.RIGHT ? model.rightArm : model.leftArm;
-        armModel.offsetPos(new Vector3f(arm == HumanoidArm.RIGHT ? -1.0F : 1.0F, 0.0F, 0.0F));
-        armModel.setRotation(-1.309F, 2.3562F * (arm == HumanoidArm.LEFT ? -1.0F : 1.0F), 0.3927F * (arm == HumanoidArm.RIGHT ? -1.0F : 1.0F));
-    });
     private final Supplier<Item> repairItem;
 
     public VibraniumShieldItem(Supplier<Item> repairItem, Properties properties) {
@@ -88,7 +80,7 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
             @Nullable
             @Override
             public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
-                return entityLiving.getUseItem() == stack ? VIBRANIUM_SHIELD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
+                return entityLiving.getUseItem() == stack ? MarvelSuperheroesClient.VIBRANIUM_SHIELD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
             }
         });
     }

@@ -10,7 +10,7 @@ displayName="${mod_name}"
 updateJSONURL="https://raw.githubusercontent.com/U1timateJ7/ForgeUpdate/main/marvel_mod_update.json"
 displayURL="https://www.curseforge.com/members/u1timatej7/projects"
 logoFile="assets/marvel/logo.png"
-credits="Marvel Comics + Marvel Studios"
+credits="Marvel Entertainment, LLC"
 authors="${mod_authors}"
 description='''${mod_description}'''
 

@@ -95,6 +95,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.CAPTAIN_AMERICA_STEALTH_CHESTPLATE);
         output.accept(MarvelItems.CAPTAIN_AMERICA_STEALTH_LEGGINGS);
         output.accept(MarvelItems.CAPTAIN_AMERICA_STEALTH_BOOTS);
+        output.accept(MarvelItems.CAPTAIN_CARTER_HELMET);
         output.accept(MarvelItems.CAPTAIN_CARTER_CHESTPLATE);
         output.accept(MarvelItems.CAPTAIN_CARTER_LEGGINGS);
         output.accept(MarvelItems.CAPTAIN_CARTER_BOOTS);
