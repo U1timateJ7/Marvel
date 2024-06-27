@@ -41,6 +41,9 @@ public class WolverineSuitItem extends LeatherSuitItem {
                     }
                 }
             }
+            if (living instanceof ServerPlayer serverPlayer && serverPlayer.getHealth() >= 20.0F) {
+                serverPlayer.setData(MarvelAttachmentTypes.HEALING_FACTOR_TRACKER, 20.0F);
+            }
         }
     }
 
