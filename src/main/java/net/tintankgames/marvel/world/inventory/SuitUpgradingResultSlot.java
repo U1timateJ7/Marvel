@@ -66,7 +66,11 @@ public class SuitUpgradingResultSlot extends Slot {
         NonNullList<ItemStack> nonnulllist = p_150638_.level().getRecipeManager().getRemainingItemsFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots, p_150638_.level());
         net.neoforged.neoforge.common.CommonHooks.setCraftingPlayer(null);
 
-        for (int i = 0; i < nonnulllist.size(); i++) {
+        if (p_150638_.level().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots, p_150638_.level()).get().value().consumesSuit()) {
+            this.craftSlots.removeItem(0, 1);
+        }
+
+        for (int i = 1; i < nonnulllist.size(); i++) {
             ItemStack itemstack = this.craftSlots.getItem(i);
             ItemStack itemstack1 = nonnulllist.get(i);
             if (!itemstack.isEmpty()) {

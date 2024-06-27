@@ -87,22 +87,8 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
         return suit;
     }
 
-    @Override
-    public NonNullList<ItemStack> getRemainingItems(Container container) {
-        NonNullList<ItemStack> list = NonNullList.withSize(container.getContainerSize(), ItemStack.EMPTY);
-
-        if (consumeSuit) {
-            list.set(0, container.getItem(0));
-        }
-
-        for (int i = 1; i < list.size(); i++) {
-            ItemStack item = container.getItem(i);
-            if (item.hasCraftingRemainingItem()) {
-                list.set(i, item.getCraftingRemainingItem());
-            }
-        }
-
-        return list;
+    public boolean consumesSuit() {
+        return consumeSuit;
     }
 
     public static class Serializer implements RecipeSerializer<SuitUpgradingRecipe> {

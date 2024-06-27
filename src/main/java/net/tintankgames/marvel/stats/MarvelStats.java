@@ -16,6 +16,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 public class MarvelStats {
     public static final DeferredRegister<ResourceLocation> REGISTER = DeferredRegister.create(Registries.CUSTOM_STAT, MarvelSuperheroes.MOD_ID);
 
+    public static final DeferredHolder<ResourceLocation, ResourceLocation> CLEAN_SHIELD = register("clean_shield");
     public static final DeferredHolder<ResourceLocation, ResourceLocation> INTERACT_WITH_SUIT_TABLE = register("interact_with_suit_table");
 
     private static DeferredHolder<ResourceLocation, ResourceLocation> register(String id) {
@@ -28,6 +29,7 @@ public class MarvelStats {
 
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
+        Stats.CUSTOM.get(CLEAN_SHIELD.get(), StatFormatter.DEFAULT);
         Stats.CUSTOM.get(INTERACT_WITH_SUIT_TABLE.get(), StatFormatter.DEFAULT);
     }
 }
