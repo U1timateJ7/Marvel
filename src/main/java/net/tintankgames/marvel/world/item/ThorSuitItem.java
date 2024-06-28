@@ -8,7 +8,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -57,11 +56,11 @@ public class ThorSuitItem extends SuitItem {
 
     @SubscribeEvent
     public static void livingTick(EntityTickEvent.Post event) {
-        if (event.getEntity() instanceof Player player) {
-            if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.THOR_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.THOR_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.THOR_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.THOR_ARMOR)) {
-                player.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
+        if (event.getEntity() instanceof LivingEntity living) {
+            if (living.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.THOR_ARMOR) && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.THOR_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.THOR_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.THOR_ARMOR)) {
+                living.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
             } else {
-                player.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
+                living.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
             }
         }
     }
