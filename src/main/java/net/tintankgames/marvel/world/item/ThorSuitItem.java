@@ -25,7 +25,7 @@ import java.util.UUID;
 
 @EventBusSubscriber
 public class ThorSuitItem extends SuitItem {
-    public static final UUID THOR_UUID = UUID.fromString("7F13E047-8356-4941-84AF-BD7DB5A5562F");
+    public static final UUID THOR_UUID = UUID.fromString("A21D00FD-393F-465A-859C-20CA7297D02A");
     private static final AttributeModifier fallDamageMultiplierModifier = new AttributeModifier(THOR_UUID, "Thor fall damage modifier modifier", -1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
     public ThorSuitItem(Type type, Properties properties) {
