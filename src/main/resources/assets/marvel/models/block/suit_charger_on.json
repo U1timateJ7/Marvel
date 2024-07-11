@@ -2,7 +2,8 @@
   "parent": "minecraft:block/block",
   "texture_size": [32, 32],
   "textures": {
-    "charger": "marvel:block/suit_charger_on"
+    "charger": "marvel:block/suit_charger_on",
+    "particle": "#charger"
   },
   "elements": [
     {
