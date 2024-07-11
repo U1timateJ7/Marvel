@@ -14,6 +14,7 @@ import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmiSuitUpgradingRecipe implements EmiRecipe {
     protected final ResourceLocation id;
