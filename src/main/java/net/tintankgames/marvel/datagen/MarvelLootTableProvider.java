@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.datagen;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +13,8 @@ import java.util.stream.Collectors;
 
 public class MarvelLootTableProvider {
     public static class BlockLoot extends BlockLootSubProvider {
-        protected BlockLoot() {
-            super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags());
+        protected BlockLoot(HolderLookup.Provider provider) {
+            super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags(), provider);
         }
 
         @Override

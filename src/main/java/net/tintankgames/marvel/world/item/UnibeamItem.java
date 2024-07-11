@@ -40,7 +40,7 @@ public class UnibeamItem extends SuitPowerItem {
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity living, int ticksLeft) {
         super.releaseUsing(stack, level, living, ticksLeft);
-        int i = this.getUseDuration(stack) - ticksLeft;
+        int i = this.getUseDuration(stack, living) - ticksLeft;
         if (living instanceof Player player && i >= 20) {
             if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 10.0F || player.isCreative())) {
                 if (!level.isClientSide()) level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.CYCLOPS_OPTIC_BLAST.get(), SoundSource.PLAYERS);
@@ -80,7 +80,7 @@ public class UnibeamItem extends SuitPowerItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_43419_) {
+    public int getUseDuration(ItemStack p_43419_, LivingEntity living) {
         return 72000;
     }
 }

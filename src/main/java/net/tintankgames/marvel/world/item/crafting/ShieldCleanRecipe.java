@@ -2,10 +2,10 @@ package net.tintankgames.marvel.world.item.crafting;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
@@ -17,10 +17,10 @@ public class ShieldCleanRecipe extends CustomRecipe {
         super(p_250392_);
     }
 
-    public boolean matches(CraftingContainer p_44499_, Level p_44500_) {
+    public boolean matches(CraftingInput p_44499_, Level p_44500_) {
         boolean hasShield = false;
         boolean hasWater = false;
-        for (int i = 0; i < p_44499_.getContainerSize(); i++) {
+        for (int i = 0; i < p_44499_.size(); i++) {
             ItemStack itemstack = p_44499_.getItem(i);
             if (!itemstack.isEmpty()) {
                 if (itemstack.getItem() instanceof VibraniumShieldItem && (itemstack.has(DataComponents.DYED_COLOR) || itemstack.has(MarvelDataComponents.SHIELD_ART)) && !hasShield) {
@@ -33,9 +33,9 @@ public class ShieldCleanRecipe extends CustomRecipe {
         return hasWater && hasShield;
     }
 
-    public ItemStack assemble(CraftingContainer p_44497_, HolderLookup.Provider p_336034_) {
+    public ItemStack assemble(CraftingInput p_44497_, HolderLookup.Provider p_336034_) {
         ItemStack stack = ItemStack.EMPTY;
-        for (int i = 0; i < p_44497_.getContainerSize(); i++) {
+        for (int i = 0; i < p_44497_.size(); i++) {
             ItemStack stack1 = p_44497_.getItem(i);
             if (!stack1.isEmpty()) {
                 if (stack1.getItem() instanceof VibraniumShieldItem && !(stack.getItem() instanceof VibraniumShieldItem)) {

@@ -63,10 +63,10 @@ public class SuitUpgradingResultSlot extends Slot {
     public void onTake(Player p_150638_, ItemStack p_150639_) {
         this.checkTakeAchievements(p_150639_);
         net.neoforged.neoforge.common.CommonHooks.setCraftingPlayer(p_150638_);
-        NonNullList<ItemStack> nonnulllist = p_150638_.level().getRecipeManager().getRemainingItemsFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots, p_150638_.level());
+        NonNullList<ItemStack> nonnulllist = p_150638_.level().getRecipeManager().getRemainingItemsFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots.asCraftInput(), p_150638_.level());
         net.neoforged.neoforge.common.CommonHooks.setCraftingPlayer(null);
 
-        if (p_150638_.level().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots, p_150638_.level()).get().value().consumesSuit()) {
+        if (p_150638_.level().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), this.craftSlots.asCraftInput(), p_150638_.level()).get().value().consumesSuit()) {
             this.craftSlots.removeItem(0, 1);
         }
 

@@ -14,6 +14,7 @@ import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmiSuitUpgradingRecipe implements EmiRecipe {
     protected final ResourceLocation id;
@@ -23,7 +24,7 @@ public class EmiSuitUpgradingRecipe implements EmiRecipe {
 
     public EmiSuitUpgradingRecipe(RecipeHolder<SuitUpgradingRecipe> recipe) {
         this.suit = EmiIngredient.of(recipe.value().getSuit());
-        this.input = recipe.value().getIngredients().stream().map(EmiIngredient::of).toList();
+        this.input = recipe.value().getIngredients().stream().map(EmiIngredient::of).collect(Collectors.toList());
         this.input.removeFirst();
         this.output = EmiStack.of(recipe.value().getResultItem(Minecraft.getInstance().level.registryAccess()));
         this.id = recipe.id();

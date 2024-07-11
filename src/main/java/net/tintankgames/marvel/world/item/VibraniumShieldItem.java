@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -29,19 +30,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.tintankgames.marvel.client.MarvelSuperheroesClient;
+import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.client.MarvelClientEnumExtensions;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class VibraniumShieldItem extends Item implements ProjectileItem {
-    public static final UUID BASE_KNOCKBACK_RESISTANCE_UUID = UUID.fromString("C26B7D67-BAAC-4A21-A524-84586E374DFB");
+    public static final ResourceLocation BASE_KNOCKBACK_RESISTANCE_ID = MarvelSuperheroes.id("base_knockback_resistance");
     private final Supplier<Item> repairItem;
 
     public VibraniumShieldItem(Supplier<Item> repairItem, Properties properties) {
@@ -56,11 +57,11 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
     }
 
     public static ItemAttributeModifiers vibraniumAttributes() {
-        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 7.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(BASE_KNOCKBACK_RESISTANCE_UUID, "Tool modifier", 0.5F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 7.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(BASE_KNOCKBACK_RESISTANCE_ID, 0.5F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
     }
 
     public static ItemAttributeModifiers protoAdamantiumAttributes() {
-        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 13.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(BASE_KNOCKBACK_RESISTANCE_UUID, "Tool modifier", 0.5F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 13.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(BASE_KNOCKBACK_RESISTANCE_ID, 0.5F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
     }
 
     @Override
@@ -80,13 +81,13 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
             @Nullable
             @Override
             public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
-                return entityLiving.getUseItem() == stack ? MarvelSuperheroesClient.VIBRANIUM_SHIELD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
+                return entityLiving.getUseItem() == stack ? MarvelClientEnumExtensions.VIBRANIUM_SHIELD_POSE.getValue() : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
             }
         });
     }
 
     @Override
-    public int getUseDuration(ItemStack p_43419_) {
+    public int getUseDuration(ItemStack p_43419_, LivingEntity living) {
         return 72000;
     }
 

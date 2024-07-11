@@ -55,9 +55,9 @@ public class MarvelGui {
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.x", String.format("%.1f", Minecraft.getInstance().player.getX())), (int) (event.getGuiGraphics().guiWidth() * 0.365F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.y", String.format("%.1f", Minecraft.getInstance().player.getY())), (int) (event.getGuiGraphics().guiWidth() * 0.465F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.z", String.format("%.1f", Minecraft.getInstance().player.getZ())), (int) (event.getGuiGraphics().guiWidth() * 0.565F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
-                renderCompass(event.getGuiGraphics(), event.getPartialTick(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
+                renderCompass(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
                 LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, 32.0D, 0.0F);
-                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
+                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
             }
         }
     }

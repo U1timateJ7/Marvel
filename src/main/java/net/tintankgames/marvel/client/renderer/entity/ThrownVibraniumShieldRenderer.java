@@ -41,17 +41,14 @@ public class ThrownVibraniumShieldRenderer extends EntityRenderer<ThrownVibraniu
         poseStack.mulPose(Axis.XP.rotationDegrees((shield.returningToOwner() ? 1 : -1) * Mth.lerp(g, shield.xRotO, shield.getXRot()) + 180));
         ItemStack stack = shield.getItem();
         VertexConsumer shieldBaseConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(BuiltInRegistries.ITEM.getKey(stack.getItem()).withPath(name -> "textures/entity/shield/" + name.replace("_shield", "") + ".png")), false, shield.isFoil() && !stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK);
-        this.model.renderToBuffer(poseStack, shieldBaseConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, shieldBaseConsumer, light, OverlayTexture.NO_OVERLAY);
         if (!stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) != ShieldArt.BLANK) {
             VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/shield/" + stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK).getName() + ".png")), false, shield.isFoil());
-            this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY);
         } else if (stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK) {
-            int color = stack.get(DataComponents.DYED_COLOR).rgb();
-            float red = FastColor.ARGB32.red(color) / 255f;
-            float green = FastColor.ARGB32.green(color) / 255f;
-            float blue = FastColor.ARGB32.blue(color) / 255f;
+            int color = FastColor.ARGB32.opaque(stack.get(DataComponents.DYED_COLOR).rgb());
             VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/shield/dyed.png")), false, shield.isFoil());
-            this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+            this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY, color);
         }
         poseStack.popPose();
         super.render(shield, f, g, poseStack, multiBufferSource, light);

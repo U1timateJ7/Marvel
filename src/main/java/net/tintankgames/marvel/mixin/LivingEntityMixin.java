@@ -55,7 +55,7 @@ public abstract class LivingEntityMixin extends Entity {
                     cir.setReturnValue(vec31.dot(vec3) < 0.0);
                 }
             }
-        } else if (source.getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && !source.isIndirect()) {
+        } else if (source.getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && source.isDirect()) {
             if (getMainHandItem().is(MarvelItems.PROTO_ADAMANTIUM_SHIELD) || getOffhandItem().is(MarvelItems.PROTO_ADAMANTIUM_SHIELD)) {
                 Vec3 vec32 = source.getSourcePosition();
                 if (vec32 != null) {

@@ -7,6 +7,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -161,13 +162,15 @@ public class WebShot extends Projectile {
         return entity instanceof Player ? (Player)entity : null;
     }
 
-    public boolean canChangeDimensions() {
+    @Override
+    public boolean canChangeDimensions(Level p_352904_, Level p_352909_) {
         return false;
     }
 
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    @Override
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity p_352459_) {
         Entity entity = this.getOwner();
-        return new ClientboundAddEntityPacket(this, entity == null ? this.getId() : entity.getId());
+        return new ClientboundAddEntityPacket(this, p_352459_, entity == null ? this.getId() : entity.getId());
     }
 
     public void recreateFromPacket(ClientboundAddEntityPacket clientboundAddEntityPacket) {

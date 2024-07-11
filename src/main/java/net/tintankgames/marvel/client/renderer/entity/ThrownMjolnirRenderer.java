@@ -31,7 +31,7 @@ public class ThrownMjolnirRenderer extends EntityRenderer<ThrownMjolnir> {
         poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, mjolnir.yRotO, mjolnir.getYRot())));
         poseStack.mulPose(Axis.XP.rotationDegrees((mjolnir.returningToOwner() ? 1 : -1) * Mth.lerp(g, mjolnir.xRotO, mjolnir.getXRot()) - 90));
         VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(getTextureLocation(mjolnir)), false, mjolnir.isFoil());
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
         super.render(mjolnir, f, g, poseStack, multiBufferSource, light);
     }

@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.item.crafting.SuitVariantRecipe;
@@ -140,19 +141,23 @@ public class SuitVariantMenu extends AbstractContainerMenu {
         }
     }
 
+    private static SingleRecipeInput createRecipeInput(Container p_346312_) {
+        return new SingleRecipeInput(p_346312_.getItem(0));
+    }
+
     private void setupRecipeList(Container p_40304_, ItemStack p_40305_) {
         this.recipes.clear();
         this.selectedRecipeIndex.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
         if (!p_40305_.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(MarvelRecipeTypes.SUIT_VARIANT.get(), p_40304_, this.level).stream().filter(recipe -> !ItemStack.isSameItem(recipe.value().getResultItem(level.registryAccess()), input) || !recipe.value().getResultItem(level.registryAccess()).getComponentsPatch().isEmpty()).collect(Collectors.toList());
+            this.recipes = this.level.getRecipeManager().getRecipesFor(MarvelRecipeTypes.SUIT_VARIANT.get(), createRecipeInput(p_40304_), this.level).stream().filter(recipe -> !ItemStack.isSameItem(recipe.value().getResultItem(level.registryAccess()), input) || !recipe.value().getResultItem(level.registryAccess()).getComponentsPatch().isEmpty()).collect(Collectors.toList());
         }
     }
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
             RecipeHolder<SuitVariantRecipe> recipeholder = this.recipes.get(this.selectedRecipeIndex.get());
-            ItemStack itemstack = recipeholder.value().assemble(this.container, this.level.registryAccess());
+            ItemStack itemstack = recipeholder.value().assemble(createRecipeInput(this.container), this.level.registryAccess());
             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed(recipeholder);
                 this.resultSlot.set(itemstack);
@@ -194,7 +199,7 @@ public class SuitVariantMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.level.getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_VARIANT.get(), new SimpleContainer(itemstack1), this.level).isPresent()) {
+            } else if (this.level.getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_VARIANT.get(), new SingleRecipeInput(itemstack1), this.level).isPresent()) {
                 if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }

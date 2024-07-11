@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -36,13 +37,13 @@ public class ThrownVibraniumShield extends AbstractArrow {
     }
 
     public ThrownVibraniumShield(Level p_37569_, LivingEntity p_37570_, ItemStack p_37571_) {
-        super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_37570_, p_37569_, p_37571_);
+        super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_37570_, p_37569_, p_37571_, null);
         this.entityData.set(ID_FOIL, p_37571_.hasFoil());
         this.entityData.set(ID_ITEM, p_37571_);
     }
 
     public ThrownVibraniumShield(Level p_338686_, double p_338771_, double p_338674_, double p_338477_, ItemStack p_338255_) {
-        super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_);
+        super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_, null);
         this.entityData.set(ID_FOIL, p_338255_.hasFoil());
         this.entityData.set(ID_ITEM, p_338255_);
     }
@@ -133,27 +134,32 @@ public class ThrownVibraniumShield extends AbstractArrow {
     protected void onHitEntity(EntityHitResult p_37573_) {
         Entity entity = p_37573_.getEntity();
         float f = (float) getBaseDamage();
-        if (entity instanceof LivingEntity livingentity) {
-            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingentity.getType());
-        }
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().source(entity1 == null ? MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER : MarvelDamageTypes.VIBRANIUM_SHIELD, this, entity1 == null ? this : entity1);
+        if (this.level() instanceof ServerLevel serverlevel) {
+            f = EnchantmentHelper.modifyDamage(serverlevel, getWeaponItem(), entity, damagesource, f);
+        }
         this.dealtDamage = true;
         SoundEvent soundevent = MarvelSoundEvents.VIBRANIUM_SHIELD_HIT.get();
         if (entity.hurt(damagesource, f)) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
-            if (entity instanceof LivingEntity livingentity1) {
-                if (entity1 instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
-                }
-                this.doPostHurtEffects(livingentity1);
+            if (this.level() instanceof ServerLevel serverlevel1) {
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, entity, damagesource, this.getWeaponItem());
+            }
+            if (entity instanceof LivingEntity livingentity) {
+                this.doKnockback(livingentity, damagesource);
+                this.doPostHurtEffects(livingentity);
             }
         }
         setDeltaMovement(getDeltaMovement().multiply(-1, -1, -1));
         this.playSound(soundevent, 1.0F, 1.0F);
+    }
+
+    @Override
+    public ItemStack getWeaponItem() {
+        return getPickupItemStackOrigin();
     }
 
     @Override

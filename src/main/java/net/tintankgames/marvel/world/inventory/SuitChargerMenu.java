@@ -5,8 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,6 +12,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.tintankgames.marvel.world.item.SuitChargerItem;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -45,7 +44,7 @@ public class SuitChargerMenu extends AbstractContainerMenu {
 
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    return LivingEntity.getEquipmentSlotForItem(stack) == equipmentslot && stack.getItem() instanceof SuitChargerItem;
+                    return player.getEquipmentSlotForItem(stack) == equipmentslot && stack.getItem() instanceof SuitChargerItem;
                 }
 
                 @Override
@@ -83,7 +82,7 @@ public class SuitChargerMenu extends AbstractContainerMenu {
                 @Override
                 public boolean mayPickup(Player player) {
                     ItemStack itemstack = this.getItem();
-                    return (itemstack.isEmpty() || player.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(player);
+                    return (itemstack.isEmpty() || player.isCreative() || !EnchantmentHelper.has(itemstack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) && super.mayPickup(player);
                 }
 
                 @Override
@@ -120,7 +119,7 @@ public class SuitChargerMenu extends AbstractContainerMenu {
         if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            EquipmentSlot equipmentslot = Mob.getEquipmentSlotForItem(itemstack);
+            EquipmentSlot equipmentslot = player.getEquipmentSlotForItem(itemstack);
             if (slotId >= 0 && slotId < 4) {
                 if (!this.moveItemStackTo(itemstack1, 8, 44, false)) {
                     return ItemStack.EMPTY;
@@ -129,12 +128,12 @@ public class SuitChargerMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo(itemstack1, 8, 44, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (itemstack1.getItem() instanceof SuitChargerItem && equipmentslot.getType() == EquipmentSlot.Type.ARMOR && !this.slots.get(3 - equipmentslot.getIndex()).hasItem()) {
+            } else if (itemstack1.getItem() instanceof SuitChargerItem && equipmentslot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR && !this.slots.get(3 - equipmentslot.getIndex()).hasItem()) {
                 int i = 3 - equipmentslot.getIndex();
                 if (!this.moveItemStackTo(itemstack1, i, i + 1, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (equipmentslot.getType() == EquipmentSlot.Type.ARMOR && !this.slots.get(7 - equipmentslot.getIndex()).hasItem()) {
+            } else if (equipmentslot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR && !this.slots.get(7 - equipmentslot.getIndex()).hasItem()) {
                 int i = 7 - equipmentslot.getIndex();
                 if (!this.moveItemStackTo(itemstack1, i, i + 1, false)) {
                     return ItemStack.EMPTY;

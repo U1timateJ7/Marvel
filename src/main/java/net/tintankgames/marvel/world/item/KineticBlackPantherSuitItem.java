@@ -5,6 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -19,7 +21,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -29,6 +31,7 @@ import org.joml.Math;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @EventBusSubscriber
@@ -52,29 +55,15 @@ public class KineticBlackPantherSuitItem extends SuitItem {
                     float f = MarvelArmorMaterials.VIBRANIUM_NANITE.value().toughness();
                     ItemAttributeModifiers.Builder itemattributemodifiers$builder = ItemAttributeModifiers.builder();
                     EquipmentSlotGroup equipmentslotgroup = EquipmentSlotGroup.bySlot(type.getSlot());
-                    UUID uuid = ARMOR_MODIFIER_UUID_PER_TYPE.get(type);
-                    itemattributemodifiers$builder.add(
-                            Attributes.ARMOR, new AttributeModifier(uuid, "Armor modifier", i, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup
-                    );
-                    itemattributemodifiers$builder.add(
-                            Attributes.ARMOR_TOUGHNESS,
-                            new AttributeModifier(uuid, "Armor toughness", f, AttributeModifier.Operation.ADD_VALUE),
-                            equipmentslotgroup
-                    );
+                    ResourceLocation resourcelocation = ResourceLocation.withDefaultNamespace("armor." + type.getName());
+                    itemattributemodifiers$builder.add(Attributes.ARMOR, new AttributeModifier(resourcelocation, i, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
+                    itemattributemodifiers$builder.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(resourcelocation, f, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
                     float f1 = MarvelArmorMaterials.VIBRANIUM_NANITE.value().knockbackResistance();
                     if (f1 > 0.0F) {
-                        itemattributemodifiers$builder.add(
-                                Attributes.KNOCKBACK_RESISTANCE,
-                                new AttributeModifier(uuid, "Armor knockback resistance", f1, AttributeModifier.Operation.ADD_VALUE),
-                                equipmentslotgroup
-                        );
+                        itemattributemodifiers$builder.add(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(resourcelocation, f1, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
                     }
                     if (type == Type.CHESTPLATE) {
-                        itemattributemodifiers$builder.add(
-                                Attributes.ATTACK_DAMAGE,
-                                new AttributeModifier(uuid, "Armor attack damage", 3, AttributeModifier.Operation.ADD_VALUE),
-                                equipmentslotgroup
-                        );
+                        itemattributemodifiers$builder.add(Attributes.ATTACK_DAMAGE, new AttributeModifier(resourcelocation, 3, AttributeModifier.Operation.ADD_VALUE), equipmentslotgroup);
                     }
 
                     return itemattributemodifiers$builder.build();
@@ -98,14 +87,14 @@ public class KineticBlackPantherSuitItem extends SuitItem {
     }
 
     @Override
-    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity, Runnable onBroken) {
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity, Consumer<Item> onBroken) {
         return 0;
     }
 
     @SubscribeEvent
-    public static void playerHurt(LivingHurtEvent event) {
+    public static void playerHurt(LivingDamageEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer player && event.getSource().getEntity() != null) {
-            float absorbed = event.getAmount() / 2.0F;
+            float absorbed = event.getNewDamage() / 2.0F;
             player.getInventory().armor.forEach(stack -> {
                 if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) {
                     stack.update(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F, damage -> Math.min(damage + absorbed, 25.0F));

@@ -9,23 +9,26 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.tintankgames.marvel.MarvelEnumExtensions;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
+public class SuitUpgradingMenu extends RecipeBookMenu<CraftingInput, SuitUpgradingRecipe> {
     private final CraftingContainer craftSlots = new TransientCraftingContainer(this, 5, 2);
     private final ResultContainer resultSlot = new ResultContainer();
     private final ContainerLevelAccess access;
     private final Player player;
     private final List<RecipeHolder<SuitUpgradingRecipe>> recipes;
     private final ContainerData data;
+    private boolean placingRecipe;
 
     protected SuitUpgradingMenu(int p_38852_, Inventory p_39357_) {
         this(p_38852_, p_39357_, ContainerLevelAccess.NULL, new SimpleContainerData(4));
@@ -63,18 +66,16 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
         }
     }
 
-    protected static void slotChangedCraftingGrid(
-            AbstractContainerMenu p_150547_, Level p_150548_, Player p_150549_, CraftingContainer p_150550_, ResultContainer p_150551_
-    ) {
+    protected static void slotChangedCraftingGrid(AbstractContainerMenu p_150547_, Level p_150548_, Player p_150549_, CraftingContainer p_150550_, ResultContainer p_150551_, @Nullable RecipeHolder<SuitUpgradingRecipe> p_345124_) {
         if (!p_150548_.isClientSide) {
             ServerPlayer serverplayer = (ServerPlayer)p_150549_;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<RecipeHolder<SuitUpgradingRecipe>> optional = p_150548_.getServer().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), p_150550_, p_150548_);
+            Optional<RecipeHolder<SuitUpgradingRecipe>> optional = p_150548_.getServer().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), p_150550_.asCraftInput(), p_150548_, p_345124_);
             if (optional.isPresent()) {
                 RecipeHolder<SuitUpgradingRecipe> recipeholder = optional.get();
                 SuitUpgradingRecipe upgradingRecipe = recipeholder.value();
                 if (p_150551_.setRecipeUsed(p_150548_, serverplayer, recipeholder)) {
-                    ItemStack itemstack1 = upgradingRecipe.assemble(p_150550_, p_150548_.registryAccess());
+                    ItemStack itemstack1 = upgradingRecipe.assemble(p_150550_.asCraftInput(), p_150548_.registryAccess());
                     if (itemstack1.isItemEnabled(p_150548_.enabledFeatures())) {
                         itemstack = itemstack1;
                     }
@@ -89,7 +90,20 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
 
     @Override
     public void slotsChanged(Container p_39366_) {
-        this.access.execute((p_39386_, p_39387_) -> slotChangedCraftingGrid(this, p_39386_, this.player, this.craftSlots, this.resultSlot));
+        if (!this.placingRecipe) {
+            this.access.execute((p_39386_, p_39387_) -> slotChangedCraftingGrid(this, p_39386_, this.player, this.craftSlots, this.resultSlot, null));
+        }
+    }
+
+    @Override
+    public void beginPlacingRecipe() {
+        this.placingRecipe = true;
+    }
+
+    @Override
+    public void finishPlacingRecipe(RecipeHolder<SuitUpgradingRecipe> p_345915_) {
+        this.placingRecipe = false;
+        this.access.execute((p_344361_, p_344362_) -> slotChangedCraftingGrid(this, p_344361_, this.player, this.craftSlots, this.resultSlot, p_345915_));
     }
 
     @Override
@@ -184,8 +198,8 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
     }
 
     @Override
-    public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> p_300858_) {
-        return p_300858_.value().matches(this.craftSlots, this.player.level());
+    public boolean recipeMatches(RecipeHolder<SuitUpgradingRecipe> p_300858_) {
+        return p_300858_.value().matches(this.craftSlots.asCraftInput(), this.player.level());
     }
 
     @Override
@@ -210,7 +224,7 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
 
     @Override
     public RecipeBookType getRecipeBookType() {
-        return SuitUpgradingRecipe.RECIPE_BOOK_TYPE.get();
+        return MarvelEnumExtensions.SUIT_UPGRADING_TYPE.getValue();
     }
 
     @Override

@@ -32,7 +32,7 @@ public class RepulsorRenderer extends EntityRenderer<Repulsor> {
         poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, repulsor.xRotO, repulsor.getXRot()) - 180.0F));
         poseStack.translate(0, -0.125F, 0);
         VertexConsumer vertexconsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entitySolidEmissive(getTextureLocation(repulsor)));
-        model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
         super.render(repulsor, yRot, partialTick, poseStack, multiBufferSource, light);
     }

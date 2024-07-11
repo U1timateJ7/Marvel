@@ -104,11 +104,11 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
                 flag = true;
             }
             if (flag) {
-                int i = this.getUseDuration(stack) - ticksLeft;
+                int i = this.getUseDuration(stack, living) - ticksLeft;
                 if (!level.isClientSide() && i % 5 == 0)
                     level.playSound(null, living.getX(), living.getY(), living.getZ(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS);
                 if (!level.isClientSide) {
-                    Flame flame = new Flame(level, player, stack);
+                    Flame flame = new Flame(level, player, stack, stack);
                     flame.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.0F, 2.0F);
                     level.addFreshEntity(flame);
                     for (int j = 0; j < 4; j++) {
@@ -132,7 +132,7 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_41454_) {
+    public int getUseDuration(ItemStack p_41454_, LivingEntity p_344979_) {
         return 72000;
     }
 
@@ -145,6 +145,6 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
 
     @Override
     public Projectile asProjectile(Level p_338867_, Position p_338379_, ItemStack p_338543_, Direction p_338380_) {
-        return new Flame(p_338867_, p_338379_.x(), p_338379_.y(), p_338379_.z(), p_338543_.copyWithCount(1));
+        return new Flame(p_338867_, p_338379_.x(), p_338379_.y(), p_338379_.z(), p_338543_.copyWithCount(1), p_338543_.copyWithCount(1));
     }
 }

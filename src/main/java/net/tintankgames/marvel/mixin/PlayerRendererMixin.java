@@ -47,21 +47,10 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
             originalModel.leftArm.copyFrom(arm);
             SuitModel<?> model = (SuitModel<?>) ClientHooks.getArmorModel(player, stack, EquipmentSlot.CHEST, originalModel);
             ArmorMaterial armormaterial = suitItem.getMaterial().value();
-            int i = stack.is(ItemTags.DYEABLE) ? DyedItemColor.getOrDefault(stack, -6265536) : -1;
+            int i = stack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, -6265536)) : -1;
 
             for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
-                float red;
-                float green;
-                float blue;
-                if (armormaterial$layer.dyeable() && i != -1) {
-                    red = (float) FastColor.ARGB32.red(i) / 255.0F;
-                    green = (float)FastColor.ARGB32.green(i) / 255.0F;
-                    blue = (float)FastColor.ARGB32.blue(i) / 255.0F;
-                } else {
-                    red = 1.0F;
-                    green = 1.0F;
-                    blue = 1.0F;
-                }
+                int j = armormaterial$layer.dyeable() ? i : -1;
 
                 if (model.rightArm.hasChild("right_claws") && model.leftArm.hasChild("left_claws")) {
                     model.rightArm.getChild("right_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
@@ -70,11 +59,12 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
 
                 ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, armormaterial$layer, false, EquipmentSlot.CHEST);
                 VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(texture));
-                (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+                (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, j);
                 if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) {
                     VertexConsumer vertexConsumer1 = multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                     float percent = stack.getOrDefault(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F) / 25.0F;
-                    (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer1, light, OverlayTexture.NO_OVERLAY, red, green, blue, percent);
+                    int k = FastColor.ARGB32.color(j, (int) (percent * 255));
+                    (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer1, light, OverlayTexture.NO_OVERLAY, k);
                 }
             }
         }

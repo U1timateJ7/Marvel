@@ -1,6 +1,5 @@
 package net.tintankgames.marvel.world.item.crafting;
 
-import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
@@ -10,21 +9,13 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
-import java.util.function.Supplier;
-
-public class SuitUpgradingRecipe implements Recipe<Container> {
-    public static final Supplier<RecipeBookType> RECIPE_BOOK_TYPE = Suppliers.memoize(() -> RecipeBookType.create("SUIT_UPGRADING"));
+public class SuitUpgradingRecipe implements Recipe<CraftingInput> {
     final String group;
     final SuitUpgradingBookCategory category;
     final ItemStack result;
@@ -52,11 +43,11 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container p_44262_, Level p_44003_) {
+    public boolean matches(CraftingInput p_44262_, Level p_44003_) {
         StackedContents stackedcontents = new StackedContents();
         int i = 0;
 
-        for (int j = 0; j < p_44262_.getContainerSize(); j++) {
+        for (int j = 0; j < p_44262_.size(); j++) {
             ItemStack itemstack = p_44262_.getItem(j);
             if (!itemstack.isEmpty()) {
                 i++;
@@ -64,11 +55,11 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
             }
         }
 
-        return i == this.getIngredients().size() && /*this.suit.test(p_44262_.getItem(0)) && */stackedcontents.canCraft(this, null);
+        return i == this.getIngredients().size() && stackedcontents.canCraft(this, null);
     }
 
     @Override
-    public ItemStack assemble(Container p_44001_, HolderLookup.Provider p_336092_) {
+    public ItemStack assemble(CraftingInput p_44001_, HolderLookup.Provider p_336092_) {
         return this.result.copy();
     }
 

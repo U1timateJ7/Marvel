@@ -1,0 +1,58 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/inventory/RecipeBookType",
+      "name": "MARVEL_SUIT_UPGRADING",
+      "constructor": "()V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/MarvelEnumExtensions",
+        "field": "SUIT_UPGRADING_TYPE"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/gui/Gui$HeartType",
+      "name": "MARVEL_ADAMANTIUM",
+      "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "ADAMANTIUM_HEART_TYPE"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "MARVEL_VIBRANIUM_SHIELD",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "VIBRANIUM_SHIELD_POSE"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "MARVEL_SUIT_UPGRADING_SEARCH",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "SUIT_UPGRADING_SEARCH_CATEGORY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "MARVEL_SUIT_UPGRADING_SUITS",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "SUIT_UPGRADING_SUITS_CATEGORY"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/RecipeBookCategories",
+      "name": "MARVEL_SUIT_UPGRADING_IRON_MAN_SUITS",
+      "constructor": "(Ljava/util/function/Supplier;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "SUIT_UPGRADING_IRON_MAN_SUITS_CATEGORY"
+      }
+    }
+  ]
+}

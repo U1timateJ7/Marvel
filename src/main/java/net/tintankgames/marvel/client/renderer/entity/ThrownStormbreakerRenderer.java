@@ -31,7 +31,7 @@ public class ThrownStormbreakerRenderer extends EntityRenderer<ThrownStormbreake
         poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, stormbreaker.yRotO + stormbreaker.getExtraYRotO(), stormbreaker.getYRot() + stormbreaker.getExtraYRot())));
         poseStack.mulPose(Axis.XP.rotationDegrees((stormbreaker.returningToOwner() ? 1 : -1) * Mth.lerp(g, stormbreaker.xRotO, stormbreaker.getXRot()) - 90));
         VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(getTextureLocation(stormbreaker)), false, stormbreaker.isFoil());
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         poseStack.popPose();
         super.render(stormbreaker, f, g, poseStack, multiBufferSource, light);
     }

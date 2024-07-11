@@ -13,11 +13,10 @@ logoFile="assets/marvel/logo.png"
 credits="Marvel Entertainment, LLC"
 authors="${mod_authors}"
 description='''${mod_description}'''
+enumExtensions="META-INF/enumextensions.json"
 
 [[mixins]]
 config="${mod_id}.mixins.json"
-[[mixins]]
-config="${mod_id}_integrations.mixins.json"
 
 [[accessTransformers]]
 file="META-INF/accesstransformer.cfg"

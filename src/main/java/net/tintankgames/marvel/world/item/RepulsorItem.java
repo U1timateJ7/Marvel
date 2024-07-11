@@ -52,7 +52,7 @@ public class RepulsorItem extends SuitPowerItem implements ProjectileItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_43419_) {
+    public int getUseDuration(ItemStack p_43419_, LivingEntity living) {
         return 72000;
     }
 

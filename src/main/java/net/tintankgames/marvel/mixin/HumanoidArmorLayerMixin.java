@@ -70,21 +70,10 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                 this.setPartVisibility(originalModel, equipmentSlot);
                 Model model = getArmorModelHook(livingEntity, itemstack, equipmentSlot, originalModel);
                 ArmorMaterial armormaterial = suitItem.getMaterial().value();
-                int i = itemstack.is(ItemTags.DYEABLE) ? DyedItemColor.getOrDefault(itemstack, -6265536) : -1;
+                int i = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, -6265536)) : -1;
 
                 for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
-                    float red;
-                    float green;
-                    float blue;
-                    if (armormaterial$layer.dyeable() && i != -1) {
-                        red = (float) FastColor.ARGB32.red(i) / 255.0F;
-                        green = (float)FastColor.ARGB32.green(i) / 255.0F;
-                        blue = (float)FastColor.ARGB32.blue(i) / 255.0F;
-                    } else {
-                        red = 1.0F;
-                        green = 1.0F;
-                        blue = 1.0F;
-                    }
+                    int j = armormaterial$layer.dyeable() ? i : -1;
 
                     if (model instanceof SuitModel<?> suitModel && suitModel.rightArm.hasChild("right_claws") && suitModel.leftArm.hasChild("left_claws")) {
                         suitModel.rightArm.getChild("right_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
@@ -107,19 +96,20 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
                     ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, armormaterial$layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
-                    model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
+                    model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
                     if (itemstack.has(MarvelDataComponents.ABSORBED_DAMAGE) && !itemstack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                         float percent = itemstack.getOrDefault(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F) / 25.0F;
-                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, percent);
+                        int k = FastColor.ARGB32.color(j, (int) (percent * 255));
+                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), k);
                     }
                     if (itemstack.is(MarvelItems.Tags.CYCLOPS_HELMET) || itemstack.is(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE)) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
-                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
+                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
                     }
                     if (itemstack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && itemstack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
-                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
+                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
                     }
                 }
             }

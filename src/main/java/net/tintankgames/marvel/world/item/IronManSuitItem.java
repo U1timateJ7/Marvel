@@ -6,6 +6,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,6 +24,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -30,12 +32,11 @@ import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @EventBusSubscriber
 public abstract class IronManSuitItem extends EnergySuitItem {
-    public static final UUID IRON_MAN_UUID = UUID.fromString("FC31016D-4B91-494D-B7D1-B89E02D85503");
-    private static final AttributeModifier creativeFlightModifier = new AttributeModifier(IRON_MAN_UUID, "Iron Man creative flight modifier", 1, AttributeModifier.Operation.ADD_VALUE);
+    private static final ResourceLocation IRON_MAN_MODIFIER_ID = MarvelSuperheroes.id("iron_man");
+    private static final AttributeModifier creativeFlightModifier = new AttributeModifier(IRON_MAN_MODIFIER_ID, 1, AttributeModifier.Operation.ADD_VALUE);
 
     public IronManSuitItem(Holder<ArmorMaterial> armorMaterial, Type type, TagKey<Item> tagKey, List<MobEffectInstance> list, List<Item> powerItems, Properties properties) {
         super(armorMaterial, type, tagKey, type == Type.CHESTPLATE ? makeList(list, effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), !powerItems.isEmpty() ? properties.component(MarvelDataComponents.POWER_ITEMS, powerItems) : properties);

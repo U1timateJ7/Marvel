@@ -73,7 +73,7 @@ public class WebShotRenderer extends EntityRenderer<WebShot> {
     }
 
     private static void vertex(VertexConsumer vertexConsumer, PoseStack.Pose pose, float f, float g, float h, float i, float j) {
-        vertexConsumer.vertex(pose, f, g, h).color(255, 255, 255, 255).uv(i, j).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(0.0F, 1.0F, 0.0F).endVertex();
+        vertexConsumer.addVertex(pose, f, g, h).setColor(-1).setUv(i, j).setOverlay(OverlayTexture.NO_OVERLAY).setLight(15728880).setNormal(0.0F, 1.0F, 0.0F);
     }
 
     public ResourceLocation getTextureLocation(WebShot lashingPotatoHook) {

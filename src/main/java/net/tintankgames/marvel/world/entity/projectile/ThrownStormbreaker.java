@@ -42,13 +42,13 @@ public class ThrownStormbreaker extends AbstractArrow {
     }
 
     public ThrownStormbreaker(Level p_37569_, LivingEntity p_37570_, ItemStack p_37571_) {
-        super(MarvelEntityTypes.STORMBREAKER.get(), p_37570_, p_37569_, p_37571_);
+        super(MarvelEntityTypes.STORMBREAKER.get(), p_37570_, p_37569_, p_37571_, null);
         this.entityData.set(ID_FOIL, p_37571_.hasFoil());
         this.entityData.set(ID_ITEM, p_37571_);
     }
 
     public ThrownStormbreaker(Level p_338686_, double p_338771_, double p_338674_, double p_338477_, ItemStack p_338255_) {
-        super(MarvelEntityTypes.STORMBREAKER.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_);
+        super(MarvelEntityTypes.STORMBREAKER.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_, null);
         this.entityData.set(ID_FOIL, p_338255_.hasFoil());
         this.entityData.set(ID_ITEM, p_338255_);
     }
@@ -139,11 +139,11 @@ public class ThrownStormbreaker extends AbstractArrow {
     protected void onHitEntity(EntityHitResult p_37573_) {
         Entity entity = p_37573_.getEntity();
         float f = (float) getBaseDamage();
-        if (entity instanceof LivingEntity livingentity) {
-            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingentity.getType());
-        }
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().source(entity1 == null ? MarvelDamageTypes.STORMBREAKER_DISPENSER : MarvelDamageTypes.STORMBREAKER, this, entity1 == null ? this : entity1);
+        if (this.level() instanceof ServerLevel serverlevel) {
+            f = EnchantmentHelper.modifyDamage(serverlevel, getWeaponItem(), entity, damagesource, f);
+        }
         this.dealtDamage = true;
         SoundEvent soundevent = MarvelSoundEvents.STORMBREAKER_HIT.get();
         boolean hitShield = false;
@@ -151,12 +151,12 @@ public class ThrownStormbreaker extends AbstractArrow {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
-            if (entity instanceof LivingEntity livingentity1) {
-                if (entity1 instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
-                }
-                this.doPostHurtEffects(livingentity1);
+            if (this.level() instanceof ServerLevel serverlevel1) {
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, entity, damagesource, this.getWeaponItem());
+            }
+            if (entity instanceof LivingEntity livingentity) {
+                this.doKnockback(livingentity, damagesource);
+                this.doPostHurtEffects(livingentity);
             }
         } else if (entity instanceof LivingEntity living && (processHand(living.getItemInHand(InteractionHand.MAIN_HAND)) || processHand(living.getItemInHand(InteractionHand.OFF_HAND))))  {
             soundevent = MarvelSoundEvents.STORMBREAKER_HIT_SHIELD.get();
@@ -176,6 +176,11 @@ public class ThrownStormbreaker extends AbstractArrow {
         }
         this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01, -0.1, -0.01));
         this.playSound(soundevent);
+    }
+
+    @Override
+    public ItemStack getWeaponItem() {
+        return getPickupItemStackOrigin();
     }
 
     private static boolean processHand(ItemStack stack) {

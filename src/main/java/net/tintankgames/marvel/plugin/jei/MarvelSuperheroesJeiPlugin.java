@@ -10,12 +10,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.gui.screens.SuitUpgradingScreen;
 import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
@@ -37,7 +33,7 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
     @Nullable
     private IRecipeCategory<RecipeHolder<SuitVariantRecipe>> suitVariantCategory;
 
-    public static ItemStack getResultItem(Recipe<? extends Container> recipe) {
+    public static ItemStack getResultItem(Recipe<? extends RecipeInput> recipe) {
         Minecraft minecraft = Minecraft.getInstance();
         ClientLevel level = minecraft.level;
         if (level == null) {
@@ -71,7 +67,7 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_VARIANT, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_VARIANT.get()));
     }
 
-    private static <C extends Container, T extends Recipe<C>> List<RecipeHolder<T>> getValidHandledRecipes(RecipeManager recipeManager, RecipeType<T> recipeType) {
+    private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getValidHandledRecipes(RecipeManager recipeManager, RecipeType<T> recipeType) {
         return recipeManager.getAllRecipesFor(recipeType).stream().toList();
     }
 

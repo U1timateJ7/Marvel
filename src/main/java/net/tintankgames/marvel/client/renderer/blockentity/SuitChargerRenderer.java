@@ -67,32 +67,21 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
             if (suitItem.getEquipmentSlot() == equipmentSlot) {
                 Model model = ClientHooks.getArmorModel(Minecraft.getInstance().player, itemstack, equipmentSlot, originalModel);
                 ArmorMaterial armormaterial = suitItem.getMaterial().value();
-                int i = itemstack.is(ItemTags.DYEABLE) ? DyedItemColor.getOrDefault(itemstack, -6265536) : -1;
+                int i = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, -6265536)) : -1;
 
                 for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
-                    float red;
-                    float green;
-                    float blue;
-                    if (armormaterial$layer.dyeable() && i != -1) {
-                        red = (float) FastColor.ARGB32.red(i) / 255.0F;
-                        green = (float)FastColor.ARGB32.green(i) / 255.0F;
-                        blue = (float)FastColor.ARGB32.blue(i) / 255.0F;
-                    } else {
-                        red = 1.0F;
-                        green = 1.0F;
-                        blue = 1.0F;
-                    }
+                    int j = armormaterial$layer.dyeable() ? i : -1;
 
                     ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, armormaterial$layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
-                    model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
+                    model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), j);
                     if (itemstack.is(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE)) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
-                        model.renderToBuffer(poseStack, glowConsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
+                        model.renderToBuffer(poseStack, glowConsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), j);
                     }
                     if (itemstack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && itemstack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
-                        model.renderToBuffer(poseStack, glowConsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
+                        model.renderToBuffer(poseStack, glowConsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), j);
                     }
                 }
             }

@@ -7,6 +7,7 @@ import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -30,7 +31,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
-import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
+import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
@@ -41,11 +43,10 @@ import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @EventBusSubscriber
 public class MjolnirItem extends Item implements ProjectileItem {
-    public static final UUID BASE_CREATIVE_FLIGHT_UUID = UUID.fromString("507C5621-F0DB-4173-9569-F948D87BDA2C");
+    public static final ResourceLocation BASE_CREATIVE_FLIGHT_ID = MarvelSuperheroes.id("base_creative_flight");
 
     public MjolnirItem(Properties properties) {
         super(properties);
@@ -53,7 +54,7 @@ public class MjolnirItem extends Item implements ProjectileItem {
     }
 
     public static ItemAttributeModifiers attributes() {
-        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 11.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(NeoForgeMod.CREATIVE_FLIGHT, new AttributeModifier(BASE_CREATIVE_FLIGHT_UUID, "Tool modifier", 1.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
+        return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 11.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(NeoForgeMod.CREATIVE_FLIGHT, new AttributeModifier(BASE_CREATIVE_FLIGHT_ID, 1.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
     }
 
     @Override
@@ -98,7 +99,7 @@ public class MjolnirItem extends Item implements ProjectileItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack p_43419_) {
+    public int getUseDuration(ItemStack p_43419_, LivingEntity living) {
         return 72000;
     }
 
@@ -141,8 +142,8 @@ public class MjolnirItem extends Item implements ProjectileItem {
     }
 
     @SubscribeEvent
-    public static void mjolnirHitShield(ShieldBlockEvent event) {
-        if ((processHand(event.getEntity().getItemInHand(InteractionHand.MAIN_HAND)) || processHand(event.getEntity().getItemInHand(InteractionHand.OFF_HAND))) && event.getDamageSource().getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && !event.getDamageSource().isIndirect())  {
+    public static void mjolnirHitShield(LivingShieldBlockEvent event) {
+        if ((processHand(event.getEntity().getItemInHand(InteractionHand.MAIN_HAND)) || processHand(event.getEntity().getItemInHand(InteractionHand.OFF_HAND))) && event.getDamageSource().getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && event.getDamageSource().isDirect())  {
             if (event.getEntity().level() instanceof ServerLevel serverLevel) {
                 serverLevel.explode(null, event.getDamageSource(), new MjolnirExplosionDamageCalculator(event.getEntity(), event.getDamageSource().getEntity()), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
                 serverLevel.playSound(null, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), MarvelSoundEvents.MJOLNIR_HIT_SHIELD.get(), SoundSource.PLAYERS);

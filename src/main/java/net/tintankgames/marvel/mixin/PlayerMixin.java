@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.mixin;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -10,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.event.EventHooks;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,10 +52,11 @@ public abstract class PlayerMixin extends LivingEntity {
                 awardStat(Stats.ITEM_USED.get(stack.getItem()));
             }
             if (p_36383_ >= 3.0F) {
-                if (!level().isClientSide && !hasInfiniteMaterials()) {
-                    stack.hurtAndBreak(1, getRandom(), this, () -> {
-                        broadcastBreakEvent(getSlotForHand(hand));
-                        EventHooks.onPlayerDestroyItem((Player)(Object)this, stack, hand);
+                if (this.level() instanceof ServerLevel serverlevel && !hasInfiniteMaterials()) {
+                    stack.hurtAndBreak(1, serverlevel, this, item -> {
+                        this.onEquippedItemBroken(item, getSlotForHand(hand));
+                        net.neoforged.neoforge.event.EventHooks.onPlayerDestroyItem((Player)(Object)this, this.useItem, hand);
+                        stopUsingItem();
                     });
                 }
                 if (stack.isEmpty()) {

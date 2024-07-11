@@ -2,6 +2,7 @@ package net.tintankgames.marvel.world.entity.projectile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -22,6 +23,7 @@ import net.minecraft.world.phys.Vec3;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -30,12 +32,12 @@ public class Flame extends AbstractArrow {
         super(p_37561_, p_37562_);
     }
 
-    public Flame(Level p_37569_, LivingEntity p_37570_, ItemStack p_37571_) {
-        super(MarvelEntityTypes.FLAME.get(), p_37570_, p_37569_, p_37571_);
+    public Flame(Level p_37569_, LivingEntity p_37570_, ItemStack p_37571_, @Nullable ItemStack firedFrom) {
+        super(MarvelEntityTypes.FLAME.get(), p_37570_, p_37569_, p_37571_, firedFrom);
     }
 
-    public Flame(Level p_338686_, double p_338771_, double p_338674_, double p_338477_, ItemStack p_338255_) {
-        super(MarvelEntityTypes.FLAME.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_);
+    public Flame(Level p_338686_, double p_338771_, double p_338674_, double p_338477_, ItemStack p_338255_, @Nullable ItemStack firedFrom) {
+        super(MarvelEntityTypes.FLAME.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_, firedFrom);
     }
 
     @Override
@@ -70,11 +72,11 @@ public class Flame extends AbstractArrow {
     protected void onHitEntity(EntityHitResult p_37573_) {
         Entity entity = p_37573_.getEntity();
         float f = 2;
-        if (entity instanceof LivingEntity livingentity) {
-            f += EnchantmentHelper.getDamageBonus(this.getPickupItemStackOrigin(), livingentity.getType());
-        }
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().source(MarvelDamageTypes.FLAMETHROWER, this, entity1 == null ? this : entity1);
+        if (getWeaponItem() != null && this.level() instanceof ServerLevel serverlevel) {
+            f = EnchantmentHelper.modifyDamage(serverlevel, getWeaponItem(), entity, damagesource, f);
+        }
         if (!isRemoved()) {
             for (int x = -1; x < 2; x++) {
                 for (int y = -1; y < 2; y++) {
@@ -94,12 +96,12 @@ public class Flame extends AbstractArrow {
                 return;
             }
             entity.igniteForSeconds(4);
-            if (entity instanceof LivingEntity livingentity1) {
-                if (entity1 instanceof LivingEntity) {
-                    EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
-                }
-                this.doPostHurtEffects(livingentity1);
+            if (this.level() instanceof ServerLevel serverlevel1) {
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverlevel1, entity, damagesource, this.getWeaponItem());
+            }
+            if (entity instanceof LivingEntity livingentity) {
+                this.doKnockback(livingentity, damagesource);
+                this.doPostHurtEffects(livingentity);
             }
         }
         discard();

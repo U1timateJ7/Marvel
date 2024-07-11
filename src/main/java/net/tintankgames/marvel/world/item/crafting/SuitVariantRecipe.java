@@ -6,16 +6,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
-public class SuitVariantRecipe implements Recipe<Container> {
+public class SuitVariantRecipe implements Recipe<SingleRecipeInput> {
     final ItemStack result;
     final Ingredient suit;
 
@@ -30,12 +26,12 @@ public class SuitVariantRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container p_44262_, Level p_44003_) {
+    public boolean matches(SingleRecipeInput p_44262_, Level p_44003_) {
         return suit.test(p_44262_.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(Container p_44001_, HolderLookup.Provider p_336092_) {
+    public ItemStack assemble(SingleRecipeInput p_44001_, HolderLookup.Provider p_336092_) {
         ItemStack stack = p_44001_.getItem(0).transmuteCopy(this.result.getItem(), this.result.getCount());
         stack.applyComponents(this.result.getComponentsPatch());
         return stack;
