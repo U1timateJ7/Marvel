@@ -3,11 +3,13 @@ package net.tintankgames.marvel.world.level.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -26,6 +28,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.tintankgames.marvel.stats.MarvelStats;
+import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.SuitChargerItem;
+import net.tintankgames.marvel.world.item.SuitItem;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 import net.tintankgames.marvel.world.level.block.entity.SuitChargerBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -67,15 +72,49 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if (level.isClientSide) {
-            return InteractionResult.SUCCESS;
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (player.isSecondaryUseActive() && blockEntity instanceof SuitChargerBlockEntity charger) {
+            boolean playerHasNoSuit = true;
+            boolean chargerHasNoSuit = true;
+            boolean playerHasFullSuit = player.getInventory().armor.get(0).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(1).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(2).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(3).getItem() instanceof SuitChargerItem;
+            boolean chargerHasFullSuit = charger.getItem(0).getItem() instanceof SuitChargerItem && charger.getItem(1).getItem() instanceof SuitChargerItem && charger.getItem(2).getItem() instanceof SuitChargerItem && charger.getItem(3).getItem() instanceof SuitChargerItem;
+            for (ItemStack armor : player.getInventory().armor) {
+                if (!armor.isEmpty()) {
+                    playerHasNoSuit = false;
+                    break;
+                }
+            }
+            for (ItemStack armor : charger.items()) {
+                if (!armor.isEmpty()) {
+                    chargerHasNoSuit = false;
+                    break;
+                }
+            }
+            if ((playerHasNoSuit || playerHasFullSuit) && (chargerHasNoSuit || chargerHasFullSuit)) {
+                if (!level.isClientSide) {
+                    NonNullList<ItemStack> chargerContents = charger.items();
+                    NonNullList<ItemStack> playerArmor = NonNullList.copyOf(player.getInventory().armor);
+                    for (int i = 0; i < player.getInventory().armor.size(); i++) {
+                        player.getInventory().armor.set(i, chargerContents.get(i).copy());
+                    }
+                    for (int i = 0; i < charger.getContainerSize(); i++) {
+                        charger.setItem(i, playerArmor.get(i).copy());
+                    }
+                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.FLAMETHROWER))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.FLAMETHROWER.get())));
+                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
+                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
+                }
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            } else {
+                return InteractionResult.PASS;
+            }
         } else {
             MenuProvider provider = state.getMenuProvider(level, pos);
-            if (provider != null) {
+            if (!level.isClientSide && provider != null) {
                 player.openMenu(provider);
                 player.awardStat(MarvelStats.INTERACT_WITH_SUIT_CHARGER.get());
             }
-            return InteractionResult.CONSUME;
+            return InteractionResult.sidedSuccess(level.isClientSide);
         }
     }
 
@@ -126,8 +165,6 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
         Containers.dropContentsOnDestroy(state, state1, level, pos);
         super.onRemove(state, level, pos, state1, bl);
     }
-
-    
 
     @Nullable
     @Override

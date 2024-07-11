@@ -68,6 +68,10 @@ public class SuitChargerBlockEntity extends BaseContainerBlockEntity {
         return items;
     }
 
+    public NonNullList<ItemStack> items() {
+        return NonNullList.copyOf(items);
+    }
+
     @Override
     protected void setItems(NonNullList<ItemStack> list) {
         items = list;
