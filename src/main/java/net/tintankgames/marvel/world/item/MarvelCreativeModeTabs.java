@@ -33,6 +33,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.ADAMANTIUM_BLOCK);
         output.accept(MarvelBlocks.URU_BLOCK);
         output.accept(MarvelBlocks.SUIT_TABLE);
+        output.accept(MarvelBlocks.SUIT_CHARGER);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
         output.accept(MarvelItems.VIBRANIUM_NUGGET);
@@ -67,6 +68,8 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WEB_FLUID);
         output.accept(MarvelItems.UNSTABLE_PYM_PARTICLE);
         output.accept(MarvelItems.PYM_PARTICLE);
+        output.accept(MarvelItems.PALLADIUM_ARC_REACTOR);
+        output.accept(MarvelItems.IRON_MAN_MARK_5_SUITCASE);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
         ItemStack stack = MarvelItems.PROTO_ADAMANTIUM_SHIELD.toStack();
@@ -169,6 +172,24 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WASP_CHESTPLATE);
         output.accept(MarvelItems.WASP_LEGGINGS);
         output.accept(MarvelItems.WASP_BOOTS);
+    }));
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_3_CHESTPLATE::toStack).displayItems((parameters, output) -> {
+        output.accept(MarvelItems.IRON_MAN_MARK_1_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_1_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_1_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_1_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_2_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_2_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_2_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_2_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_3_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_3_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_3_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_3_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_5_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_5_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_5_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_5_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

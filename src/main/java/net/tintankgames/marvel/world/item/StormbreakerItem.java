@@ -1,9 +1,11 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
@@ -17,27 +19,35 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ProjectileItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
+import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownStormbreaker;
+
+import java.util.List;
 
 public class StormbreakerItem extends Item implements ProjectileItem {
     public StormbreakerItem(Properties properties) {
         super(properties.component(DataComponents.TOOL, MarvelTiers.URU.createToolProperties(BlockTags.MINEABLE_WITH_AXE)));
+        DispenserBlock.registerProjectileBehavior(this);
     }
 
     @Override
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
         return ToolActions.DEFAULT_AXE_ACTIONS.contains(toolAction);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
+        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
+        p_41423_.add(Component.translatable(getDescriptionId(p_41421_) + ".key.c", Component.keybind(MarvelKeyMappings.SECONDARY_SUIT_ABILITY.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 
     public static ItemAttributeModifiers attributes() {

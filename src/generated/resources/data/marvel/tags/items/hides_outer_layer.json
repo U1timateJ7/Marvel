@@ -84,6 +84,22 @@
     "marvel:thor_helmet",
     "marvel:thor_chestplate",
     "marvel:thor_leggings",
-    "marvel:thor_boots"
+    "marvel:thor_boots",
+    "marvel:iron_man_mark_1_helmet",
+    "marvel:iron_man_mark_1_chestplate",
+    "marvel:iron_man_mark_1_leggings",
+    "marvel:iron_man_mark_1_boots",
+    "marvel:iron_man_mark_2_helmet",
+    "marvel:iron_man_mark_2_chestplate",
+    "marvel:iron_man_mark_2_leggings",
+    "marvel:iron_man_mark_2_boots",
+    "marvel:iron_man_mark_3_helmet",
+    "marvel:iron_man_mark_3_chestplate",
+    "marvel:iron_man_mark_3_leggings",
+    "marvel:iron_man_mark_3_boots",
+    "marvel:iron_man_mark_5_helmet",
+    "marvel:iron_man_mark_5_chestplate",
+    "marvel:iron_man_mark_5_leggings",
+    "marvel:iron_man_mark_5_boots"
   ]
 }

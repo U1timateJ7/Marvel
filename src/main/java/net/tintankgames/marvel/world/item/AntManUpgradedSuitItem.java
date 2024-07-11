@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.component.Size;
@@ -36,5 +37,6 @@ public class AntManUpgradedSuitItem extends SuitItem {
     public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
         super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
         p_41423_.add(Component.translatable("item.suit.upgraded").withStyle(ChatFormatting.GRAY));
+        if (type == Type.HELMET) p_41423_.add(Component.translatable(getDescriptionId(p_41421_).replace("_helmet", "") + ".key.h", Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 }

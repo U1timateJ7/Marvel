@@ -23,6 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.tintankgames.marvel.client.model.SuitModel;
+import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SuitItem;
@@ -108,12 +109,16 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
                     if (itemstack.has(MarvelDataComponents.ABSORBED_DAMAGE) && !itemstack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
-                        VertexConsumer glowConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                        VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                         float percent = itemstack.getOrDefault(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F) / 25.0F;
                         model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, percent);
                     }
-                    if (itemstack.is(MarvelItems.Tags.CYCLOPS_HELMET)) {
-                        VertexConsumer glowConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                    if (itemstack.is(MarvelItems.Tags.CYCLOPS_HELMET) || itemstack.is(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE)) {
+                        VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                        model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
+                    }
+                    if (itemstack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && itemstack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
+                        VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                         model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);
                     }
                 }

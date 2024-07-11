@@ -33,6 +33,7 @@ public class MarvelLootTableProvider {
             dropSelf(MarvelBlocks.ADAMANTIUM_BLOCK.get());
             dropSelf(MarvelBlocks.URU_BLOCK.get());
             dropSelf(MarvelBlocks.SUIT_TABLE.get());
+            dropSelf(MarvelBlocks.SUIT_CHARGER.get());
             add(MarvelBlocks.SPIDER_WEB.get(), noDrop());
         }
 

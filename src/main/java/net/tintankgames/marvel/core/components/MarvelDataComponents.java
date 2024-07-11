@@ -38,6 +38,9 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> FLYING = register("flying", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).cacheEncoding().build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemStackHolder>> ITEM_STACK = register("item_stack", () -> DataComponentType.<ItemStackHolder>builder().persistent(ItemStackHolder.CODEC).networkSynchronized(ItemStackHolder.STREAM_CODEC).cacheEncoding().build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<UUID>> OWNER = register("owner", () -> DataComponentType.<UUID>builder().persistent(UUIDUtil.LENIENT_CODEC).networkSynchronized(UUIDUtil.STREAM_CODEC).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FUEL = register("fuel", () -> DataComponentType.<Integer>builder().persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FUEL_MAX = register("fuel_max", () -> DataComponentType.<Integer>builder().persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.INT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> ENERGY = register("energy", () -> DataComponentType.<Float>builder().persistent(Codec.floatRange(0, 100)).networkSynchronized(ByteBufCodecs.FLOAT).build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);

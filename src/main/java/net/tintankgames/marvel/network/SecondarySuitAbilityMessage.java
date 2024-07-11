@@ -18,6 +18,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.SuitItem;
 import net.tintankgames.marvel.world.item.SuitPowerItem;
 import net.tintankgames.marvel.world.item.component.ItemStackHolder;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
@@ -38,10 +39,10 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
     public static void handle(SecondarySuitAbilityMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
-                boolean noArmor = true, noThorArmor = true;
+                boolean noKineticBlackPantherArmor = true, noThorArmor = true;
                 for (ItemStack armor : player.getInventory().armor) {
-                    if (!armor.isEmpty()) {
-                        noArmor = false;
+                    if (armor.is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR)) {
+                        noKineticBlackPantherArmor = false;
                         break;
                     }
                 }
@@ -97,16 +98,16 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         }
                     }
                 } else {
-                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get()) && noArmor) {
+                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get()) && noKineticBlackPantherArmor && noThorArmor) {
                         SlotResult slotResult = CuriosApi.getCuriosInventory(player).get().findFirstCurio(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get()).get();
                         ItemContainerContents necklaceContents = slotResult.stack().get(DataComponents.CONTAINER);
                         TimerQueue<MinecraftServer> timerqueue = player.getServer().getWorldData().overworldData().getScheduledEvents();
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_UP.get(), SoundSource.PLAYERS);
-                        player.setItemSlot(EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2));
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false));
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false));
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_chestplate_equip", i + 1, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false, false));
                         CuriosApi.getCuriosInventory(player).get().setEquippedCurio(slotResult.slotContext().identifier(), slotResult.slotContext().index(), ItemStack.EMPTY);
                     } else if (CuriosApi.getCuriosInventory(player).get().findCurio("necklace", 0).isEmpty() && boots.is(MarvelItems.KINETIC_BLACK_PANTHER_BOOTS) && leggings.is(MarvelItems.KINETIC_BLACK_PANTHER_LEGGINGS) && chestplate.is(MarvelItems.KINETIC_BLACK_PANTHER_CHESTPLATE) && helmet.is(MarvelItems.KINETIC_BLACK_PANTHER_HELMET)) {
                         ItemStack necklace = MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.toStack();
@@ -115,21 +116,21 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_DOWN.get(), SoundSource.PLAYERS);
                         player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false, true));
                         timerqueue.schedule(player.getStringUUID() + "_kinetic_black_panther_necklace_equip", i + 30, new SetItemInCurioSlotCallback(player, "necklace", 0, necklace));
                     }
-                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.KILLMONGER_NECKLACE.get()) && noArmor) {
+                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.KILLMONGER_NECKLACE.get()) && noKineticBlackPantherArmor && noThorArmor) {
                         SlotResult slotResult = CuriosApi.getCuriosInventory(player).get().findFirstCurio(MarvelItems.KILLMONGER_NECKLACE.get()).get();
                         ItemContainerContents necklaceContents = slotResult.stack().get(DataComponents.CONTAINER);
                         TimerQueue<MinecraftServer> timerqueue = player.getServer().getWorldData().overworldData().getScheduledEvents();
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_UP.get(), SoundSource.PLAYERS);
-                        player.setItemSlot(EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2));
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false));
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false));
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_chestplate_equip", i + 1, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false, false));
                         CuriosApi.getCuriosInventory(player).get().setEquippedCurio(slotResult.slotContext().identifier(), slotResult.slotContext().index(), ItemStack.EMPTY);
                     } else if (CuriosApi.getCuriosInventory(player).get().findCurio("necklace", 0).isEmpty() && boots.is(MarvelItems.KILLMONGER_BOOTS) && leggings.is(MarvelItems.KILLMONGER_LEGGINGS) && chestplate.is(MarvelItems.KILLMONGER_CHESTPLATE) && helmet.is(MarvelItems.KILLMONGER_HELMET)) {
                         ItemStack necklace = MarvelItems.KILLMONGER_NECKLACE.toStack();
@@ -138,21 +139,21 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_DOWN.get(), SoundSource.PLAYERS);
                         player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_killmonger_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_killmonger_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false, true));
                         timerqueue.schedule(player.getStringUUID() + "_killmonger_necklace_equip", i + 30, new SetItemInCurioSlotCallback(player, "necklace", 0, necklace));
                     }
-                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get()) && noArmor) {
+                    if (CuriosApi.getCuriosInventory(player).get().isEquipped(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get()) && noKineticBlackPantherArmor && noThorArmor) {
                         SlotResult slotResult = CuriosApi.getCuriosInventory(player).get().findFirstCurio(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get()).get();
                         ItemContainerContents necklaceContents = slotResult.stack().get(DataComponents.CONTAINER);
                         TimerQueue<MinecraftServer> timerqueue = player.getServer().getWorldData().overworldData().getScheduledEvents();
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_UP.get(), SoundSource.PLAYERS);
-                        player.setItemSlot(EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2));
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false));
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false));
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_chestplate_equip", i + 1, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, necklaceContents.getStackInSlot(2), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_leggings_equip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, necklaceContents.getStackInSlot(1), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_boots_equip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.FEET, necklaceContents.getStackInSlot(0), false, false));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_helmet_equip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.HEAD, necklaceContents.getStackInSlot(3), false, false));
                         CuriosApi.getCuriosInventory(player).get().setEquippedCurio(slotResult.slotContext().identifier(), slotResult.slotContext().index(), ItemStack.EMPTY);
                     } else if (CuriosApi.getCuriosInventory(player).get().findCurio("necklace", 0).isEmpty() && boots.is(MarvelItems.BLACK_PANTHER_SHURI_BOOTS) && leggings.is(MarvelItems.BLACK_PANTHER_SHURI_LEGGINGS) && chestplate.is(MarvelItems.BLACK_PANTHER_SHURI_CHESTPLATE) && helmet.is(MarvelItems.BLACK_PANTHER_SHURI_HELMET)) {
                         ItemStack necklace = MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.toStack();
@@ -161,10 +162,21 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         long i = player.serverLevel().getGameTime();
                         player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.KINETIC_BLACK_PANTHER_SUIT_DOWN.get(), SoundSource.PLAYERS);
                         player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false));
-                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_boots_unequip", i + 10, new SetItemInSlotCallback(player, EquipmentSlot.FEET, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_leggings_unequip", i + 20, new SetItemInSlotCallback(player, EquipmentSlot.LEGS, ItemStack.EMPTY, false, true));
+                        timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_chestplate_unequip", i + 30, new SetItemInSlotCallback(player, EquipmentSlot.CHEST, ItemStack.EMPTY, false, true));
                         timerqueue.schedule(player.getStringUUID() + "_black_panther_shuri_necklace_equip", i + 30, new SetItemInCurioSlotCallback(player, "necklace", 0, necklace));
+                    }
+                    if (boots.is(MarvelItems.IRON_MAN_MARK_5_BOOTS) && leggings.is(MarvelItems.IRON_MAN_MARK_5_LEGGINGS) && chestplate.is(MarvelItems.IRON_MAN_MARK_5_CHESTPLATE) && helmet.is(MarvelItems.IRON_MAN_MARK_5_HELMET)) {
+                        ItemStack suitcase = MarvelItems.IRON_MAN_MARK_5_SUITCASE.toStack();
+                        suitcase.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(player.getInventory().armor));
+                        player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                        player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
+                        player.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
+                        player.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
+                        player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
+                        player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
+                        player.addItem(suitcase);
                     }
                 }
             }

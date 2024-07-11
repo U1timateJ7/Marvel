@@ -25,13 +25,14 @@ import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
+import net.tintankgames.marvel.world.level.timers.ToggleHelmetCallback;
 import org.slf4j.Logger;
 
 @Mod(MarvelSuperheroes.MOD_ID)
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.0.0";
+    public static final String MOD_VERSION = "2.1.0-snapshot1";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
@@ -59,6 +60,7 @@ public class MarvelSuperheroes {
     private void setup(FMLCommonSetupEvent event) {
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInCurioSlotCallback.Serializer());
+        TimerCallbacks.SERVER_CALLBACKS.register(new ToggleHelmetCallback.Serializer());
     }
 
     public static ResourceLocation id(String path) {

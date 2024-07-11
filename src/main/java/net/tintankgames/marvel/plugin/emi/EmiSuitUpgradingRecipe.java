@@ -24,6 +24,7 @@ public class EmiSuitUpgradingRecipe implements EmiRecipe {
     public EmiSuitUpgradingRecipe(RecipeHolder<SuitUpgradingRecipe> recipe) {
         this.suit = EmiIngredient.of(recipe.value().getSuit());
         this.input = recipe.value().getIngredients().stream().map(EmiIngredient::of).toList();
+        this.input.removeFirst();
         this.output = EmiStack.of(recipe.value().getResultItem(Minecraft.getInstance().level.registryAccess()));
         this.id = recipe.id();
     }

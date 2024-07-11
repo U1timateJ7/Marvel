@@ -19,6 +19,8 @@ public class MarvelEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<WaspSting>> WASP_STING = register("wasp_sting", EntityType.Builder.<WaspSting>of(WaspSting::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownMjolnir>> MJOLNIR = register("mjolnir", EntityType.Builder.<ThrownMjolnir>of(ThrownMjolnir::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownStormbreaker>> STORMBREAKER = register("stormbreaker", EntityType.Builder.<ThrownStormbreaker>of(ThrownStormbreaker::new, MobCategory.MISC).sized(0.5F, 0.25F).clientTrackingRange(4).updateInterval(20));
+    public static final DeferredHolder<EntityType<?>, EntityType<Flame>> FLAME = register("flame", EntityType.Builder.<Flame>of(Flame::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
+    public static final DeferredHolder<EntityType<?>, EntityType<Repulsor>> REPULSOR = register("repulsor", EntityType.Builder.<Repulsor>of(Repulsor::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
 
     private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String id, EntityType.Builder<T> entityTypeBuilder) {
         return REGISTER.register(id, () -> entityTypeBuilder.build(id));

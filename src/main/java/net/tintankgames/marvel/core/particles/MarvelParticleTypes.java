@@ -52,6 +52,8 @@ public class MarvelParticleTypes {
         }
     });
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPIDER_SENSE = register("spider_sense", true);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> EMISSIVE_FLAME = register("emissive_flame", true);
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> IRON_MAN_FLAME = register("iron_man_flame", true);
 
     private static <T extends ParticleOptions> DeferredHolder<ParticleType<?>, ParticleType<T>> register(String id, Supplier<ParticleType<T>> supplier) {
         return REGISTER.register(id, supplier);

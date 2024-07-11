@@ -182,5 +182,47 @@
     "sounds": [
       "marvel:item/mjolnir/catch"
     ]
+  },
+  "suit.iron_man.helmet_open": {
+    "subtitle": "subtitles.suit.iron_man.helmet_open",
+    "sounds": [
+      "marvel:suit/iron_man/helmet_open"
+    ]
+  },
+  "suit.iron_man.helmet_close": {
+    "subtitle": "subtitles.suit.iron_man.helmet_close",
+    "sounds": [
+      "marvel:suit/iron_man/helmet_close"
+    ]
+  },
+  "suit.iron_man.repulsor_charge": {
+    "subtitle": "subtitles.suit.iron_man.repulsor_charge",
+    "sounds": [
+      "marvel:suit/iron_man/repulsor_charge"
+    ]
+  },
+  "suit.iron_man.unibeam_charge": {
+    "subtitle": "subtitles.suit.iron_man.unibeam_charge",
+    "sounds": [
+      "marvel:suit/iron_man/unibeam_charge"
+    ]
+  },
+  "suit.iron_man.repulsor_shoot": {
+    "subtitle": "subtitles.suit.iron_man.repulsor_shoot",
+    "sounds": [
+      "marvel:suit/iron_man/shoot"
+    ]
+  },
+  "suit.iron_man.unibeam_shoot": {
+    "subtitle": "subtitles.suit.iron_man.unibeam_shoot",
+    "sounds": [
+      "marvel:suit/iron_man/shoot"
+    ]
+  },
+  "item.iron_man_mark_5_suitcase.use": {
+    "subtitle": "subtitles.item.iron_man_mark_5_suitcase.use",
+    "sounds": [
+      "marvel:item/iron_man_mark_5_suitcase/use"
+    ]
   }
 }

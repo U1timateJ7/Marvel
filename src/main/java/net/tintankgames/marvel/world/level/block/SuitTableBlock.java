@@ -23,7 +23,7 @@ public class SuitTableBlock extends BaseEntityBlock {
     public static final Component VARIANTS_TITLE = Component.translatable("container.suit_variants");
 
     @Override
-    public MapCodec<? extends SuitTableBlock> codec() {
+    public MapCodec<SuitTableBlock> codec() {
         return CODEC;
     }
 

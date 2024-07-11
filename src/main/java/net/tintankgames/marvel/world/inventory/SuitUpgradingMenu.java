@@ -6,8 +6,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
@@ -17,7 +19,7 @@ import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import java.util.List;
 import java.util.Optional;
 
-public class SuitUpgradingMenu extends AbstractContainerMenu {
+public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
     private final CraftingContainer craftSlots = new TransientCraftingContainer(this, 5, 2);
     private final ResultContainer resultSlot = new ResultContainer();
     private final ContainerLevelAccess access;
@@ -168,5 +170,51 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
 
     public BlockPos getBlockPos() {
         return new BlockPos(data.get(0), data.get(1), data.get(2));
+    }
+
+    @Override
+    public void fillCraftSlotsStackedContents(StackedContents p_40117_) {
+        this.craftSlots.fillStackedContents(p_40117_);
+    }
+
+    @Override
+    public void clearCraftingContent() {
+        this.craftSlots.clearContent();
+        this.resultSlot.clearContent();
+    }
+
+    @Override
+    public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> p_300858_) {
+        return p_300858_.value().matches(this.craftSlots, this.player.level());
+    }
+
+    @Override
+    public int getResultSlotIndex() {
+        return 0;
+    }
+
+    @Override
+    public int getGridWidth() {
+        return 3;
+    }
+
+    @Override
+    public int getGridHeight() {
+        return 3;
+    }
+
+    @Override
+    public int getSize() {
+        return 11;
+    }
+
+    @Override
+    public RecipeBookType getRecipeBookType() {
+        return SuitUpgradingRecipe.RECIPE_BOOK_TYPE.get();
+    }
+
+    @Override
+    public boolean shouldMoveToInventory(int p_150635_) {
+        return p_150635_ != this.getResultSlotIndex();
     }
 }

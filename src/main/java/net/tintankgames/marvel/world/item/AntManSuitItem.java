@@ -1,5 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -8,11 +10,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.item.component.Size;
@@ -46,6 +50,12 @@ public class AntManSuitItem extends LeatherSuitItem {
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         stack.set(MarvelDataComponents.SIZE, Size.NORMAL);
         return super.onEntityItemUpdate(stack, entity);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
+        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
+        if (type == Type.HELMET) p_41423_.add(Component.translatable(getDescriptionId(p_41421_).replace("_helmet", "") + ".key.h", Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 
     @SubscribeEvent

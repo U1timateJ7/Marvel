@@ -150,6 +150,27 @@ public class MarvelItems {
     public static final DeferredItem<Item> THOR_CHESTPLATE = register("thor_chestplate", () -> new ThorSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> THOR_LEGGINGS = register("thor_leggings", () -> new ThorSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> THOR_BOOTS = register("thor_boots", () -> new ThorSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> PALLADIUM_ARC_REACTOR = register("palladium_arc_reactor", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FLAMETHROWER = register("flamethrower", () -> new FlamethrowerItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_1_HELMET = register("iron_man_mark_1_helmet", () -> new IronManMark1SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_1_CHESTPLATE = register("iron_man_mark_1_chestplate", () -> new IronManMark1SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_1_LEGGINGS = register("iron_man_mark_1_leggings", () -> new IronManMark1SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_1_BOOTS = register("iron_man_mark_1_boots", () -> new IronManMark1SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
+    public static final DeferredItem<Item> REPULSOR = register("repulsor", () -> new RepulsorItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_2_HELMET = register("iron_man_mark_2_helmet", () -> new IronManMark2SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_2_CHESTPLATE = register("iron_man_mark_2_chestplate", () -> new IronManMark2SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_2_LEGGINGS = register("iron_man_mark_2_leggings", () -> new IronManMark2SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_2_BOOTS = register("iron_man_mark_2_boots", () -> new IronManMark2SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
+    public static final DeferredItem<Item> UNIBEAM = register("unibeam", () -> new UnibeamItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_3_HELMET = register("iron_man_mark_3_helmet", () -> new IronManMark3SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_3_CHESTPLATE = register("iron_man_mark_3_chestplate", () -> new IronManMark3SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_3_LEGGINGS = register("iron_man_mark_3_leggings", () -> new IronManMark3SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_3_BOOTS = register("iron_man_mark_3_boots", () -> new IronManMark3SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_5_HELMET = register("iron_man_mark_5_helmet", () -> new IronManMark5SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_5_CHESTPLATE = register("iron_man_mark_5_chestplate", () -> new IronManMark5SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_5_LEGGINGS = register("iron_man_mark_5_leggings", () -> new IronManMark5SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_5_BOOTS = register("iron_man_mark_5_boots", () -> new IronManMark5SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_5_SUITCASE = register("iron_man_mark_5_suitcase", () -> new IronManMark5SuitcaseItem(new Item.Properties()));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -224,6 +245,31 @@ public class MarvelItems {
         public static final TagKey<Item> THOR_CHESTPLATE = create("thor_chestplate");
         public static final TagKey<Item> THOR_LEGGINGS = create("thor_leggings");
         public static final TagKey<Item> THOR_BOOTS = create("thor_boots");
+        public static final TagKey<Item> IRON_MAN_MARK_1_ARMOR = create("iron_man_mark_1_armor");
+        public static final TagKey<Item> IRON_MAN_MARK_1_HELMET = create("iron_man_mark_1_helmet");
+        public static final TagKey<Item> IRON_MAN_MARK_1_CHESTPLATE = create("iron_man_mark_1_chestplate");
+        public static final TagKey<Item> IRON_MAN_MARK_1_LEGGINGS = create("iron_man_mark_1_leggings");
+        public static final TagKey<Item> IRON_MAN_MARK_1_BOOTS = create("iron_man_mark_1_boots");
+        public static final TagKey<Item> IRON_MAN_MARK_2_ARMOR = create("iron_man_mark_2_armor");
+        public static final TagKey<Item> IRON_MAN_MARK_2_HELMET = create("iron_man_mark_2_helmet");
+        public static final TagKey<Item> IRON_MAN_MARK_2_CHESTPLATE = create("iron_man_mark_2_chestplate");
+        public static final TagKey<Item> IRON_MAN_MARK_2_LEGGINGS = create("iron_man_mark_2_leggings");
+        public static final TagKey<Item> IRON_MAN_MARK_2_BOOTS = create("iron_man_mark_2_boots");
+        public static final TagKey<Item> IRON_MAN_MARK_3_ARMOR = create("iron_man_mark_3_armor");
+        public static final TagKey<Item> IRON_MAN_MARK_3_HELMET = create("iron_man_mark_3_helmet");
+        public static final TagKey<Item> IRON_MAN_MARK_3_CHESTPLATE = create("iron_man_mark_3_chestplate");
+        public static final TagKey<Item> IRON_MAN_MARK_3_LEGGINGS = create("iron_man_mark_3_leggings");
+        public static final TagKey<Item> IRON_MAN_MARK_3_BOOTS = create("iron_man_mark_3_boots");
+        public static final TagKey<Item> IRON_MAN_MARK_5_ARMOR = create("iron_man_mark_5_armor");
+        public static final TagKey<Item> IRON_MAN_MARK_5_HELMET = create("iron_man_mark_5_helmet");
+        public static final TagKey<Item> IRON_MAN_MARK_5_CHESTPLATE = create("iron_man_mark_5_chestplate");
+        public static final TagKey<Item> IRON_MAN_MARK_5_LEGGINGS = create("iron_man_mark_5_leggings");
+        public static final TagKey<Item> IRON_MAN_MARK_5_BOOTS = create("iron_man_mark_5_boots");
+        public static final TagKey<Item> IRON_MAN_ARMOR = create("iron_man_armor");
+        public static final TagKey<Item> IRON_MAN_HELMET = create("iron_man_helmet");
+        public static final TagKey<Item> IRON_MAN_CHESTPLATE = create("iron_man_chestplate");
+        public static final TagKey<Item> IRON_MAN_LEGGINGS = create("iron_man_leggings");
+        public static final TagKey<Item> IRON_MAN_BOOTS = create("iron_man_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

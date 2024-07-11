@@ -1,0 +1,81 @@
+{
+  "parent": "minecraft:block/block",
+  "texture_size": [32, 32],
+  "textures": {
+    "charger": "marvel:block/suit_charger_off"
+  },
+  "elements": [
+    {
+      "from": [1, 0, 1],
+      "to": [15, 1, 15],
+      "faces": {
+        "north": {"uv": [0, 14.5, 7, 15], "texture": "#charger"},
+        "east": {"uv": [0, 15.5, 7, 16], "texture": "#charger"},
+        "south": {"uv": [0, 15, 7, 15.5], "texture": "#charger"},
+        "west": {"uv": [0, 14, 7, 14.5], "texture": "#charger"},
+        "up": {"uv": [7, 14, 0, 7], "texture": "#charger"},
+        "down": {"uv": [7, 7, 0, 14], "texture": "#charger", "cullface": "down"}
+      }
+    },
+    {
+      "from": [2, 1, 2],
+      "to": [14, 3, 14],
+      "rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
+      "faces": {
+        "north": {"uv": [0, 6, 6, 7], "texture": "#charger"},
+        "east": {"uv": [12, 4, 6, 5], "texture": "#charger"},
+        "south": {"uv": [12, 6, 6, 7], "texture": "#charger"},
+        "west": {"uv": [12, 5, 6, 6], "texture": "#charger"},
+        "up": {"uv": [6, 6, 0, 0], "texture": "#charger"}
+      }
+    },
+    {
+      "from": [5, 1, 1],
+      "to": [11, 3, 2],
+      "rotation": {"angle": 0, "axis": "y", "origin": [0, 2, -1]},
+      "faces": {
+        "north": {"uv": [6, 0, 9, 1], "texture": "#charger"},
+        "east": {"uv": [12, 0, 12.5, 1], "texture": "#charger"},
+        "west": {"uv": [12.5, 0, 13, 1], "texture": "#charger"},
+        "up": {"uv": [12, 0.5, 9, 0], "texture": "#charger"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [75, 45, 0],
+      "translation": [0, 2.5, 2],
+      "scale": [0.375, 0.375, 0.375]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [75, 45, 0],
+      "translation": [0, 2.5, 2],
+      "scale": [0.375, 0.375, 0.375]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 45, 0],
+      "translation": [0, 4, 0],
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 225, 0],
+      "translation": [0, 4, 0],
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "ground": {
+      "translation": [0, 3, 0],
+      "scale": [0.25, 0.25, 0.25]
+    },
+    "gui": {
+      "rotation": [30, 225, 0],
+      "translation": [0, 3, 0],
+      "scale": [0.625, 0.625, 0.625]
+    },
+    "head": {
+      "translation": [0, 10.75, 0]
+    },
+    "fixed": {
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}

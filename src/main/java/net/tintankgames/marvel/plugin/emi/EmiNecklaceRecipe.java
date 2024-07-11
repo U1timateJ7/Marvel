@@ -6,17 +6,11 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.SlotWidget;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 public class EmiNecklaceRecipe extends EmiPatternCraftingRecipe {
-    private static final List<DyeItem> DYES = Stream.of(DyeColor.values()).map(DyeItem::byColor).toList();
     private final Item necklace;
 
     public EmiNecklaceRecipe(Item necklace, ResourceLocation id) {

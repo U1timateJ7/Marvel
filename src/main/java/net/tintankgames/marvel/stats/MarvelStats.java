@@ -18,6 +18,7 @@ public class MarvelStats {
 
     public static final DeferredHolder<ResourceLocation, ResourceLocation> CLEAN_SHIELD = register("clean_shield");
     public static final DeferredHolder<ResourceLocation, ResourceLocation> INTERACT_WITH_SUIT_TABLE = register("interact_with_suit_table");
+    public static final DeferredHolder<ResourceLocation, ResourceLocation> INTERACT_WITH_SUIT_CHARGER = register("interact_with_suit_charger");
 
     private static DeferredHolder<ResourceLocation, ResourceLocation> register(String id) {
         return REGISTER.register(id, () -> MarvelSuperheroes.id(id));
@@ -31,5 +32,6 @@ public class MarvelStats {
     public static void setup(FMLCommonSetupEvent event) {
         Stats.CUSTOM.get(CLEAN_SHIELD.get(), StatFormatter.DEFAULT);
         Stats.CUSTOM.get(INTERACT_WITH_SUIT_TABLE.get(), StatFormatter.DEFAULT);
+        Stats.CUSTOM.get(INTERACT_WITH_SUIT_CHARGER.get(), StatFormatter.DEFAULT);
     }
 }

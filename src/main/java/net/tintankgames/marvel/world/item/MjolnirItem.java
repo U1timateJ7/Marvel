@@ -1,10 +1,12 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -20,17 +22,16 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ProjectileItem;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownMjolnir;
@@ -38,6 +39,7 @@ import net.tintankgames.marvel.world.level.MjolnirExplosionDamageCalculator;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -47,10 +49,17 @@ public class MjolnirItem extends Item implements ProjectileItem {
 
     public MjolnirItem(Properties properties) {
         super(properties);
+        DispenserBlock.registerProjectileBehavior(this);
     }
 
     public static ItemAttributeModifiers attributes() {
         return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 11.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(NeoForgeMod.CREATIVE_FLIGHT, new AttributeModifier(BASE_CREATIVE_FLIGHT_UUID, "Tool modifier", 1.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
+        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
+        p_41423_.add(Component.translatable(getDescriptionId(p_41421_) + ".key.c", Component.keybind(MarvelKeyMappings.SECONDARY_SUIT_ABILITY.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 
     @Override

@@ -38,6 +38,13 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_HIT = register("item.stormbreaker.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_HIT_SHIELD = register("item.stormbreaker.hit_shield");
     public static final DeferredHolder<SoundEvent, SoundEvent> STORMBREAKER_CATCH = register("item.stormbreaker.catch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_HELMET_OPEN = register("suit.iron_man.helmet_open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_HELMET_CLOSE = register("suit.iron_man.helmet_close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_REPULSOR_CHARGE = register("suit.iron_man.repulsor_charge");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_UNIBEAM_CHARGE = register("suit.iron_man.unibeam_charge");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_REPULSOR_SHOOT = register("suit.iron_man.repulsor_shoot");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_UNIBEAM_SHOOT = register("suit.iron_man.unibeam_shoot");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_MARK_5_SUITCASE_USE = register("item.iron_man_mark_5_suitcase.use");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

@@ -17,24 +17,31 @@ public class SetItemInSlotCallback implements TimerCallback<MinecraftServer> {
     final EquipmentSlot slot;
     final ItemStack stack;
     final boolean playSound;
+    final boolean replace;
 
-    public SetItemInSlotCallback(ServerPlayer player, EquipmentSlot slot, ItemStack stack, boolean playSound) {
-        this(player.getUUID(), slot, stack, playSound);
+    public SetItemInSlotCallback(ServerPlayer player, EquipmentSlot slot, ItemStack stack, boolean playSound, boolean replace) {
+        this(player.getUUID(), slot, stack, playSound, replace);
     }
 
-    public SetItemInSlotCallback(UUID player, EquipmentSlot slot, ItemStack stack, boolean playSound) {
+    public SetItemInSlotCallback(UUID player, EquipmentSlot slot, ItemStack stack, boolean playSound, boolean replace) {
         this.player = player;
         this.slot = slot;
         this.stack = stack.copy();
         this.playSound = playSound;
+        this.replace = replace;
     }
 
     public void handle(MinecraftServer p_82172_, TimerQueue<MinecraftServer> p_82173_, long p_82174_) {
         ServerPlayer player = p_82172_.getPlayerList().getPlayer(this.player);
-        if (this.playSound) {
-            player.setItemSlot(this.slot, this.stack);
-        } else {
-            player.getInventory().armor.set(this.slot.getIndex(), this.stack);
+        if (player != null) {
+            if (!this.replace && !player.addItem(player.getItemBySlot(this.slot))) {
+                player.drop(player.getItemBySlot(this.slot), true);
+            }
+            if (this.playSound) {
+                player.setItemSlot(this.slot, this.stack);
+            } else {
+                player.getInventory().armor.set(this.slot.getIndex(), this.stack);
+            }
         }
     }
 
@@ -48,6 +55,7 @@ public class SetItemInSlotCallback implements TimerCallback<MinecraftServer> {
             p_82182_.putString("slot", p_82183_.slot.getName());
             p_82182_.put("item", p_82183_.stack.saveOptional(VanillaRegistries.createLookup()));
             p_82182_.putBoolean("play_sound", p_82183_.playSound);
+            p_82182_.putBoolean("replace", p_82183_.replace);
         }
 
         public SetItemInSlotCallback deserialize(CompoundTag p_82180_) {
@@ -55,7 +63,8 @@ public class SetItemInSlotCallback implements TimerCallback<MinecraftServer> {
             EquipmentSlot slot = EquipmentSlot.byName(p_82180_.getString("slot"));
             ItemStack stack = ItemStack.parseOptional(VanillaRegistries.createLookup(), p_82180_.getCompound("item"));
             boolean playSound = p_82180_.getBoolean("play_sound");
-            return new SetItemInSlotCallback(player, slot, stack, playSound);
+            boolean replace = p_82180_.getBoolean("replace");
+            return new SetItemInSlotCallback(player, slot, stack, playSound, replace);
         }
     }
 }

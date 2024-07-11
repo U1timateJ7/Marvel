@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -13,6 +12,7 @@ import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.world.entity.projectile.WaspSting;
 
 @OnlyIn(Dist.CLIENT)
@@ -28,7 +28,7 @@ public class WaspStingRenderer extends EntityRenderer<WaspSting> {
         p_113842_.mulPose(Axis.XP.rotationDegrees(45.0F));
         p_113842_.scale(0.05625F, 0.05625F, 0.05625F);
         p_113842_.translate(-4.0F, 0.0F, 0.0F);
-        VertexConsumer vertexconsumer = p_113843_.getBuffer(RenderType.entityTranslucentEmissive(this.getTextureLocation(p_113839_)));
+        VertexConsumer vertexconsumer = p_113843_.getBuffer(MarvelRenderTypes.entityEmissive(this.getTextureLocation(p_113839_)));
         PoseStack.Pose posestack$pose = p_113842_.last();
         this.vertex(posestack$pose, vertexconsumer, -7, -2, -2, 0.0F, 0.15625F, -1, 0, 0, p_113844_);
         this.vertex(posestack$pose, vertexconsumer, -7, -2, 2, 0.15625F, 0.15625F, -1, 0, 0, p_113844_);

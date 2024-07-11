@@ -6,6 +6,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -27,15 +28,20 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public abstract class SuitItem extends ArmorItem {
-    private final TagKey<Item> suitPieces;
+    private final Predicate<Holder<Item>> suitPieces;
 
     public SuitItem(Holder<ArmorMaterial> material, Type type, TagKey<Item> suitPieces, Properties properties) {
         this(material, type, suitPieces, List.of(), properties);
     }
 
     public SuitItem(Holder<ArmorMaterial> material, Type type, TagKey<Item> suitPieces, List<MobEffectInstance> effects, Properties properties) {
+        this(material, type, itemHolder -> itemHolder.is(suitPieces), effects, properties);
+    }
+
+    public SuitItem(Holder<ArmorMaterial> material, Type type, Predicate<Holder<Item>> suitPieces, List<MobEffectInstance> effects, Properties properties) {
         super(material, type, properties.component(MarvelDataComponents.SUIT_EFFECTS, effects));
         this.suitPieces = suitPieces;
     }
@@ -50,7 +56,7 @@ public abstract class SuitItem extends ArmorItem {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean p_41408_) {
-        if (entity instanceof LivingEntity living) {
+        if (entity instanceof LivingEntity living && slot >= 36 && slot <= 39) {
             if (living.getItemBySlot(EquipmentSlot.HEAD).is(suitPieces) && living.getItemBySlot(EquipmentSlot.CHEST).is(suitPieces) && living.getItemBySlot(EquipmentSlot.LEGS).is(suitPieces) && living.getItemBySlot(EquipmentSlot.FEET).is(suitPieces)) {
                 if (living.getItemBySlot(EquipmentSlot.CHEST) == stack) {
                     for (MobEffectInstance instance : stack.getOrDefault(MarvelDataComponents.SUIT_EFFECTS, List.<MobEffectInstance>of())) {
@@ -66,6 +72,7 @@ public abstract class SuitItem extends ArmorItem {
                             player.getInventory().removeItem(player.getInventory().getItem(findSlotMatchingItem(player.getInventory().items, powerItem)));
                         }
                     }
+                    if (player instanceof ServerPlayer serverPlayer) fullSuitTick(stack, level, serverPlayer);
                 }
             } else {
                 if (living instanceof Player player) {
@@ -77,6 +84,9 @@ public abstract class SuitItem extends ArmorItem {
                 }
             }
         }
+    }
+
+    protected void fullSuitTick(ItemStack stack, Level level, Player player) {
     }
 
     public static int findSlotMatchingItem(List<ItemStack> items, Item item) {

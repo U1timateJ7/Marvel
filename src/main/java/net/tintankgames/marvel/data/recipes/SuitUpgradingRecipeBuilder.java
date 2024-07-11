@@ -14,80 +14,86 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.tintankgames.marvel.world.item.crafting.SuitUpgradingBookCategory;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
-
 import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
+    private final SuitUpgradingBookCategory category;
     private final boolean consumesSuit;
     private final Ingredient suit;
     private final ItemStack result;
     private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
+    @Nullable
+    private String group;
 
-    public SuitUpgradingRecipeBuilder(Ingredient suit, ItemStack result) {
-        this(suit, result, false);
+    public SuitUpgradingRecipeBuilder(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result) {
+        this(category, suit, result, false);
     }
 
-    public SuitUpgradingRecipeBuilder(Ingredient suit, ItemStack result, boolean consumesSuit) {
+    public SuitUpgradingRecipeBuilder(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result, boolean consumesSuit) {
+        this.category = category;
         this.consumesSuit = consumesSuit;
         this.suit = suit;
         this.result = result;
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemLike result) {
-        return new SuitUpgradingRecipeBuilder(suit, new ItemStack(result), false);
+    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemLike result) {
+        return new SuitUpgradingRecipeBuilder(category, suit, new ItemStack(result), false);
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemLike result, boolean consumesSuit) {
-        return new SuitUpgradingRecipeBuilder(suit, new ItemStack(result), consumesSuit);
+    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemLike result, boolean consumesSuit) {
+        return new SuitUpgradingRecipeBuilder(category, suit, new ItemStack(result), consumesSuit);
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemStack result) {
-        return new SuitUpgradingRecipeBuilder(suit, result);
+    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result) {
+        return new SuitUpgradingRecipeBuilder(category, suit, result);
     }
 
-    public SuitUpgradingRecipeBuilder requires(TagKey<Item> p_206420_) {
-        return this.requires(Ingredient.of(p_206420_));
+    public SuitUpgradingRecipeBuilder requires(TagKey<Item> tagKey) {
+        return this.requires(Ingredient.of(tagKey));
     }
 
-    public SuitUpgradingRecipeBuilder requires(TagKey<Item> p_206420_, int count) {
-        return this.requires(Ingredient.of(p_206420_), count);
+    public SuitUpgradingRecipeBuilder requires(TagKey<Item> tagKey, int count) {
+        return this.requires(Ingredient.of(tagKey), count);
     }
 
-    public SuitUpgradingRecipeBuilder requires(ItemLike p_126210_) {
-        return this.requires(p_126210_, 1);
+    public SuitUpgradingRecipeBuilder requires(ItemLike item) {
+        return this.requires(item, 1);
     }
 
-    public SuitUpgradingRecipeBuilder requires(ItemLike p_126212_, int p_126213_) {
-        for (int i = 0; i < p_126213_; i++) {
-            this.requires(Ingredient.of(p_126212_));
+    public SuitUpgradingRecipeBuilder requires(ItemLike item, int count) {
+        for (int i = 0; i < count; i++) {
+            this.requires(Ingredient.of(item));
         }
 
         return this;
     }
 
-    public SuitUpgradingRecipeBuilder requires(Ingredient p_126185_) {
-        return this.requires(p_126185_, 1);
+    public SuitUpgradingRecipeBuilder requires(Ingredient ingredient) {
+        return this.requires(ingredient, 1);
     }
 
-    public SuitUpgradingRecipeBuilder requires(Ingredient p_126187_, int p_126188_) {
-        for (int i = 0; i < p_126188_; i++) {
-            this.ingredients.add(p_126187_);
+    public SuitUpgradingRecipeBuilder requires(Ingredient ingredient, int count) {
+        for (int i = 0; i < count; i++) {
+            this.ingredients.add(ingredient);
         }
 
         return this;
     }
 
-    public SuitUpgradingRecipeBuilder unlockedBy(String p_176781_, Criterion<?> p_300897_) {
-        this.criteria.put(p_176781_, p_300897_);
+    public SuitUpgradingRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {
+        this.criteria.put(name, criterion);
         return this;
     }
 
-    @Override
-    public RecipeBuilder group(@Nullable String p_176495_) {
+    public SuitUpgradingRecipeBuilder group(@Nullable String group) {
+        this.group = group;
         return this;
     }
 
@@ -97,25 +103,17 @@ public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
     }
 
     @Override
-    public void save(RecipeOutput p_301215_, ResourceLocation p_126206_) {
-        this.ensureValid(p_126206_);
-        Advancement.Builder advancement$builder = p_301215_.advancement()
-                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(p_126206_))
-                .rewards(AdvancementRewards.Builder.recipe(p_126206_))
-                .requirements(AdvancementRequirements.Strategy.OR);
+    public void save(RecipeOutput recipeOutput, ResourceLocation id) {
+        this.ensureValid(id);
+        Advancement.Builder advancement$builder = recipeOutput.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement$builder::addCriterion);
-        SuitUpgradingRecipe suitUpgradingRecipe = new SuitUpgradingRecipe(
-                this.suit,
-                this.result,
-                this.ingredients,
-                this.consumesSuit
-        );
-        p_301215_.accept(p_126206_, suitUpgradingRecipe, advancement$builder.build(p_126206_.withPrefix("recipes/suit_upgrading/")));
+        SuitUpgradingRecipe suitUpgradingRecipe = new SuitUpgradingRecipe(Objects.requireNonNullElse(this.group, ""), this.category, this.suit, this.result, this.ingredients, this.consumesSuit);
+        recipeOutput.accept(id, suitUpgradingRecipe, advancement$builder.build(id.withPrefix("recipes/suit_upgrading/")));
     }
 
-    private void ensureValid(ResourceLocation p_126208_) {
+    private void ensureValid(ResourceLocation id) {
         if (this.criteria.isEmpty()) {
-            throw new IllegalStateException("No way of obtaining recipe " + p_126208_);
+            throw new IllegalStateException("No way of obtaining recipe " + id);
         }
     }
 }

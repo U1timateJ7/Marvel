@@ -19,7 +19,7 @@ import org.lwjgl.glfw.GLFW;
 @EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
 public class MarvelKeyMappings {
-    private static final KeyMapping PRIMARY_SUIT_ABILITY = new KeyMapping(MarvelSuperheroes.id("primary_suit_ability").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "key.categories.marvel") {
+    public static final KeyMapping PRIMARY_SUIT_ABILITY = new KeyMapping(MarvelSuperheroes.id("primary_suit_ability").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "key.categories.marvel") {
         private boolean isDownOld = false;
 
         @Override
@@ -33,7 +33,7 @@ public class MarvelKeyMappings {
             isDownOld = isDown;
         }
     };
-    private static final KeyMapping SECONDARY_SUIT_ABILITY = new KeyMapping(MarvelSuperheroes.id("secondary_suit_ability").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "key.categories.marvel") {
+    public static final KeyMapping SECONDARY_SUIT_ABILITY = new KeyMapping(MarvelSuperheroes.id("secondary_suit_ability").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "key.categories.marvel") {
         private boolean isDownOld = false;
 
         @Override

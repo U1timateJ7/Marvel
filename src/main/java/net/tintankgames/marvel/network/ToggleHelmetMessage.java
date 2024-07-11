@@ -41,6 +41,9 @@ public class ToggleHelmetMessage implements CustomPacketPayload {
                     } else if (helmet.is(MarvelItems.Tags.ANT_MAN_HELMET) || helmet.is(MarvelItems.Tags.ANT_MAN_UPGRADED_HELMET) || helmet.is(MarvelItems.Tags.WASP_HELMET)) {
                         if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
                         else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.ANT_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                    } else if (helmet.is(MarvelItems.Tags.IRON_MAN_HELMET)) {
+                        if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
+                        else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
                     } else if (helmet.getItem() instanceof ArmorItem armorItem) {
                         if (open) player.level().playSound(null, player.getX(), player.getY(), player.getZ(), armorItem.getEquipSound().value(), SoundSource.PLAYERS);
                         else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), armorItem.getEquipSound().value(), SoundSource.PLAYERS);
