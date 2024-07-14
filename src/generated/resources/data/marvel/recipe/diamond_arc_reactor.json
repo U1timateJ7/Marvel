@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:gems/diamond"
+    },
+    "G": {
+      "tag": "c:glass_panes/colorless"
+    },
+    "X": {
+      "tag": "c:gems/quartz"
+    }
+  },
+  "pattern": [
+    "#G#",
+    "GXG",
+    "#G#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:diamond_arc_reactor"
+  }
+}

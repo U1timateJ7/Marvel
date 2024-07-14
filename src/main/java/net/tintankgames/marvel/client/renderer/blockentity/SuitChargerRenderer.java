@@ -23,6 +23,7 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.client.ClientHooks;
+import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -45,10 +46,10 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
         poseStack.mulPose(Axis.YP.rotationDegrees(-f));
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
         switch (blockstate.getValue(SuitChargerBlock.FACING)) {
-            case NORTH -> poseStack.translate(-0.5, -2.75, 0.5);
-            case SOUTH -> poseStack.translate(0.5, -2.75, -0.5);
-            case WEST -> poseStack.translate(0.5, -2.75, 0.5);
-            case EAST -> poseStack.translate(-0.5, -2.75, -0.5);
+            case NORTH -> poseStack.translate(-0.5, -2.825, 0.5);
+            case SOUTH -> poseStack.translate(0.5, -2.825, -0.5);
+            case WEST -> poseStack.translate(0.5, -2.825, 0.5);
+            case EAST -> poseStack.translate(-0.5, -2.825, -0.5);
         }
         poseStack.scale(1.75f, 1.75f, 1.75f);
         this.renderSuitPiece(poseStack, bufferSource, blockEntity, EquipmentSlot.CHEST, combinedLight, new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)));
@@ -72,6 +73,11 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
                 for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
                     int j = armormaterial$layer.dyeable() ? i : -1;
 
+                    if (model instanceof SuitModel<?> suitModel) {
+                        suitModel.hat.xScale *= 1.5F;
+                        suitModel.hat.yScale *= 1.5F;
+                        suitModel.hat.zScale *= 1.5F;
+                    }
                     ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, armormaterial$layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), j);

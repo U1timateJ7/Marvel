@@ -108,25 +108,7 @@ public abstract class SuitItem extends ArmorItem {
         consumer.accept(new IClientItemExtensions() {
             @Override
             public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                SuitModel<?> suitModel = new SuitModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(modelFactory(getType(), itemStack)));
-                copyPropertiesTo(original, suitModel);
-                return suitModel;
-            }
-
-            private void copyPropertiesTo(HumanoidModel<?> original, SuitModel<?> model) {
-                model.attackTime = original.attackTime;
-                model.riding = original.riding;
-                model.young = original.young;
-                model.leftArmPose = original.leftArmPose;
-                model.rightArmPose = original.rightArmPose;
-                model.crouching = original.crouching;
-                model.head.copyFrom(original.head);
-                model.hat.copyFrom(original.hat);
-                model.body.copyFrom(original.body);
-                model.rightArm.copyFrom(original.rightArm);
-                model.leftArm.copyFrom(original.leftArm);
-                model.rightLeg.copyFrom(original.rightLeg);
-                model.leftLeg.copyFrom(original.leftLeg);
+                return new SuitModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(modelFactory(getType(), itemStack)));
             }
         });
     }

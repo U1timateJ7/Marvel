@@ -36,5 +36,5 @@ public class MarvelClientEnumExtensions {
     });
     public static final EnumProxy<RecipeBookCategories> SUIT_UPGRADING_SEARCH_CATEGORY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(new ItemStack(Items.COMPASS)));
     public static final EnumProxy<RecipeBookCategories> SUIT_UPGRADING_SUITS_CATEGORY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(MarvelItems.ANT_MAN_UPGRADED_CHESTPLATE.toStack(), MarvelItems.WASP_HELMET.toStack()));
-    public static final EnumProxy<RecipeBookCategories> SUIT_UPGRADING_IRON_MAN_SUITS_CATEGORY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(MarvelItems.IRON_MAN_MARK_2_CHESTPLATE.toStack(), MarvelItems.IRON_MAN_MARK_3_HELMET.toStack()));
+    public static final EnumProxy<RecipeBookCategories> SUIT_UPGRADING_IRON_MAN_SUITS_CATEGORY = new EnumProxy<>(RecipeBookCategories.class, (Supplier<List<ItemStack>>) () -> List.of(MarvelItems.IRON_MAN_MARK_6_CHESTPLATE.toStack(), MarvelItems.IRON_MAN_MARK_5_HELMET.toStack()));
 }

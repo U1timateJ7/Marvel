@@ -55,15 +55,15 @@ public class SuitUpgradingRecipeCategory implements IRecipeCategory<RecipeHolder
         builder.setShapeless();
         builder.addSlot(RecipeIngredientRole.OUTPUT, 124, 19).addItemStack(MarvelSuperheroesJeiPlugin.getResultItem(recipe));
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 19).addIngredients(recipe.getSuit());
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 1).addIngredients(getIngredient(recipe, 0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 58, 1).addIngredients(getIngredient(recipe, 1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 76, 1).addIngredients(getIngredient(recipe, 2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 19).addIngredients(getIngredient(recipe, 3));
-        builder.addSlot(RecipeIngredientRole.INPUT, 58, 19).addIngredients(getIngredient(recipe, 4));
-        builder.addSlot(RecipeIngredientRole.INPUT, 76, 19).addIngredients(getIngredient(recipe, 5));
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 37).addIngredients(getIngredient(recipe, 6));
-        builder.addSlot(RecipeIngredientRole.INPUT, 58, 37).addIngredients(getIngredient(recipe, 7));
-        builder.addSlot(RecipeIngredientRole.INPUT, 76, 37).addIngredients(getIngredient(recipe, 8));
+        builder.addSlot(RecipeIngredientRole.INPUT, 40, 1).addIngredients(getIngredient(recipe, 1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 58, 1).addIngredients(getIngredient(recipe, 2));
+        builder.addSlot(RecipeIngredientRole.INPUT, 76, 1).addIngredients(getIngredient(recipe, 3));
+        builder.addSlot(RecipeIngredientRole.INPUT, 40, 19).addIngredients(getIngredient(recipe, 4));
+        builder.addSlot(RecipeIngredientRole.INPUT, 58, 19).addIngredients(getIngredient(recipe, 5));
+        builder.addSlot(RecipeIngredientRole.INPUT, 76, 19).addIngredients(getIngredient(recipe, 6));
+        builder.addSlot(RecipeIngredientRole.INPUT, 40, 37).addIngredients(getIngredient(recipe, 7));
+        builder.addSlot(RecipeIngredientRole.INPUT, 58, 37).addIngredients(getIngredient(recipe, 8));
+        builder.addSlot(RecipeIngredientRole.INPUT, 76, 37).addIngredients(getIngredient(recipe, 9));
     }
 
     private Ingredient getIngredient(SuitUpgradingRecipe recipe, int slot) {

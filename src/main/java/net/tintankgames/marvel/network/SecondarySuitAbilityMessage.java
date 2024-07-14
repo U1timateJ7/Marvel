@@ -170,6 +170,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                     if (boots.is(MarvelItems.IRON_MAN_MARK_5_BOOTS) && leggings.is(MarvelItems.IRON_MAN_MARK_5_LEGGINGS) && chestplate.is(MarvelItems.IRON_MAN_MARK_5_CHESTPLATE) && helmet.is(MarvelItems.IRON_MAN_MARK_5_HELMET)) {
                         ItemStack suitcase = MarvelItems.IRON_MAN_MARK_5_SUITCASE.toStack();
                         suitcase.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(player.getInventory().armor));
+                        player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
                         player.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);

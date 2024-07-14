@@ -16,6 +16,7 @@ public class MarvelAttachmentTypes {
 
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<EntityHolder<WebShot>>> GRAPPLING = register("grappling", () -> AttachmentType.builder(() -> new EntityHolder<WebShot>(null)).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Float>> HEALING_FACTOR_TRACKER = register("healing_factor_tracker", () -> AttachmentType.builder(() -> 20.0F).serialize(Codec.floatRange(0, Float.MAX_VALUE)).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Integer>> UNDERWATER_TICKS = register("underwater_ticks", () -> AttachmentType.builder(() -> 0).serialize(Codec.intRange(0, Integer.MAX_VALUE)).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
         return REGISTER.register(id, supplier);

@@ -13,6 +13,7 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.stats.MarvelStats;
+import net.tintankgames.marvel.world.effect.MarvelMobEffects;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
 import net.tintankgames.marvel.world.item.MarvelArmorMaterials;
@@ -45,6 +46,7 @@ public class MarvelSuperheroes {
         MarvelMenuTypes.register(bus);
         MarvelRecipeTypes.register(bus);
         MarvelRecipeSerializers.register(bus);
+        MarvelMobEffects.register(bus);
         MarvelEntityTypes.register(bus);
         MarvelArmorMaterials.register(bus);
         MarvelDataComponents.register(bus);

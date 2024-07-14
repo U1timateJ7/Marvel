@@ -1,0 +1,37 @@
+{
+  "type": "marvel:suit_upgrading",
+  "category": "iron_man_suits",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:glass_panes/colorless"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_6_helmet"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_5_helmet"
+  }
+}

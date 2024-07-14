@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "X": {
+      "tag": "c:leathers"
+    }
+  },
+  "pattern": [
+    "X X",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:iron_man_mark_1_boots"
+  }
+}

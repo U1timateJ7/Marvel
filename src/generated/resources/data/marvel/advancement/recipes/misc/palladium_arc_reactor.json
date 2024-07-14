@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_palladium_ingot": {
+    "has_raw_palladium": {
       "conditions": {
         "items": [
           {
-            "items": "marvel:palladium_ingot"
+            "items": "marvel:raw_palladium"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_palladium_ingot"
+      "has_raw_palladium"
     ]
   ],
   "rewards": {

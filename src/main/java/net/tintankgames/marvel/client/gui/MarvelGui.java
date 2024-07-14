@@ -7,6 +7,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
@@ -24,8 +25,10 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.effect.MarvelMobEffects;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
 import net.tintankgames.marvel.world.item.IronManSuitItem;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -36,6 +39,8 @@ import org.joml.Vector3f;
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(Dist.CLIENT)
 public class MarvelGui {
+    private static final ResourceLocation POWDER_SNOW_OUTLINE_LOCATION = ResourceLocation.withDefaultNamespace("textures/misc/powder_snow_outline.png");
+
     @SubscribeEvent
     public static void renderOverlays(RenderGuiLayerEvent.Post event) {
         if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS) {
@@ -43,7 +48,10 @@ public class MarvelGui {
             if (helmet.is(MarvelItems.IRON_MAN_MARK_1_HELMET) || (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) <= 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false))) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_low_power.png"), 1.0F, 0xFFFFFF);
             }
-            if (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) > 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+            if (Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING)) {
+                renderTextureOverlay(event.getGuiGraphics(), POWDER_SNOW_OUTLINE_LOCATION, Math.min(1.0F, (30.0F - (Minecraft.getInstance().player.getEffect(MarvelMobEffects.ICING).getDuration() + event.getPartialTick().getGameTimeDeltaTicks())) / 10.0F), 0xFFFFFF);
+            }
+            if (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) > 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && !Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING)) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_hud.png"), 1.0F, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
                 for (int i = -2; i < 2; i++) {
                     ItemStack armor = Minecraft.getInstance().player.getInventory().armor.get(1 - i);
@@ -51,13 +59,13 @@ public class MarvelGui {
                         event.getGuiGraphics().renderItem(armor, 12, event.getGuiGraphics().guiHeight() / 2 + i * 18);
                     }
                 }
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.literal(String.format("%.1f", EnergySuitItem.getEnergy(helmet)) + "%"), 7, (int) (event.getGuiGraphics().guiHeight() / 3.25F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.x", String.format("%.1f", Minecraft.getInstance().player.getX())), (int) (event.getGuiGraphics().guiWidth() * 0.365F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.y", String.format("%.1f", Minecraft.getInstance().player.getY())), (int) (event.getGuiGraphics().guiWidth() * 0.465F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.z", String.format("%.1f", Minecraft.getInstance().player.getZ())), (int) (event.getGuiGraphics().guiWidth() * 0.565F), (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
+                Component coordinateText = Component.translatable("gui.iron_man.coordinates", String.format("%.1f", Minecraft.getInstance().player.getX()), String.format("%.1f", Minecraft.getInstance().player.getY()), String.format("%.1f", Minecraft.getInstance().player.getZ()));
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.literal(String.format("%.1f", EnergySuitItem.getEnergy(helmet)) + "%"), 7, (int) (event.getGuiGraphics().guiHeight() * 0.302), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudMark() : Component.empty(), 7, (int) (event.getGuiGraphics().guiHeight() * 0.66666667), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, coordinateText, event.getGuiGraphics().guiWidth() / 2 - Minecraft.getInstance().font.width(coordinateText) / 2, (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
                 renderCompass(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
                 LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, 32.0D, 0.0F);
-                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
+                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), target, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
             }
         }
     }
@@ -78,7 +86,7 @@ public class MarvelGui {
         return entity instanceof LivingEntity living ? living : null;
     }
 
-    private static void renderTargetEntity(GuiGraphics guiGraphics, float partialTick, LivingEntity entity, Player player, int color) {
+    private static void renderTargetEntity(GuiGraphics guiGraphics, float partialTick, LivingEntity entity, int color) {
         float scale = 0.75F;
         int xOffset = guiGraphics.guiWidth() - (int) (125 * scale) - 18;
         int yOffset = guiGraphics.guiHeight() / 2 - 10;
@@ -95,6 +103,9 @@ public class MarvelGui {
         poseStack.popPose();
         xOffset += 10;
         yOffset -= 5;
+        if (Minecraft.getInstance().font.width(entity.getName()) + xOffset >= guiGraphics.guiWidth()) {
+            xOffset -= Minecraft.getInstance().font.width(entity.getName()) - (guiGraphics.guiWidth() - xOffset);
+        }
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), xOffset, yOffset, color, false);
         xOffset += 50;
         yOffset += 30;
@@ -121,7 +132,16 @@ public class MarvelGui {
         } else {
             guiGraphics.pose().mulPose(Axis.YN.rotationDegrees(-f));
         }
+        CompoundTag nameTagDistance = null;
+        if (entity instanceof LivingEntity living && living.getAttribute(NeoForgeMod.NAMETAG_DISTANCE) != null) {
+            nameTagDistance = living.getAttribute(NeoForgeMod.NAMETAG_DISTANCE).save();
+            living.getAttribute(NeoForgeMod.NAMETAG_DISTANCE).removeModifiers();
+            living.getAttribute(NeoForgeMod.NAMETAG_DISTANCE).setBaseValue(0.0D);
+        }
         RenderSystem.runAsFancy(() -> entityrenderdispatcher.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, guiGraphics.pose(), guiGraphics.bufferSource(), 15728880));
+        if (entity instanceof LivingEntity living && nameTagDistance != null) {
+            living.getAttribute(NeoForgeMod.NAMETAG_DISTANCE).load(nameTagDistance);
+        }
         guiGraphics.flush();
         entityrenderdispatcher.setRenderShadow(true);
         guiGraphics.pose().popPose();

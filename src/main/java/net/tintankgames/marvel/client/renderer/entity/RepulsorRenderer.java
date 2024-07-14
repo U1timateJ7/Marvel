@@ -27,14 +27,16 @@ public class RepulsorRenderer extends EntityRenderer<Repulsor> {
     }
 
     public void render(Repulsor repulsor, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        poseStack.pushPose();
-        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, repulsor.yRotO, repulsor.getYRot())));
-        poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, repulsor.xRotO, repulsor.getXRot()) - 180.0F));
-        poseStack.translate(0, -0.125F, 0);
-        VertexConsumer vertexconsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entitySolidEmissive(getTextureLocation(repulsor)));
-        model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
-        poseStack.popPose();
-        super.render(repulsor, yRot, partialTick, poseStack, multiBufferSource, light);
+        if (repulsor.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(repulsor) < 12.25)) {
+            poseStack.pushPose();
+            poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, repulsor.yRotO, repulsor.getYRot())));
+            poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, repulsor.xRotO, repulsor.getXRot()) - 180.0F));
+            poseStack.translate(0, -0.125F, 0);
+            VertexConsumer vertexconsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entitySolidEmissive(getTextureLocation(repulsor)));
+            model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+            poseStack.popPose();
+            super.render(repulsor, yRot, partialTick, poseStack, multiBufferSource, light);
+        }
     }
 
     @Override

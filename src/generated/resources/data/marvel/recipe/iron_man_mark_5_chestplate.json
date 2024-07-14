@@ -1,0 +1,37 @@
+{
+  "type": "marvel:suit_upgrading",
+  "category": "iron_man_suits",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "item": "minecraft:tripwire_hook"
+    },
+    {
+      "item": "marvel:palladium_arc_reactor"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_5_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_3_chestplate"
+  }
+}
