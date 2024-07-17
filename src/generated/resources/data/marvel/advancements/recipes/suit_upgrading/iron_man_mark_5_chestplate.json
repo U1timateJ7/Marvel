@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_man_mark_3_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:iron_man_mark_3_armor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:iron_man_mark_5_chestplate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_iron_man_mark_3_armor"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:iron_man_mark_5_chestplate"
+    ]
+  }
+}

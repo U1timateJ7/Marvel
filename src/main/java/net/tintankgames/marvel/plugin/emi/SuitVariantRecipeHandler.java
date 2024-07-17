@@ -6,7 +6,6 @@ import dev.emi.emi.api.recipe.handler.EmiCraftContext;
 import dev.emi.emi.api.recipe.handler.StandardRecipeHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
@@ -51,8 +50,7 @@ public class SuitVariantRecipeHandler implements StandardRecipeHandler<SuitVaria
         boolean action = StandardRecipeHandler.super.craft(recipe, context);
         Minecraft client = Minecraft.getInstance();
         Level world = client.level;
-        Container inv = new SimpleContainer(recipe.getInputs().get(0).getEmiStacks().get(0).getItemStack());
-        List<SuitVariantRecipe> recipes = world.getRecipeManager().getRecipesFor(MarvelRecipeTypes.SUIT_VARIANT.get(), inv, world).stream().map(RecipeHolder::value).toList();
+        List<SuitVariantRecipe> recipes = world.getRecipeManager().getRecipesFor(MarvelRecipeTypes.SUIT_VARIANT.get(), new SimpleContainer(recipe.getInputs().get(0).getEmiStacks().get(0).getItemStack()), world).stream().map(RecipeHolder::value).toList();
         for (int i = 0; i < recipes.size(); i++) {
             if (getId(recipes.get(i)).equals(recipe.getId())) {
                 SuitVariantMenu sh = context.getScreenHandler();

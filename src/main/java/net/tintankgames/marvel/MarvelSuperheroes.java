@@ -2,6 +2,7 @@ package net.tintankgames.marvel;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.timers.TimerCallbacks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -13,6 +14,7 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.stats.MarvelStats;
+import net.tintankgames.marvel.world.effect.MarvelMobEffects;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
 import net.tintankgames.marvel.world.item.MarvelArmorMaterials;
@@ -32,7 +34,7 @@ import org.slf4j.Logger;
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.1.0-snapshot1";
+    public static final String MOD_VERSION = "2.1.0-pre1";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
@@ -45,6 +47,7 @@ public class MarvelSuperheroes {
         MarvelMenuTypes.register(bus);
         MarvelRecipeTypes.register(bus);
         MarvelRecipeSerializers.register(bus);
+        MarvelMobEffects.register(bus);
         MarvelEntityTypes.register(bus);
         MarvelArmorMaterials.register(bus);
         MarvelDataComponents.register(bus);
@@ -61,6 +64,8 @@ public class MarvelSuperheroes {
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInCurioSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new ToggleHelmetCallback.Serializer());
+
+        Item.BY_BLOCK.put(MarvelBlocks.SUIT_CHARGER_UPPER.get(), MarvelBlocks.SUIT_CHARGER.asItem());
     }
 
     public static ResourceLocation id(String path) {

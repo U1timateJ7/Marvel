@@ -31,9 +31,18 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.RAW_PALLADIUM_BLOCK);
         output.accept(MarvelBlocks.GOLD_TITANIUM_BLOCK);
         output.accept(MarvelBlocks.ADAMANTIUM_BLOCK);
+        output.accept(MarvelBlocks.PROTO_ADAMANTIUM_BLOCK);
         output.accept(MarvelBlocks.URU_BLOCK);
         output.accept(MarvelBlocks.SUIT_TABLE);
         output.accept(MarvelBlocks.SUIT_CHARGER);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICKS);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_WALL);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICKS);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_WALL);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
         output.accept(MarvelItems.VIBRANIUM_NUGGET);
@@ -57,6 +66,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.ADAMANTIUM_INGOT);
         output.accept(MarvelItems.ADAMANTIUM_NUGGET);
         output.accept(MarvelItems.PROTO_ADAMANTIUM_INGOT);
+        output.accept(MarvelItems.PROTO_ADAMANTIUM_NUGGET);
         output.accept(MarvelItems.URU_INGOT);
         output.accept(MarvelItems.URU_NUGGET);
         output.accept(MarvelItems.REINFORCED_LEATHER);
@@ -69,6 +79,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.UNSTABLE_PYM_PARTICLE);
         output.accept(MarvelItems.PYM_PARTICLE);
         output.accept(MarvelItems.PALLADIUM_ARC_REACTOR);
+        output.accept(MarvelItems.DIAMOND_ARC_REACTOR);
         output.accept(MarvelItems.IRON_MAN_MARK_5_SUITCASE);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
@@ -172,8 +183,12 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WASP_CHESTPLATE);
         output.accept(MarvelItems.WASP_LEGGINGS);
         output.accept(MarvelItems.WASP_BOOTS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_HELMET);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_BOOTS);
     }));
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_3_CHESTPLATE::toStack).displayItems((parameters, output) -> {
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_7_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.IRON_MAN_MARK_1_HELMET);
         output.accept(MarvelItems.IRON_MAN_MARK_1_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_1_LEGGINGS);
@@ -190,6 +205,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_5_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_5_LEGGINGS);
         output.accept(MarvelItems.IRON_MAN_MARK_5_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_6_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_6_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_6_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_6_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_7_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_7_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_7_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_7_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

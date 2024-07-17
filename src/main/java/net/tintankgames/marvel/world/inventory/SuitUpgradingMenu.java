@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.tintankgames.marvel.MarvelEnumExtensions;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -63,9 +64,7 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
         }
     }
 
-    protected static void slotChangedCraftingGrid(
-            AbstractContainerMenu p_150547_, Level p_150548_, Player p_150549_, CraftingContainer p_150550_, ResultContainer p_150551_
-    ) {
+    protected static void slotChangedCraftingGrid(AbstractContainerMenu p_150547_, Level p_150548_, Player p_150549_, CraftingContainer p_150550_, ResultContainer p_150551_) {
         if (!p_150548_.isClientSide) {
             ServerPlayer serverplayer = (ServerPlayer)p_150549_;
             ItemStack itemstack = ItemStack.EMPTY;
@@ -210,7 +209,7 @@ public class SuitUpgradingMenu extends RecipeBookMenu<Container> {
 
     @Override
     public RecipeBookType getRecipeBookType() {
-        return SuitUpgradingRecipe.RECIPE_BOOK_TYPE.get();
+        return MarvelEnumExtensions.SUIT_UPGRADING_TYPE.get();
     }
 
     @Override

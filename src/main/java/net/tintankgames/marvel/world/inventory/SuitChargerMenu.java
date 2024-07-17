@@ -51,7 +51,7 @@ public class SuitChargerMenu extends AbstractContainerMenu {
                 @Override
                 public boolean mayPickup(Player player) {
                     ItemStack itemstack = this.getItem();
-                    return (itemstack.isEmpty() || player.isCreative()) && super.mayPickup(player);
+                    return itemstack.isEmpty() || super.mayPickup(player);
                 }
 
                 @Override

@@ -88,10 +88,6 @@ public class AntManSuitItem extends LeatherSuitItem {
                     event.removeModifier(Attributes.ENTITY_INTERACTION_RANGE, smallEntityInteractionRangeModifier);
                     event.removeModifier(Attributes.BLOCK_INTERACTION_RANGE, smallBlockInteractionRangeModifier);
                     event.removeModifier(Attributes.MOVEMENT_SPEED, smallMovementSpeedModifier);
-                    event.removeModifier(Attributes.SCALE, bigScaleModifier);
-                    event.removeModifier(Attributes.ENTITY_INTERACTION_RANGE, bigEntityInteractionRangeModifier);
-                    event.removeModifier(Attributes.BLOCK_INTERACTION_RANGE, bigBlockInteractionRangeModifier);
-                    event.removeModifier(Attributes.MOVEMENT_SPEED, bigMovementSpeedModifier);
                     event.removeModifier(Attributes.STEP_HEIGHT, bigStepHeightModifier);
                     event.removeModifier(Attributes.JUMP_STRENGTH, bigJumpStrengthModifier);
                     event.removeModifier(Attributes.SAFE_FALL_DISTANCE, bigSafeFallDistanceModifier);
@@ -104,10 +100,6 @@ public class AntManSuitItem extends LeatherSuitItem {
                     event.addModifier(Attributes.ENTITY_INTERACTION_RANGE, smallEntityInteractionRangeModifier);
                     event.addModifier(Attributes.BLOCK_INTERACTION_RANGE, smallBlockInteractionRangeModifier);
                     event.addModifier(Attributes.MOVEMENT_SPEED, smallMovementSpeedModifier);
-                    event.removeModifier(Attributes.SCALE, bigScaleModifier);
-                    event.removeModifier(Attributes.ENTITY_INTERACTION_RANGE, bigEntityInteractionRangeModifier);
-                    event.removeModifier(Attributes.BLOCK_INTERACTION_RANGE, bigBlockInteractionRangeModifier);
-                    event.removeModifier(Attributes.MOVEMENT_SPEED, bigMovementSpeedModifier);
                     event.removeModifier(Attributes.STEP_HEIGHT, bigStepHeightModifier);
                     event.removeModifier(Attributes.JUMP_STRENGTH, bigJumpStrengthModifier);
                     event.removeModifier(Attributes.SAFE_FALL_DISTANCE, bigSafeFallDistanceModifier);
@@ -120,10 +112,6 @@ public class AntManSuitItem extends LeatherSuitItem {
                     }
                 }
                 case BIG -> {
-                    event.removeModifier(Attributes.SCALE, smallScaleModifier);
-                    event.removeModifier(Attributes.ENTITY_INTERACTION_RANGE, smallEntityInteractionRangeModifier);
-                    event.removeModifier(Attributes.BLOCK_INTERACTION_RANGE, smallBlockInteractionRangeModifier);
-                    event.removeModifier(Attributes.MOVEMENT_SPEED, smallMovementSpeedModifier);
                     event.addModifier(Attributes.SCALE, bigScaleModifier);
                     event.addModifier(Attributes.ENTITY_INTERACTION_RANGE, bigEntityInteractionRangeModifier);
                     event.addModifier(Attributes.BLOCK_INTERACTION_RANGE, bigBlockInteractionRangeModifier);

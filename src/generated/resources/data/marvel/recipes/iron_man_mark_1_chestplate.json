@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:ingots/iron"
+    },
+    "A": {
+      "item": "marvel:palladium_arc_reactor"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "X": {
+      "tag": "c:leathers"
+    }
+  },
+  "pattern": [
+    "# #",
+    "XAX",
+    "#F#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:iron_man_mark_1_chestplate"
+  }
+}

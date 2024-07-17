@@ -349,9 +349,9 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
             partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
         }
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
-            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27f)), PartPose.offset(0.0F, 0.0F, 0.0F));
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(5.0F, 2.0F, 0.0F));
-            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
         } else {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
@@ -367,6 +367,46 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
             partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(1.9F, 12.0F, 0.0F));
             partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 64);
+    }
+
+    public static LayerDefinition createWarMachineBodyLayer(ArmorItem.Type... types) {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        List<ArmorItem.Type> armorTypes = Arrays.asList(types);
+        if (armorTypes.contains(ArmorItem.Type.HELMET)) {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.26F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.51F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
+            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27F)).texOffs(19, 19).addBox(-4.0F, 0.0F, -2.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)).texOffs(18, 32).addBox(-4.0F, 0.0F, 1.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)).texOffs(56, 35).addBox(-3.1F, 1.0F, 2.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.26F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition gun = body.addOrReplaceChild("gun", CubeListBuilder.create().texOffs(15, 17).addBox(-6.55F, -3.1F, 3.1F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            gun.addOrReplaceChild("gun2", CubeListBuilder.create().texOffs(45, 34).addBox(-0.5F, -4.0F, -0.5F, 1.0F, 6.0F, 1.0F), PartPose.offsetAndRotation(-4.0F, 2.0F, 3.6F, 0.0F, 0.0F, -0.5672F));
+            gun.addOrReplaceChild("gun3", CubeListBuilder.create().texOffs(45, 39).addBox(-0.9791F, -0.9F, -5.0456F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.01F)).texOffs(36, 37).addBox(-0.4791F, -0.4F, -11.0456F, 1.0F, 1.0F, 6.0F, new CubeDeformation(0.01F)).texOffs(37, 35).addBox(-0.9791F, -0.9F, -7.0456F, 2.0F, 2.0F, 0.0F, new CubeDeformation(0.01F)).texOffs(37, 35).addBox(-0.9791F, -0.9F, -9.0456F, 2.0F, 2.0F, 0.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(-6.1209F, -4.25F, 3.6456F, 0.0F, 0.3491F, 0.0F));
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(5.0F, 2.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51F)), PartPose.offset(-1.9F, 12.0F, 0.0F));
         } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
             partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
             partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);

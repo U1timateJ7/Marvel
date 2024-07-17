@@ -13,8 +13,17 @@
     "marvel:raw_palladium_block",
     "marvel:gold_titanium_block",
     "marvel:adamantium_block",
+    "marvel:proto_adamantium_block",
     "marvel:uru_block",
     "marvel:suit_table",
-    "marvel:suit_charger"
+    "marvel:suit_charger",
+    "marvel:green_hydra_bricks",
+    "marvel:green_hydra_brick_slab",
+    "marvel:green_hydra_brick_stairs",
+    "marvel:green_hydra_brick_wall",
+    "marvel:yellow_hydra_bricks",
+    "marvel:yellow_hydra_brick_slab",
+    "marvel:yellow_hydra_brick_stairs",
+    "marvel:yellow_hydra_brick_wall"
   ]
 }

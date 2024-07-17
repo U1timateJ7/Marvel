@@ -65,15 +65,15 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        return Math.round(stack.getOrDefault(MarvelDataComponents.FUEL, 0) * 13.0F / stack.getOrDefault(MarvelDataComponents.FUEL_MAX, 800));
+        return Math.round(stack.getOrDefault(MarvelDataComponents.FUEL, 0) * 13.0F / stack.getOrDefault(MarvelDataComponents.FUEL_MAX, 200));
     }
 
     @Override
     public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
         super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
         if (p_41406_ instanceof Player player) {
-            p_41404_.set(MarvelDataComponents.FUEL_MAX, player.isCreative() ? 800 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL_MAX, 800));
-            p_41404_.set(MarvelDataComponents.FUEL, player.isCreative() ? 800 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL, 0));
+            p_41404_.set(MarvelDataComponents.FUEL_MAX, player.isCreative() ? 200 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL_MAX, 200));
+            p_41404_.set(MarvelDataComponents.FUEL, player.isCreative() ? 200 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL, 0));
         }
     }
 
@@ -97,7 +97,7 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
                 if (fuelStack.isEmpty()) {
                     fuelStack = fuelStacks.get(level.random.nextInt(fuelStacks.size()));
                 }
-                int fuelTime = fuelStack.getBurnTime(RecipeType.SMELTING) / 4;
+                int fuelTime = fuelStack.getBurnTime(RecipeType.SMELTING) / 8;
                 player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FUEL, fuelTime);
                 player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FUEL_MAX, fuelTime);
                 fuelStack.shrink(1);

@@ -29,7 +29,7 @@ public class UnibeamItem extends SuitPowerItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 10.0F || player.isCreative()) {
+        if (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 7.5F || player.isCreative()) {
             player.startUsingItem(hand);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_UNIBEAM_CHARGE.get(), SoundSource.PLAYERS);
             return InteractionResultHolder.consume(stack);
@@ -42,7 +42,7 @@ public class UnibeamItem extends SuitPowerItem {
         super.releaseUsing(stack, level, living, ticksLeft);
         int i = this.getUseDuration(stack) - ticksLeft;
         if (living instanceof Player player && i >= 20) {
-            if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 10.0F || player.isCreative())) {
+            if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 7.5F || player.isCreative())) {
                 if (!level.isClientSide()) level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.CYCLOPS_OPTIC_BLAST.get(), SoundSource.PLAYERS);
                 HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, 0f);
                 if (hit.getType() != HitResult.Type.MISS) {
@@ -51,13 +51,13 @@ public class UnibeamItem extends SuitPowerItem {
                 for (double d = 0; d < Math.abs(player.position().add(0, 1.25, 0).distanceTo(hit.getLocation())); d += 0.2) {
                     Vec3 vec3 = player.position().add(0, 1.25, 0).add(player.getViewVector(0.0F).scale(d));
                     if (level instanceof ServerLevel serverLevel) {
-                        serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.68235294f, 0.96862745f, 0.98823529f), 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
+                        serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.68235294f, 0.96862745f, 0.98823529f), 0.75f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
                     }
                 }
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_UNIBEAM_SHOOT.get(), SoundSource.PLAYERS);
                 if (!player.isCreative()) {
                     player.getCooldowns().addCooldown(this, 100);
-                    player.getInventory().armor.forEach(stack1 -> EnergySuitItem.removeEnergy(stack1, 10.0F));
+                    player.getInventory().armor.forEach(stack1 -> EnergySuitItem.removeEnergy(stack1, 7.5F));
                 }
             }
             player.awardStat(Stats.ITEM_USED.get(this));

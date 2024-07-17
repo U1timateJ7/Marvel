@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.tintankgames.marvel.client.MarvelSuperheroesClient;
+import net.tintankgames.marvel.client.MarvelClientEnumExtensions;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
@@ -80,7 +80,7 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
             @Nullable
             @Override
             public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
-                return entityLiving.getUseItem() == stack ? MarvelSuperheroesClient.VIBRANIUM_SHIELD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
+                return entityLiving.getUseItem() == stack ? MarvelClientEnumExtensions.VIBRANIUM_SHIELD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
             }
         });
     }

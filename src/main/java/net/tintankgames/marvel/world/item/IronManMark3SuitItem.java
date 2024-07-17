@@ -13,4 +13,9 @@ public class IronManMark3SuitItem extends IronManSuitItem {
     public Component mark() {
         return Component.translatable("container.suit_charger.mark_3");
     }
+
+    @Override
+    public Component hudMark() {
+        return Component.translatable("gui.iron_man.mark_3");
+    }
 }

@@ -1,15 +1,19 @@
 package net.tintankgames.marvel.datagen;
 
+import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.data.MarvelBlockFamilies;
 import net.tintankgames.marvel.data.recipes.SuitUpgradingRecipeBuilder;
 import net.tintankgames.marvel.data.recipes.SuitVariantRecipeBuilder;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -18,15 +22,29 @@ import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 
 public class MarvelRecipeProvider extends RecipeProvider {
+    private static final Map<BlockFamily.Variant, BiFunction<ItemLike, ItemLike, RecipeBuilder>> SHAPE_BUILDERS = ImmutableMap.<BlockFamily.Variant, BiFunction<ItemLike, ItemLike, RecipeBuilder>>builder().put(BlockFamily.Variant.BUTTON, (itemLike, itemLike2) -> buttonBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.CHISELED, (itemLike, itemLike2) -> chiseledBuilder(RecipeCategory.BUILDING_BLOCKS, itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.CUT, (itemLike, itemLike2) -> cutBuilder(RecipeCategory.BUILDING_BLOCKS, itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.DOOR, (itemLike, itemLike2) -> doorBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.CUSTOM_FENCE, (itemLike, itemLike2) -> fenceBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.FENCE, (itemLike, itemLike2) -> fenceBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.CUSTOM_FENCE_GATE, (itemLike, itemLike2) -> fenceGateBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.FENCE_GATE, (itemLike, itemLike2) -> fenceGateBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.SIGN, (itemLike, itemLike2) -> signBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.SLAB, (itemLike, itemLike2) -> slabBuilder(RecipeCategory.BUILDING_BLOCKS, itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.STAIRS, (itemLike, itemLike2) -> stairBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.PRESSURE_PLATE, (itemLike, itemLike2) -> pressurePlateBuilder(RecipeCategory.REDSTONE, itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.POLISHED, (itemLike, itemLike2) -> polishedBuilder(RecipeCategory.BUILDING_BLOCKS, itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.TRAPDOOR, (itemLike, itemLike2) -> trapdoorBuilder(itemLike, Ingredient.of(itemLike2))).put(BlockFamily.Variant.WALL, (itemLike, itemLike2) -> wallBuilder(RecipeCategory.DECORATIONS, itemLike, Ingredient.of(itemLike2))).build();
+
     public MarvelRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
+        mvgenerateRecipes(output, MarvelBlockFamilies.GREEN_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS, MarvelBlocks.GREEN_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GREEN_HYDRA_BRICK_SLAB, MarvelBlocks.GREEN_HYDRA_BRICKS, 2);
+        mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.GREEN_HYDRA_BRICK_WALL, MarvelBlocks.GREEN_HYDRA_BRICKS);
+
+        mvgenerateRecipes(output, MarvelBlockFamilies.YELLOW_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS, MarvelBlocks.YELLOW_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB, MarvelBlocks.YELLOW_HYDRA_BRICKS, 2);
+        mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.YELLOW_HYDRA_BRICK_WALL, MarvelBlocks.YELLOW_HYDRA_BRICKS);
+
         mvoreSmelting(output, List.of(MarvelBlocks.TITANIUM_ORE, MarvelBlocks.DEEPSLATE_TITANIUM_ORE, MarvelItems.RAW_TITANIUM), RecipeCategory.MISC, MarvelItems.TITANIUM_INGOT, 1.0f, 200, "titanium_ingot");
         mvoreSmelting(output, List.of(MarvelBlocks.PALLADIUM_ORE, MarvelBlocks.DEEPSLATE_PALLADIUM_ORE, MarvelItems.RAW_PALLADIUM), RecipeCategory.MISC, MarvelItems.PALLADIUM_INGOT, 1.0f, 200, "palladium_ingot");
         mvoreBlasting(output, List.of(MarvelBlocks.VIBRANIUM_ORE, MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE), RecipeCategory.MISC, MarvelItems.VIBRANIUM, 1.0f, 200, "vibranium");
@@ -51,27 +69,31 @@ public class MarvelRecipeProvider extends RecipeProvider {
         mvnineBlockStorageRecipes(output, RecipeCategory.MISC, MarvelItems.RAW_PALLADIUM, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.RAW_PALLADIUM_BLOCK);
         mvnineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, MarvelItems.PALLADIUM_INGOT, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.PALLADIUM_BLOCK, "palladium_ingot_from_palladium_block", "palladium_ingot");
         mvnineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, MarvelItems.PALLADIUM_NUGGET, RecipeCategory.MISC, MarvelItems.PALLADIUM_INGOT, "palladium_ingot_from_nuggets", "palladium_ingot");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.GOLD_TITANIUM_INGOT).requires(MarvelItems.TITANIUM_INGOT).requires(Items.GOLD_INGOT).unlockedBy("has_titanium_ingot", has(MarvelItems.TITANIUM_INGOT)).save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.GOLD_TITANIUM_INGOT, 2).requires(MarvelItems.TITANIUM_INGOT).requires(Items.GOLD_INGOT).unlockedBy("has_titanium_ingot", has(MarvelItems.TITANIUM_INGOT)).save(output);
         mvnineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, MarvelItems.GOLD_TITANIUM_INGOT, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GOLD_TITANIUM_BLOCK, "gold_titanium_ingot_from_gold_titanium_block", "gold_titanium_ingot");
         mvnineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, MarvelItems.GOLD_TITANIUM_NUGGET, RecipeCategory.MISC, MarvelItems.GOLD_TITANIUM_INGOT, "gold_titanium_ingot_from_nuggets", "gold_titanium_ingot");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.ADAMANTIUM_INGOT).requires(Tags.Items.INGOTS_IRON).requires(Tags.Items.INGOTS_NETHERITE).requires(Items.MAGMA_CREAM).unlockedBy("has_netherite_ingot", has(Tags.Items.INGOTS_NETHERITE)).save(output);
         mvnineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, MarvelItems.ADAMANTIUM_INGOT, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.ADAMANTIUM_BLOCK, "adamantium_ingot_from_adamantium_block", "adamantium_ingot");
         mvnineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, MarvelItems.ADAMANTIUM_NUGGET, RecipeCategory.MISC, MarvelItems.ADAMANTIUM_INGOT, "adamantium_ingot_from_nuggets", "adamantium_ingot");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.PROTO_ADAMANTIUM_INGOT).requires(Tags.Items.INGOTS_IRON).requires(Tags.Items.INGOTS_NETHERITE).requires(MarvelItems.VIBRANIUM_INGOT).unlockedBy("has_vibranium", has(MarvelItems.VIBRANIUM)).save(output);
+        mvnineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, MarvelItems.PROTO_ADAMANTIUM_INGOT, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.PROTO_ADAMANTIUM_BLOCK, "proto_adamantium_ingot_from_proto_adamantium_block", "proto_adamantium_ingot");
+        mvnineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, MarvelItems.PROTO_ADAMANTIUM_NUGGET, RecipeCategory.MISC, MarvelItems.PROTO_ADAMANTIUM_INGOT, "proto_adamantium_ingot_from_nuggets", "proto_adamantium_ingot");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.URU_INGOT, 8).define('#', Tags.Items.INGOTS_GOLD).define('X', Items.NETHER_STAR).pattern("###").pattern("#X#").pattern("###").unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD)).save(output);
         mvnineBlockStorageRecipesRecipesWithCustomUnpacking(output, RecipeCategory.MISC, MarvelItems.URU_INGOT, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.URU_BLOCK, "uru_ingot_from_uru_block", "uru_ingot");
         mvnineBlockStorageRecipesWithCustomPacking(output, RecipeCategory.MISC, MarvelItems.URU_NUGGET, RecipeCategory.MISC, MarvelItems.URU_INGOT, "uru_ingot_from_nuggets", "uru_ingot");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.REINFORCED_LEATHER).define('#', Tags.Items.LEATHERS).define('X', Tags.Items.NUGGETS_IRON).define('I', Tags.Items.INGOTS_IRON).pattern("XIX").pattern("X#X").pattern("XIX").unlockedBy("has_leather", has(Tags.Items.LEATHERS)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.VIBRANIUM_WEAVE, 2).define('#', MarvelItems.VIBRANIUM).define('X', Tags.Items.STRINGS).pattern("X#").pattern("#X").unlockedBy("has_vibranium", has(MarvelItems.VIBRANIUM)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.VIBRANIUM_NANITES, 4).define('#', Tags.Items.DUSTS_REDSTONE).define('X', MarvelItems.VIBRANIUM_NUGGET).pattern("XXX").pattern("X#X").pattern("XXX").unlockedBy("has_vibranium", has(MarvelItems.VIBRANIUM)).save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.SUIT_TABLE).define('#', Blocks.ANVIL).define('X', MarvelItems.TITANIUM_INGOT).pattern("XXX").pattern("X#X").pattern("XXX").unlockedBy("has_titanium", has(MarvelItems.TITANIUM_INGOT)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.SUIT_TABLE).define('#', Blocks.ANVIL).define('X', MarvelItems.TITANIUM_INGOT).pattern("XXX").pattern("X#X").pattern("XXX").unlockedBy("has_titanium_ingot", has(MarvelItems.TITANIUM_INGOT)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.SUIT_CHARGER).define('#', Items.ARMOR_STAND).define('X', Tags.Items.INGOTS_IRON).define('B', Tags.Items.STORAGE_BLOCKS_REDSTONE).define('R', Blocks.REPEATER).pattern("X#X").pattern("XBX").pattern("XRX").unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.VIBRANIUM_SHIELD).define('X', MarvelItems.VIBRANIUM_INGOT).define('#', Tags.Items.LEATHERS).pattern("XXX").pattern("X#X").unlockedBy("has_vibranium", has(MarvelItems.VIBRANIUM)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.PROTO_ADAMANTIUM_SHIELD).define('X', MarvelItems.PROTO_ADAMANTIUM_INGOT).define('#', Tags.Items.LEATHERS).pattern("XXX").pattern("X#X").unlockedBy("has_proto_adamantium_ingot", has(MarvelItems.PROTO_ADAMANTIUM_INGOT)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.WEB_FLUID, 4).define('#', Tags.Items.SLIMEBALLS).define('X', Tags.Items.STRINGS).pattern("X#").pattern("#X").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.UNSTABLE_PYM_PARTICLE).requires(Items.GLASS_BOTTLE).requires(Items.NETHER_WART).requires(Items.BEETROOT).requires(Items.REDSTONE).requires(Items.SUGAR).unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.MJOLNIR).define('X', MarvelItems.URU_INGOT).define('#', Tags.Items.RODS_WOODEN).define('L', Items.LEAD).pattern("X#X").pattern("X#X").pattern(" L ").unlockedBy("has_uru_ingot", has(MarvelItems.URU_INGOT)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.STORMBREAKER).define('X', MarvelItems.URU_INGOT).define('#', Tags.Items.RODS_WOODEN).pattern("XXX").pattern("X# ").pattern(" # ").unlockedBy("has_uru_ingot", has(MarvelItems.URU_INGOT)).save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.PALLADIUM_ARC_REACTOR).define('X', MarvelBlocks.PALLADIUM_BLOCK).define('#', Tags.Items.INGOTS_COPPER).define('G', Tags.Items.GLASS_PANES_COLORLESS).pattern("#G#").pattern("GXG").pattern("#G#").unlockedBy("has_palladium_ingot", has(MarvelItems.PALLADIUM_INGOT)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.PALLADIUM_ARC_REACTOR).define('X', MarvelBlocks.PALLADIUM_BLOCK).define('#', Tags.Items.INGOTS_COPPER).define('G', Tags.Items.GLASS_PANES_COLORLESS).pattern("#G#").pattern("GXG").pattern("#G#").unlockedBy("has_raw_palladium", has(MarvelItems.RAW_PALLADIUM)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.DIAMOND_ARC_REACTOR).define('X', Tags.Items.GEMS_QUARTZ).define('#', Tags.Items.GEMS_DIAMOND).define('G', Tags.Items.GLASS_PANES_COLORLESS).pattern("#G#").pattern("GXG").pattern("#G#").unlockedBy("has_palladium_arc_reactor", has(MarvelItems.PALLADIUM_ARC_REACTOR)).save(output);
 
         SpecialRecipeBuilder.special(ShieldArtRecipe::new).save(output, MarvelSuperheroes.id("shield_art"));
         SpecialRecipeBuilder.special(ShieldCleanRecipe::new).save(output, MarvelSuperheroes.id("shield_clean"));
@@ -187,6 +209,63 @@ public class MarvelRecipeProvider extends RecipeProvider {
         SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.SUITS, Ingredient.of(MarvelItems.Tags.ANT_MAN_CHESTPLATE), MarvelItems.WASP_CHESTPLATE).requires(MarvelItems.REINFORCED_LEATHER, 3).requires(Tags.Items.INGOTS_IRON, 2).requires(Items.HONEYCOMB).requires(Tags.Items.DYES_BLACK).requires(Items.CROSSBOW).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_ant_man_armor", has(MarvelItems.Tags.ANT_MAN_ARMOR)).save(output);
         SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.SUITS, Ingredient.of(MarvelItems.Tags.ANT_MAN_LEGGINGS), MarvelItems.WASP_LEGGINGS).requires(MarvelItems.REINFORCED_LEATHER, 4).requires(Tags.Items.INGOTS_IRON, 2).requires(Items.HONEYCOMB).requires(Tags.Items.DYES_BLACK).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_ant_man_armor", has(MarvelItems.Tags.ANT_MAN_ARMOR)).save(output);
         SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.SUITS, Ingredient.of(MarvelItems.Tags.ANT_MAN_BOOTS), MarvelItems.WASP_BOOTS).requires(MarvelItems.REINFORCED_LEATHER, 4).requires(Tags.Items.INGOTS_IRON, 2).requires(Items.HONEYCOMB).requires(Tags.Items.DYES_BLACK).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_ant_man_armor", has(MarvelItems.Tags.ANT_MAN_ARMOR)).save(output);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.IRON_MAN_MARK_1_HELMET).define('#', Tags.Items.INGOTS_IRON).define('X', Blocks.IRON_BARS).pattern("###").pattern("#X#").unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.IRON_MAN_MARK_1_CHESTPLATE).define('#', Tags.Items.INGOTS_IRON).define('X', Tags.Items.LEATHERS).define('A', MarvelItems.PALLADIUM_ARC_REACTOR).define('F', Blocks.FURNACE).pattern("# #").pattern("XAX").pattern("#F#").unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.IRON_MAN_MARK_1_LEGGINGS).define('#', Tags.Items.INGOTS_IRON).define('X', Tags.Items.LEATHERS).pattern("###").pattern("X X").pattern("# #").unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.IRON_MAN_MARK_1_BOOTS).define('#', Tags.Items.INGOTS_IRON).define('X', Tags.Items.LEATHERS).pattern("X X").pattern("# #").pattern("# #").unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_1_HELMET), MarvelItems.IRON_MAN_MARK_2_HELMET).requires(MarvelItems.TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Tags.Items.DUSTS_REDSTONE).requires(Tags.Items.GLASS_PANES_COLORLESS).unlockedBy("has_iron_man_mark_1_armor", has(MarvelItems.Tags.IRON_MAN_MARK_1_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE), MarvelItems.IRON_MAN_MARK_2_CHESTPLATE).requires(MarvelItems.TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Tags.Items.DUSTS_REDSTONE).requires(MarvelItems.PALLADIUM_ARC_REACTOR).unlockedBy("has_iron_man_mark_1_armor", has(MarvelItems.Tags.IRON_MAN_MARK_1_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_1_LEGGINGS), MarvelItems.IRON_MAN_MARK_2_LEGGINGS).requires(MarvelItems.TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_iron_man_mark_1_armor", has(MarvelItems.Tags.IRON_MAN_MARK_1_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_1_BOOTS), MarvelItems.IRON_MAN_MARK_2_BOOTS).requires(MarvelItems.TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Blocks.REPEATER).unlockedBy("has_iron_man_mark_1_armor", has(MarvelItems.Tags.IRON_MAN_MARK_1_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_HELMET), MarvelItems.IRON_MAN_MARK_3_HELMET).requires(MarvelItems.GOLD_TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.DUSTS_REDSTONE).requires(Tags.Items.GLASS_PANES_COLORLESS).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_CHESTPLATE), MarvelItems.IRON_MAN_MARK_3_CHESTPLATE).requires(MarvelItems.GOLD_TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.DUSTS_REDSTONE).requires(MarvelItems.PALLADIUM_ARC_REACTOR).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_LEGGINGS), MarvelItems.IRON_MAN_MARK_3_LEGGINGS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_BOOTS), MarvelItems.IRON_MAN_MARK_3_BOOTS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_GOLD, 2).requires(Blocks.REPEATER).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_3_HELMET), MarvelItems.IRON_MAN_MARK_5_HELMET).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Blocks.TRIPWIRE_HOOK).requires(Tags.Items.GLASS_PANES_COLORLESS).unlockedBy("has_iron_man_mark_3_armor", has(MarvelItems.Tags.IRON_MAN_MARK_3_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_3_CHESTPLATE), MarvelItems.IRON_MAN_MARK_5_CHESTPLATE).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Blocks.TRIPWIRE_HOOK).requires(MarvelItems.PALLADIUM_ARC_REACTOR).unlockedBy("has_iron_man_mark_3_armor", has(MarvelItems.Tags.IRON_MAN_MARK_3_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_3_LEGGINGS), MarvelItems.IRON_MAN_MARK_5_LEGGINGS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Blocks.TRIPWIRE_HOOK).unlockedBy("has_iron_man_mark_3_armor", has(MarvelItems.Tags.IRON_MAN_MARK_3_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_3_BOOTS), MarvelItems.IRON_MAN_MARK_5_BOOTS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_IRON, 3).requires(Blocks.REPEATER).requires(Blocks.TRIPWIRE_HOOK).unlockedBy("has_iron_man_mark_3_armor", has(MarvelItems.Tags.IRON_MAN_MARK_3_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_5_HELMET), MarvelItems.IRON_MAN_MARK_6_HELMET).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).requires(Tags.Items.GLASS_PANES_COLORLESS).unlockedBy("has_iron_man_mark_5_armor", has(MarvelItems.Tags.IRON_MAN_MARK_5_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_5_CHESTPLATE), MarvelItems.IRON_MAN_MARK_6_CHESTPLATE).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).requires(MarvelItems.DIAMOND_ARC_REACTOR).unlockedBy("has_iron_man_mark_5_armor", has(MarvelItems.Tags.IRON_MAN_MARK_5_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_5_LEGGINGS), MarvelItems.IRON_MAN_MARK_6_LEGGINGS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_iron_man_mark_5_armor", has(MarvelItems.Tags.IRON_MAN_MARK_5_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_5_BOOTS), MarvelItems.IRON_MAN_MARK_6_BOOTS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Blocks.REPEATER).unlockedBy("has_iron_man_mark_5_armor", has(MarvelItems.Tags.IRON_MAN_MARK_5_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_6_HELMET), MarvelItems.IRON_MAN_MARK_7_HELMET).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).requires(Tags.Items.GLASS_PANES_COLORLESS).unlockedBy("has_iron_man_mark_6_armor", has(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_6_CHESTPLATE), MarvelItems.IRON_MAN_MARK_7_CHESTPLATE).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).requires(MarvelItems.DIAMOND_ARC_REACTOR).unlockedBy("has_iron_man_mark_6_armor", has(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_6_LEGGINGS), MarvelItems.IRON_MAN_MARK_7_LEGGINGS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Tags.Items.DUSTS_REDSTONE).unlockedBy("has_iron_man_mark_6_armor", has(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_6_BOOTS), MarvelItems.IRON_MAN_MARK_7_BOOTS).requires(MarvelItems.GOLD_TITANIUM_INGOT, 3).requires(Tags.Items.INGOTS_GOLD, 2).requires(Tags.Items.INGOTS_IRON, 1).requires(Blocks.REPEATER).unlockedBy("has_iron_man_mark_6_armor", has(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_HELMET), MarvelItems.WAR_MACHINE_MARK_1_HELMET, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_CHESTPLATE), MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).requires(Items.CROSSBOW).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_LEGGINGS), MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+        SuitUpgradingRecipeBuilder.upgrade(SuitUpgradingBookCategory.IRON_MAN_SUITS, Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_BOOTS), MarvelItems.WAR_MACHINE_MARK_1_BOOTS, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+    }
+
+    public static void mvstonecutterResultFromBase(RecipeOutput consumer, RecipeCategory recipeCategory, ItemLike result, ItemLike item) {
+        mvstonecutterResultFromBase(consumer, recipeCategory, result, item, 1);
+    }
+
+    public static void mvstonecutterResultFromBase(RecipeOutput consumer, RecipeCategory recipeCategory, ItemLike result, ItemLike item, int count) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(item), recipeCategory, result, count).unlockedBy(getHasName(item), has(item)).save(consumer, MarvelSuperheroes.id(getConversionRecipeName(result, item) + "_stonecutting"));
+    }
+
+    public static void mvgenerateRecipes(RecipeOutput consumer, BlockFamily blockFamily) {
+        blockFamily.getVariants().forEach((variant, block) -> {
+            BiFunction<ItemLike, ItemLike, RecipeBuilder> biFunction = SHAPE_BUILDERS.get(variant);
+            Block itemLike = getBaseBlock(blockFamily, variant);
+            if (biFunction != null) {
+                RecipeBuilder recipeBuilder = biFunction.apply(block, itemLike);
+                blockFamily.getRecipeGroupPrefix().ifPresent(string -> recipeBuilder.group(string + (variant == BlockFamily.Variant.CUT ? "" : "_" + variant.getRecipeGroup())));
+                recipeBuilder.unlockedBy(blockFamily.getRecipeUnlockedBy().orElseGet(() -> getHasName(itemLike)), has(itemLike));
+                recipeBuilder.save(consumer, MarvelSuperheroes.id(getItemName(recipeBuilder.getResult())));
+            }
+            if (variant == BlockFamily.Variant.CRACKED) {
+                mvsmeltingResultFromBase(consumer, block, itemLike);
+            }
+        });
+    }
+
+    public static void mvsmeltingResultFromBase(RecipeOutput consumer, ItemLike itemLike, ItemLike itemLike2) {
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(itemLike2), RecipeCategory.BUILDING_BLOCKS, itemLike, 0.1f, 200).unlockedBy(RecipeProvider.getHasName(itemLike2), RecipeProvider.has(itemLike2)).save(consumer, MarvelSuperheroes.id(getItemName(itemLike)));
     }
 
     public static void mvnineBlockStorageRecipesRecipesWithCustomUnpacking(RecipeOutput consumer, RecipeCategory recipeCategory, ItemLike item, RecipeCategory recipeCategory2, ItemLike item2, String name, String group) {
