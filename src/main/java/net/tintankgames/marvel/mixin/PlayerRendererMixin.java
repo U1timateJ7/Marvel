@@ -63,7 +63,7 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
                 if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) {
                     VertexConsumer vertexConsumer1 = multiBufferSource.getBuffer(RenderType.entityTranslucentEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                     float percent = stack.getOrDefault(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F) / 25.0F;
-                    int k = FastColor.ARGB32.color(j, (int) (percent * 255));
+                    int k = FastColor.ARGB32.color((int) (percent * 255), j);
                     (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer1, light, OverlayTexture.NO_OVERLAY, k);
                 }
             }

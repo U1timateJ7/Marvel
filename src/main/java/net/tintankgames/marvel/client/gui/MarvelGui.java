@@ -43,7 +43,7 @@ public class MarvelGui {
 
     @SubscribeEvent
     public static void renderOverlays(RenderGuiLayerEvent.Post event) {
-        if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS) {
+        if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS && Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
             ItemStack helmet = Minecraft.getInstance().player.getInventory().getArmor(3);
             if (helmet.is(MarvelItems.IRON_MAN_MARK_1_HELMET) || (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) <= 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false))) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_low_power.png"), 1.0F, 0xFFFFFF);
@@ -57,6 +57,7 @@ public class MarvelGui {
                     ItemStack armor = Minecraft.getInstance().player.getInventory().armor.get(1 - i);
                     if (!armor.isEmpty()) {
                         event.getGuiGraphics().renderItem(armor, 12, event.getGuiGraphics().guiHeight() / 2 + i * 18);
+                        event.getGuiGraphics().renderItemDecorations(Minecraft.getInstance().font, armor, 12, event.getGuiGraphics().guiHeight() / 2 + i * 18);
                     }
                 }
                 Component coordinateText = Component.translatable("gui.iron_man.coordinates", String.format("%.1f", Minecraft.getInstance().player.getX()), String.format("%.1f", Minecraft.getInstance().player.getY()), String.format("%.1f", Minecraft.getInstance().player.getZ()));

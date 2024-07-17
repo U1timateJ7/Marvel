@@ -4,9 +4,14 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +27,7 @@ import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingBookCategory;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 import java.util.List;
@@ -41,6 +47,9 @@ public class MarvelSuperheroesClient {
         CuriosRendererRegistry.register(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get(), NecklaceRenderer::new);
 
         ItemBlockRenderTypes.setRenderLayer(MarvelBlocks.SPIDER_WEB.get(), RenderType.cutoutMipped());
+
+        ItemProperties.register(MarvelItems.REPULSOR.get(), MarvelSuperheroes.id("war_machine"), (stack, level, living, i) -> living != null && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WAR_MACHINE_ARMOR) ? 1 : 0);
+        ItemProperties.register(MarvelItems.UNIBEAM.get(), MarvelSuperheroes.id("war_machine"), (stack, level, living, i) -> living != null && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WAR_MACHINE_ARMOR) ? 1 : 0);
     }
 
     @SubscribeEvent

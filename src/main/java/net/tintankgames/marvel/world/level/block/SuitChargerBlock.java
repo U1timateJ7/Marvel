@@ -6,11 +6,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.SignalGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -38,10 +41,10 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
     public static final Component UPGRADING_TITLE = Component.translatable("container.suit_charger");
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    private static final VoxelShape NORTH_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.3125, 0.0625, 0.0625, 0.6875, 0.1875, 0.125));
-    private static final VoxelShape SOUTH_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.3125, 0.0625, 0.875, 0.6875, 0.1875, 0.9375));
-    private static final VoxelShape EAST_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.875, 0.0625, 0.3125, 0.9375, 0.1875, 0.6875));
-    private static final VoxelShape WEST_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.0625, 0.0625, 0.3125, 0.125, 0.1875, 0.6875));
+    private static final VoxelShape NORTH_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.3125, 0.0625, 0.0625, 0.6875, 0.1875, 0.125), Shapes.box(0.3125, 0.1875, 0.4375, 0.6875, 0.875, 0.5625), Shapes.box(0.25, 0.875, 0.4375, 0.75, 1, 0.5625));
+    private static final VoxelShape SOUTH_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.3125, 0.0625, 0.875, 0.6875, 0.1875, 0.9375), Shapes.box(0.3125, 0.1875, 0.4375, 0.6875, 0.875, 0.5625), Shapes.box(0.25, 0.875, 0.4375, 0.75, 1, 0.5625));
+    private static final VoxelShape EAST_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.875, 0.0625, 0.3125, 0.9375, 0.1875, 0.6875), Shapes.box(0.4375, 0.1875, 0.3125, 0.5625, 0.875, 0.6875), Shapes.box(0.4375, 0.875, 0.25, 0.5625, 1, 0.75));
+    private static final VoxelShape WEST_SHAPE = Shapes.or(Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375), Shapes.box(0.125, 0.0625, 0.125, 0.875, 0.1875, 0.875), Shapes.box(0.0625, 0.0625, 0.3125, 0.125, 0.1875, 0.6875), Shapes.box(0.4375, 0.1875, 0.3125, 0.5625, 0.875, 0.6875), Shapes.box(0.4375, 0.875, 0.25, 0.5625, 1, 0.75));
 
     @Override
     public MapCodec<SuitChargerBlock> codec() {
@@ -101,6 +104,7 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     if (player.getInventory().contains(stack -> stack.is(MarvelItems.FLAMETHROWER))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.FLAMETHROWER.get())));
                     if (player.getInventory().contains(stack -> stack.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
                     if (player.getInventory().contains(stack -> stack.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
+                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.SHOULDER_TURRET))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.SHOULDER_TURRET.get())));
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide);
             } else {
@@ -149,6 +153,7 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.FLAMETHROWER))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.FLAMETHROWER.get())));
                     if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
                     if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
+                    if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.SHOULDER_TURRET))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.SHOULDER_TURRET.get())));
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             } else {
@@ -173,25 +178,25 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
         if (!level.isClientSide) {
             boolean flag = hasNeighborSignal(level, pos);
             if (flag != state.getValue(POWERED)) {
-                level.setBlock(pos, state.setValue(POWERED, flag), 2);
+                level.setBlockAndUpdate(pos, state.setValue(POWERED, flag));
             }
         }
     }
 
-    private boolean hasNeighborSignal(SignalGetter p_277378_, BlockPos p_60179_) {
+    private boolean hasNeighborSignal(SignalGetter signalGetter, BlockPos pos) {
         for (Direction direction : Direction.values()) {
-            if (p_277378_.hasSignal(p_60179_.relative(direction), direction)) {
+            if (signalGetter.hasSignal(pos.relative(direction), direction)) {
                 return true;
             }
         }
 
-        if (p_277378_.hasSignal(p_60179_, Direction.DOWN)) {
+        if (signalGetter.hasSignal(pos, Direction.DOWN)) {
             return true;
         } else {
-            BlockPos blockpos = p_60179_.above();
+            BlockPos blockpos = pos.above();
 
             for (Direction direction1 : Direction.values()) {
-                if (p_277378_.hasSignal(blockpos.relative(direction1), direction1)) {
+                if (signalGetter.hasSignal(blockpos.relative(direction1), direction1)) {
                     return true;
                 }
             }
@@ -204,6 +209,28 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState state1, boolean bl) {
         Containers.dropContentsOnDestroy(state, state1, level, pos);
         super.onRemove(state, level, pos, state1, bl);
+    }
+
+    @Override
+    public void destroy(LevelAccessor levelAccessor, BlockPos pos, BlockState state) {
+        if (levelAccessor.getBlockState(pos.above()).is(MarvelBlocks.SUIT_CHARGER_UPPER)) levelAccessor.removeBlock(pos.above(), true);
+        super.destroy(levelAccessor, pos, state);
+    }
+
+    @Override
+    protected boolean isPathfindable(BlockState p_60475_, PathComputationType p_60478_) {
+        return false;
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState state1, LevelAccessor levelAccessor, BlockPos pos, BlockPos pos1) {
+        if (direction == Direction.UP && !state1.is(MarvelBlocks.SUIT_CHARGER_UPPER)) return Blocks.AIR.defaultBlockState();
+        else return super.updateShape(state, direction, state1, levelAccessor, pos, pos1);
+    }
+
+    @Override
+    public void setPlacedBy(Level p_52749_, BlockPos p_52750_, BlockState p_52751_, LivingEntity p_52752_, ItemStack p_52753_) {
+        p_52749_.setBlock(p_52750_.above(), MarvelBlocks.SUIT_CHARGER_UPPER.get().defaultBlockState().setValue(SuitChargerUpperBlock.FACING, p_52751_.getValue(FACING)).setValue(SuitChargerUpperBlock.POWERED, p_52751_.getValue(POWERED)), 3);
     }
 
     @Nullable

@@ -35,6 +35,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.URU_BLOCK);
         output.accept(MarvelBlocks.SUIT_TABLE);
         output.accept(MarvelBlocks.SUIT_CHARGER);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICKS);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_WALL);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICKS);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_WALL);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
         output.accept(MarvelItems.VIBRANIUM_NUGGET);
@@ -175,6 +183,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WASP_CHESTPLATE);
         output.accept(MarvelItems.WASP_LEGGINGS);
         output.accept(MarvelItems.WASP_BOOTS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_HELMET);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_1_BOOTS);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_7_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.IRON_MAN_MARK_1_HELMET);

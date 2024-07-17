@@ -181,6 +181,11 @@ public class MarvelItems {
     public static final DeferredItem<Item> IRON_MAN_MARK_7_CHESTPLATE = register("iron_man_mark_7_chestplate", () -> new IronManMark7SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> IRON_MAN_MARK_7_LEGGINGS = register("iron_man_mark_7_leggings", () -> new IronManMark7SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> IRON_MAN_MARK_7_BOOTS = register("iron_man_mark_7_boots", () -> new IronManMark7SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> SHOULDER_TURRET = register("shoulder_turret", () -> new ShoulderTurretItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> WAR_MACHINE_MARK_1_HELMET = register("war_machine_mark_1_helmet", () -> new WarMachineMark1SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> WAR_MACHINE_MARK_1_CHESTPLATE = register("war_machine_mark_1_chestplate", () -> new WarMachineMark1SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> WAR_MACHINE_MARK_1_LEGGINGS = register("war_machine_mark_1_leggings", () -> new WarMachineMark1SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> WAR_MACHINE_MARK_1_BOOTS = register("war_machine_mark_1_boots", () -> new WarMachineMark1SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -285,11 +290,21 @@ public class MarvelItems {
         public static final TagKey<Item> IRON_MAN_MARK_7_CHESTPLATE = create("iron_man_mark_7_chestplate");
         public static final TagKey<Item> IRON_MAN_MARK_7_LEGGINGS = create("iron_man_mark_7_leggings");
         public static final TagKey<Item> IRON_MAN_MARK_7_BOOTS = create("iron_man_mark_7_boots");
+        public static final TagKey<Item> WAR_MACHINE_MARK_1_ARMOR = create("war_machine_mark_1_armor");
+        public static final TagKey<Item> WAR_MACHINE_MARK_1_HELMET = create("war_machine_mark_1_helmet");
+        public static final TagKey<Item> WAR_MACHINE_MARK_1_CHESTPLATE = create("war_machine_mark_1_chestplate");
+        public static final TagKey<Item> WAR_MACHINE_MARK_1_LEGGINGS = create("war_machine_mark_1_leggings");
+        public static final TagKey<Item> WAR_MACHINE_MARK_1_BOOTS = create("war_machine_mark_1_boots");
         public static final TagKey<Item> IRON_MAN_ARMOR = create("iron_man_armor");
         public static final TagKey<Item> IRON_MAN_HELMET = create("iron_man_helmet");
         public static final TagKey<Item> IRON_MAN_CHESTPLATE = create("iron_man_chestplate");
         public static final TagKey<Item> IRON_MAN_LEGGINGS = create("iron_man_leggings");
         public static final TagKey<Item> IRON_MAN_BOOTS = create("iron_man_boots");
+        public static final TagKey<Item> WAR_MACHINE_ARMOR = create("war_machine_armor");
+        public static final TagKey<Item> WAR_MACHINE_HELMET = create("war_machine_helmet");
+        public static final TagKey<Item> WAR_MACHINE_CHESTPLATE = create("war_machine_chestplate");
+        public static final TagKey<Item> WAR_MACHINE_LEGGINGS = create("war_machine_leggings");
+        public static final TagKey<Item> WAR_MACHINE_BOOTS = create("war_machine_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

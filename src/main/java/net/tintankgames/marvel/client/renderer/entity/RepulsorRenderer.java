@@ -27,7 +27,7 @@ public class RepulsorRenderer extends EntityRenderer<Repulsor> {
     }
 
     public void render(Repulsor repulsor, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        if (repulsor.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(repulsor) < 12.25)) {
+        if (repulsor.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(repulsor) < 6.25)) {
             poseStack.pushPose();
             poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, repulsor.yRotO, repulsor.getYRot())));
             poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, repulsor.xRotO, repulsor.getXRot()) - 180.0F));

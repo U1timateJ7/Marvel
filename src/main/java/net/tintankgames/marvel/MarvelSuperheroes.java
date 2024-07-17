@@ -2,6 +2,7 @@ package net.tintankgames.marvel;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.timers.TimerCallbacks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -63,6 +64,8 @@ public class MarvelSuperheroes {
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInCurioSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new ToggleHelmetCallback.Serializer());
+
+        Item.BY_BLOCK.put(MarvelBlocks.SUIT_CHARGER_UPPER.get(), MarvelBlocks.SUIT_CHARGER.asItem());
     }
 
     public static ResourceLocation id(String path) {

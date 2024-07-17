@@ -1,0 +1,31 @@
+{
+  "type": "marvel:suit_upgrading",
+  "category": "iron_man_suits",
+  "consume_suit": true,
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "results": {
+    "id": "marvel:war_machine_mark_1_leggings"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_2_leggings"
+  }
+}

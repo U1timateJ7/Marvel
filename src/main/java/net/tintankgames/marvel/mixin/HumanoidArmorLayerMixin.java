@@ -100,7 +100,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                     if (itemstack.has(MarvelDataComponents.ABSORBED_DAMAGE) && !itemstack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
                         VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
                         float percent = itemstack.getOrDefault(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F) / 25.0F;
-                        int k = FastColor.ARGB32.color(j, (int) (percent * 255));
+                        int k = FastColor.ARGB32.color((int) (percent * 255), j);
                         model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), k);
                     }
                     if (itemstack.is(MarvelItems.Tags.CYCLOPS_HELMET) || itemstack.is(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE)) {

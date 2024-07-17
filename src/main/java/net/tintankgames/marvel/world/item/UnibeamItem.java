@@ -51,7 +51,7 @@ public class UnibeamItem extends SuitPowerItem {
                 for (double d = 0; d < Math.abs(player.position().add(0, 1.25, 0).distanceTo(hit.getLocation())); d += 0.2) {
                     Vec3 vec3 = player.position().add(0, 1.25, 0).add(player.getViewVector(0.0F).scale(d));
                     if (level instanceof ServerLevel serverLevel) {
-                        serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.68235294f, 0.96862745f, 0.98823529f), 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
+                        serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.68235294f, 0.96862745f, 0.98823529f), 0.75f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
                     }
                 }
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_UNIBEAM_SHOOT.get(), SoundSource.PLAYERS);

@@ -46,23 +46,21 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
         poseStack.mulPose(Axis.YP.rotationDegrees(-f));
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
         switch (blockstate.getValue(SuitChargerBlock.FACING)) {
-            case NORTH -> poseStack.translate(-0.5, -2.825, 0.5);
-            case SOUTH -> poseStack.translate(0.5, -2.825, -0.5);
-            case WEST -> poseStack.translate(0.5, -2.825, 0.5);
-            case EAST -> poseStack.translate(-0.5, -2.825, -0.5);
+            case NORTH -> poseStack.translate(-0.5, -1.7, 0.5);
+            case SOUTH -> poseStack.translate(0.5, -1.7, -0.5);
+            case WEST -> poseStack.translate(0.5, -1.7, 0.5);
+            case EAST -> poseStack.translate(-0.5, -1.7, -0.5);
         }
-        poseStack.scale(1.75f, 1.75f, 1.75f);
         this.renderSuitPiece(poseStack, bufferSource, blockEntity, EquipmentSlot.CHEST, combinedLight, new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)));
         this.renderSuitPiece(poseStack, bufferSource, blockEntity, EquipmentSlot.LEGS, combinedLight, new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)));
         this.renderSuitPiece(poseStack, bufferSource, blockEntity, EquipmentSlot.FEET, combinedLight, new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)));
-        poseStack.scale(0.7f, 0.7f, 0.7f);
-        poseStack.translate(0, 0.3, 0);
         this.renderSuitPiece(poseStack, bufferSource, blockEntity, EquipmentSlot.HEAD, combinedLight, new HumanoidModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)));
         poseStack.popPose();
     }
 
     @Unique
     private void renderSuitPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, SuitChargerBlockEntity blockEntity, EquipmentSlot equipmentSlot, int light, HumanoidModel<AbstractClientPlayer> originalModel) {
+        originalModel.young = false;
         ItemStack itemstack = blockEntity.getItem(equipmentSlot);
         if (itemstack.getItem() instanceof SuitItem suitItem) {
             if (suitItem.getEquipmentSlot() == equipmentSlot) {
@@ -73,11 +71,6 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
                 for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
                     int j = armormaterial$layer.dyeable() ? i : -1;
 
-                    if (model instanceof SuitModel<?> suitModel) {
-                        suitModel.hat.xScale *= 1.5F;
-                        suitModel.hat.yScale *= 1.5F;
-                        suitModel.hat.zScale *= 1.5F;
-                    }
                     ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, armormaterial$layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), j);
