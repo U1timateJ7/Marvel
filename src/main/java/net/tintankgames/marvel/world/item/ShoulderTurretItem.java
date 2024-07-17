@@ -83,7 +83,7 @@ public class ShoulderTurretItem extends ProjectileWeaponItem {
             if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 0.2F || player.isCreative())) {
                 performShooting(level, player, living.swingingArm, stack, player.getProjectile(stack).is(Items.FIREWORK_ROCKET) ? 1.6F : 3.15F, 1.0F, null);
                 if (!player.isCreative()) {
-                    player.getCooldowns().addCooldown(this, 10);
+                    player.getCooldowns().addCooldown(this, 5);
                     player.getInventory().armor.forEach(stack1 -> EnergySuitItem.removeEnergy(stack1, 0.2F));
                 }
             }
