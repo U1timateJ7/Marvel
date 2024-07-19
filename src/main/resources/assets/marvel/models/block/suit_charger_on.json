@@ -1,7 +1,7 @@
 {
   "texture_size": [64, 64],
   "textures": {
-    "particle": "#charger",
+    "particle": "marvel:block/suit_charger_on",
     "charger": "marvel:block/suit_charger_on"
   },
   "elements": [
@@ -40,7 +40,7 @@
         "east": {"uv": [6, 0, 6.25, 0.5], "texture": "#charger"},
         "south": {"uv": [3, 0, 4.5, 0.5], "texture": "#charger"},
         "west": {"uv": [6.25, 0, 6.5, 0.5], "texture": "#charger"},
-        "up": {"uv": [6, 0, 4.5, 0], "texture": "#charger"},
+        "up": {"uv": [4.5, 0, 6, 0.25], "rotation": 180, "texture": "#charger"},
         "down": {"uv": [6, 0, 4.5, 0.25], "texture": "#charger"}
       }
     },
