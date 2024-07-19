@@ -14,45 +14,39 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.tintankgames.marvel.world.item.crafting.SuitUpgradingBookCategory;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
-    private final SuitUpgradingBookCategory category;
     private final boolean consumesSuit;
     private final Ingredient suit;
     private final ItemStack result;
     private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
-    @Nullable
-    private String group;
 
-    public SuitUpgradingRecipeBuilder(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result) {
-        this(category, suit, result, false);
+    public SuitUpgradingRecipeBuilder(Ingredient suit, ItemStack result) {
+        this(suit, result, false);
     }
 
-    public SuitUpgradingRecipeBuilder(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result, boolean consumesSuit) {
-        this.category = category;
+    public SuitUpgradingRecipeBuilder(Ingredient suit, ItemStack result, boolean consumesSuit) {
         this.consumesSuit = consumesSuit;
         this.suit = suit;
         this.result = result;
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemLike result) {
-        return new SuitUpgradingRecipeBuilder(category, suit, new ItemStack(result), false);
+    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemLike result) {
+        return new SuitUpgradingRecipeBuilder(suit, new ItemStack(result), false);
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemLike result, boolean consumesSuit) {
-        return new SuitUpgradingRecipeBuilder(category, suit, new ItemStack(result), consumesSuit);
+    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemLike result, boolean consumesSuit) {
+        return new SuitUpgradingRecipeBuilder(suit, new ItemStack(result), consumesSuit);
     }
 
-    public static SuitUpgradingRecipeBuilder upgrade(SuitUpgradingBookCategory category, Ingredient suit, ItemStack result) {
-        return new SuitUpgradingRecipeBuilder(category, suit, result);
+    public static SuitUpgradingRecipeBuilder upgrade(Ingredient suit, ItemStack result) {
+        return new SuitUpgradingRecipeBuilder(suit, result);
     }
 
     public SuitUpgradingRecipeBuilder requires(TagKey<Item> tagKey) {
@@ -93,7 +87,6 @@ public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
     }
 
     public SuitUpgradingRecipeBuilder group(@Nullable String group) {
-        this.group = group;
         return this;
     }
 
@@ -107,7 +100,7 @@ public class SuitUpgradingRecipeBuilder implements RecipeBuilder {
         this.ensureValid(id);
         Advancement.Builder advancement$builder = recipeOutput.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(AdvancementRequirements.Strategy.OR);
         this.criteria.forEach(advancement$builder::addCriterion);
-        SuitUpgradingRecipe suitUpgradingRecipe = new SuitUpgradingRecipe(Objects.requireNonNullElse(this.group, ""), this.category, this.suit, this.result, this.ingredients, this.consumesSuit);
+        SuitUpgradingRecipe suitUpgradingRecipe = new SuitUpgradingRecipe(this.suit, this.result, this.ingredients, this.consumesSuit);
         recipeOutput.accept(id, suitUpgradingRecipe, advancement$builder.build(id.withPrefix("recipes/suit_upgrading/")));
     }
 
