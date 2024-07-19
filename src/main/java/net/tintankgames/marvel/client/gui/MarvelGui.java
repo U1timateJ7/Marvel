@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -27,6 +28,7 @@ import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
@@ -35,6 +37,9 @@ import net.tintankgames.marvel.world.item.MarvelItems;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(Dist.CLIENT)
@@ -66,20 +71,19 @@ public class MarvelGui {
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font, coordinateText, event.getGuiGraphics().guiWidth() / 2 - Minecraft.getInstance().font.width(coordinateText) / 2, (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF, false);
                 renderCompass(event.getGuiGraphics(), event.getPartialTick(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
                 LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, 32.0D, 0.0F);
-                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick(), target, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
+                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x93F6FF);
             }
         }
     }
 
     private static LivingEntity getEntityLookingAtOrTargeting(Player player, double distance, float rotation) {
-        if (player.getKillCredit() != null) {
-            return player.getKillCredit();
-        }
-        if (player.getLastHurtMob() != null) {
-            return player.getLastHurtMob();
-        }
         Entity entity = null;
-        Vec3 vec33 = player.position().add(0, 1.25, 0).add(player.getViewVector(0.0F).yRot(rotation).scale(distance));
+        Optional<UUID> uuid = player.getData(MarvelAttachmentTypes.TARGETED_ENTITY).uuid;
+        if (uuid.isPresent()) {
+            entity = ((ClientLevel) player.level()).getEntities().get(uuid.get());
+            if (entity instanceof LivingEntity living && !living.isRemoved()) return living;
+        }
+        Vec3 vec33 = player.getEyePosition().add(player.getViewVector(0.0F).yRot(rotation).scale(distance));
         EntityHitResult entityHitResult = ProjectileUtil.getEntityHitResult(player.level(), player, player.getEyePosition(), vec33, player.getBoundingBox().expandTowards(player.getViewVector(0.0F).scale(distance)).inflate(1.0), entity1 -> entity1 instanceof LivingEntity);
         if (entityHitResult != null) {
             entity = entityHitResult.getEntity();
@@ -87,7 +91,7 @@ public class MarvelGui {
         return entity instanceof LivingEntity living ? living : null;
     }
 
-    private static void renderTargetEntity(GuiGraphics guiGraphics, float partialTick, LivingEntity entity, int color) {
+    private static void renderTargetEntity(GuiGraphics guiGraphics, float partialTick, LivingEntity entity, Player player, int color) {
         float scale = 0.75F;
         int xOffset = guiGraphics.guiWidth() - (int) (125 * scale) - 18;
         int yOffset = guiGraphics.guiHeight() / 2 - 10;
@@ -103,17 +107,17 @@ public class MarvelGui {
         renderEntityInGui(guiGraphics, 45, 56, renderScale, new Quaternionf().rotationXYZ((float) Math.toRadians(30), (float) Math.toRadians(130), (float) Math.PI), entity, partialTick);
         poseStack.popPose();
         xOffset += 10;
-        yOffset -= 5;
-        if (Minecraft.getInstance().font.width(entity.getName()) + xOffset >= guiGraphics.guiWidth()) {
-            xOffset -= Minecraft.getInstance().font.width(entity.getName()) - (guiGraphics.guiWidth() - xOffset);
-        }
-        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), xOffset, yOffset, color, false);
+        yOffset -= 10;
+        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), Minecraft.getInstance().font.width(entity.getName()) + xOffset >= guiGraphics.guiWidth() ? Minecraft.getInstance().font.width(entity.getName()) - (guiGraphics.guiWidth() - xOffset) : xOffset, yOffset, color, false);
         xOffset += 50;
-        yOffset += 30;
+        yOffset += 26;
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.hp", String.format("%.0f", entity.getHealth())), xOffset, yOffset - 8, color, false);
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.x", String.format("%.1f", entity.getX())), xOffset, yOffset, color, false);
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.y", String.format("%.1f", entity.getY())), xOffset, yOffset + 8, color, false);
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.z", String.format("%.1f", entity.getZ())), xOffset, yOffset + 16, color, false);
+        xOffset -= 50;
+        yOffset += 34;
+        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.distance", String.format("%.1f", entity.distanceTo(player))), xOffset, yOffset, color, false);
     }
 
     public static void renderEntityInGui(GuiGraphics guiGraphics, int xPos, int yPos, float scale, Quaternionf rotation, Entity entity, float partialTicks) {

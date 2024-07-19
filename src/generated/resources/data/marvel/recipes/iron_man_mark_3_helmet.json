@@ -1,6 +1,5 @@
 {
   "type": "marvel:suit_upgrading",
-  "category": "iron_man_suits",
   "consume_suit": false,
   "ingredients": [
     {

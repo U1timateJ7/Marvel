@@ -20,16 +20,12 @@ import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
 public class SuitUpgradingRecipe implements Recipe<Container> {
-    final String group;
-    final SuitUpgradingBookCategory category;
     final ItemStack result;
     final NonNullList<Ingredient> ingredients;
     final Ingredient suit;
     final boolean consumeSuit;
 
-    public SuitUpgradingRecipe(String group, SuitUpgradingBookCategory category, Ingredient suit, ItemStack result, NonNullList<Ingredient> ingredients, boolean consumeSuit) {
-        this.group = group;
-        this.category = category;
+    public SuitUpgradingRecipe(Ingredient suit, ItemStack result, NonNullList<Ingredient> ingredients, boolean consumeSuit) {
         this.suit = suit;
         this.result = result;
         this.ingredients = ingredients;
@@ -100,20 +96,9 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
         return consumeSuit;
     }
 
-    @Override
-    public String getGroup() {
-        return group;
-    }
-
-    public SuitUpgradingBookCategory category() {
-        return this.category;
-    }
-
     public static class Serializer implements RecipeSerializer<SuitUpgradingRecipe> {
         private static final MapCodec<SuitUpgradingRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340779_ -> p_340779_.group(
-                        Codec.STRING.optionalFieldOf("group", "").forGetter(p_300975_ -> p_300975_.group),
-                        SuitUpgradingBookCategory.CODEC.optionalFieldOf("category", SuitUpgradingBookCategory.SUITS).forGetter(p_300975_ -> p_300975_.category),
                         Ingredient.CODEC_NONEMPTY.fieldOf("suit").forGetter(p_300975_ -> p_300975_.suit),
                         ItemStack.STRICT_SINGLE_ITEM_CODEC.fieldOf("results").forGetter(p_301142_ -> p_301142_.result),
                         Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").flatXmap(ingredientList -> {Ingredient[] array = ingredientList.toArray(Ingredient[]::new);if (array.length == 0) {return DataResult.error(() -> "No ingredients for upgrade recipe");} else {return array.length > 9 ? DataResult.error(() -> "Too many ingredients for upgrade recipe. The maximum is: %s".formatted(9)) : DataResult.success(NonNullList.of(Ingredient.EMPTY, array));}}, DataResult::success).forGetter(p_300975_ -> p_300975_.ingredients),
@@ -134,20 +119,16 @@ public class SuitUpgradingRecipe implements Recipe<Container> {
         }
 
         private static SuitUpgradingRecipe fromNetwork(RegistryFriendlyByteBuf buf) {
-            String group = ByteBufCodecs.STRING_UTF8.decode(buf);
-            SuitUpgradingBookCategory category = SuitUpgradingBookCategory.STREAM_CODEC.decode(buf);
             Ingredient suit = Ingredient.CONTENTS_STREAM_CODEC.decode(buf);
             int j = buf.readVarInt();
             NonNullList<Ingredient> ingredients = NonNullList.withSize(j, Ingredient.EMPTY);
             ingredients.replaceAll(p_319735_ -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
             ItemStack result = ItemStack.STREAM_CODEC.decode(buf);
             boolean consumeSuit = ByteBufCodecs.BOOL.decode(buf);
-            return new SuitUpgradingRecipe(group, category, suit, result, ingredients, consumeSuit);
+            return new SuitUpgradingRecipe(suit, result, ingredients, consumeSuit);
         }
 
         private static void toNetwork(RegistryFriendlyByteBuf buf, SuitUpgradingRecipe recipe) {
-            ByteBufCodecs.STRING_UTF8.encode(buf, recipe.group);
-            SuitUpgradingBookCategory.STREAM_CODEC.encode(buf, recipe.category);
             Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.suit);
             buf.writeVarInt(recipe.ingredients.size());
             for (Ingredient ingredient : recipe.ingredients) {
