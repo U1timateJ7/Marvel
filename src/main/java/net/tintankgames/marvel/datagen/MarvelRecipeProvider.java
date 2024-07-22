@@ -158,6 +158,11 @@ public class MarvelRecipeProvider extends RecipeProvider {
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_CHESTPLATE), MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE).unlockedBy("has_wolverine_chestplate", has(MarvelItems.Tags.WOLVERINE_CHESTPLATE)).save(output);
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_LEGGINGS), MarvelItems.WOLVERINE_BROWN_LEGGINGS).unlockedBy("has_wolverine_leggings", has(MarvelItems.Tags.WOLVERINE_LEGGINGS)).save(output);
         SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_BOOTS), MarvelItems.WOLVERINE_BROWN_BOOTS).unlockedBy("has_wolverine_boots", has(MarvelItems.Tags.WOLVERINE_BOOTS)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_HELMET), MarvelItems.WOLVERINE_X_FORCE_HELMET).unlockedBy("has_wolverine_helmet", has(MarvelItems.Tags.WOLVERINE_HELMET)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_CHESTPLATE), MarvelItems.WOLVERINE_X_FORCE_CHESTPLATE).unlockedBy("has_wolverine_chestplate", has(MarvelItems.Tags.WOLVERINE_CHESTPLATE)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_CHESTPLATE), MarvelItems.WOLVERINE_X_FORCE_SLEEVELESS_CHESTPLATE).unlockedBy("has_wolverine_chestplate", has(MarvelItems.Tags.WOLVERINE_CHESTPLATE)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_LEGGINGS), MarvelItems.WOLVERINE_X_FORCE_LEGGINGS).unlockedBy("has_wolverine_leggings", has(MarvelItems.Tags.WOLVERINE_LEGGINGS)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.WOLVERINE_BOOTS), MarvelItems.WOLVERINE_X_FORCE_BOOTS).unlockedBy("has_wolverine_boots", has(MarvelItems.Tags.WOLVERINE_BOOTS)).save(output);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.CYCLOPS_HELMET).define('#', Tags.Items.DYES_BLUE).define('G', Tags.Items.INGOTS_GOLD).define('X', MarvelItems.REINFORCED_LEATHER).define('R', Tags.Items.GEMS_QUARTZ).pattern("X#X").pattern("GRG").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.CYCLOPS_CHESTPLATE).define('#', Tags.Items.DYES_YELLOW).define('B', Tags.Items.DYES_BLUE).define('X', MarvelItems.REINFORCED_LEATHER).pattern("X X").pattern("BB#").pattern("X#X").unlockedBy("has_reinforced_leather", has(MarvelItems.REINFORCED_LEATHER)).save(output);
@@ -238,6 +243,15 @@ public class MarvelRecipeProvider extends RecipeProvider {
         SuitUpgradingRecipeBuilder.upgrade(Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_CHESTPLATE), MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).requires(Items.CROSSBOW).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
         SuitUpgradingRecipeBuilder.upgrade(Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_LEGGINGS), MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
         SuitUpgradingRecipeBuilder.upgrade(Ingredient.of(MarvelItems.Tags.IRON_MAN_MARK_2_BOOTS), MarvelItems.WAR_MACHINE_MARK_1_BOOTS, true).requires(MarvelItems.TITANIUM_INGOT, 4).requires(Tags.Items.INGOTS_IRON, 2).unlockedBy("has_iron_man_mark_2_armor", has(MarvelItems.Tags.IRON_MAN_MARK_2_ARMOR)).save(output);
+
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_HELMET), MarvelItems.DEADPOOL_HELMET).unlockedBy("has_deadpool_helmet", has(MarvelItems.Tags.DEADPOOL_HELMET)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_CHESTPLATE), MarvelItems.DEADPOOL_CHESTPLATE).unlockedBy("has_deadpool_chestplate", has(MarvelItems.Tags.DEADPOOL_CHESTPLATE)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_LEGGINGS), MarvelItems.DEADPOOL_LEGGINGS).unlockedBy("has_deadpool_leggings", has(MarvelItems.Tags.DEADPOOL_LEGGINGS)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_BOOTS), MarvelItems.DEADPOOL_BOOTS).unlockedBy("has_deadpool_boots", has(MarvelItems.Tags.DEADPOOL_BOOTS)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_HELMET), MarvelItems.DEADPOOL_X_FORCE_HELMET).unlockedBy("has_deadpool_helmet", has(MarvelItems.Tags.DEADPOOL_HELMET)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_CHESTPLATE), MarvelItems.DEADPOOL_X_FORCE_CHESTPLATE).unlockedBy("has_deadpool_chestplate", has(MarvelItems.Tags.DEADPOOL_CHESTPLATE)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_LEGGINGS), MarvelItems.DEADPOOL_X_FORCE_LEGGINGS).unlockedBy("has_deadpool_leggings", has(MarvelItems.Tags.DEADPOOL_LEGGINGS)).save(output);
+        SuitVariantRecipeBuilder.variant(Ingredient.of(MarvelItems.Tags.DEADPOOL_BOOTS), MarvelItems.DEADPOOL_X_FORCE_BOOTS).unlockedBy("has_deadpool_boots", has(MarvelItems.Tags.DEADPOOL_BOOTS)).save(output);
     }
 
     public static void mvstonecutterResultFromBase(RecipeOutput consumer, RecipeCategory recipeCategory, ItemLike result, ItemLike item) {

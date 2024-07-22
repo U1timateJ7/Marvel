@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BlockEntityWithoutLevelRenderer.class)
-public class BlockEntityWithoutLevelRendererMixin {
+public abstract class BlockEntityWithoutLevelRendererMixin {
     @Shadow @Final private EntityModelSet entityModelSet;
     @Unique private VibraniumShieldModel marvel$vibraniumShieldModel;
     @Unique private VibraniumShieldModel marvel$vibraniumShieldOverlayModel;

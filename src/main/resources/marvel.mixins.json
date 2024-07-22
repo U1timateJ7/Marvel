@@ -8,6 +8,7 @@
     "EnchantmentHelperMixin",
     "EntityMixin",
     "FallingBlockEntityMixin",
+    "IMobEffectExtensionMixin",
     "LivingEntityMixin",
     "PlayerMixin",
     "ServerLevelMixin",
@@ -18,13 +19,17 @@
     "WebBlockMixin"
   ],
   "client": [
+    "ArmorStandRendererMixin",
     "BlockEntityWithoutLevelRendererMixin",
     "CameraMixin",
     "CapeLayerMixin",
     "GameRendererMixin",
     "HumanoidArmorLayerMixin",
+    "HumanoidModelMixin",
+    "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
+    "LivingEntityRendererMixin",
     "MinecraftMixin",
     "PlayerModelMixin",
     "PlayerRendererMixin"

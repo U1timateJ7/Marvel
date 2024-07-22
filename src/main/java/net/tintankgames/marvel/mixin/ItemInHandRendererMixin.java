@@ -19,14 +19,14 @@ public abstract class ItemInHandRendererMixin {
     @Shadow protected abstract void renderPlayerArm(PoseStack p_109347_, MultiBufferSource p_109348_, int p_109349_, float p_109350_, float p_109351_, HumanoidArm p_109352_);
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z", ordinal = 0, shift = At.Shift.BEFORE), method = "renderArmWithItem", cancellable = true)
-    private void renderHandInPlace(AbstractClientPlayer p_109372_, float p_109373_, float p_109374_, InteractionHand p_109375_, float p_109376_, ItemStack p_109377_, float p_109378_, PoseStack p_109379_, MultiBufferSource p_109380_, int p_109381_, CallbackInfo ci) {
-        if (p_109377_.is(MarvelItems.Tags.RENDER_HAND)) {
-            boolean flag = p_109375_ == InteractionHand.MAIN_HAND;
-            HumanoidArm humanoidarm = flag ? p_109372_.getMainArm() : p_109372_.getMainArm().getOpposite();
-            if (flag && !p_109372_.isInvisible()) {
-                this.renderPlayerArm(p_109379_, p_109380_, p_109381_, p_109378_, p_109376_, humanoidarm);
+    private void renderHandInPlace(AbstractClientPlayer player, float partialTick, float p_109374_, InteractionHand hand, float swingProgress, ItemStack stack, float equipProgress, PoseStack poseStack, MultiBufferSource multiBufferSource, int p_109381_, CallbackInfo ci) {
+        if (stack.is(MarvelItems.Tags.RENDER_HAND)) {
+            boolean flag = hand == InteractionHand.MAIN_HAND;
+            HumanoidArm humanoidarm = flag ? player.getMainArm() : player.getMainArm().getOpposite();
+            if (flag && !player.isInvisible()) {
+                this.renderPlayerArm(poseStack, multiBufferSource, p_109381_, equipProgress, swingProgress, humanoidarm);
             }
-            p_109379_.popPose();
+            poseStack.popPose();
             ci.cancel();
         }
     }

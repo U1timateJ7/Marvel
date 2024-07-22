@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerLevel.class)
-public class ServerLevelMixin {
+public abstract class ServerLevelMixin {
     @Inject(at = @At("HEAD"), method = "gameEvent", cancellable = true)
     private void echoCapeWork(Holder<GameEvent> holder, Vec3 p_215042_, GameEvent.Context context, CallbackInfo ci) {
         if (context.sourceEntity() instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.SOUND_DAMPENING_BOOTS)) {

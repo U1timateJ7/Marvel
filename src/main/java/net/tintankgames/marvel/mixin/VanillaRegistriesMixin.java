@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(VanillaRegistries.class)
-public class VanillaRegistriesMixin {
+public abstract class VanillaRegistriesMixin {
     @Mixin(FeatureUtils.class)
     public static class FeatureUtilsMixin {
         @Inject(at = @At("RETURN"), method = "bootstrap")

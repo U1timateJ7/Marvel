@@ -10,6 +10,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -41,6 +42,10 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FUEL = register("fuel", () -> DataComponentType.<Integer>builder().persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> FUEL_MAX = register("fuel_max", () -> DataComponentType.<Integer>builder().persistent(Codec.intRange(0, Integer.MAX_VALUE)).networkSynchronized(ByteBufCodecs.INT).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Float>> ENERGY = register("energy", () -> DataComponentType.<Float>builder().persistent(Codec.floatRange(0, 100)).networkSynchronized(ByteBufCodecs.FLOAT).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> SPEEDING = register("speeding", () -> DataComponentType.<Unit>builder().persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Vec3>> DELTA_MOVEMENT = register("delta_movement", () -> DataComponentType.<Vec3>builder().networkSynchronized(ByteBufCodecs.fromCodec(Vec3.CODEC)).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> FAKE = register("fake", () -> DataComponentType.<Unit>builder().networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> IN_HAND = register("in_hand", () -> DataComponentType.<Unit>builder().networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);

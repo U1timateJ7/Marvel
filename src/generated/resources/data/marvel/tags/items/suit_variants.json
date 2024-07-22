@@ -26,6 +26,11 @@
     "marvel:wolverine_brown_sleeveless_chestplate",
     "marvel:wolverine_brown_leggings",
     "marvel:wolverine_brown_boots",
+    "marvel:wolverine_x_force_helmet",
+    "marvel:wolverine_x_force_chestplate",
+    "marvel:wolverine_x_force_sleeveless_chestplate",
+    "marvel:wolverine_x_force_leggings",
+    "marvel:wolverine_x_force_boots",
     "marvel:cyclops_astonishing_helmet",
     "marvel:cyclops_astonishing_chestplate",
     "marvel:cyclops_astonishing_leggings",
@@ -45,6 +50,10 @@
     "marvel:spider_man_insomniac_helmet",
     "marvel:spider_man_insomniac_chestplate",
     "marvel:spider_man_insomniac_leggings",
-    "marvel:spider_man_insomniac_boots"
+    "marvel:spider_man_insomniac_boots",
+    "marvel:deadpool_x_force_helmet",
+    "marvel:deadpool_x_force_chestplate",
+    "marvel:deadpool_x_force_leggings",
+    "marvel:deadpool_x_force_boots"
   ]
 }

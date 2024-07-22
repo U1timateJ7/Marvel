@@ -2,19 +2,26 @@ package net.tintankgames.marvel.mixin;
 
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.component.Size;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,6 +29,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
     @Shadow public abstract void awardStat(Stat<?> p_36247_);
+    @Shadow @Final private Abilities abilities;
+    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot p_36257_);
 
     protected PlayerMixin(EntityType<? extends LivingEntity> p_20966_, Level p_20967_) {
         super(p_20966_, p_20967_);
@@ -68,5 +77,19 @@ public abstract class PlayerMixin extends LivingEntity {
             }
             ci.cancel();
         }
+    }
+
+    @Inject(at = @At("RETURN"), method = "tick")
+    private void removeWalkingAnimation(CallbackInfo ci) {
+        if (abilities.flying && (hasArmor(MarvelItems.Tags.IRON_MAN_ARMOR, true) || (hasArmor(MarvelItems.Tags.WASP_ARMOR, true) && getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
+    }
+
+    @Unique
+    private boolean hasArmor(TagKey<Item> tagKey, boolean needsHead) {
+        boolean head = getItemBySlot(EquipmentSlot.HEAD).is(tagKey) || !needsHead;
+        boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        return head && chest && legs && feet;
     }
 }

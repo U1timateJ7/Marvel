@@ -25,6 +25,7 @@ import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.level.MarvelGameRules;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
+import net.tintankgames.marvel.world.level.timers.MultiAttackCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
 import net.tintankgames.marvel.world.level.timers.ToggleHelmetCallback;
@@ -34,7 +35,7 @@ import org.slf4j.Logger;
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.1.0-pre1";
+    public static final String MOD_VERSION = "2.1.0-snapshot4";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
@@ -64,6 +65,7 @@ public class MarvelSuperheroes {
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new SetItemInCurioSlotCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new ToggleHelmetCallback.Serializer());
+        TimerCallbacks.SERVER_CALLBACKS.register(new MultiAttackCallback.Serializer());
 
         Item.BY_BLOCK.put(MarvelBlocks.SUIT_CHARGER_UPPER.get(), MarvelBlocks.SUIT_CHARGER.asItem());
     }

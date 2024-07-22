@@ -8,6 +8,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -65,12 +66,19 @@ public class MjolnirItem extends Item implements ProjectileItem {
     @Override
     public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
         super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
-        if (p_41406_ instanceof Player player) {
+        if (p_41406_ instanceof ServerPlayer player) {
             if (!p_41404_.has(MarvelDataComponents.OWNER)) {
                 p_41404_.set(MarvelDataComponents.OWNER, player.getUUID());
             } else if (!Objects.equals(p_41404_.get(MarvelDataComponents.OWNER).toString(), player.getUUID().toString())) {
                 player.drop(p_41404_.copy(), true);
                 p_41404_.shrink(p_41404_.getCount());
+            }
+            if (player.getAbilities().flying) {
+                p_41404_.set(MarvelDataComponents.FLYING, player.getAbilities().flying);
+                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getDeltaMovement());
+            } else {
+                p_41404_.remove(MarvelDataComponents.FLYING);
+                p_41404_.remove(MarvelDataComponents.DELTA_MOVEMENT);
             }
         }
     }
@@ -142,7 +150,7 @@ public class MjolnirItem extends Item implements ProjectileItem {
 
     @SubscribeEvent
     public static void mjolnirHitShield(ShieldBlockEvent event) {
-        if ((processHand(event.getEntity().getItemInHand(InteractionHand.MAIN_HAND)) || processHand(event.getEntity().getItemInHand(InteractionHand.OFF_HAND))) && event.getDamageSource().getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && !event.getDamageSource().isIndirect())  {
+        if ((processHand(event.getEntity().getMainHandItem()) || processHand(event.getEntity().getOffhandItem())) && event.getDamageSource().getEntity() instanceof LivingEntity living && living.getMainHandItem().is(MarvelItems.MJOLNIR) && !event.getDamageSource().isIndirect())  {
             if (event.getEntity().level() instanceof ServerLevel serverLevel) {
                 serverLevel.explode(null, event.getDamageSource(), new MjolnirExplosionDamageCalculator(event.getEntity(), event.getDamageSource().getEntity()), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), 4, false, Level.ExplosionInteraction.NONE, ParticleTypes.EXPLOSION_EMITTER, ParticleTypes.EXPLOSION_EMITTER, MarvelSoundEvents.EMPTY);
                 serverLevel.playSound(null, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), MarvelSoundEvents.MJOLNIR_HIT_SHIELD.get(), SoundSource.PLAYERS);

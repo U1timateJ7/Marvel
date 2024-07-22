@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EnchantmentHelper.class)
-public class EnchantmentHelperMixin {
+public abstract class EnchantmentHelperMixin {
     @Inject(at = @At("HEAD"), method = "getItemEnchantmentLevel", cancellable = true)
     private static void cantRemoveThor(Enchantment enchantment, ItemStack stack, CallbackInfoReturnable<Integer> cir) {
         if (stack.is(MarvelItems.Tags.THOR_ARMOR) && enchantment == Enchantments.BINDING_CURSE) cir.setReturnValue(1);

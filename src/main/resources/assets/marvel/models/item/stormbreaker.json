@@ -39,6 +39,16 @@
       "rotation": [0, 0, 39],
       "translation": [2, 6.75, 6.25],
       "scale": [0.73, 0.73, 0.73]
+    },
+    "marvel:flying_righthand": {
+      "rotation": [-60, 90, 0],
+      "translation": [6.25, -2, -11.25],
+      "scale": [0.8, 0.8, 0.8]
+    },
+    "marvel:flying_lefthand": {
+      "rotation": [-60, -90, 0],
+      "translation": [-6.25, -2, -11.25],
+      "scale": [0.8, 0.8, 0.8]
     }
   }
 }
