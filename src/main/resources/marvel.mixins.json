@@ -28,6 +28,7 @@
     "HumanoidModelMixin",
     "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
+    "ItemTransformsMixin",
     "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "MinecraftMixin",

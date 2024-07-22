@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.ToolAction;
 import net.neoforged.neoforge.common.ToolActions;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
@@ -53,7 +54,7 @@ public class StormbreakerItem extends Item implements ProjectileItem {
         if (p_41406_ instanceof ServerPlayer player) {
             if (player.getAbilities().flying) {
                 p_41404_.set(MarvelDataComponents.FLYING, player.getAbilities().flying);
-                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getDeltaMovement());
+                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getData(MarvelAttachmentTypes.DELTA_MOVEMENT));
             } else {
                 p_41404_.remove(MarvelDataComponents.FLYING);
                 p_41404_.remove(MarvelDataComponents.DELTA_MOVEMENT);

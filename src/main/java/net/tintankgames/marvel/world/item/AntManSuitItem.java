@@ -16,6 +16,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
@@ -72,7 +73,7 @@ public class AntManSuitItem extends LeatherSuitItem {
             } else if (size == Size.SMALL) {
                 if (event.getEntity() instanceof ServerPlayer player && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WASP_CHESTPLATE)) {
                     player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, player.getAbilities().flying);
-                    player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, player.getDeltaMovement());
+                    player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, player.getData(MarvelAttachmentTypes.DELTA_MOVEMENT));
                 }
             } else {
                 if (event.getEntity() instanceof ServerPlayer player) {

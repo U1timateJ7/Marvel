@@ -82,8 +82,8 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 }
                 if (serverPlayer.getAbilities().flying) {
                     serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, serverPlayer.getAbilities().flying);
-                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, serverPlayer.getDeltaMovement());
-                    Vec3 flamePlacement = serverPlayer.position().add(serverPlayer.getDeltaMovement().multiply(-1.5, -1, -1.5)).add(0, serverPlayer.getDeltaMovement().horizontalDistance() * 1.4, 0);
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT));
+                    Vec3 flamePlacement = serverPlayer.position().add(serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).multiply(-1.5, -1, -1.5)).add(0, serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).horizontalDistance() * 1.4, 0);
                     serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
                 } else {
                     serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);

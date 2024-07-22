@@ -32,6 +32,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.event.entity.living.ShieldBlockEvent;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
@@ -75,7 +76,7 @@ public class MjolnirItem extends Item implements ProjectileItem {
             }
             if (player.getAbilities().flying) {
                 p_41404_.set(MarvelDataComponents.FLYING, player.getAbilities().flying);
-                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getDeltaMovement());
+                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getData(MarvelAttachmentTypes.DELTA_MOVEMENT));
             } else {
                 p_41404_.remove(MarvelDataComponents.FLYING);
                 p_41404_.remove(MarvelDataComponents.DELTA_MOVEMENT);

@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.attachment;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -19,6 +20,7 @@ public class MarvelAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Integer>> UNDERWATER_TICKS = register("underwater_ticks", () -> AttachmentType.builder(() -> 0).serialize(Codec.intRange(0, Integer.MAX_VALUE)).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<TargetedEntity>> TARGETED_ENTITY = register("targeted_entity", () -> AttachmentType.serializable(() -> new TargetedEntity()).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> MOVING = register("moving", () -> AttachmentType.builder(() -> false).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Vec3>> DELTA_MOVEMENT = register("delta_movement", () -> AttachmentType.builder(() -> Vec3.ZERO).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
         return REGISTER.register(id, supplier);

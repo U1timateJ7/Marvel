@@ -58,6 +58,9 @@ public class MarvelSuperheroes {
         MarvelItems.register(bus);
         MarvelCreativeModeTabs.register(bus);
         MarvelGameRules.register();
+        MarvelEnumExtensions.FLYING_LEFT_HAND_CONTEXT.getSerializedName();
+        MarvelEnumExtensions.FLYING_RIGHT_HAND_CONTEXT.getSerializedName();
+
         modContainer.registerConfig(ModConfig.Type.COMMON, MarvelConfig.SPEC);
     }
 
