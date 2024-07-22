@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:deadpool_x_force_helmet"
+  },
+  "suit": {
+    "tag": "marvel:deadpool_helmet"
+  }
+}

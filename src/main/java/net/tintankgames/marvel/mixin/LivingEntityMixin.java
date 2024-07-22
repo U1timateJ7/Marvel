@@ -2,12 +2,16 @@ package net.tintankgames.marvel.mixin;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.animal.FlyingAnimal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,10 +19,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
+import net.tintankgames.marvel.world.item.component.Size;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -38,6 +44,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Shadow public abstract void calculateEntityAnimation(boolean p_268129_);
     @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot p_21127_);
     @Shadow private Optional<BlockPos> lastClimbablePos;
+    @Shadow public abstract AttributeMap getAttributes();
 
     public LivingEntityMixin(EntityType<?> p_19870_, Level p_19871_) {
         super(p_19870_, p_19871_);
@@ -104,7 +111,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(at = @At("HEAD"), method = "onClimbable", cancellable = true)
     private void spiderManClimbable(CallbackInfoReturnable<Boolean> cir) {
-        if (hasSpiderManArmor()) {
+        if (hasArmor(MarvelItems.Tags.SPIDER_MAN_ARMOR, true)) {
             if (this.isSpectator()) {
                 cir.setReturnValue(false);
             } else {
@@ -119,11 +126,12 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Unique
-    private boolean hasSpiderManArmor() {
-        boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.SPIDER_MAN_ARMOR);
-        boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.SPIDER_MAN_ARMOR);
-        boolean feet = getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.SPIDER_MAN_ARMOR);
-        return chest && legs && feet;
+    private boolean hasArmor(TagKey<Item> tagKey, boolean needsHead) {
+        boolean head = getItemBySlot(EquipmentSlot.HEAD).is(tagKey) || !needsHead;
+        boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        return head && chest && legs && feet;
     }
 
     @Unique
@@ -177,6 +185,20 @@ public abstract class LivingEntityMixin extends Entity {
                     return north || east || south || west || north1 || east1 || south1 || west1 || north2 || east2 || south2 || west2 || above;
                 }
             }
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "canStandOnFluid", cancellable = true)
+    private void jesusMoment(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
+        if (hasArmor(MarvelItems.Tags.QUICKSILVER_ARMOR, false) && getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SPEEDING) && getData(MarvelAttachmentTypes.MOVING)) {
+            cir.setReturnValue(true);
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "updateWalkAnimation", cancellable = true)
+    private void jesusMoment(float p_268283_, CallbackInfo ci) {
+        if ((Object)this instanceof Player player && (player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.IRON_MAN_ARMOR, true) || (hasArmor(MarvelItems.Tags.WASP_ARMOR, true) && getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || player.getMainHandItem().is(MarvelItems.MJOLNIR) || player.getMainHandItem().is(MarvelItems.STORMBREAKER) || player.getOffhandItem().is(MarvelItems.MJOLNIR) || player.getOffhandItem().is(MarvelItems.STORMBREAKER))) {
+            ci.cancel();
         }
     }
 }

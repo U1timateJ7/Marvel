@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.jetbrains.annotations.Nullable;
 
 @Mixin(Minecraft.class)
-public class MinecraftMixin {
+public abstract class MinecraftMixin {
     @Shadow @Nullable public LocalPlayer player;
 
     @Inject(at = @At("HEAD"), method = "shouldEntityAppearGlowing", cancellable = true)

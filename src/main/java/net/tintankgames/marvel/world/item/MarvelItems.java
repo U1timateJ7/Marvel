@@ -97,6 +97,11 @@ public class MarvelItems {
     public static final DeferredItem<Item> WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE = register("wolverine_brown_sleeveless_chestplate", () -> new WolverineSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> WOLVERINE_BROWN_LEGGINGS = register("wolverine_brown_leggings", () -> new WolverineSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> WOLVERINE_BROWN_BOOTS = register("wolverine_brown_boots", () -> new WolverineSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> WOLVERINE_X_FORCE_HELMET = register("wolverine_x_force_helmet", () -> new WolverineSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> WOLVERINE_X_FORCE_CHESTPLATE = register("wolverine_x_force_chestplate", () -> new WolverineSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> WOLVERINE_X_FORCE_SLEEVELESS_CHESTPLATE = register("wolverine_x_force_sleeveless_chestplate", () -> new WolverineSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> WOLVERINE_X_FORCE_LEGGINGS = register("wolverine_x_force_leggings", () -> new WolverineSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> WOLVERINE_X_FORCE_BOOTS = register("wolverine_x_force_boots", () -> new WolverineSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> OPTIC_BLAST = register("optic_blast", () -> new OpticBlastItem(new Item.Properties()));
     public static final DeferredItem<Item> CYCLOPS_HELMET = register("cyclops_helmet", () -> new CyclopsSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
     public static final DeferredItem<Item> CYCLOPS_CHESTPLATE = register("cyclops_chestplate", () -> new CyclopsSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
@@ -186,6 +191,18 @@ public class MarvelItems {
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_CHESTPLATE = register("war_machine_mark_1_chestplate", () -> new WarMachineMark1SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_LEGGINGS = register("war_machine_mark_1_leggings", () -> new WarMachineMark1SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_BOOTS = register("war_machine_mark_1_boots", () -> new WarMachineMark1SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> QUICKSILVER_CHESTPLATE = register("quicksilver_chestplate", () -> new QuicksilverSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> QUICKSILVER_LEGGINGS = register("quicksilver_leggings", () -> new QuicksilverSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> QUICKSILVER_BOOTS = register("quicksilver_boots", () -> new QuicksilverSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_HELMET = register("deadpool_helmet", () -> new DeadpoolSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_CHESTPLATE = register("deadpool_chestplate", () -> new DeadpoolSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_LEGGINGS = register("deadpool_leggings", () -> new DeadpoolSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_BOOTS = register("deadpool_boots", () -> new DeadpoolSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_X_FORCE_HELMET = register("deadpool_x_force_helmet", () -> new DeadpoolSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_X_FORCE_CHESTPLATE = register("deadpool_x_force_chestplate", () -> new DeadpoolSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_X_FORCE_LEGGINGS = register("deadpool_x_force_leggings", () -> new DeadpoolSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> DEADPOOL_X_FORCE_BOOTS = register("deadpool_x_force_boots", () -> new DeadpoolSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> KATANAS = register("katanas", () -> new KatanasItem(new Item.Properties()));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -305,6 +322,15 @@ public class MarvelItems {
         public static final TagKey<Item> WAR_MACHINE_CHESTPLATE = create("war_machine_chestplate");
         public static final TagKey<Item> WAR_MACHINE_LEGGINGS = create("war_machine_leggings");
         public static final TagKey<Item> WAR_MACHINE_BOOTS = create("war_machine_boots");
+        public static final TagKey<Item> QUICKSILVER_ARMOR = create("quicksilver_armor");
+        public static final TagKey<Item> QUICKSILVER_CHESTPLATE = create("quicksilver_chestplate");
+        public static final TagKey<Item> QUICKSILVER_LEGGINGS = create("quicksilver_leggings");
+        public static final TagKey<Item> QUICKSILVER_BOOTS = create("quicksilver_boots");
+        public static final TagKey<Item> DEADPOOL_ARMOR = create("deadpool_armor");
+        public static final TagKey<Item> DEADPOOL_HELMET = create("deadpool_helmet");
+        public static final TagKey<Item> DEADPOOL_CHESTPLATE = create("deadpool_chestplate");
+        public static final TagKey<Item> DEADPOOL_LEGGINGS = create("deadpool_leggings");
+        public static final TagKey<Item> DEADPOOL_BOOTS = create("deadpool_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WebBlock.class)
-public class WebBlockMixin {
+public abstract class WebBlockMixin {
     @Inject(at = @At("HEAD"), method = "entityInside", cancellable = true)
     private void spideyNoStuck(BlockState p_58180_, Level p_58181_, BlockPos p_58182_, Entity p_58183_, CallbackInfo ci) {
         if (p_58183_ instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.SPIDER_MAN_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.SPIDER_MAN_ARMOR)) {

@@ -24,6 +24,7 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.client.model.SuitModel;
+import net.tintankgames.marvel.client.renderer.entity.layers.ItemOnBackLayer;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.SuitItem;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,6 +36,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
     public PlayerRendererMixin(EntityRendererProvider.Context p_174289_, PlayerModel<AbstractClientPlayer> p_174290_, float p_174291_) {
         super(p_174289_, p_174290_, p_174291_);
+    }
+
+    @Inject(at = @At("RETURN"), method = "<init>")
+    private void addMarvelLayers(EntityRendererProvider.Context context, boolean slim, CallbackInfo ci) {
+        this.addLayer(new ItemOnBackLayer<>(this, context.getItemRenderer()));
     }
 
     @Inject(at = @At("RETURN"), method = "renderHand")

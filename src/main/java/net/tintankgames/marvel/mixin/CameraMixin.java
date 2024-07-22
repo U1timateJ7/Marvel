@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Camera.class)
-public class CameraMixin {
+public abstract class CameraMixin {
     @Shadow private Entity entity;
 
     @Dynamic

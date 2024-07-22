@@ -22,6 +22,15 @@ public class MarvelClientEnumExtensions {
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_full_blinking"),
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_half"),
             MarvelSuperheroes.id("hud/heart/adamantium_hardcore_half_blinking"));
+    public static final EnumProxy<Gui.HeartType> DEADPOOL_HEART_TYPE = new EnumProxy<>(Gui.HeartType.class,
+            MarvelSuperheroes.id("hud/heart/deadpool_full"),
+            MarvelSuperheroes.id("hud/heart/deadpool_full_blinking"),
+            MarvelSuperheroes.id("hud/heart/deadpool_half"),
+            MarvelSuperheroes.id("hud/heart/deadpool_half_blinking"),
+            MarvelSuperheroes.id("hud/heart/deadpool_hardcore_full"),
+            MarvelSuperheroes.id("hud/heart/deadpool_hardcore_full_blinking"),
+            MarvelSuperheroes.id("hud/heart/deadpool_hardcore_half"),
+            MarvelSuperheroes.id("hud/heart/deadpool_hardcore_half_blinking"));
     public static final EnumProxy<HumanoidModel.ArmPose> VIBRANIUM_SHIELD_POSE = new EnumProxy<>(HumanoidModel.ArmPose.class, false, (IArmPoseTransformer) (model, entity, arm) -> {
         ModelPart armModel = arm == HumanoidArm.RIGHT ? model.rightArm : model.leftArm;
         armModel.offsetPos(new Vector3f(arm == HumanoidArm.RIGHT ? -1.0F : 1.0F, 0.0F, 0.0F));

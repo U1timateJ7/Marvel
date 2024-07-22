@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -58,6 +59,13 @@ public class PrimarySuitAbilityMessage implements CustomPacketPayload {
                     player.connection.send(new ClientboundSoundPacket(MarvelSoundEvents.SPIDER_MAN_SPIDER_SENSE, SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextLong()));
                     player.serverLevel().sendParticles(MarvelParticleTypes.SPIDER_SENSE.get(), player.getX(), player.getEyeY() + 0.5F, player.getZ(), 1, 0, 0, 0, 0);
                     chestplate.set(MarvelDataComponents.SPIDER_SENSE, 100);
+                }
+                if (helmet.isEmpty() && chestplate.is(MarvelItems.Tags.QUICKSILVER_ARMOR) && leggings.is(MarvelItems.Tags.QUICKSILVER_ARMOR) && boots.is(MarvelItems.Tags.QUICKSILVER_ARMOR)) {
+                    if (chestplate.has(MarvelDataComponents.SPEEDING)) {
+                        chestplate.remove(MarvelDataComponents.SPEEDING);
+                    } else {
+                        chestplate.set(MarvelDataComponents.SPEEDING, Unit.INSTANCE);
+                    }
                 }
             }
         });

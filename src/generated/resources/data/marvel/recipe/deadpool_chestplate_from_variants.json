@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:deadpool_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:deadpool_chestplate"
+  }
+}

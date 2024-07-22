@@ -6,11 +6,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,6 +30,7 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownStormbreaker;
 
@@ -42,6 +45,20 @@ public class StormbreakerItem extends Item implements ProjectileItem {
     @Override
     public boolean canPerformAction(ItemStack stack, ItemAbility toolAction) {
         return ItemAbilities.DEFAULT_AXE_ACTIONS.contains(toolAction);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
+        super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
+        if (p_41406_ instanceof ServerPlayer player) {
+            if (player.getAbilities().flying) {
+                p_41404_.set(MarvelDataComponents.FLYING, player.getAbilities().flying);
+                p_41404_.set(MarvelDataComponents.DELTA_MOVEMENT, player.getKnownMovement());
+            } else {
+                p_41404_.remove(MarvelDataComponents.FLYING);
+                p_41404_.remove(MarvelDataComponents.DELTA_MOVEMENT);
+            }
+        }
     }
 
     @Override

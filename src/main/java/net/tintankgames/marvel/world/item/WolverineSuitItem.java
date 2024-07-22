@@ -31,7 +31,7 @@ public class WolverineSuitItem extends LeatherSuitItem {
             if (living instanceof ServerPlayer serverPlayer && serverPlayer.getHealth() < serverPlayer.getData(MarvelAttachmentTypes.HEALING_FACTOR_TRACKER)) {
                 serverPlayer.setData(MarvelAttachmentTypes.HEALING_FACTOR_TRACKER, serverPlayer.getHealth());
             }
-            if (living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WOLVERINE_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.WOLVERINE_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.WOLVERINE_ARMOR)) {
+            if (living.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.WOLVERINE_ARMOR) && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WOLVERINE_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.WOLVERINE_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.WOLVERINE_ARMOR)) {
                 if (living.tickCount % 10 == 0) {
                     living.heal(1.0F);
                     if (living instanceof ServerPlayer serverPlayer && serverPlayer.getHealth() >= 20.0F && serverPlayer.getData(MarvelAttachmentTypes.HEALING_FACTOR_TRACKER) <= 1.0F) {

@@ -14,6 +14,7 @@ public class MarvelNetworking {
     public static final CustomPacketPayload.Type<SecondarySuitAbilityMessage> SECONDARY_SUIT_ABILITY = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("secondary_suit_ability"));
     public static final CustomPacketPayload.Type<ToggleHelmetMessage> TOGGLE_HELMET = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("toggle_helmet"));
     public static final CustomPacketPayload.Type<SwitchSuitTabMessage> SWITCH_SUIT_TAB = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("switch_suit_tab"));
+    public static final CustomPacketPayload.Type<SyncSprintMessage> SYNC_SPRINT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("sync_sprint"));
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
@@ -22,6 +23,7 @@ public class MarvelNetworking {
         registrar.playToServer(SECONDARY_SUIT_ABILITY, SecondarySuitAbilityMessage.CODEC, SecondarySuitAbilityMessage::handle);
         registrar.playToServer(TOGGLE_HELMET, ToggleHelmetMessage.CODEC, ToggleHelmetMessage::handle);
         registrar.playToServer(SWITCH_SUIT_TAB, SwitchSuitTabMessage.CODEC, SwitchSuitTabMessage::handle);
+        registrar.playToServer(SYNC_SPRINT, SyncSprintMessage.CODEC, SyncSprintMessage::handle);
         registrar.playToClient(TargetedEntity.SyncMessage.TYPE, TargetedEntity.SyncMessage.CODEC, TargetedEntity.SyncMessage::handle);
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -22,6 +23,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -80,15 +82,27 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                     serverPlayer.addEffect(effect(MarvelMobEffects.ICING, 0, 30));
                 }
                 if (serverPlayer.getAbilities().flying) {
-                    serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 4, 0.1, 0, 0.1, 0);
-                    //serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), serverPlayer.getX(), serverPlayer.getY() + 1, serverPlayer.getZ(), 2, 0.025, 0, 0.025, 0);
-                    //serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), serverPlayer.getX(), serverPlayer.getY() + 1, serverPlayer.getZ(), 2, 0.025, 0, 0.025, 0);
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, serverPlayer.getAbilities().flying);
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, serverPlayer.getKnownMovement());
+                    Vec3 flamePlacement = serverPlayer.position().add(serverPlayer.getKnownMovement().multiply(-1.5, -1, -1.5)).add(0, serverPlayer.getKnownMovement().horizontalDistance() * 1.4, 0);
+                    serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
+                } else {
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
                 }
             } else {
                 serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).removeModifier(creativeFlightModifier.id());
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).removeModifier(safeFalLDistanceModifier.id());
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
             }
+        }
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean p_41408_) {
+        super.inventoryTick(stack, level, entity, slot, p_41408_);
+        if (entity instanceof ServerPlayer serverPlayer && !(serverPlayer.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_ARMOR)) && stack.has(MarvelDataComponents.FLYING)) {
+            stack.remove(MarvelDataComponents.FLYING);
         }
     }
 
@@ -122,7 +136,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
 
     @SubscribeEvent
     public static void arrowImmunity(LivingIncomingDamageEvent event) {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS)) {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS) && event.getEntity().getRandom().nextInt(5) < 3) {
             event.setCanceled(true);
         }
     }
@@ -147,7 +161,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     }
 
     public int hudColor() {
-        return 0x93F6FF;
+        return 0x68E3FF;
     }
 
     public Component hudMark() {

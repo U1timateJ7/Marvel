@@ -175,9 +175,11 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
-                        player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
-                        player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
-                        player.addItem(suitcase);
+                        if (player.getInventory().items.stream().anyMatch(stack -> stack.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
+                        if (player.getInventory().items.stream().anyMatch(stack -> stack.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
+                        if (!player.addItem(suitcase)) {
+                            player.drop(suitcase, true);
+                        }
                     }
                 }
             }

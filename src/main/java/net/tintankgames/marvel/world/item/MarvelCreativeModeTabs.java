@@ -99,6 +99,7 @@ public class MarvelCreativeModeTabs {
         }
         output.accept(MarvelItems.MJOLNIR);
         output.accept(MarvelItems.STORMBREAKER);
+        output.accept(MarvelItems.KATANAS);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SUITS = register("suits", builder -> builder.withTabsBefore(WEAPONS.getKey()).icon(MarvelItems.CAPTAIN_AMERICA_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.CAPTAIN_AMERICA_HELMET);
@@ -143,6 +144,11 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WOLVERINE_BROWN_SLEEVELESS_CHESTPLATE);
         output.accept(MarvelItems.WOLVERINE_BROWN_LEGGINGS);
         output.accept(MarvelItems.WOLVERINE_BROWN_BOOTS);
+        output.accept(MarvelItems.WOLVERINE_X_FORCE_HELMET);
+        output.accept(MarvelItems.WOLVERINE_X_FORCE_CHESTPLATE);
+        output.accept(MarvelItems.WOLVERINE_X_FORCE_SLEEVELESS_CHESTPLATE);
+        output.accept(MarvelItems.WOLVERINE_X_FORCE_LEGGINGS);
+        output.accept(MarvelItems.WOLVERINE_X_FORCE_BOOTS);
         output.accept(MarvelItems.CYCLOPS_HELMET);
         output.accept(MarvelItems.CYCLOPS_CHESTPLATE);
         output.accept(MarvelItems.CYCLOPS_LEGGINGS);
@@ -187,6 +193,17 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE);
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS);
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_BOOTS);
+        output.accept(MarvelItems.QUICKSILVER_CHESTPLATE);
+        output.accept(MarvelItems.QUICKSILVER_LEGGINGS);
+        output.accept(MarvelItems.QUICKSILVER_BOOTS);
+        output.accept(MarvelItems.DEADPOOL_HELMET);
+        output.accept(MarvelItems.DEADPOOL_CHESTPLATE);
+        output.accept(MarvelItems.DEADPOOL_LEGGINGS);
+        output.accept(MarvelItems.DEADPOOL_BOOTS);
+        output.accept(MarvelItems.DEADPOOL_X_FORCE_HELMET);
+        output.accept(MarvelItems.DEADPOOL_X_FORCE_CHESTPLATE);
+        output.accept(MarvelItems.DEADPOOL_X_FORCE_LEGGINGS);
+        output.accept(MarvelItems.DEADPOOL_X_FORCE_BOOTS);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_7_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.IRON_MAN_MARK_1_HELMET);

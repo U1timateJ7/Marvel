@@ -74,9 +74,13 @@ public class AntManSuitItem extends LeatherSuitItem {
             } else if (size == Size.SMALL) {
                 if (event.getEntity() instanceof ServerPlayer player && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WASP_CHESTPLATE)) {
                     player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, player.getAbilities().flying);
+                    player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, player.getKnownMovement());
                 }
             } else {
-                if (event.getEntity() instanceof ServerPlayer player) player.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                if (event.getEntity() instanceof ServerPlayer player) {
+                    player.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                    player.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
+                }
             }
         }
     }

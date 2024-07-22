@@ -42,6 +42,11 @@
     "marvel:wolverine_brown_sleeveless_chestplate",
     "marvel:wolverine_brown_leggings",
     "marvel:wolverine_brown_boots",
+    "marvel:wolverine_x_force_helmet",
+    "marvel:wolverine_x_force_chestplate",
+    "marvel:wolverine_x_force_sleeveless_chestplate",
+    "marvel:wolverine_x_force_leggings",
+    "marvel:wolverine_x_force_boots",
     "marvel:cyclops_chestplate",
     "marvel:cyclops_leggings",
     "marvel:cyclops_boots",
@@ -112,6 +117,17 @@
     "marvel:war_machine_mark_1_helmet",
     "marvel:war_machine_mark_1_chestplate",
     "marvel:war_machine_mark_1_leggings",
-    "marvel:war_machine_mark_1_boots"
+    "marvel:war_machine_mark_1_boots",
+    "marvel:quicksilver_chestplate",
+    "marvel:quicksilver_leggings",
+    "marvel:quicksilver_boots",
+    "marvel:deadpool_helmet",
+    "marvel:deadpool_chestplate",
+    "marvel:deadpool_leggings",
+    "marvel:deadpool_boots",
+    "marvel:deadpool_x_force_helmet",
+    "marvel:deadpool_x_force_chestplate",
+    "marvel:deadpool_x_force_leggings",
+    "marvel:deadpool_x_force_boots"
   ]
 }

@@ -52,6 +52,10 @@ public class MarvelModels {
     public static final ModelLayerLocation WAR_MACHINE_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_chestplate"), "main");
     public static final ModelLayerLocation WAR_MACHINE_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_leggings"), "main");
     public static final ModelLayerLocation WAR_MACHINE_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_boots"), "main");
+    public static final ModelLayerLocation DEADPOOL_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("deadpool_helmet"), "main");
+    public static final ModelLayerLocation DEADPOOL_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("deadpool_chestplate"), "main");
+    public static final ModelLayerLocation DEADPOOL_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("deadpool_leggings"), "main");
+    public static final ModelLayerLocation DEADPOOL_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("deadpool_boots"), "main");
     public static final ModelLayerLocation VIBRANIUM_SHIELD = new ModelLayerLocation(MarvelSuperheroes.id("vibranium_shield"), "main");
     public static final ModelLayerLocation MJOLNIR = new ModelLayerLocation(MarvelSuperheroes.id("mjolnir"), "main");
     public static final ModelLayerLocation STORMBREAKER = new ModelLayerLocation(MarvelSuperheroes.id("stormbreaker"), "main");
@@ -99,6 +103,10 @@ public class MarvelModels {
         event.registerLayerDefinition(WAR_MACHINE_CHESTPLATE, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(WAR_MACHINE_LEGGINGS, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(WAR_MACHINE_BOOTS, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(DEADPOOL_HELMET, () -> SuitModel.createDeadpoolBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(DEADPOOL_CHESTPLATE, () -> SuitModel.createDeadpoolBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(DEADPOOL_LEGGINGS, () -> SuitModel.createDeadpoolBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(DEADPOOL_BOOTS, () -> SuitModel.createDeadpoolBodyLayer(ArmorItem.Type.BOOTS));
         event.registerLayerDefinition(VIBRANIUM_SHIELD, VibraniumShieldModel::createBodyLayer);
         event.registerLayerDefinition(MJOLNIR, MjolnirModel::createBodyLayer);
         event.registerLayerDefinition(STORMBREAKER, StormbreakerModel::createBodyLayer);
@@ -192,6 +200,15 @@ public class MarvelModels {
             case CHESTPLATE, BODY -> WAR_MACHINE_CHESTPLATE;
             case LEGGINGS -> WAR_MACHINE_LEGGINGS;
             case BOOTS -> WAR_MACHINE_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation deadpoolSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> DEADPOOL_HELMET;
+            case CHESTPLATE, BODY -> DEADPOOL_CHESTPLATE;
+            case LEGGINGS -> DEADPOOL_LEGGINGS;
+            case BOOTS -> DEADPOOL_BOOTS;
         };
     }
 }

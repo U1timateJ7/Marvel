@@ -54,10 +54,14 @@ public abstract class SuitItem extends ArmorItem {
         return new MobEffectInstance(effect, duration, amplifier, false, false);
     }
 
+    public boolean needsHelmet() {
+        return true;
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean p_41408_) {
         if (entity instanceof LivingEntity living && slot >= 36 && slot <= 39) {
-            if (living.getItemBySlot(EquipmentSlot.HEAD).is(suitPieces) && living.getItemBySlot(EquipmentSlot.CHEST).is(suitPieces) && living.getItemBySlot(EquipmentSlot.LEGS).is(suitPieces) && living.getItemBySlot(EquipmentSlot.FEET).is(suitPieces)) {
+            if ((living.getItemBySlot(EquipmentSlot.HEAD).is(suitPieces) || (!needsHelmet() && living.getItemBySlot(EquipmentSlot.HEAD).isEmpty())) && living.getItemBySlot(EquipmentSlot.CHEST).is(suitPieces) && living.getItemBySlot(EquipmentSlot.LEGS).is(suitPieces) && living.getItemBySlot(EquipmentSlot.FEET).is(suitPieces)) {
                 if (living.getItemBySlot(EquipmentSlot.CHEST) == stack) {
                     for (MobEffectInstance instance : stack.getOrDefault(MarvelDataComponents.SUIT_EFFECTS, List.<MobEffectInstance>of())) {
                         living.addEffect(new MobEffectInstance(instance));

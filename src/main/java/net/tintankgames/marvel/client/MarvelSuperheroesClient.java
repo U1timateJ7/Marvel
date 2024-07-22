@@ -30,6 +30,9 @@ public class MarvelSuperheroesClient {
 
         ItemProperties.register(MarvelItems.REPULSOR.get(), MarvelSuperheroes.id("war_machine"), (stack, level, living, i) -> living != null && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WAR_MACHINE_ARMOR) ? 1 : 0);
         ItemProperties.register(MarvelItems.UNIBEAM.get(), MarvelSuperheroes.id("war_machine"), (stack, level, living, i) -> living != null && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WAR_MACHINE_ARMOR) ? 1 : 0);
+        ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("in_hand"), (stack, level, living, i) -> living != null && (living.getMainHandItem() == stack || living.getOffhandItem() == stack) ? 1 : 0);
+        ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("on_back"), (stack, level, living, i) -> i == -2016 ? 1 : 0);
+        ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("on_back_empty"), (stack, level, living, i) -> i == -2018 ? 1 : 0);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -40,6 +43,9 @@ public class MarvelSuperheroesClient {
             if (event.getOriginalType() == Gui.HeartType.NORMAL) {
                 if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.WOLVERINE_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WOLVERINE_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.WOLVERINE_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.WOLVERINE_ARMOR)) {
                     event.setType(MarvelClientEnumExtensions.ADAMANTIUM_HEART_TYPE.getValue());
+                }
+                if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.DEADPOOL_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.DEADPOOL_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.DEADPOOL_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.DEADPOOL_ARMOR)) {
+                    event.setType(MarvelClientEnumExtensions.DEADPOOL_HEART_TYPE.getValue());
                 }
             }
         }
