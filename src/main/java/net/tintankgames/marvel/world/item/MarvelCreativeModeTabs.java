@@ -39,10 +39,12 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB);
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS);
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_WALL);
+        output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_LAMP);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICKS);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_WALL);
+        output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_LAMP);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
         output.accept(MarvelItems.VIBRANIUM_NUGGET);
@@ -78,9 +80,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WEB_FLUID);
         output.accept(MarvelItems.UNSTABLE_PYM_PARTICLE);
         output.accept(MarvelItems.PYM_PARTICLE);
+        output.accept(MarvelItems.SYRINGE);
+        output.accept(MarvelItems.VILLAGER_BLOOD_SAMPLE);
+        output.accept(MarvelItems.X_GENES);
         output.accept(MarvelItems.PALLADIUM_ARC_REACTOR);
         output.accept(MarvelItems.DIAMOND_ARC_REACTOR);
         output.accept(MarvelItems.IRON_MAN_MARK_5_SUITCASE);
+        output.accept(MarvelItems.HYDRA_BANNER_PATTERN);
+        output.accept(MarvelItems.KATANA_UPGRADE_SMITHING_TEMPLATE);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
         ItemStack stack = MarvelItems.PROTO_ADAMANTIUM_SHIELD.toStack();

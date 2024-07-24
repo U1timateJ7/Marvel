@@ -12,6 +12,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -49,6 +50,12 @@ public class MarvelItems {
     public static final DeferredItem<Item> REINFORCED_LEATHER = register("reinforced_leather", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> VIBRANIUM_WEAVE = register("vibranium_weave", () -> new Item(new Item.Properties().fireResistant()));
     public static final DeferredItem<Item> VIBRANIUM_NANITES = register("vibranium_nanites", () -> new Item(new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> UNSTABLE_PYM_PARTICLE = register("unstable_pym_particle", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> PYM_PARTICLE = register("pym_particle", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SYRINGE = register("syringe", () -> new SyringeItem(new Item.Properties()));
+    public static final DeferredItem<Item> VILLAGER_BLOOD_SAMPLE = register("villager_blood_sample", () -> new VillagerBloodSampleItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> X_GENES = register("x_genes", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> HYDRA_BANNER_PATTERN = register("hydra_banner_pattern", () -> new BannerPatternItem(MarvelBannerPatterns.Tags.PATTERN_ITEM_HYDRA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_HELMET = register("captain_america_helmet", () -> new CaptainAmericaSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_CHESTPLATE = register("captain_america_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_LEGGINGS = register("captain_america_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
@@ -135,8 +142,6 @@ public class MarvelItems {
     public static final DeferredItem<Item> SPIDER_MAN_INSOMNIAC_BOOTS = register("spider_man_insomniac_boots", () -> new SpiderManSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> SHRINK = register("shrink", () -> new SizeItem(Size.SMALL, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> GROW = register("grow", () -> new SizeItem(Size.BIG, new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> UNSTABLE_PYM_PARTICLE = register("unstable_pym_particle", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> PYM_PARTICLE = register("pym_particle", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ANT_MAN_HELMET = register("ant_man_helmet", () -> new AntManSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
     public static final DeferredItem<Item> ANT_MAN_CHESTPLATE = register("ant_man_chestplate", () -> new AntManSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> ANT_MAN_LEGGINGS = register("ant_man_leggings", () -> new AntManSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
@@ -191,6 +196,7 @@ public class MarvelItems {
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_CHESTPLATE = register("war_machine_mark_1_chestplate", () -> new WarMachineMark1SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_LEGGINGS = register("war_machine_mark_1_leggings", () -> new WarMachineMark1SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> WAR_MACHINE_MARK_1_BOOTS = register("war_machine_mark_1_boots", () -> new WarMachineMark1SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> SONIC_BOOM = register("sonic_boom", () -> new SonicBoomItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> QUICKSILVER_CHESTPLATE = register("quicksilver_chestplate", () -> new QuicksilverSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> QUICKSILVER_LEGGINGS = register("quicksilver_leggings", () -> new QuicksilverSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> QUICKSILVER_BOOTS = register("quicksilver_boots", () -> new QuicksilverSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
@@ -203,6 +209,7 @@ public class MarvelItems {
     public static final DeferredItem<Item> DEADPOOL_X_FORCE_LEGGINGS = register("deadpool_x_force_leggings", () -> new DeadpoolSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> DEADPOOL_X_FORCE_BOOTS = register("deadpool_x_force_boots", () -> new DeadpoolSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> KATANAS = register("katanas", () -> new KatanasItem(new Item.Properties()));
+    public static final DeferredItem<Item> KATANA_UPGRADE_SMITHING_TEMPLATE = register("katana_upgrade_smithing_template", KatanaUpgradeSmithingTemplateItem::new);
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -211,6 +218,7 @@ public class MarvelItems {
     @SubscribeEvent
     public static void brewingRecipe(RegisterBrewingRecipesEvent event) {
         event.getBuilder().addRecipe(Ingredient.of(UNSTABLE_PYM_PARTICLE), Ingredient.of(Items.NETHER_WART), PYM_PARTICLE.toStack(2));
+        event.getBuilder().addRecipe(Ingredient.of(VILLAGER_BLOOD_SAMPLE), Ingredient.of(Items.NETHER_WART), X_GENES.toStack());
     }
 
     public static void register(IEventBus bus) {

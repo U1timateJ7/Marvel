@@ -8,13 +8,16 @@
     "B": {
       "tag": "c:dyes/blue"
     },
+    "G": {
+      "item": "marvel:x_genes"
+    },
     "X": {
       "item": "marvel:reinforced_leather"
     }
   },
   "pattern": [
     "X X",
-    "BB#",
+    "BG#",
     "X#X"
   ],
   "result": {

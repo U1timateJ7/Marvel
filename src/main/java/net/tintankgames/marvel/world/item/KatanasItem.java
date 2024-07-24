@@ -1,12 +1,10 @@
 package net.tintankgames.marvel.world.item;
 
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Unit;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -45,14 +43,11 @@ public class KatanasItem extends SwordItem {
                 }
                 if (player.getMainHandItem().is(this) && player.getMainHandItem().has(MarvelDataComponents.FAKE) && player.getOffhandItem().is(this) && !player.getOffhandItem().has(MarvelDataComponents.FAKE)) {
                     player.getMainHandItem().remove(MarvelDataComponents.FAKE);
-                    player.getMainHandItem().set(DataComponents.ATTRIBUTE_MODIFIERS, SwordItem.createAttributes(MarvelTiers.KATANAS, 3, -2.4F));
                     player.getOffhandItem().set(MarvelDataComponents.FAKE, Unit.INSTANCE);
-                    player.getOffhandItem().set(DataComponents.ATTRIBUTE_MODIFIERS, SwordItem.createAttributes(MarvelTiers.KATANAS, 1, -2.4F));
                 }
                 ItemStack offhandItem = stack.copy();
                 offhandItem.set(MarvelDataComponents.FAKE, Unit.INSTANCE);
                 offhandItem.remove(MarvelDataComponents.IN_HAND);
-                offhandItem.set(DataComponents.ATTRIBUTE_MODIFIERS, SwordItem.createAttributes(MarvelTiers.KATANAS, 1, -2.4F));
                 player.setItemInHand(InteractionHand.OFF_HAND, offhandItem);
                 stack.set(MarvelDataComponents.IN_HAND, Unit.INSTANCE);
             } else {
@@ -74,7 +69,7 @@ public class KatanasItem extends SwordItem {
             if (!player.getCooldowns().isOnCooldown(this)) {
                 TimerQueue<MinecraftServer> timerQueue = player.getServer().getWorldData().overworldData().getScheduledEvents();
                 long i = player.serverLevel().getGameTime();
-                timerQueue.schedule(source.getStringUUID() + "_katana_attack", i + 11, new MultiAttackCallback(player.getUUID(), target.getUUID(), 6, DamageTypes.PLAYER_ATTACK, target.level().dimension(), true));
+                timerQueue.schedule(source.getStringUUID() + "_katana_attack", i + 11, new MultiAttackCallback(player.getUUID(), target.getUUID(), target.level().dimension(), true, false));
             }
             player.getCooldowns().addCooldown(this, 12);
         }

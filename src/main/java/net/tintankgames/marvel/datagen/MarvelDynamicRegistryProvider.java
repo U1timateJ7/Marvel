@@ -13,6 +13,7 @@ import net.tintankgames.marvel.data.worldgen.placements.MarvelPlacements;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.item.armortrim.MarvelTrimMaterials;
 import net.tintankgames.marvel.world.level.biome.MarvelBiomeModifiers;
+import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -28,6 +29,7 @@ public class MarvelDynamicRegistryProvider extends DatapackBuiltinEntriesProvide
                 .add(Registries.PLACED_FEATURE, MarvelPlacements::bootstrap)
                 .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MarvelBiomeModifiers::bootstrap)
                 .add(Registries.TRIM_MATERIAL, MarvelTrimMaterials::bootstrap)
-                .add(Registries.DAMAGE_TYPE, MarvelDamageTypes::bootstrap);
+                .add(Registries.DAMAGE_TYPE, MarvelDamageTypes::bootstrap)
+                .add(Registries.BANNER_PATTERN, MarvelBannerPatterns::bootstrap);
     }
 }

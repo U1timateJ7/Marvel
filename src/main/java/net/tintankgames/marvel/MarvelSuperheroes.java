@@ -35,7 +35,7 @@ import org.slf4j.Logger;
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.1.0-snapshot4";
+    public static final String MOD_VERSION = "2.1.0-snapshot5";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {

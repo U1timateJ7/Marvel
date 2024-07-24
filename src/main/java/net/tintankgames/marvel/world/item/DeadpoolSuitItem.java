@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,6 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.EffectCure;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.tintankgames.marvel.client.model.MarvelModels;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class DeadpoolSuitItem extends LeatherSuitItem {
                     living.heal(1.0F);
                 }
                 living.removeEffectsCuredBy(DEADPOOL_CURE);
+            }
+            if (living instanceof ServerPlayer player && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.DEADPOOL_ARMOR)) {
+                player.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.HAS_KATANA_IN_INVENTORY, player.getInventory().contains(stack -> stack.is(MarvelItems.KATANAS)));
             }
         }
     }

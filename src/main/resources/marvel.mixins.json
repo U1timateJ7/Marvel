@@ -10,9 +10,12 @@
     "FallingBlockEntityMixin",
     "IMobEffectExtensionMixin",
     "LivingEntityMixin",
+    "MobMixin",
     "PlayerMixin",
+    "PotionBrewingMixin",
     "ServerLevelMixin",
     "VanillaRegistriesMixin",
+    "VanillaRegistriesMixin$BannerPatternsMixin",
     "VanillaRegistriesMixin$DamageTypesMixin",
     "VanillaRegistriesMixin$FeatureUtilsMixin",
     "VanillaRegistriesMixin$PlacementUtilsMixin",
@@ -33,7 +36,8 @@
     "LivingEntityRendererMixin",
     "MinecraftMixin",
     "PlayerModelMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "RemotePlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:dyes/red"
+    },
+    "B": {
+      "tag": "c:dyes/black"
+    },
+    "G": {
+      "item": "marvel:x_genes"
+    },
+    "X": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "pattern": [
+    "X X",
+    "#G#",
+    "XBX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:deadpool_chestplate"
+  }
+}

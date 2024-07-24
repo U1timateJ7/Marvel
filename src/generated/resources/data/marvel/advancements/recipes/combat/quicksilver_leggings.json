@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_reinforced_leather": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:reinforced_leather"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:quicksilver_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_reinforced_leather"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:quicksilver_leggings"
+    ]
+  }
+}

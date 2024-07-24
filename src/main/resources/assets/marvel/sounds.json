@@ -224,5 +224,11 @@
     "sounds": [
       "marvel:item/iron_man_mark_5_suitcase/use"
     ]
+  },
+  "suit.quicksilver.sonic_boom": {
+    "subtitle": "subtitles.suit.quicksilver.sonic_boom",
+    "sounds": [
+      "marvel:suit/quicksilver/sonic_boom"
+    ]
   }
 }

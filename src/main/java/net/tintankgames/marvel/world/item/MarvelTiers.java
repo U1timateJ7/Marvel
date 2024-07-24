@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public enum MarvelTiers implements Tier {
     VIBRANIUM(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 4063, 1, 9.0F, 4.0F, 7, () -> Ingredient.of(MarvelItems.VIBRANIUM_INGOT)),
-    KATANAS(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 1, 8.0F, 4.0F, 15, () -> Ingredient.of(MarvelItems.TITANIUM_INGOT)),
+    KATANAS(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 1, 8.0F, 2.0F, 15, () -> Ingredient.of(MarvelItems.TITANIUM_INGOT)),
     URU(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 0, 9.0F, 4.0F, 0, () -> Ingredient.of(MarvelItems.URU_INGOT)),
     ADAMANTIUM_CLAWS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 0, 9.0F, 4.0F, 0, () -> Ingredient.EMPTY);
 

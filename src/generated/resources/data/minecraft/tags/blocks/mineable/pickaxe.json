@@ -22,9 +22,11 @@
     "marvel:green_hydra_brick_slab",
     "marvel:green_hydra_brick_stairs",
     "marvel:green_hydra_brick_wall",
+    "marvel:green_hydra_brick_lamp",
     "marvel:yellow_hydra_bricks",
     "marvel:yellow_hydra_brick_slab",
     "marvel:yellow_hydra_brick_stairs",
-    "marvel:yellow_hydra_brick_wall"
+    "marvel:yellow_hydra_brick_wall",
+    "marvel:yellow_hydra_brick_lamp"
   ]
 }

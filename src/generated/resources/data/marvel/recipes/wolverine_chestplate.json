@@ -8,8 +8,8 @@
     "A": {
       "item": "marvel:adamantium_ingot"
     },
-    "B": {
-      "tag": "c:dyes/blue"
+    "G": {
+      "item": "marvel:x_genes"
     },
     "X": {
       "item": "marvel:reinforced_leather"
@@ -17,8 +17,8 @@
   },
   "pattern": [
     "X X",
-    "A#A",
-    "XBX"
+    "AGA",
+    "X#X"
   ],
   "result": {
     "count": 1,

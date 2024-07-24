@@ -45,6 +45,7 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_REPULSOR_SHOOT = register("suit.iron_man.repulsor_shoot");
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_UNIBEAM_SHOOT = register("suit.iron_man.unibeam_shoot");
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_MARK_5_SUITCASE_USE = register("item.iron_man_mark_5_suitcase.use");
+    public static final DeferredHolder<SoundEvent, SoundEvent> QUICKSILVER_SONIC_BOOM = register("suit.quicksilver.sonic_boom");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

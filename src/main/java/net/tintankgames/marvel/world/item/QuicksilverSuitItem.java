@@ -26,7 +26,6 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
-import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.level.timers.MultiAttackCallback;
 
 import java.util.List;
@@ -42,7 +41,7 @@ public class QuicksilverSuitItem extends SuitItem {
     private static final AttributeModifier attackDamageModifier = new AttributeModifier(QUICKSILVER_UUID, "Quicksilver attack damage modifier", 1, AttributeModifier.Operation.ADD_VALUE);
 
     public QuicksilverSuitItem(Type type, Properties properties) {
-        super(MarvelArmorMaterials.QUICKSILVER, type, MarvelItems.Tags.QUICKSILVER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.JUMP, 1)) : List.of(), properties);
+        super(MarvelArmorMaterials.QUICKSILVER, type, MarvelItems.Tags.QUICKSILVER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.JUMP, 1)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SONIC_BOOM.get())));
     }
 
     @Override
@@ -90,9 +89,9 @@ public class QuicksilverSuitItem extends SuitItem {
         if (event.getSource().is(DamageTypes.PLAYER_ATTACK) && event.getSource().getDirectEntity() instanceof ServerPlayer player && player.getItemBySlot(EquipmentSlot.HEAD).isEmpty() && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.QUICKSILVER_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.QUICKSILVER_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.QUICKSILVER_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SPEEDING)) {
             TimerQueue<MinecraftServer> timerQueue = player.getServer().getWorldData().overworldData().getScheduledEvents();
             long i = player.serverLevel().getGameTime();
-            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 2, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), event.getAmount(), MarvelDamageTypes.QUICKSILVER_ATTACK, player.level().dimension(), false));
-            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 4, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), event.getAmount(), MarvelDamageTypes.QUICKSILVER_ATTACK, player.level().dimension(), false));
-            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 6, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), event.getAmount(), MarvelDamageTypes.QUICKSILVER_ATTACK, player.level().dimension(), false));
+            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 2, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), player.level().dimension(), false, true));
+            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 4, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), player.level().dimension(), false, true));
+            timerQueue.schedule(player.getStringUUID() + "_quicksilver_attack", i + 6, new MultiAttackCallback(player.getUUID(), event.getEntity().getUUID(), player.level().dimension(), false, true));
         }
     }
 }
