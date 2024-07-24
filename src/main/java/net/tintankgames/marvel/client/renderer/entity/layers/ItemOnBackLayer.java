@@ -13,8 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
-import net.tintankgames.marvel.world.item.SuitItem;
 
 public class ItemOnBackLayer<T extends LivingEntity, M extends HumanoidModel<T>> extends RenderLayer<T, M> {
     private final ItemRenderer itemRenderer;
@@ -43,11 +43,9 @@ public class ItemOnBackLayer<T extends LivingEntity, M extends HumanoidModel<T>>
             poseStack.scale(0.5F, 0.5F, 0.5F);
         }
         ItemStack stack = MarvelItems.KATANAS.toStack();
-        ItemStack inventoryStack = MarvelItems.KATANAS.toStack();
-        if (living instanceof Player player && player.getInventory().items.stream().anyMatch(stack1 -> stack1.is(MarvelItems.KATANAS))) inventoryStack = player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.KATANAS.get())).copy();
         boolean holdingKatanas = living.isHolding(MarvelItems.KATANAS.get());
-        boolean hasKatanasInInventory = living instanceof Player player ? player.getInventory().contains(stack1 -> stack1.is(MarvelItems.KATANAS)) : Streams.stream(living.getAllSlots()).anyMatch(stack1 -> stack1.is(MarvelItems.KATANAS));
-        itemRenderer.renderStatic(living, holdingKatanas ? stack : inventoryStack, ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, living.level(), light, OverlayTexture.NO_OVERLAY, holdingKatanas || !hasKatanasInInventory ? -2018 : -2016);
+        boolean hasKatanasInInventory = living instanceof Player player ? player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.HAS_KATANA_IN_INVENTORY, false) : Streams.stream(living.getAllSlots()).anyMatch(stack1 -> stack1.is(MarvelItems.KATANAS));
+        itemRenderer.renderStatic(living, stack, ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, living.level(), light, OverlayTexture.NO_OVERLAY, holdingKatanas || !hasKatanasInInventory ? -2018 : -2016);
         poseStack.popPose();
     }
 }

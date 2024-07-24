@@ -67,6 +67,11 @@ public class StormbreakerItem extends Item implements ProjectileItem {
         p_41423_.add(Component.translatable(getDescriptionId(p_41421_) + ".key.c", Component.keybind(MarvelKeyMappings.SECONDARY_SUIT_ABILITY.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
 
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
+
     public static ItemAttributeModifiers attributes() {
         return ItemAttributeModifiers.builder().add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, 13.0, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -3.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND).add(NeoForgeMod.CREATIVE_FLIGHT, new AttributeModifier(MjolnirItem.BASE_CREATIVE_FLIGHT_ID, 1.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.HAND).build();
     }

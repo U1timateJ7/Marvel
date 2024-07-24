@@ -15,7 +15,7 @@ import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 
 public class AdamantiumClawsItem extends SuitPowerItem {
     public AdamantiumClawsItem(Properties properties) {
-        super(properties.attributes(SwordItem.createAttributes(MarvelTiers.ADAMANTIUM_CLAWS, 3, -2.2F)));
+        super(properties.attributes(SwordItem.createAttributes(MarvelTiers.ADAMANTIUM_CLAWS, 4, -2.2F)));
     }
 
     @Override

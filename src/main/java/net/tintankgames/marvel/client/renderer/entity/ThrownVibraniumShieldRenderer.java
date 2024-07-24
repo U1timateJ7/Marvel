@@ -40,14 +40,14 @@ public class ThrownVibraniumShieldRenderer extends EntityRenderer<ThrownVibraniu
         poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(g, shield.yRotO, shield.getYRot())));
         poseStack.mulPose(Axis.XP.rotationDegrees((shield.returningToOwner() ? 1 : -1) * Mth.lerp(g, shield.xRotO, shield.getXRot()) + 180));
         ItemStack stack = shield.getItem();
-        VertexConsumer shieldBaseConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(BuiltInRegistries.ITEM.getKey(stack.getItem()).withPath(name -> "textures/entity/shield/" + name.replace("_shield", "") + ".png")), false, shield.isFoil() && !stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK);
+        VertexConsumer shieldBaseConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.model.renderType(BuiltInRegistries.ITEM.getKey(stack.getItem()).withPath(name -> "textures/entity/vibranium_shield/" + name.replace("_shield", "") + ".png")), false, shield.isFoil() && !stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK);
         this.model.renderToBuffer(poseStack, shieldBaseConsumer, light, OverlayTexture.NO_OVERLAY);
         if (!stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) != ShieldArt.BLANK) {
-            VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/shield/" + stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK).getName() + ".png")), false, shield.isFoil());
+            VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/vibranium_shield/" + stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK).getName() + ".png")), false, shield.isFoil());
             this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY);
         } else if (stack.has(DataComponents.DYED_COLOR) && stack.getOrDefault(MarvelDataComponents.SHIELD_ART, ShieldArt.BLANK) == ShieldArt.BLANK) {
             int color = FastColor.ARGB32.opaque(stack.get(DataComponents.DYED_COLOR).rgb());
-            VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/shield/dyed.png")), false, shield.isFoil());
+            VertexConsumer shieldArtConsumer = ItemRenderer.getFoilBufferDirect(multiBufferSource, this.overlayModel.renderType(MarvelSuperheroes.id("textures/entity/vibranium_shield/dyed.png")), false, shield.isFoil());
             this.overlayModel.renderToBuffer(poseStack, shieldArtConsumer, light, OverlayTexture.NO_OVERLAY, color);
         }
         poseStack.popPose();
@@ -56,6 +56,6 @@ public class ThrownVibraniumShieldRenderer extends EntityRenderer<ThrownVibraniu
 
     @Override
     public ResourceLocation getTextureLocation(ThrownVibraniumShield p_114482_) {
-        return MarvelSuperheroes.id("textures/entity/shield/vibranium.png");
+        return MarvelSuperheroes.id("textures/entity/vibranium_shield/vibranium.png");
     }
 }

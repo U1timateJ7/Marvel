@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "c:dyes/red"
+    },
+    "B": {
+      "tag": "c:dyes/black"
+    },
+    "X": {
+      "item": "marvel:reinforced_leather"
+    }
+  },
+  "pattern": [
+    "X#X",
+    "B B",
+    "X X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:deadpool_leggings"
+  }
+}

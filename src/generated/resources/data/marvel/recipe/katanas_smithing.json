@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "marvel:titanium_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_sword"
+  },
+  "result": {
+    "count": 1,
+    "id": "marvel:katanas"
+  },
+  "template": {
+    "item": "marvel:katana_upgrade_smithing_template"
+  }
+}

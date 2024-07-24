@@ -46,7 +46,7 @@ public class PrimarySuitAbilityMessage implements CustomPacketPayload {
                     }
                 }
                 if (absorbed > 0.0F) {
-                    player.serverLevel().explode(player, player.damageSources().source(MarvelDamageTypes.KINETIC_BLAST, player), new KineticExplosionDamageCalculator(absorbed / 5f), player.getX(), player.getY(), player.getZ(), absorbed/20f, false, Level.ExplosionInteraction.NONE, ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), SoundEvents.GENERIC_EXPLODE);
+                    player.serverLevel().explode(player, player.damageSources().source(MarvelDamageTypes.KINETIC_BLAST, player), new KineticExplosionDamageCalculator(absorbed / 5f, null), player.getX(), player.getY(), player.getZ(), absorbed/20f, false, Level.ExplosionInteraction.NONE, ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), ColorParticleOption.create(MarvelParticleTypes.KINETIC_BLAST_EMITTER.get(), chestplate.getBarColor()), SoundEvents.GENERIC_EXPLODE);
                 }
                 if (helmet.has(MarvelDataComponents.OPTIC_BLAST_MODE)) {
                     helmet.update(MarvelDataComponents.OPTIC_BLAST_MODE, OpticBlastMode.NARROW, mode -> {

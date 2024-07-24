@@ -10,14 +10,18 @@ import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class KineticExplosionDamageCalculator extends ExplosionDamageCalculator {
     private final float absorbed;
+    @Nullable
+    private final Entity source;
 
-    public KineticExplosionDamageCalculator(float absorbed) {
+    public KineticExplosionDamageCalculator(float absorbed, @Nullable Entity source) {
         this.absorbed = absorbed;
+        this.source = source;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class KineticExplosionDamageCalculator extends ExplosionDamageCalculator 
     public float getKnockbackMultiplier(Entity p_340973_) {
         int armor = 0;
         if (p_340973_ instanceof LivingEntity living) for (ItemStack stack : living.getArmorSlots()) if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) armor++;
-        return armor >= 4 ? 0 : super.getKnockbackMultiplier(p_340973_);
+        return armor >= 4 || (source != null && p_340973_.getStringUUID().equals(source.getStringUUID())) ? 0 : absorbed < 0 ? 1.22F : super.getKnockbackMultiplier(p_340973_);
     }
 
     @Override
@@ -44,6 +48,6 @@ public class KineticExplosionDamageCalculator extends ExplosionDamageCalculator 
 
     @Override
     public float getEntityDamageAmount(Explosion p_311793_, Entity p_311929_) {
-        return absorbed;
+        return absorbed < 0 ? super.getEntityDamageAmount(p_311793_, p_311929_) / 8 : absorbed;
     }
 }
