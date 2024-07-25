@@ -3,7 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "marvel:hydra_base/classic/agent/agent_01",
+        "location": "marvel:hydra_base/classic/room/zemo_01",
         "processors": {
           "processors": []
         },

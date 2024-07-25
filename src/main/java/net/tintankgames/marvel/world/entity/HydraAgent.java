@@ -16,10 +16,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -27,6 +24,7 @@ import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,16 +46,30 @@ import java.util.Optional;
 public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAgentVariant>>, CrossbowAttackMob {
     private static final EntityDataAccessor<Holder<HydraAgentVariant>> VARIANT = SynchedEntityData.defineId(HydraAgent.class, MarvelEntityDataSerializers.HYDRA_AGENT_VARIANT.get());
     private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(HydraAgent.class, EntityDataSerializers.BOOLEAN);
+    private final RangedCrossbowAttackGoal<HydraAgent> crossbowGoal = new RangedCrossbowAttackGoal<>(this, 1.0, 8.0F);
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
+        @Override
+        public void stop() {
+            super.stop();
+            HydraAgent.this.setAggressive(false);
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            HydraAgent.this.setAggressive(true);
+        }
+    };
     
     protected HydraAgent(EntityType<? extends HydraAgent> type, Level level) {
         super(type, level);
+        reassessWeaponGoal();
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(3, new RangedCrossbowAttackGoal<>(this, 1.0, 8.0F));
         goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 15.0F, 1.0F));
         goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 15.0F));
@@ -65,6 +77,19 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+    }
+
+    public void reassessWeaponGoal() {
+        if (!level().isClientSide) {
+            goalSelector.removeGoal(meleeGoal);
+            goalSelector.removeGoal(crossbowGoal);
+            ItemStack itemstack = getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof CrossbowItem));
+            if (itemstack.getItem() instanceof CrossbowItem) {
+                goalSelector.addGoal(3, crossbowGoal);
+            } else {
+                goalSelector.addGoal(3, meleeGoal);
+            }
+        }
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -107,6 +132,15 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         super.readAdditionalSaveData(tag);
         Optional.ofNullable(ResourceLocation.tryParse(tag.getString("variant"))).map(location -> ResourceKey.create(MarvelRegistries.HYDRA_AGENT_VARIANT, location)).flatMap(key -> registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_VARIANT).getHolder(key)).ifPresent(this::setVariant);
         setCanPickUpLoot(true);
+        reassessWeaponGoal();
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlot slot, ItemStack stack) {
+        super.setItemSlot(slot, stack);
+        if (!level().isClientSide) {
+            reassessWeaponGoal();
+        }
     }
 
     @Override
@@ -133,6 +167,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         RandomSource randomSource = levelAccessor.getRandom();
         populateDefaultEquipmentSlots(randomSource, difficultyInstance);
         populateDefaultEquipmentEnchantments(levelAccessor, randomSource, difficultyInstance);
+        reassessWeaponGoal();
 
         setVariant(agentVariant);
         return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
@@ -140,14 +175,15 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
+        boolean bl = randomSource.nextBoolean();
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(bl ? Items.CROSSBOW : Items.IRON_SWORD));
     }
 
     @Override
     protected void enchantSpawnedWeapon(ServerLevelAccessor levelAccessor, RandomSource randomSource, DifficultyInstance difficultyInstance) {
         super.enchantSpawnedWeapon(levelAccessor, randomSource, difficultyInstance);
         if (randomSource.nextInt(300) == 0) {
-            ItemStack itemstack = this.getMainHandItem();
+            ItemStack itemstack = getMainHandItem();
             if (itemstack.is(Items.CROSSBOW)) {
                 EnchantmentHelper.enchantItemFromProvider(itemstack, levelAccessor.registryAccess(), VanillaEnchantmentProviders.PILLAGER_SPAWN_CROSSBOW, difficultyInstance, randomSource);
             }
