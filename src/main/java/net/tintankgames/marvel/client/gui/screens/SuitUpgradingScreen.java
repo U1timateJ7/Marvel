@@ -1,11 +1,13 @@
 package net.tintankgames.marvel.client.gui.screens;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -14,6 +16,8 @@ import net.tintankgames.marvel.client.gui.components.SuitTabButton;
 import net.tintankgames.marvel.network.SwitchSuitTabMessage;
 import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
 import net.tintankgames.marvel.world.inventory.SuitUpgradingMenu;
+import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
+import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.level.block.SuitTableBlock;
 import org.lwjgl.glfw.GLFW;
 
@@ -21,6 +25,7 @@ import org.lwjgl.glfw.GLFW;
 public class SuitUpgradingScreen extends AbstractContainerScreen<SuitUpgradingMenu> {
     private static final ResourceLocation TAB_TOP_SELECTED_1 = MarvelSuperheroes.id("container/suit_table/tab_top_selected_1");
     private static final ResourceLocation TAB_TOP_UNSELECTED_2 = MarvelSuperheroes.id("container/suit_table/tab_top_unselected_2");
+    private static final ResourceLocation WARNING = MarvelSuperheroes.id("container/suit_table/warning");
     private static final ResourceLocation SUIT_TABLE_UPGRADE_LOCATION = MarvelSuperheroes.id("textures/gui/container/suit_table_upgrade.png");
     private SuitTabButton upgrading;
     private SuitTabButton variants;
@@ -63,6 +68,8 @@ public class SuitUpgradingScreen extends AbstractContainerScreen<SuitUpgradingMe
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
         p_283540_.blit(SUIT_TABLE_UPGRADE_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
+        RecipeHolder<SuitUpgradingRecipe> recipeHolder = menu.getLevel().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), menu.getCraftInput(), menu.getLevel()).orElse(null);
+        if (recipeHolder != null && recipeHolder.value().consumesSuit()) p_283540_.blitSprite(WARNING, i + 144, j + 54, 16, 16);
     }
 
     @Override
@@ -74,6 +81,10 @@ public class SuitUpgradingScreen extends AbstractContainerScreen<SuitUpgradingMe
             }
             if (isHovering(variants.getX() - leftPos + 3, variants.getY() - topPos + 3, variants.getWidth() - 6, variants.getHeight() - 7, p_282171_, p_281909_)) {
                 p_283594_.renderTooltip(this.font, variants.getMessage(), p_282171_, p_281909_);
+            }
+            RecipeHolder<SuitUpgradingRecipe> recipeHolder = menu.getLevel().getRecipeManager().getRecipeFor(MarvelRecipeTypes.SUIT_UPGRADING.get(), menu.getCraftInput(), menu.getLevel()).orElse(null);
+            if (recipeHolder != null && recipeHolder.value().consumesSuit() && isHovering(145, 55, 14, 14, p_282171_, p_281909_)) {
+                p_283594_.renderTooltip(this.font, Component.translatable("container.suit_upgrading.warning").withStyle(ChatFormatting.RED), p_282171_, p_281909_);
             }
         }
     }

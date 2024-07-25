@@ -29,6 +29,7 @@
   "block.marvel.yellow_hydra_brick_lamp": "Yellow Hydra Brick Lamp",
   "block.marvel.spider_web": "Spider Web",
   "block.marvel.mjolnir": "Mjölnir",
+  "block.marvel.hydra_banner": "Hydra Banner",
 
   "block.minecraft.banner.marvel.hydra.black": "Black Hydra Symbol",
   "block.minecraft.banner.marvel.hydra.blue": "Blue Hydra Symbol",
@@ -289,6 +290,7 @@
   "effect.marvel.icing": "Icing",
 
   "container.suit_upgrading": "Suit Upgrading",
+  "container.suit_upgrading.warning": "Base suit is consumed on crafting",
   "container.suit_variants": "Suit Variants",
   "container.suit_charger": "Suit Charger",
   "container.suit_charger.cant_charge": "Suit Can't Be Charged",

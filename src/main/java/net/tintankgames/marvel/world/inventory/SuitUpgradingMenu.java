@@ -164,6 +164,14 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
         return p_39382_.container != this.resultSlot && super.canTakeItemForPickAll(p_39381_, p_39382_);
     }
 
+    public CraftingContainer getCraftInput() {
+        return craftSlots;
+    }
+
+    public Level getLevel() {
+        return player.level();
+    }
+
     public BlockPos getBlockPos() {
         return new BlockPos(data.get(0), data.get(1), data.get(2));
     }
