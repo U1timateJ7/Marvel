@@ -290,6 +290,7 @@
   "effect.marvel.icing": "Icing",
 
   "container.suit_upgrading": "Suit Upgrading",
+  "container.suit_upgrading.warning": "Base suit is consumed on crafting",
   "container.suit_variants": "Suit Variants",
   "container.suit_charger": "Suit Charger",
   "container.suit_charger.cant_charge": "Suit Can't Be Charged",

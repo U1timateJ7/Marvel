@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
@@ -163,6 +164,14 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
     @Override
     public boolean canTakeItemForPickAll(ItemStack p_39381_, Slot p_39382_) {
         return p_39382_.container != this.resultSlot && super.canTakeItemForPickAll(p_39381_, p_39382_);
+    }
+
+    public CraftingInput getCraftInput() {
+        return craftSlots.asCraftInput();
+    }
+
+    public Level getLevel() {
+        return player.level();
     }
 
     public BlockPos getBlockPos() {
