@@ -12,6 +12,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
+import net.tintankgames.marvel.network.syncher.MarvelEntityDataSerializers;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.stats.MarvelStats;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
@@ -43,6 +44,7 @@ public class MarvelSuperheroes {
         bus.addListener(this::setup);
 
         MarvelSoundEvents.register(bus);
+        MarvelEntityDataSerializers.register(bus);
         MarvelStats.register(bus);
         MarvelParticleTypes.register(bus);
         MarvelMenuTypes.register(bus);

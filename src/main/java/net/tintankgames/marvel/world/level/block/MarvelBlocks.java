@@ -92,6 +92,7 @@ public class MarvelBlocks {
         public static final TagKey<Block> VIBRANIUM_ORES = create("vibranium_ores");
         public static final TagKey<Block> TITANIUM_ORES = create("titanium_ores");
         public static final TagKey<Block> PALLADIUM_ORES = create("palladium_ores");
+        public static final TagKey<Block> HYDRA_AGENT_SPAWNABLE_ON = create("hydra_agent_spawnable_on");
 
         private static TagKey<Block> create(String id) {
             return REGISTER.createTagKey(id);

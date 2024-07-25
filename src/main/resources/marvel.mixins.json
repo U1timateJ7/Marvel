@@ -21,6 +21,9 @@
     "VanillaRegistriesMixin$DamageTypesMixin",
     "VanillaRegistriesMixin$FeatureUtilsMixin",
     "VanillaRegistriesMixin$PlacementUtilsMixin",
+    "VanillaRegistriesMixin$PoolsMixin",
+    "VanillaRegistriesMixin$StructureSetsMixin",
+    "VanillaRegistriesMixin$StructuresMixin",
     "WebBlockMixin"
   ],
   "client": [

@@ -6,11 +6,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.component.Size;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
 
@@ -210,6 +212,8 @@ public class MarvelItems {
     public static final DeferredItem<Item> DEADPOOL_X_FORCE_BOOTS = register("deadpool_x_force_boots", () -> new DeadpoolSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> KATANAS = register("katanas", () -> new KatanasItem(new Item.Properties()));
     public static final DeferredItem<Item> KATANA_UPGRADE_SMITHING_TEMPLATE = register("katana_upgrade_smithing_template", KatanaUpgradeSmithingTemplateItem::new);
+    public static final DeferredItem<Item> HYDRA_AGENT_SPAWN_EGG = register("hydra_agent_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.HYDRA_AGENT, 0x399C23, 0xF6E32F, new Item.Properties()));
+    public static final DeferredItem<Item> BARON_ZEMO_SPAWN_EGG = register("baron_zemo_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.BARON_ZEMO, 0x59226E, 0xA92F97, new Item.Properties()));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);

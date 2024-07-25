@@ -15,6 +15,9 @@ import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
 public class MarvelEntityRenderers {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(MarvelEntityTypes.HYDRA_AGENT.get(), HydraAgentRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.BARON_ZEMO.get(), BaronZemoRenderer::new);
+
         event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), ThrownVibraniumShieldRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.WEB_SHOT.get(), WebShotRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.WASP_STING.get(), WaspStingRenderer::new);
