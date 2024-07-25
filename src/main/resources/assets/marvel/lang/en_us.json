@@ -271,6 +271,8 @@
   "item.marvel.smithing_template.katana_upgrade.applies_to": "Diamond Sword",
   "item.marvel.smithing_template.katana_upgrade.base_slot_description": "Put a Diamond Sword here",
   "item.marvel.smithing_template.katana_upgrade.ingredients": "Titanium Ingot",
+  "item.marvel.hydra_agent_spawn_egg": "Hydra Agent Spawn Egg",
+  "item.marvel.baron_zemo_spawn_egg": "Baron Zemo Spawn Egg",
   "item.suit.upgraded": "Upgraded",
   "item.suit.energy": "Power: %s%s",
 
@@ -286,6 +288,8 @@
   "entity.marvel.mjolnir": "Mjölnir",
   "entity.marvel.stormbreaker": "Stormbreaker",
   "entity.marvel.flame": "Flame",
+  "entity.marvel.hydra_agent": "Hydra Agent",
+  "entity.marvel.baron_zemo": "Baron Zemo",
 
   "effect.marvel.icing": "Icing",
 

@@ -13,8 +13,10 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -22,8 +24,10 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.level.biome.MarvelBiomes;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
+import net.tintankgames.marvel.world.level.levelgen.structure.MarvelStructures;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -33,6 +37,8 @@ public class MarvelTagProvider {
         BlockProvider blockTagProvider = event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<BlockProvider>) output -> new BlockProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<ItemProvider>) output -> new ItemProvider(output, event.getLookupProvider(), blockTagProvider.contentsGetter(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<EntityTypeProvider>) output -> new EntityTypeProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
+        event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<StructureProvider>) output -> new StructureProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
+        event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<BiomeProvider>) output -> new BiomeProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<DamageTypeProvider>) output -> new DamageTypeProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<BannerPatternProvider>) output -> new BannerPatternProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
     }
@@ -56,6 +62,7 @@ public class MarvelTagProvider {
             tag(MarvelBlocks.Tags.VIBRANIUM_ORES).add(MarvelBlocks.VIBRANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE.get());
             tag(MarvelBlocks.Tags.TITANIUM_ORES).add(MarvelBlocks.TITANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_TITANIUM_ORE.get());
             tag(MarvelBlocks.Tags.PALLADIUM_ORES).add(MarvelBlocks.PALLADIUM_ORE.get(), MarvelBlocks.DEEPSLATE_PALLADIUM_ORE.get());
+            tag(MarvelBlocks.Tags.HYDRA_AGENT_SPAWNABLE_ON).add(MarvelBlocks.GREEN_HYDRA_BRICKS.get(), MarvelBlocks.YELLOW_HYDRA_BRICKS.get());
         }
     }
 
@@ -209,6 +216,28 @@ public class MarvelTagProvider {
             tag(EntityTypeTags.IMPACT_PROJECTILES).add(MarvelEntityTypes.VIBRANIUM_SHIELD.get());
 
             tag(MarvelEntityTypes.Tags.BLOCKED_BY_VIBRANIUM_SHIELD).addTag(EntityTypeTags.ARROWS).add(EntityType.SMALL_FIREBALL);
+        }
+    }
+
+    public static class StructureProvider extends TagsProvider<Structure> {
+        public StructureProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+            super(output, Registries.STRUCTURE, completableFuture, MarvelSuperheroes.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider arg) {
+            tag(MarvelStructures.Tags.HYDRA_BASE).add(MarvelStructures.HYDRA_BASE_CLASSIC);
+        }
+    }
+
+    public static class BiomeProvider extends TagsProvider<Biome> {
+        public BiomeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+            super(output, Registries.BIOME, completableFuture, MarvelSuperheroes.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.Provider arg) {
+            tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC);
         }
     }
 

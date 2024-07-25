@@ -88,6 +88,8 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_5_SUITCASE);
         output.accept(MarvelItems.HYDRA_BANNER_PATTERN);
         output.accept(MarvelItems.KATANA_UPGRADE_SMITHING_TEMPLATE);
+        output.accept(MarvelItems.HYDRA_AGENT_SPAWN_EGG);
+        output.accept(MarvelItems.BARON_ZEMO_SPAWN_EGG);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WEAPONS = register("weapons", builder -> builder.withTabsBefore(BLOCKS_AND_ITEMS.getKey()).icon(() -> {
         ItemStack stack = MarvelItems.PROTO_ADAMANTIUM_SHIELD.toStack();

@@ -2,17 +2,26 @@ package net.tintankgames.marvel.world.entity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.entity.projectile.*;
 
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MarvelSuperheroes.MOD_ID)
 public class MarvelEntityTypes {
     private static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(Registries.ENTITY_TYPE, MarvelSuperheroes.MOD_ID);
+
+    public static final DeferredHolder<EntityType<?>, EntityType<HydraAgent>> HYDRA_AGENT = register("hydra_agent", EntityType.Builder.of(HydraAgent::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
+    public static final DeferredHolder<EntityType<?>, EntityType<BaronZemo>> BARON_ZEMO = register("baron_zemo", EntityType.Builder.of(BaronZemo::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownVibraniumShield>> VIBRANIUM_SHIELD = register("vibranium_shield", EntityType.Builder.<ThrownVibraniumShield>of(ThrownVibraniumShield::new, MobCategory.MISC).sized(0.75F, 0.125F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<WebShot>> WEB_SHOT = register("web_shot", EntityType.Builder.<WebShot>of(WebShot::new, MobCategory.MISC).noSave().noSummon().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
@@ -28,6 +37,18 @@ public class MarvelEntityTypes {
 
     public static void register(IEventBus bus) {
         REGISTER.register(bus);
+    }
+
+    @SubscribeEvent
+    public static void attributes(EntityAttributeCreationEvent event) {
+        event.put(HYDRA_AGENT.get(), HydraAgent.createAttributes().build());
+        event.put(BARON_ZEMO.get(), BaronZemo.createAttributes().build());
+    }
+
+    @SubscribeEvent
+    public static void attributes(RegisterSpawnPlacementsEvent event) {
+        event.register(HYDRA_AGENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HydraAgent::checkHydraAgentSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
+        event.register(BARON_ZEMO.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
     }
 
     public static class Tags {
