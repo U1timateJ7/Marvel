@@ -20,6 +20,6 @@ public class MarvelStructureSets {
 
     public static void bootstrap(BootstrapContext<StructureSet> bootstrapContext) {
         HolderGetter<Structure> structure = bootstrapContext.lookup(Registries.STRUCTURE);
-        bootstrapContext.register(HYDRA_BASES, new StructureSet(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC), new RandomSpreadStructurePlacement(28, 8, RandomSpreadType.LINEAR, 8769091)));
+        bootstrapContext.register(HYDRA_BASES, new StructureSet(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC), new RandomSpreadStructurePlacement(24, 11, RandomSpreadType.LINEAR, 8240938)));
     }
 }

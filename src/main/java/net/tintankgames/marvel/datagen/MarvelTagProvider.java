@@ -17,6 +17,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -237,7 +238,7 @@ public class MarvelTagProvider {
 
         @Override
         protected void addTags(HolderLookup.Provider arg) {
-            tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC);
+            tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC).addTag(Tags.Biomes.IS_JUNGLE).addTag(Tags.Biomes.IS_SWAMP);
         }
     }
 

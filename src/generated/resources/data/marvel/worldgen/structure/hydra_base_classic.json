@@ -2,7 +2,7 @@
   "type": "minecraft:jigsaw",
   "biomes": "#marvel:has_structure/hydra_base_classic",
   "liquid_settings": "ignore_waterlogging",
-  "max_distance_from_center": 80,
+  "max_distance_from_center": 116,
   "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "size": 12,
   "spawn_overrides": {
@@ -23,5 +23,6 @@
   },
   "start_pool": "marvel:hydra_base/classic/entrances",
   "step": "surface_structures",
-  "use_expansion_hack": false
+  "terrain_adaptation": "beard_thin",
+  "use_expansion_hack": true
 }

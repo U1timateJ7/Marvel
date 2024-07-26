@@ -26,6 +26,7 @@ import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.level.MarvelGameRules;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
+import net.tintankgames.marvel.world.level.levelgen.structure.pools.MarvelStructurePoolElementTypes;
 import net.tintankgames.marvel.world.level.timers.MultiAttackCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
@@ -45,6 +46,7 @@ public class MarvelSuperheroes {
 
         MarvelSoundEvents.register(bus);
         MarvelEntityDataSerializers.register(bus);
+        MarvelStructurePoolElementTypes.register(bus);
         MarvelStats.register(bus);
         MarvelParticleTypes.register(bus);
         MarvelMenuTypes.register(bus);

@@ -2,7 +2,7 @@
   "elements": [
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "marvel:underground_pool_element",
         "location": "marvel:hydra_base/classic/hallway/straight_01",
         "processors": {
           "processors": []
@@ -13,7 +13,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "marvel:underground_pool_element",
         "location": "marvel:hydra_base/classic/hallway/straight_02",
         "processors": {
           "processors": []
@@ -24,7 +24,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "marvel:underground_pool_element",
         "location": "marvel:hydra_base/classic/hallway/straight_03",
         "processors": {
           "processors": []
@@ -35,7 +35,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "marvel:underground_pool_element",
         "location": "marvel:hydra_base/classic/hallway/corner_01",
         "processors": {
           "processors": []
@@ -46,7 +46,7 @@
     },
     {
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "marvel:underground_pool_element",
         "location": "marvel:hydra_base/classic/hallway/t_01",
         "processors": {
           "processors": []

@@ -64,6 +64,12 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
     protected HydraAgent(EntityType<? extends HydraAgent> type, Level level) {
         super(type, level);
         reassessWeaponGoal();
+        setPersistenceRequired();
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double p_21542_) {
+        return false;
     }
 
     @Override

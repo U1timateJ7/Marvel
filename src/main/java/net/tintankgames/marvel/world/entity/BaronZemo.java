@@ -39,6 +39,12 @@ public class BaronZemo extends Monster {
         super(type, level);
         xpReward = 50;
         bossEvent.setVisible(false);
+        setPersistenceRequired();
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double p_21542_) {
+        return false;
     }
 
     @Override
