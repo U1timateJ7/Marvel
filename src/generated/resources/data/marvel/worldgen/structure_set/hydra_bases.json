@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 8240938,
+    "separation": 11,
+    "spacing": 24
+  },
+  "structures": [
+    {
+      "structure": "marvel:hydra_base_classic",
+      "weight": 1
+    }
+  ]
+}

@@ -4,6 +4,7 @@
   "package": "net.tintankgames.marvel.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BeardifierMixin",
     "BlockBehaviourMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
@@ -19,6 +20,9 @@
     "VanillaRegistriesMixin$DamageTypesMixin",
     "VanillaRegistriesMixin$FeatureUtilsMixin",
     "VanillaRegistriesMixin$PlacementUtilsMixin",
+    "VanillaRegistriesMixin$PoolsMixin",
+    "VanillaRegistriesMixin$StructureSetsMixin",
+    "VanillaRegistriesMixin$StructuresMixin",
     "WebBlockMixin"
   ],
   "client": [

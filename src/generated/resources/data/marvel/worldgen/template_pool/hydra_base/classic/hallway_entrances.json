@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/hallway/entrance_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "marvel:hydra_base/classic/hall_terminators"
+}

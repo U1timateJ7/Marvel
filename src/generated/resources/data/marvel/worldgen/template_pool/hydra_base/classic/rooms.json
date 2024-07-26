@@ -1,0 +1,115 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/library_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/prison_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/range_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/experiment_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/map_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/farm_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/torture_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/training_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/nether_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/classic/room/lounge_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "marvel:hydra_base/classic/room_terminators"
+}

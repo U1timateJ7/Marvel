@@ -12,6 +12,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
+import net.tintankgames.marvel.network.syncher.MarvelEntityDataSerializers;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.stats.MarvelStats;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
@@ -25,6 +26,7 @@ import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.level.MarvelGameRules;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBlockEntityTypes;
+import net.tintankgames.marvel.world.level.levelgen.structure.pools.MarvelStructurePoolElementTypes;
 import net.tintankgames.marvel.world.level.timers.MultiAttackCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
@@ -43,6 +45,8 @@ public class MarvelSuperheroes {
         bus.addListener(this::setup);
 
         MarvelSoundEvents.register(bus);
+        MarvelEntityDataSerializers.register(bus);
+        MarvelStructurePoolElementTypes.register(bus);
         MarvelStats.register(bus);
         MarvelParticleTypes.register(bus);
         MarvelMenuTypes.register(bus);
