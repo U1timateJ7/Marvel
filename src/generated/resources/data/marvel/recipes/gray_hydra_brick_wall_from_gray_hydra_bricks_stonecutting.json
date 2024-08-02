@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "marvel:gray_hydra_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "marvel:gray_hydra_brick_wall"
+  }
+}

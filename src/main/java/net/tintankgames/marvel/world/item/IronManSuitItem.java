@@ -62,7 +62,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.ironManSuit(type);
     }
 

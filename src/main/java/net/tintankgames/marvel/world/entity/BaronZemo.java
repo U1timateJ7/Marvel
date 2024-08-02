@@ -37,7 +37,7 @@ public class BaronZemo extends Monster {
 
     protected BaronZemo(EntityType<? extends BaronZemo> type, Level level) {
         super(type, level);
-        xpReward = 50;
+        xpReward = 250;
         bossEvent.setVisible(false);
         setPersistenceRequired();
     }
@@ -100,7 +100,8 @@ public class BaronZemo extends Monster {
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+        setGuaranteedDrop(EquipmentSlot.MAINHAND);
     }
 
     @Override

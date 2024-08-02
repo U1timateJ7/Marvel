@@ -69,7 +69,7 @@ public class BlackPantherSuitItem extends SuitItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.pantherSuit(type);
     }
 

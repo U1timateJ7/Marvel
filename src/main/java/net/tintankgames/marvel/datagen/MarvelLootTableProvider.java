@@ -45,6 +45,12 @@ public class MarvelLootTableProvider {
             dropSelf(MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS.get());
             dropSelf(MarvelBlocks.YELLOW_HYDRA_BRICK_WALL.get());
             dropSelf(MarvelBlocks.YELLOW_HYDRA_BRICK_LAMP.get());
+            dropSelf(MarvelBlocks.GRAY_HYDRA_BRICKS.get());
+            add(MarvelBlocks.GRAY_HYDRA_BRICK_SLAB.get(), this::createSlabItemTable);
+            dropSelf(MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS.get());
+            dropSelf(MarvelBlocks.GRAY_HYDRA_BRICK_WALL.get());
+            dropSelf(MarvelBlocks.GRAY_HYDRA_BRICK_LAMP.get());
+            dropSelf(MarvelBlocks.STONE_BRICK_LAMP.get());
             add(MarvelBlocks.SPIDER_WEB.get(), noDrop());
         }
 

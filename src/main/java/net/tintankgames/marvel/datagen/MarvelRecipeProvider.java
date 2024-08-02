@@ -45,6 +45,11 @@ public class MarvelRecipeProvider extends RecipeProvider {
         mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB, MarvelBlocks.YELLOW_HYDRA_BRICKS, 2);
         mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.YELLOW_HYDRA_BRICK_WALL, MarvelBlocks.YELLOW_HYDRA_BRICKS);
 
+        mvgenerateRecipes(output, MarvelBlockFamilies.GRAY_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS, MarvelBlocks.GRAY_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GRAY_HYDRA_BRICK_SLAB, MarvelBlocks.GRAY_HYDRA_BRICKS, 2);
+        mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.GRAY_HYDRA_BRICK_WALL, MarvelBlocks.GRAY_HYDRA_BRICKS);
+
         mvoreSmelting(output, List.of(MarvelBlocks.TITANIUM_ORE, MarvelBlocks.DEEPSLATE_TITANIUM_ORE, MarvelItems.RAW_TITANIUM), RecipeCategory.MISC, MarvelItems.TITANIUM_INGOT, 1.0f, 200, "titanium_ingot");
         mvoreSmelting(output, List.of(MarvelBlocks.PALLADIUM_ORE, MarvelBlocks.DEEPSLATE_PALLADIUM_ORE, MarvelItems.RAW_PALLADIUM), RecipeCategory.MISC, MarvelItems.PALLADIUM_INGOT, 1.0f, 200, "palladium_ingot");
         mvoreBlasting(output, List.of(MarvelBlocks.VIBRANIUM_ORE, MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE), RecipeCategory.MISC, MarvelItems.VIBRANIUM, 1.0f, 200, "vibranium");
