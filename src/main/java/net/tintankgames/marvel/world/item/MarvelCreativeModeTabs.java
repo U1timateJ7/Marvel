@@ -45,6 +45,12 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_WALL);
         output.accept(MarvelBlocks.YELLOW_HYDRA_BRICK_LAMP);
+        output.accept(MarvelBlocks.GRAY_HYDRA_BRICKS);
+        output.accept(MarvelBlocks.GRAY_HYDRA_BRICK_SLAB);
+        output.accept(MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS);
+        output.accept(MarvelBlocks.GRAY_HYDRA_BRICK_WALL);
+        output.accept(MarvelBlocks.GRAY_HYDRA_BRICK_LAMP);
+        output.accept(MarvelBlocks.STONE_BRICK_LAMP);
         output.accept(MarvelItems.VIBRANIUM);
         output.accept(MarvelItems.VIBRANIUM_INGOT);
         output.accept(MarvelItems.VIBRANIUM_NUGGET);

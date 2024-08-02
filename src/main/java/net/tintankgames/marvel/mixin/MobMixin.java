@@ -28,7 +28,7 @@ public abstract class MobMixin extends LivingEntity {
     @Inject(at = @At("HEAD"), method = "mobInteract", cancellable = true)
     private void vampire(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if ((Object)this instanceof AbstractVillager && !isBaby() && !hasEffect(MobEffects.CONFUSION)) {
+        if ((Object)this instanceof AbstractVillager && !isBaby() && !hasEffect(MobEffects.CONFUSION) && itemStack.is(MarvelItems.SYRINGE)) {
             addEffect(new MobEffectInstance(MobEffects.CONFUSION, 2400));
             hurt(player.damageSources().playerAttack(player), 1.0F);
             player.playSound(SoundEvents.BOTTLE_FILL, 1.0F, 1.0F);

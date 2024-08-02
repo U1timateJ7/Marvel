@@ -35,7 +35,7 @@ public class SpiderManSuitItem extends LeatherSuitItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.spiderManSuit(type);
     }
 

@@ -29,7 +29,7 @@ public class WaspSuitItem extends SuitItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.waspSuit(type);
     }
 

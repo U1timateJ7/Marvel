@@ -1,6 +1,5 @@
 package net.tintankgames.marvel.world.item;
 
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
@@ -27,18 +26,12 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.client.MarvelClientEnumExtensions;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.ThrownVibraniumShield;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class VibraniumShieldItem extends Item implements ProjectileItem {
@@ -72,18 +65,6 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
     @Override
     public UseAnim getUseAnimation(ItemStack p_43417_) {
         return UseAnim.CUSTOM;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Nullable
-            @Override
-            public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
-                return entityLiving.getUseItem() == stack ? MarvelClientEnumExtensions.VIBRANIUM_SHIELD_POSE.getValue() : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
-            }
-        });
     }
 
     @Override

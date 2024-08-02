@@ -19,7 +19,7 @@ public abstract class WarMachineSuitItem extends IronManSuitItem {
     }
 
     @Override
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.warMachineSuit(type);
     }
 

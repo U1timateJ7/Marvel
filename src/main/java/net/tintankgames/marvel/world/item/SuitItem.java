@@ -1,7 +1,5 @@
 package net.tintankgames.marvel.world.item;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,13 +19,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public abstract class SuitItem extends ArmorItem {
@@ -104,18 +99,7 @@ public abstract class SuitItem extends ArmorItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    protected abstract ModelLayerLocation modelFactory(Type type, ItemStack itemStack);
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
-        consumer.accept(new IClientItemExtensions() {
-            @Override
-            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-                return new SuitModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(modelFactory(getType(), itemStack)));
-            }
-        });
-    }
+    public abstract ModelLayerLocation modelFactory(Type type, ItemStack itemStack);
 
     @Override
     public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {

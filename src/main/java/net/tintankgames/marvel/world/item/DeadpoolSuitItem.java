@@ -42,7 +42,7 @@ public class DeadpoolSuitItem extends LeatherSuitItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.deadpoolSuit(type);
     }
 }

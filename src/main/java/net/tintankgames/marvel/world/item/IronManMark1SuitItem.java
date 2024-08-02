@@ -22,7 +22,7 @@ public class IronManMark1SuitItem extends SuitItem implements SuitChargerItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    protected ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
+    public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.ironManMark1Suit(type);
     }
 
