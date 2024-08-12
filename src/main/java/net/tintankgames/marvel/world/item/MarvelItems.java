@@ -212,6 +212,11 @@ public class MarvelItems {
     public static final DeferredItem<Item> DEADPOOL_X_FORCE_BOOTS = register("deadpool_x_force_boots", () -> new DeadpoolSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> KATANAS = register("katanas", () -> new KatanasItem(new Item.Properties()));
     public static final DeferredItem<Item> KATANA_UPGRADE_SMITHING_TEMPLATE = register("katana_upgrade_smithing_template", KatanaUpgradeSmithingTemplateItem::new);
+    public static final DeferredItem<Item> PHOTON_BLAST = register("photon_blast", () -> new PhotonBlastItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> CAPTAIN_MARVEL_HELMET = register("captain_marvel_helmet", () -> new CaptainMarvelSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> CAPTAIN_MARVEL_CHESTPLATE = register("captain_marvel_chestplate", () -> new CaptainMarvelSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_MARVEL_LEGGINGS = register("captain_marvel_leggings", () -> new CaptainMarvelSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> CAPTAIN_MARVEL_BOOTS = register("captain_marvel_boots", () -> new CaptainMarvelSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> HYDRA_AGENT_SPAWN_EGG = register("hydra_agent_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.HYDRA_AGENT, 0x399C23, 0xF6E32F, new Item.Properties()));
     public static final DeferredItem<Item> BARON_ZEMO_SPAWN_EGG = register("baron_zemo_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.BARON_ZEMO, 0x59226E, 0xA92F97, new Item.Properties()));
 
@@ -239,6 +244,7 @@ public class MarvelItems {
         public static final TagKey<Item> HAS_CAPE = create("has_cape");
         public static final TagKey<Item> SOUND_DAMPENING_BOOTS = create("sound_dampening_boots");
         public static final TagKey<Item> RENDER_HAND = create("render_hand");
+        public static final TagKey<Item> FLYING_ARMOR = create("flying_armor");
         public static final TagKey<Item> CAPTAIN_AMERICA_ARMOR = create("captain_america_armor");
         public static final TagKey<Item> CAPTAIN_AMERICA_HELMET = create("captain_america_helmet");
         public static final TagKey<Item> CAPTAIN_AMERICA_CHESTPLATE = create("captain_america_chestplate");
@@ -343,6 +349,11 @@ public class MarvelItems {
         public static final TagKey<Item> DEADPOOL_CHESTPLATE = create("deadpool_chestplate");
         public static final TagKey<Item> DEADPOOL_LEGGINGS = create("deadpool_leggings");
         public static final TagKey<Item> DEADPOOL_BOOTS = create("deadpool_boots");
+        public static final TagKey<Item> CAPTAIN_MARVEL_ARMOR = create("captain_marvel_armor");
+        public static final TagKey<Item> CAPTAIN_MARVEL_HELMET = create("captain_marvel_helmet");
+        public static final TagKey<Item> CAPTAIN_MARVEL_CHESTPLATE = create("captain_marvel_chestplate");
+        public static final TagKey<Item> CAPTAIN_MARVEL_LEGGINGS = create("captain_marvel_leggings");
+        public static final TagKey<Item> CAPTAIN_MARVEL_BOOTS = create("captain_marvel_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

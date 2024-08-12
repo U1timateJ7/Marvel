@@ -4,12 +4,15 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
@@ -33,6 +36,11 @@ public class MarvelSuperheroesClient {
         ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("in_hand"), (stack, level, living, i) -> living != null && (living.getMainHandItem() == stack || living.getOffhandItem() == stack) ? 1 : 0);
         ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("on_back"), (stack, level, living, i) -> i == -2016 ? 1 : 0);
         ItemProperties.register(MarvelItems.KATANAS.get(), MarvelSuperheroes.id("on_back_empty"), (stack, level, living, i) -> i == -2018 ? 1 : 0);
+    }
+
+    @SubscribeEvent
+    public static void itemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, layer) -> layer != 1 ? -1 : FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, 0xFDF68C)), MarvelItems.CAPTAIN_MARVEL_HELMET);
     }
 
     @OnlyIn(Dist.CLIENT)

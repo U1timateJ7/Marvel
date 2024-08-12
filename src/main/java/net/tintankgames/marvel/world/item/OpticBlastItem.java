@@ -23,7 +23,6 @@ import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.item.component.OpticBlastMode;
 import net.tintankgames.marvel.world.level.MarvelGameRules;
 import net.tintankgames.marvel.world.level.OpticBlastExplosionDamageCalculator;
-import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ public class OpticBlastItem extends SuitPowerItem {
             for (double d = 0; d < Math.abs(player.getEyePosition().distanceTo(hit.getLocation())); d += 0.1) {
                 Vec3 vec3 = player.getEyePosition().add(player.getViewVector(0.0F).scale(d));
                 if (level instanceof ServerLevel serverLevel) {
-                    serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.98823529f, 0.01176471f, 0.09019608f), 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
+                    serverLevel.sendParticles(new EmissiveDustParticleOptions(0xFC0317, 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
                 }
             }
             if (!player.onGround()) {
@@ -72,7 +71,7 @@ public class OpticBlastItem extends SuitPowerItem {
                 for (double d = 0; d < 15; d += 0.1) {
                     Vec3 vec3 = player.getEyePosition().add(player.getViewVector(0.0F).yRot(f).scale(d));
                     if (level instanceof ServerLevel serverLevel) {
-                        serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(0.98823529f, 0.01176471f, 0.09019608f), 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
+                        serverLevel.sendParticles(new EmissiveDustParticleOptions(0xFC0317, 0.5f), vec3.x(), vec3.y(), vec3.z(), 1, 0, 0, 0, 0);
                     }
                 }
             }

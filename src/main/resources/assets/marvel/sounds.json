@@ -230,5 +230,16 @@
     "sounds": [
       "marvel:suit/quicksilver/sonic_boom"
     ]
+  },
+  "suit.captain_marvel.photon_blast": {
+    "subtitle": "subtitles.suit.captain_marvel.photon_blast",
+    "sounds": [
+      "marvel:suit/captain_marvel/photon_blast"
+    ]
+  },
+  "suit.captain_marvel.photon_blast_loop": {
+    "sounds": [
+      "marvel:suit/captain_marvel/photon_blast_loop"
+    ]
   }
 }

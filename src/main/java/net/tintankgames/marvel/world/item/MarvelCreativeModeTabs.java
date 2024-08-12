@@ -219,6 +219,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.DEADPOOL_X_FORCE_CHESTPLATE);
         output.accept(MarvelItems.DEADPOOL_X_FORCE_LEGGINGS);
         output.accept(MarvelItems.DEADPOOL_X_FORCE_BOOTS);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_HELMET);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_CHESTPLATE);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_LEGGINGS);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_BOOTS);
     }));
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> IRON_MAN_SUITS = register("iron_man_suits", builder -> builder.withTabsBefore(SUITS.getKey()).icon(MarvelItems.IRON_MAN_MARK_7_CHESTPLATE::toStack).displayItems((parameters, output) -> {
         output.accept(MarvelItems.IRON_MAN_MARK_1_HELMET);

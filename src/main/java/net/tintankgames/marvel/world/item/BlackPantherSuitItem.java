@@ -3,7 +3,9 @@ package net.tintankgames.marvel.world.item;
 import com.google.common.base.Suppliers;
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -12,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.EnumMap;
@@ -65,6 +69,13 @@ public class BlackPantherSuitItem extends SuitItem {
                     return itemattributemodifiers$builder.build();
                 }
         );
+    }
+
+    @SubscribeEvent
+    public static void arrowImmunity(LivingAttackEvent event) {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.BLACK_PANTHER_ARMOR) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS) && event.getEntity().getRandom().nextInt(5) < 3) {
+            event.setCanceled(true);
+        }
     }
 
     @Override

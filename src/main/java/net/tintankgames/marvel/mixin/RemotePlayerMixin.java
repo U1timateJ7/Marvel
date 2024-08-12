@@ -24,7 +24,7 @@ public abstract class RemotePlayerMixin extends AbstractClientPlayer {
 
     @Inject(at = @At("RETURN"), method = "tick")
     private void removeWalkingAnimation(CallbackInfo ci) {
-        if ((getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.IRON_MAN_ARMOR, true) || (hasArmor(MarvelItems.Tags.WASP_ARMOR, true) && getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
+        if ((getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
     }
 
     @Unique

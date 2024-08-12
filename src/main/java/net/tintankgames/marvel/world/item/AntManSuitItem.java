@@ -44,7 +44,7 @@ public class AntManSuitItem extends LeatherSuitItem {
     private static final AttributeModifier creativeFlightModifier = new AttributeModifier(ANT_MAN_UUID, "Wasp creative flight modifier", 1.0, AttributeModifier.Operation.ADD_VALUE);
 
     public AntManSuitItem(Type type, Properties properties) {
-        super(type, MarvelItems.Tags.ANT_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get())));
+        super(type, MarvelItems.Tags.ANT_MAN_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), type == Type.CHESTPLATE ? properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get())).component(MarvelDataComponents.SIZE, Size.NORMAL) : properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get())));
     }
 
     @Override

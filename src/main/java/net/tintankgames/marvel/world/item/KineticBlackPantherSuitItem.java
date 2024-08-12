@@ -6,7 +6,9 @@ import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -19,6 +21,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingAttackEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
@@ -111,6 +114,13 @@ public class KineticBlackPantherSuitItem extends SuitItem {
                     stack.update(MarvelDataComponents.ABSORBED_DAMAGE, 0.0F, damage -> Math.min(damage + absorbed, 25.0F));
                 }
             });
+        }
+    }
+
+    @SubscribeEvent
+    public static void arrowImmunity(LivingAttackEvent event) {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS) && event.getEntity().getRandom().nextInt(5) < 3) {
+            event.setCanceled(true);
         }
     }
 

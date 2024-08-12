@@ -81,7 +81,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(at = @At("RETURN"), method = "tick")
     private void removeWalkingAnimation(CallbackInfo ci) {
-        if (abilities.flying && (hasArmor(MarvelItems.Tags.IRON_MAN_ARMOR, true) || (hasArmor(MarvelItems.Tags.WASP_ARMOR, true) && getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
+        if (abilities.flying && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
     }
 
     @Unique
