@@ -7,16 +7,19 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
@@ -69,6 +72,11 @@ public class MarvelSuperheroesClient {
         for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof VibraniumShieldItem).toList()) {
             event.registerItem(shieldExtensions, item);
         }
+    }
+
+    @SubscribeEvent
+    public static void itemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, layer) -> layer != 1 ? -1 : FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, 0xFDF68C)), MarvelItems.CAPTAIN_MARVEL_HELMET);
     }
 
     @OnlyIn(Dist.CLIENT)

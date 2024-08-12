@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.Repulsor;
@@ -54,6 +55,11 @@ public class RepulsorItem extends SuitPowerItem implements ProjectileItem {
     @Override
     public int getUseDuration(ItemStack p_43419_, LivingEntity living) {
         return 72000;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack p_41452_) {
+        return UseAnim.BOW;
     }
 
     @Override

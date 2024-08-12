@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Unit;
@@ -8,14 +9,17 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 
+import java.util.List;
+
 public class AdamantiumClawsItem extends SuitPowerItem {
     public AdamantiumClawsItem(Properties properties) {
-        super(properties.attributes(SwordItem.createAttributes(MarvelTiers.ADAMANTIUM_CLAWS, 4, -2.2F)));
+        super(properties.component(DataComponents.TOOL, new Tool(List.of(), 9.0F, 0)).attributes(SwordItem.createAttributes(MarvelTiers.ADAMANTIUM_CLAWS, 4, -2.2F)));
     }
 
     @Override

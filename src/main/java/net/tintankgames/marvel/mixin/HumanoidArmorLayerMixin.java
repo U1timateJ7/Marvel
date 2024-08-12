@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
@@ -70,10 +71,12 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                 this.setPartVisibility(originalModel, equipmentSlot);
                 Model model = getArmorModelHook(livingEntity, itemstack, equipmentSlot, originalModel);
                 ArmorMaterial armormaterial = suitItem.getMaterial().value();
-                int i = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, -6265536)) : -1;
+                int i = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, 0xFDF68C)) : -1;
 
-                for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
-                    int j = armormaterial$layer.dyeable() ? i : -1;
+                for (ArmorMaterial.Layer layer : armormaterial.layers()) {
+                    int j = layer.dyeable() ? i : -1;
+
+                    if (layer.suffix.equals("_hair") && !(livingEntity instanceof AbstractClientPlayer)) continue;
 
                     if (model instanceof SuitModel<?> suitModel && suitModel.rightArm.hasChild("right_claws") && suitModel.leftArm.hasChild("left_claws")) {
                         suitModel.rightArm.getChild("right_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
@@ -94,7 +97,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                         rightWing.visible = itemstack.getOrDefault(MarvelDataComponents.FLYING, false) && itemstack.getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL;
                     }
 
-                    ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, armormaterial$layer, false, equipmentSlot);
+                    ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
                     if (itemstack.has(MarvelDataComponents.ABSORBED_DAMAGE) && !itemstack.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {

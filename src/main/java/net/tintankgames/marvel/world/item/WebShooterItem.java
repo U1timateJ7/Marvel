@@ -17,7 +17,6 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.WebShot;
-import org.joml.Vector3f;
 
 public class WebShooterItem extends SuitPowerItem {
     public WebShooterItem(Properties properties) {
@@ -34,7 +33,7 @@ public class WebShooterItem extends SuitPowerItem {
                 this.shoot(level, player);
             } else if (level instanceof ServerLevel serverLevel) {
                 Vec3 look = player.getLookAngle().scale(0.5);
-                serverLevel.sendParticles(new EmissiveDustParticleOptions(new Vector3f(1, 1, 1), 0.2f), player.getX() + look.x(), player.getY() + look.y() + 1.3, player.getZ() + look.z(), 10, 0.1, 0.1, 0.1, 0);
+                serverLevel.sendParticles(new EmissiveDustParticleOptions(0xFFFFFF, 0.2f), player.getX() + look.x(), player.getY() + look.y() + 1.3, player.getZ() + look.z(), 10, 0.1, 0.1, 0.1, 0);
                 player.displayClientMessage(Component.translatable("item.marvel.web_shooter.out_of_fluid").withStyle(ChatFormatting.RED), true);
             }
         }

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class WaspSuitItem extends SuitItem {
     public WaspSuitItem(Type type, Properties properties) {
-        super(MarvelArmorMaterials.UPGRADED_REINFORCED_LEATHER, type, MarvelItems.Tags.WASP_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get(), MarvelItems.STING.get())));
+        super(MarvelArmorMaterials.UPGRADED_REINFORCED_LEATHER, type, MarvelItems.Tags.WASP_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.JUMP, 1), effect(MobEffects.MOVEMENT_SPEED, 0)) : List.of(), type == Type.CHESTPLATE ? properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get(), MarvelItems.STING.get())).component(MarvelDataComponents.SIZE, Size.NORMAL) : properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SHRINK.get(), MarvelItems.STING.get())));
     }
 
     @Override
