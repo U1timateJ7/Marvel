@@ -16,13 +16,15 @@ import net.tintankgames.marvel.world.level.biome.MarvelBiomes;
 
 public class HydraAgentVariants {
     public static final ResourceKey<HydraAgentVariant> CLASSIC = create("classic");
+    public static final ResourceKey<HydraAgentVariant> WINTER = create("winter");
+    public static final ResourceKey<HydraAgentVariant> MOUNTAIN = create("mountain");
 
     private static ResourceKey<HydraAgentVariant> create(String id) {
         return ResourceKey.create(MarvelRegistries.HYDRA_AGENT_VARIANT, MarvelSuperheroes.id(id));
     }
 
-    static void register(BootstrapContext<HydraAgentVariant> bootstrapContext, ResourceKey<HydraAgentVariant> key, TagKey<Biome> tagKey) {
-        register(bootstrapContext, key, bootstrapContext.lookup(Registries.BIOME).getOrThrow(tagKey));
+    static void register(BootstrapContext<HydraAgentVariant> bootstrapContext, ResourceKey<HydraAgentVariant> key, TagKey<Biome> biomeTagKey) {
+        register(bootstrapContext, key, bootstrapContext.lookup(Registries.BIOME).getOrThrow(biomeTagKey));
     }
 
     static void register(BootstrapContext<HydraAgentVariant> bootstrapContext, ResourceKey<HydraAgentVariant> key, HolderSet<Biome> biomes) {
@@ -36,6 +38,8 @@ public class HydraAgentVariants {
     }
 
     public static void bootstrap(BootstrapContext<HydraAgentVariant> bootstrapContext) {
-        register(bootstrapContext, CLASSIC, MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC);
+        register(bootstrapContext, CLASSIC, MarvelBiomes.Tags.SPAWNS_CLASSIC_HYDRA_AGENTS);
+        register(bootstrapContext, WINTER, MarvelBiomes.Tags.SPAWNS_WINTER_HYDRA_AGENTS);
+        register(bootstrapContext, MOUNTAIN, MarvelBiomes.Tags.SPAWNS_MOUNTAIN_HYDRA_AGENTS);
     }
 }

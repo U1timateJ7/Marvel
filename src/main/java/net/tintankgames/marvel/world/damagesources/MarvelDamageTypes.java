@@ -22,6 +22,8 @@ public class MarvelDamageTypes {
     public static final ResourceKey<DamageType> FLAMETHROWER = create("flamethrower");
     public static final ResourceKey<DamageType> QUICKSILVER_ATTACK = create("quicksilver_attack");
     public static final ResourceKey<DamageType> PHOTON_BLAST = create("photon_blast");
+    public static final ResourceKey<DamageType> TESSERACT_ARROW = create("tesseract_arrow");
+    public static final ResourceKey<DamageType> TESSERACT_FIREWORKS = create("tesseract_fireworks");
 
     public static ResourceKey<DamageType> create(String id) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, MarvelSuperheroes.id(id));
@@ -42,6 +44,8 @@ public class MarvelDamageTypes {
         bootstrapContext.register(FLAMETHROWER, new DamageType("flamethrower", 0.1f));
         bootstrapContext.register(QUICKSILVER_ATTACK, new DamageType("quicksilver_attack", 0.1f));
         bootstrapContext.register(PHOTON_BLAST, new DamageType("photon_blast", 0.1f));
+        bootstrapContext.register(TESSERACT_ARROW, new DamageType("arrow", 0.1F));
+        bootstrapContext.register(TESSERACT_FIREWORKS, new DamageType("fireworks", 0.1F));
     }
 
     public static class Tags {

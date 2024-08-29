@@ -22,21 +22,19 @@ public final class HydraAgentVariant {
     public static final Codec<Holder<HydraAgentVariant>> CODEC = RegistryFileCodec.create(MarvelRegistries.HYDRA_AGENT_VARIANT, DIRECT_CODEC);
     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<HydraAgentVariant>> STREAM_CODEC = ByteBufCodecs.holder(MarvelRegistries.HYDRA_AGENT_VARIANT, DIRECT_STREAM_CODEC);
     private final ResourceLocation texture;
-    private final ResourceLocation textureFull;
     private final HolderSet<Biome> biomes;
 
     public HydraAgentVariant(ResourceLocation texture, HolderSet<Biome> biomes) {
         this.texture = texture;
-        this.textureFull = fullTextureId(texture);
         this.biomes = biomes;
     }
 
-    private static ResourceLocation fullTextureId(ResourceLocation texture) {
-        return texture.withPath(path -> "textures/" + path + ".png");
+    public ResourceLocation texture(String name) {
+        return texture.withPath(path -> "textures/" + path + "_" + name + ".png");
     }
 
     public ResourceLocation texture() {
-        return this.textureFull;
+        return this.texture;
     }
 
     public HolderSet<Biome> biomes() {

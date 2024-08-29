@@ -17,6 +17,8 @@ public class MarvelEntityRenderers {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(MarvelEntityTypes.HYDRA_AGENT.get(), HydraAgentRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.BARON_ZEMO.get(), BaronZemoRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.WINTER_SOLDIER.get(), WinterSoldierRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.RED_SKULL.get(), RedSkullRenderer::new);
 
         event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), ThrownVibraniumShieldRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.WEB_SHOT.get(), WebShotRenderer::new);
@@ -25,6 +27,7 @@ public class MarvelEntityRenderers {
         event.registerEntityRenderer(MarvelEntityTypes.STORMBREAKER.get(), ThrownStormbreakerRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.FLAME.get(), FlameRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.REPULSOR.get(), RepulsorRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.TESSERACT_CHARGE.get(), TesseractChargeRenderer::new);
 
         event.registerBlockEntityRenderer(MarvelBlockEntityTypes.SUIT_CHARGER.get(), SuitChargerRenderer::new);
     }

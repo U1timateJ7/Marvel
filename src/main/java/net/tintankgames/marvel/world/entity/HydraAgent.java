@@ -2,6 +2,7 @@ package net.tintankgames.marvel.world.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -35,6 +36,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.tintankgames.marvel.core.registries.MarvelRegistries;
 import net.tintankgames.marvel.network.syncher.MarvelEntityDataSerializers;
+import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
 import javax.annotation.Nullable;
@@ -42,6 +44,7 @@ import java.util.Optional;
 
 public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAgentVariant>>, CrossbowAttackMob {
     private static final EntityDataAccessor<Holder<HydraAgentVariant>> VARIANT = SynchedEntityData.defineId(HydraAgent.class, MarvelEntityDataSerializers.HYDRA_AGENT_VARIANT.get());
+    private static final EntityDataAccessor<Holder<HydraAgentSkin>> SKIN = SynchedEntityData.defineId(HydraAgent.class, MarvelEntityDataSerializers.HYDRA_AGENT_SKIN.get());
     private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(HydraAgent.class, EntityDataSerializers.BOOLEAN);
     private final RangedCrossbowAttackGoal<HydraAgent> crossbowGoal = new RangedCrossbowAttackGoal<>(this, 1.0, 8.0F);
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
@@ -57,7 +60,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
             HydraAgent.this.setAggressive(true);
         }
     };
-    
+
     protected HydraAgent(EntityType<? extends HydraAgent> type, Level level) {
         super(type, level);
         reassessWeaponGoal();
@@ -76,7 +79,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6));
         goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 15.0F, 1.0F));
         goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 15.0F));
-        targetSelector.addGoal(1, new HurtByTargetGoal(this, HydraAgent.class, BaronZemo.class).setAlertOthers());
+        targetSelector.addGoal(1, new HurtByTargetGoal(this, HydraAgent.class, BaronZemo.class, WinterSoldier.class, RedSkull.class).setAlertOthers());
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
@@ -103,6 +106,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(VARIANT, registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_VARIANT).getHolderOrThrow(HydraAgentVariants.CLASSIC));
+        builder.define(SKIN, registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_SKIN).getHolderOrThrow(HydraAgentSkins.STEVE));
         builder.define(IS_CHARGING_CROSSBOW, false);
     }
 
@@ -121,17 +125,26 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         return entityData.get(VARIANT);
     }
 
+    public void setSkin(Holder<HydraAgentSkin> holder) {
+        entityData.set(SKIN, holder);
+    }
+
+    public Holder<HydraAgentSkin> getSkin() {
+        return entityData.get(SKIN);
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         getVariant().unwrapKey().ifPresent(key -> tag.putString("variant", key.location().toString()));
-        
+        getSkin().unwrapKey().ifPresent(key -> tag.putString("skin", key.location().toString()));
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         Optional.ofNullable(ResourceLocation.tryParse(tag.getString("variant"))).map(location -> ResourceKey.create(MarvelRegistries.HYDRA_AGENT_VARIANT, location)).flatMap(key -> registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_VARIANT).getHolder(key)).ifPresent(this::setVariant);
+        Optional.ofNullable(ResourceLocation.tryParse(tag.getString("skin"))).map(location -> ResourceKey.create(MarvelRegistries.HYDRA_AGENT_SKIN, location)).flatMap(key -> registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_SKIN).getHolder(key)).ifPresent(this::setSkin);
         setCanPickUpLoot(true);
         reassessWeaponGoal();
     }
@@ -157,12 +170,12 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor levelAccessor, DifficultyInstance difficultyInstance, MobSpawnType mobSpawnType, @Nullable SpawnGroupData spawnGroupData) {
-        Holder<Biome> holder = levelAccessor.getBiome(blockPosition());
+        Holder<Biome> biomeHolder = levelAccessor.getBiome(blockPosition().atY(319));
         Holder<HydraAgentVariant> agentVariant;
         if (spawnGroupData instanceof AgentSpawnGroupData agentSpawnGroupData) {
             agentVariant = agentSpawnGroupData.type;
         } else {
-            agentVariant = HydraAgentVariants.getSpawnVariant(registryAccess(), holder);
+            agentVariant = HydraAgentVariants.getSpawnVariant(registryAccess(), biomeHolder);
             spawnGroupData = new AgentSpawnGroupData(agentVariant);
         }
         RandomSource randomSource = levelAccessor.getRandom();
@@ -171,13 +184,16 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         reassessWeaponGoal();
 
         setVariant(agentVariant);
+        Registry<HydraAgentSkin> hydraAgentSkins = registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_SKIN);
+        setSkin(hydraAgentSkins.getRandom(randomSource).orElse(hydraAgentSkins.getHolder(HydraAgentSkins.STEVE).orElseThrow()));
         return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);
     }
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficultyInstance) {
         boolean bl = randomSource.nextBoolean();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(bl ? Items.CROSSBOW : Items.IRON_SWORD));
+        boolean bl2 = randomSource.nextBoolean();
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(bl ? bl2 ? Items.CROSSBOW : MarvelItems.TESSERACT_CROSSBOW : Items.IRON_SWORD));
     }
 
     @Override
@@ -185,7 +201,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         super.enchantSpawnedWeapon(randomSource, f);
         if (randomSource.nextInt(300) == 0) {
             ItemStack itemstack = getMainHandItem();
-            if (itemstack.is(Items.CROSSBOW)) {
+            if (itemstack.is(Items.CROSSBOW) || itemstack.is(MarvelItems.TESSERACT_CROSSBOW)) {
                 itemstack.enchant(Enchantments.PIERCING, 1);
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
             }
@@ -202,7 +218,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         } else if (isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {
             return ArmPose.CROSSBOW_HOLD;
         } else {
-            return isAggressive() ? ArmPose.ATTACKING : ArmPose.NEUTRAL;
+            return ArmPose.NEUTRAL;
         }
     }
 
@@ -235,7 +251,6 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
 
     public enum ArmPose {
         NEUTRAL,
-        ATTACKING,
         CROSSBOW_HOLD,
         CROSSBOW_CHARGE
     }

@@ -1,4 +1,4 @@
 {
-  "biomes": "#marvel:has_structure/hydra_base_classic",
+  "biomes": "#marvel:spawns_classic_hydra_agents",
   "texture": "marvel:entity/hydra_agent/classic"
 }

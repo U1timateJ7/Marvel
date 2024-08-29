@@ -1,0 +1,49 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/boss_hallway/straight_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/boss_hallway/straight_02",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/boss_hallway/straight_03",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/boss_hallway/corner_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "marvel:hydra_base/winter/boss_hall_terminators"
+}

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PotionBrewing.class)
-public class PotionBrewingMixin {
+public abstract class PotionBrewingMixin {
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z"), method = "mix", cancellable = true)
     private void percentChance(ItemStack ingredient, ItemStack input, CallbackInfoReturnable<ItemStack> cir) {
         if (input.is(MarvelItems.VILLAGER_BLOOD_SAMPLE) && ServerLifecycleHooks.getCurrentServer() != null && ServerLifecycleHooks.getCurrentServer().overworld().getRandom().nextInt(10) >= 4) {

@@ -28,11 +28,17 @@
     "marvel:yellow_hydra_brick_stairs",
     "marvel:yellow_hydra_brick_wall",
     "marvel:yellow_hydra_brick_lamp",
+    "marvel:light_gray_hydra_bricks",
+    "marvel:light_gray_hydra_brick_slab",
+    "marvel:light_gray_hydra_brick_stairs",
+    "marvel:light_gray_hydra_brick_wall",
+    "marvel:light_gray_hydra_brick_lamp",
     "marvel:gray_hydra_bricks",
     "marvel:gray_hydra_brick_slab",
     "marvel:gray_hydra_brick_stairs",
     "marvel:gray_hydra_brick_wall",
     "marvel:gray_hydra_brick_lamp",
-    "marvel:stone_brick_lamp"
+    "marvel:stone_brick_lamp",
+    "marvel:deepslate_brick_lamp"
   ]
 }

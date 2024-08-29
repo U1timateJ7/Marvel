@@ -45,6 +45,11 @@ public class MarvelRecipeProvider extends RecipeProvider {
         mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB, MarvelBlocks.YELLOW_HYDRA_BRICKS, 2);
         mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.YELLOW_HYDRA_BRICK_WALL, MarvelBlocks.YELLOW_HYDRA_BRICKS);
 
+        mvgenerateRecipes(output, MarvelBlockFamilies.LIGHT_GRAY_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_STAIRS, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICKS);
+        mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_SLAB, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICKS, 2);
+        mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_WALL, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICKS);
+
         mvgenerateRecipes(output, MarvelBlockFamilies.GRAY_HYDRA_BRICKS);
         mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS, MarvelBlocks.GRAY_HYDRA_BRICKS);
         mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GRAY_HYDRA_BRICK_SLAB, MarvelBlocks.GRAY_HYDRA_BRICKS, 2);
