@@ -2,6 +2,9 @@
   "values": [
     "marvel:green_hydra_bricks",
     "marvel:yellow_hydra_bricks",
+    "minecraft:stone_bricks",
+    "marvel:light_gray_hydra_bricks",
+    "minecraft:deepslate_bricks",
     "marvel:gray_hydra_bricks"
   ]
 }

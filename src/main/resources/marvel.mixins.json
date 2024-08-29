@@ -6,6 +6,7 @@
   "mixins": [
     "BeardifierMixin",
     "BlockBehaviourMixin",
+    "DamageSourcesMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
     "FallingBlockEntityMixin",
@@ -16,7 +17,10 @@
     "PlayerAccessor",
     "PlayerMixin",
     "PotionBrewingMixin",
+    "ProjectileMixin",
+    "ServerboundSetStructureBlockPacketMixin",
     "ServerLevelMixin",
+    "StructureBlockEntityMixin",
     "VanillaRegistriesMixin",
     "VanillaRegistriesMixin$BannerPatternsMixin",
     "VanillaRegistriesMixin$DamageTypesMixin",

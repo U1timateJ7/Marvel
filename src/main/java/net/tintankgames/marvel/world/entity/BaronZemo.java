@@ -11,6 +11,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -119,6 +120,13 @@ public class BaronZemo extends Monster {
         if (hasCustomName()) {
             bossEvent.setName(getDisplayName());
         }
+        setActivated(p_31474_.getBoolean("activated"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag p_21484_) {
+        super.addAdditionalSaveData(p_21484_);
+        p_21484_.putBoolean("activated", isActivated());
     }
 
     @Override
@@ -131,6 +139,12 @@ public class BaronZemo extends Monster {
     protected void customServerAiStep() {
         bossEvent.setVisible(isActivated());
         bossEvent.setProgress(getHealth() / getMaxHealth());
+    }
+
+    @Override
+    public void die(DamageSource p_21014_) {
+        super.die(p_21014_);
+        bossEvent.setProgress(0);
     }
 
     @Override

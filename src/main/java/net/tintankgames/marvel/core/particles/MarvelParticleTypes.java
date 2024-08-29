@@ -54,6 +54,50 @@ public class MarvelParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPIDER_SENSE = register("spider_sense", true);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> EMISSIVE_FLAME = register("emissive_flame", true);
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> IRON_MAN_FLAME = register("iron_man_flame", true);
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SpaceStoneParticleOptions>> SPACE_STONE_EMITTER = register("space_stone_emitter", () -> new ParticleType<>(true) {
+        @Override
+        public MapCodec<SpaceStoneParticleOptions> codec() {
+            return SpaceStoneParticleOptions.codec(SPACE_STONE_EMITTER.get());
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, SpaceStoneParticleOptions> streamCodec() {
+            return SpaceStoneParticleOptions.streamCodec(SPACE_STONE_EMITTER.get());
+        }
+    });
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SpeedParticleOptions>> SPACE_STONE = register("space_stone", () -> new ParticleType<>(true) {
+        @Override
+        public MapCodec<SpeedParticleOptions> codec() {
+            return SpeedParticleOptions.codec(SPACE_STONE.get());
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, SpeedParticleOptions> streamCodec() {
+            return SpeedParticleOptions.streamCodec(SPACE_STONE.get());
+        }
+    });
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SpaceStoneParticleOptions>> REVERSE_SPACE_STONE_EMITTER = register("reverse_space_stone_emitter", () -> new ParticleType<>(true) {
+        @Override
+        public MapCodec<SpaceStoneParticleOptions> codec() {
+            return SpaceStoneParticleOptions.codec(REVERSE_SPACE_STONE_EMITTER.get());
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, SpaceStoneParticleOptions> streamCodec() {
+            return SpaceStoneParticleOptions.streamCodec(REVERSE_SPACE_STONE_EMITTER.get());
+        }
+    });
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SpeedParticleOptions>> REVERSE_SPACE_STONE = register("reverse_space_stone", () -> new ParticleType<>(true) {
+        @Override
+        public MapCodec<SpeedParticleOptions> codec() {
+            return SpeedParticleOptions.codec(REVERSE_SPACE_STONE.get());
+        }
+
+        @Override
+        public StreamCodec<? super RegistryFriendlyByteBuf, SpeedParticleOptions> streamCodec() {
+            return SpeedParticleOptions.streamCodec(REVERSE_SPACE_STONE.get());
+        }
+    });
 
     private static <T extends ParticleOptions> DeferredHolder<ParticleType<?>, ParticleType<T>> register(String id, Supplier<ParticleType<T>> supplier) {
         return REGISTER.register(id, supplier);

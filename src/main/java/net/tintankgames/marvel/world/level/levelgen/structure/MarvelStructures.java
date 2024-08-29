@@ -31,6 +31,7 @@ import java.util.Optional;
 
 public class MarvelStructures {
     public static final ResourceKey<Structure> HYDRA_BASE_CLASSIC = create("hydra_base_classic");
+    public static final ResourceKey<Structure> HYDRA_BASE_WINTER = create("hydra_base_winter");
 
     private static ResourceKey<Structure> create(String id) {
         return ResourceKey.create(Registries.STRUCTURE, MarvelSuperheroes.id(id));
@@ -40,9 +41,14 @@ public class MarvelStructures {
         HolderGetter<Biome> biome = bootstrapContext.lookup(Registries.BIOME);
         HolderGetter<StructureTemplatePool> templatePool = bootstrapContext.lookup(Registries.TEMPLATE_POOL);
         bootstrapContext.register(HYDRA_BASE_CLASSIC, new JigsawStructure(new Structure.StructureSettings(biome.getOrThrow(MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC), Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(MarvelEntityTypes.HYDRA_AGENT.get(), 100, 1, 1)))), GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.BEARD_THIN), templatePool.getOrThrow(MarvelPools.HYDRA_BASE_CLASSIC_ENTRANCES), Optional.empty(), 12, ConstantHeight.of(VerticalAnchor.absolute(0)), true, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 116, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
+        bootstrapContext.register(HYDRA_BASE_WINTER, new JigsawStructure(new Structure.StructureSettings(biome.getOrThrow(MarvelBiomes.Tags.HAS_HYDRA_BASE_WINTER), Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, WeightedRandomList.create(new MobSpawnSettings.SpawnerData(MarvelEntityTypes.HYDRA_AGENT.get(), 100, 1, 1)))), GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.BEARD_THIN), templatePool.getOrThrow(MarvelPools.HYDRA_BASE_WINTER_ENTRANCES), Optional.empty(), 12, ConstantHeight.of(VerticalAnchor.absolute(0)), true, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), 116, List.of(), DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING));
     }
 
     public static class Tags {
-        public static final TagKey<Structure> HYDRA_BASE = TagKey.create(Registries.STRUCTURE, MarvelSuperheroes.id("hydra_base"));
+        public static final TagKey<Structure> HYDRA_BASE = create("hydra_base");
+
+        private static TagKey<Structure> create(String id) {
+            return TagKey.create(Registries.STRUCTURE, MarvelSuperheroes.id(id));
+        }
     }
 }

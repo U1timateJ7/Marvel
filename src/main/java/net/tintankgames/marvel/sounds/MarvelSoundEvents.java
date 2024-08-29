@@ -48,6 +48,14 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> QUICKSILVER_SONIC_BOOM = register("suit.quicksilver.sonic_boom");
     public static final DeferredHolder<SoundEvent, SoundEvent> CAPTAIN_MARVEL_PHOTON_BLAST = register("suit.captain_marvel.photon_blast");
     public static final DeferredHolder<SoundEvent, SoundEvent> CAPTAIN_MARVEL_PHOTON_BLAST_LOOP = register("suit.captain_marvel.photon_blast_loop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_CROSSBOW_HIT = register("item.tesseract_crossbow.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_CROSSBOW_LOADING_END = register("item.tesseract_crossbow.loading_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_CROSSBOW_LOADING_MIDDLE = register("item.tesseract_crossbow.loading_middle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_CROSSBOW_LOADING_START = register("item.tesseract_crossbow.loading_start");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_CROSSBOW_SHOOT = register("item.tesseract_crossbow.shoot");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WINTER_SOLDIER_TARGET = register("entity.winter_soldier.target");
+    public static final DeferredHolder<SoundEvent, SoundEvent> TESSERACT_TELEPORT = register("item.tesseract.teleport");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SPACE_STONE_TELEPORT = register("item.space_stone.teleport");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

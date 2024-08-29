@@ -1,7 +1,9 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,6 +16,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
 
 import java.util.List;
@@ -58,6 +61,11 @@ public class MarvelItems {
     public static final DeferredItem<Item> VILLAGER_BLOOD_SAMPLE = register("villager_blood_sample", () -> new VillagerBloodSampleItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> X_GENES = register("x_genes", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HYDRA_BANNER_PATTERN = register("hydra_banner_pattern", () -> new BannerPatternItem(MarvelBannerPatterns.Tags.PATTERN_ITEM_HYDRA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> TESSERACT_SHARD = register("tesseract_shard", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TESSERACT_CROSSBOW = register("tesseract_crossbow", () -> new TesseractCrossbowItem(new Item.Properties().stacksTo(1).durability(930).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
+    public static final DeferredItem<Item> WINTER_SOLDIER_KNIFE = register("winter_soldier_knife", () -> new SwordItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 0, -1.8F))));
+    public static final DeferredItem<Item> TESSERACT = register("tesseract", () -> new TesseractItem(MarvelBlocks.TESSERACT.get(), new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SPACE_STONE = register("space_stone", () -> new SpaceStoneItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_HELMET = register("captain_america_helmet", () -> new CaptainAmericaSuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_CHESTPLATE = register("captain_america_chestplate", () -> new CaptainAmericaSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_AMERICA_LEGGINGS = register("captain_america_leggings", () -> new CaptainAmericaSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
@@ -217,8 +225,13 @@ public class MarvelItems {
     public static final DeferredItem<Item> CAPTAIN_MARVEL_CHESTPLATE = register("captain_marvel_chestplate", () -> new CaptainMarvelSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_MARVEL_LEGGINGS = register("captain_marvel_leggings", () -> new CaptainMarvelSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> CAPTAIN_MARVEL_BOOTS = register("captain_marvel_boots", () -> new CaptainMarvelSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> WINTER_SOLDIER_CHESTPLATE = register("winter_soldier_chestplate", () -> new WinterSoldierSuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
+    public static final DeferredItem<Item> WINTER_SOLDIER_LEGGINGS = register("winter_soldier_leggings", () -> new WinterSoldierSuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
+    public static final DeferredItem<Item> WINTER_SOLDIER_BOOTS = register("winter_soldier_boots", () -> new WinterSoldierSuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
     public static final DeferredItem<Item> HYDRA_AGENT_SPAWN_EGG = register("hydra_agent_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.HYDRA_AGENT, 0x399C23, 0xF6E32F, new Item.Properties()));
     public static final DeferredItem<Item> BARON_ZEMO_SPAWN_EGG = register("baron_zemo_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.BARON_ZEMO, 0x59226E, 0xA92F97, new Item.Properties()));
+    public static final DeferredItem<Item> WINTER_SOLDIER_SPAWN_EGG = register("winter_soldier_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.WINTER_SOLDIER, 0x242321, 0xAEAEAE, new Item.Properties()));
+    public static final DeferredItem<Item> RED_SKULL_SPAWN_EGG = register("red_skull_spawn_egg", () -> new DeferredSpawnEggItem(MarvelEntityTypes.RED_SKULL, 0x252724, 0xFF3030, new Item.Properties()));
 
     private static <T extends Item> DeferredItem<T> register(String id, Supplier<T> supplier) {
         return REGISTER.register(id, supplier);
@@ -354,6 +367,10 @@ public class MarvelItems {
         public static final TagKey<Item> CAPTAIN_MARVEL_CHESTPLATE = create("captain_marvel_chestplate");
         public static final TagKey<Item> CAPTAIN_MARVEL_LEGGINGS = create("captain_marvel_leggings");
         public static final TagKey<Item> CAPTAIN_MARVEL_BOOTS = create("captain_marvel_boots");
+        public static final TagKey<Item> WINTER_SOLDIER_ARMOR = create("winter_soldier_armor");
+        public static final TagKey<Item> WINTER_SOLDIER_CHESTPLATE = create("winter_soldier_chestplate");
+        public static final TagKey<Item> WINTER_SOLDIER_LEGGINGS = create("winter_soldier_leggings");
+        public static final TagKey<Item> WINTER_SOLDIER_BOOTS = create("winter_soldier_boots");
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);

@@ -9,6 +9,10 @@
     {
       "structure": "marvel:hydra_base_classic",
       "weight": 1
+    },
+    {
+      "structure": "marvel:hydra_base_winter",
+      "weight": 1
     }
   ]
 }

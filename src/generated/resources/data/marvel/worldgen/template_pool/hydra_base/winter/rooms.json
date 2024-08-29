@@ -1,0 +1,49 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/room/experiment_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/room/map_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/room/prison_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/winter/room/sculk_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "marvel:hydra_base/winter/room_terminators"
+}

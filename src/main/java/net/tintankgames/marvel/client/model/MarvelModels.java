@@ -60,6 +60,10 @@ public class MarvelModels {
     public static final ModelLayerLocation CAPTAIN_MARVEL_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("captain_marvel_chestplate"), "main");
     public static final ModelLayerLocation CAPTAIN_MARVEL_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("captain_marvel_leggings"), "main");
     public static final ModelLayerLocation CAPTAIN_MARVEL_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("captain_marvel_boots"), "main");
+    public static final ModelLayerLocation WINTER_SOLDIER_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("winter_soldier_helmet"), "main");
+    public static final ModelLayerLocation WINTER_SOLDIER_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("winter_soldier_chestplate"), "main");
+    public static final ModelLayerLocation WINTER_SOLDIER_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("winter_soldier_leggings"), "main");
+    public static final ModelLayerLocation WINTER_SOLDIER_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("winter_soldier_boots"), "main");
     public static final ModelLayerLocation VIBRANIUM_SHIELD = new ModelLayerLocation(MarvelSuperheroes.id("vibranium_shield"), "main");
     public static final ModelLayerLocation MJOLNIR = new ModelLayerLocation(MarvelSuperheroes.id("mjolnir"), "main");
     public static final ModelLayerLocation STORMBREAKER = new ModelLayerLocation(MarvelSuperheroes.id("stormbreaker"), "main");
@@ -115,6 +119,10 @@ public class MarvelModels {
         event.registerLayerDefinition(CAPTAIN_MARVEL_CHESTPLATE, () -> SuitModel.createCaptainMarvelBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(CAPTAIN_MARVEL_LEGGINGS, () -> SuitModel.createCaptainMarvelBodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(CAPTAIN_MARVEL_BOOTS, () -> SuitModel.createCaptainMarvelBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(WINTER_SOLDIER_HELMET, () -> SuitModel.createWinterSoldierBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(WINTER_SOLDIER_CHESTPLATE, () -> SuitModel.createWinterSoldierBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(WINTER_SOLDIER_LEGGINGS, () -> SuitModel.createWinterSoldierBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(WINTER_SOLDIER_BOOTS, () -> SuitModel.createWinterSoldierBodyLayer(ArmorItem.Type.BOOTS));
         event.registerLayerDefinition(VIBRANIUM_SHIELD, VibraniumShieldModel::createBodyLayer);
         event.registerLayerDefinition(MJOLNIR, MjolnirModel::createBodyLayer);
         event.registerLayerDefinition(STORMBREAKER, StormbreakerModel::createBodyLayer);
@@ -226,6 +234,15 @@ public class MarvelModels {
             case CHESTPLATE, BODY -> CAPTAIN_MARVEL_CHESTPLATE;
             case LEGGINGS -> CAPTAIN_MARVEL_LEGGINGS;
             case BOOTS -> CAPTAIN_MARVEL_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation winterSoldierSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> WINTER_SOLDIER_HELMET;
+            case CHESTPLATE, BODY -> WINTER_SOLDIER_CHESTPLATE;
+            case LEGGINGS -> WINTER_SOLDIER_LEGGINGS;
+            case BOOTS -> WINTER_SOLDIER_BOOTS;
         };
     }
 }

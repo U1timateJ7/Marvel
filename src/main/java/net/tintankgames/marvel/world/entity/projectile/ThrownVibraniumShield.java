@@ -30,6 +30,7 @@ import org.jetbrains.annotations.Nullable;
 public class ThrownVibraniumShield extends AbstractArrow {
     private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(ThrownVibraniumShield.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<ItemStack> ID_ITEM = SynchedEntityData.defineId(ThrownVibraniumShield.class, EntityDataSerializers.ITEM_STACK);
+    private static final EntityDataAccessor<Boolean> ID_FROM_WINTER_SOLDIER = SynchedEntityData.defineId(ThrownVibraniumShield.class, EntityDataSerializers.BOOLEAN);
     private boolean dealtDamage;
 
     public ThrownVibraniumShield(EntityType<? extends ThrownVibraniumShield> p_37561_, Level p_37562_) {
@@ -53,6 +54,7 @@ public class ThrownVibraniumShield extends AbstractArrow {
         super.defineSynchedData(p_326249_);
         p_326249_.define(ID_FOIL, false);
         p_326249_.define(ID_ITEM, MarvelItems.VIBRANIUM_SHIELD.toStack());
+        p_326249_.define(ID_FROM_WINTER_SOLDIER, false);
     }
 
     @Override
@@ -76,6 +78,10 @@ public class ThrownVibraniumShield extends AbstractArrow {
         this.playSound(this.getHitGroundSoundEvent(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
         this.inGround = true;
         setDeltaMovement(getDeltaMovement().multiply(-1, -1, -1));
+        if (isFromWinterSoldier()) {
+            spawnAtLocation(getPickupItem());
+            discard();
+        }
     }
 
     public boolean returningToOwner() {
@@ -120,6 +126,14 @@ public class ThrownVibraniumShield extends AbstractArrow {
         return this.entityData.get(ID_FOIL);
     }
 
+    public boolean isFromWinterSoldier() {
+        return this.entityData.get(ID_FROM_WINTER_SOLDIER);
+    }
+
+    public void setFromWinterSoldier(boolean fromWinterSoldier) {
+        this.entityData.set(ID_FROM_WINTER_SOLDIER, fromWinterSoldier);
+    }
+
     public ItemStack getItem() {
         return this.entityData.get(ID_ITEM).copy();
     }
@@ -154,7 +168,19 @@ public class ThrownVibraniumShield extends AbstractArrow {
             }
         }
         setDeltaMovement(getDeltaMovement().multiply(-1, -1, -1));
-        this.playSound(soundevent, 1.0F, 1.0F);
+        if (isFromWinterSoldier()) {
+            if (entity.isAlive() && entity instanceof Player player) {
+                if (!player.isCreative()) {
+                    pickup = Pickup.ALLOWED;
+                    tryPickup(player);
+                }
+            } else {
+                spawnAtLocation(getPickupItem());
+            }
+            discard();
+        } else {
+            this.playSound(soundevent, 1.0F, 1.0F);
+        }
     }
 
     @Override

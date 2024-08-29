@@ -9,6 +9,8 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.entity.projectile.WebShot;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class MarvelAttachmentTypes {
@@ -19,6 +21,8 @@ public class MarvelAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Integer>> UNDERWATER_TICKS = register("underwater_ticks", () -> AttachmentType.builder(() -> 0).serialize(Codec.intRange(0, Integer.MAX_VALUE)).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<TargetedEntity>> TARGETED_ENTITY = register("targeted_entity", () -> AttachmentType.serializable(() -> new TargetedEntity()).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> MOVING = register("moving", () -> AttachmentType.builder(() -> false).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> TESSERACT_CHARGED = register("tesseract_charged", () -> AttachmentType.builder(() -> false).serialize(Codec.BOOL).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<InfinityStoneData>> INFINITY_STONES = register("infinity_stones", () -> AttachmentType.builder(() -> new InfinityStoneData(List.of(), Map.of())).serialize(InfinityStoneData.CODEC).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
         return REGISTER.register(id, supplier);

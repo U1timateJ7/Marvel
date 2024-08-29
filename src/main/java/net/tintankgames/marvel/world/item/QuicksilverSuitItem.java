@@ -42,7 +42,7 @@ public class QuicksilverSuitItem extends SuitItem {
     private static final AttributeModifier attackDamageModifier = new AttributeModifier(QUICKSILVER_ID, 1, AttributeModifier.Operation.ADD_VALUE);
 
     public QuicksilverSuitItem(Type type, Properties properties) {
-        super(MarvelArmorMaterials.QUICKSILVER, type, MarvelItems.Tags.QUICKSILVER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.JUMP, 1)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SONIC_BOOM.get())));
+        super(MarvelArmorMaterials.REINFORCED_LEATHER_NO_HELMET, type, MarvelItems.Tags.QUICKSILVER_ARMOR, type == Type.CHESTPLATE ? List.of(effect(MobEffects.MOVEMENT_SPEED, 0), effect(MobEffects.JUMP, 1)) : List.of(), properties.component(MarvelDataComponents.POWER_ITEMS, List.of(MarvelItems.SONIC_BOOM.get())));
     }
 
     @Override

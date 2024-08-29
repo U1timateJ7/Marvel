@@ -114,9 +114,9 @@ dependencies {
     compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}:api"
     //localRuntime "dev.emi:emi-neoforge:${project.emi_version}+1.21"
     compileOnly "dev.emi:emi-neoforge:${project.emi_version}+1.21:api"
-    localRuntime "mezz.jei:jei-1.21-neoforge:${project.jei_version}"
-    compileOnly "mezz.jei:jei-1.21-common-api:${project.jei_version}"
-    compileOnly "mezz.jei:jei-1.21-neoforge-api:${project.jei_version}"
+    localRuntime "mezz.jei:jei-${project.minecraft_version}-neoforge:${project.jei_version}"
+    compileOnly "mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}"
+    compileOnly "mezz.jei:jei-${project.minecraft_version}-neoforge-api:${project.jei_version}"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

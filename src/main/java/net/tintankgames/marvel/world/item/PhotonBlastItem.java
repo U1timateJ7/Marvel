@@ -1,6 +1,8 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.network.protocol.game.ClientboundStopSoundPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.random.SimpleWeightedRandomList;
@@ -65,6 +67,12 @@ public class PhotonBlastItem extends SuitPowerItem {
         super.releaseUsing(stack, level, living, ticksLeft);
         if (living instanceof Player player) {
             player.awardStat(Stats.ITEM_USED.get(this));
+            if (player instanceof ServerPlayer serverPlayer) {
+                serverPlayer.serverLevel().players().forEach(pl -> {
+                    pl.connection.send(new ClientboundStopSoundPacket(MarvelSoundEvents.CAPTAIN_MARVEL_PHOTON_BLAST.getId(), SoundSource.PLAYERS));
+                    pl.connection.send(new ClientboundStopSoundPacket(MarvelSoundEvents.CAPTAIN_MARVEL_PHOTON_BLAST_LOOP.getId(), SoundSource.PLAYERS));
+                });
+            }
             if (!player.isCreative()) {
                 player.getCooldowns().addCooldown(this, Math.min(30, (getUseDuration(stack, living) - ticksLeft) / 5));
             }

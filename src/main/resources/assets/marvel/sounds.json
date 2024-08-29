@@ -241,5 +241,96 @@
     "sounds": [
       "marvel:suit/captain_marvel/photon_blast_loop"
     ]
+  },
+  "item.tesseract_crossbow.hit": {
+    "sounds": [
+      "minecraft:random/bowhit1",
+      "minecraft:random/bowhit2",
+      "minecraft:random/bowhit3",
+      "minecraft:random/bowhit4"
+    ],
+    "subtitle": "subtitles.item.tesseract_crossbow.hit"
+  },
+  "item.tesseract_crossbow.loading_end": {
+    "sounds": [
+      "minecraft:item/crossbow/loading_end"
+    ],
+    "subtitle": "subtitles.item.tesseract_crossbow.load"
+  },
+  "item.tesseract_crossbow.loading_middle": {
+    "sounds": [
+      {
+        "name": "marvel:item/tesseract_crossbow/loading_middle1",
+        "volume": 0.65
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/loading_middle2",
+        "volume": 0.65
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/loading_middle3",
+        "volume": 0.65
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/loading_middle4",
+        "volume": 0.65
+      }
+    ]
+  },
+  "item.tesseract_crossbow.loading_start": {
+    "sounds": [
+      {
+        "name": "minecraft:item/crossbow/loading_start",
+        "volume": 0.3
+      }
+    ],
+    "subtitle": "subtitles.item.tesseract_crossbow.charge"
+  },
+  "item.tesseract_crossbow.shoot": {
+    "sounds": [
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot1",
+        "volume": 0.8
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot1",
+        "volume": 0.9
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot2",
+        "volume": 0.8
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot2",
+        "volume": 0.9
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot3",
+        "volume": 0.8
+      },
+      {
+        "name": "marvel:item/tesseract_crossbow/shoot3",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.item.tesseract_crossbow.shoot"
+  },
+  "entity.winter_soldier.target": {
+    "subtitle": "subtitles.entity.winter_soldier.target",
+    "sounds": [
+      "marvel:entity/winter_soldier/target"
+    ]
+  },
+  "item.tesseract.teleport": {
+    "subtitle": "subtitles.item.tesseract.teleport",
+    "sounds": [
+      "marvel:item/space_stone/teleport"
+    ]
+  },
+  "item.space_stone.teleport": {
+    "subtitle": "subtitles.item.space_stone.teleport",
+    "sounds": [
+      "marvel:item/space_stone/teleport"
+    ]
   }
 }

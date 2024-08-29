@@ -11,6 +11,8 @@ import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.level.levelgen.structure.MarvelStructures;
 
+import java.util.List;
+
 public class MarvelStructureSets {
     public static final ResourceKey<StructureSet> HYDRA_BASES = create("hydra_bases");
 
@@ -20,6 +22,6 @@ public class MarvelStructureSets {
 
     public static void bootstrap(BootstrapContext<StructureSet> bootstrapContext) {
         HolderGetter<Structure> structure = bootstrapContext.lookup(Registries.STRUCTURE);
-        bootstrapContext.register(HYDRA_BASES, new StructureSet(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC), new RandomSpreadStructurePlacement(24, 11, RandomSpreadType.LINEAR, 8240938)));
+        bootstrapContext.register(HYDRA_BASES, new StructureSet(List.of(StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_WINTER))), new RandomSpreadStructurePlacement(24, 11, RandomSpreadType.LINEAR, 8240938)));
     }
 }

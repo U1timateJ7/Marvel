@@ -19,5 +19,9 @@ public class MarvelParticles {
         event.registerSpriteSet(MarvelParticleTypes.SPIDER_SENSE.get(), SpiderSenseParticle.Provider::new);
         event.registerSpriteSet(MarvelParticleTypes.EMISSIVE_FLAME.get(), EmissiveFlameParticle.Provider::new);
         event.registerSpriteSet(MarvelParticleTypes.IRON_MAN_FLAME.get(), IronManFlameParticle.Provider::new);
+        event.registerSpecial(MarvelParticleTypes.SPACE_STONE_EMITTER.get(), new SpaceStoneEmitterParticle.Provider());
+        event.registerSpriteSet(MarvelParticleTypes.SPACE_STONE.get(), SpaceStoneParticle.Provider::new);
+        event.registerSpecial(MarvelParticleTypes.REVERSE_SPACE_STONE_EMITTER.get(), new ReverseSpaceStoneEmitterParticle.Provider());
+        event.registerSpriteSet(MarvelParticleTypes.REVERSE_SPACE_STONE.get(), ReverseSpaceStoneParticle.Provider::new);
     }
 }
