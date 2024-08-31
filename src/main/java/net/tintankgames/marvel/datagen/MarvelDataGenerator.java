@@ -21,7 +21,8 @@ public class MarvelDataGenerator {
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<AdvancementProvider>) output -> new AdvancementProvider(output, event.getLookupProvider(), event.getExistingFileHelper(), List.of(new MarvelAdvancementProvider())));
         event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<LootTableProvider>) output -> new LootTableProvider(output, Collections.emptySet(), List.of(
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.BlockLoot::new, LootContextParamSets.BLOCK),
-                new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.EntityLoot::new, LootContextParamSets.ENTITY)), event.getLookupProvider()));
+                new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.EntityLoot::new, LootContextParamSets.ENTITY),
+                new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.ChestLoot::new, LootContextParamSets.CHEST)), event.getLookupProvider()));
         MarvelTagProvider.addProviders(event);
     }
 }

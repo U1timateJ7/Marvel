@@ -40,7 +40,7 @@ public class SpaceStoneItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (player instanceof ServerPlayer serverPlayer) {
             if (serverPlayer.isSecondaryUseActive()) {
-                PacketDistributor.sendToPlayer(serverPlayer, new OpenSpaceStoneMessage(Component.translatable("gui.space_stone.title", getDescription()), MarvelSoundEvents.TESSERACT_TELEPORT));
+                PacketDistributor.sendToPlayer(serverPlayer, new OpenSpaceStoneMessage(Component.translatable("gui.space_stone.title", getDescription()), MarvelSoundEvents.SPACE_STONE_TELEPORT));
             } else {
                 HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, 0f);
                 BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z());
@@ -60,8 +60,8 @@ public class SpaceStoneItem extends Item {
                     }
                     player.level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(player));
                     if (!player.isSilent()) {
-                        player.level().playSound(null, player.xo, player.yo, player.zo, MarvelSoundEvents.TESSERACT_TELEPORT.get(), player.getSoundSource(), 1.0F, 1.0F);
-                        player.playSound(MarvelSoundEvents.TESSERACT_TELEPORT.get(), 1.0F, 1.0F);
+                        player.level().playSound(null, player.xo, player.yo, player.zo, MarvelSoundEvents.SPACE_STONE_TELEPORT.get(), player.getSoundSource(), 0.6F, 1.0F);
+                        player.playSound(MarvelSoundEvents.SPACE_STONE_TELEPORT.get(), 0.6F, 1.0F);
                     }
                     if (level instanceof ServerLevel serverLevel) {
                         for (ServerPlayer player1 : serverLevel.players()) {

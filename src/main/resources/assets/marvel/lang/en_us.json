@@ -304,6 +304,9 @@
   "item.suit.upgraded": "Upgraded",
   "item.suit.energy": "Power: %s%s",
 
+  "filled_map.hydra": "Hydra Explorer Map",
+  "filled_map.hydra_headquarters": "Hydra Headquarters Map",
+
   "itemGroup.marvel.blocks_and_items": "Marvel Blocks & Items",
   "itemGroup.marvel.weapons": "Marvel Weapons",
   "itemGroup.marvel.suits": "Marvel Suits",

@@ -55,12 +55,14 @@ public class MarvelTagProvider {
         protected void addTags(HolderLookup.Provider provider) {
             tag(BlockTags.MINEABLE_WITH_PICKAXE).add(MarvelBlocks.VIBRANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE.get(), MarvelBlocks.VIBRANIUM_BLOCK.get(), MarvelBlocks.TITANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_TITANIUM_ORE.get(), MarvelBlocks.TITANIUM_BLOCK.get(), MarvelBlocks.RAW_TITANIUM_BLOCK.get(), MarvelBlocks.PALLADIUM_ORE.get(), MarvelBlocks.DEEPSLATE_PALLADIUM_ORE.get(), MarvelBlocks.PALLADIUM_BLOCK.get(), MarvelBlocks.RAW_PALLADIUM_BLOCK.get(), MarvelBlocks.GOLD_TITANIUM_BLOCK.get(), MarvelBlocks.ADAMANTIUM_BLOCK.get(), MarvelBlocks.PROTO_ADAMANTIUM_BLOCK.get(), MarvelBlocks.URU_BLOCK.get(), MarvelBlocks.SUIT_TABLE.get(), MarvelBlocks.SUIT_CHARGER.get(), MarvelBlocks.SUIT_CHARGER_UPPER.get(), MarvelBlocks.GREEN_HYDRA_BRICKS.get(), MarvelBlocks.GREEN_HYDRA_BRICK_SLAB.get(), MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.GREEN_HYDRA_BRICK_WALL.get(), MarvelBlocks.GREEN_HYDRA_BRICK_LAMP.get(), MarvelBlocks.YELLOW_HYDRA_BRICKS.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_WALL.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_LAMP.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICKS.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_SLAB.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_WALL.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_LAMP.get(), MarvelBlocks.GRAY_HYDRA_BRICKS.get(), MarvelBlocks.GRAY_HYDRA_BRICK_SLAB.get(), MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.GRAY_HYDRA_BRICK_WALL.get(), MarvelBlocks.GRAY_HYDRA_BRICK_LAMP.get(), MarvelBlocks.STONE_BRICK_LAMP.get(), MarvelBlocks.DEEPSLATE_BRICK_LAMP.get());
             tag(BlockTags.BEACON_BASE_BLOCKS).add(MarvelBlocks.VIBRANIUM_BLOCK.get(), MarvelBlocks.TITANIUM_BLOCK.get(), MarvelBlocks.ADAMANTIUM_BLOCK.get(), MarvelBlocks.PROTO_ADAMANTIUM_BLOCK.get(), MarvelBlocks.URU_BLOCK.get());
+            tag(BlockTags.DRAGON_IMMUNE).add(MarvelBlocks.TESSERACT.get(), MarvelBlocks.MJOLNIR.get());
             tag(BlockTags.NEEDS_DIAMOND_TOOL).add(MarvelBlocks.VIBRANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE.get(), MarvelBlocks.VIBRANIUM_BLOCK.get(), MarvelBlocks.ADAMANTIUM_BLOCK.get(), MarvelBlocks.PROTO_ADAMANTIUM_BLOCK.get(), MarvelBlocks.URU_BLOCK.get());
             tag(BlockTags.NEEDS_IRON_TOOL).add(MarvelBlocks.TITANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_TITANIUM_ORE.get(), MarvelBlocks.TITANIUM_BLOCK.get(), MarvelBlocks.RAW_TITANIUM_BLOCK.get(), MarvelBlocks.GOLD_TITANIUM_BLOCK.get());
             tag(BlockTags.NEEDS_STONE_TOOL).add(MarvelBlocks.PALLADIUM_ORE.get(), MarvelBlocks.DEEPSLATE_PALLADIUM_ORE.get(), MarvelBlocks.PALLADIUM_BLOCK.get(), MarvelBlocks.RAW_PALLADIUM_BLOCK.get(), MarvelBlocks.SUIT_TABLE.get(), MarvelBlocks.SUIT_CHARGER.get(), MarvelBlocks.SUIT_CHARGER_UPPER.get());
             tag(BlockTags.SLABS).add(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_SLAB.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_SLAB.get(), MarvelBlocks.GRAY_HYDRA_BRICK_SLAB.get());
             tag(BlockTags.STAIRS).add(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_STAIRS.get(), MarvelBlocks.GRAY_HYDRA_BRICK_STAIRS.get());
             tag(BlockTags.WALLS).add(MarvelBlocks.GREEN_HYDRA_BRICK_WALL.get(), MarvelBlocks.YELLOW_HYDRA_BRICK_WALL.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_WALL.get(), MarvelBlocks.GRAY_HYDRA_BRICK_WALL.get());
+            tag(BlockTags.WITHER_IMMUNE).add(MarvelBlocks.TESSERACT.get(), MarvelBlocks.MJOLNIR.get());
 
             tag(MarvelBlocks.Tags.VIBRANIUM_ORES).add(MarvelBlocks.VIBRANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE.get());
             tag(MarvelBlocks.Tags.TITANIUM_ORES).add(MarvelBlocks.TITANIUM_ORE.get(), MarvelBlocks.DEEPSLATE_TITANIUM_ORE.get());
@@ -241,7 +243,9 @@ public class MarvelTagProvider {
 
         @Override
         protected void addTags(HolderLookup.Provider arg) {
-            tag(MarvelStructures.Tags.HYDRA_BASE).add(MarvelStructures.HYDRA_BASE_CLASSIC, MarvelStructures.HYDRA_BASE_WINTER);
+            tag(MarvelStructures.Tags.HYDRA_BASE).add(MarvelStructures.HYDRA_BASE_CLASSIC, MarvelStructures.HYDRA_BASE_WINTER, MarvelStructures.HYDRA_BASE_MOUNTAIN);
+            tag(MarvelStructures.Tags.HYDRA_OUTPOST).add(MarvelStructures.HYDRA_OUTPOST_CLASSIC, MarvelStructures.HYDRA_OUTPOST_WINTER, MarvelStructures.HYDRA_OUTPOST_MOUNTAIN);
+            tag(MarvelStructures.Tags.ON_HYDRA_HEADQUARTERS_MAPS).add(MarvelStructures.HYDRA_BASE_MOUNTAIN);
         }
     }
 
@@ -254,6 +258,10 @@ public class MarvelTagProvider {
         protected void addTags(HolderLookup.Provider arg) {
             tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_CLASSIC).addTag(Tags.Biomes.IS_JUNGLE);
             tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_WINTER).add(Biomes.SNOWY_PLAINS, Biomes.ICE_SPIKES, Biomes.SNOWY_TAIGA);
+            tag(MarvelBiomes.Tags.HAS_HYDRA_BASE_MOUNTAIN).addTag(Tags.Biomes.IS_MOUNTAIN).add(Biomes.GROVE);
+            tag(MarvelBiomes.Tags.HAS_HYDRA_OUTPOST_CLASSIC).add(Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS, Biomes.DESERT, Biomes.SWAMP, Biomes.MANGROVE_SWAMP, Biomes.FOREST, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST, Biomes.DARK_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST, Biomes.OLD_GROWTH_PINE_TAIGA, Biomes.OLD_GROWTH_SPRUCE_TAIGA, Biomes.TAIGA, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.WINDSWEPT_HILLS, Biomes.WINDSWEPT_GRAVELLY_HILLS, Biomes.WINDSWEPT_FOREST, Biomes.WINDSWEPT_SAVANNA, Biomes.JUNGLE, Biomes.SPARSE_JUNGLE, Biomes.BAMBOO_JUNGLE, Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS);
+            tag(MarvelBiomes.Tags.HAS_HYDRA_OUTPOST_WINTER).add(Biomes.SNOWY_PLAINS, Biomes.ICE_SPIKES, Biomes.SNOWY_TAIGA);
+            tag(MarvelBiomes.Tags.HAS_HYDRA_OUTPOST_MOUNTAIN).addTag(Tags.Biomes.IS_MOUNTAIN).add(Biomes.GROVE);
             tag(MarvelBiomes.Tags.SPAWNS_CLASSIC_HYDRA_AGENTS).addTag(Tags.Biomes.IS_JUNGLE);
             tag(MarvelBiomes.Tags.SPAWNS_WINTER_HYDRA_AGENTS).add(Biomes.SNOWY_PLAINS, Biomes.ICE_SPIKES, Biomes.SNOWY_TAIGA, Biomes.SNOWY_BEACH, Biomes.FROZEN_RIVER, Biomes.COLD_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.FROZEN_OCEAN, Biomes.DEEP_FROZEN_OCEAN);
             tag(MarvelBiomes.Tags.SPAWNS_MOUNTAIN_HYDRA_AGENTS).addTag(Tags.Biomes.IS_MOUNTAIN).add(Biomes.GROVE);
