@@ -188,7 +188,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
         populateDefaultEquipmentEnchantments(levelAccessor, randomSource, difficultyInstance);
         reassessWeaponGoal();
 
-        setVariant(agentVariant);
+        if (mobSpawnType != MobSpawnType.STRUCTURE) setVariant(agentVariant);
         Registry<HydraAgentSkin> hydraAgentSkins = registryAccess().registryOrThrow(MarvelRegistries.HYDRA_AGENT_SKIN);
         setSkin(hydraAgentSkins.getRandom(randomSource).orElse(hydraAgentSkins.getHolder(HydraAgentSkins.DEFAULT).or(hydraAgentSkins::getAny).orElseThrow()));
         return super.finalizeSpawn(levelAccessor, difficultyInstance, mobSpawnType, spawnGroupData);

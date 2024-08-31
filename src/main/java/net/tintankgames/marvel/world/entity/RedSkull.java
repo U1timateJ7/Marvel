@@ -67,7 +67,7 @@ public class RedSkull extends Monster implements RangedAttackMob {
                 this.resetAttackCooldown();
                 this.mob.swing(InteractionHand.MAIN_HAND);
                 this.mob.doHurtTarget(p_25557_);
-                RedSkull.this.setAttackTimer(RedSkull.this.tickCount);
+                RedSkull.this.setAttackTimer(200);
                 RedSkull.this.reassessWeaponGoal();
             }
         }
@@ -220,8 +220,8 @@ public class RedSkull extends Monster implements RangedAttackMob {
             if (flag2) {
                 this.level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(this));
                 if (!this.isSilent()) {
-                    this.level().playSound(null, this.xo, this.yo, this.zo, MarvelSoundEvents.TESSERACT_TELEPORT.get(), this.getSoundSource(), 1.0F, 1.0F);
-                    this.playSound(MarvelSoundEvents.TESSERACT_TELEPORT.get(), 1.0F, 1.0F);
+                    this.level().playSound(null, this.xo, this.yo, this.zo, MarvelSoundEvents.TESSERACT_TELEPORT.get(), this.getSoundSource(), 0.6F, 1.0F);
+                    this.playSound(MarvelSoundEvents.TESSERACT_TELEPORT.get(), 0.6F, 1.0F);
                 }
                 if (level() instanceof ServerLevel level) {
                     for (ServerPlayer serverPlayer : level.players()) {
@@ -269,9 +269,11 @@ public class RedSkull extends Monster implements RangedAttackMob {
         } else {
             setDropChance(EquipmentSlot.MAINHAND, 2.0F);
         }
-        if (getAttackTimer() >= 0) {
-            setAttackTimer(getAttackTimer() - 1);
-            if (getAttackTimer() == 0) reassessWeaponGoal();
+        if (isActivated()) {
+            if (getAttackTimer() >= 0) {
+                setAttackTimer(getAttackTimer() - 1);
+                if (getAttackTimer() == 0) reassessWeaponGoal();
+            }
         }
     }
 
@@ -315,5 +317,6 @@ public class RedSkull extends Monster implements RangedAttackMob {
         double d2 = living.getZ() - this.getZ();
         tesseractCharge.shoot(d0, d1, d2, 1.6F, 6.0F);
         this.level().addFreshEntity(tesseractCharge);
+        this.swing(InteractionHand.MAIN_HAND);
     }
 }

@@ -31,7 +31,7 @@ public record SpawnPointMessage(Holder<SoundEvent> soundEvent) implements Custom
                 for (ServerPlayer serverPlayer : player.serverLevel().players()) {
                     player.serverLevel().sendParticles(serverPlayer, new SpaceStoneParticleOptions(MarvelParticleTypes.SPACE_STONE_EMITTER.get(), 1, player.yHeadRot), true, player.getX(), player.getY(0.5), player.getZ(), 0, 0, 0, 0, 1);
                 }
-                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), message.soundEvent().value(), player.getSoundSource(), 1.0F, 1.0F);
+                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), message.soundEvent().value(), player.getSoundSource(), 0.6F, 1.0F);
                 player.teleportTo(level, pos.getX(), pos.getY(), pos.getZ(), angle, player.getXRot());
                 for (ServerPlayer serverPlayer : player.serverLevel().players()) {
                     player.serverLevel().sendParticles(serverPlayer, new SpaceStoneParticleOptions(MarvelParticleTypes.REVERSE_SPACE_STONE_EMITTER.get(), 1, player.yHeadRot), true, player.getX(), player.getY(0.5), player.getZ(), 0, 0, 0, 0, 1);

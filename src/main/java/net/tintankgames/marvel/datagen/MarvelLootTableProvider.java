@@ -6,15 +6,19 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.EntityLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
+import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -23,8 +27,12 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
+import net.tintankgames.marvel.world.level.levelgen.structure.MarvelStructures;
+import net.tintankgames.marvel.world.level.saveddata.maps.MarvelMapDecorationTypes;
+import net.tintankgames.marvel.world.level.storage.loot.MarvelLootTables;
 
 import java.util.Collections;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -92,15 +100,66 @@ public class MarvelLootTableProvider {
 
         @Override
         public void generate() {
-            add(MarvelEntityTypes.HYDRA_AGENT.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.TESSERACT_SHARD).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 1.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().equipment(EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(MarvelItems.TESSERACT_CROSSBOW)))))));
+            add(MarvelEntityTypes.HYDRA_AGENT.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(MarvelItems.TESSERACT_SHARD).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 1.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().equipment(EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(MarvelItems.TESSERACT_CROSSBOW)))))
+                    )
+            );
             add(MarvelEntityTypes.BARON_ZEMO.get(), LootTable.lootTable());
-            add(MarvelEntityTypes.WINTER_SOLDIER.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_KNIFE)).when(LootItemKilledByPlayerCondition.killedByPlayer())).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_CHESTPLATE)).when(LootItemKilledByPlayerCondition.killedByPlayer())).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_LEGGINGS)).when(LootItemKilledByPlayerCondition.killedByPlayer())).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_BOOTS)).when(LootItemKilledByPlayerCondition.killedByPlayer())));
+            add(MarvelEntityTypes.WINTER_SOLDIER.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_KNIFE)).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_CHESTPLATE)).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_LEGGINGS)).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(MarvelItems.WINTER_SOLDIER_BOOTS)).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+            );
             add(MarvelEntityTypes.RED_SKULL.get(), LootTable.lootTable());
         }
 
         @Override
         protected Stream<EntityType<?>> getKnownEntityTypes() {
             return MarvelEntityTypes.REGISTER.getEntries().stream().map(DeferredHolder::get);
+        }
+    }
+
+    public record ChestLoot(HolderLookup.Provider registries) implements LootTableSubProvider {
+        @Override
+        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
+            consumer.accept(MarvelLootTables.HYDRA_BASE, LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(2.0F, 4.0F))
+                            .add(LootItem.lootTableItem(Items.ARROW).setWeight(20).setQuality(1).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 8.0F))))
+                            .add(LootItem.lootTableItem(Items.LEATHER).setWeight(20).setQuality(2).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.COAL).setWeight(10).setQuality(3).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(10).setQuality(3).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))))
+                            .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(5).setQuality(4).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(5).setQuality(4).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                    ).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.EMERALD).setWeight(30).setQuality(1).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(MarvelItems.REINFORCED_LEATHER).setWeight(20).setQuality(2).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                            .add(LootItem.lootTableItem(Items.CROSSBOW).setWeight(10).setQuality(3).apply(EnchantWithLevelsFunction.enchantWithLevels(registries(), ConstantValue.exactly(15))))
+                            .add(LootItem.lootTableItem(Items.IRON_SWORD).setWeight(10).setQuality(3).apply(EnchantWithLevelsFunction.enchantWithLevels(registries(), ConstantValue.exactly(15))))
+                            .add(LootItem.lootTableItem(MarvelItems.HYDRA_BANNER_PATTERN).setWeight(5).setQuality(4))
+                            .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(5).setQuality(4).apply(SetItemCountFunction.setCount(new UniformGenerator(ConstantValue.exactly(1.0F), UniformGenerator.between(1.0F, 2.0F)))))
+                    )
+            );
+            consumer.accept(MarvelLootTables.HYDRA_BASE_MAP, LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                            .add(NestedLootTable.lootTableReference(MarvelLootTables.HYDRA_BASE))
+                    ).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.MAP).apply(ExplorationMapFunction.makeExplorationMap().setDestination(MarvelStructures.Tags.ON_HYDRA_HEADQUARTERS_MAPS).setMapDecoration(MarvelMapDecorationTypes.HYDRA_HEADQUARTERS).setSearchRadius(100)).apply(SetNameFunction.setName(Component.translatable("filled_map.hydra_headquarters"), SetNameFunction.Target.ITEM_NAME)))
+                    )
+            );
+            consumer.accept(MarvelLootTables.HYDRA_OUTPOST, LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(2.0F, 4.0F))
+                            .add(LootItem.lootTableItem(Items.ARROW).setWeight(20).setQuality(1).apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 8.0F))))
+                            .add(LootItem.lootTableItem(Items.LEATHER).setWeight(20).setQuality(2).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.COAL).setWeight(10).setQuality(3).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(10).setQuality(3).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))))
+                            .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(5).setQuality(4).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
+                            .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(5).setQuality(4).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))))
+                    ).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.MAP).apply(ExplorationMapFunction.makeExplorationMap().setDestination(MarvelStructures.Tags.HYDRA_BASE).setMapDecoration(MarvelMapDecorationTypes.HYDRA).setSearchRadius(100)).apply(SetNameFunction.setName(Component.translatable("filled_map.hydra"), SetNameFunction.Target.ITEM_NAME)))
+                    )
+            );
         }
     }
 }

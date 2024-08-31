@@ -55,6 +55,13 @@ public class MarvelRecipeProvider extends RecipeProvider {
         mvstonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, MarvelBlocks.GRAY_HYDRA_BRICK_SLAB, MarvelBlocks.GRAY_HYDRA_BRICKS, 2);
         mvstonecutterResultFromBase(output, RecipeCategory.DECORATIONS, MarvelBlocks.GRAY_HYDRA_BRICK_WALL, MarvelBlocks.GRAY_HYDRA_BRICKS);
 
+        mvcopperBulb(output, MarvelBlocks.GREEN_HYDRA_BRICK_LAMP.get(), MarvelBlocks.GREEN_HYDRA_BRICKS.get());
+        mvcopperBulb(output, MarvelBlocks.YELLOW_HYDRA_BRICK_LAMP.get(), MarvelBlocks.YELLOW_HYDRA_BRICKS.get());
+        mvcopperBulb(output, MarvelBlocks.LIGHT_GRAY_HYDRA_BRICK_LAMP.get(), MarvelBlocks.LIGHT_GRAY_HYDRA_BRICKS.get());
+        mvcopperBulb(output, MarvelBlocks.GRAY_HYDRA_BRICK_LAMP.get(), MarvelBlocks.GRAY_HYDRA_BRICKS.get());
+        mvcopperBulb(output, MarvelBlocks.STONE_BRICK_LAMP.get(), Blocks.STONE_BRICKS);
+        mvcopperBulb(output, MarvelBlocks.DEEPSLATE_BRICK_LAMP.get(), Blocks.DEEPSLATE_BRICKS);
+
         mvoreSmelting(output, List.of(MarvelBlocks.TITANIUM_ORE, MarvelBlocks.DEEPSLATE_TITANIUM_ORE, MarvelItems.RAW_TITANIUM), RecipeCategory.MISC, MarvelItems.TITANIUM_INGOT, 1.0f, 200, "titanium_ingot");
         mvoreSmelting(output, List.of(MarvelBlocks.PALLADIUM_ORE, MarvelBlocks.DEEPSLATE_PALLADIUM_ORE, MarvelItems.RAW_PALLADIUM), RecipeCategory.MISC, MarvelItems.PALLADIUM_INGOT, 1.0f, 200, "palladium_ingot");
         mvoreBlasting(output, List.of(MarvelBlocks.VIBRANIUM_ORE, MarvelBlocks.DEEPSLATE_VIBRANIUM_ORE), RecipeCategory.MISC, MarvelItems.VIBRANIUM, 1.0f, 200, "vibranium");
@@ -105,6 +112,8 @@ public class MarvelRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, MarvelItems.STORMBREAKER).define('X', MarvelItems.URU_INGOT).define('#', Tags.Items.RODS_WOODEN).pattern("XXX").pattern("X# ").pattern(" # ").unlockedBy("has_uru_ingot", has(MarvelItems.URU_INGOT)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.PALLADIUM_ARC_REACTOR).define('X', MarvelBlocks.PALLADIUM_BLOCK).define('#', Tags.Items.INGOTS_COPPER).define('G', Tags.Items.GLASS_PANES_COLORLESS).pattern("#G#").pattern("GXG").pattern("#G#").unlockedBy("has_raw_palladium", has(MarvelItems.RAW_PALLADIUM)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.DIAMOND_ARC_REACTOR).define('X', Tags.Items.GEMS_QUARTZ).define('#', Tags.Items.GEMS_DIAMOND).define('G', Tags.Items.GLASS_PANES_COLORLESS).pattern("#G#").pattern("GXG").pattern("#G#").unlockedBy("has_palladium_arc_reactor", has(MarvelItems.PALLADIUM_ARC_REACTOR)).save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.TESSERACT).define('X', MarvelItems.SPACE_STONE).define('#', Tags.Items.GLASS_BLOCKS_COLORLESS).pattern("###").pattern("#X#").pattern("###").unlockedBy("has_tesseract", has(MarvelItems.TESSERACT)).save(output);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MarvelItems.SPACE_STONE).requires(MarvelItems.TESSERACT).unlockedBy("has_tesseract", has(MarvelItems.TESSERACT)).save(output);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MarvelItems.KATANA_UPGRADE_SMITHING_TEMPLATE).define('#', Items.DIAMOND_SWORD).define('D', Tags.Items.GEMS_DIAMOND).define('I', MarvelItems.GOLD_TITANIUM_INGOT).pattern("DID").pattern("I#I").pattern("DID").unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(output);
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(MarvelItems.KATANA_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(Items.DIAMOND_SWORD), Ingredient.of(MarvelItems.TITANIUM_INGOT), RecipeCategory.COMBAT, MarvelItems.KATANAS.get()).unlocks("has_titanium_ingot", has(MarvelItems.TITANIUM_INGOT)).save(output, MarvelSuperheroes.id("katanas_smithing"));
 
@@ -332,5 +341,9 @@ public class MarvelRecipeProvider extends RecipeProvider {
         for (ItemLike itemLike2 : list) {
             SimpleCookingRecipeBuilder.generic(Ingredient.of(itemLike2), recipeCategory, itemLike, f, i, recipeSerializer, factory).group(string).unlockedBy(getHasName(itemLike2), has(itemLike2)).save(consumer, MarvelSuperheroes.id(getItemName(itemLike) + string2 + "_" + getItemName(itemLike2)));
         }
+    }
+
+    protected static void mvcopperBulb(RecipeOutput p_308971_, Block bulb, Block base) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, bulb, 4).define('C', base).define('R', Items.REDSTONE).define('B', Items.BLAZE_ROD).pattern(" C ").pattern("CBC").pattern(" R ").unlockedBy(getHasName(base), has(base)).save(p_308971_, MarvelSuperheroes.id(getItemName(bulb)));
     }
 }

@@ -1,0 +1,22 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 3398947,
+    "separation": 15,
+    "spacing": 40
+  },
+  "structures": [
+    {
+      "structure": "marvel:hydra_outpost_classic",
+      "weight": 1
+    },
+    {
+      "structure": "marvel:hydra_outpost_winter",
+      "weight": 1
+    },
+    {
+      "structure": "marvel:hydra_outpost_mountain",
+      "weight": 1
+    }
+  ]
+}

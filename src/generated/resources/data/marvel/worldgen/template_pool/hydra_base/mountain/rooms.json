@@ -1,0 +1,82 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/portal_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/prison_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/library_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/range_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/portal_02",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/experiment_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "marvel:underground_pool_element",
+        "location": "marvel:hydra_base/mountain/room/lounge_01",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 1
+    }
+  ],
+  "fallback": "marvel:hydra_base/mountain/room_terminators"
+}

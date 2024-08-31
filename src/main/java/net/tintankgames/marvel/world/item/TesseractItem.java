@@ -61,8 +61,8 @@ public class TesseractItem extends BlockItem {
                     }
                     player.level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(player));
                     if (!player.isSilent()) {
-                        player.level().playSound(null, player.xo, player.yo, player.zo, MarvelSoundEvents.TESSERACT_TELEPORT.get(), player.getSoundSource(), 1.0F, 1.0F);
-                        player.playSound(MarvelSoundEvents.TESSERACT_TELEPORT.get(), 1.0F, 1.0F);
+                        player.level().playSound(null, player.xo, player.yo, player.zo, MarvelSoundEvents.TESSERACT_TELEPORT.get(), player.getSoundSource(), 0.6F, 1.0F);
+                        player.playSound(MarvelSoundEvents.TESSERACT_TELEPORT.get(), 0.6F, 1.0F);
                     }
                     if (level instanceof ServerLevel serverLevel) {
                         for (ServerPlayer player1 : serverLevel.players()) {

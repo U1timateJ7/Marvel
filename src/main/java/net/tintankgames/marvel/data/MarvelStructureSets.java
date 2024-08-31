@@ -15,6 +15,7 @@ import java.util.List;
 
 public class MarvelStructureSets {
     public static final ResourceKey<StructureSet> HYDRA_BASES = create("hydra_bases");
+    public static final ResourceKey<StructureSet> HYDRA_OUTPOSTS = create("hydra_outposts");
 
     private static ResourceKey<StructureSet> create(String id) {
         return ResourceKey.create(Registries.STRUCTURE_SET, MarvelSuperheroes.id(id));
@@ -22,6 +23,7 @@ public class MarvelStructureSets {
 
     public static void bootstrap(BootstrapContext<StructureSet> bootstrapContext) {
         HolderGetter<Structure> structure = bootstrapContext.lookup(Registries.STRUCTURE);
-        bootstrapContext.register(HYDRA_BASES, new StructureSet(List.of(StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_WINTER))), new RandomSpreadStructurePlacement(24, 11, RandomSpreadType.LINEAR, 8240938)));
+        bootstrapContext.register(HYDRA_BASES, new StructureSet(List.of(StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_CLASSIC)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_WINTER)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_BASE_MOUNTAIN))), new RandomSpreadStructurePlacement(24, 11, RandomSpreadType.LINEAR, 8240938)));
+        bootstrapContext.register(HYDRA_OUTPOSTS, new StructureSet(List.of(StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_OUTPOST_CLASSIC)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_OUTPOST_WINTER)), StructureSet.entry(structure.getOrThrow(MarvelStructures.HYDRA_OUTPOST_MOUNTAIN))), new RandomSpreadStructurePlacement(40, 15, RandomSpreadType.LINEAR, 3398947)));
     }
 }

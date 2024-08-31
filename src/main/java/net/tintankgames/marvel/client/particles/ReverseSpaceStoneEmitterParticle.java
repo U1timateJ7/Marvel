@@ -21,7 +21,7 @@ public class ReverseSpaceStoneEmitterParticle extends NoRenderParticle {
         this.xd = 0;
         this.yd = 0;
         this.zd = 0;
-        this.lifetime = (int) (60 / options.speed());
+        this.lifetime = (int) (30 / options.speed());
     }
 
     @Override

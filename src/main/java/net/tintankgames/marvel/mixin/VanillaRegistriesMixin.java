@@ -24,6 +24,7 @@ import net.tintankgames.marvel.data.worldgen.MarvelPools;
 import net.tintankgames.marvel.data.worldgen.features.MarvelConfiguredFeatures;
 import net.tintankgames.marvel.data.worldgen.placements.MarvelPlacements;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
+import net.tintankgames.marvel.world.entity.HydraAgentSkins;
 import net.tintankgames.marvel.world.entity.HydraAgentVariants;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
 import net.tintankgames.marvel.world.level.levelgen.structure.MarvelStructures;
@@ -40,7 +41,10 @@ public abstract class VanillaRegistriesMixin {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/core/RegistrySetBuilder;getEntryKeys()Ljava/util/List;", shift = At.Shift.BEFORE), method = "<clinit>")
     private static void marvelBootstrap(CallbackInfo ci) {
-        if (DatagenModLoader.isRunningDataGen()) BUILDER.add(MarvelRegistries.HYDRA_AGENT_VARIANT, HydraAgentVariants::bootstrap);
+        if (DatagenModLoader.isRunningDataGen()) {
+            BUILDER.add(MarvelRegistries.HYDRA_AGENT_VARIANT, HydraAgentVariants::bootstrap);
+            BUILDER.add(MarvelRegistries.HYDRA_AGENT_SKIN, HydraAgentSkins::bootstrap);
+        }
     }
     
     @Mixin(FeatureUtils.class)
