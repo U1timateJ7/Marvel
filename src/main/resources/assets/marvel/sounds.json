@@ -332,5 +332,16 @@
     "sounds": [
       "marvel:item/space_stone/teleport"
     ]
+  },
+  "entity.red_skull.shoot": {
+    "subtitle": "subtitles.entity.red_skull.shoot",
+    "sounds": [
+      "marvel:entity/red_skull/shoot"
+    ]
+  },
+  "entity.red_skull.hit": {
+    "sounds": [
+      "marvel:entity/red_skull/hit"
+    ]
   }
 }
