@@ -224,6 +224,9 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.QUICKSILVER_CHESTPLATE);
         output.accept(MarvelItems.QUICKSILVER_LEGGINGS);
         output.accept(MarvelItems.QUICKSILVER_BOOTS);
+        output.accept(MarvelItems.QUICKSILVER_MCU_CHESTPLATE);
+        output.accept(MarvelItems.QUICKSILVER_MCU_LEGGINGS);
+        output.accept(MarvelItems.QUICKSILVER_MCU_BOOTS);
         output.accept(MarvelItems.DEADPOOL_HELMET);
         output.accept(MarvelItems.DEADPOOL_CHESTPLATE);
         output.accept(MarvelItems.DEADPOOL_LEGGINGS);
@@ -236,6 +239,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.CAPTAIN_MARVEL_CHESTPLATE);
         output.accept(MarvelItems.CAPTAIN_MARVEL_LEGGINGS);
         output.accept(MarvelItems.CAPTAIN_MARVEL_BOOTS);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_838_HELMET);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_838_CHESTPLATE);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_838_LEGGINGS);
+        output.accept(MarvelItems.CAPTAIN_MARVEL_838_BOOTS);
         output.accept(MarvelItems.WINTER_SOLDIER_CHESTPLATE);
         output.accept(MarvelItems.WINTER_SOLDIER_LEGGINGS);
         output.accept(MarvelItems.WINTER_SOLDIER_BOOTS);

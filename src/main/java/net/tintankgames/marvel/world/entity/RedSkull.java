@@ -28,6 +28,7 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
@@ -67,7 +68,7 @@ public class RedSkull extends Monster implements RangedAttackMob {
                 this.resetAttackCooldown();
                 this.mob.swing(InteractionHand.MAIN_HAND);
                 this.mob.doHurtTarget(p_25557_);
-                RedSkull.this.setAttackTimer(200);
+                RedSkull.this.setAttackTimer(100);
                 RedSkull.this.reassessWeaponGoal();
             }
         }
@@ -120,7 +121,7 @@ public class RedSkull extends Monster implements RangedAttackMob {
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(ACTIVATED, false);
-        builder.define(ATTACK_TIMER, 200);
+        builder.define(ATTACK_TIMER, 100);
     }
 
     public boolean isActivated() {
@@ -278,6 +279,15 @@ public class RedSkull extends Monster implements RangedAttackMob {
     }
 
     @Override
+    protected void dropCustomDeathLoot(ServerLevel p_348683_, DamageSource p_21385_, boolean p_21387_) {
+        super.dropCustomDeathLoot(p_348683_, p_21385_, p_21387_);
+        if (getServer() != null && getServer().overworld().getData(MarvelAttachmentTypes.INFINITY_STONES).hasFoundStone(InfinityStone.SPACE)) {
+            this.spawnAtLocation(new ItemStack(Items.DIAMOND_BLOCK));
+            this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        }
+    }
+
+    @Override
     public void die(DamageSource p_21014_) {
         super.die(p_21014_);
         bossEvent.setProgress(0);
@@ -317,6 +327,7 @@ public class RedSkull extends Monster implements RangedAttackMob {
         double d2 = living.getZ() - this.getZ();
         tesseractCharge.shoot(d0, d1, d2, 1.6F, 6.0F);
         this.level().addFreshEntity(tesseractCharge);
+        this.playSound(MarvelSoundEvents.RED_SKULL_SHOOT.get());
         this.swing(InteractionHand.MAIN_HAND);
     }
 }

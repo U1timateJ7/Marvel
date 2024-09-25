@@ -2,45 +2,49 @@ package net.tintankgames.marvel.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.client.model.MarvelModels;
-import net.tintankgames.marvel.client.model.RepulsorModel;
-import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.world.entity.projectile.TesseractCharge;
 
 @OnlyIn(Dist.CLIENT)
 public class TesseractChargeRenderer extends EntityRenderer<TesseractCharge> {
-    private final RepulsorModel<TesseractCharge> model;
+    private static final ResourceLocation TEXTURE_LOCATION = MarvelSuperheroes.id("textures/entity/tesseract_charge.png");
 
     public TesseractChargeRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.model = new RepulsorModel<>(context.bakeLayer(MarvelModels.REPULSOR));
     }
 
-    public void render(TesseractCharge repulsor, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        if (repulsor.tickCount >= 2 || !(this.entityRenderDispatcher.camera.getEntity().distanceToSqr(repulsor) < 6.25)) {
-            poseStack.pushPose();
-            poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, repulsor.yRotO, repulsor.getYRot())));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, repulsor.xRotO, repulsor.getXRot()) - 180.0F));
-            poseStack.translate(0, -0.125F, 0);
-            VertexConsumer vertexconsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entitySolidEmissive(getTextureLocation(repulsor)));
-            model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
-            poseStack.popPose();
-            super.render(repulsor, yRot, partialTick, poseStack, multiBufferSource, light);
-        }
+    protected int getBlockLightLevel(TesseractCharge tesseractCharge, BlockPos pos) {
+        return 15;
+    }
+
+    public void render(TesseractCharge tesseractCharge, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+        poseStack.pushPose();
+        poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
+        PoseStack.Pose posestack$pose = poseStack.last();
+        VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(getTextureLocation(tesseractCharge)));
+        vertex(vertexconsumer, posestack$pose, light, 0.0F, 0, 0, 1);
+        vertex(vertexconsumer, posestack$pose, light, 1.0F, 0, 1, 1);
+        vertex(vertexconsumer, posestack$pose, light, 1.0F, 1, 1, 0);
+        vertex(vertexconsumer, posestack$pose, light, 0.0F, 1, 0, 0);
+        poseStack.popPose();
+        super.render(tesseractCharge, yRot, partialTick, poseStack, multiBufferSource, light);
+    }
+
+    private static void vertex(VertexConsumer vertexConsumer, PoseStack.Pose pose, int light, float x, int y, int u, int v) {
+        vertexConsumer.addVertex(pose, x - 0.5F, (float)y - 0.25F, 0.0F).setColor(-1).setUv((float)u, (float)v).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(pose, 0.0F, 1.0F, 0.0F);
     }
 
     @Override
     public ResourceLocation getTextureLocation(TesseractCharge p_114482_) {
-        return MarvelSuperheroes.id("textures/entity/tesseract_charge.png");
+        return TEXTURE_LOCATION;
     }
 }

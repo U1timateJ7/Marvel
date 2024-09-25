@@ -38,6 +38,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.tintankgames.marvel.core.registries.MarvelRegistries;
 import net.tintankgames.marvel.network.syncher.MarvelEntityDataSerializers;
+import net.tintankgames.marvel.world.entity.ai.goal.TimedMeleeAttackGoal;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
@@ -49,7 +50,7 @@ public class HydraAgent extends Monster implements VariantHolder<Holder<HydraAge
     private static final EntityDataAccessor<Holder<HydraAgentSkin>> SKIN = SynchedEntityData.defineId(HydraAgent.class, MarvelEntityDataSerializers.HYDRA_AGENT_SKIN.get());
     private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(HydraAgent.class, EntityDataSerializers.BOOLEAN);
     private final RangedCrossbowAttackGoal<HydraAgent> crossbowGoal = new RangedCrossbowAttackGoal<>(this, 1.0, 8.0F);
-    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
+    private final TimedMeleeAttackGoal meleeGoal = new TimedMeleeAttackGoal(this, 1.2, false, 40) {
         @Override
         public void stop() {
             super.stop();

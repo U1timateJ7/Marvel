@@ -11,6 +11,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
+import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 
@@ -45,6 +46,7 @@ public class TesseractCharge extends Projectile {
             HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
             if (hitResult.getType() != HitResult.Type.MISS) {
                 this.onHit(hitResult);
+                this.playSound(MarvelSoundEvents.RED_SKULL_HIT.get());
             }
 
             this.setPos(hitResult.getLocation());
