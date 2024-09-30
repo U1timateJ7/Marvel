@@ -219,6 +219,16 @@
       "marvel:suit/iron_man/shoot"
     ]
   },
+  "suit.iron_man.invisible": {
+    "sounds": [
+      "marvel:suit/iron_man/invisible"
+    ]
+  },
+  "suit.iron_man.visible": {
+    "sounds": [
+      "marvel:suit/iron_man/visible"
+    ]
+  },
   "item.iron_man_mark_5_suitcase.use": {
     "subtitle": "subtitles.item.iron_man_mark_5_suitcase.use",
     "sounds": [
