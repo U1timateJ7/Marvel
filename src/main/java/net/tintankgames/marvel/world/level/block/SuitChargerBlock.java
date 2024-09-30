@@ -101,10 +101,6 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     for (int i = 0; i < charger.getContainerSize(); i++) {
                         charger.setItem(i, playerArmor.get(i).copy());
                     }
-                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.FLAMETHROWER))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.FLAMETHROWER.get())));
-                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
-                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
-                    if (player.getInventory().contains(stack -> stack.is(MarvelItems.SHOULDER_TURRET))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.SHOULDER_TURRET.get())));
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide);
             } else {
@@ -150,10 +146,6 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     for (int i = 0; i < charger.getContainerSize(); i++) {
                         charger.setItem(i, playerArmor.get(i).copy());
                     }
-                    if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.FLAMETHROWER))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.FLAMETHROWER.get())));
-                    if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
-                    if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
-                    if (player.getInventory().contains(stack1 -> stack1.is(MarvelItems.SHOULDER_TURRET))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.SHOULDER_TURRET.get())));
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             } else {

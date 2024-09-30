@@ -18,6 +18,7 @@ public class MarvelNetworking {
     public static final CustomPacketPayload.Type<OpenSpaceStoneMessage> OPEN_SPACE_STONE = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("open_space_stone"));
     public static final CustomPacketPayload.Type<SpawnPointMessage> SPAWN_POINT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("spawn_point"));
     public static final CustomPacketPayload.Type<TpToPlayerMessage> TP_TO_PLAYER = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("tp_to_player"));
+    public static final CustomPacketPayload.Type<CallMjolnirMessage> CALL_MJOLNIR = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("call_mjolnir"));
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
@@ -30,6 +31,7 @@ public class MarvelNetworking {
         registrar.playToClient(OPEN_SPACE_STONE, OpenSpaceStoneMessage.CODEC, OpenSpaceStoneMessage::handle);
         registrar.playToServer(SPAWN_POINT, SpawnPointMessage.CODEC, SpawnPointMessage::handle);
         registrar.playToServer(TP_TO_PLAYER, TpToPlayerMessage.CODEC, TpToPlayerMessage::handle);
+        registrar.playToServer(CALL_MJOLNIR, CallMjolnirMessage.CODEC, CallMjolnirMessage::handle);
         registrar.playToClient(TargetedEntity.SyncMessage.TYPE, TargetedEntity.SyncMessage.CODEC, TargetedEntity.SyncMessage::handle);
     }
 }

@@ -12,7 +12,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.tintankgames.marvel.MarvelConfig;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.network.CallMjolnirMessage;
 import net.tintankgames.marvel.world.entity.projectile.ThrownMjolnir;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.jetbrains.annotations.Nullable;
@@ -20,6 +28,7 @@ import org.joml.Math;
 
 import java.util.UUID;
 
+@EventBusSubscriber(Dist.CLIENT)
 public class MjolnirBlockEntity extends BlockEntity {
     private UUID owner = null;
     private ItemStack stack = new ItemStack(MarvelItems.MJOLNIR.get());
@@ -78,7 +87,7 @@ public class MjolnirBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, MjolnirBlockEntity blockEntity) {
-        if (!level.isClientSide() && blockEntity.getOwner(level) != null && blockEntity.getOwner(level).isCrouching() && Math.sqrt(pos.distToCenterSqr(blockEntity.getOwner(level).position())) <= MarvelConfig.mjolnirCallRange) {
+        if (!level.isClientSide() && blockEntity.getOwner(level) != null && blockEntity.getOwner(level).getExistingData(MarvelAttachmentTypes.CALLING_MJOLNIR).orElse(false) && Math.sqrt(pos.distToCenterSqr(blockEntity.getOwner(level).position())) <= MarvelConfig.mjolnirCallRange) {
             ThrownMjolnir thrownMjolnir = new ThrownMjolnir(level, blockEntity.getOwner(level), blockEntity.getStack());
             thrownMjolnir.setPos(pos.getX(), pos.getY(), pos.getZ());
             thrownMjolnir.setBaseDamage(blockEntity.getStack().get(DataComponents.ATTRIBUTE_MODIFIERS).modifiers().stream().filter(modifier -> modifier.attribute().is(Attributes.ATTACK_DAMAGE)).toList().getFirst().modifier().amount() + 1);
@@ -86,5 +95,11 @@ public class MjolnirBlockEntity extends BlockEntity {
             level.addFreshEntity(thrownMjolnir);
             level.removeBlock(pos, true);
         }
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public static void callMjolnir(PlayerInteractEvent.RightClickEmpty event) {
+        PacketDistributor.sendToServer(CallMjolnirMessage.INSTANCE);
     }
 }

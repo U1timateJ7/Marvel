@@ -2,9 +2,11 @@ package net.tintankgames.marvel.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,12 +27,14 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SuitItem;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
@@ -114,6 +118,11 @@ public class MarvelSuperheroesClient {
                     event.setType(MarvelClientEnumExtensions.DEADPOOL_HEART_TYPE.getValue());
                 }
             }
+        }
+
+        @SubscribeEvent
+        public static void invisible(RenderLivingEvent.Pre<? extends LivingEntity, ? extends EntityModel<?>> event) {
+            if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.INVISIBLE)) event.setCanceled(true);
         }
     }
 }

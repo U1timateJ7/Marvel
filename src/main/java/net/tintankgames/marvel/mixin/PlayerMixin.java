@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin extends LivingEntity {
@@ -82,11 +83,16 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(at = @At("RETURN"), method = "tick")
     private void removeWalkingAnimation(CallbackInfo ci) {
-        if (abilities.flying && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
+        if (abilities.flying && (marvel$hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || getMainHandItem().is(MarvelItems.MJOLNIR) || getMainHandItem().is(MarvelItems.STORMBREAKER) || getOffhandItem().is(MarvelItems.MJOLNIR) || getOffhandItem().is(MarvelItems.STORMBREAKER))) walkAnimation.update(0, 1.0F);
+    }
+
+    @Inject(at = @At("RETURN"), method = "getFlyingSpeed", cancellable = true)
+    private void fastFlying(CallbackInfoReturnable<Float> cir) {
+        if (marvel$hasArmor(MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR, true) && abilities.flying) cir.setReturnValue(cir.getReturnValueF() * 2);
     }
 
     @Unique
-    private boolean hasArmor(TagKey<Item> tagKey, boolean needsHead) {
+    private boolean marvel$hasArmor(TagKey<Item> tagKey, boolean needsHead) {
         boolean head = getItemBySlot(EquipmentSlot.HEAD).is(tagKey) || !needsHead;
         boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);

@@ -44,6 +44,8 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_UNIBEAM_CHARGE = register("suit.iron_man.unibeam_charge");
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_REPULSOR_SHOOT = register("suit.iron_man.repulsor_shoot");
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_UNIBEAM_SHOOT = register("suit.iron_man.unibeam_shoot");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_INVISIBLE = register("suit.iron_man.invisible");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_VISIBLE = register("suit.iron_man.visible");
     public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_MARK_5_SUITCASE_USE = register("item.iron_man_mark_5_suitcase.use");
     public static final DeferredHolder<SoundEvent, SoundEvent> QUICKSILVER_SONIC_BOOM = register("suit.quicksilver.sonic_boom");
     public static final DeferredHolder<SoundEvent, SoundEvent> CAPTAIN_MARVEL_PHOTON_BLAST = register("suit.captain_marvel.photon_blast");

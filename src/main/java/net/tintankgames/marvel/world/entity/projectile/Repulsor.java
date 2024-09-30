@@ -3,13 +3,14 @@ package net.tintankgames.marvel.world.entity.projectile;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.tintankgames.marvel.world.entity.IronManSentry;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 
 public class Repulsor extends Projectile {
@@ -23,11 +24,11 @@ public class Repulsor extends Projectile {
         this.setPos(p_338771_, p_338674_, p_338477_);
     }
 
-    public Repulsor(Level level, Player player) {
+    public Repulsor(Level level, LivingEntity living) {
         this(MarvelEntityTypes.REPULSOR.get(), level);
-        this.setOwner(player);
-        this.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
-        this.setDeltaMovement(player.getViewVector(1.0F).scale(3.0));
+        this.setOwner(living);
+        this.setPos(living.getX(), living.getEyeY() - 0.1, living.getZ());
+        this.setDeltaMovement(living.getViewVector(1.0F).scale(3.0));
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -53,7 +54,11 @@ public class Repulsor extends Projectile {
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
+        if (entityHitResult.getEntity() instanceof IronManSentry target && getOwner() instanceof IronManSentry owner && target.getOwnerUUID() != null && owner.getOwnerUUID() != null) {
+            if (!target.getOwnerUUID().toString().equals(owner.getOwnerUUID().toString())) entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
+        } else {
+            if ((getOwner() instanceof IronManSentry owner && owner.getOwner() != entityHitResult.getEntity()) || !(getOwner() instanceof IronManSentry)) entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
+        }
         discard();
     }
 

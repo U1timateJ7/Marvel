@@ -44,6 +44,7 @@
     "ItemInHandRendererMixin",
     "LevelRendererMixin",
     "LivingEntityRendererMixin",
+    "LocalPlayerMixin",
     "MinecraftMixin",
     "PlayerModelMixin",
     "PlayerRendererMixin",

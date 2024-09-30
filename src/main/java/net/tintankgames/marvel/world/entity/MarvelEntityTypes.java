@@ -24,6 +24,7 @@ public class MarvelEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<BaronZemo>> BARON_ZEMO = register("baron_zemo", EntityType.Builder.of(BaronZemo::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<WinterSoldier>> WINTER_SOLDIER = register("winter_soldier", EntityType.Builder.of(WinterSoldier::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<RedSkull>> RED_SKULL = register("red_skull", EntityType.Builder.of(RedSkull::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
+    public static final DeferredHolder<EntityType<?>, EntityType<IronManSentry>> IRON_MAN_SENTRY = register("iron_man_sentry", EntityType.Builder.of(IronManSentry::new, MobCategory.MISC).sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownVibraniumShield>> VIBRANIUM_SHIELD = register("vibranium_shield", EntityType.Builder.<ThrownVibraniumShield>of(ThrownVibraniumShield::new, MobCategory.MISC).sized(0.75F, 0.125F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<WebShot>> WEB_SHOT = register("web_shot", EntityType.Builder.<WebShot>of(WebShot::new, MobCategory.MISC).noSave().noSummon().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
@@ -48,10 +49,11 @@ public class MarvelEntityTypes {
         event.put(BARON_ZEMO.get(), BaronZemo.createAttributes().build());
         event.put(WINTER_SOLDIER.get(), WinterSoldier.createAttributes().build());
         event.put(RED_SKULL.get(), RedSkull.createAttributes().build());
+        event.put(IRON_MAN_SENTRY.get(), IronManSentry.createAttributes().build());
     }
 
     @SubscribeEvent
-    public static void attributes(RegisterSpawnPlacementsEvent event) {
+    public static void spawnPlacements(RegisterSpawnPlacementsEvent event) {
         event.register(HYDRA_AGENT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HydraAgent::checkHydraAgentSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
         event.register(BARON_ZEMO.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
         event.register(WINTER_SOLDIER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.OR);
