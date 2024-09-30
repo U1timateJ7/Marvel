@@ -44,7 +44,7 @@ public class UnibeamItem extends SuitPowerItem {
             if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 7.5F || player.isCreative())) {
                 HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, 0f);
                 if (hit.getType() != HitResult.Type.MISS) {
-                    level.explode(player, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 3.0F, Level.ExplosionInteraction.MOB);
+                    level.explode(player, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 3.0F * (player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_17_ARMOR) ? 2.0F : 1.0F), Level.ExplosionInteraction.MOB);
                 }
                 for (double d = 0; d < Math.abs(player.position().add(0, 1.25, 0).distanceTo(hit.getLocation())); d += 0.1) {
                     Vec3 vec3 = player.position().add(0, 1.25, 0).add(player.getViewVector(0.0F).scale(d));

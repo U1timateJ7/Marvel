@@ -67,6 +67,13 @@ public class PrimarySuitAbilityMessage implements CustomPacketPayload {
                         chestplate.set(MarvelDataComponents.SPEEDING, Unit.INSTANCE);
                     }
                 }
+                if (helmet.is(MarvelItems.Tags.IRON_MAN_MARK_15_ARMOR) && chestplate.is(MarvelItems.Tags.IRON_MAN_MARK_15_ARMOR) && leggings.is(MarvelItems.Tags.IRON_MAN_MARK_15_ARMOR) && boots.is(MarvelItems.Tags.IRON_MAN_MARK_15_ARMOR)) {
+                    if (chestplate.has(MarvelDataComponents.INVISIBLE)) {
+                        chestplate.remove(MarvelDataComponents.INVISIBLE);
+                    } else {
+                        chestplate.set(MarvelDataComponents.INVISIBLE, Unit.INSTANCE);
+                    }
+                }
             }
         });
     }

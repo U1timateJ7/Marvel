@@ -69,7 +69,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @SubscribeEvent
     public static void playerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-            if (serverPlayer.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_ARMOR) && serverPlayer.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_ARMOR)) {
+            if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_ARMOR)) {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFalLDistanceModifier);
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
                 if (serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 2.0F) {
@@ -81,9 +81,12 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                     serverPlayer.addEffect(effect(MarvelMobEffects.ICING, 0, 30));
                 }
                 if (serverPlayer.getAbilities().flying) {
+                    double d = 1 / (serverPlayer.getAbilities().getFlyingSpeed() * (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR) ? 2.0F : 1.0F) / 0.05F);
+                    Vec3 movement = serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).multiply(d, d, d);
+                    movement = new Vec3(Math.clamp(movement.x, -1.0F, 1.0F), Math.clamp(movement.y, -1.0F, 1.0F), Math.clamp(movement.z, -1.0F, 1.0F));
                     serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, serverPlayer.getAbilities().flying);
-                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT));
-                    Vec3 flamePlacement = serverPlayer.position().add(serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).multiply(-1.5, -1, -1.5)).add(0, serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).horizontalDistance() * 1.4, 0);
+                    serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, movement);
+                    Vec3 flamePlacement = serverPlayer.position().add(movement.multiply(-1.5, -1, -1.5)).add(0, movement.horizontalDistance() * 1.4, 0);
                     serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
                 } else {
                     serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
@@ -95,6 +98,14 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
             }
         }
+    }
+
+    private static boolean hasArmor(LivingEntity living, TagKey<Item> tagKey) {
+        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).is(tagKey);
+        boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        return head && chest && legs && feet;
     }
 
     @Override
@@ -153,10 +164,14 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
-        super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
-        p_41423_.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
-        if (p_41421_.has(MarvelDataComponents.HELMET_OPEN)) p_41423_.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man.key.h" + (p_41421_.is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN) ? ".invisible" : "")).toLanguageKey("item"), Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
+        super.appendHoverText(stack, context, list, flags);
+        list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
+        if (type == Type.HELMET) addAbilityMessage(stack, context, list, flags);
+        if (stack.has(MarvelDataComponents.HELMET_OPEN)) list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man.key.h" + (stack.is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN) ? ".invisible" : "")).toLanguageKey("item"), Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
+    }
+
+    protected void addAbilityMessage(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
     }
 
     public int hudColor() {

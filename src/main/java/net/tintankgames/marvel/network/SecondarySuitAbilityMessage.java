@@ -10,6 +10,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.timers.TimerQueue;
@@ -17,9 +18,9 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
-import net.tintankgames.marvel.world.item.MarvelItems;
-import net.tintankgames.marvel.world.item.SuitItem;
-import net.tintankgames.marvel.world.item.SuitPowerItem;
+import net.tintankgames.marvel.world.entity.IronManSentry;
+import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.item.*;
 import net.tintankgames.marvel.world.item.component.ItemStackHolder;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
@@ -39,7 +40,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
     public static void handle(SecondarySuitAbilityMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
-                boolean noKineticBlackPantherArmor = true, noThorArmor = true;
+                boolean noKineticBlackPantherArmor = true, noThorArmor = true, hasFullSentryArmor = true;
                 for (ItemStack armor : player.getInventory().armor) {
                     if (armor.is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR)) {
                         noKineticBlackPantherArmor = false;
@@ -52,12 +53,34 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         break;
                     }
                 }
+                for (ItemStack armor : player.getInventory().armor) {
+                    if (!(armor.getItem() instanceof SentryIronManSuitItem)) {
+                        hasFullSentryArmor = false;
+                        break;
+                    }
+                }
                 ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
                 ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
                 ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 ItemStack mainHand = player.getMainHandItem();
-                if ((mainHand.is(MarvelItems.MJOLNIR) && Objects.equals(mainHand.get(MarvelDataComponents.OWNER).toString(), player.getUUID().toString())) || mainHand.is(MarvelItems.STORMBREAKER)) {
+                if (hasFullSentryArmor && !chestplate.has(MarvelDataComponents.INVISIBLE) && EnergySuitItem.getEnergy(chestplate) > 0.0F) {
+                    IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);
+                    if (sentry != null) {
+                        sentry.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
+                        sentry.setTame(true, false);
+                        sentry.setOwnerUUID(player.getUUID());
+                        for (EquipmentSlot slot : new EquipmentSlot[] {EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+                            ItemStack stack = player.getItemBySlot(slot).copy();
+                            stack.remove(MarvelDataComponents.FLYING);
+                            stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
+                            sentry.setItemSlot(slot, stack);
+                            player.setItemSlot(slot, ItemStack.EMPTY);
+                        }
+                        player.serverLevel().tryAddFreshEntityWithPassengers(sentry);
+                        player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                    }
+                } else if ((mainHand.is(MarvelItems.MJOLNIR) && Objects.equals(mainHand.get(MarvelDataComponents.OWNER).toString(), player.getUUID().toString())) || mainHand.is(MarvelItems.STORMBREAKER)) {
                     if (noThorArmor) {
                         ItemStack thorHelmet = MarvelItems.THOR_HELMET.toStack();
                         ItemStack thorChestplate = MarvelItems.THOR_CHESTPLATE.toStack();
@@ -175,8 +198,6 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         player.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
                         player.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
-                        if (player.getInventory().items.stream().anyMatch(stack -> stack.is(MarvelItems.REPULSOR))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.REPULSOR.get())));
-                        if (player.getInventory().items.stream().anyMatch(stack -> stack.is(MarvelItems.UNIBEAM))) player.getInventory().removeItem(player.getInventory().getItem(SuitItem.findSlotMatchingItem(player.getInventory().items, MarvelItems.UNIBEAM.get())));
                         if (!player.addItem(suitcase)) {
                             player.drop(suitcase, true);
                         }

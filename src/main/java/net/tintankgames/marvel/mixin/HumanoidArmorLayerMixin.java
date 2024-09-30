@@ -108,6 +108,10 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
                         rightWing.visible = itemstack.getOrDefault(MarvelDataComponents.FLYING, false) && itemstack.getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL;
                     }
 
+                    if (model instanceof SuitModel<?> suitModel) {
+                        suitModel.animateArmor(livingEntity, animationProgress);
+                    }
+
                     ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), red, green, blue, 1.0F);

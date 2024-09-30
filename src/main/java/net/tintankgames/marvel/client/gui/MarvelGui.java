@@ -48,7 +48,7 @@ public class MarvelGui {
 
     @SubscribeEvent
     public static void renderOverlays(RenderGuiLayerEvent.Post event) {
-        if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS && Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
+        if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS && Minecraft.getInstance().options.getCameraType().isFirstPerson() && !Minecraft.getInstance().options.hideGui) {
             ItemStack helmet = Minecraft.getInstance().player.getInventory().getArmor(3);
             if (helmet.is(MarvelItems.IRON_MAN_MARK_1_HELMET) || (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) <= 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false))) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_low_power.png"), 1.0F, 0xFFFFFF);
@@ -108,7 +108,7 @@ public class MarvelGui {
         poseStack.popPose();
         xOffset += 10;
         yOffset -= 10;
-        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), Minecraft.getInstance().font.width(entity.getName()) + xOffset >= guiGraphics.guiWidth() ? Minecraft.getInstance().font.width(entity.getName()) - (guiGraphics.guiWidth() - xOffset) : xOffset, yOffset, color, false);
+        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) + xOffset >= guiGraphics.guiWidth() ? xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) - (guiGraphics.guiWidth() - xOffset)) : xOffset, yOffset, color, false);
         xOffset += 50;
         yOffset += 26;
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.hp", String.format("%.0f", entity.getHealth())), xOffset, yOffset - 8, color, false);
