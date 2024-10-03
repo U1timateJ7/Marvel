@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:captain_marvel_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:captain_marvel_chestplate"
+  }
+}

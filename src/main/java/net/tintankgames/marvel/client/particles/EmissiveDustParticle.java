@@ -10,6 +10,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
 
+@OnlyIn(Dist.CLIENT)
 public class EmissiveDustParticle extends DustParticleBase<EmissiveDustParticleOptions> {
     protected EmissiveDustParticle(ClientLevel p_106415_, double p_106416_, double p_106417_, double p_106418_, double p_106419_, double p_106420_, double p_106421_, EmissiveDustParticleOptions p_106422_, SpriteSet p_106423_) {
         super(p_106415_, p_106416_, p_106417_, p_106418_, p_106419_, p_106420_, p_106421_, p_106422_, p_106423_);

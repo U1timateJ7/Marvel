@@ -71,7 +71,10 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         sentry.setTame(true, false);
                         sentry.setOwnerUUID(player.getUUID());
                         for (EquipmentSlot slot : new EquipmentSlot[] {EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
-                            sentry.setItemSlot(slot, player.getItemBySlot(slot).copy());
+                            ItemStack stack = player.getItemBySlot(slot).copy();
+                            stack.remove(MarvelDataComponents.FLYING);
+                            stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
+                            sentry.setItemSlot(slot, stack);
                             player.setItemSlot(slot, ItemStack.EMPTY);
                         }
                         player.serverLevel().tryAddFreshEntityWithPassengers(sentry);

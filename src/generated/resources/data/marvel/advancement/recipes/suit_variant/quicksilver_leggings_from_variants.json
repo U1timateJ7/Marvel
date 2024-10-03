@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_quicksilver_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:quicksilver_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:quicksilver_leggings_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_quicksilver_leggings"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:quicksilver_leggings_from_variants"
+    ]
+  }
+}

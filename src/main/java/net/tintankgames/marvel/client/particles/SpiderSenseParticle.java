@@ -6,6 +6,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SpiderSenseParticle extends TextureSheetParticle {
     protected SpiderSenseParticle(ClientLevel p_106905_, double p_106906_, double p_106907_, double p_106908_, double p_106909_, SpriteSet p_106910_) {
         super(p_106905_, p_106906_, p_106907_, p_106908_, 0.0, 0.0, 0.0);

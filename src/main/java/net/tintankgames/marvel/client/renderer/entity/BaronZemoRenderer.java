@@ -13,9 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.entity.BaronZemo;
 
+@OnlyIn(Dist.CLIENT)
 public class BaronZemoRenderer extends MobRenderer<BaronZemo, PlayerModel<BaronZemo>> {
     private static final ResourceLocation BARON_ZEMO_LOCATION = MarvelSuperheroes.id("textures/entity/baron_zemo.png");
 

@@ -69,9 +69,8 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
             for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
                 int j = armormaterial$layer.dyeable() ? i : -1;
 
-                if (model.rightArm.hasChild("right_claws") && model.leftArm.hasChild("left_claws")) {
-                    model.rightArm.getChild("right_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
-                    model.leftArm.getChild("left_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
+                if (model instanceof SuitModel<?> suitModel) {
+                    suitModel.animateArmor(player, getBob(player, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true)));
                 }
 
                 ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, armormaterial$layer, false, EquipmentSlot.CHEST);

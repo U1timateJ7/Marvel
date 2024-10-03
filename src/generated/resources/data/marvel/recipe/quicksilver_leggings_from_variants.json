@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:quicksilver_leggings"
+  },
+  "suit": {
+    "tag": "marvel:quicksilver_leggings"
+  }
+}

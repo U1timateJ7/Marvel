@@ -19,6 +19,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.animation.definitions.WarMachineAnimation;
+import net.tintankgames.marvel.client.animation.definitions.WolverineAnimation;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.joml.Vector3f;
 
@@ -135,9 +136,9 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)), PartPose.offset(0.0F, 0.0F, 0.0F));
             PartDefinition right_arm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)).texOffs(46, 1).addBox(-4.0F, -2.0F, -2.0F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.02F)), PartPose.offset(-5.0F, 2.0F, 0.0F));
-            right_arm.addOrReplaceChild("right_claws", CubeListBuilder.create().texOffs(55, 55).addBox(-1.0F, -3.0F, 0.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F), PartPose.offset(-2.5F, 11.5F, -1.0F));
+            right_arm.addOrReplaceChild("right_claws", CubeListBuilder.create().texOffs(55, 55).addBox(-1.0F, -3.0F, 0.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F), PartPose.offset(-1.5F, 5.5F, -1.0F));
             PartDefinition left_arm = partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.01F)).mirror().texOffs(46, 1).addBox(-1.0F, -2.0F, -2.0F, 5.0F, 3.0F, 4.0F, new CubeDeformation(0.02F)).mirror(false), PartPose.offset(5.0F, 2.0F, 0.0F));
-            left_arm.addOrReplaceChild("left_claws", CubeListBuilder.create().texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 3.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).texOffs(55, 55).addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F).mirror(false), PartPose.offset(2.5F, 11.5F, -2.0F));
+            left_arm.addOrReplaceChild("left_claws", CubeListBuilder.create().texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 3.0F, 2.0F, 7.0F, 0.0F).mirror(false).texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 2.0F, 2.0F, 7.0F, 0.0F).mirror(false).texOffs(55, 55).mirror().addBox(-1.0F, -3.0F, 1.0F, 2.0F, 7.0F, 0.0F).mirror(false), PartPose.offset(1.5F, 5.5F, -2.0F));
         } else {
             partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
@@ -541,12 +542,16 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
     @SubscribeEvent
     public static void animate(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide() && event.getEntity().tickCount > 20) {
+            event.getEntity().getData(MarvelAttachmentTypes.CLAWS_OUT_ANIMATION_STATE).animateWhen(event.getEntity().isHolding(MarvelItems.ADAMANTIUM_CLAWS.get()), event.getEntity().tickCount);
+            event.getEntity().getData(MarvelAttachmentTypes.CLAWS_IN_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.ADAMANTIUM_CLAWS.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE).animateWhen(event.getEntity().isHolding(MarvelItems.SHOULDER_TURRET.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.SHOULDER_TURRET.get()), event.getEntity().tickCount);
         }
     }
 
     public void animateArmor(LivingEntity living, float time) {
+        this.animate(living.getData(MarvelAttachmentTypes.CLAWS_OUT_ANIMATION_STATE), WolverineAnimation.CLAWS_OUT, time);
+        this.animate(living.getData(MarvelAttachmentTypes.CLAWS_IN_ANIMATION_STATE), WolverineAnimation.CLAWS_IN, time);
         this.animate(living.getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE), WarMachineAnimation.TURRET_EQUIP, time);
         this.animate(living.getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE), WarMachineAnimation.TURRET_UNEQUIP, time);
     }

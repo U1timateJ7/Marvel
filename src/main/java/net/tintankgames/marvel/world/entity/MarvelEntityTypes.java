@@ -34,6 +34,7 @@ public class MarvelEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<Flame>> FLAME = register("flame", EntityType.Builder.<Flame>of(Flame::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<Repulsor>> REPULSOR = register("repulsor", EntityType.Builder.<Repulsor>of(Repulsor::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<TesseractCharge>> TESSERACT_CHARGE = register("tesseract_charge", EntityType.Builder.<TesseractCharge>of(TesseractCharge::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(20));
+    public static final DeferredHolder<EntityType<?>, EntityType<Veronica>> VERONICA = register("veronica", EntityType.Builder.<Veronica>of(Veronica::new, MobCategory.MISC).sized(1.9F, 1.0F).clientTrackingRange(4).updateInterval(20));
 
     private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String id, EntityType.Builder<T> entityTypeBuilder) {
         return REGISTER.register(id, () -> entityTypeBuilder.build(id));

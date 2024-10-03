@@ -11,6 +11,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import org.jetbrains.annotations.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class SuitTabButton extends SpriteIconButton {
     protected SuitTabButton(int p_295914_, int p_294852_, Component p_295609_, int p_294922_, int p_296462_, ResourceLocation p_295554_, Button.OnPress p_294427_, @Nullable Button.CreateNarration p_330653_) {
         super(p_295914_, p_294852_, p_295609_, p_294922_, p_296462_, p_295554_, p_294427_, p_330653_);

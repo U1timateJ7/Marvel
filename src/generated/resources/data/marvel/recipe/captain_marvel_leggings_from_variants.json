@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:captain_marvel_leggings"
+  },
+  "suit": {
+    "tag": "marvel:captain_marvel_leggings"
+  }
+}

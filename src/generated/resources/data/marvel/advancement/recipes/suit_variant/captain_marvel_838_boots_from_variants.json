@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_captain_marvel_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:captain_marvel_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:captain_marvel_838_boots_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_captain_marvel_boots"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:captain_marvel_838_boots_from_variants"
+    ]
+  }
+}

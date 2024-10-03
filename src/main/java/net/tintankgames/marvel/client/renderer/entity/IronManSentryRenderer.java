@@ -14,11 +14,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.world.entity.BaronZemo;
 import net.tintankgames.marvel.world.entity.IronManSentry;
 import org.jetbrains.annotations.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class IronManSentryRenderer extends MobRenderer<IronManSentry, PlayerModel<IronManSentry>> {
     private static final ResourceLocation TEXTURE_LOCATION = MarvelSuperheroes.id("textures/models/suit/empty");
 

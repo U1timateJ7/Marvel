@@ -21,6 +21,10 @@ public class SonicBoomItem extends SuitPowerItem {
         super(properties);
     }
 
+    protected boolean needsHead() {
+        return false;
+    }
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);

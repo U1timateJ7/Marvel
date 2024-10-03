@@ -9,6 +9,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 
+@OnlyIn(Dist.CLIENT)
 public class KineticBlastEmitterParticle extends NoRenderParticle {
     private final ColorParticleOption option;
 

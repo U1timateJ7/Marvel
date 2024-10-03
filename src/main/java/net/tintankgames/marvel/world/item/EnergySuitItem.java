@@ -41,11 +41,11 @@ public abstract class EnergySuitItem extends SuitItem implements SuitChargerItem
     }
 
     public static void addEnergy(ItemStack stack, float power) {
-        setEnergy(stack, getEnergy(stack) + power);
+        setEnergy(stack, getEnergy(stack) + (power / (stack.is(MarvelItems.Tags.IRON_MAN_MARK_20_ARMOR) ? 2 : 1)));
     }
 
     public static void removeEnergy(ItemStack stack, float power) {
-        setEnergy(stack, getEnergy(stack) - power);
+        setEnergy(stack, getEnergy(stack) - (power / (stack.is(MarvelItems.Tags.IRON_MAN_MARK_20_ARMOR) ? 2 : 1)));
     }
 
     @Override
