@@ -72,9 +72,8 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
                     blue = 1.0F;
                 }
 
-                if (model.rightArm.hasChild("right_claws") && model.leftArm.hasChild("left_claws")) {
-                    model.rightArm.getChild("right_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
-                    model.leftArm.getChild("left_claws").visible = player.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
+                if (model instanceof SuitModel<?> suitModel) {
+                    suitModel.animateArmor(player, getBob(player, Minecraft.getInstance().level.tickRateManager().isEntityFrozen(player) ? Minecraft.getInstance().level.tickRateManager().runsNormally() ? Minecraft.getInstance().getPartialTick() : 1.0F : Minecraft.getInstance().getPartialTick()));
                 }
 
                 ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, armormaterial$layer, false, EquipmentSlot.CHEST);

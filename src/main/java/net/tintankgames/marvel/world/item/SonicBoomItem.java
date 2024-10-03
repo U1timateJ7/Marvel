@@ -8,7 +8,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.raid.Raid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
@@ -20,6 +19,10 @@ import org.joml.Vector3f;
 public class SonicBoomItem extends SuitPowerItem {
     public SonicBoomItem(Properties properties) {
         super(properties);
+    }
+
+    protected boolean needsHead() {
+        return false;
     }
 
     @Override

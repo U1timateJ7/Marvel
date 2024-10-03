@@ -29,6 +29,7 @@ public class MarvelEntityRenderers {
         event.registerEntityRenderer(MarvelEntityTypes.FLAME.get(), FlameRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.REPULSOR.get(), RepulsorRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.TESSERACT_CHARGE.get(), TesseractChargeRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.VERONICA.get(), VeronicaRenderer::new);
 
         event.registerBlockEntityRenderer(MarvelBlockEntityTypes.SUIT_CHARGER.get(), SuitChargerRenderer::new);
     }

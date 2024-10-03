@@ -40,15 +40,13 @@ public class Repulsor extends Projectile {
 
     public void tick() {
         super.tick();
-        if (getOwner() != null) {
-            HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-            if (hitResult.getType() != HitResult.Type.MISS) {
-                this.onHit(hitResult);
-            }
-
-            this.setPos(hitResult.getLocation());
-            this.checkInsideBlocks();
+        HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
+        if (hitResult.getType() != HitResult.Type.MISS) {
+            this.onHit(hitResult);
         }
+
+        this.setPos(hitResult.getLocation());
+        this.checkInsideBlocks();
     }
 
     @Override

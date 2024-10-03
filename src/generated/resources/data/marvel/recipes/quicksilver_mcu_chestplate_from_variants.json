@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:quicksilver_mcu_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:quicksilver_chestplate"
+  }
+}

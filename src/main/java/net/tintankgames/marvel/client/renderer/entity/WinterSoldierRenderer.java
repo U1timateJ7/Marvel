@@ -13,9 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.entity.WinterSoldier;
 
+@OnlyIn(Dist.CLIENT)
 public class WinterSoldierRenderer extends MobRenderer<WinterSoldier, PlayerModel<WinterSoldier>> {
     private static final ResourceLocation WINTER_SOLDIER_LOCATION = MarvelSuperheroes.id("textures/entity/winter_soldier.png");
 

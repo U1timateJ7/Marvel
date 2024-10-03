@@ -10,6 +10,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.core.particles.SpeedParticleOptions;
 
+@OnlyIn(Dist.CLIENT)
 public class ReverseSpaceStoneParticle extends SimpleAnimatedParticle {
     private final double xStart;
     private final double yStart;

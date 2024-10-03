@@ -25,14 +25,18 @@ public class SuitPowerItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
-        if (!(p_41406_ instanceof Player living) || !allArmorHasThisPower(living)) p_41404_.shrink(1);
+        if (!(p_41406_ instanceof Player living) || !allArmorHasThisPower(living, needsHead())) p_41404_.shrink(1);
     }
 
-    private boolean allArmorHasThisPower(LivingEntity living) {
+    protected boolean needsHead() {
+        return true;
+    }
+
+    private boolean allArmorHasThisPower(LivingEntity living, boolean needsHead) {
         boolean feet = living.getItemBySlot(EquipmentSlot.FEET).getOrDefault(MarvelDataComponents.POWER_ITEMS, List.of()).contains(this);
         boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).getOrDefault(MarvelDataComponents.POWER_ITEMS, List.of()).contains(this);
         boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.POWER_ITEMS, List.of()).contains(this);
-        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.POWER_ITEMS, List.of()).contains(this);
+        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.POWER_ITEMS, List.of()).contains(this) || !needsHead;
         return feet && legs && chest && head;
     }
 

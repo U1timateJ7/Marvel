@@ -89,11 +89,6 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
                     if (layer.suffix.equals("_hair") && !(livingEntity instanceof AbstractClientPlayer)) continue;
 
-                    if (model instanceof SuitModel<?> suitModel && suitModel.rightArm.hasChild("right_claws") && suitModel.leftArm.hasChild("left_claws")) {
-                        suitModel.rightArm.getChild("right_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
-                        suitModel.leftArm.getChild("left_claws").visible = livingEntity.getMainHandItem().has(MarvelDataComponents.CLAWS_OUT);
-                    }
-
                     if (model instanceof SuitModel<?> suitModel && suitModel.root.hasChild("left_wing") && suitModel.root.hasChild("right_wing") && livingEntity instanceof Player player && equipmentSlot == EquipmentSlot.CHEST) {
                         ModelPart leftWing = suitModel.root.getChild("left_wing");
                         ModelPart rightWing = suitModel.root.getChild("right_wing");

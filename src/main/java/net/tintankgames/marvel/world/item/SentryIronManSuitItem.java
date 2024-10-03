@@ -14,7 +14,7 @@ import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 
 import java.util.List;
 
-public abstract class SentryIronManSuitItem extends IronManSuitItem {
+public abstract class SentryIronManSuitItem extends IronManSuitItem implements VeronicaSuit {
     public SentryIronManSuitItem(Holder<ArmorMaterial> armorMaterial, Type type, TagKey<Item> tagKey, List<MobEffectInstance> list, List<Item> powerItems, Properties properties) {
         super(armorMaterial, type, tagKey, list, powerItems, properties);
     }

@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:captain_marvel_838_helmet"
+  },
+  "suit": {
+    "tag": "marvel:captain_marvel_helmet"
+  }
+}

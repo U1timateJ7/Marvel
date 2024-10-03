@@ -23,4 +23,14 @@ public class IronManMark19SuitItem extends SentryIronManSuitItem {
     public Component sentryName() {
         return Component.translatable("entity.marvel.iron_man_sentry.mark_19");
     }
+
+    @Override
+    public int markNumber() {
+        return 19;
+    }
+
+    @Override
+    public Component veronicaName() {
+        return Component.translatable("gui.veronica.iron_man_mark_19");
+    }
 }

@@ -12,6 +12,7 @@ import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.core.particles.SpaceStoneParticleOptions;
 import net.tintankgames.marvel.core.particles.SpeedParticleOptions;
 
+@OnlyIn(Dist.CLIENT)
 public class SpaceStoneEmitterParticle extends NoRenderParticle {
     private final SpaceStoneParticleOptions options;
 

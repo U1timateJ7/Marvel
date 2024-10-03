@@ -22,6 +22,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -31,6 +33,7 @@ import net.tintankgames.marvel.world.level.block.SuitChargerBlock;
 import net.tintankgames.marvel.world.level.block.entity.SuitChargerBlockEntity;
 import org.spongepowered.asm.mixin.Unique;
 
+@OnlyIn(Dist.CLIENT)
 public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlockEntity> {
     private static final AABB VISUAL_SHAPE = new AABB(0, 0, 0, 1, 2, 1);
 

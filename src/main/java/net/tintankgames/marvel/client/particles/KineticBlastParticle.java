@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class KineticBlastParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
 

@@ -10,11 +10,14 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.network.SpawnPointMessage;
 import net.tintankgames.marvel.network.TpToPlayerMessage;
 
+@OnlyIn(Dist.CLIENT)
 public class SpaceStoneScreen extends Screen {
     private static final ResourceLocation SPACE_STONE_LOCATION = MarvelSuperheroes.id("textures/gui/space_stone.png");
     protected int imageWidth = 204;

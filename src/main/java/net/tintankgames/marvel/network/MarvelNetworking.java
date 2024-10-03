@@ -7,6 +7,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.attachment.TargetedEntity;
+import net.tintankgames.marvel.attachment.VeronicaData;
 
 @EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class MarvelNetworking {
@@ -20,6 +21,8 @@ public class MarvelNetworking {
     public static final CustomPacketPayload.Type<SpawnPointMessage> SPAWN_POINT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("spawn_point"));
     public static final CustomPacketPayload.Type<TpToPlayerMessage> TP_TO_PLAYER = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("tp_to_player"));
     public static final CustomPacketPayload.Type<CallMjolnirMessage> CALL_MJOLNIR = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("call_mjolnir"));
+    public static final CustomPacketPayload.Type<OpenVeronicaMessage> OPEN_VERONICA = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("open_veronica"));
+    public static final CustomPacketPayload.Type<SendSuitMessage> SEND_SUIT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("send_suit"));
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
@@ -34,6 +37,9 @@ public class MarvelNetworking {
         registrar.playToServer(SPAWN_POINT, SpawnPointMessage.CODEC, SpawnPointMessage::handle);
         registrar.playToServer(TP_TO_PLAYER, TpToPlayerMessage.CODEC, TpToPlayerMessage::handle);
         registrar.playToServer(CALL_MJOLNIR, CallMjolnirMessage.CODEC, CallMjolnirMessage::handle);
+        registrar.playToClient(OPEN_VERONICA, OpenVeronicaMessage.CODEC, OpenVeronicaMessage::handle);
+        registrar.playToServer(SEND_SUIT, SendSuitMessage.CODEC, SendSuitMessage::handle);
         registrar.playToClient(TargetedEntity.SyncMessage.TYPE, TargetedEntity.SyncMessage.CODEC, TargetedEntity.SyncMessage::handle);
+        registrar.playToClient(VeronicaData.SyncMessage.TYPE, VeronicaData.SyncMessage.CODEC, VeronicaData.SyncMessage::handle);
     }
 }
