@@ -106,7 +106,16 @@ public abstract class IronManSuitItem extends EnergySuitItem {
         boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
         boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
-        return head && chest && legs && feet;
+        boolean wearingSameArmor = true;
+        if (living.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof SentryIronManSuitItem sentrySuitItem) {
+            for (ItemStack armor : living.getArmorSlots()) {
+                if (!(armor.getItem() instanceof SentryIronManSuitItem) || !sentrySuitItem.isSuitPiece(armor)) {
+                    wearingSameArmor = false;
+                    break;
+                }
+            }
+        }
+        return head && chest && legs && feet && wearingSameArmor;
     }
 
     @Override
@@ -167,7 +176,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
         super.appendHoverText(stack, context, list, flags);
-        list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("iron_patriot_", "").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
         if (type == Type.HELMET) addAbilityMessage(stack, context, list, flags);
         if (stack.has(MarvelDataComponents.HELMET_OPEN)) list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man.key.h" + (stack.is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN) ? ".invisible" : "")).toLanguageKey("item"), Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }
@@ -175,7 +184,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     protected void addAbilityMessage(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
     }
 
-    public int hudColor() {
+    public int hudColor(ItemStack stack, Player player) {
         return 0x68E3FF;
     }
 

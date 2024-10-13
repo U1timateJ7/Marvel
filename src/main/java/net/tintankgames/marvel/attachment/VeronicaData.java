@@ -16,11 +16,15 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.world.item.EnergySuitItem;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Consumer;
 
 @EventBusSubscriber
 public class VeronicaData {
@@ -50,14 +54,31 @@ public class VeronicaData {
         return ImmutableList.copyOf(suits);
     }
 
+    public void forEach(Consumer<Suit> action) {
+        Objects.requireNonNull(action);
+        for (Suit suit : suits) {
+            action.accept(suit);
+        }
+    }
+
     public void addSuit(Suit suit) {
         suits.add(suit);
         suits.sort(Comparator.comparingInt(Suit::mark));
     }
 
-    public void removeSuit(Suit suit) {
+    @Nullable
+    public Suit getSuit(int id) {
         for (Suit suit1 : suits) {
-            if (suit1.id == suit.id) {
+            if (suit1.id == id) {
+                return suit1;
+            }
+        }
+        return null;
+    }
+
+    public void removeSuit(int id) {
+        for (Suit suit1 : suits) {
+            if (suit1.id == id) {
                 suits.remove(suit1);
                 if (suits.isEmpty()) nextId = 0;
                 return;
@@ -88,7 +109,11 @@ public class VeronicaData {
     @SubscribeEvent
     public static void tick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
+            VeronicaData veronica = player.getData(MarvelAttachmentTypes.VERONICA);
+            for (Suit suit : veronica.suits) {
+                suit.armor.forEach(piece -> EnergySuitItem.addEnergy(piece, 0.005F));
+            }
+            PacketDistributor.sendToPlayer(player, new SyncMessage(veronica));
         }
     }
 

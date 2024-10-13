@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
-import net.tintankgames.marvel.world.entity.Veronica;
+import net.tintankgames.marvel.world.entity.VeronicaSatellite;
 
 import java.util.Objects;
 
@@ -41,9 +41,9 @@ public class VeronicaSatelliteItem extends Item {
                     blockpos1 = blockpos.relative(direction);
                 }
 
-                Veronica veronica = MarvelEntityTypes.VERONICA.get().spawn((ServerLevel) level, itemstack, context.getPlayer(), blockpos1, MobSpawnType.TRIGGERED, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
-                if (veronica != null) {
-                    veronica.setOwnerUUID(context.getPlayer().getUUID());
+                VeronicaSatellite veronicaSatellite = MarvelEntityTypes.VERONICA_SATELLITE.get().spawn((ServerLevel) level, itemstack, context.getPlayer(), blockpos1, MobSpawnType.TRIGGERED, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+                if (veronicaSatellite != null) {
+                    veronicaSatellite.setOwnerUUID(context.getPlayer().getUUID());
                     itemstack.consume(1, context.getPlayer());
                     level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
                 }

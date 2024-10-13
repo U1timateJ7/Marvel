@@ -2,6 +2,7 @@ package io.github.cottonmc.cotton.gui.widget;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -27,6 +28,7 @@ public class WItem extends WWidget {
     private int duration = 25;
     private int ticks = 0;
     private int current = 0;
+    private boolean decorations;
 
     public WItem(List<ItemStack> items) {
         setItems(items);
@@ -37,7 +39,12 @@ public class WItem extends WWidget {
     }
 
     public WItem(ItemStack stack) {
+        this(stack, false);
+    }
+
+    public WItem(ItemStack stack, boolean decorations) {
         this(Collections.singletonList(stack));
+        this.decorations = decorations;
     }
 
     @Override
@@ -59,6 +66,7 @@ public class WItem extends WWidget {
     public void paint(GuiGraphics context, int x, int y, int mouseX, int mouseY) {
         RenderSystem.enableDepthTest();
         context.renderFakeItem(items.get(current), x + getWidth() / 2 - 8, y + getHeight() / 2 - 8);
+        if (decorations) context.renderItemDecorations(Minecraft.getInstance().font, items.get(current), x + getWidth() / 2 - 8, y + getHeight() / 2 - 8);
     }
 
     /**

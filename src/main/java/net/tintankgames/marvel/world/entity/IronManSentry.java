@@ -29,10 +29,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.ArmorHurtEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.attachment.VeronicaData;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.projectile.Repulsor;
@@ -269,7 +271,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                 this.setTarget(null);
                 return InteractionResult.SUCCESS_NO_ITEM_USED;
             } else {
-                if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 2.0) {
+                if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 2.0 && player.getData(MarvelAttachmentTypes.VERONICA).enabled()) {
                     setFlyingToVeronica(true);
                 } else {
                     for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
@@ -385,15 +387,44 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         return this.entityData.get(DATA_FIRING_REPULSOR);
     }
 
+    public boolean isFlying() {
+        return (fromVeronica() || flyingToVeronica());
+    }
+
+    @Override
+    protected void updateWalkAnimation(float p_268283_) {
+        if (!isFlying()) super.updateWalkAnimation(p_268283_);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (isFlying()) {
+            walkAnimation.update(0, 1.0F);
+        }
+    }
+
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
-        if ((fromVeronica() || flyingToVeronica()) && level() instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), xo, yo, zo, 4, 0.1, 0, 0.1, 0);
+        if (EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) <= 5.0F && getOwner() instanceof ServerPlayer player && player.getData(MarvelAttachmentTypes.VERONICA).enabled()) setFlyingToVeronica(true);
+        if (level() instanceof ServerLevel serverLevel) {
+            if (isFlying()) {
+                setDeltaMovement(getDeltaMovement().x, 1.0, getDeltaMovement().z);
+                Vec3 movement = getDeltaMovement();
+                movement = new Vec3(Math.clamp(movement.x, -1.0F, 1.0F), Math.clamp(movement.y, -1.0F, 1.0F), Math.clamp(movement.z, -1.0F, 1.0F));
+                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, isFlying());
+                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, movement);
+                Vec3 flamePlacement = position().add(movement.multiply(-1.5, -1, -1.5)).add(0, movement.horizontalDistance() * 1.4, 0);
+                serverLevel.sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
+            } else {
+                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
+            }
         }
         if (fromVeronica() && onGround()) setFromVeronica(false);
         if (flyingToVeronica()) {
-            setDeltaMovement(0, 1.0, 0);
+            setDeltaMovement(getDeltaMovement().x, 1.0, getDeltaMovement().z);
             this.hasImpulse = true;
             this.setOnGround(false);
             if (getOwner() instanceof ServerPlayer player && getY() > player.getY() + 128) {

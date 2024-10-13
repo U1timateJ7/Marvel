@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.world.entity.Entity;
@@ -14,20 +15,21 @@ import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
 
-public class Veronica extends Entity implements OwnableEntity {
-    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(Veronica.class, EntityDataSerializers.OPTIONAL_UUID);
+public class VeronicaSatellite extends Entity implements OwnableEntity {
+    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(VeronicaSatellite.class, EntityDataSerializers.OPTIONAL_UUID);
 
-    public Veronica(EntityType<?> type, Level level) {
+    public VeronicaSatellite(EntityType<?> type, Level level) {
         super(type, level);
     }
 
-    public Veronica(Player owner, Level level) {
-        this(MarvelEntityTypes.VERONICA.get(), level);
+    public VeronicaSatellite(Player owner, Level level) {
+        this(MarvelEntityTypes.VERONICA_SATELLITE.get(), level);
     }
 
     @Override
@@ -68,6 +70,9 @@ public class Veronica extends Entity implements OwnableEntity {
     public void tick() {
         super.tick();
         this.setPos(position().add(0, 1, 0));
+        if (this.level() instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), xo, yo, zo, 4, 0.15, 0, 0.15, 0);
+        }
         if (getOwner() instanceof ServerPlayer player && getY() > player.getY() + 128) {
             player.getData(MarvelAttachmentTypes.VERONICA).setEnabled(true);
             player.sendSystemMessage(Component.translatable("entity.marvel.veronica.deployed").withStyle(ChatFormatting.GREEN), true);

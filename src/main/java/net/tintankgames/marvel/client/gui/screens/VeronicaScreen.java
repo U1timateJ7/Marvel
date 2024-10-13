@@ -10,4 +10,9 @@ public class VeronicaScreen extends CottonClientScreen {
     public VeronicaScreen() {
         super(Component.translatable("gui.veronica.title"), new VeronicaGui());
     }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
+    }
 }

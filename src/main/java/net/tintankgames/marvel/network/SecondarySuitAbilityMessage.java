@@ -53,17 +53,19 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                         break;
                     }
                 }
-                for (ItemStack armor : player.getInventory().armor) {
-                    if (!(armor.getItem() instanceof SentryIronManSuitItem)) {
-                        hasFullSentryArmor = false;
-                        break;
-                    }
-                }
                 ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
                 ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
                 ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 ItemStack mainHand = player.getMainHandItem();
+                if (chestplate.getItem() instanceof SentryIronManSuitItem sentrySuitItem) {
+                    for (ItemStack armor : player.getInventory().armor) {
+                        if (!(armor.getItem() instanceof SentryIronManSuitItem) || !sentrySuitItem.isSuitPiece(armor)) {
+                            hasFullSentryArmor = false;
+                            break;
+                        }
+                    }
+                }
                 if (hasFullSentryArmor && !chestplate.has(MarvelDataComponents.INVISIBLE) && EnergySuitItem.getEnergy(chestplate) > 0.0F) {
                     IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);
                     if (sentry != null) {
