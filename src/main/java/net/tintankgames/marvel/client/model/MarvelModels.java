@@ -68,7 +68,8 @@ public class MarvelModels {
     public static final ModelLayerLocation MJOLNIR = new ModelLayerLocation(MarvelSuperheroes.id("mjolnir"), "main");
     public static final ModelLayerLocation STORMBREAKER = new ModelLayerLocation(MarvelSuperheroes.id("stormbreaker"), "main");
     public static final ModelLayerLocation REPULSOR = new ModelLayerLocation(MarvelSuperheroes.id("repulsor"), "main");
-    public static final ModelLayerLocation VERONICA = new ModelLayerLocation(MarvelSuperheroes.id("veronica"), "main");
+    public static final ModelLayerLocation VERONICA_SATELLITE = new ModelLayerLocation(MarvelSuperheroes.id("veronica_satellite"), "main");
+    public static final ModelLayerLocation VERONICA_MODULE = new ModelLayerLocation(MarvelSuperheroes.id("veronica_module"), "main");
 
     @SubscribeEvent
     public static void registerModels(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -128,7 +129,8 @@ public class MarvelModels {
         event.registerLayerDefinition(MJOLNIR, MjolnirModel::createBodyLayer);
         event.registerLayerDefinition(STORMBREAKER, StormbreakerModel::createBodyLayer);
         event.registerLayerDefinition(REPULSOR, RepulsorModel::createBodyLayer);
-        event.registerLayerDefinition(VERONICA, VeronicaModel::createBodyLayer);
+        event.registerLayerDefinition(VERONICA_SATELLITE, VeronicaSatelliteModel::createBodyLayer);
+        event.registerLayerDefinition(VERONICA_MODULE, VeronicaModuleModel::createBodyLayer);
     }
 
     public static ModelLayerLocation suit(ArmorItem.Type type) {

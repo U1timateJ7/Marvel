@@ -58,6 +58,10 @@ public abstract class SuitItem extends ArmorItem {
         return true;
     }
 
+    public boolean isSuitPiece(ItemStack stack) {
+        return suitPieces.test(stack.getItemHolder());
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean p_41408_) {
         if (entity instanceof LivingEntity living && slot >= 36 && slot <= 39) {

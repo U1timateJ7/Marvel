@@ -26,7 +26,7 @@ public record SendSuitMessage(VeronicaData.Suit suit) implements CustomPacketPay
                     sentry.setItemSlot(EquipmentSlot.HEAD, message.suit.armor().get(3));
                     sentry.setOwnerUUID(player.getUUID());
                     sentry.setFromVeronica(true);
-                    player.getData(MarvelAttachmentTypes.VERONICA).removeSuit(message.suit);
+                    player.getData(MarvelAttachmentTypes.VERONICA).removeSuit(message.suit.id());
                 }
             }
         });

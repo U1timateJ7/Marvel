@@ -48,10 +48,13 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
     @Inject(at = @At("RETURN"), method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V", cancellable = true)
     private void doSuitRender(PoseStack p_117096_, MultiBufferSource p_117097_, int p_117098_, T p_117099_, float p_117100_, float p_117101_, float p_117102_, float p_117103_, float p_117104_, float p_117105_, CallbackInfo ci) {
-        this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.CHEST, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.CHEST));
-        this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.LEGS, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.LEGS));
-        this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.FEET, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.FEET));
-        this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.HEAD, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.HEAD));
+        if (p_117099_.getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.INVISIBLE)) ci.cancel();
+        else {
+            this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.CHEST, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.CHEST));
+            this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.LEGS, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.LEGS));
+            this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.FEET, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.FEET));
+            this.marvel$renderSuitPiece(p_117096_, p_117097_, p_117099_, EquipmentSlot.HEAD, p_117098_, p_117103_, this.getArmorModel(EquipmentSlot.HEAD));
+        }
     }
 
     @Inject(at = @At("HEAD"), method = "renderArmorPiece", cancellable = true)

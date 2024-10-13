@@ -6,6 +6,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,7 +14,7 @@ import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.List;
 
-public abstract class WarMachineSuitItem extends IronManSuitItem {
+public abstract class WarMachineSuitItem extends SentryIronManSuitItem {
     public WarMachineSuitItem(Holder<ArmorMaterial> armorMaterial, Type type, TagKey<Item> tagKey, List<MobEffectInstance> list, List<Item> powerItems, Properties properties) {
         super(armorMaterial, type, tagKey, list, powerItems, properties);
     }
@@ -24,7 +25,7 @@ public abstract class WarMachineSuitItem extends IronManSuitItem {
     }
 
     @Override
-    public int hudColor() {
+    public int hudColor(ItemStack stack, Player player) {
         return 0xE54F44;
     }
 

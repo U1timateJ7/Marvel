@@ -13,35 +13,35 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.MarvelModels;
-import net.tintankgames.marvel.client.model.VeronicaModel;
+import net.tintankgames.marvel.client.model.VeronicaSatelliteModel;
 import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
-import net.tintankgames.marvel.world.entity.Veronica;
+import net.tintankgames.marvel.world.entity.VeronicaSatellite;
 
 @OnlyIn(Dist.CLIENT)
-public class VeronicaRenderer extends EntityRenderer<Veronica> {
+public class VeronicaSatelliteRenderer extends EntityRenderer<VeronicaSatellite> {
     private static final ResourceLocation VERONICA_LOCATION = MarvelSuperheroes.id("textures/entity/veronica/veronica.png");
     private static final ResourceLocation VERONICA_GLOW_LOCATION = MarvelSuperheroes.id("textures/entity/veronica/glow.png");
-    private final VeronicaModel model;
+    private final VeronicaSatelliteModel model;
 
-    public VeronicaRenderer(EntityRendererProvider.Context context) {
+    public VeronicaSatelliteRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.model = new VeronicaModel(context.bakeLayer(MarvelModels.VERONICA));
+        this.model = new VeronicaSatelliteModel(context.bakeLayer(MarvelModels.VERONICA_SATELLITE));
     }
 
-    public void render(Veronica veronica, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+    public void render(VeronicaSatellite veronicaSatellite, float yRot, float partialTick, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
         poseStack.pushPose();
-        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, veronica.yRotO, veronica.getYRot())));
-        poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, veronica.xRotO, veronica.getXRot()) - 180.0F));
-        VertexConsumer vertexconsumer = multiBufferSource.getBuffer(model.renderType(getTextureLocation(veronica)));
+        poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTick, veronicaSatellite.yRotO, veronicaSatellite.getYRot())));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-Mth.lerp(partialTick, veronicaSatellite.xRotO, veronicaSatellite.getXRot()) - 180.0F));
+        VertexConsumer vertexconsumer = multiBufferSource.getBuffer(model.renderType(getTextureLocation(veronicaSatellite)));
         model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         VertexConsumer vertexconsumer2 = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(VERONICA_GLOW_LOCATION));
         model.renderToBuffer(poseStack, vertexconsumer2, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         poseStack.popPose();
-        super.render(veronica, yRot, partialTick, poseStack, multiBufferSource, light);
+        super.render(veronicaSatellite, yRot, partialTick, poseStack, multiBufferSource, light);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Veronica veronica) {
+    public ResourceLocation getTextureLocation(VeronicaSatellite veronicaSatellite) {
         return VERONICA_LOCATION;
     }
 }

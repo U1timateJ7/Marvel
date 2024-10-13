@@ -1,8 +1,11 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.Item;
@@ -13,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
-import net.tintankgames.marvel.world.entity.Veronica;
+import net.tintankgames.marvel.world.entity.VeronicaSatellite;
 
 import java.util.Objects;
 
@@ -41,9 +44,9 @@ public class VeronicaSatelliteItem extends Item {
                     blockpos1 = blockpos.relative(direction);
                 }
 
-                Veronica veronica = MarvelEntityTypes.VERONICA.get().spawn((ServerLevel) level, itemstack, context.getPlayer(), blockpos1, MobSpawnType.TRIGGERED, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
-                if (veronica != null) {
-                    veronica.setOwnerUUID(context.getPlayer().getUUID());
+                VeronicaSatellite veronicaSatellite = MarvelEntityTypes.VERONICA_SATELLITE.get().spawn((ServerLevel) level, itemstack, context.getPlayer(), blockpos1, MobSpawnType.TRIGGERED, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
+                if (veronicaSatellite != null) {
+                    veronicaSatellite.setOwnerUUID(context.getPlayer().getUUID());
                     itemstack.consume(1, context.getPlayer());
                     level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
                 }
@@ -51,6 +54,9 @@ public class VeronicaSatelliteItem extends Item {
                 return InteractionResult.CONSUME;
             }
         } else {
+            if (context.getPlayer() instanceof ServerPlayer serverPlayer) {
+                serverPlayer.sendSystemMessage(Component.translatable("item.marvel.veronica_satellite.fail").withStyle(ChatFormatting.RED), true);
+            }
             return super.useOn(context);
         }
     }

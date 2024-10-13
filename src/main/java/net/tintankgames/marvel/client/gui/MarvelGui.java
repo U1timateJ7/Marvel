@@ -57,7 +57,7 @@ public class MarvelGui {
                 renderTextureOverlay(event.getGuiGraphics(), POWDER_SNOW_OUTLINE_LOCATION, Math.min(1.0F, (30.0F - (Minecraft.getInstance().player.getEffect(MarvelMobEffects.ICING).getDuration() + event.getPartialTick())) / 10.0F), 0xFFFFFF);
             }
             if (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) > 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && !Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING)) {
-                renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_hud.png"), 1.0F, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF);
+                renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_hud.png"), 1.0F, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
                 for (int i = -2; i < 2; i++) {
                     ItemStack armor = Minecraft.getInstance().player.getInventory().armor.get(1 - i);
                     if (!armor.isEmpty()) {
@@ -66,12 +66,12 @@ public class MarvelGui {
                     }
                 }
                 Component coordinateText = Component.translatable("gui.iron_man.coordinates", String.format("%.1f", Minecraft.getInstance().player.getX()), String.format("%.1f", Minecraft.getInstance().player.getY()), String.format("%.1f", Minecraft.getInstance().player.getZ()));
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.literal(String.format("%.1f", EnergySuitItem.getEnergy(helmet)) + "%"), 7, (int) (event.getGuiGraphics().guiHeight() * 0.302), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF, false);
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudMark() : Component.empty(), 7, (int) (event.getGuiGraphics().guiHeight() * 0.66666667), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF, false);
-                event.getGuiGraphics().drawString(Minecraft.getInstance().font, coordinateText, event.getGuiGraphics().guiWidth() / 2 - Minecraft.getInstance().font.width(coordinateText) / 2, (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF, false);
-                renderCompass(event.getGuiGraphics(), event.getPartialTick(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF);
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, Component.literal(String.format("%.1f", EnergySuitItem.getEnergy(helmet)) + "%"), 7, (int) (event.getGuiGraphics().guiHeight() * 0.302), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF, false);
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudMark() : Component.empty(), 7, (int) (event.getGuiGraphics().guiHeight() * 0.66666667), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF, false);
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, coordinateText, event.getGuiGraphics().guiWidth() / 2 - Minecraft.getInstance().font.width(coordinateText) / 2, (int) (event.getGuiGraphics().guiHeight() * 0.03F), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF, false);
+                renderCompass(event.getGuiGraphics(), event.getPartialTick(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
                 LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, 32.0D, 0.0F);
-                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor() : 0x68E3FF);
+                if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
             }
         }
     }

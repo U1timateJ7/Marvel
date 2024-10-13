@@ -2,9 +2,12 @@ package net.tintankgames.marvel.world.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 
 import java.util.List;
 
@@ -17,6 +20,11 @@ public class IronManMark15SuitItem extends SentryIronManSuitItem {
     protected void addAbilityMessage(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
         list.add(Component.translatable(getDescriptionId(stack).replace("_helmet", "_mark_15") + ".key.v", Component.keybind(MarvelKeyMappings.PRIMARY_SUIT_ABILITY.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
         super.addAbilityMessage(stack, context, list, flags);
+    }
+
+    @Override
+    public int hudColor(ItemStack stack, Player player) {
+        return player.getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.INVISIBLE) ? 0x894EED : super.hudColor(stack, player);
     }
 
     @Override

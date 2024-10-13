@@ -6,10 +6,10 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.tintankgames.marvel.world.entity.Veronica;
+import net.tintankgames.marvel.world.entity.VeronicaSatellite;
 
 @OnlyIn(Dist.CLIENT)
-public class VeronicaModel extends HierarchicalModel<Veronica> {
+public class VeronicaSatelliteModel extends HierarchicalModel<VeronicaSatellite> {
     private final ModelPart root;
     private final ModelPart body;
     private final ModelPart dish;
@@ -18,7 +18,7 @@ public class VeronicaModel extends HierarchicalModel<Veronica> {
     private final ModelPart wing1;
     private final ModelPart wing2;
 
-    public VeronicaModel(ModelPart root) {
+    public VeronicaSatelliteModel(ModelPart root) {
         this.root = root;
         this.body = root.getChild("body");
         this.dish = this.body.getChild("dish");
@@ -42,7 +42,7 @@ public class VeronicaModel extends HierarchicalModel<Veronica> {
     }
 
     @Override
-    public void setupAnim(Veronica p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_, float p_102623_) {
+    public void setupAnim(VeronicaSatellite p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_, float p_102623_) {
 
     }
 

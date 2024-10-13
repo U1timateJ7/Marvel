@@ -100,6 +100,8 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.DIAMOND_ARC_REACTOR);
         output.accept(MarvelItems.IRON_MAN_MARK_5_SUITCASE);
         output.accept(MarvelItems.VERONICA_SATELLITE);
+        output.accept(MarvelItems.VERONICA_REPAIR_MODULE_MARK_1);
+        output.accept(MarvelItems.VERONICA_REPAIR_MODULE_MARK_2);
         output.accept(MarvelItems.VERONICA_REMOTE);
         output.accept(MarvelItems.HYDRA_BANNER_PATTERN);
         output.accept(MarvelItems.TESSERACT_SHARD);
@@ -223,6 +225,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_CHESTPLATE);
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_LEGGINGS);
         output.accept(MarvelItems.WAR_MACHINE_MARK_1_BOOTS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_2_HELMET);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_2_CHESTPLATE);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_2_LEGGINGS);
+        output.accept(MarvelItems.WAR_MACHINE_MARK_2_BOOTS);
+        output.accept(MarvelItems.IRON_PATRIOT_HELMET);
+        output.accept(MarvelItems.IRON_PATRIOT_CHESTPLATE);
+        output.accept(MarvelItems.IRON_PATRIOT_LEGGINGS);
+        output.accept(MarvelItems.IRON_PATRIOT_BOOTS);
         output.accept(MarvelItems.QUICKSILVER_CHESTPLATE);
         output.accept(MarvelItems.QUICKSILVER_LEGGINGS);
         output.accept(MarvelItems.QUICKSILVER_BOOTS);
@@ -298,6 +308,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_21_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_21_LEGGINGS);
         output.accept(MarvelItems.IRON_MAN_MARK_21_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_22_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_22_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_22_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_22_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {
