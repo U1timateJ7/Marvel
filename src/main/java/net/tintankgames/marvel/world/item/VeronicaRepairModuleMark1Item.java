@@ -30,7 +30,7 @@ public class VeronicaRepairModuleMark1Item extends Item {
     @Override
     public void appendHoverText(ItemStack p_41421_, TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_) {
         super.appendHoverText(p_41421_, p_339594_, p_41423_, p_41424_);
-        p_41423_.add(Component.translatable(getDescriptionId(p_41421_) + ".desc"));
+        p_41423_.add(Component.translatable(getDescriptionId(p_41421_) + ".desc").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

@@ -13,11 +13,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.client.gui.screens.SuitRepairingScreen;
 import net.tintankgames.marvel.client.gui.screens.SuitUpgradingScreen;
 import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
+import net.tintankgames.marvel.world.inventory.SuitRepairingMenu;
 import net.tintankgames.marvel.world.inventory.SuitUpgradingMenu;
 import net.tintankgames.marvel.world.inventory.SuitVariantMenu;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
+import net.tintankgames.marvel.world.item.crafting.SuitRepairingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitVariantRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -32,6 +35,8 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
     private IRecipeCategory<RecipeHolder<SuitUpgradingRecipe>> suitUpgradingCategory;
     @Nullable
     private IRecipeCategory<RecipeHolder<SuitVariantRecipe>> suitVariantCategory;
+    @Nullable
+    private IRecipeCategory<RecipeHolder<SuitRepairingRecipe>> suitRepairingCategory;
 
     public static ItemStack getResultItem(Recipe<? extends RecipeInput> recipe) {
         Minecraft minecraft = Minecraft.getInstance();
@@ -54,7 +59,8 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
         registration.addRecipeCategories(
                 suitUpgradingCategory = new SuitUpgradingRecipeCategory(guiHelper),
-                suitVariantCategory = new SuitVariantRecipeCategory(guiHelper)
+                suitVariantCategory = new SuitVariantRecipeCategory(guiHelper),
+                suitRepairingCategory = new SuitRepairingRecipeCategory(guiHelper)
         );
     }
 
@@ -62,9 +68,11 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         Objects.requireNonNull(suitUpgradingCategory, "suitUpgradingCategory can't be null");
         Objects.requireNonNull(suitVariantCategory, "suitVariantCategory can't be null");
+        Objects.requireNonNull(suitRepairingCategory, "suitRepairingCategory can't be null");
 
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_UPGRADING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_UPGRADING.get()));
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_VARIANT, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_VARIANT.get()));
+        registration.addRecipes(MarvelJeiRecipeTypes.SUIT_REPAIRING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_REPAIRING.get()));
     }
 
     private static <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getValidHandledRecipes(RecipeManager recipeManager, RecipeType<T> recipeType) {
@@ -74,16 +82,18 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(SuitUpgradingScreen.class, 114, 35, 22, 15, MarvelJeiRecipeTypes.SUIT_UPGRADING);
+        registration.addRecipeClickArea(SuitRepairingScreen.class, 110, 35, 22, 15, MarvelJeiRecipeTypes.SUIT_REPAIRING);
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         registration.addRecipeTransferHandler(SuitUpgradingMenu.class, MarvelMenuTypes.SUIT_UPGRADING.get(), MarvelJeiRecipeTypes.SUIT_UPGRADING, 1, 10, 11, 36);
         registration.addRecipeTransferHandler(SuitVariantMenu.class, MarvelMenuTypes.SUIT_VARIANT.get(), MarvelJeiRecipeTypes.SUIT_VARIANT, 0, 1, 2, 36);
+        registration.addRecipeTransferHandler(SuitRepairingMenu.class, MarvelMenuTypes.SUIT_REPAIRING.get(), MarvelJeiRecipeTypes.SUIT_REPAIRING, 1, 5, 6, 36);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(MarvelBlocks.SUIT_TABLE), MarvelJeiRecipeTypes.SUIT_UPGRADING, MarvelJeiRecipeTypes.SUIT_VARIANT);
+        registration.addRecipeCatalyst(new ItemStack(MarvelBlocks.SUIT_TABLE), MarvelJeiRecipeTypes.SUIT_UPGRADING, MarvelJeiRecipeTypes.SUIT_VARIANT, MarvelJeiRecipeTypes.SUIT_REPAIRING);
     }
 }

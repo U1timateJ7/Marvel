@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    "G": {
+      "tag": "c:ingots/gold"
+    },
+    "T": {
+      "item": "marvel:tesseract_shard"
+    },
+    "X": {
+      "item": "marvel:titanium_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "#G#",
+    "XTX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:captain_marvel_chestplate"
+  }
+}

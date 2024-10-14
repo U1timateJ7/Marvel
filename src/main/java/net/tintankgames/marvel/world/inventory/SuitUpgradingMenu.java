@@ -16,15 +16,13 @@ import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Optional;
 
-public class SuitUpgradingMenu extends AbstractContainerMenu {
+public class SuitUpgradingMenu extends AbstractContainerMenu implements SuitTableMenu {
     private final CraftingContainer craftSlots = new TransientCraftingContainer(this, 5, 2);
     private final ResultContainer resultSlot = new ResultContainer();
     private final ContainerLevelAccess access;
     private final Player player;
-    private final List<RecipeHolder<SuitUpgradingRecipe>> recipes;
     private final ContainerData data;
 
     protected SuitUpgradingMenu(int p_38852_, Inventory p_39357_) {
@@ -37,7 +35,6 @@ public class SuitUpgradingMenu extends AbstractContainerMenu {
         this.player = inventory.player;
         checkContainerDataCount(data, 4);
         this.data = data;
-        this.recipes = player.level().getRecipeManager().getAllRecipesFor(MarvelRecipeTypes.SUIT_UPGRADING.get());
         this.addSlot(new SuitUpgradingResultSlot(inventory.player, this.craftSlots, this.resultSlot, 0, 143, 33));
 
         this.addSlot(new Slot(this.craftSlots, 0, 20, 33));

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "marvel:gold_titanium_ingot"
+    },
+    "T": {
+      "item": "marvel:tesseract_shard"
+    }
+  },
+  "pattern": [
+    "# #",
+    "# #",
+    "T T"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:captain_marvel_boots"
+  }
+}

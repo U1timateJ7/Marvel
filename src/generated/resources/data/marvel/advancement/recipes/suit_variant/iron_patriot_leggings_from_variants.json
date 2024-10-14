@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:iron_patriot_leggings_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_war_machine_mark_2_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:war_machine_mark_2_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_war_machine_mark_2_leggings"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:iron_patriot_leggings_from_variants"
+    ]
+  }
+}

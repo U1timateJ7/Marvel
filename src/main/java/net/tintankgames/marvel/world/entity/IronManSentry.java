@@ -272,7 +272,11 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                 return InteractionResult.SUCCESS_NO_ITEM_USED;
             } else {
                 if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 2.0 && player.getData(MarvelAttachmentTypes.VERONICA).enabled()) {
-                    setFlyingToVeronica(true);
+                    if (level().dimension() == Level.OVERWORLD) {
+                        setFlyingToVeronica(true);
+                    } else {
+                        if (player instanceof ServerPlayer serverPlayer) serverPlayer.sendSystemMessage(Component.translatable("item.marvel.veronica_remote.fail.not_in_overworld").withStyle(ChatFormatting.RED), true);
+                    }
                 } else {
                     for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
                         if (!getItemBySlot(slot).isEmpty()) {
@@ -282,9 +286,11 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                             player.setItemSlot(slot, getItemBySlot(slot).copy());
                         }
                     }
-                    if (!level().isClientSide)
-                        level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
+                    if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
                     discard();
+                }
+                if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && !player.getData(MarvelAttachmentTypes.VERONICA).enabled() && player instanceof ServerPlayer serverPlayer) {
+                    serverPlayer.sendSystemMessage(Component.translatable("item.marvel.veronica_remote.fail").withStyle(ChatFormatting.RED), true);
                 }
                 return InteractionResult.sidedSuccess(level().isClientSide());
             }

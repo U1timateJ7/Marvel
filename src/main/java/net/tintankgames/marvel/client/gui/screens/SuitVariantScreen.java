@@ -33,6 +33,7 @@ public class SuitVariantScreen extends AbstractContainerScreen<SuitVariantMenu> 
     private static final ResourceLocation RECIPE_SPRITE = MarvelSuperheroes.id("container/suit_table/recipe");
     private static final ResourceLocation TAB_TOP_UNSELECTED_1 = MarvelSuperheroes.id("container/suit_table/tab_top_unselected_1");
     private static final ResourceLocation TAB_TOP_SELECTED_2 = MarvelSuperheroes.id("container/suit_table/tab_top_selected_2");
+    private static final ResourceLocation TAB_TOP_UNSELECTED_3 = MarvelSuperheroes.id("container/suit_table/tab_top_unselected_3");
     private static final ResourceLocation BG_LOCATION = MarvelSuperheroes.id("textures/gui/container/suit_table_variant.png");
     private float scrollOffs;
     private boolean scrolling;
@@ -40,6 +41,7 @@ public class SuitVariantScreen extends AbstractContainerScreen<SuitVariantMenu> 
     private boolean displayRecipes;
     private SuitTabButton upgrading;
     private SuitTabButton variants;
+    private SuitTabButton repairing;
 
     public SuitVariantScreen(SuitVariantMenu p_99310_, Inventory p_99311_, Component p_99312_) {
         super(p_99310_, p_99311_, SuitTableBlock.VARIANTS_TITLE);
@@ -57,16 +59,23 @@ public class SuitVariantScreen extends AbstractContainerScreen<SuitVariantMenu> 
         }
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
-        upgrading = SuitTabButton.getBuilder(Component.translatable("container.suit_upgrading"), button -> {
+        upgrading = SuitTabButton.getBuilder(SuitTableBlock.UPGRADING_TITLE, button -> {
             MarvelMenuTypes.targetMouseX = minecraft.mouseHandler.xpos;
             MarvelMenuTypes.targetMouseY = minecraft.mouseHandler.ypos;
-            PacketDistributor.sendToServer(new SwitchSuitTabMessage(false));
+            PacketDistributor.sendToServer(new SwitchSuitTabMessage(0));
         }).sprite(TAB_TOP_UNSELECTED_1, 26, 32).size(26, 32).build();
-        variants = SuitTabButton.getBuilder(Component.translatable("container.suit_variants"), button -> {}).sprite(TAB_TOP_SELECTED_2, 26, 32).size(26, 32).build();
+        variants = SuitTabButton.getBuilder(SuitTableBlock.VARIANTS_TITLE, button -> {}).sprite(TAB_TOP_SELECTED_2, 26, 32).size(26, 32).build();
+        repairing = SuitTabButton.getBuilder(SuitTableBlock.REPAIRING_TITLE, button -> {
+            MarvelMenuTypes.targetMouseX = minecraft.mouseHandler.xpos;
+            MarvelMenuTypes.targetMouseY = minecraft.mouseHandler.ypos;
+            PacketDistributor.sendToServer(new SwitchSuitTabMessage(2));
+        }).sprite(TAB_TOP_UNSELECTED_3, 26, 32).size(26, 32).build();
         upgrading.setPosition(i, j - 28);
         variants.setPosition(i + 27, j - 28);
+        repairing.setPosition(i + 54, j - 28);
         addRenderableWidget(upgrading);
         addRenderableWidget(variants);
+        addRenderableWidget(repairing);
     }
 
     @Override
@@ -114,6 +123,9 @@ public class SuitVariantScreen extends AbstractContainerScreen<SuitVariantMenu> 
             }
             if (isHovering(variants.getX() - leftPos + 3, variants.getY() - topPos + 3, variants.getWidth() - 6, variants.getHeight() - 7, p_283157_, p_282258_)) {
                 p_282396_.renderTooltip(this.font, variants.getMessage(), p_283157_, p_282258_);
+            }
+            if (isHovering(repairing.getX() - leftPos + 3, repairing.getY() - topPos + 3, repairing.getWidth() - 6, repairing.getHeight() - 7, p_283157_, p_282258_)) {
+                p_282396_.renderTooltip(this.font, repairing.getMessage(), p_283157_, p_282258_);
             }
         }
     }

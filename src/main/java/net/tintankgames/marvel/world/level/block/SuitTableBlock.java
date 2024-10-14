@@ -21,6 +21,7 @@ public class SuitTableBlock extends BaseEntityBlock {
     public static final MapCodec<SuitTableBlock> CODEC = simpleCodec(SuitTableBlock::new);
     public static final Component UPGRADING_TITLE = Component.translatable("container.suit_upgrading");
     public static final Component VARIANTS_TITLE = Component.translatable("container.suit_variants");
+    public static final Component REPAIRING_TITLE = Component.translatable("container.suit_repairing");
 
     @Override
     public MapCodec<SuitTableBlock> codec() {

@@ -262,6 +262,7 @@
   "item.marvel.veronica_repair_module_mark_2.desc": "Repairs 33% of all stored suits durability",
   "item.marvel.veronica_remote": "Veronica Remote",
   "item.marvel.veronica_remote.fail": "Veronica Satellite Not Deployed",
+  "item.marvel.veronica_remote.fail.not_in_overworld": "Veronica Satellite Signal Not Found",
   "item.marvel.iron_man.mark_1": "Mark 1",
   "item.marvel.iron_man.mark_2": "Mark 2",
   "item.marvel.iron_man.mark_3": "Mark 3",
@@ -378,6 +379,7 @@
   "container.suit_upgrading": "Suit Upgrading",
   "container.suit_upgrading.warning": "Base suit is consumed on crafting",
   "container.suit_variants": "Suit Variants",
+  "container.suit_repairing": "Suit Repairing",
   "container.suit_charger": "Suit Charger",
   "container.suit_charger.cant_charge": "Suit Can't Be Charged",
   "container.suit_charger.mark_1": "Mark 1",
@@ -437,6 +439,7 @@
 
   "emi.category.marvel.suit_upgrading": "Suit Upgrading",
   "emi.category.marvel.suit_variant": "Suit Variants",
+  "emi.category.marvel.suit_repairing": "Suit Repairing",
 
   "tag.item.marvel.black_panther_armor": "Black Panther Armor",
   "tag.item.marvel.black_panther_helmet": "Black Panther Helmet",

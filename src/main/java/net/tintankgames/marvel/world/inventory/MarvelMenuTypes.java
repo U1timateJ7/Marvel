@@ -14,6 +14,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.gui.screens.SuitChargerScreen;
+import net.tintankgames.marvel.client.gui.screens.SuitRepairingScreen;
 import net.tintankgames.marvel.client.gui.screens.SuitUpgradingScreen;
 import net.tintankgames.marvel.client.gui.screens.SuitVariantScreen;
 
@@ -25,6 +26,7 @@ public class MarvelMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<SuitUpgradingMenu>> SUIT_UPGRADING = register("suit_upgrading", () -> new MenuType<>(SuitUpgradingMenu::new, FeatureFlags.VANILLA_SET));
     public static final DeferredHolder<MenuType<?>, MenuType<SuitVariantMenu>> SUIT_VARIANT = register("suit_variant", () -> new MenuType<>(SuitVariantMenu::new, FeatureFlags.VANILLA_SET));
+    public static final DeferredHolder<MenuType<?>, MenuType<SuitRepairingMenu>> SUIT_REPAIRING = register("suit_repairing", () -> new MenuType<>(SuitRepairingMenu::new, FeatureFlags.VANILLA_SET));
     public static final DeferredHolder<MenuType<?>, MenuType<SuitChargerMenu>> SUIT_CHARGER = register("suit_charger", () -> new MenuType<>(SuitChargerMenu::new, FeatureFlags.VANILLA_SET));
     public static double targetMouseX = -1;
     public static double targetMouseY = -1;
@@ -42,6 +44,7 @@ public class MarvelMenuTypes {
     public static void registerClient(RegisterMenuScreensEvent event) {
         event.register(SUIT_UPGRADING.get(), SuitUpgradingScreen::new);
         event.register(SUIT_VARIANT.get(), SuitVariantScreen::new);
+        event.register(SUIT_REPAIRING.get(), SuitRepairingScreen::new);
         event.register(SUIT_CHARGER.get(), SuitChargerScreen::new);
     }
 }

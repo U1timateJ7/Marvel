@@ -16,6 +16,7 @@ public class MarvelRecipeSerializers {
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SuitUpgradingRecipe>> SUIT_UPGRADING = register("suit_upgrading", SuitUpgradingRecipe.Serializer::new);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SuitVariantRecipe>> SUIT_VARIANT = register("suit_variant", SuitVariantRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SuitRepairingRecipe>> SUIT_REPAIRING = register("suit_repairing", SuitRepairingRecipe.Serializer::new);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ShieldArtRecipe>> SHIELD_ART = register("crafting_special_shieldart", () -> new SimpleCraftingRecipeSerializer<>(ShieldArtRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ShieldCleanRecipe>> SHIELD_CLEAN = register("crafting_special_shieldclean", () -> new SimpleCraftingRecipeSerializer<>(ShieldCleanRecipe::new));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<KineticBlackPantherNecklaceRecipe>> KINETIC_BLACK_PANTHER_NECKLACE = register("crafting_special_kineticblackpanthernecklace", () -> new SimpleCraftingRecipeSerializer<>(KineticBlackPantherNecklaceRecipe::new));

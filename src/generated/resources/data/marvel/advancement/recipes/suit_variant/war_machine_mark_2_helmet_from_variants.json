@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:war_machine_mark_2_helmet_from_variants"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_war_machine_mark_2_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:war_machine_mark_2_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_war_machine_mark_2_helmet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:war_machine_mark_2_helmet_from_variants"
+    ]
+  }
+}

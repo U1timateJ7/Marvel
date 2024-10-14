@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.tintankgames.marvel.world.inventory.SuitRepairingMenu;
 import net.tintankgames.marvel.world.inventory.SuitUpgradingMenu;
 import net.tintankgames.marvel.world.inventory.SuitVariantMenu;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -25,7 +26,7 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
     protected final ContainerData dataAccess;
     @Nullable
     private Component name;
-    public boolean variant;
+    public int tab;
 
     public SuitTableBlockEntity(BlockPos pos, BlockState state) {
         super(MarvelBlockEntityTypes.SUIT_TABLE.get(), pos, state);
@@ -35,7 +36,7 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
                 return switch (slot) {
                     case 1 -> getBlockPos().getY();
                     case 2 -> getBlockPos().getZ();
-                    case 3 -> variant ? 1 : 0;
+                    case 3 -> tab;
                     default -> getBlockPos().getX();
                 };
             }
@@ -43,7 +44,7 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
             @Override
             public void set(int slot, int value) {
                 if (slot == 3) {
-                    variant = value <= 0;
+                    tab = value;
                 }
             }
 
@@ -60,7 +61,7 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
         if (p_338606_.contains("CustomName", 8)) {
             this.name = parseCustomNameSafe(p_338606_.getString("CustomName"), p_338309_);
         }
-        this.variant = p_338606_.getBoolean("variant_mode");
+        this.tab = p_338606_.getInt("tab");
     }
 
     @Override
@@ -69,7 +70,7 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
         if (this.name != null) {
             p_187461_.putString("CustomName", Component.Serializer.toJson(this.name, p_324280_));
         }
-        p_187461_.putBoolean("variant_mode", this.variant);
+        p_187461_.putInt("tab", this.tab);
     }
 
     @Override
@@ -102,6 +103,6 @@ public class SuitTableBlockEntity extends BlockEntity implements MenuProvider, N
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return variant ? new SuitVariantMenu(id, inventory, ContainerLevelAccess.create(getLevel(), getBlockPos()), dataAccess) : new SuitUpgradingMenu(id, inventory, ContainerLevelAccess.create(getLevel(), getBlockPos()), dataAccess);
+        return tab >= 2 ? new SuitRepairingMenu(id, inventory, ContainerLevelAccess.create(getLevel(), getBlockPos()), dataAccess) : tab == 1 ? new SuitVariantMenu(id, inventory, ContainerLevelAccess.create(getLevel(), getBlockPos()), dataAccess) : new SuitUpgradingMenu(id, inventory, ContainerLevelAccess.create(getLevel(), getBlockPos()), dataAccess);
     }
 }

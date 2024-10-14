@@ -1,0 +1,26 @@
+{
+  "type": "marvel:suit_repairing",
+  "ingredients": [
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "tag": "c:dyes/red"
+        },
+        {
+          "tag": "c:dyes/black"
+        }
+      ]
+    }
+  ],
+  "repair_percent": 0.6666667,
+  "suit": {
+    "tag": "marvel:ant_man_upgraded_leggings"
+  }
+}
