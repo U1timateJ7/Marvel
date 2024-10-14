@@ -1,0 +1,18 @@
+{
+  "type": "marvel:suit_repairing",
+  "ingredients": [
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "item": "marvel:reinforced_leather"
+    },
+    {
+      "tag": "c:dyes/blue"
+    }
+  ],
+  "repair_percent": 0.6666667,
+  "suit": {
+    "tag": "marvel:cyclops_helmet"
+  }
+}

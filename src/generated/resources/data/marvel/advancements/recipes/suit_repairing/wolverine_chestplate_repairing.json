@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:wolverine_chestplate_repairing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wolverine_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:wolverine_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wolverine_chestplate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:wolverine_chestplate_repairing"
+    ]
+  }
+}

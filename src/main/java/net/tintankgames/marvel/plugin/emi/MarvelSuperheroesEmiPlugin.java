@@ -14,6 +14,7 @@ import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.component.ShieldArt;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
+import net.tintankgames.marvel.world.item.crafting.SuitRepairingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitVariantRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
@@ -22,20 +23,25 @@ import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 public class MarvelSuperheroesEmiPlugin implements EmiPlugin {
     public static final ResourceLocation SUIT_UPGRADING_SPRITE = MarvelSuperheroes.id("textures/gui/sprites/emi/suit_upgrading.png");
     public static final ResourceLocation SUIT_VARIANT_SPRITE = MarvelSuperheroes.id("textures/gui/sprites/emi/suit_variant.png");
+    public static final ResourceLocation SUIT_REPAIRING_SPRITE = MarvelSuperheroes.id("textures/gui/sprites/emi/suit_repairing.png");
     public static final EmiStack SUIT_TABLE = EmiStack.of(MarvelBlocks.SUIT_TABLE);
     public static final EmiRecipeCategory SUIT_UPGRADING = new EmiRecipeCategory(MarvelSuperheroes.id("suit_upgrading"), SUIT_TABLE, new EmiTexture(SUIT_UPGRADING_SPRITE, 0, 0, 16, 16, 16, 16, 16, 16));
     public static final EmiRecipeCategory SUIT_VARIANT = new EmiRecipeCategory(MarvelSuperheroes.id("suit_variant"), SUIT_TABLE, new EmiTexture(SUIT_VARIANT_SPRITE, 0, 0, 16, 16, 16, 16, 16, 16));
+    public static final EmiRecipeCategory SUIT_REPAIRING = new EmiRecipeCategory(MarvelSuperheroes.id("suit_repairing"), SUIT_TABLE, new EmiTexture(SUIT_REPAIRING_SPRITE, 0, 0, 16, 16, 16, 16, 16, 16));
 
     @Override
     public void register(EmiRegistry registry) {
         registry.addCategory(SUIT_UPGRADING);
         registry.addCategory(SUIT_VARIANT);
+        registry.addCategory(SUIT_REPAIRING);
 
         registry.addWorkstation(SUIT_UPGRADING, SUIT_TABLE);
         registry.addWorkstation(SUIT_VARIANT, SUIT_TABLE);
+        registry.addWorkstation(SUIT_REPAIRING, SUIT_TABLE);
 
         registry.addRecipeHandler(MarvelMenuTypes.SUIT_UPGRADING.get(), new SuitUpgradingRecipeHandler());
         registry.addRecipeHandler(MarvelMenuTypes.SUIT_VARIANT.get(), new SuitVariantRecipeHandler());
+        registry.addRecipeHandler(MarvelMenuTypes.SUIT_REPAIRING.get(), new SuitRepairingRecipeHandler());
 
         RecipeManager manager = registry.getRecipeManager();
 
@@ -44,6 +50,9 @@ public class MarvelSuperheroesEmiPlugin implements EmiPlugin {
         }
         for (RecipeHolder<SuitVariantRecipe> recipe : manager.getAllRecipesFor(MarvelRecipeTypes.SUIT_VARIANT.get())) {
             registry.addRecipe(new EmiSuitVariantRecipe(recipe));
+        }
+        for (RecipeHolder<SuitRepairingRecipe> recipe : manager.getAllRecipesFor(MarvelRecipeTypes.SUIT_REPAIRING.get())) {
+            registry.addRecipe(new EmiSuitRepairingRecipe(recipe));
         }
 
         for (ShieldArt art : ShieldArt.values()) {

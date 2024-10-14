@@ -1,0 +1,18 @@
+{
+  "type": "marvel:suit_repairing",
+  "ingredients": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "repair_percent": 0.6666667,
+  "suit": {
+    "tag": "marvel:ant_man_helmet"
+  }
+}

@@ -175,7 +175,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> list, TooltipFlag flags) {
         super.appendHoverText(stack, context, list, flags);
-        list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("iron_patriot_", "").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man." + BuiltInRegistries.ITEM.getKey(this).getPath().replace("iron_man_", "").replace("war_machine_", "").replace("iron_patriot_" + type.getName(), "mark_2").replace("_" + type.getName(), "")).toLanguageKey("item")).withStyle(ChatFormatting.GRAY));
         if (type == Type.HELMET) addAbilityMessage(stack, context, list, flags);
         if (stack.has(MarvelDataComponents.HELMET_OPEN)) list.add(Component.translatable(BuiltInRegistries.ITEM.getKey(this).withPath("iron_man.key.h" + (stack.is(MarvelItems.Tags.INVISIBLE_WHEN_OPEN) ? ".invisible" : "")).toLanguageKey("item"), Component.keybind(MarvelKeyMappings.TOGGLE_HELMET.getName()).withStyle(ChatFormatting.BOLD)).withStyle(ChatFormatting.GRAY));
     }

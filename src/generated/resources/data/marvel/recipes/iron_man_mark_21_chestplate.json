@@ -1,0 +1,36 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "marvel:diamond_arc_reactor"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_21_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_20_chestplate"
+  }
+}

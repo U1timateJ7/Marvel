@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_spider_man_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:spider_man_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:spider_man_chestplate_repairing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_spider_man_chestplate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:spider_man_chestplate_repairing"
+    ]
+  }
+}

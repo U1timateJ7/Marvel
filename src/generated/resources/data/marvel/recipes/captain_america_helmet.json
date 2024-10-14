@@ -6,7 +6,7 @@
       "tag": "c:dyes/blue"
     },
     "L": {
-      "item": "minecraft:lead"
+      "tag": "c:leathers"
     },
     "X": {
       "item": "marvel:reinforced_leather"

@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:iron_patriot_leggings"
+  },
+  "suit": {
+    "tag": "marvel:war_machine_mark_2_leggings"
+  }
+}

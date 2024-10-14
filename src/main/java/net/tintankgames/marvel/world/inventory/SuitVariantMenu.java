@@ -20,7 +20,7 @@ import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SuitVariantMenu extends AbstractContainerMenu {
+public class SuitVariantMenu extends AbstractContainerMenu implements SuitTableMenu {
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;

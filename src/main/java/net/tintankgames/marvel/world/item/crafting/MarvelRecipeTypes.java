@@ -13,6 +13,7 @@ public class MarvelRecipeTypes {
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<SuitUpgradingRecipe>> SUIT_UPGRADING = register("suit_upgrading");
     public static final DeferredHolder<RecipeType<?>, RecipeType<SuitVariantRecipe>> SUIT_VARIANT = register("suit_variant");
+    public static final DeferredHolder<RecipeType<?>, RecipeType<SuitRepairingRecipe>> SUIT_REPAIRING = register("suit_repairing");
 
     private static <T extends Recipe<?>> DeferredHolder<RecipeType<?>, RecipeType<T>> register(String id) {
         return REGISTER.register(id, () -> new RecipeType<>() {
