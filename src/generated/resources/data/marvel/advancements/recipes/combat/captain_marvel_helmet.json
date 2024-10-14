@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_tesseract_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "marvel:tesseract_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:captain_marvel_helmet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tesseract_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:captain_marvel_helmet"
+    ]
+  }
+}

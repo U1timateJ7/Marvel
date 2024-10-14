@@ -1,0 +1,9 @@
+{
+  "type": "marvel:suit_variant",
+  "results": {
+    "id": "marvel:war_machine_mark_2_helmet"
+  },
+  "suit": {
+    "tag": "marvel:war_machine_mark_2_helmet"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": true,
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "results": {
+    "id": "marvel:war_machine_mark_2_boots"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_22_boots"
+  }
+}

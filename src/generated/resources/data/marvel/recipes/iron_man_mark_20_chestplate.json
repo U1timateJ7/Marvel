@@ -1,0 +1,39 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "marvel:diamond_arc_reactor"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_20_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_19_chestplate"
+  }
+}
