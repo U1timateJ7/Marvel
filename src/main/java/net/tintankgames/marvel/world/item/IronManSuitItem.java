@@ -147,11 +147,14 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @Override
     protected void fullSuitTick(ItemStack stack, Level level, Player player) {
         super.fullSuitTick(stack, level, player);
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
             player.addEffect(effect(MobEffects.WATER_BREATHING, 0));
         }
         if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
             player.addEffect(effect(MobEffects.FIRE_RESISTANCE, 0));
+        }
+        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+            player.removeEffectsCuredBy(DeadpoolSuitItem.DEADPOOL_CURE);
         }
     }
 

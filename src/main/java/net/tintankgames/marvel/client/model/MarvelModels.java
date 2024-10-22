@@ -52,6 +52,10 @@ public class MarvelModels {
     public static final ModelLayerLocation IRON_MAN_MARK_25_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_mark_25_chestplate"), "main");
     public static final ModelLayerLocation IRON_MAN_MARK_25_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_mark_25_leggings"), "main");
     public static final ModelLayerLocation IRON_MAN_MARK_25_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_mark_25_boots"), "main");
+    public static final ModelLayerLocation IRON_MAN_CENTURION_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_centurion_helmet"), "main");
+    public static final ModelLayerLocation IRON_MAN_CENTURION_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_centurion_chestplate"), "main");
+    public static final ModelLayerLocation IRON_MAN_CENTURION_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_centurion_leggings"), "main");
+    public static final ModelLayerLocation IRON_MAN_CENTURION_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_centurion_boots"), "main");
     public static final ModelLayerLocation WAR_MACHINE_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_helmet"), "main");
     public static final ModelLayerLocation WAR_MACHINE_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_chestplate"), "main");
     public static final ModelLayerLocation WAR_MACHINE_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("war_machine_leggings"), "main");
@@ -117,6 +121,10 @@ public class MarvelModels {
         event.registerLayerDefinition(IRON_MAN_MARK_25_CHESTPLATE, () -> SuitModel.createIronManMark25BodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(IRON_MAN_MARK_25_LEGGINGS, () -> SuitModel.createIronManMark25BodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(IRON_MAN_MARK_25_BOOTS, () -> SuitModel.createIronManMark25BodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(IRON_MAN_CENTURION_HELMET, () -> SuitModel.createIronManCenturionBodyLayer(ArmorItem.Type.HELMET));
+        event.registerLayerDefinition(IRON_MAN_CENTURION_CHESTPLATE, () -> SuitModel.createIronManCenturionBodyLayer(ArmorItem.Type.CHESTPLATE));
+        event.registerLayerDefinition(IRON_MAN_CENTURION_LEGGINGS, () -> SuitModel.createIronManCenturionBodyLayer(ArmorItem.Type.LEGGINGS));
+        event.registerLayerDefinition(IRON_MAN_CENTURION_BOOTS, () -> SuitModel.createIronManCenturionBodyLayer(ArmorItem.Type.BOOTS));
         event.registerLayerDefinition(WAR_MACHINE_HELMET, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.HELMET));
         event.registerLayerDefinition(WAR_MACHINE_CHESTPLATE, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(WAR_MACHINE_LEGGINGS, () -> SuitModel.createWarMachineBodyLayer(ArmorItem.Type.LEGGINGS));
@@ -219,6 +227,15 @@ public class MarvelModels {
             case CHESTPLATE, BODY -> IRON_MAN_CHESTPLATE;
             case LEGGINGS -> IRON_MAN_LEGGINGS;
             case BOOTS -> IRON_MAN_BOOTS;
+        };
+    }
+
+    public static ModelLayerLocation ironManCenturionSuit(ArmorItem.Type type) {
+        return switch (type) {
+            case HELMET -> IRON_MAN_CENTURION_HELMET;
+            case CHESTPLATE, BODY -> IRON_MAN_CENTURION_CHESTPLATE;
+            case LEGGINGS -> IRON_MAN_CENTURION_LEGGINGS;
+            case BOOTS -> IRON_MAN_CENTURION_BOOTS;
         };
     }
 

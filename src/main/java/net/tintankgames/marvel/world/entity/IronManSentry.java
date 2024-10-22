@@ -45,13 +45,17 @@ import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 import net.tintankgames.marvel.world.item.VeronicaSuit;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.UUID;
 
 public class IronManSentry extends TamableAnimal implements RangedAttackMob, NeutralMob {
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_FIRING_REPULSOR = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_VERONICA = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_FROM_VERONICA = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_HAS_TARGET = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
@@ -215,7 +219,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     protected void reassessAttackGoals() {
         this.goalSelector.removeGoal(this.meleeAttackGoal);
         this.goalSelector.removeGoal(this.rangedAttackGoal);
-        if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR))) {
+        if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR))) {
             this.goalSelector.addGoal(5, this.meleeAttackGoal);
         } else {
             this.goalSelector.addGoal(5, this.rangedAttackGoal);
@@ -238,6 +242,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         builder.define(DATA_FIRING_REPULSOR, false);
         builder.define(DATA_VERONICA, false);
         builder.define(DATA_FROM_VERONICA, false);
+        builder.define(DATA_HAS_TARGET, false);
     }
 
     @Override
@@ -246,6 +251,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         this.addPersistentAngerSaveData(tag);
         tag.putBoolean("veronica", flyingToVeronica());
         tag.putBoolean("from_veronica", fromVeronica());
+        tag.putBoolean("has_target", hasTarget());
     }
 
     @Override
@@ -254,6 +260,8 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         this.readPersistentAngerSaveData(this.level(), tag);
         setFlyingToVeronica(tag.getBoolean("veronica"));
         setFromVeronica(tag.getBoolean("from_veronica"));
+        setHasTarget(tag.getBoolean("has_target"));
+        reassessAttackGoals();
     }
 
     @Override
@@ -410,6 +418,14 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         this.entityData.set(DATA_FROM_VERONICA, fromVeronica);
     }
 
+    public boolean hasTarget() {
+        return this.entityData.get(DATA_HAS_TARGET);
+    }
+
+    public void setHasTarget(boolean hasTarget) {
+        this.entityData.set(DATA_HAS_TARGET, hasTarget);
+    }
+
     public boolean firingRepulsor() {
         return this.entityData.get(DATA_FIRING_REPULSOR);
     }
@@ -430,31 +446,32 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
             walkAnimation.update(0, 1.0F);
         }
         if (this.level().isClientSide() && getOwner() != null) {
-            getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE).animateWhen(isHolding(MarvelItems.SHOULDER_TURRET.get()), getOwner().tickCount);
-            getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE).animateWhen(!isHolding(MarvelItems.SHOULDER_TURRET.get()), getOwner().tickCount);
-            getData(MarvelAttachmentTypes.DRILL_EQUIP_ANIMATION_STATE).animateWhen(isHolding(MarvelItems.MINING_DRILL.get()), getOwner().tickCount);
-            getData(MarvelAttachmentTypes.DRILL_UNEQUIP_ANIMATION_STATE).animateWhen(!isHolding(MarvelItems.MINING_DRILL.get()), getOwner().tickCount);
+            getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.WAR_MACHINE_ARMOR)) && hasTarget(), tickCount);
+            getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.WAR_MACHINE_ARMOR)) && !hasTarget(), tickCount);
+            getData(MarvelAttachmentTypes.DRILL_EQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR)) && hasTarget(), tickCount);
+            getData(MarvelAttachmentTypes.DRILL_UNEQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR)) && !hasTarget(), tickCount);
+            getData(MarvelAttachmentTypes.RIGHT_BLADE_EQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR)) && hasTarget() && ((getOwner() instanceof Player player && player.getMainArm() == HumanoidArm.RIGHT) || getOwner() == null), tickCount);
+            getData(MarvelAttachmentTypes.RIGHT_BLADE_UNEQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR)) && !hasTarget() && ((getOwner() instanceof Player player && player.getMainArm() == HumanoidArm.RIGHT) || getOwner() == null), tickCount);
+            getData(MarvelAttachmentTypes.LEFT_BLADE_EQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR)) && hasTarget() && (getOwner() instanceof Player player && player.getMainArm() == HumanoidArm.LEFT), tickCount);
+            getData(MarvelAttachmentTypes.LEFT_BLADE_UNEQUIP_ANIMATION_STATE).animateWhen(Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR)) && !hasTarget() && (getOwner() instanceof Player player && player.getMainArm() == HumanoidArm.LEFT), tickCount);
         }
+    }
+
+    @Override
+    public void setLeftHanded(boolean p_21560_) {
+        super.setLeftHanded(false);
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        updateSwingTime();
     }
 
     @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
         if (EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) <= 5.0F && getOwner() instanceof ServerPlayer player && player.getData(MarvelAttachmentTypes.VERONICA).enabled()) setFlyingToVeronica(true);
-        if (level() instanceof ServerLevel serverLevel) {
-            if (isFlying()) {
-                setDeltaMovement(getDeltaMovement().x, 1.0, getDeltaMovement().z);
-                Vec3 movement = getDeltaMovement();
-                movement = new Vec3(Math.clamp(movement.x, -1.0F, 1.0F), Math.clamp(movement.y, -1.0F, 1.0F), Math.clamp(movement.z, -1.0F, 1.0F));
-                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, isFlying());
-                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, movement);
-                Vec3 flamePlacement = position().add(movement.multiply(-1.5, -1, -1.5)).add(0, movement.horizontalDistance() * 1.4, 0);
-                serverLevel.sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
-            } else {
-                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
-                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
-            }
-        }
         if (fromVeronica() && onGround()) setFromVeronica(false);
         if (flyingToVeronica()) {
             setDeltaMovement(getDeltaMovement().x, 1.0, getDeltaMovement().z);
@@ -466,21 +483,30 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                 discard();
             }
         }
+        if (level() instanceof ServerLevel serverLevel) {
+            if (isFlying()) {
+                Vec3 movement = getDeltaMovement();
+                movement = new Vec3(Math.clamp(movement.x, -1.0F, 1.0F), Math.clamp(movement.y, -1.0F, 1.0F), Math.clamp(movement.z, -1.0F, 1.0F));
+                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, isFlying());
+                getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, movement);
+                Vec3 flamePlacement = position().add(movement.multiply(-1.5, -1, -1.5)).add(0, movement.horizontalDistance() * 1.4, 0);
+                serverLevel.sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
+            } else {
+                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
+            }
+        }
         this.entityData.set(DATA_FIRING_REPULSOR, getTarget() != null && rangedAttackGoal.canContinueToUse() && goalSelector.getAvailableGoals().stream().noneMatch(goal -> goal.getGoal() == meleeAttackGoal));
         if ((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) {
             for (ItemStack stack : getArmorSlots()) {
                 if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, 2.0F / 60.0F / 2.0F / 20.0F);
             }
         }
-        if (getTarget() != null) {
-            if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR))) {
-                setItemInHand(InteractionHand.MAIN_HAND, MarvelItems.MINING_DRILL.toStack());
-            }
-            if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.WAR_MACHINE_ARMOR))) {
-                setItemInHand(InteractionHand.MAIN_HAND, MarvelItems.SHOULDER_TURRET.toStack());
-            }
+        setHasTarget(getTarget() != null);
+        if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_30_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_33_ARMOR))) {
+            getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(9.0);
         } else {
-            setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+            getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0);
         }
         this.removeAllEffects();
     }
@@ -502,7 +528,9 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     @Override
     public void onEquipItem(EquipmentSlot p_238393_, ItemStack p_238394_, ItemStack p_238395_) {
         super.onEquipItem(p_238393_, p_238394_, p_238395_);
-        reassessAttackGoals();
+        if (!level().isClientSide) {
+            reassessAttackGoals();
+        }
     }
 
     @SubscribeEvent

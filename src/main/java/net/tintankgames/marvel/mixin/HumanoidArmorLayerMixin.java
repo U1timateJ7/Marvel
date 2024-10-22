@@ -57,8 +57,8 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "renderArmorPiece", cancellable = true)
-    private void doSuitRender(PoseStack p_117119_, MultiBufferSource p_117120_, T livingEntity, EquipmentSlot equipmentSlot, int p_117123_, A p_117124_, CallbackInfo ci) {
+    @Inject(at = @At("HEAD"), method = "renderArmorPiece(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;ILnet/minecraft/client/model/HumanoidModel;FFFFFF)V", cancellable = true)
+    private void doSuitRender(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int light, A model, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         ItemStack itemstack = livingEntity.getItemBySlot(equipmentSlot);
         if (itemstack.getItem() instanceof SuitItem) {
             ci.cancel();

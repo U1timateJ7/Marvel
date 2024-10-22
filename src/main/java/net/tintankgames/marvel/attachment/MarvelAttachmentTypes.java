@@ -32,6 +32,10 @@ public class MarvelAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> CLAWS_IN_ANIMATION_STATE = register("claws_in_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> DRILL_EQUIP_ANIMATION_STATE = register("drill_equip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> DRILL_UNEQUIP_ANIMATION_STATE = register("drill_unequip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> RIGHT_BLADE_EQUIP_ANIMATION_STATE = register("right_blade_equip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> RIGHT_BLADE_UNEQUIP_ANIMATION_STATE = register("right_blade_unequip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> LEFT_BLADE_EQUIP_ANIMATION_STATE = register("left_blade_equip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<AnimationState>> LEFT_BLADE_UNEQUIP_ANIMATION_STATE = register("left_blade_unequip_animation_state", () -> AttachmentType.builder(AnimationState::new).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<VeronicaData>> VERONICA = register("veronica", () -> AttachmentType.builder(() -> new VeronicaData(false, new ArrayList<>(), 0)).serialize(VeronicaData.CODEC).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
