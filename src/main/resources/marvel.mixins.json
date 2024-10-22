@@ -44,6 +44,7 @@
     "HumanoidModelMixin",
     "ItemInHandLayerMixin",
     "ItemInHandRendererMixin",
+    "LevelRendererAccessor",
     "LevelRendererMixin",
     "LivingEntityRendererMixin",
     "LocalPlayerMixin",

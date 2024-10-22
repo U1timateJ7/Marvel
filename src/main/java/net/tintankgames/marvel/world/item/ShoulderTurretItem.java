@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.world.item;
 
+import com.google.common.collect.Streams;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -11,20 +12,23 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.event.entity.living.LivingGetProjectileEvent;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -33,14 +37,24 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
+@EventBusSubscriber
 public class ShoulderTurretItem extends ProjectileWeaponItem {
+    public static final Predicate<ItemStack> ARROW_OR_FIREWORK_OR_FIRE_CHARGE = ARROW_OR_FIREWORK.or(stack -> stack.is(Items.FIRE_CHARGE));
+
     public ShoulderTurretItem(Properties properties) {
         super(properties.stacksTo(1));
     }
 
     @Override
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return ARROW_OR_FIREWORK;
+        return ARROW_OR_FIREWORK_OR_FIRE_CHARGE;
+    }
+
+    @SubscribeEvent
+    public static void limitProjectiles(LivingGetProjectileEvent event) {
+        if (!Streams.stream(event.getEntity().getArmorSlots()).allMatch(piece -> piece.is(MarvelItems.Tags.WAR_MACHINE_MARK_2_ARMOR)) && event.getProjectileWeaponItemStack().getItem() instanceof ShoulderTurretItem && event.getProjectileItemStack().is(Items.FIRE_CHARGE)) {
+            event.setProjectileItemStack(ItemStack.EMPTY);
+        }
     }
 
     @Override
@@ -161,6 +175,8 @@ public class ShoulderTurretItem extends ProjectileWeaponItem {
     protected Projectile createProjectile(Level level, LivingEntity living, ItemStack stack, ItemStack ammo, boolean bl) {
         if (ammo.is(Items.FIREWORK_ROCKET)) {
             return new FireworkRocketEntity(level, ammo, living, living.getX(), living.getEyeY() - 0.15F, living.getZ(), true);
+        } else if (ammo.is(Items.FIRE_CHARGE)) {
+            return new SmallFireball(level, living, new Vec3(living.getX(), living.getEyeY() - 0.15F, living.getZ()));
         } else {
             Projectile projectile = super.createProjectile(level, living, stack, ammo, bl);
             if (projectile instanceof AbstractArrow abstractarrow) {

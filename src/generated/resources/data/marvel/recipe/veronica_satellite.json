@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "marvel:suit_charger"
+    },
+    "C": {
+      "item": "minecraft:comparator"
+    },
+    "D": {
+      "item": "minecraft:daylight_detector"
+    },
+    "X": {
+      "item": "marvel:gold_titanium_block"
+    }
+  },
+  "pattern": [
+    "D X",
+    " # ",
+    "C D"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:veronica_satellite"
+  }
+}

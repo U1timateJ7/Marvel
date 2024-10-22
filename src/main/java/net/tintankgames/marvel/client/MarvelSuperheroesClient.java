@@ -1,42 +1,65 @@
 package net.tintankgames.marvel.client;
 
+import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RenderHighlightEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.mixin.LevelRendererAccessor;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.MiningDrillItem;
 import net.tintankgames.marvel.world.item.SuitItem;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -114,6 +137,60 @@ public class MarvelSuperheroesClient {
                     event.setType(MarvelClientEnumExtensions.DEADPOOL_HEART_TYPE.getValue());
                 }
             }
+        }
+
+        @SubscribeEvent
+        public static void renderAdditionalBlockBounds(RenderHighlightEvent.Block event) {
+            if (event.getTarget().getType() == HitResult.Type.BLOCK && event.getCamera().getEntity() instanceof LivingEntity living) {
+                BlockHitResult hitResult = event.getTarget();
+                Level level = living.level();
+                BlockState state = level.getBlockState(hitResult.getBlockPos());
+                ItemStack stack = living.getItemInHand(InteractionHand.MAIN_HAND);
+
+                if (stack.getItem() instanceof MiningDrillItem drillItem && state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL)) {
+                    if (living instanceof Player player && !living.isShiftKeyDown() && !player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SINGLE_BLOCK, false)) {
+                        ImmutableList<BlockPos> potentialBlocks = drillItem.getExtraBlocksDug(level, player, event.getTarget());
+                        List<BlockPos> breakingBlocks = new ArrayList<>();
+                        for (BlockPos candidate : potentialBlocks) {
+                            BlockState targetState = level.getBlockState(candidate);
+                            if (drillItem.canBreakExtraBlock(level, candidate, targetState, player)) breakingBlocks.add(candidate);
+                        }
+                        MarvelSuperheroes.LOGGER.info("Adding {} of {} blocks to be highlighted", breakingBlocks.size(), potentialBlocks.size());
+                        drawAdditionalBlockBreak(event, player, breakingBlocks);
+                    }
+                }
+            }
+        }
+
+        private static void drawAdditionalBlockBreak(RenderHighlightEvent.Block event, Player player, Collection<BlockPos> blocks) {
+            Vec3 camera = event.getCamera().getPosition();
+            for (BlockPos pos : blocks) {
+                ((LevelRendererAccessor) event.getLevelRenderer()).invokeRenderHitOutline(event.getPoseStack(), event.getMultiBufferSource().getBuffer(RenderType.lines()), player, camera.x, camera.y, camera.z, pos, Minecraft.getInstance().level.getBlockState(pos));
+            }
+            PoseStack poseStack = event.getPoseStack();
+            poseStack.pushPose();
+            poseStack.translate(-camera.x, -camera.y, -camera.z);
+            MultiPlayerGameMode gameMode = Minecraft.getInstance().gameMode;
+            if (gameMode.isDestroying()) {
+                int progress = gameMode.getDestroyStage();
+                if (progress >= 0 && progress < ModelBakery.DESTROY_TYPES.size()) {
+                    for (BlockPos blockpos : blocks) {
+                        poseStack.pushPose();
+                        poseStack.translate(blockpos.getX(), blockpos.getY(), blockpos.getZ());
+                        VertexConsumer worldRendererIn = event.getMultiBufferSource().getBuffer(ModelBakery.DESTROY_TYPES.get(progress));
+                        worldRendererIn = new SheetedDecalTextureGenerator(worldRendererIn, poseStack.last(), 1);
+                        Block block = player.level().getBlockState(blockpos).getBlock();
+                        boolean hasBreak = block instanceof ChestBlock || block instanceof EnderChestBlock || block instanceof SignBlock || block instanceof SkullBlock;
+                        if (!hasBreak) {
+                            BlockState iblockstate = player.level().getBlockState(blockpos);
+                            if (!iblockstate.isAir()) Minecraft.getInstance().getBlockRenderer().renderBreakingTexture(iblockstate, blockpos, player.level(), poseStack, worldRendererIn);
+                        }
+                        MarvelSuperheroes.LOGGER.info("Rendering block at pos: {} to break", blockpos);
+                        poseStack.popPose();
+                    }
+                }
+            }
+            poseStack.popPose();
         }
     }
 }

@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.world.entity;
 
+import com.google.common.collect.Streams;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -54,7 +55,28 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
-    private RangedAttackGoal rangedAttackGoal;
+    private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.0, true) {
+        @Override
+        public boolean canUse() {
+            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.0F;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+        }
+    };
+    private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0, 20, 16) {
+        @Override
+        public boolean canUse() {
+            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.5F;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.5F;
+        }
+    };
 
     public IronManSentry(EntityType<IronManSentry> type, Level level) {
         super(type, level);
@@ -62,21 +84,11 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         Arrays.fill(armorDropChances, 0.0F);
         Arrays.fill(handDropChances, 0.0F);
         this.bodyArmorDropChance = 0.0F;
+        reassessAttackGoals();
     }
 
     @Override
     protected void registerGoals() {
-        this.rangedAttackGoal = new RangedAttackGoal(this, 1.0, 20, 16) {
-            @Override
-            public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.5F;
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.5F;
-            }
-        };
         this.goalSelector.addGoal(1, new FloatGoal(this) {
             @Override
             public boolean canUse() {
@@ -88,7 +100,6 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                 return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
             }
         });
-        this.goalSelector.addGoal(5, this.rangedAttackGoal);
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F) {
             @Override
             public boolean canUse() {
@@ -201,13 +212,23 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         });
     }
 
+    protected void reassessAttackGoals() {
+        this.goalSelector.removeGoal(this.meleeAttackGoal);
+        this.goalSelector.removeGoal(this.rangedAttackGoal);
+        if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) || armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR))) {
+            this.goalSelector.addGoal(5, this.meleeAttackGoal);
+        } else {
+            this.goalSelector.addGoal(5, this.rangedAttackGoal);
+        }
+    }
+
     @Override
     public boolean isAngryAtAllPlayers(Level level) {
         return false;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 1.0);
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3F).add(Attributes.MAX_HEALTH, 20.0).add(Attributes.ATTACK_DAMAGE, 4.0);
     }
 
     @Override
@@ -408,6 +429,12 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         if (isFlying()) {
             walkAnimation.update(0, 1.0F);
         }
+        if (this.level().isClientSide() && getOwner() != null) {
+            getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE).animateWhen(isHolding(MarvelItems.SHOULDER_TURRET.get()), getOwner().tickCount);
+            getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE).animateWhen(!isHolding(MarvelItems.SHOULDER_TURRET.get()), getOwner().tickCount);
+            getData(MarvelAttachmentTypes.DRILL_EQUIP_ANIMATION_STATE).animateWhen(isHolding(MarvelItems.MINING_DRILL.get()), getOwner().tickCount);
+            getData(MarvelAttachmentTypes.DRILL_UNEQUIP_ANIMATION_STATE).animateWhen(!isHolding(MarvelItems.MINING_DRILL.get()), getOwner().tickCount);
+        }
     }
 
     @Override
@@ -439,11 +466,21 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                 discard();
             }
         }
-        this.entityData.set(DATA_FIRING_REPULSOR, getTarget() != null && rangedAttackGoal.canContinueToUse());
+        this.entityData.set(DATA_FIRING_REPULSOR, getTarget() != null && rangedAttackGoal.canContinueToUse() && goalSelector.getAvailableGoals().stream().noneMatch(goal -> goal.getGoal() == meleeAttackGoal));
         if ((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) {
             for (ItemStack stack : getArmorSlots()) {
                 if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, 2.0F / 60.0F / 2.0F / 20.0F);
             }
+        }
+        if (getTarget() != null) {
+            if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR))) {
+                setItemInHand(InteractionHand.MAIN_HAND, MarvelItems.MINING_DRILL.toStack());
+            }
+            if (Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.WAR_MACHINE_ARMOR))) {
+                setItemInHand(InteractionHand.MAIN_HAND, MarvelItems.SHOULDER_TURRET.toStack());
+            }
+        } else {
+            setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
         }
         this.removeAllEffects();
     }
@@ -460,6 +497,12 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
             armor.setDamageValue(Math.max(armor.getDamageValue(), random.nextInt(armor.getMaxDamage() / 8) + (armor.getMaxDamage() - armor.getMaxDamage() / 4)));
             spawnAtLocation(armor);
         }
+    }
+
+    @Override
+    public void onEquipItem(EquipmentSlot p_238393_, ItemStack p_238394_, ItemStack p_238395_) {
+        super.onEquipItem(p_238393_, p_238394_, p_238395_);
+        reassessAttackGoals();
     }
 
     @SubscribeEvent

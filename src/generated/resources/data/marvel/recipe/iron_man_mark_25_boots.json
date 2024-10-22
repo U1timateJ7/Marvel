@@ -1,0 +1,33 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "item": "marvel:titanium_ingot"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:repeater"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_25_boots"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_24_boots"
+  }
+}

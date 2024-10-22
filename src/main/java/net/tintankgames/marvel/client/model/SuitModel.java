@@ -18,6 +18,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.client.animation.definitions.IronManAnimation;
 import net.tintankgames.marvel.client.animation.definitions.WarMachineAnimation;
 import net.tintankgames.marvel.client.animation.definitions.WolverineAnimation;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -387,6 +388,49 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
+    public static LayerDefinition createIronManMark25BodyLayer(ArmorItem.Type... types) {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        List<ArmorItem.Type> armorTypes = Arrays.asList(types);
+        if (armorTypes.contains(ArmorItem.Type.HELMET)) {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.26f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.51f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition rightArm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+            PartDefinition rightDrill = rightArm.addOrReplaceChild("rightDrill", CubeListBuilder.create().texOffs(44, 34).addBox(-1.5F, -6.375F, -2.625F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)).texOffs(17, 33).addBox(-1.5F, 1.625F, -2.625F, 3.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).texOffs(31, 35).addBox(-1.5F, -10.375F, -2.625F, 1.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(-3.3F, 11.375F, 0.125F));
+            PartDefinition drillHead1 = rightDrill.addOrReplaceChild("drillHead1", CubeListBuilder.create().texOffs(0, 33).addBox(-1.5F, -3.0F, -0.5F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.625F, 0.375F));
+            drillHead1.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(0, 33).addBox(-2.0F, -3.0F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
+            PartDefinition leftArm = partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(5.0F, 2.0F, 0.0F));
+            PartDefinition leftDrill = leftArm.addOrReplaceChild("leftDrill", CubeListBuilder.create().texOffs(44, 34).mirror().addBox(-1.5F, -6.375F, -2.625F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false).texOffs(17, 33).mirror().addBox(0.5F, 1.625F, -2.625F, 3.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false).texOffs(31, 35).mirror().addBox(2.5F, -10.375F, -2.625F, 1.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(1.3F, 11.375F, 0.125F));
+            PartDefinition drillHead2 = leftDrill.addOrReplaceChild("drillHead2", CubeListBuilder.create().texOffs(0, 33).mirror().addBox(-1.5F, -2.0F, 0.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(2.0F, 4.625F, -0.125F));
+            drillHead2.addOrReplaceChild("bone2", CubeListBuilder.create().texOffs(0, 33).mirror().addBox(-2.0F, -3.0F, -2.0F, 3.0F, 4.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, 1.0F, 0.5F, 0.0F, -1.5708F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(48, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 64);
+    }
+
     public static LayerDefinition createWarMachineBodyLayer(ArmorItem.Type... types) {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
@@ -546,6 +590,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
             event.getEntity().getData(MarvelAttachmentTypes.CLAWS_IN_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.ADAMANTIUM_CLAWS.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE).animateWhen(event.getEntity().isHolding(MarvelItems.SHOULDER_TURRET.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.SHOULDER_TURRET.get()), event.getEntity().tickCount);
+            event.getEntity().getData(MarvelAttachmentTypes.DRILL_EQUIP_ANIMATION_STATE).animateWhen(event.getEntity().isHolding(MarvelItems.MINING_DRILL.get()), event.getEntity().tickCount);
+            event.getEntity().getData(MarvelAttachmentTypes.DRILL_UNEQUIP_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.MINING_DRILL.get()), event.getEntity().tickCount);
         }
     }
 
@@ -554,6 +600,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         this.animate(living.getData(MarvelAttachmentTypes.CLAWS_IN_ANIMATION_STATE), WolverineAnimation.CLAWS_IN, time);
         this.animate(living.getData(MarvelAttachmentTypes.TURRET_EQUIP_ANIMATION_STATE), WarMachineAnimation.TURRET_EQUIP, time);
         this.animate(living.getData(MarvelAttachmentTypes.TURRET_UNEQUIP_ANIMATION_STATE), WarMachineAnimation.TURRET_UNEQUIP, time);
+        this.animate(living.getData(MarvelAttachmentTypes.DRILL_EQUIP_ANIMATION_STATE), IronManAnimation.DRILL_EQUIP, time);
+        this.animate(living.getData(MarvelAttachmentTypes.DRILL_UNEQUIP_ANIMATION_STATE), IronManAnimation.DRILL_UNEQUIP, time);
     }
 
     protected void animate(AnimationState state, AnimationDefinition definition, float time) {

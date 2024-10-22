@@ -312,6 +312,18 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_22_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_22_LEGGINGS);
         output.accept(MarvelItems.IRON_MAN_MARK_22_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_23_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_23_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_23_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_23_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_24_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_24_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_24_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_24_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_25_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_25_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_25_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_25_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

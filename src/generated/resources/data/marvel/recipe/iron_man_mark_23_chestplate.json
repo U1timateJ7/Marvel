@@ -1,0 +1,36 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "marvel:diamond_arc_reactor"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_23_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_22_chestplate"
+  }
+}
