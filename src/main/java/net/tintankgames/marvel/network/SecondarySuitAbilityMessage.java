@@ -40,7 +40,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
     public static void handle(SecondarySuitAbilityMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
-                boolean noKineticBlackPantherArmor = true, noThorArmor = true, hasFullSentryArmor = true;
+                boolean noKineticBlackPantherArmor = true, noThorArmor = true, hasFullSentryArmor = false;
                 for (ItemStack armor : player.getInventory().armor) {
                     if (armor.is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_ARMOR)) {
                         noKineticBlackPantherArmor = false;
@@ -59,12 +59,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 ItemStack mainHand = player.getMainHandItem();
                 if (chestplate.getItem() instanceof SentryIronManSuitItem sentrySuitItem) {
-                    for (ItemStack armor : player.getInventory().armor) {
-                        if (!(armor.getItem() instanceof SentryIronManSuitItem) || !sentrySuitItem.isSuitPiece(armor)) {
-                            hasFullSentryArmor = false;
-                            break;
-                        }
-                    }
+                    hasFullSentryArmor = player.getInventory().armor.stream().allMatch(armor -> armor.getItem() instanceof SentryIronManSuitItem && sentrySuitItem.isSuitPiece(armor));
                 }
                 if (hasFullSentryArmor && !chestplate.has(MarvelDataComponents.INVISIBLE) && EnergySuitItem.getEnergy(chestplate) > 0.0F) {
                     IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);

@@ -75,7 +75,7 @@ public class VeronicaSatellite extends Entity implements OwnableEntity {
         }
         if (getOwner() instanceof ServerPlayer player && getY() > player.getY() + 128) {
             player.getData(MarvelAttachmentTypes.VERONICA).setEnabled(true);
-            player.sendSystemMessage(Component.translatable("entity.marvel.veronica.deployed").withStyle(ChatFormatting.GREEN), true);
+            player.sendSystemMessage(Component.translatable("entity.marvel.veronica_satellite.deployed").withStyle(ChatFormatting.GREEN), true);
             discard();
         }
     }

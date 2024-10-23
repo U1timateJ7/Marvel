@@ -35,7 +35,7 @@ import org.slf4j.Logger;
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.1.0-snapshot10";
+    public static final String MOD_VERSION = "2.1.0-snapshot12";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
@@ -70,6 +70,7 @@ public class MarvelSuperheroes {
         TimerCallbacks.SERVER_CALLBACKS.register(new ToggleHelmetCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new MultiAttackCallback.Serializer());
         TimerCallbacks.SERVER_CALLBACKS.register(new ResetCallMjolnirCallback.Serializer());
+        TimerCallbacks.SERVER_CALLBACKS.register(new SendSuitCallback.Serializer());
 
         Item.BY_BLOCK.put(MarvelBlocks.SUIT_CHARGER_UPPER.get(), MarvelBlocks.SUIT_CHARGER.asItem());
     }
