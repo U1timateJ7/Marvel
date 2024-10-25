@@ -13,9 +13,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.InteractionHand;
@@ -45,10 +48,14 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.client.gui.screens.SpaceStoneScreen;
+import net.tintankgames.marvel.client.gui.screens.VeronicaScreen;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.client.renderer.item.NecklaceRenderer;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.mixin.LevelRendererAccessor;
+import net.tintankgames.marvel.network.ClientUtils;
+import net.tintankgames.marvel.network.MarvelNetworking;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.MiningDrillItem;
 import net.tintankgames.marvel.world.item.SuitItem;
@@ -66,6 +73,18 @@ import java.util.List;
 public class MarvelSuperheroesClient {
     @SubscribeEvent
     public static void setupClient(FMLClientSetupEvent event) {
+        MarvelNetworking.clientUtils = new ClientUtils() {
+            @Override
+            public void openSpaceStone(Component name, Holder<SoundEvent> soundEvent) {
+                Minecraft.getInstance().setScreen(new SpaceStoneScreen(name, soundEvent));
+            }
+
+            @Override
+            public void openVeronica() {
+                Minecraft.getInstance().setScreen(new VeronicaScreen());
+            }
+        };
+
         CuriosRendererRegistry.register(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get(), NecklaceRenderer::new);
         CuriosRendererRegistry.register(MarvelItems.KILLMONGER_NECKLACE.get(), NecklaceRenderer::new);
         CuriosRendererRegistry.register(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get(), NecklaceRenderer::new);

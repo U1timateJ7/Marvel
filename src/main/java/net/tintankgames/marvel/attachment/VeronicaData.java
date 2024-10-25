@@ -17,6 +17,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -39,6 +40,10 @@ public class VeronicaData {
     public VeronicaData(boolean enabled, List<Suit> suits, int nextId) {
         this.enabled = enabled;
         this.suits = new ArrayList<>(suits);
+        this.suits.forEach(suit -> suit.armor.forEach(piece -> {
+            piece.remove(MarvelDataComponents.FLYING);
+            piece.remove(MarvelDataComponents.DELTA_MOVEMENT);
+        }));
         this.nextId = nextId;
         if (this.suits.size() > 1) this.suits.sort(Comparator.comparingInt(Suit::mark));
     }
@@ -63,6 +68,10 @@ public class VeronicaData {
     }
 
     public void addSuit(Suit suit) {
+        suit.armor.forEach(piece -> {
+            piece.remove(MarvelDataComponents.FLYING);
+            piece.remove(MarvelDataComponents.DELTA_MOVEMENT);
+        });
         suits.add(suit);
         suits.sort(Comparator.comparingInt(Suit::mark));
     }

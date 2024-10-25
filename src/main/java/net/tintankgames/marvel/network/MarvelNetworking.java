@@ -1,6 +1,9 @@
 package net.tintankgames.marvel.network;
 
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -11,6 +14,17 @@ import net.tintankgames.marvel.attachment.VeronicaData;
 
 @EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class MarvelNetworking {
+    public static ClientUtils clientUtils = new ClientUtils() {
+        @Override
+        public void openSpaceStone(Component name, Holder<SoundEvent> soundEvent) {
+
+        }
+
+        @Override
+        public void openVeronica() {
+
+        }
+    };
     public static final CustomPacketPayload.Type<PrimarySuitAbilityMessage> PRIMARY_SUIT_ABILITY = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("primary_suit_ability"));
     public static final CustomPacketPayload.Type<SecondarySuitAbilityMessage> SECONDARY_SUIT_ABILITY = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("secondary_suit_ability"));
     public static final CustomPacketPayload.Type<ToggleHelmetMessage> TOGGLE_HELMET = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("toggle_helmet"));

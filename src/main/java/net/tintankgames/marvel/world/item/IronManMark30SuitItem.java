@@ -3,6 +3,8 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public class IronManMark30SuitItem extends SentryIronManSuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.ironManCenturionSuit(type);
     }
