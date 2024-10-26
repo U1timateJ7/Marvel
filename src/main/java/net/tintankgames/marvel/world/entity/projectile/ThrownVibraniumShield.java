@@ -7,10 +7,10 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Unit;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -20,9 +20,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.damagesources.MarvelDamageTypes;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.WinterSoldier;
 import net.tintankgames.marvel.world.item.MarvelItems;
 
 import org.jetbrains.annotations.Nullable;
@@ -40,13 +42,17 @@ public class ThrownVibraniumShield extends AbstractArrow {
     public ThrownVibraniumShield(Level p_37569_, LivingEntity p_37570_, ItemStack p_37571_) {
         super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_37570_, p_37569_, p_37571_, null);
         this.entityData.set(ID_FOIL, p_37571_.hasFoil());
-        this.entityData.set(ID_ITEM, p_37571_);
+        this.entityData.set(ID_ITEM, p_37571_.copy());
+        super.getPickupItemStackOrigin().remove(MarvelDataComponents.WINTER_SOLDIER);
+        getPickupItemStackOrigin().remove(MarvelDataComponents.WINTER_SOLDIER);
     }
 
     public ThrownVibraniumShield(Level p_338686_, double p_338771_, double p_338674_, double p_338477_, ItemStack p_338255_) {
         super(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), p_338771_, p_338674_, p_338477_, p_338686_, p_338255_, null);
         this.entityData.set(ID_FOIL, p_338255_.hasFoil());
-        this.entityData.set(ID_ITEM, p_338255_);
+        this.entityData.set(ID_ITEM, p_338255_.copy());
+        super.getPickupItemStackOrigin().remove(MarvelDataComponents.WINTER_SOLDIER);
+        getPickupItemStackOrigin().remove(MarvelDataComponents.WINTER_SOLDIER);
     }
 
     @Override
@@ -149,6 +155,16 @@ public class ThrownVibraniumShield extends AbstractArrow {
         Entity entity = p_37573_.getEntity();
         float f = (float) getBaseDamage();
         Entity entity1 = this.getOwner();
+        if (entity instanceof LivingEntity living && (living instanceof WinterSoldier || (living.getItemBySlot(EquipmentSlot.HEAD).isEmpty() && living.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.WINTER_SOLDIER_ARMOR) && living.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.WINTER_SOLDIER_ARMOR) && living.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.WINTER_SOLDIER_ARMOR))) && entity1 instanceof LivingEntity owner) {
+            ItemStack offhand = living.getOffhandItem().copy();
+            ItemStack shield = getItem().copy();
+            shield.set(MarvelDataComponents.WINTER_SOLDIER, Unit.INSTANCE);
+            living.setItemInHand(InteractionHand.OFF_HAND, shield);
+            if (living instanceof Player player1 && !player1.addItem(offhand)) player1.drop(offhand, true);
+            if (living instanceof Mob mob) mob.setTarget(owner);
+            discard();
+            return;
+        }
         DamageSource damagesource = this.damageSources().source(entity1 == null ? MarvelDamageTypes.VIBRANIUM_SHIELD_DISPENSER : MarvelDamageTypes.VIBRANIUM_SHIELD, this, entity1 == null ? this : entity1);
         if (this.level() instanceof ServerLevel serverlevel) {
             f = EnchantmentHelper.modifyDamage(serverlevel, getWeaponItem(), entity, damagesource, f);

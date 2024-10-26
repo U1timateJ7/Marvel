@@ -49,6 +49,7 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> HAS_KATANA_IN_INVENTORY = register("has_katana_in_inventory", () -> DataComponentType.<Boolean>builder().networkSynchronized(ByteBufCodecs.BOOL).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> INVISIBLE = register("invisible", () -> DataComponentType.<Unit>builder().persistent(Unit.CODEC).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding().build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SINGLE_BLOCK = register("single_block", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> WINTER_SOLDIER = register("winter_soldier", () -> DataComponentType.<Unit>builder().persistent(Unit.CODEC).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding().build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);
