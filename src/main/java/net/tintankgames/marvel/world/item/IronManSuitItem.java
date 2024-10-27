@@ -71,6 +71,9 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @SubscribeEvent
     public static void playerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (serverPlayer.getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null && !serverPlayer.isHolding(MarvelItems.DISASTER_RESCUE_CLAWS.get())) {
+                serverPlayer.getData(MarvelAttachmentTypes.HELD_ENTITY).entity = null;
+            }
             if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_ARMOR)) {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFalLDistanceModifier);
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
@@ -147,14 +150,23 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @Override
     protected void fullSuitTick(ItemStack stack, Level level, Player player) {
         super.fullSuitTick(stack, level, player);
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
             player.addEffect(effect(MobEffects.WATER_BREATHING, 0));
         }
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
             player.addEffect(effect(MobEffects.FIRE_RESISTANCE, 0));
         }
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
             player.removeEffectsCuredBy(DeadpoolSuitItem.DEADPOOL_CURE);
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_37_ARMOR)) {
+            if (!player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+                player.addEffect(effect(MobEffects.CONDUIT_POWER, 0));
+            }
+            player.addEffect(effect(MobEffects.DOLPHINS_GRACE, 0));
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_39_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 1200) {
+            player.addEffect(effect(MobEffects.WATER_BREATHING, 0));
         }
     }
 

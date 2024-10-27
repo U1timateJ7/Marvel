@@ -10,6 +10,7 @@
     "DamageSourcesMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
+    "EntitySelectorMixin",
     "FallingBlockEntityMixin",
     "IMobEffectExtensionMixin",
     "LivingEntityAccessor",

@@ -1,0 +1,33 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "item": "minecraft:repeater"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_37_boots"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_35_boots"
+  }
+}

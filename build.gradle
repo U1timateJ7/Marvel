@@ -22,6 +22,19 @@ repositories {
         name = 'BlameJared Maven'
         url = 'https://maven.blamejared.com'
     }
+    maven {
+        url = 'https://maven.architectury.dev/'
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -117,6 +130,7 @@ dependencies {
     localRuntime "mezz.jei:jei-${project.minecraft_version}-neoforge:${project.jei_version}"
     compileOnly "mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}"
     compileOnly "mezz.jei:jei-${project.minecraft_version}-neoforge-api:${project.jei_version}"
+    compileOnly "curse.maven:stellaris-1036270:5821632"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

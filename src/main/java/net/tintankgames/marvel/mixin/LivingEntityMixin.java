@@ -7,10 +7,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -243,6 +240,13 @@ public abstract class LivingEntityMixin extends Entity {
     private void flyingBetter(float p_268283_, CallbackInfo ci) {
         if ((Object)this instanceof Player player && (player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || player.getMainHandItem().is(MarvelItems.MJOLNIR) || player.getMainHandItem().is(MarvelItems.STORMBREAKER) || player.getOffhandItem().is(MarvelItems.MJOLNIR) || player.getOffhandItem().is(MarvelItems.STORMBREAKER))) {
             ci.cancel();
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "isPushable", cancellable = true)
+    private void noPushingAround(CallbackInfoReturnable<Boolean> cir) {
+        if (level().players().stream().anyMatch(player -> player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == this)) {
+            cir.setReturnValue(false);
         }
     }
 }

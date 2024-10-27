@@ -471,6 +471,99 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
+    public static LayerDefinition createIronManMark35BodyLayer(ArmorItem.Type... types) {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        List<ArmorItem.Type> armorTypes = Arrays.asList(types);
+        if (armorTypes.contains(ArmorItem.Type.HELMET)) {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.26f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.51f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition rightArm = partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+            PartDefinition rightClaw = rightArm.addOrReplaceChild("rightClaw", CubeListBuilder.create().texOffs(40, 32).addBox(-3.0F, -8.8333F, -3.0F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.005F)), PartPose.offset(-1.0F, 13.0833F, 0.0F));
+            PartDefinition rightClawBase = rightClaw.addOrReplaceChild("rightClawBase", CubeListBuilder.create().texOffs(44, 46).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 1.0F, 4.0F).texOffs(16, 33).addBox(-3.0F, -1.0F, -3.0F, 6.0F, 1.0F, 6.0F).texOffs(22, 42).addBox(-2.0F, -7.0F, -2.0F, 4.0F, 1.0F, 4.0F), PartPose.offset(0.0F, 5.1667F, 0.0F));
+            PartDefinition rightGrabbyThing1 = rightClawBase.addOrReplaceChild("rightGrabbyThing1", CubeListBuilder.create().texOffs(52, 61).addBox(-0.5F, 0.0F, -1.0F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 0.75F, -1.75F, -0.5236F, 0.0F, 0.0F));
+            PartDefinition rightGrabbyThing11 = rightGrabbyThing1.addOrReplaceChild("rightGrabbyThing11", CubeListBuilder.create(), PartPose.offset(0.0F, 2.466F, -0.25F));
+            rightGrabbyThing11.addOrReplaceChild("RightArm_r1", CubeListBuilder.create().texOffs(52, 56).addBox(-0.5F, -0.816F, 0.1F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 0.05F, -0.05F, 1.0472F, 0.0F, 0.0F));
+            PartDefinition rightGrabbyThing2 = rightClawBase.addOrReplaceChild("rightGrabbyThing2", CubeListBuilder.create().texOffs(52, 61).addBox(-0.5F, 0.0F, -1.0F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 0.75F, 1.75F, 2.618F, 0.0F, 3.1416F));
+            PartDefinition rightGrabbyThing22 = rightGrabbyThing2.addOrReplaceChild("rightGrabbyThing22", CubeListBuilder.create(), PartPose.offset(0.0F, 2.466F, -0.25F));
+            rightGrabbyThing22.addOrReplaceChild("RightArm_r2", CubeListBuilder.create().texOffs(52, 56).addBox(-0.5F, -0.816F, 0.1F, 1.0F, 2.0F, 1.0F), PartPose.offsetAndRotation(0.0F, 0.05F, -0.05F, 1.0472F, 0.0F, 0.0F));
+            rightClaw.addOrReplaceChild("rightClawBeams", CubeListBuilder.create().texOffs(60, 47).addBox(-0.5F, -4.5F, -3.0F, 1.0F, 9.0F, 1.0F).texOffs(60, 47).addBox(-0.5F, -4.5F, 2.0F, 1.0F, 9.0F, 1.0F), PartPose.offset(0.0F, 0.6667F, 0.0F));
+            PartDefinition leftArm = partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(5.0F, 2.0F, 0.0F));
+            PartDefinition leftClaw = leftArm.addOrReplaceChild("leftClaw", CubeListBuilder.create().texOffs(40, 32).mirror().addBox(-3.0F, -8.8333F, -3.0F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.005F)).mirror(false), PartPose.offset(1.0F, 13.0833F, 0.0F));
+            PartDefinition leftClawBase = leftClaw.addOrReplaceChild("leftClawBase", CubeListBuilder.create().texOffs(44, 46).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 1.0F, 4.0F).mirror(false).texOffs(16, 33).mirror().addBox(-3.0F, -1.0F, -3.0F, 6.0F, 1.0F, 6.0F).mirror(false).texOffs(22, 42).mirror().addBox(-2.0F, -7.0F, -2.0F, 4.0F, 1.0F, 4.0F).mirror(false), PartPose.offset(0.0F, 5.1667F, 0.0F));
+            PartDefinition leftGrabbyThing1 = leftClawBase.addOrReplaceChild("leftGrabbyThing1", CubeListBuilder.create().texOffs(52, 61).mirror().addBox(-0.5F, 0.0F, -1.0F, 1.0F, 2.0F, 1.0F).mirror(false), PartPose.offsetAndRotation(0.0F, 0.75F, -1.75F, -0.5236F, 0.0F, 0.0F));
+            PartDefinition leftGrabbyThing11 = leftGrabbyThing1.addOrReplaceChild("leftGrabbyThing11", CubeListBuilder.create(), PartPose.offset(0.0F, 2.466F, -0.25F));
+            leftGrabbyThing11.addOrReplaceChild("RightArm_r3", CubeListBuilder.create().texOffs(52, 56).mirror().addBox(-0.5F, -0.816F, 0.1F, 1.0F, 2.0F, 1.0F).mirror(false), PartPose.offsetAndRotation(0.0F, 0.05F, -0.05F, 1.0472F, 0.0F, 0.0F));
+            PartDefinition leftGrabbyThing2 = leftClawBase.addOrReplaceChild("leftGrabbyThing2", CubeListBuilder.create().texOffs(52, 61).mirror().addBox(-0.5F, 0.0F, -1.0F, 1.0F, 2.0F, 1.0F).mirror(false), PartPose.offsetAndRotation(0.0F, 0.75F, 1.75F, 2.618F, 0.0F, 3.1416F));
+            PartDefinition leftGrabbyThing22 = leftGrabbyThing2.addOrReplaceChild("leftGrabbyThing22", CubeListBuilder.create(), PartPose.offset(0.0F, 2.466F, -0.25F));
+            leftGrabbyThing22.addOrReplaceChild("RightArm_r4", CubeListBuilder.create().texOffs(52, 56).mirror().addBox(-0.5F, -0.816F, 0.1F, 1.0F, 2.0F, 1.0F).mirror(false), PartPose.offsetAndRotation(0.0F, 0.05F, -0.05F, 1.0472F, 0.0F, 0.0F));
+            leftClaw.addOrReplaceChild("leftClawBeams", CubeListBuilder.create().texOffs(60, 47).mirror().addBox(-0.5F, -4.5F, 2.0F, 1.0F, 9.0F, 1.0F).mirror(false).texOffs(60, 47).mirror().addBox(-0.5F, -4.5F, -3.0F, 1.0F, 9.0F, 1.0F).mirror(false), PartPose.offset(0.0F, 0.6667F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 64);
+    }
+
+    public static LayerDefinition createIronManBackpackBodyLayer(ArmorItem.Type... types) {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        List<ArmorItem.Type> armorTypes = Arrays.asList(types);
+        if (armorTypes.contains(ArmorItem.Type.HELMET)) {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.26f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.51f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        } else {
+            partdefinition.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
+            partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27f)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(5.0F, 2.0F, 0.0F));
+        } else {
+            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)).texOffs(36, 33).addBox(-5.0F, -1.0F, 2.0F, 10.0F, 4.0F, 4.0F).texOffs(39, 42).addBox(-5.0F, 3.0F, 2.0F, 10.0F, 3.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+            body.addOrReplaceChild("boosters", CubeListBuilder.create().texOffs(28, 32).addBox(2.0F, -1.5F, -1.5F, 2.0F, 2.0F, 3.0F).texOffs(28, 32).addBox(-4.0F, -1.5F, -1.5F, 2.0F, 2.0F, 3.0F), PartPose.offsetAndRotation(0.0F, 3.75F, 4.5F, 0.7854F, 0.0F, 0.0F));
+            partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(16, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        if (armorTypes.contains(ArmorItem.Type.BOOTS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(0, 48).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(1.9F, 12.0F, 0.0F));
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(0, 32).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.51f)), PartPose.offset(-1.9F, 12.0F, 0.0F));
+        } else if (!armorTypes.contains(ArmorItem.Type.LEGGINGS)) {
+            partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create(), PartPose.ZERO);
+            partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create(), PartPose.ZERO);
+        }
+        return LayerDefinition.create(meshdefinition, 64, 64);
+    }
+
     public static LayerDefinition createWarMachineBodyLayer(ArmorItem.Type... types) {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
@@ -636,6 +729,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
             event.getEntity().getData(MarvelAttachmentTypes.RIGHT_BLADE_UNEQUIP_ANIMATION_STATE).animateWhen(event.getEntity().getMainArm() == HumanoidArm.LEFT ? !event.getEntity().getOffhandItem().is(MarvelItems.CENTURION_BLADE.get()) : !event.getEntity().getMainHandItem().is(MarvelItems.CENTURION_BLADE.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.LEFT_BLADE_EQUIP_ANIMATION_STATE).animateWhen(event.getEntity().getMainArm() == HumanoidArm.LEFT ? event.getEntity().getMainHandItem().is(MarvelItems.CENTURION_BLADE.get()) : event.getEntity().getOffhandItem().is(MarvelItems.CENTURION_BLADE.get()), event.getEntity().tickCount);
             event.getEntity().getData(MarvelAttachmentTypes.LEFT_BLADE_UNEQUIP_ANIMATION_STATE).animateWhen(event.getEntity().getMainArm() == HumanoidArm.LEFT ? !event.getEntity().getMainHandItem().is(MarvelItems.CENTURION_BLADE.get()) : !event.getEntity().getOffhandItem().is(MarvelItems.CENTURION_BLADE.get()), event.getEntity().tickCount);
+            event.getEntity().getData(MarvelAttachmentTypes.CLAWS_EQUIP_ANIMATION_STATE).animateWhen(event.getEntity().isHolding(MarvelItems.DISASTER_RESCUE_CLAWS.get()), event.getEntity().tickCount);
+            event.getEntity().getData(MarvelAttachmentTypes.CLAWS_UNEQUIP_ANIMATION_STATE).animateWhen(!event.getEntity().isHolding(MarvelItems.DISASTER_RESCUE_CLAWS.get()), event.getEntity().tickCount);
         }
     }
 
@@ -650,6 +745,8 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
         this.animate(living.getData(MarvelAttachmentTypes.RIGHT_BLADE_UNEQUIP_ANIMATION_STATE), IronManAnimation.RIGHT_BLADE_UNEQUIP, time);
         this.animate(living.getData(MarvelAttachmentTypes.LEFT_BLADE_EQUIP_ANIMATION_STATE), IronManAnimation.LEFT_BLADE_EQUIP, time);
         this.animate(living.getData(MarvelAttachmentTypes.LEFT_BLADE_UNEQUIP_ANIMATION_STATE), IronManAnimation.LEFT_BLADE_UNEQUIP, time);
+        this.animate(living.getData(MarvelAttachmentTypes.CLAWS_EQUIP_ANIMATION_STATE), IronManAnimation.CLAWS_EQUIP, time);
+        this.animate(living.getData(MarvelAttachmentTypes.CLAWS_UNEQUIP_ANIMATION_STATE), IronManAnimation.CLAWS_UNEQUIP, time);
     }
 
     protected void animate(AnimationState state, AnimationDefinition definition, float time) {
