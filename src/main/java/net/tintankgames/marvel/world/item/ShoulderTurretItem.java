@@ -176,7 +176,13 @@ public class ShoulderTurretItem extends ProjectileWeaponItem {
         if (ammo.is(Items.FIREWORK_ROCKET)) {
             return new FireworkRocketEntity(level, ammo, living, living.getX(), living.getEyeY() - 0.15F, living.getZ(), true);
         } else if (ammo.is(Items.FIRE_CHARGE)) {
-            return new SmallFireball(level, living, new Vec3(living.getX(), living.getEyeY() - 0.15F, living.getZ()));
+            SmallFireball smallFireball = new SmallFireball(level, living.getX(), living.getEyeY() - 0.15F, living.getZ(), Vec3.ZERO);
+            smallFireball.setOwner(living);
+            smallFireball.setXRot(living.getXRot());
+            smallFireball.setYRot(living.getYRot());
+            Vec3 vec3 = living.getLookAngle();
+            smallFireball.setDeltaMovement(vec3);
+            return smallFireball;
         } else {
             Projectile projectile = super.createProjectile(level, living, stack, ammo, bl);
             if (projectile instanceof AbstractArrow abstractarrow) {

@@ -538,7 +538,7 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
             partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
         }
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
-            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)).texOffs(36, 33).addBox(-5.0F, -1.0F, 2.0F, 10.0F, 4.0F, 4.0F).texOffs(39, 42).addBox(-5.0F, 3.0F, 2.0F, 10.0F, 3.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27F)).texOffs(36, 33).addBox(-5.0F, -1.0F, 2.0F, 10.0F, 4.0F, 4.0F).texOffs(39, 42).addBox(-5.0F, 3.0F, 2.0F, 10.0F, 3.0F, 2.0F), PartPose.offset(0.0F, 0.0F, 0.0F));
             body.addOrReplaceChild("boosters", CubeListBuilder.create().texOffs(28, 32).addBox(2.0F, -1.5F, -1.5F, 2.0F, 2.0F, 3.0F).texOffs(28, 32).addBox(-4.0F, -1.5F, -1.5F, 2.0F, 2.0F, 3.0F), PartPose.offsetAndRotation(0.0F, 3.75F, 4.5F, 0.7854F, 0.0F, 0.0F));
             partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(40, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.265f)), PartPose.offset(-5.0F, 2.0F, 0.0F));
             partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(32, 48).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)), PartPose.offset(5.0F, 2.0F, 0.0F));
@@ -576,7 +576,7 @@ public class SuitModel<T extends LivingEntity> extends HumanoidModel<T> {
             partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
         }
         if (armorTypes.contains(ArmorItem.Type.CHESTPLATE)) {
-            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.26F)).texOffs(19, 19).addBox(-4.0F, 0.0F, -2.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)).texOffs(18, 32).addBox(-4.0F, 0.0F, 1.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+            PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 16).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.27F)).texOffs(19, 19).addBox(-4.0F, 0.0F, -2.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)).texOffs(18, 32).addBox(-4.0F, 0.0F, 1.75F, 8.0F, 7.0F, 1.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, 0.0F, 0.0F));
             PartDefinition gunMain = body.addOrReplaceChild("gunMain", CubeListBuilder.create().texOffs(56, 35).addBox(-3.0F, -23.0F, -4.0F, 2.0F, 4.0F, 2.0F, new CubeDeformation(0.26F)), PartPose.offset(-0.1F, 24.0F, 6.0F));
             PartDefinition gunArm = gunMain.addOrReplaceChild("gunArm", CubeListBuilder.create().texOffs(15, 17).addBox(-3.5F, -6.5F, -0.5F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.01F)), PartPose.offsetAndRotation(-2.95F, -20.6F, -2.4F, 0.0F, 1.0472F, 0.0F));
             gunArm.addOrReplaceChild("gun2", CubeListBuilder.create().texOffs(45, 34).addBox(-0.5F, -4.0F, -0.5F, 1.0F, 6.0F, 1.0F), PartPose.offsetAndRotation(-0.95F, -1.4F, 0.0F, 0.0F, 0.0F, -0.5672F));

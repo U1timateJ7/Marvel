@@ -17,10 +17,10 @@ public class MarvelIntegrationMixinPlugin implements IMixinConfigPlugin {
     }
 
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (!mixinClassName.startsWith("net.tintankgames.marvel.mixin.integration.elytraslot") || FMLLoader.getLoadingModList().getModFileById("elytraslot") != null) {
+        if (mixinClassName.startsWith("net.tintankgames.marvel.mixin.integration.elytraslot") && FMLLoader.getLoadingModList().getModFileById("elytraslot") != null) {
             return true;
         }
-        return !mixinClassName.startsWith("net.tintankgames.marvel.mixin.integration.stellaris") || FMLLoader.getLoadingModList().getModFileById("stellaris") != null;
+        return mixinClassName.startsWith("net.tintankgames.marvel.mixin.integration.stellaris") && FMLLoader.getLoadingModList().getModFileById("stellaris") != null;
     }
 
     public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {
