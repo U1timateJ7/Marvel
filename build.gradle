@@ -129,6 +129,7 @@ dependencies {
     localRuntime "top.theillusivec4.caelus:caelus-neoforge:6.0.0+1.20.6"
     compileOnly "curse.maven:elytra-slot-317716:5421068"
     localRuntime "curse.maven:elytra-slot-317716:5421068"
+    compileOnly "curse.maven:stellaris-1036270:5821632"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

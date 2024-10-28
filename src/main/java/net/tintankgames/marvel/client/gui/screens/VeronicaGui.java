@@ -81,25 +81,25 @@ public class VeronicaGui extends LightweightGuiDescription {
         });
         send.setOnClick(() -> {
             if (selectedSuit != -1 && EnergySuitItem.getEnergy(player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit).armor().get(2)) > 5.0F) {
-                PacketDistributor.sendToServer(new SendSuitMessage(player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit)));
+                PacketDistributor.sendToServer(new SendSuitMessage(player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit), 0));
                 selectedSuit = -1;
                 player.getData(MarvelAttachmentTypes.VERONICA).removeSuit(selectedSuit);
             }
         });
         sendAll.setOnClick(() -> {
             for (VeronicaData.Suit suit : player.getData(MarvelAttachmentTypes.VERONICA).getSuits()) {
-                if (EnergySuitItem.getEnergy(suit.armor().get(2)) > 5.0F) PacketDistributor.sendToServer(new SendSuitMessage(suit));
-                player.getData(MarvelAttachmentTypes.VERONICA).removeSuit(suit.id());
+                if (EnergySuitItem.getEnergy(suit.armor().get(2)) > 5.0F) PacketDistributor.sendToServer(new SendSuitMessage(suit, player.getRandom().nextInt(100)));
             }
             Minecraft.getInstance().setScreen(null);
         });
         energy.setOnTick(() -> {
-            if (selectedSuit != -1) {
-                int value = (int) (player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit).armor().get(2).getOrDefault(MarvelDataComponents.ENERGY, 0.0F) * 0.7F);
+            VeronicaData.Suit suit = player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit);
+            if (suit != null) {
+                int value = (int) (suit.armor().get(2).getOrDefault(MarvelDataComponents.ENERGY, 0.0F) * 0.7F);
                 energy.setUv(0, 1.0F - (value / 70.0F), 1, 1);
                 energy.setLocation(7, 52 + (70 - value));
                 energy.setSize(18, value);
-                energyTooltip.setTooltip(Component.translatable("item.suit.energy", String.format("%.1f", player.getData(MarvelAttachmentTypes.VERONICA).getSuit(selectedSuit).armor().get(2).getOrDefault(MarvelDataComponents.ENERGY, 0.0F)), "%"));
+                energyTooltip.setTooltip(Component.translatable("item.suit.energy", String.format("%.1f", suit.armor().get(2).getOrDefault(MarvelDataComponents.ENERGY, 0.0F)), "%"));
             } else {
                 energy.setUv(0, 1, 1, 1);
                 energy.setLocation(7, 122);

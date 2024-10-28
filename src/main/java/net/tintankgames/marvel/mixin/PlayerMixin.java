@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PlayerMixin extends LivingEntity {
     @Shadow public abstract void awardStat(Stat<?> p_36247_);
     @Shadow @Final private Abilities abilities;
-    @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot p_36257_);
 
     protected PlayerMixin(EntityType<? extends LivingEntity> p_20966_, Level p_20967_) {
         super(p_20966_, p_20967_);

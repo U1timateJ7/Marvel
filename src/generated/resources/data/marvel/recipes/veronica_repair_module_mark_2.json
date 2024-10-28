@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "marvel:veronica_repair_module_mark_1"
+    },
+    "G": {
+      "tag": "c:storage_blocks/gold"
+    },
+    "R": {
+      "item": "minecraft:repeater"
+    },
+    "X": {
+      "item": "marvel:gold_titanium_ingot"
+    }
+  },
+  "pattern": [
+    "XGX",
+    "X#X",
+    "XRX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:veronica_repair_module_mark_2"
+  }
+}

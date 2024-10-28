@@ -49,6 +49,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     private static final AttributeModifier creativeFlightModifier = new AttributeModifier(IRON_MAN_UUID, "Iron Man creative flight modifier", 1, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier safeFalLDistanceModifier = new AttributeModifier(IRON_MAN_UUID, "Iron Man safe fall distance modifier", 7, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier fallDamageMultiplierModifier = new AttributeModifier(IRON_MAN_UUID, "Iron Man fall damage multiplier modifier", -0.6, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final AttributeModifier knockbackResistanceModifier = new AttributeModifier(IRON_MAN_UUID, "Iron Man knockback resistance modifier", 1, AttributeModifier.Operation.ADD_VALUE);
 
     public IronManSuitItem(Holder<ArmorMaterial> armorMaterial, Type type, TagKey<Item> tagKey, List<MobEffectInstance> list, List<Item> powerItems, Properties properties) {
         super(armorMaterial, type, tagKey, type == Type.CHESTPLATE ? makeList(list, effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), !powerItems.isEmpty() ? properties.component(MarvelDataComponents.POWER_ITEMS, powerItems) : properties);
@@ -69,9 +70,17 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @SubscribeEvent
     public static void playerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if (serverPlayer.getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null && !serverPlayer.isHolding(MarvelItems.DISASTER_RESCUE_CLAWS.get())) {
+                serverPlayer.getData(MarvelAttachmentTypes.HELD_ENTITY).entity = null;
+            }
             if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_ARMOR)) {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFalLDistanceModifier);
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
+                if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR)) {
+                    serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addOrUpdateTransientModifier(knockbackResistanceModifier);
+                } else {
+                    serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());
+                }
                 if (serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 2.0F) {
                     serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).addOrUpdateTransientModifier(creativeFlightModifier);
                 } else {
@@ -96,6 +105,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).removeModifier(creativeFlightModifier.id());
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).removeModifier(safeFalLDistanceModifier.id());
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
+                serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());
             }
         }
     }
@@ -139,7 +149,22 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     @Override
     protected void fullSuitTick(ItemStack stack, Level level, Player player) {
         super.fullSuitTick(stack, level, player);
-        if (player.getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_6_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 200) {
+            player.addEffect(effect(MobEffects.WATER_BREATHING, 0));
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_23_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+            player.addEffect(effect(MobEffects.FIRE_RESISTANCE, 0));
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+            player.removeEffectsCuredBy(DeadpoolSuitItem.DEADPOOL_CURE);
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_37_ARMOR)) {
+            if (!player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) {
+                player.addEffect(effect(MobEffects.CONDUIT_POWER, 0));
+            }
+            player.addEffect(effect(MobEffects.DOLPHINS_GRACE, 0));
+        }
+        if (hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_39_ARMOR) && !player.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && player.getData(MarvelAttachmentTypes.UNDERWATER_TICKS) < 1200) {
             player.addEffect(effect(MobEffects.WATER_BREATHING, 0));
         }
     }

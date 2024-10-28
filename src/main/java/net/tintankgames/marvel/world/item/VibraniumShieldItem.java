@@ -98,6 +98,7 @@ public class VibraniumShieldItem extends Item implements ProjectileItem {
                 ThrownVibraniumShield thrownVibraniumShield = new ThrownVibraniumShield(level, player, stack);
                 thrownVibraniumShield.setBaseDamage(stack.get(DataComponents.ATTRIBUTE_MODIFIERS).modifiers().stream().filter(modifier -> modifier.attribute().is(Attributes.ATTACK_DAMAGE)).toList().getFirst().modifier().amount() + 1);
                 thrownVibraniumShield.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 2.5F, 1.0F);
+                thrownVibraniumShield.setFromWinterSoldier(stack.has(MarvelDataComponents.WINTER_SOLDIER));
                 if (player.hasInfiniteMaterials()) {
                     thrownVibraniumShield.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                 }

@@ -91,6 +91,6 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
     @Inject(at = @At("RETURN"), method = "getArmPose", cancellable = true)
     private static void noHoldingHands(AbstractClientPlayer player, InteractionHand hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.is(MarvelItems.Tags.RENDER_HAND) && cir.getReturnValue() == HumanoidModel.ArmPose.ITEM) cir.setReturnValue(HumanoidModel.ArmPose.EMPTY);
+        if (stack.is(MarvelItems.Tags.RENDER_HAND) && !stack.is(MarvelItems.Tags.POSE_HAND) && cir.getReturnValue() == HumanoidModel.ArmPose.ITEM) cir.setReturnValue(HumanoidModel.ArmPose.EMPTY);
     }
 }

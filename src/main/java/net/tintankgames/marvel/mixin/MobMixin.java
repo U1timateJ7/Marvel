@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.level.Level;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,6 +36,13 @@ public abstract class MobMixin extends LivingEntity {
             ItemStack itemstack1 = ItemUtils.createFilledResult(itemStack, player, MarvelItems.VILLAGER_BLOOD_SAMPLE.toStack());
             player.setItemInHand(hand, itemstack1);
             cir.setReturnValue(InteractionResult.sidedSuccess(level().isClientSide));
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "getTarget", cancellable = true)
+    private void noPushingAround(CallbackInfoReturnable<Boolean> cir) {
+        if (level().players().stream().anyMatch(player -> player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == this)) {
+            cir.setReturnValue(null);
         }
     }
 }

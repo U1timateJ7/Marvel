@@ -1,14 +1,19 @@
 package net.tintankgames.marvel.mixin;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -45,9 +50,30 @@ public abstract class LivingEntityMixin extends Entity {
     @Shadow public abstract ItemStack getItemBySlot(EquipmentSlot p_21127_);
     @Shadow private Optional<BlockPos> lastClimbablePos;
     @Shadow public abstract AttributeMap getAttributes();
+    @Shadow public abstract void knockback(double p_147241_, double p_147242_, double p_147243_);
+    @Shadow public abstract double getAttributeValue(Holder<Attribute> p_251296_);
 
     public LivingEntityMixin(EntityType<?> p_19870_, Level p_19871_) {
         super(p_19870_, p_19871_);
+    }
+
+    @Inject(at = @At("RETURN"), method = "hurt")
+    private void mark25Knockback(DamageSource source, float p_21017_, CallbackInfoReturnable<Boolean> cir) {
+        if (!source.is(DamageTypeTags.NO_KNOCKBACK) && cir.getReturnValueZ() && source.getDirectEntity() instanceof LivingEntity attacker && hasArmor(attacker, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR)) {
+            knockback(1.0, attacker.getX() - getX(), attacker.getZ() - getZ());
+            if (attacker.getMainHandItem().isEmpty()) {
+                double d0 = getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+                double d1 = Math.max(0.0, 1.0 - d0);
+                addDeltaMovement(new Vec3(0.0, 0.4F * d1, 0.0));
+            }
+        }
+    }
+
+    @Inject(method = "hasEffect", at = @At("HEAD"), cancellable = true)
+    private void nightsYourVision(Holder<MobEffect> p_316430_, CallbackInfoReturnable<Boolean> cir) {
+        if (hasArmor(MarvelItems.Tags.IRON_MAN_MARK_25_ARMOR, getItemBySlot(EquipmentSlot.HEAD)) && p_316430_ == MobEffects.NIGHT_VISION) {
+            cir.setReturnValue(true);
+        }
     }
 
     @Inject(at = @At("HEAD"), method = "isDamageSourceBlocked", cancellable = true)
@@ -135,6 +161,24 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Unique
+    private boolean hasArmor(TagKey<Item> tagKey, ItemStack helmet) {
+        boolean head = getItemBySlot(EquipmentSlot.HEAD).is(tagKey) && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false);
+        boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        return head && chest && legs && feet;
+    }
+
+    @Unique
+    private boolean hasArmor(LivingEntity living, TagKey<Item> tagKey) {
+        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).is(tagKey);
+        boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        return head && chest && legs && feet;
+    }
+
+    @Unique
     private boolean isCurrentBlockClimbable(BlockState state, BlockPos pos) {
         if (CommonHooks.isLivingOnLadder(state, level(), pos, (LivingEntity)(Object)this).isPresent()) return true;
         else {
@@ -199,6 +243,13 @@ public abstract class LivingEntityMixin extends Entity {
     private void flyingBetter(float p_268283_, CallbackInfo ci) {
         if ((Object)this instanceof Player player && (player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || player.getMainHandItem().is(MarvelItems.MJOLNIR) || player.getMainHandItem().is(MarvelItems.STORMBREAKER) || player.getOffhandItem().is(MarvelItems.MJOLNIR) || player.getOffhandItem().is(MarvelItems.STORMBREAKER))) {
             ci.cancel();
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "isPushable", cancellable = true)
+    private void noPushingAround(CallbackInfoReturnable<Boolean> cir) {
+        if (level().players().stream().anyMatch(player -> player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == this)) {
+            cir.setReturnValue(false);
         }
     }
 }

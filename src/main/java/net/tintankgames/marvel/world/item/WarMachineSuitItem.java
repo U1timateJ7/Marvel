@@ -10,6 +10,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public abstract class WarMachineSuitItem extends SentryIronManSuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.warMachineSuit(type);
     }

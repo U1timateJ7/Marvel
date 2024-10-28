@@ -1,0 +1,36 @@
+package net.tintankgames.marvel.world.item;
+
+import net.minecraft.network.chat.Component;
+
+import java.util.List;
+
+public class IronManMark28SuitItem extends SentryIronManSuitItem {
+    public IronManMark28SuitItem(Type type, Properties properties) {
+        super(MarvelArmorMaterials.IRON_MAN_IRON_DIAMOND, type, MarvelItems.Tags.IRON_MAN_MARK_28_ARMOR, List.of(), List.of(MarvelItems.REPULSOR.get(), MarvelItems.UNIBEAM.get()), properties);
+    }
+
+    @Override
+    public Component mark() {
+        return Component.translatable("container.suit_charger.mark_28");
+    }
+
+    @Override
+    public Component hudMark() {
+        return Component.translatable("gui.iron_man.mark_28");
+    }
+
+    @Override
+    public Component sentryName() {
+        return Component.translatable("entity.marvel.iron_man_sentry.mark_28");
+    }
+
+    @Override
+    public int markNumber() {
+        return 28;
+    }
+
+    @Override
+    public Component veronicaName() {
+        return Component.translatable("gui.veronica.iron_man_mark_28");
+    }
+}

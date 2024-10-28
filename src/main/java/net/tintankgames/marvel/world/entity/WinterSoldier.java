@@ -286,17 +286,6 @@ public class WinterSoldier extends Monster implements CrossbowAttackMob {
         }
     }
 
-    @Override
-    public boolean hurt(DamageSource p_21016_, float p_21017_) {
-        if (p_21016_.getDirectEntity() instanceof ThrownVibraniumShield shield && shield.getOwner() instanceof ServerPlayer player) {
-            setItemInHand(InteractionHand.OFF_HAND, shield.getItem().copy());
-            shield.discard();
-            setTarget(player);
-            return false;
-        }
-        return super.hurt(p_21016_, p_21017_);
-    }
-
     public enum ArmPose {
         NEUTRAL,
         CROSSBOW_HOLD,

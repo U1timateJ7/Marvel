@@ -1,0 +1,39 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "marvel:diamond_arc_reactor"
+    },
+    {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_37_chestplate"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_35_chestplate"
+  }
+}

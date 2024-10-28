@@ -12,10 +12,12 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +30,7 @@ import java.util.function.Consumer;
 
 @EventBusSubscriber
 public class VeronicaData {
-    public static final Codec<VeronicaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.BOOL.fieldOf("enabled").forGetter(data -> data.enabled), Suit.CODEC.listOf().fieldOf("suits").forGetter(data -> data.suits), Codec.INT.fieldOf("next_id").forGetter(data -> data.nextId)).apply(instance, (Boolean enabled1, List<Suit> suits1, Integer nextId1) -> new VeronicaData(enabled1, suits1, nextId1)));
+    public static final Codec<VeronicaData> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.BOOL.fieldOf("enabled").forGetter(data -> data.enabled), Suit.CODEC.listOf().fieldOf("suits").forGetter(data -> data.suits), Codec.INT.fieldOf("next_id").forGetter(data -> data.nextId)).apply(instance, VeronicaData::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, VeronicaData> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.BOOL, data -> data.enabled, Suit.STREAM_CODEC.apply(ByteBufCodecs.list()), data -> data.suits, ByteBufCodecs.INT, data -> data.nextId, VeronicaData::new);
 
     private boolean enabled;
@@ -38,6 +40,10 @@ public class VeronicaData {
     public VeronicaData(boolean enabled, List<Suit> suits, int nextId) {
         this.enabled = enabled;
         this.suits = new ArrayList<>(suits);
+        this.suits.forEach(suit -> suit.armor.forEach(piece -> {
+            piece.remove(MarvelDataComponents.FLYING);
+            piece.remove(MarvelDataComponents.DELTA_MOVEMENT);
+        }));
         this.nextId = nextId;
         if (this.suits.size() > 1) this.suits.sort(Comparator.comparingInt(Suit::mark));
     }
@@ -62,6 +68,10 @@ public class VeronicaData {
     }
 
     public void addSuit(Suit suit) {
+        suit.armor.forEach(piece -> {
+            piece.remove(MarvelDataComponents.FLYING);
+            piece.remove(MarvelDataComponents.DELTA_MOVEMENT);
+        });
         suits.add(suit);
         suits.sort(Comparator.comparingInt(Suit::mark));
     }
@@ -114,6 +124,34 @@ public class VeronicaData {
                 suit.armor.forEach(piece -> EnergySuitItem.addEnergy(piece, 0.005F));
             }
             PacketDistributor.sendToPlayer(player, new SyncMessage(veronica));
+        }
+    }
+
+    @SubscribeEvent
+    public static void loggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
+        }
+    }
+
+    @SubscribeEvent
+    public static void respawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
+        }
+    }
+
+    @SubscribeEvent
+    public static void changedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
+        }
+    }
+
+    @SubscribeEvent
+    public static void clone(PlayerEvent.Clone event) {
+        if (event.getEntity() instanceof ServerPlayer player) {
+            player.setData(MarvelAttachmentTypes.VERONICA, event.getOriginal().getData(MarvelAttachmentTypes.VERONICA));
         }
     }
 

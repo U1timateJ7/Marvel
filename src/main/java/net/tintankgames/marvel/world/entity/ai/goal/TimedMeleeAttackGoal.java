@@ -30,7 +30,7 @@ public class TimedMeleeAttackGoal extends Goal {
         this.speedModifier = p_25553_;
         this.followingTargetEvenIfNotSeen = p_25554_;
         this.attackInterval = attackInterval;
-        this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     @Override

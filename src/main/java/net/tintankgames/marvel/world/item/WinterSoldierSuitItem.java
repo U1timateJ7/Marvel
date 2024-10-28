@@ -3,6 +3,8 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.tintankgames.marvel.client.model.MarvelModels;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class WinterSoldierSuitItem extends SuitItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public ModelLayerLocation modelFactory(Type type, ItemStack itemStack) {
         return MarvelModels.winterSoldierSuit(type);
     }

@@ -1,11 +1,9 @@
 package net.tintankgames.marvel.network;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import net.tintankgames.marvel.client.gui.screens.VeronicaScreen;
 
 public class OpenVeronicaMessage implements CustomPacketPayload {
     public static final OpenVeronicaMessage INSTANCE = new OpenVeronicaMessage();
@@ -17,7 +15,7 @@ public class OpenVeronicaMessage implements CustomPacketPayload {
     public static void handle(OpenVeronicaMessage message, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isClientbound()) {
-                Minecraft.getInstance().setScreen(new VeronicaScreen());
+                MarvelNetworking.clientUtils.openVeronica();
             }
         });
     }
