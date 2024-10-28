@@ -15,6 +15,9 @@ repositories {
         url = 'https://maven.tintankgames.net/'
     }
     maven {
+        url = 'https://maven.theillusivec4.top/'
+    }
+    maven {
         name = 'TerraformersMC'
         url = 'https://maven.terraformersmc.com/'
     }
@@ -127,6 +130,9 @@ dependencies {
     localRuntime "mezz.jei:jei-${project.minecraft_version}-neoforge:${project.jei_version}"
     compileOnly "mezz.jei:jei-${project.minecraft_version}-common-api:${project.jei_version}"
     compileOnly "mezz.jei:jei-${project.minecraft_version}-neoforge-api:${project.jei_version}"
+    localRuntime "com.illusivesoulworks.caelus:caelus-neoforge:7.0.1+1.21.1"
+    compileOnly "curse.maven:elytra-slot-317716:5778461"
+    localRuntime "curse.maven:elytra-slot-317716:5778461"
     compileOnly "curse.maven:stellaris-1036270:5821632"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
