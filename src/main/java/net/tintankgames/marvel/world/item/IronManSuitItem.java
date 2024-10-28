@@ -51,6 +51,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
     private static final AttributeModifier safeFalLDistanceModifier = new AttributeModifier(IRON_MAN_MODIFIER_ID, 7, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier fallDamageMultiplierModifier = new AttributeModifier(IRON_MAN_MODIFIER_ID, -0.6, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     private static final AttributeModifier knockbackResistanceModifier = new AttributeModifier(IRON_MAN_MODIFIER_ID, 1, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier submergedMiningSpeedModifier = new AttributeModifier(IRON_MAN_MODIFIER_ID, 4.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
     public IronManSuitItem(Holder<ArmorMaterial> armorMaterial, Type type, TagKey<Item> tagKey, List<MobEffectInstance> list, List<Item> powerItems, Properties properties) {
         super(armorMaterial, type, tagKey, type == Type.CHESTPLATE ? makeList(list, effect(MobEffects.DAMAGE_BOOST, 0)) : List.of(), !powerItems.isEmpty() ? properties.component(MarvelDataComponents.POWER_ITEMS, powerItems) : properties);
@@ -82,6 +83,11 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 } else {
                     serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());
                 }
+                if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_37_ARMOR)) {
+                    serverPlayer.getAttribute(Attributes.SUBMERGED_MINING_SPEED).addOrUpdateTransientModifier(submergedMiningSpeedModifier);
+                } else {
+                    serverPlayer.getAttribute(Attributes.SUBMERGED_MINING_SPEED).removeModifier(submergedMiningSpeedModifier.id());
+                }
                 if (serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 2.0F) {
                     serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).addOrUpdateTransientModifier(creativeFlightModifier);
                 } else {
@@ -107,6 +113,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).removeModifier(safeFalLDistanceModifier.id());
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
                 serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());
+                serverPlayer.getAttribute(Attributes.SUBMERGED_MINING_SPEED).removeModifier(submergedMiningSpeedModifier.id());
             }
         }
     }
