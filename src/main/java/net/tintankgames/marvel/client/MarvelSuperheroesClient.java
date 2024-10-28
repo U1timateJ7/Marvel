@@ -167,7 +167,7 @@ public class MarvelSuperheroesClient {
                 BlockState state = level.getBlockState(hitResult.getBlockPos());
                 ItemStack stack = living.getItemInHand(InteractionHand.MAIN_HAND);
 
-                if (stack.getItem() instanceof MiningDrillItem drillItem && state.is(BlockTags.MINEABLE_WITH_PICKAXE) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL)) {
+                if (stack.getItem() instanceof MiningDrillItem drillItem && (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL)) {
                     if (living instanceof Player player && !living.isShiftKeyDown() && !player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SINGLE_BLOCK, false)) {
                         ImmutableList<BlockPos> potentialBlocks = drillItem.getExtraBlocksDug(level, player, event.getTarget());
                         List<BlockPos> breakingBlocks = new ArrayList<>();
@@ -175,7 +175,6 @@ public class MarvelSuperheroesClient {
                             BlockState targetState = level.getBlockState(candidate);
                             if (drillItem.canBreakExtraBlock(level, candidate, targetState, player)) breakingBlocks.add(candidate);
                         }
-                        MarvelSuperheroes.LOGGER.info("Adding {} of {} blocks to be highlighted", breakingBlocks.size(), potentialBlocks.size());
                         drawAdditionalBlockBreak(event, player, breakingBlocks);
                     }
                 }
@@ -205,7 +204,6 @@ public class MarvelSuperheroesClient {
                             BlockState iblockstate = player.level().getBlockState(blockpos);
                             if (!iblockstate.isAir()) Minecraft.getInstance().getBlockRenderer().renderBreakingTexture(iblockstate, blockpos, player.level(), poseStack, worldRendererIn);
                         }
-                        MarvelSuperheroes.LOGGER.info("Rendering block at pos: {} to break", blockpos);
                         poseStack.popPose();
                     }
                 }
