@@ -22,9 +22,6 @@ repositories {
         name = 'BlameJared Maven'
         url = 'https://maven.blamejared.com'
     }
-    maven {
-        url = 'https://maven.architectury.dev/'
-    }
     exclusiveContent {
         forRepository {
             maven {
