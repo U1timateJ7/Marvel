@@ -9,6 +9,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.attachment.EntityHolder;
 import net.tintankgames.marvel.attachment.TargetedEntity;
 import net.tintankgames.marvel.attachment.VeronicaData;
 
@@ -55,5 +56,6 @@ public class MarvelNetworking {
         registrar.playToServer(SEND_SUIT, SendSuitMessage.CODEC, SendSuitMessage::handle);
         registrar.playToClient(TargetedEntity.SyncMessage.TYPE, TargetedEntity.SyncMessage.CODEC, TargetedEntity.SyncMessage::handle);
         registrar.playToClient(VeronicaData.SyncMessage.TYPE, VeronicaData.SyncMessage.CODEC, VeronicaData.SyncMessage::handle);
+        registrar.playToClient(EntityHolder.SyncMessage.TYPE, EntityHolder.SyncMessage.CODEC, EntityHolder.SyncMessage::handle);
     }
 }

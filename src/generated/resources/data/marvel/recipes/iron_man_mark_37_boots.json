@@ -3,16 +3,16 @@
   "consume_suit": false,
   "ingredients": [
     {
-      "tag": "c:gems/prismarine"
+      "item": "minecraft:prismarine_shard"
     },
     {
-      "tag": "c:gems/prismarine"
+      "item": "minecraft:prismarine_shard"
     },
     {
-      "tag": "c:gems/prismarine"
+      "item": "minecraft:prismarine_shard"
     },
     {
-      "tag": "c:gems/prismarine"
+      "item": "minecraft:prismarine_shard"
     },
     {
       "tag": "c:ingots/copper"

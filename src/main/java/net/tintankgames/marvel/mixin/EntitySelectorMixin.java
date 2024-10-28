@@ -14,6 +14,6 @@ import java.util.function.Predicate;
 public class EntitySelectorMixin {
     @Inject(at = @At("RETURN"), method = "pushableBy", cancellable = true)
     private static void noPushingAround(Entity pushing, CallbackInfoReturnable<Predicate<Entity>> cir) {
-        cir.setReturnValue(cir.getReturnValue().and(entity -> pushing.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == entity || entity.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == pushing));
+        cir.setReturnValue(cir.getReturnValue().and(entity -> !(pushing.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == entity || entity.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == pushing)));
     }
 }
