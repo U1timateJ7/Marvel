@@ -4,6 +4,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -22,7 +23,7 @@ public class DimensionOxygenManagerMixin {
 
     @Unique
     private boolean hasArmor(LivingEntity living, TagKey<Item> tagKey) {
-        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).is(tagKey);
+        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).is(tagKey) && !living.getItemBySlot(EquipmentSlot.HEAD).getOrDefault(MarvelDataComponents.HELMET_OPEN, false);
         boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
         boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
