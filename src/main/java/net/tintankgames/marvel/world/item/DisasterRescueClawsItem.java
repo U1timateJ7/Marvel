@@ -1,7 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -13,30 +13,25 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.client.MarvelClientEnumExtensions;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 @EventBusSubscriber
 public class DisasterRescueClawsItem extends SuitPowerItem {
     public DisasterRescueClawsItem(Properties properties) {
         super(properties.attributes(SwordItem.createAttributes(Tiers.IRON, 2, -2.8F)));
-    }
-
-    @Override
-    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity living, InteractionHand hand) {
-        if ((living instanceof Mob || living instanceof Player) && living.getBoundingBox().getSize() <= 2.5 && player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == null) {
-            if (!player.level().isClientSide()) player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity = living;
-            return InteractionResult.sidedSuccess(player.level().isClientSide());
-        } else if (player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null) {
-            if (!player.level().isClientSide()) player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity = null;
-            return InteractionResult.CONSUME;
-        } else {
-            return super.interactLivingEntity(stack, player, living, hand);
-        }
     }
 
     @Override
@@ -49,18 +44,50 @@ public class DisasterRescueClawsItem extends SuitPowerItem {
     }
 
     @SubscribeEvent
+    public static void interactLivingEntity(PlayerInteractEvent.EntityInteract event) {
+        if (event.getItemStack().getItem() instanceof DisasterRescueClawsItem) {
+            if ((event.getTarget() instanceof Mob || event.getTarget() instanceof Player) && event.getTarget().getBoundingBox().getSize() <= 2.5 && event.getEntity().getData(MarvelAttachmentTypes.HELD_ENTITY).entity == null) {
+                if (!event.getEntity().level().isClientSide()) event.getEntity().getData(MarvelAttachmentTypes.HELD_ENTITY).entity = event.getTarget();
+                event.setCancellationResult(InteractionResult.sidedSuccess(event.getEntity().level().isClientSide()));
+                event.setCanceled(true);
+            } else if (event.getEntity().getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null) {
+                if (!event.getEntity().level().isClientSide()) event.getEntity().getData(MarvelAttachmentTypes.HELD_ENTITY).entity = null;
+                event.setCancellationResult(InteractionResult.CONSUME);
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void playerTick(PlayerTickEvent.Post event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             Entity entity = player.getData(MarvelAttachmentTypes.HELD_ENTITY).entity;
             if (entity instanceof LivingEntity living) {
-                entity.moveTo(new Vec3(0, 0, 1).yRot(player.getViewYRot(1.0F) * -Mth.DEG_TO_RAD).xRot(player.getViewXRot(1.0F) * -Mth.DEG_TO_RAD).subtract(0, 0.5, 0).add(player.position()));
-                entity.setDeltaMovement(0, 0, 0);
-                entity.resetFallDistance();
+                living.moveTo(player.position().add(0, 1.1 - (living.getBbHeight() / 2), 0).add(player.getViewVector(1.0F)));
+                living.setDeltaMovement(0, 0, 0);
+                living.resetFallDistance();
                 if (living instanceof Mob mob) {
                     mob.setTarget(null);
                     mob.goalSelector.getAvailableGoals().forEach(WrappedGoal::stop);
                 }
             }
         }
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack p_43417_) {
+        return UseAnim.CUSTOM;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Nullable
+            @Override
+            public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
+                return entityLiving.getItemInHand(hand) == stack && entityLiving.getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null ? MarvelClientEnumExtensions.CLAWS_HOLD_POSE : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
+            }
+        });
     }
 }
