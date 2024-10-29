@@ -36,4 +36,12 @@ public class MarvelClientEnumExtensions {
         armModel.offsetPos(new Vector3f(arm == HumanoidArm.RIGHT ? -1.0F : 1.0F, 0.0F, 0.0F));
         armModel.setRotation(-1.309F, 2.3562F * (arm == HumanoidArm.LEFT ? -1.0F : 1.0F), 0.3927F * (arm == HumanoidArm.RIGHT ? -1.0F : 1.0F));
     });
+    public static final EnumProxy<HumanoidModel.ArmPose> CLAWS_HOLD_POSE = new EnumProxy<>(HumanoidModel.ArmPose.class, true, (IArmPoseTransformer) (model, entity, arm) -> {
+        ModelPart mainHand = arm == HumanoidArm.RIGHT ? model.rightArm : model.leftArm;
+        ModelPart offhand = arm == HumanoidArm.RIGHT ? model.leftArm : model.rightArm;
+        mainHand.yRot = (arm == HumanoidArm.RIGHT ? -0.1309F : 0.1309F) + model.head.yRot;
+        offhand.yRot = (arm == HumanoidArm.RIGHT ? 0.1309F : -0.1309F) + model.head.yRot;
+        mainHand.xRot = (float) (-Math.PI / 2) + model.head.xRot + 0.1F;
+        offhand.xRot = (float) (-Math.PI / 2) + model.head.xRot + 0.1F;
+    });
 }

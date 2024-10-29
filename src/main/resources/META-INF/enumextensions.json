@@ -28,6 +28,15 @@
       }
     },
     {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "MARVEL_CLAWS_HOLD",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "net/tintankgames/marvel/client/MarvelClientEnumExtensions",
+        "field": "CLAWS_HOLD_POSE"
+      }
+    },
+    {
       "enum": "net/minecraft/world/item/ItemDisplayContext",
       "name": "MARVEL_FLYING_LEFT_HAND",
       "constructor": "(ILjava/lang/String;Ljava/lang/String;)V",

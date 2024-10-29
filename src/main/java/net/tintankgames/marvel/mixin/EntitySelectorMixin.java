@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.function.Predicate;
 
 @Mixin(EntitySelector.class)
-public class EntitySelectorMixin {
+public abstract class EntitySelectorMixin {
     @Inject(at = @At("RETURN"), method = "pushableBy", cancellable = true)
     private static void noPushingAround(Entity pushing, CallbackInfoReturnable<Predicate<Entity>> cir) {
         cir.setReturnValue(cir.getReturnValue().and(entity -> !(pushing.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == entity || entity.getData(MarvelAttachmentTypes.HELD_ENTITY).entity == pushing)));

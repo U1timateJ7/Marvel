@@ -7,6 +7,7 @@
     "AbstractArrowMixin",
     "BeardifierMixin",
     "BlockBehaviourMixin",
+    "BrainMixin",
     "DamageSourcesMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",

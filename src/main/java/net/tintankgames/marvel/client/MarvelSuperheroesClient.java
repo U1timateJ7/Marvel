@@ -48,6 +48,7 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.gui.screens.SpaceStoneScreen;
 import net.tintankgames.marvel.client.gui.screens.VeronicaScreen;
 import net.tintankgames.marvel.client.model.SuitModel;
@@ -56,10 +57,7 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.mixin.LevelRendererAccessor;
 import net.tintankgames.marvel.network.ClientUtils;
 import net.tintankgames.marvel.network.MarvelNetworking;
-import net.tintankgames.marvel.world.item.MarvelItems;
-import net.tintankgames.marvel.world.item.MiningDrillItem;
-import net.tintankgames.marvel.world.item.SuitItem;
-import net.tintankgames.marvel.world.item.VibraniumShieldItem;
+import net.tintankgames.marvel.world.item.*;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
@@ -131,11 +129,21 @@ public class MarvelSuperheroesClient {
                 return entityLiving.getUseItem() == stack ? MarvelClientEnumExtensions.VIBRANIUM_SHIELD_POSE.getValue() : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
             }
         };
+        IClientItemExtensions clawsExtensions = new IClientItemExtensions() {
+            @Nullable
+            @Override
+            public HumanoidModel.ArmPose getArmPose(LivingEntity entityLiving, InteractionHand hand, ItemStack stack) {
+                return entityLiving.getItemInHand(hand) == stack && entityLiving.getData(MarvelAttachmentTypes.HELD_ENTITY).entity != null ? MarvelClientEnumExtensions.CLAWS_HOLD_POSE.getValue() : IClientItemExtensions.super.getArmPose(entityLiving, hand, stack);
+            }
+        };
         for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof SuitItem).toList()) {
             event.registerItem(suitExtensions, item);
         }
         for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof VibraniumShieldItem).toList()) {
             event.registerItem(shieldExtensions, item);
+        }
+        for (Item item : BuiltInRegistries.ITEM.stream().filter(item -> item instanceof DisasterRescueClawsItem).toList()) {
+            event.registerItem(clawsExtensions, item);
         }
     }
 
