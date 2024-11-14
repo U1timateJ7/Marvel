@@ -175,7 +175,7 @@ public class MarvelSuperheroesClient {
                 BlockState state = level.getBlockState(hitResult.getBlockPos());
                 ItemStack stack = living.getItemInHand(InteractionHand.MAIN_HAND);
 
-                if (stack.getItem() instanceof MiningDrillItem drillItem && (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL)) {
+                if (stack.getItem() instanceof MiningDrillItem drillItem && (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL) || state.is(BlockTags.MINEABLE_WITH_HOE)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL)) {
                     if (living instanceof Player player && !living.isShiftKeyDown() && !player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SINGLE_BLOCK, false)) {
                         ImmutableList<BlockPos> potentialBlocks = drillItem.getExtraBlocksDug(level, player, event.getTarget());
                         List<BlockPos> breakingBlocks = new ArrayList<>();
