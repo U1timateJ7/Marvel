@@ -51,11 +51,11 @@ public class MiningDrillItem extends SuitPowerItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        return (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        return (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL) || state.is(BlockTags.MINEABLE_WITH_HOE)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
     }
 
     public boolean canBreakExtraBlock(Level world, BlockPos pos, BlockState state, Player player) {
-        return state.canHarvestBlock(world, pos, player) && (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        return state.canHarvestBlock(world, pos, player) && (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL) || state.is(BlockTags.MINEABLE_WITH_HOE)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
     }
 
     public ImmutableList<BlockPos> getExtraBlocksDug(Level world, Player player, HitResult rtr) {
@@ -78,7 +78,7 @@ public class MiningDrillItem extends SuitPowerItem {
                     state = world.getBlockState(pos);
                     if (state.isAir()) continue;
                     boolean canHarvest = world.getBlockState(pos).canHarvestBlock(world, pos, player);
-                    boolean drillMat = (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
+                    boolean drillMat = (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL) || state.is(BlockTags.MINEABLE_WITH_HOE)) && !state.is(BlockTags.INCORRECT_FOR_IRON_TOOL);
                     boolean hardness = state.getDestroyProgress(player, world, pos) >= maxHardness;
                     if (canHarvest && drillMat && hardness) b.add(pos);
                 }
