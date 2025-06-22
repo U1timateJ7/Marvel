@@ -40,6 +40,7 @@ import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -57,7 +58,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
 
     private static List<MobEffectInstance> makeList(List<MobEffectInstance> baseList, MobEffectInstance... mobEffectInstances) {
         List<MobEffectInstance> list = new ArrayList<>(baseList);
-        list.addAll(List.of(mobEffectInstances));
+        list.addAll(Arrays.stream(mobEffectInstances).filter(instance -> baseList.stream().map(MobEffectInstance::getEffect).noneMatch(instance::is)).toList());
         return list;
     }
 
@@ -76,7 +77,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
             if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_ARMOR)) {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFalLDistanceModifier);
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
-                if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR)) {
+                if (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) || hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_38_ARMOR)) {
                     serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addOrUpdateTransientModifier(knockbackResistanceModifier);
                 } else {
                     serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());

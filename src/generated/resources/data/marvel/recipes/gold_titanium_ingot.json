@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
       "item": "minecraft:gold_ingot"

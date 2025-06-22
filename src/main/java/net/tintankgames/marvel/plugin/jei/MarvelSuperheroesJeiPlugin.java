@@ -2,6 +2,7 @@ package net.tintankgames.marvel.plugin.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -12,10 +13,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.gui.screens.SuitRepairingScreen;
 import net.tintankgames.marvel.client.gui.screens.SuitUpgradingScreen;
@@ -23,6 +21,7 @@ import net.tintankgames.marvel.world.inventory.MarvelMenuTypes;
 import net.tintankgames.marvel.world.inventory.SuitRepairingMenu;
 import net.tintankgames.marvel.world.inventory.SuitUpgradingMenu;
 import net.tintankgames.marvel.world.inventory.SuitVariantMenu;
+import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.crafting.MarvelRecipeTypes;
 import net.tintankgames.marvel.world.item.crafting.SuitRepairingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
@@ -30,6 +29,7 @@ import net.tintankgames.marvel.world.item.crafting.SuitVariantRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,10 +77,24 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_UPGRADING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_UPGRADING.get()));
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_VARIANT, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_VARIANT.get()));
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_REPAIRING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_REPAIRING.get()));
+
+        registration.addRecipes(RecipeTypes.CRAFTING, getSpecialRecipes());
     }
 
     private static <C extends Container, T extends Recipe<C>> List<RecipeHolder<T>> getValidHandledRecipes(RecipeManager recipeManager, RecipeType<T> recipeType) {
         return recipeManager.getAllRecipesFor(recipeType).stream().toList();
+    }
+
+    private List<RecipeHolder<CraftingRecipe>> getSpecialRecipes() {
+        List<RecipeHolder<CraftingRecipe>> specialRecipes = new ArrayList<>();
+        specialRecipes.addAll(ShieldArtRecipeMaker.createRecipes());
+        specialRecipes.addAll(ShieldCleanRecipeMaker.createRecipes());
+        specialRecipes.addAll(NecklaceRecipeMaker.createRecipes(MarvelItems.KINETIC_BLACK_PANTHER_NECKLACE.get()));
+        specialRecipes.addAll(NecklaceRecipeMaker.createRecipes(MarvelItems.KILLMONGER_NECKLACE.get()));
+        specialRecipes.addAll(NecklaceRecipeMaker.createRecipes(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get()));
+        specialRecipes.addAll(NecklaceRecipeMaker.createRecipes(MarvelItems.IRON_MAN_MARK_5_SUITCASE.get()));
+        specialRecipes.addAll(IgorRecipeMaker.createRecipes(MarvelItems.IRON_MAN_MARK_38.get(), MarvelItems.IRON_MAN_MARK_38_HELMET_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_CHESTPLATE_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_LEGGINGS_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_BOOTS_COMPONENT.get()));
+        return specialRecipes;
     }
 
     @Override

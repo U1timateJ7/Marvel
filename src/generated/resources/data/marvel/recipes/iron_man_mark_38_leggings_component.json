@@ -1,0 +1,33 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/titanium"
+    },
+    {
+      "tag": "c:ingots/titanium"
+    },
+    {
+      "tag": "c:ingots/titanium"
+    },
+    {
+      "tag": "c:ingots/titanium"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_38_leggings_component"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_37_leggings"
+  }
+}

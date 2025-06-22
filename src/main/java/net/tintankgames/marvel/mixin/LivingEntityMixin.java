@@ -58,10 +58,10 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @Inject(at = @At("RETURN"), method = "hurt")
-    private void mark25Knockback(DamageSource source, float p_21017_, CallbackInfoReturnable<Boolean> cir) {
-        if (!source.is(DamageTypeTags.NO_KNOCKBACK) && cir.getReturnValueZ() && source.getDirectEntity() instanceof LivingEntity attacker && hasArmor(attacker, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR)) {
+    private void mark24Knockback(DamageSource source, float p_21017_, CallbackInfoReturnable<Boolean> cir) {
+        if (!source.is(DamageTypeTags.NO_KNOCKBACK) && cir.getReturnValueZ() && source.getDirectEntity() instanceof LivingEntity attacker && (hasArmor(attacker, MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) || hasArmor(attacker, MarvelItems.Tags.IRON_MAN_MARK_38_ARMOR))) {
             knockback(1.0, attacker.getX() - getX(), attacker.getZ() - getZ());
-            if (attacker.getMainHandItem().isEmpty()) {
+            if (attacker.getMainHandItem().isEmpty() || hasArmor(attacker, MarvelItems.Tags.IRON_MAN_MARK_38_ARMOR)) {
                 double d0 = getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
                 double d1 = Math.max(0.0, 1.0 - d0);
                 addDeltaMovement(new Vec3(0.0, 0.4F * d1, 0.0));

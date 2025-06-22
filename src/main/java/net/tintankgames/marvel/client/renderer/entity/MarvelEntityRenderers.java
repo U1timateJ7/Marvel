@@ -20,6 +20,7 @@ public class MarvelEntityRenderers {
         event.registerEntityRenderer(MarvelEntityTypes.WINTER_SOLDIER.get(), WinterSoldierRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.RED_SKULL.get(), RedSkullRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.IRON_MAN_SENTRY.get(), IronManSentryRenderer::new);
+        event.registerEntityRenderer(MarvelEntityTypes.IRON_MAN_MARK_38.get(), IgorRenderer::new);
 
         event.registerEntityRenderer(MarvelEntityTypes.VIBRANIUM_SHIELD.get(), ThrownVibraniumShieldRenderer::new);
         event.registerEntityRenderer(MarvelEntityTypes.WEB_SHOT.get(), WebShotRenderer::new);

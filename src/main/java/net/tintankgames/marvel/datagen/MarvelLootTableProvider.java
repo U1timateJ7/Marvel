@@ -61,6 +61,7 @@ public class MarvelLootTableProvider {
             dropSelf(MarvelBlocks.URU_BLOCK.get());
             dropSelf(MarvelBlocks.SUIT_TABLE.get());
             dropSelf(MarvelBlocks.SUIT_CHARGER.get());
+            dropSelf(MarvelBlocks.MARK_38_CHARGER.get());
             dropSelf(MarvelBlocks.GREEN_HYDRA_BRICKS.get());
             add(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB.get(), this::createSlabItemTable);
             dropSelf(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS.get());

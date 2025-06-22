@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EnchantmentHelperMixin {
     @Inject(at = @At("HEAD"), method = "getItemEnchantmentLevel", cancellable = true)
     private static void cantRemoveThor(Enchantment enchantment, ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        if (stack.is(MarvelItems.Tags.THOR_ARMOR) && enchantment == Enchantments.BINDING_CURSE) cir.setReturnValue(1);
+        if ((stack.is(MarvelItems.Tags.THOR_ARMOR) || stack.is(MarvelItems.Tags.IRON_MAN_MARK_38_ARMOR)) && enchantment == Enchantments.BINDING_CURSE) cir.setReturnValue(1);
     }
 
     @Inject(at = @At("HEAD"), method = "hasAquaAffinity", cancellable = true)

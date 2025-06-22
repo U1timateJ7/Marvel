@@ -3,13 +3,13 @@
   "consume_suit": false,
   "ingredients": [
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
       "tag": "c:ingots/iron"

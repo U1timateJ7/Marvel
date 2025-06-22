@@ -2,7 +2,6 @@ package net.tintankgames.marvel.world.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,6 +25,7 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.input.MarvelKeyMappings;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.world.level.timers.MultiAttackCallback;
 
 import java.util.List;
@@ -72,7 +72,7 @@ public class QuicksilverSuitItem extends SuitItem {
                 if (living.getAttribute(Attributes.ATTACK_DAMAGE) != null) living.getAttribute(Attributes.ATTACK_DAMAGE).addOrUpdateTransientModifier(attackDamageModifier);
                 if (living instanceof ServerPlayer serverPlayer && serverPlayer.getData(MarvelAttachmentTypes.MOVING.get())) {
                     Vec3 particlePlacement = serverPlayer.getPosition(0.0F).subtract(serverPlayer.getViewVector(0.0F));
-                    serverPlayer.serverLevel().sendParticles(ParticleTypes.OMINOUS_SPAWNING, particlePlacement.x(), particlePlacement.y() + 1, particlePlacement.z(), 75, 0, 0, 0, 0.3);
+                    serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.QUICKSILVER.get(), particlePlacement.x(), particlePlacement.y() + 1, particlePlacement.z(), 75, 0, 0, 0, 0.3);
                 }
             } else {
                 living.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(movementSpeedModifier.id());

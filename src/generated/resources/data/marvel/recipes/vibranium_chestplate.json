@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "X": {
-      "item": "marvel:vibranium_ingot"
+      "tag": "c:ingots/vibranium"
     }
   },
   "pattern": [

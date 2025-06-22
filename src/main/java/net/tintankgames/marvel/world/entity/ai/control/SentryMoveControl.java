@@ -3,14 +3,14 @@ package net.tintankgames.marvel.world.entity.ai.control;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
-import net.tintankgames.marvel.world.entity.IronManSentry;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 
 public class SentryMoveControl extends MoveControl {
-    private final IronManSentry sentry;
+    private final VeronicaSentry sentry;
     private final int maxTurn;
     private final boolean hoversInPlace;
 
-    public SentryMoveControl(IronManSentry sentry, int p_24894_, boolean p_24895_) {
+    public SentryMoveControl(VeronicaSentry sentry, int p_24894_, boolean p_24895_) {
         super(sentry);
         this.sentry = sentry;
         this.maxTurn = p_24894_;

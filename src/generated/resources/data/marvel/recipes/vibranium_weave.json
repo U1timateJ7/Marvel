@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "marvel:vibranium"
+      "tag": "c:raw_materials/vibranium"
     },
     "X": {
       "tag": "c:strings"

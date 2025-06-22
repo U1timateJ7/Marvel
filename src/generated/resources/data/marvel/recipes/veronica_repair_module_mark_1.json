@@ -3,7 +3,7 @@
   "category": "redstone",
   "key": {
     "#": {
-      "item": "marvel:titanium_block"
+      "tag": "c:storage_blocks/titanium"
     },
     "I": {
       "tag": "c:storage_blocks/iron"
@@ -12,7 +12,7 @@
       "item": "minecraft:repeater"
     },
     "X": {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     }
   },
   "pattern": [

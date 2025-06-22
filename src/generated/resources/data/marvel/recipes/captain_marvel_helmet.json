@@ -3,10 +3,10 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     },
     "X": {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     }
   },
   "pattern": [

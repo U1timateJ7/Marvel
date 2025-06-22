@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "marvel:titanium_ingot"
+    "tag": "c:ingots/titanium"
   },
   "base": {
     "item": "minecraft:diamond_sword"

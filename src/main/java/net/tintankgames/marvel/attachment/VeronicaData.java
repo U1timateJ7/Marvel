@@ -128,27 +128,6 @@ public class VeronicaData {
     }
 
     @SubscribeEvent
-    public static void loggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
-        }
-    }
-
-    @SubscribeEvent
-    public static void respawn(PlayerEvent.PlayerRespawnEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
-        }
-    }
-
-    @SubscribeEvent
-    public static void changedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            PacketDistributor.sendToPlayer(player, new SyncMessage(player.getData(MarvelAttachmentTypes.VERONICA)));
-        }
-    }
-
-    @SubscribeEvent
     public static void clone(PlayerEvent.Clone event) {
         if (event.getEntity() instanceof ServerPlayer player) {
             player.setData(MarvelAttachmentTypes.VERONICA, event.getOriginal().getData(MarvelAttachmentTypes.VERONICA));

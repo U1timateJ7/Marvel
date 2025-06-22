@@ -1,0 +1,18 @@
+{
+  "type": "marvel:suit_repairing",
+  "ingredients": [
+    {
+      "item": "minecraft:prismarine_shard"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    }
+  ],
+  "repair_percent": 0.6666667,
+  "suit": {
+    "tag": "marvel:iron_man_mark_37_chestplate"
+  }
+}

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "marvel:proto_adamantium_ingot"
+            "items": "#c:ingots/proto_adamantium"
           }
         ]
       },

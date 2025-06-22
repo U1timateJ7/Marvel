@@ -7,15 +7,14 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.timers.TimerQueue;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.tintankgames.marvel.attachment.EntitySuit;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.IronManSentry;
@@ -62,20 +61,40 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                     hasFullSentryArmor = player.getInventory().armor.stream().allMatch(armor -> armor.getItem() instanceof SentryIronManSuitItem && sentrySuitItem.isSuitPiece(armor));
                 }
                 if (hasFullSentryArmor && !chestplate.has(MarvelDataComponents.INVISIBLE) && EnergySuitItem.getEnergy(chestplate) > 0.0F) {
-                    IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);
-                    if (sentry != null) {
-                        sentry.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
-                        sentry.setTame(true, false);
-                        sentry.setOwnerUUID(player.getUUID());
-                        for (EquipmentSlot slot : new EquipmentSlot[] {EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
-                            ItemStack stack = player.getItemBySlot(slot).copy();
-                            stack.remove(MarvelDataComponents.FLYING);
-                            stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
-                            sentry.setItemSlot(slot, stack);
-                            player.setItemSlot(slot, ItemStack.EMPTY);
+                    if (player.getData(MarvelAttachmentTypes.ENTITY_SUIT) != EntitySuit.NONE) {
+                        TamableAnimal suit = player.getData(MarvelAttachmentTypes.ENTITY_SUIT).type().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);
+                        if (suit != null) {
+                            suit.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
+                            suit.setTame(true, false);
+                            suit.setOwnerUUID(player.getUUID());
+                            for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+                                ItemStack stack = player.getItemBySlot(slot).copy();
+                                stack.remove(MarvelDataComponents.FLYING);
+                                stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
+                                suit.setItemSlot(slot, stack);
+                                player.setItemSlot(slot, ItemStack.EMPTY);
+                            }
+                            player.serverLevel().tryAddFreshEntityWithPassengers(suit);
+                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
                         }
-                        player.serverLevel().tryAddFreshEntityWithPassengers(sentry);
-                        player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                        player.setData(MarvelAttachmentTypes.ENTITY_SUIT, EntitySuit.NONE);
+                        player.refreshDimensions();
+                    } else {
+                        IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().create(player.serverLevel(), null, player.blockPosition(), MobSpawnType.TRIGGERED, false, false);
+                        if (sentry != null) {
+                            sentry.moveTo(player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
+                            sentry.setTame(true, false);
+                            sentry.setOwnerUUID(player.getUUID());
+                            for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+                                ItemStack stack = player.getItemBySlot(slot).copy();
+                                stack.remove(MarvelDataComponents.FLYING);
+                                stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
+                                sentry.setItemSlot(slot, stack);
+                                player.setItemSlot(slot, ItemStack.EMPTY);
+                            }
+                            player.serverLevel().tryAddFreshEntityWithPassengers(sentry);
+                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                        }
                     }
                 } else if ((mainHand.is(MarvelItems.MJOLNIR) && Objects.equals(mainHand.get(MarvelDataComponents.OWNER).toString(), player.getUUID().toString())) || mainHand.is(MarvelItems.STORMBREAKER)) {
                     if (noThorArmor) {

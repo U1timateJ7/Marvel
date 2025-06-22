@@ -12,7 +12,6 @@ import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.OwnableEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
@@ -29,11 +28,6 @@ public class VeronicaRepairModuleMark1 extends Entity implements OwnableEntity {
 
     public VeronicaRepairModuleMark1(EntityType<?> type, Level level) {
         super(type, level);
-    }
-
-    public VeronicaRepairModuleMark1(Player owner, Level level) {
-        this(MarvelEntityTypes.VERONICA_REPAIR_MODULE_MARK_1.get(), level);
-        setOwnerUUID(owner.getUUID());
     }
 
     @Override

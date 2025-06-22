@@ -4,13 +4,10 @@ import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.data.Texture;
-import io.github.cottonmc.cotton.gui.widget.icon.LayeredTextureIcon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -20,9 +17,9 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.attachment.VeronicaData;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.network.SendSuitMessage;
-import net.tintankgames.marvel.world.entity.IronManSentry;
-import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
+import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 import net.tintankgames.marvel.world.item.VeronicaSuit;
 
 import java.util.Arrays;
@@ -41,8 +38,7 @@ public class VeronicaGui extends LightweightGuiDescription {
         WText sadFace = new WText(Component.translatable("gui.veronica.no_suits.1"));
         WText noSuits = new WText(Component.translatable("gui.veronica.no_suits.2"));
         WText tip = new WText(Component.translatable("gui.veronica.no_suits.3"));
-        IronManSentry sentry = new IronManSentry(MarvelEntityTypes.IRON_MAN_SENTRY.get(), player.level());
-        WLivingEntity display = new WLivingEntity(sentry, null);
+        WLivingEntity display = new WLivingEntity(null, null);
         display.setRender(false);
         WTooltip energyTooltip = new WTooltip(Component.empty());
         WSprite energyBackground = new WSprite(MarvelSuperheroes.id("textures/gui/sprites/veronica/energy_background.png"));
@@ -59,16 +55,18 @@ public class VeronicaGui extends LightweightGuiDescription {
             wButton.setSize(180, 20);
             ItemStack helmet = suit.armor().get(3).copy();
             if (helmet.has(MarvelDataComponents.HELMET_OPEN)) helmet.set(MarvelDataComponents.HELMET_OPEN, false);
-            ArmorItem helmetItem = (ArmorItem) suit.armor().get(3).getItem();
-            ResourceLocation icon = helmetItem.getArmorTexture(helmet, player, EquipmentSlot.HEAD, helmetItem.getMaterial().value().layers().getFirst(), false);
-            if (icon != null) wButton.setIcon(new LayeredTextureIcon(new Texture(icon, 0.125F, 0.125F, 0.25F, 0.25F), new Texture(icon.withPath(id -> id.replace(".png", "_glow.png")), 0.125F, 0.125F, 0.25F, 0.25F)));
+            wButton.setIcon(((SentryIronManSuitItem) suit.armor().get(3).getItem()).createIcon(helmet, player));
             wButton.setLabel(((VeronicaSuit) suit.armor().getFirst().getItem()).veronicaName());
             wButton.setOnClick(() -> {
                 selectedSuit = suit.id();
-                sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
-                sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
-                sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
-                sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+                VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+                if (sentry != null) {
+                    sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
+                    sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
+                    sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
+                    sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+                }
+                display.setEntity(sentry);
                 bootsDisplay.setItems(Collections.singletonList(suit.armor().get(0)));
                 leggingsDisplay.setItems(Collections.singletonList(suit.armor().get(1)));
                 chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));
@@ -118,10 +116,14 @@ public class VeronicaGui extends LightweightGuiDescription {
                     if (selectedSuit == -1 && !suits.isEmpty()) {
                         VeronicaData.Suit suit = suits.getFirst();
                         selectedSuit = suit.id();
-                        sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
-                        sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
-                        sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
-                        sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+                        VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+                        if (sentry != null) {
+                            sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
+                            sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
+                            sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
+                            sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+                        }
+                        display.setEntity(sentry);
                         bootsDisplay.setItems(Collections.singletonList(suit.armor().get(0)));
                         leggingsDisplay.setItems(Collections.singletonList(suit.armor().get(1)));
                         chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));
@@ -183,10 +185,14 @@ public class VeronicaGui extends LightweightGuiDescription {
         if (!suits.isEmpty()) {
             VeronicaData.Suit suit = suits.getFirst();
             selectedSuit = suit.id();
-            sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
-            sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
-            sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
-            sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+            VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+            if (sentry != null) {
+                sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
+                sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
+                sentry.setItemSlot(EquipmentSlot.CHEST, suit.armor().get(2));
+                sentry.setItemSlot(EquipmentSlot.HEAD, suit.armor().get(3));
+            }
+            display.setEntity(sentry);
             bootsDisplay.setItems(Collections.singletonList(suit.armor().get(0)));
             leggingsDisplay.setItems(Collections.singletonList(suit.armor().get(1)));
             chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));

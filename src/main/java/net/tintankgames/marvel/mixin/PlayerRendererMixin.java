@@ -23,8 +23,12 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.client.ClientHooks;
+import net.tintankgames.marvel.attachment.EntitySuit;
+import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.client.model.IgorModel;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.client.model.SuitModel;
+import net.tintankgames.marvel.client.renderer.entity.layers.EntitySuitLayer;
 import net.tintankgames.marvel.client.renderer.entity.layers.ItemOnBackLayer;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -44,6 +48,25 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
     @Inject(at = @At("RETURN"), method = "<init>")
     private void addMarvelLayers(EntityRendererProvider.Context context, boolean slim, CallbackInfo ci) {
         this.addLayer(new ItemOnBackLayer<>(this, context.getItemRenderer()));
+        this.addLayer(new EntitySuitLayer<>(this, new IgorModel<>(context.bakeLayer(MarvelModels.IRON_MAN_MARK_38))));
+    }
+
+    @Inject(at = @At("RETURN"), method = "setModelProperties")
+    private void partVisibility(AbstractClientPlayer player, CallbackInfo ci) {
+        if (player.getData(MarvelAttachmentTypes.ENTITY_SUIT) != EntitySuit.NONE) {
+            getModel().head.visible = true;
+            getModel().hat.visible = false;
+            getModel().body.visible = false;
+            getModel().rightArm.visible = false;
+            getModel().leftArm.visible = false;
+            getModel().rightLeg.visible = false;
+            getModel().leftLeg.visible = false;
+            getModel().leftSleeve.visible = false;
+            getModel().rightSleeve.visible = false;
+            getModel().leftPants.visible = false;
+            getModel().rightPants.visible = false;
+            getModel().jacket.visible = false;
+        }
     }
 
     @Inject(at = @At("RETURN"), method = "renderHand")

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "marvel:suit_charger"
+    },
+    "B": {
+      "tag": "c:storage_blocks/redstone"
+    },
+    "P": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "X": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "pattern": [
+    "XBX",
+    "#P#",
+    "XBX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "marvel:mark_38_charger"
+  }
+}

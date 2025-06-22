@@ -9,7 +9,7 @@
       "tag": "c:gems/diamond"
     },
     "I": {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     }
   },
   "pattern": [

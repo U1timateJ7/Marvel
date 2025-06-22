@@ -1,6 +1,8 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -18,6 +20,7 @@ import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
 import net.tintankgames.marvel.world.item.component.Size;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 import net.tintankgames.marvel.world.level.block.entity.MarvelBannerPatterns;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -62,7 +65,7 @@ public class MarvelItems {
     public static final DeferredItem<Item> X_GENES = register("x_genes", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HYDRA_BANNER_PATTERN = register("hydra_banner_pattern", () -> new BannerPatternItem(MarvelBannerPatterns.Tags.PATTERN_ITEM_HYDRA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> TESSERACT_SHARD = register("tesseract_shard", () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
-    public static final DeferredItem<Item> TESSERACT_CROSSBOW = register("tesseract_crossbow", () -> new TesseractCrossbowItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).durability(930).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
+    public static final DeferredItem<Item> TESSERACT_CROSSBOW = register("tesseract_crossbow", () -> new TesseractCrossbowItem(new Item.Properties().rarity(Rarity.RARE).durability(930).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
     public static final DeferredItem<Item> WINTER_SOLDIER_KNIFE = register("winter_soldier_knife", () -> new SwordItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 0, -1.8F))));
     public static final DeferredItem<Item> TESSERACT = register("tesseract", () -> new TesseractItem(MarvelBlocks.TESSERACT.get(), new Item.Properties().rarity(Rarity.EPIC).stacksTo(1)));
     public static final DeferredItem<Item> SPACE_STONE = register("space_stone", () -> new SpaceStoneItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1)));
@@ -268,6 +271,16 @@ public class MarvelItems {
     public static final DeferredItem<Item> IRON_MAN_MARK_37_CHESTPLATE = register("iron_man_mark_37_chestplate", () -> new IronManMark37SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> IRON_MAN_MARK_37_LEGGINGS = register("iron_man_mark_37_leggings", () -> new IronManMark37SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
     public static final DeferredItem<Item> IRON_MAN_MARK_37_BOOTS = register("iron_man_mark_37_boots", () -> new IronManMark37SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(33))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_HELMET_COMPONENT = register("iron_man_mark_38_helmet_component", () -> new IronManMark38ComponentItem(new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_CHESTPLATE_COMPONENT = register("iron_man_mark_38_chestplate_component", () -> new IronManMark38ComponentItem(new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_LEGGINGS_COMPONENT = register("iron_man_mark_38_leggings_component", () -> new IronManMark38ComponentItem(new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_BOOTS_COMPONENT = register("iron_man_mark_38_boots_component", () -> new IronManMark38ComponentItem(new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38 = register("iron_man_mark_38", () -> new IronManMark38Item(new Item.Properties().stacksTo(1).component(DataComponents.ENTITY_DATA, IronManMark38Item.defaultEntityData())));
+    public static final DeferredItem<Item> MARK_38_CHARGER = register("mark_38_charger", () -> new Mark38ChargerItem(MarvelBlocks.MARK_38_CHARGER.get(), new Item.Properties()));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_HELMET = register("iron_man_mark_38_helmet", () -> new IronManMark38SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(44)).component(MarvelDataComponents.HELMET_OPEN, false)));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_CHESTPLATE = register("iron_man_mark_38_chestplate", () -> new IronManMark38SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_LEGGINGS = register("iron_man_mark_38_leggings", () -> new IronManMark38SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(44))));
+    public static final DeferredItem<Item> IRON_MAN_MARK_38_BOOTS = register("iron_man_mark_38_boots", () -> new IronManMark38SuitItem(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(44))));
     public static final DeferredItem<Item> IRON_MAN_MARK_39_HELMET = register("iron_man_mark_39_helmet", () -> new IronManMark39SuitItem(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(33)).component(MarvelDataComponents.HELMET_OPEN, false)));
     public static final DeferredItem<Item> IRON_MAN_MARK_39_CHESTPLATE = register("iron_man_mark_39_chestplate", () -> new IronManMark39SuitItem(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(33))));
     public static final DeferredItem<Item> IRON_MAN_MARK_39_LEGGINGS = register("iron_man_mark_39_leggings", () -> new IronManMark39SuitItem(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(33))));
@@ -500,6 +513,11 @@ public class MarvelItems {
         public static final TagKey<Item> IRON_MAN_MARK_37_CHESTPLATE = create("iron_man_mark_37_chestplate");
         public static final TagKey<Item> IRON_MAN_MARK_37_LEGGINGS = create("iron_man_mark_37_leggings");
         public static final TagKey<Item> IRON_MAN_MARK_37_BOOTS = create("iron_man_mark_37_boots");
+        public static final TagKey<Item> IRON_MAN_MARK_38_ARMOR = create("iron_man_mark_38_armor");
+        public static final TagKey<Item> IRON_MAN_MARK_38_HELMET = create("iron_man_mark_38_helmet");
+        public static final TagKey<Item> IRON_MAN_MARK_38_CHESTPLATE = create("iron_man_mark_38_chestplate");
+        public static final TagKey<Item> IRON_MAN_MARK_38_LEGGINGS = create("iron_man_mark_38_leggings");
+        public static final TagKey<Item> IRON_MAN_MARK_38_BOOTS = create("iron_man_mark_38_boots");
         public static final TagKey<Item> IRON_MAN_MARK_39_ARMOR = create("iron_man_mark_39_armor");
         public static final TagKey<Item> IRON_MAN_MARK_39_HELMET = create("iron_man_mark_39_helmet");
         public static final TagKey<Item> IRON_MAN_MARK_39_CHESTPLATE = create("iron_man_mark_39_chestplate");
@@ -546,6 +564,50 @@ public class MarvelItems {
 
         private static TagKey<Item> create(String id) {
             return REGISTER.createTagKey(id);
+        }
+    }
+
+    public static class NeoTags {
+        public static final TagKey<Item> INGOTS_VIBRANIUM = create("ingots/vibranium");
+        public static final TagKey<Item> INGOTS_TITANIUM = create("ingots/titanium");
+        public static final TagKey<Item> INGOTS_PALLADIUM = create("ingots/palladium");
+        public static final TagKey<Item> INGOTS_GOLD_TITANIUM = create("ingots/gold_titanium");
+        public static final TagKey<Item> INGOTS_ADAMANTIUM = create("ingots/adamantium");
+        public static final TagKey<Item> INGOTS_PROTO_ADAMANTIUM = create("ingots/proto_adamantium");
+        public static final TagKey<Item> INGOTS_URU = create("ingots/uru");
+        public static final TagKey<Item> NUGGETS_VIBRANIUM = create("nuggets/vibranium");
+        public static final TagKey<Item> NUGGETS_TITANIUM = create("nuggets/titanium");
+        public static final TagKey<Item> NUGGETS_PALLADIUM = create("nuggets/palladium");
+        public static final TagKey<Item> NUGGETS_GOLD_TITANIUM = create("nuggets/gold_titanium");
+        public static final TagKey<Item> NUGGETS_ADAMANTIUM = create("nuggets/adamantium");
+        public static final TagKey<Item> NUGGETS_PROTO_ADAMANTIUM = create("nuggets/proto_adamantium");
+        public static final TagKey<Item> NUGGETS_URU = create("nuggets/uru");
+        public static final TagKey<Item> RAW_MATERIALS_VIBRANIUM = create("raw_materials/vibranium");
+        public static final TagKey<Item> RAW_MATERIALS_TITANIUM = create("raw_materials/titanium");
+        public static final TagKey<Item> RAW_MATERIALS_PALLADIUM = create("raw_materials/palladium");
+        public static final TagKey<Item> ORES_VIBRANIUM = create("ores/vibranium");
+        public static final TagKey<Item> ORES_TITANIUM = create("ores/titanium");
+        public static final TagKey<Item> ORES_PALLADIUM = create("ores/palladium");
+        public static final TagKey<Item> STORAGE_BLOCKS_VIBRANIUM = create("storage_blocks/vibranium");
+        public static final TagKey<Item> STORAGE_BLOCKS_TITANIUM = create("storage_blocks/titanium");
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_TITANIUM = create("storage_blocks/raw_titanium");
+        public static final TagKey<Item> STORAGE_BLOCKS_PALLADIUM = create("storage_blocks/palladium");
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_PALLADIUM = create("storage_blocks/raw_palladium");
+        public static final TagKey<Item> STORAGE_BLOCKS_GOLD_TITANIUM = create("storage_blocks/gold_titanium");
+        public static final TagKey<Item> STORAGE_BLOCKS_ADAMANTIUM = create("storage_blocks/adamantium");
+        public static final TagKey<Item> STORAGE_BLOCKS_PROTO_ADAMANTIUM = create("storage_blocks/proto_adamantium");
+        public static final TagKey<Item> STORAGE_BLOCKS_URU = create("storage_blocks/uru");
+
+        private static TagKey<Item> create(String id) {
+            return TagKey.create(Registries.ITEM, new ResourceLocation("c", id));
+        }
+    }
+
+    public static class CurioTags {
+        public static final TagKey<Item> NECKLACE = create("necklace");
+
+        private static TagKey<Item> create(String id) {
+            return TagKey.create(Registries.ITEM, new ResourceLocation(CuriosApi.MODID, id));
         }
     }
 }

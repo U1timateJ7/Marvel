@@ -8,12 +8,12 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
-import net.tintankgames.marvel.world.entity.IronManSentry;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 
 import java.util.EnumSet;
 
 public class SentryFollowOwnerGoal extends Goal {
-    private final IronManSentry sentry;
+    private final VeronicaSentry sentry;
     private LivingEntity owner;
     private final LevelReader level;
     private final double speedModifier;
@@ -23,7 +23,7 @@ public class SentryFollowOwnerGoal extends Goal {
     private float oldWaterCost;
     private final boolean canFly;
 
-    public SentryFollowOwnerGoal(IronManSentry p_25294_, double p_25295_, float p_25296_, float p_25297_, boolean p_25298_) {
+    public SentryFollowOwnerGoal(VeronicaSentry p_25294_, double p_25295_, float p_25296_, float p_25297_, boolean p_25298_) {
         this.sentry = p_25294_;
         this.level = p_25294_.level();
         this.speedModifier = p_25295_;

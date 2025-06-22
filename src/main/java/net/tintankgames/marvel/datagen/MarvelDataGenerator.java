@@ -23,6 +23,7 @@ public class MarvelDataGenerator {
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.BlockLoot::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.EntityLoot::new, LootContextParamSets.ENTITY),
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.ChestLoot::new, LootContextParamSets.CHEST)), event.getLookupProvider()));
+        event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<MarvelCuriosProvider>) output -> new MarvelCuriosProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
         MarvelTagProvider.addProviders(event);
     }
 }
