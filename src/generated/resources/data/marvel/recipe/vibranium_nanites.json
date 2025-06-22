@@ -6,7 +6,7 @@
       "tag": "c:dusts/redstone"
     },
     "X": {
-      "item": "marvel:vibranium_nugget"
+      "tag": "c:nuggets/vibranium"
     }
   },
   "pattern": [

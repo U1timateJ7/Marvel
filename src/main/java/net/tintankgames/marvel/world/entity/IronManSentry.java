@@ -36,6 +36,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.ArmorHurtEvent;
+import net.tintankgames.marvel.attachment.EntitySuit;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.attachment.VeronicaData;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
@@ -50,12 +51,10 @@ import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 import net.tintankgames.marvel.world.item.VeronicaSuit;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Predicate;
 
-public class IronManSentry extends TamableAnimal implements RangedAttackMob, NeutralMob {
+public class IronManSentry extends VeronicaSentry implements RangedAttackMob, NeutralMob {
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_FIRING_REPULSOR = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_VERONICA = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
@@ -63,18 +62,19 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     private static final EntityDataAccessor<Boolean> DATA_HAS_TARGET = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_FLYING_O = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_FLYING = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_CHARGING = SynchedEntityData.defineId(IronManSentry.class, EntityDataSerializers.BOOLEAN);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     @Nullable
     private UUID persistentAngerTarget;
     private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.0, true) {
         @Override
         public boolean canUse() {
-            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) >= 0.0F;
+            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
 
         @Override
         public boolean canContinueToUse() {
-            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
     };
     private final RangedAttackGoal rangedAttackGoal = new RangedAttackGoal(this, 1.0, 20, 16) {
@@ -91,23 +91,23 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     private final WaterAvoidingRandomStrollGoal walkingGoal = new WaterAvoidingRandomStrollGoal(this, 1.0) {
         @Override
         public boolean canUse() {
-            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
 
         @Override
         public boolean canContinueToUse() {
-            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
     };
     private final WaterAvoidingRandomFlyingGoal flyingGoal = new WaterAvoidingRandomFlyingGoal(this, 1.0) {
         @Override
         public boolean canUse() {
-            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+            return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
 
         @Override
         public boolean canContinueToUse() {
-            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+            return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
         }
     };
     private final GroundPathNavigation walkingNavigation;
@@ -137,122 +137,122 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         this.goalSelector.addGoal(1, new FloatGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !flyingToVeronica() && !fromVeronica();
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging() && !flyingToVeronica() && !fromVeronica();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !flyingToVeronica() && !fromVeronica();
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging() && !flyingToVeronica() && !fromVeronica();
             }
         });
         this.goalSelector.addGoal(6, new SentryFollowOwnerGoal(this, 1.0, 10.0F, 2.0F) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !flyingToVeronica() && !fromVeronica();
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging() && !flyingToVeronica() && !fromVeronica();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !flyingToVeronica() && !fromVeronica();
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging() && !flyingToVeronica() && !fromVeronica();
             }
         });
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.targetSelector.addGoal(3, new HurtByTargetGoal(this) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         }.setAlertOthers());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Mob.class, false, mob -> mob instanceof Enemy) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
         this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true) {
             @Override
             public boolean canUse() {
-                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
 
             @Override
             public boolean canContinueToUse() {
-                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F;
+                return super.canContinueToUse() && EnergySuitItem.getEnergy(getItemBySlot(EquipmentSlot.CHEST)) > 0.0F && !isCharging();
             }
         });
     }
@@ -355,6 +355,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         builder.define(DATA_HAS_TARGET, false);
         builder.define(DATA_FLYING_O, false);
         builder.define(DATA_FLYING, false);
+        builder.define(DATA_CHARGING, false);
     }
 
     @Override
@@ -366,6 +367,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         tag.putBoolean("has_target", hasTarget());
         tag.putBoolean("flying_o", this.entityData.get(DATA_FLYING_O));
         tag.putBoolean("flying", getIsFlying());
+        tag.putBoolean("charging", isCharging());
     }
 
     @Override
@@ -375,6 +377,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         setFlyingToVeronica(tag.getBoolean("veronica"));
         setFromVeronica(tag.getBoolean("from_veronica"));
         setHasTarget(tag.getBoolean("has_target"));
+        setCharging(tag.getBoolean("charging"));
         reassessAttackGoals();
     }
 
@@ -421,13 +424,38 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
                         if (player instanceof ServerPlayer serverPlayer) serverPlayer.sendSystemMessage(Component.translatable("item.marvel.veronica_remote.fail.not_in_overworld").withStyle(ChatFormatting.RED), true);
                     }
                 } else {
+                    Map<EquipmentSlot, ItemStack> suitPieces = new HashMap<>();
                     for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
-                        if (!getItemBySlot(slot).isEmpty()) {
-                            if (!player.addItem(player.getItemBySlot(slot).copy())) {
-                                player.drop(player.getItemBySlot(slot).copy(), true);
+                        if (hasItemInSlot(slot)) {
+                            if (player.getItemBySlot(slot).getItem() instanceof SentryIronManSuitItem suitItem && allMatch(suitItem::isSuitPiece, player.getArmorSlots())) {
+                                suitPieces.put(slot, player.getItemBySlot(slot).copy());
                             }
-                            player.setItemSlot(slot, getItemBySlot(slot).copy());
+                            if (suitPieces.isEmpty()) {
+                                if (!player.addItem(player.getItemBySlot(slot).copy())) {
+                                    player.drop(player.getItemBySlot(slot).copy(), true);
+                                }
+                                player.setItemSlot(slot, getItemBySlot(slot).copy());
+                            }
                         }
+                    }
+                    if (!suitPieces.isEmpty() && level() instanceof ServerLevel serverLevel) {
+                        VeronicaSentry suit = ((SentryIronManSuitItem) suitPieces.get(EquipmentSlot.CHEST).getItem()).type().create(serverLevel, null, blockPosition(), MobSpawnType.TRIGGERED, false, false);
+                        if (suit != null) {
+                            suit.moveTo(player.position(), player.getYRot(), player.getXRot());
+                            suit.setTame(true, false);
+                            suit.setOwnerUUID(player.getUUID());
+                            for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD}) {
+                                ItemStack stack = suitPieces.get(slot).copy();
+                                stack.remove(MarvelDataComponents.FLYING);
+                                stack.remove(MarvelDataComponents.DELTA_MOVEMENT);
+                                suit.setItemSlot(slot, stack);
+                                player.setItemSlot(slot, getItemBySlot(slot).copy());
+                            }
+                            serverLevel.tryAddFreshEntityWithPassengers(suit);
+                            serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                        }
+                        player.setData(MarvelAttachmentTypes.ENTITY_SUIT, EntitySuit.NONE);
+                        player.refreshDimensions();
                     }
                     if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
                     discard();
@@ -439,6 +467,14 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
             }
         }
         return InteractionResult.PASS;
+    }
+
+    private boolean allMatch(Predicate<ItemStack> predicate, Iterable<ItemStack> contents) {
+        boolean matches = true;
+        for (ItemStack piece : contents) {
+            if (!predicate.test(piece)) matches = false;
+        }
+        return matches;
     }
 
     @Override
@@ -458,7 +494,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
     public boolean wantsToAttack(LivingEntity enemy, LivingEntity owner) {
         if (enemy instanceof ArmorStand) {
             return false;
-        } else if (enemy instanceof IronManSentry sentry) {
+        } else if (enemy instanceof VeronicaSentry sentry) {
             return !sentry.isTame() || sentry.getOwner() != owner;
         } else {
             return switch (enemy) {
@@ -557,6 +593,14 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         reassessMovementGoals();
     }
 
+    public boolean isCharging() {
+        return this.entityData.get(DATA_CHARGING);
+    }
+
+    public void setCharging(boolean charging) {
+        this.entityData.set(DATA_CHARGING, charging);
+    }
+
     @Override
     protected void updateWalkAnimation(float p_268283_) {
         if (!isFlying()) super.updateWalkAnimation(p_268283_);
@@ -620,7 +664,7 @@ public class IronManSentry extends TamableAnimal implements RangedAttackMob, Neu
         } catch (Exception e) {
             this.entityData.set(DATA_FIRING_REPULSOR, false);
         }
-        if ((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) {
+        if (((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) && !isCharging()) {
             for (ItemStack stack : getArmorSlots()) {
                 if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, 2.0F / 60.0F / 2.0F / 20.0F);
             }

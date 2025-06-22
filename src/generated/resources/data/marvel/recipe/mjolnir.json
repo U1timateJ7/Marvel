@@ -9,7 +9,7 @@
       "item": "minecraft:lead"
     },
     "X": {
-      "item": "marvel:uru_ingot"
+      "tag": "c:ingots/uru"
     }
   },
   "pattern": [

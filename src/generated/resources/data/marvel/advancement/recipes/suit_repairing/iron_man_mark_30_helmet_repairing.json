@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_man_mark_30_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#marvel:iron_man_mark_30_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "marvel:iron_man_mark_30_helmet_repairing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_iron_man_mark_30_helmet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "marvel:iron_man_mark_30_helmet_repairing"
+    ]
+  }
+}

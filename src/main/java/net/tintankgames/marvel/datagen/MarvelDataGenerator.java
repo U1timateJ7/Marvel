@@ -12,7 +12,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 import java.util.Collections;
 import java.util.List;
 
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID)
 public class MarvelDataGenerator {
     @SubscribeEvent
     public static void dataGen(GatherDataEvent event) {
@@ -23,6 +23,7 @@ public class MarvelDataGenerator {
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.BlockLoot::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.EntityLoot::new, LootContextParamSets.ENTITY),
                 new LootTableProvider.SubProviderEntry(MarvelLootTableProvider.ChestLoot::new, LootContextParamSets.CHEST)), event.getLookupProvider()));
+        event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<MarvelCuriosProvider>) output -> new MarvelCuriosProvider(output, event.getLookupProvider(), event.getExistingFileHelper()));
         MarvelTagProvider.addProviders(event);
     }
 }

@@ -13,7 +13,7 @@ import net.tintankgames.marvel.stats.MarvelStats;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MarvelSuperheroes.MOD_ID)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID)
 public class MarvelCauldronInteractions {
     public static final CauldronInteraction SHIELD = (state, level, pos, player, hand, stack) -> {
         if (!(stack.getItem() instanceof VibraniumShieldItem)) {

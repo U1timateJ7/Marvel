@@ -35,6 +35,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelBlocks.URU_BLOCK);
         output.accept(MarvelBlocks.SUIT_TABLE);
         output.accept(MarvelBlocks.SUIT_CHARGER);
+        output.accept(MarvelBlocks.MARK_38_CHARGER);
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICKS);
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_SLAB);
         output.accept(MarvelBlocks.GREEN_HYDRA_BRICK_STAIRS);
@@ -103,6 +104,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.VERONICA_REPAIR_MODULE_MARK_1);
         output.accept(MarvelItems.VERONICA_REPAIR_MODULE_MARK_2);
         output.accept(MarvelItems.VERONICA_REMOTE);
+        output.accept(MarvelItems.IRON_MAN_MARK_38_HELMET_COMPONENT);
+        output.accept(MarvelItems.IRON_MAN_MARK_38_CHESTPLATE_COMPONENT);
+        output.accept(MarvelItems.IRON_MAN_MARK_38_LEGGINGS_COMPONENT);
+        output.accept(MarvelItems.IRON_MAN_MARK_38_BOOTS_COMPONENT);
         output.accept(MarvelItems.HYDRA_BANNER_PATTERN);
         output.accept(MarvelItems.TESSERACT_SHARD);
         output.accept(MarvelItems.SPACE_STONE);
@@ -344,6 +349,7 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_37_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_37_LEGGINGS);
         output.accept(MarvelItems.IRON_MAN_MARK_37_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_38);
         output.accept(MarvelItems.IRON_MAN_MARK_39_HELMET);
         output.accept(MarvelItems.IRON_MAN_MARK_39_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_39_LEGGINGS);

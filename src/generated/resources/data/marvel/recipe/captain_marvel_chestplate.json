@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     },
     "G": {
       "tag": "c:ingots/gold"
@@ -12,7 +12,7 @@
       "item": "marvel:tesseract_shard"
     },
     "X": {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     }
   },
   "pattern": [

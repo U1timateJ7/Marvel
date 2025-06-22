@@ -6,7 +6,7 @@
       "item": "minecraft:anvil"
     },
     "X": {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     }
   },
   "pattern": [

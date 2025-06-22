@@ -6,7 +6,7 @@
       "tag": "c:leathers"
     },
     "X": {
-      "item": "marvel:proto_adamantium_ingot"
+      "tag": "c:ingots/proto_adamantium"
     }
   },
   "pattern": [

@@ -10,8 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.tintankgames.marvel.world.entity.IronManSentry;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 
 public class Repulsor extends Projectile {
     public Repulsor(EntityType<? extends Repulsor> entityType, Level level) {
@@ -52,10 +52,10 @@ public class Repulsor extends Projectile {
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         super.onHitEntity(entityHitResult);
-        if (entityHitResult.getEntity() instanceof IronManSentry target && getOwner() instanceof IronManSentry owner && target.getOwnerUUID() != null && owner.getOwnerUUID() != null) {
+        if (entityHitResult.getEntity() instanceof VeronicaSentry target && getOwner() instanceof VeronicaSentry owner && target.getOwnerUUID() != null && owner.getOwnerUUID() != null) {
             if (!target.getOwnerUUID().toString().equals(owner.getOwnerUUID().toString())) entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
         } else {
-            if ((getOwner() instanceof IronManSentry owner && owner.getOwner() != entityHitResult.getEntity()) || !(getOwner() instanceof IronManSentry)) entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
+            if ((getOwner() instanceof VeronicaSentry owner && owner.getOwner() != entityHitResult.getEntity()) || !(getOwner() instanceof VeronicaSentry)) entityHitResult.getEntity().hurt(damageSources().source(DamageTypes.ARROW, this, getOwner() == null ? this : getOwner()), 8.0F);
         }
         discard();
     }

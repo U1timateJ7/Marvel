@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     "T": {
       "item": "marvel:tesseract_shard"

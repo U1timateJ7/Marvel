@@ -10,7 +10,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.tintankgames.marvel.MarvelSuperheroes;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 public class MarvelModels {
     public static final ModelLayerLocation SUIT_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("suit_helmet"), "main");
     public static final ModelLayerLocation SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("suit_chestplate"), "main");
@@ -86,6 +86,7 @@ public class MarvelModels {
     public static final ModelLayerLocation REPULSOR = new ModelLayerLocation(MarvelSuperheroes.id("repulsor"), "main");
     public static final ModelLayerLocation VERONICA_SATELLITE = new ModelLayerLocation(MarvelSuperheroes.id("veronica_satellite"), "main");
     public static final ModelLayerLocation VERONICA_MODULE = new ModelLayerLocation(MarvelSuperheroes.id("veronica_module"), "main");
+    public static final ModelLayerLocation IRON_MAN_MARK_38 = new ModelLayerLocation(MarvelSuperheroes.id("iron_man_mark_38"), "main");
 
     @SubscribeEvent
     public static void registerModels(EntityRenderersEvent.RegisterLayerDefinitions event) {
@@ -163,6 +164,7 @@ public class MarvelModels {
         event.registerLayerDefinition(REPULSOR, RepulsorModel::createBodyLayer);
         event.registerLayerDefinition(VERONICA_SATELLITE, VeronicaSatelliteModel::createBodyLayer);
         event.registerLayerDefinition(VERONICA_MODULE, VeronicaModuleModel::createBodyLayer);
+        event.registerLayerDefinition(IRON_MAN_MARK_38, IgorModel::createBodyLayer);
     }
 
     public static ModelLayerLocation suit(ArmorItem.Type type) {

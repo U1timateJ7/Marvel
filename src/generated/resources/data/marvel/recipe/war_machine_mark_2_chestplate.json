@@ -3,16 +3,16 @@
   "consume_suit": true,
   "ingredients": [
     {
-      "item": "marvel:titanium_block"
+      "tag": "c:storage_blocks/titanium"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
-      "item": "marvel:titanium_ingot"
+      "tag": "c:ingots/titanium"
     },
     {
       "tag": "c:ingots/iron"

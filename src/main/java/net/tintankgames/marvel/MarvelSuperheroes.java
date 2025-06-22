@@ -10,8 +10,10 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
+import net.tintankgames.marvel.attachment.VeronicaSuitPresets;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
+import net.tintankgames.marvel.core.registries.MarvelBuiltInRegistries;
 import net.tintankgames.marvel.network.syncher.MarvelEntityDataSerializers;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.stats.MarvelStats;
@@ -35,13 +37,14 @@ import org.slf4j.Logger;
 public class MarvelSuperheroes {
     public static final String MOD_ID = "marvel";
     public static final String MOD_NAME = "Marvel Superheroes";
-    public static final String MOD_VERSION = "2.1.0-snapshot21";
+    public static final String MOD_VERSION = "2.1.0-snapshot22";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MarvelSuperheroes(IEventBus bus, ModContainer modContainer) {
         LOGGER.info("Initializing {} version {}...", MOD_NAME, MOD_VERSION);
         bus.addListener(this::setup);
 
+        MarvelBuiltInRegistries.register(bus);
         MarvelSoundEvents.register(bus);
         MarvelEntityDataSerializers.register(bus);
         MarvelStructurePoolElementTypes.register(bus);
@@ -61,6 +64,7 @@ public class MarvelSuperheroes {
         MarvelItems.register(bus);
         MarvelCreativeModeTabs.register(bus);
         MarvelGameRules.register();
+        VeronicaSuitPresets.register(bus);
         modContainer.registerConfig(ModConfig.Type.COMMON, MarvelConfig.SPEC);
     }
 

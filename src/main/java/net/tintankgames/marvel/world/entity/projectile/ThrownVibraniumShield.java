@@ -160,8 +160,9 @@ public class ThrownVibraniumShield extends AbstractArrow {
             ItemStack shield = getItem().copy();
             shield.set(MarvelDataComponents.WINTER_SOLDIER, Unit.INSTANCE);
             living.setItemInHand(InteractionHand.OFF_HAND, shield);
-            if (living instanceof Player player1 && !player1.addItem(offhand)) player1.drop(offhand, true);
+            if (living instanceof Player player && !player.addItem(offhand)) player.drop(offhand, true);
             if (living instanceof Mob mob) mob.setTarget(owner);
+            playSound(MarvelSoundEvents.VIBRANIUM_SHIELD_CATCH.get());
             discard();
             return;
         }

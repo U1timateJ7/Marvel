@@ -67,7 +67,7 @@ import java.util.Collection;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 public class MarvelSuperheroesClient {
     @SubscribeEvent
     public static void setupClient(FMLClientSetupEvent event) {

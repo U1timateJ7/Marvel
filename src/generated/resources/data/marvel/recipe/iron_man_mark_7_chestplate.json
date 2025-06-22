@@ -3,13 +3,13 @@
   "consume_suit": false,
   "ingredients": [
     {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     },
     {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     },
     {
-      "item": "marvel:gold_titanium_ingot"
+      "tag": "c:ingots/gold_titanium"
     },
     {
       "tag": "c:ingots/gold"

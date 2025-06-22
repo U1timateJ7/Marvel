@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 public class MarvelParticleTypes {
     private static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(Registries.PARTICLE_TYPE, MarvelSuperheroes.MOD_ID);
 
-    public static final DeferredHolder<ParticleType<?>, ParticleType<EmissiveDustParticleOptions>> EMISSIVE_DUST = register("emissive_dust", () -> new ParticleType<>(false) {
+    public static final DeferredHolder<ParticleType<?>, ParticleType<EmissiveDustParticleOptions>> EMISSIVE_DUST = register("emissive_dust", () -> new ParticleType<>(true) {
         @Override
         public MapCodec<EmissiveDustParticleOptions> codec() {
             return EmissiveDustParticleOptions.CODEC;
@@ -98,6 +98,7 @@ public class MarvelParticleTypes {
             return SpeedParticleOptions.streamCodec(REVERSE_SPACE_STONE.get());
         }
     });
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> QUICKSILVER = register("quicksilver", true);
 
     private static <T extends ParticleOptions> DeferredHolder<ParticleType<?>, ParticleType<T>> register(String id, Supplier<ParticleType<T>> supplier) {
         return REGISTER.register(id, supplier);

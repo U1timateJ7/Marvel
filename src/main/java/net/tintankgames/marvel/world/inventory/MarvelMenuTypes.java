@@ -20,7 +20,7 @@ import net.tintankgames.marvel.client.gui.screens.SuitVariantScreen;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 public class MarvelMenuTypes {
     public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(Registries.MENU, MarvelSuperheroes.MOD_ID);
 

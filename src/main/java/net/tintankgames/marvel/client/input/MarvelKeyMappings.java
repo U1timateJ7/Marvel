@@ -16,7 +16,7 @@ import net.tintankgames.marvel.network.SecondarySuitAbilityMessage;
 import net.tintankgames.marvel.network.ToggleHelmetMessage;
 import org.lwjgl.glfw.GLFW;
 
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 @OnlyIn(Dist.CLIENT)
 public class MarvelKeyMappings {
     public static final KeyMapping PRIMARY_SUIT_ABILITY = new KeyMapping(MarvelSuperheroes.id("primary_suit_ability").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "key.categories.marvel") {

@@ -17,6 +17,8 @@ public class MarvelBlockEntityTypes {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SuitTableBlockEntity>> SUIT_TABLE = register("suit_table", () -> BlockEntityType.Builder.of(SuitTableBlockEntity::new, MarvelBlocks.SUIT_TABLE.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SuitChargerBlockEntity>> SUIT_CHARGER = register("suit_charger", () -> BlockEntityType.Builder.of(SuitChargerBlockEntity::new, MarvelBlocks.SUIT_CHARGER.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MjolnirBlockEntity>> MJOLNIR = register("mjolnir", () -> BlockEntityType.Builder.of(MjolnirBlockEntity::new, MarvelBlocks.MJOLNIR.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<Mark38ChargerBlockEntity>> MARK_38_CHARGER = register("mark_38_charger", () -> BlockEntityType.Builder.of(Mark38ChargerBlockEntity::new, MarvelBlocks.MARK_38_CHARGER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<Mark38ChargerMultiBlockEntity>> MARK_38_CHARGER_PART = register("mark_38_charger_part", () -> BlockEntityType.Builder.of(Mark38ChargerMultiBlockEntity::new, MarvelBlocks.MARK_38_CHARGER_PART.get()).build(null));
 
     private static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> register(String id, Supplier<BlockEntityType<T>> supplier) {
         return REGISTER.register(id, supplier);

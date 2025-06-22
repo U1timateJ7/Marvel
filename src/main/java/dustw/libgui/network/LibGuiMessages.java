@@ -14,7 +14,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 /**
  * @author DustW
  */
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class LibGuiMessages {
     public static final CustomPacketPayload.Type<LibGuiPacket> PACKET_ID = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(LibGuiCommon.MOD_ID, "message"));
 

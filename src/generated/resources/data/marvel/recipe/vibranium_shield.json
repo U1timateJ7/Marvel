@@ -6,7 +6,7 @@
       "tag": "c:leathers"
     },
     "X": {
-      "item": "marvel:vibranium_ingot"
+      "tag": "c:ingots/vibranium"
     }
   },
   "pattern": [

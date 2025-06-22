@@ -9,6 +9,7 @@ import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -19,7 +20,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.world.entity.projectile.*;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MarvelSuperheroes.MOD_ID)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID)
 public class MarvelEntityTypes {
     public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(Registries.ENTITY_TYPE, MarvelSuperheroes.MOD_ID);
 
@@ -28,6 +29,7 @@ public class MarvelEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<WinterSoldier>> WINTER_SOLDIER = register("winter_soldier", EntityType.Builder.of(WinterSoldier::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<RedSkull>> RED_SKULL = register("red_skull", EntityType.Builder.of(RedSkull::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<IronManSentry>> IRON_MAN_SENTRY = register("iron_man_sentry", EntityType.Builder.of(IronManSentry::new, MobCategory.MISC).sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
+    public static final DeferredHolder<EntityType<?>, EntityType<IronManMark38>> IRON_MAN_MARK_38 = register("iron_man_mark_38", EntityType.Builder.of(IronManMark38::new, MobCategory.MISC).sized(0.8F, 2.25F).eyeHeight(2.07F).vehicleAttachment(new Vec3(0.0, 1.65, 0.0)).clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownVibraniumShield>> VIBRANIUM_SHIELD = register("vibranium_shield", EntityType.Builder.<ThrownVibraniumShield>of(ThrownVibraniumShield::new, MobCategory.MISC).sized(0.75F, 0.125F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<WebShot>> WEB_SHOT = register("web_shot", EntityType.Builder.<WebShot>of(WebShot::new, MobCategory.MISC).noSave().noSummon().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
@@ -56,6 +58,7 @@ public class MarvelEntityTypes {
         event.put(WINTER_SOLDIER.get(), WinterSoldier.createAttributes().build());
         event.put(RED_SKULL.get(), RedSkull.createAttributes().build());
         event.put(IRON_MAN_SENTRY.get(), IronManSentry.createAttributes().build());
+        event.put(IRON_MAN_MARK_38.get(), IronManMark38.createAttributes().build());
     }
 
     @SubscribeEvent

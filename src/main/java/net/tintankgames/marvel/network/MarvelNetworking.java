@@ -13,7 +13,7 @@ import net.tintankgames.marvel.attachment.EntityHolder;
 import net.tintankgames.marvel.attachment.TargetedEntity;
 import net.tintankgames.marvel.attachment.VeronicaData;
 
-@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID)
 public class MarvelNetworking {
     public static ClientUtils clientUtils = new ClientUtils() {
         @Override

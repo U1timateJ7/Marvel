@@ -8,7 +8,7 @@
       "item": "marvel:reinforced_leather"
     },
     {
-      "item": "marvel:adamantium_ingot"
+      "tag": "c:ingots/adamantium"
     }
   ],
   "repair_percent": 1.0,

@@ -2,6 +2,7 @@ package net.tintankgames.marvel.world.level.block;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
@@ -44,6 +45,8 @@ public class MarvelBlocks {
     public static final DeferredBlock<Block> SUIT_TABLE = registerWithType("suit_table", () -> SuitTableBlock.CODEC, () -> new SuitTableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final DeferredBlock<Block> SUIT_CHARGER = registerWithType("suit_charger", () -> SuitChargerBlock.CODEC, () -> new SuitChargerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static final DeferredBlock<Block> SUIT_CHARGER_UPPER = registerBlockOnlyWithType("suit_charger_upper", () -> SuitChargerUpperBlock.CODEC, () -> new SuitChargerUpperBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).pushReaction(PushReaction.BLOCK).noLootTable()));
+    public static final DeferredBlock<Block> MARK_38_CHARGER = registerBlockOnlyWithType("mark_38_charger", () -> Mark38ChargerBlock.CODEC, () -> new Mark38ChargerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).pushReaction(PushReaction.BLOCK)));
+    public static final DeferredBlock<Block> MARK_38_CHARGER_PART = registerBlockOnlyWithType("mark_38_charger_part", () -> Mark38ChargerMultiBlock.CODEC, () -> new Mark38ChargerMultiBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).pushReaction(PushReaction.BLOCK).noLootTable()));
     public static final DeferredBlock<Block> GREEN_HYDRA_BRICKS = register("green_hydra_bricks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
     public static final DeferredBlock<Block> GREEN_HYDRA_BRICK_SLAB = register("green_hydra_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
     public static final DeferredBlock<Block> GREEN_HYDRA_BRICK_STAIRS = register("green_hydra_brick_stairs", () -> new StairBlock(GREEN_HYDRA_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(GREEN_HYDRA_BRICKS.get())));
@@ -110,6 +113,25 @@ public class MarvelBlocks {
 
         private static TagKey<Block> create(String id) {
             return REGISTER.createTagKey(id);
+        }
+    }
+
+    public static class NeoTags {
+        public static final TagKey<Block> ORES_VIBRANIUM = create("ores/vibranium");
+        public static final TagKey<Block> ORES_TITANIUM = create("ores/titanium");
+        public static final TagKey<Block> ORES_PALLADIUM = create("ores/palladium");
+        public static final TagKey<Block> STORAGE_BLOCKS_VIBRANIUM = create("storage_blocks/vibranium");
+        public static final TagKey<Block> STORAGE_BLOCKS_TITANIUM = create("storage_blocks/titanium");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_TITANIUM = create("storage_blocks/raw_titanium");
+        public static final TagKey<Block> STORAGE_BLOCKS_PALLADIUM = create("storage_blocks/palladium");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_PALLADIUM = create("storage_blocks/raw_palladium");
+        public static final TagKey<Block> STORAGE_BLOCKS_GOLD_TITANIUM = create("storage_blocks/gold_titanium");
+        public static final TagKey<Block> STORAGE_BLOCKS_ADAMANTIUM = create("storage_blocks/adamantium");
+        public static final TagKey<Block> STORAGE_BLOCKS_PROTO_ADAMANTIUM = create("storage_blocks/proto_adamantium");
+        public static final TagKey<Block> STORAGE_BLOCKS_URU = create("storage_blocks/uru");
+
+        private static TagKey<Block> create(String id) {
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", id));
         }
     }
 }

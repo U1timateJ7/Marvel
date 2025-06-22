@@ -12,7 +12,6 @@ import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.OwnableEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
@@ -26,10 +25,6 @@ public class VeronicaSatellite extends Entity implements OwnableEntity {
 
     public VeronicaSatellite(EntityType<?> type, Level level) {
         super(type, level);
-    }
-
-    public VeronicaSatellite(Player owner, Level level) {
-        this(MarvelEntityTypes.VERONICA_SATELLITE.get(), level);
     }
 
     @Override

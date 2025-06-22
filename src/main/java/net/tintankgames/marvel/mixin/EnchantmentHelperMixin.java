@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EnchantmentHelperMixin {
     @Inject(at = @At("HEAD"), method = "has", cancellable = true)
     private static void cantRemoveThor(ItemStack stack, DataComponentType<?> type, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.is(MarvelItems.Tags.THOR_ARMOR) && type == EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE) cir.setReturnValue(true);
+        if ((stack.is(MarvelItems.Tags.THOR_ARMOR) || stack.is(MarvelItems.Tags.IRON_MAN_MARK_38_ARMOR)) && type == EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE) cir.setReturnValue(true);
     }
 }

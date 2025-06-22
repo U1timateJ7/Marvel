@@ -12,8 +12,8 @@ import net.minecraft.world.level.timers.TimerQueue;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.attachment.VeronicaData;
-import net.tintankgames.marvel.world.entity.IronManSentry;
-import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
+import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 import net.tintankgames.marvel.world.level.timers.SendSuitCallback;
 
 public record SendSuitMessage(VeronicaData.Suit suit, int delay) implements CustomPacketPayload {
@@ -23,7 +23,7 @@ public record SendSuitMessage(VeronicaData.Suit suit, int delay) implements Cust
         context.enqueueWork(() -> {
             if (context.flow().isServerbound() && context.player() instanceof ServerPlayer player) {
                 if (message.delay <= 0) {
-                    IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().spawn(player.serverLevel(), player.blockPosition().offset(player.getRandom().nextInt(-3, 3), 128, player.getRandom().nextInt(-3, 3)), MobSpawnType.TRIGGERED);
+                    VeronicaSentry sentry = ((SentryIronManSuitItem) message.suit.armor().get(2).getItem()).type().spawn(player.serverLevel(), player.blockPosition().offset(player.getRandom().nextInt(-3, 3), 128, player.getRandom().nextInt(-3, 3)), MobSpawnType.TRIGGERED);
                     if (sentry != null) {
                         sentry.setItemSlot(EquipmentSlot.FEET, message.suit.armor().get(0));
                         sentry.setItemSlot(EquipmentSlot.LEGS, message.suit.armor().get(1));

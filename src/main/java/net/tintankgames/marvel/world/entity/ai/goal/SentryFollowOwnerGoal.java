@@ -3,13 +3,13 @@ package net.tintankgames.marvel.world.entity.ai.goal;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.pathfinder.PathType;
-import net.tintankgames.marvel.world.entity.IronManSentry;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 public class SentryFollowOwnerGoal extends Goal {
-    private final IronManSentry sentry;
+    private final VeronicaSentry sentry;
     @Nullable
     private LivingEntity owner;
     private final double speedModifier;
@@ -18,7 +18,7 @@ public class SentryFollowOwnerGoal extends Goal {
     private final float startDistance;
     private float oldWaterCost;
 
-    public SentryFollowOwnerGoal(IronManSentry sentry, double speedModifier, float startDistance, float stopDistance) {
+    public SentryFollowOwnerGoal(VeronicaSentry sentry, double speedModifier, float startDistance, float stopDistance) {
         this.sentry = sentry;
         this.speedModifier = speedModifier;
         this.startDistance = startDistance;

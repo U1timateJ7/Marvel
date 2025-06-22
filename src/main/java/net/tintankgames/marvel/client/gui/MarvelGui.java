@@ -14,7 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +33,7 @@ import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
 import net.tintankgames.marvel.world.item.IronManSuitItem;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -72,6 +75,11 @@ public class MarvelGui {
                 renderCompass(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
                 LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, 32.0D, 0.0F);
                 if (target != null) renderTargetEntity(event.getGuiGraphics(), event.getPartialTick().getGameTimeDeltaTicks(), target, Minecraft.getInstance().player, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
+            }
+            LivingEntity target = getEntityLookingAtOrTargeting(Minecraft.getInstance().player, Minecraft.getInstance().player.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE), 0.0F);
+            if (target instanceof VeronicaSentry sentry && sentry.isCharging()) {
+                Component text = Component.literal(String.format("%.1f", EnergySuitItem.getEnergy(sentry.getItemBySlot(EquipmentSlot.CHEST))) + "%");
+                event.getGuiGraphics().drawString(Minecraft.getInstance().font, text, event.getGuiGraphics().guiWidth() / 2 - Minecraft.getInstance().font.width(text) / 2, (int) (event.getGuiGraphics().guiHeight() * 0.55), -1, true);
             }
         }
     }

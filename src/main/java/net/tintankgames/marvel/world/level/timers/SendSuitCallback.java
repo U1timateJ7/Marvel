@@ -14,8 +14,8 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.attachment.VeronicaData;
-import net.tintankgames.marvel.world.entity.IronManSentry;
-import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.VeronicaSentry;
+import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 
 import java.util.UUID;
 
@@ -31,7 +31,7 @@ public class SendSuitCallback implements TimerCallback<MinecraftServer> {
     public void handle(MinecraftServer server, TimerQueue<MinecraftServer> p_82173_, long p_82174_) {
         ServerPlayer player = server.getPlayerList().getPlayer(this.player);
         if (player != null) {
-            IronManSentry sentry = MarvelEntityTypes.IRON_MAN_SENTRY.get().spawn(player.serverLevel(), player.blockPosition().offset(player.getRandom().nextInt(-3, 3), 128, player.getRandom().nextInt(-3, 3)), MobSpawnType.TRIGGERED);
+            VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().spawn(player.serverLevel(), player.blockPosition().offset(player.getRandom().nextInt(-3, 3), 128, player.getRandom().nextInt(-3, 3)), MobSpawnType.TRIGGERED);
             if (sentry != null) {
                 sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
                 sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));

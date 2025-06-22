@@ -5,15 +5,14 @@ import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.tintankgames.marvel.attachment.EntitySuit;
 import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
@@ -88,6 +87,13 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(at = @At("RETURN"), method = "getFlyingSpeed", cancellable = true)
     private void fastFlying(CallbackInfoReturnable<Float> cir) {
         if (marvel$hasArmor(MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR, true) && abilities.flying) cir.setReturnValue(cir.getReturnValueF() * 2);
+    }
+
+    @Inject(at = @At("HEAD"), method = "getDefaultDimensions", cancellable = true)
+    private void suitDimensions(Pose pose, CallbackInfoReturnable<EntityDimensions> cir) {
+        if (getData(MarvelAttachmentTypes.ENTITY_SUIT) != EntitySuit.NONE) {
+            cir.setReturnValue(getData(MarvelAttachmentTypes.ENTITY_SUIT).dimensions().getOrDefault(pose, getData(MarvelAttachmentTypes.ENTITY_SUIT).dimensions().get(Pose.STANDING)));
+        }
     }
 
     @Unique

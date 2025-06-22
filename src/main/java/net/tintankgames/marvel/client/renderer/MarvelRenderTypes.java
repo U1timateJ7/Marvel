@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.function.BiFunction;
 
 @OnlyIn(Dist.CLIENT)
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 public class MarvelRenderTypes {
     @Nullable
     private static ShaderInstance rendertypeEntityEmissiveShader;

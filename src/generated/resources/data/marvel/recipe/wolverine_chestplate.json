@@ -6,7 +6,7 @@
       "tag": "c:dyes/yellow"
     },
     "A": {
-      "item": "marvel:adamantium_ingot"
+      "tag": "c:ingots/adamantium"
     },
     "G": {
       "item": "marvel:x_genes"

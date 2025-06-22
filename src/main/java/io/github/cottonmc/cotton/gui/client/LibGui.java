@@ -17,7 +17,7 @@ import java.io.IOException;
  *
  * @since 4.0.0
  */
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = MarvelSuperheroes.MOD_ID, value = Dist.CLIENT)
 public final class LibGui {
     public static final String MOD_ID = "libgui";
 
