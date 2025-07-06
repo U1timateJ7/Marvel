@@ -90,9 +90,13 @@ public class MiningDrillItem extends SuitPowerItem {
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState centerState, BlockPos centerPos, LivingEntity entity) {
         if (level.isClientSide || !(entity instanceof ServerPlayer player)) return false;
-        if (player.isShiftKeyDown() || player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SINGLE_BLOCK, false)) return false;
+        if (player.isShiftKeyDown() || player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SINGLE_BLOCK, false)) {
+            if (!player.isCreative()) player.getArmorSlots().forEach(piece -> EnergySuitItem.removeEnergy(piece, 0.2F/9.0F));
+            return true;
+        }
         HitResult mop = getPlayerPOVHitResult(level, player, ClipContext.Fluid.NONE);
         ImmutableList<BlockPos> additional = getExtraBlocksDug(level, player, mop);
+        if (!player.isCreative()) player.getArmorSlots().forEach(piece -> EnergySuitItem.removeEnergy(piece, 0.2F/9.0F));
         for (BlockPos pos : additional) {
             if (!level.hasChunkAt(pos)) continue;
             BlockState state = level.getBlockState(pos);
@@ -113,9 +117,10 @@ public class MiningDrillItem extends SuitPowerItem {
                     }
                 }
                 level.levelEvent(2001, pos, Block.getId(state));
+                if (!player.isCreative()) player.getArmorSlots().forEach(piece -> EnergySuitItem.removeEnergy(piece, 0.2F/9.0F));
                 player.connection.send(new ClientboundBlockUpdatePacket(level, pos));
             }
         }
-        return false;
+        return true;
     }
 }

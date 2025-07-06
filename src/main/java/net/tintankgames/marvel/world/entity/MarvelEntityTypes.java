@@ -30,6 +30,7 @@ public class MarvelEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<RedSkull>> RED_SKULL = register("red_skull", EntityType.Builder.of(RedSkull::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<IronManSentry>> IRON_MAN_SENTRY = register("iron_man_sentry", EntityType.Builder.of(IronManSentry::new, MobCategory.MISC).sized(0.6F, 1.8F).eyeHeight(1.62F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
     public static final DeferredHolder<EntityType<?>, EntityType<IronManMark38>> IRON_MAN_MARK_38 = register("iron_man_mark_38", EntityType.Builder.of(IronManMark38::new, MobCategory.MISC).sized(0.8F, 2.25F).eyeHeight(2.07F).vehicleAttachment(new Vec3(0.0, 1.65, 0.0)).clientTrackingRange(8));
+    public static final DeferredHolder<EntityType<?>, EntityType<IronManSuitPart>> IRON_MAN_SUIT_PART = register("iron_man_suit_part", EntityType.Builder.of(IronManSuitPart::new, MobCategory.MISC).sized(0.5F, 0.5F).eyeHeight(0.0F).vehicleAttachment(Player.DEFAULT_VEHICLE_ATTACHMENT).clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<ThrownVibraniumShield>> VIBRANIUM_SHIELD = register("vibranium_shield", EntityType.Builder.<ThrownVibraniumShield>of(ThrownVibraniumShield::new, MobCategory.MISC).sized(0.75F, 0.125F).clientTrackingRange(4).updateInterval(20));
     public static final DeferredHolder<EntityType<?>, EntityType<WebShot>> WEB_SHOT = register("web_shot", EntityType.Builder.<WebShot>of(WebShot::new, MobCategory.MISC).noSave().noSummon().sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(5));
@@ -59,6 +60,7 @@ public class MarvelEntityTypes {
         event.put(RED_SKULL.get(), RedSkull.createAttributes().build());
         event.put(IRON_MAN_SENTRY.get(), IronManSentry.createAttributes().build());
         event.put(IRON_MAN_MARK_38.get(), IronManMark38.createAttributes().build());
+        event.put(IRON_MAN_SUIT_PART.get(), IronManSuitPart.createAttributes().build());
     }
 
     @SubscribeEvent

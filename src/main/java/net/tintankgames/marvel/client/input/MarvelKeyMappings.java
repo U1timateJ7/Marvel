@@ -13,6 +13,7 @@ import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.network.PrimarySuitAbilityMessage;
 import net.tintankgames.marvel.network.SecondarySuitAbilityMessage;
+import net.tintankgames.marvel.network.SummonSuitMessage;
 import net.tintankgames.marvel.network.ToggleHelmetMessage;
 import org.lwjgl.glfw.GLFW;
 
@@ -61,12 +62,27 @@ public class MarvelKeyMappings {
             isDownOld = isDown;
         }
     };
+    public static final KeyMapping SUMMON_SUIT = new KeyMapping(MarvelSuperheroes.id("summon_suit").toLanguageKey("key"), KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_X, "key.categories.marvel") {
+        private boolean isDownOld = false;
+
+        @Override
+        public void setDown(boolean isDown) {
+            super.setDown(isDown);
+
+            if (isDownOld != isDown) {
+                Minecraft.getInstance().player.connection.send(new SummonSuitMessage(isDown));
+            }
+
+            isDownOld = isDown;
+        }
+    };
 
     @SubscribeEvent
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
         event.register(PRIMARY_SUIT_ABILITY);
         event.register(SECONDARY_SUIT_ABILITY);
         event.register(TOGGLE_HELMET);
+        event.register(SUMMON_SUIT);
     }
 
     @EventBusSubscriber(Dist.CLIENT)
@@ -78,6 +94,7 @@ public class MarvelKeyMappings {
                 PRIMARY_SUIT_ABILITY.consumeClick();
                 SECONDARY_SUIT_ABILITY.consumeClick();
                 TOGGLE_HELMET.consumeClick();
+                SUMMON_SUIT.consumeClick();
             }
         }
     }

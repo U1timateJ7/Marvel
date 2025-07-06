@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.mixin;
 
+import com.google.common.collect.Streams;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.tags.DamageTypeTags;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -27,9 +29,11 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.MarvelEntityTypes;
+import net.tintankgames.marvel.world.entity.projectile.TesseractCharge;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.VibraniumShieldItem;
 import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -52,6 +56,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Shadow public abstract AttributeMap getAttributes();
     @Shadow public abstract void knockback(double p_147241_, double p_147242_, double p_147243_);
     @Shadow public abstract double getAttributeValue(Holder<Attribute> p_251296_);
+    @Shadow public abstract Iterable<ItemStack> getArmorSlots();
 
     public LivingEntityMixin(EntityType<?> p_19870_, Level p_19871_) {
         super(p_19870_, p_19871_);
@@ -122,9 +127,9 @@ public abstract class LivingEntityMixin extends Entity {
     private static boolean marvel$processHand(ItemStack stack, Entity source) {
         if (marvel$isShield(stack)) {
             if (!stack.isDamageableItem()) {
-                return true;
+                return !(source instanceof TesseractCharge) || source.level().getRandom().nextBoolean();
             } else {
-                return source.getType().is(MarvelEntityTypes.Tags.BLOCKED_BY_VIBRANIUM_SHIELD);
+                return source.getType().is(MarvelEntityTypes.Tags.BLOCKED_BY_VIBRANIUM_SHIELD) && !source.getData(MarvelAttachmentTypes.TESSERACT_CHARGED);
             }
         }
         return false;
@@ -157,7 +162,8 @@ public abstract class LivingEntityMixin extends Entity {
         boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
         boolean feet = getItemBySlot(EquipmentSlot.FEET).is(tagKey);
-        return head && chest && legs && feet;
+        boolean hasAllParts = Streams.stream(getArmorSlots()).allMatch(stack -> stack.getItem() instanceof ArmorItem armorItem && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(armorItem.getType(), true)).hasAllParts());
+        return head && chest && legs && feet && (hasAllParts || !needsHead);
     }
 
     @Unique
@@ -166,7 +172,8 @@ public abstract class LivingEntityMixin extends Entity {
         boolean chest = getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
         boolean feet = getItemBySlot(EquipmentSlot.FEET).is(tagKey);
-        return head && chest && legs && feet;
+        boolean hasAllParts = Streams.stream(getArmorSlots()).allMatch(stack -> stack.getItem() instanceof ArmorItem armorItem && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(armorItem.getType(), true)).hasAllParts());
+        return head && chest && legs && feet && hasAllParts;
     }
 
     @Unique
@@ -175,7 +182,16 @@ public abstract class LivingEntityMixin extends Entity {
         boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
         boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
         boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
-        return head && chest && legs && feet;
+        boolean hasAllParts = Streams.stream(living.getArmorSlots()).allMatch(stack -> stack.getItem() instanceof ArmorItem armorItem && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(armorItem.getType(), true)).hasAllParts());
+        return head && chest && legs && feet && hasAllParts;
+    }
+
+    @Unique
+    private boolean marvel$hasFlyingParts(boolean bothSides) {
+        SuitParts chest = getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.CHESTPLATE, false));
+        SuitParts feet = getItemBySlot(EquipmentSlot.FEET).getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.BOOTS, false));
+        if (bothSides) return chest.parts().get(3) && chest.parts().get(5) && feet.parts().get(0) && feet.parts().get(1);
+        else return (chest.parts().get(3) || chest.parts().get(5)) && (feet.parts().get(0) || feet.parts().get(1));
     }
 
     @Unique
@@ -241,7 +257,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(at = @At("HEAD"), method = "updateWalkAnimation", cancellable = true)
     private void flyingBetter(float p_268283_, CallbackInfo ci) {
-        if ((Object)this instanceof Player player && (player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && (hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || player.getMainHandItem().is(MarvelItems.MJOLNIR) || player.getMainHandItem().is(MarvelItems.STORMBREAKER) || player.getOffhandItem().is(MarvelItems.MJOLNIR) || player.getOffhandItem().is(MarvelItems.STORMBREAKER))) {
+        if ((Object)this instanceof Player player && (player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.MAINHAND).getOrDefault(MarvelDataComponents.FLYING, false) || player.getItemBySlot(EquipmentSlot.OFFHAND).getOrDefault(MarvelDataComponents.FLYING, false)) && ((hasArmor(MarvelItems.Tags.FLYING_ARMOR, true) || marvel$hasFlyingParts(false)) && (!getItemBySlot(EquipmentSlot.CHEST).has(MarvelDataComponents.SIZE) || getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.SMALL) || player.getMainHandItem().is(MarvelItems.MJOLNIR) || player.getMainHandItem().is(MarvelItems.STORMBREAKER) || player.getOffhandItem().is(MarvelItems.MJOLNIR) || player.getOffhandItem().is(MarvelItems.STORMBREAKER))) {
             ci.cancel();
         }
     }

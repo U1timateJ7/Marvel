@@ -155,6 +155,10 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.RED_GUARDIAN_CHESTPLATE);
         output.accept(MarvelItems.RED_GUARDIAN_LEGGINGS);
         output.accept(MarvelItems.RED_GUARDIAN_BOOTS);
+        output.accept(MarvelItems.US_AGENT_HELMET);
+        output.accept(MarvelItems.US_AGENT_CHESTPLATE);
+        output.accept(MarvelItems.US_AGENT_LEGGINGS);
+        output.accept(MarvelItems.US_AGENT_BOOTS);
         output.accept(MarvelItems.BLACK_PANTHER_HELMET);
         output.accept(MarvelItems.BLACK_PANTHER_CHESTPLATE);
         output.accept(MarvelItems.BLACK_PANTHER_LEGGINGS);
@@ -354,6 +358,14 @@ public class MarvelCreativeModeTabs {
         output.accept(MarvelItems.IRON_MAN_MARK_39_CHESTPLATE);
         output.accept(MarvelItems.IRON_MAN_MARK_39_LEGGINGS);
         output.accept(MarvelItems.IRON_MAN_MARK_39_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_42_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_42_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_42_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_42_BOOTS);
+        output.accept(MarvelItems.IRON_MAN_MARK_43_HELMET);
+        output.accept(MarvelItems.IRON_MAN_MARK_43_CHESTPLATE);
+        output.accept(MarvelItems.IRON_MAN_MARK_43_LEGGINGS);
+        output.accept(MarvelItems.IRON_MAN_MARK_43_BOOTS);
     }));
 
     private static DeferredHolder<CreativeModeTab, CreativeModeTab> register(String id, Function<CreativeModeTab.Builder, CreativeModeTab.Builder> builderConsumer) {

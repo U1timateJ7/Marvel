@@ -14,6 +14,7 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 
 public class ToggleHelmetMessage implements CustomPacketPayload {
     public static final ToggleHelmetMessage INSTANCE = new ToggleHelmetMessage();
@@ -32,7 +33,7 @@ public class ToggleHelmetMessage implements CustomPacketPayload {
     public static void toggleHelmet(Player player) {
         ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
         ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
-        if (!helmet.isEmpty() && helmet.has(MarvelDataComponents.HELMET_OPEN) && chestplate.getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.NORMAL) {
+        if (!helmet.isEmpty() && helmet.has(MarvelDataComponents.HELMET_OPEN) && chestplate.getOrDefault(MarvelDataComponents.SIZE, Size.NORMAL) == Size.NORMAL && helmet.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.HELMET, true)).hasAllParts()) {
             helmet.update(MarvelDataComponents.HELMET_OPEN, false, open -> {
                 if (!player.level().isClientSide) {
                     if (helmet.is(MarvelItems.Tags.KINETIC_BLACK_PANTHER_HELMET)) {

@@ -3,10 +3,14 @@ package net.tintankgames.marvel.plugin.emi;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
+import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
+import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.tintankgames.marvel.MarvelSuperheroes;
@@ -18,6 +22,8 @@ import net.tintankgames.marvel.world.item.crafting.SuitRepairingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitUpgradingRecipe;
 import net.tintankgames.marvel.world.item.crafting.SuitVariantRecipe;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
+
+import java.util.List;
 
 @EmiEntrypoint
 public class MarvelSuperheroesEmiPlugin implements EmiPlugin {
@@ -68,5 +74,8 @@ public class MarvelSuperheroesEmiPlugin implements EmiPlugin {
         registry.addRecipe(new EmiNecklaceRecipe(MarvelItems.BLACK_PANTHER_SHURI_NECKLACE.get(), MarvelSuperheroes.id("black_panther_shuri_necklace")));
         registry.addRecipe(new EmiNecklaceRecipe(MarvelItems.IRON_MAN_MARK_5_SUITCASE.get(), MarvelSuperheroes.id("iron_man_mark_5_suitcase")));
         registry.addRecipe(new EmiIgorRecipe(MarvelItems.IRON_MAN_MARK_38.get(), MarvelItems.IRON_MAN_MARK_38_HELMET_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_CHESTPLATE_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_LEGGINGS_COMPONENT.get(), MarvelItems.IRON_MAN_MARK_38_BOOTS_COMPONENT.get(), MarvelSuperheroes.id("iron_man_mark_38")));
+
+        registry.addRecipe(new EmiInfoRecipe(List.of(EmiIngredient.of(Ingredient.of(MarvelItems.TESSERACT_SHARD))), List.of(Component.translatable(MarvelItems.TESSERACT_SHARD.getId().toLanguageKey("info"))), MarvelItems.TESSERACT_SHARD.getId().withPath(path -> path + "_info")));
+        registry.addRecipe(new EmiInfoRecipe(List.of(EmiIngredient.of(Ingredient.of(MarvelItems.TESSERACT))), List.of(Component.translatable(MarvelItems.TESSERACT.getId().toLanguageKey("info"))), MarvelItems.TESSERACT.getId().withPath(path -> path + "_info")));
     }
 }

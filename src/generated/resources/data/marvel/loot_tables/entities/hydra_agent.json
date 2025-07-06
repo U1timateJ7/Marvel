@@ -44,7 +44,11 @@
           "name": "marvel:tesseract_shard"
         }
       ],
-      "rolls": 1.0
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 0.0
+      }
     }
   ],
   "random_sequence": "marvel:entities/hydra_agent"

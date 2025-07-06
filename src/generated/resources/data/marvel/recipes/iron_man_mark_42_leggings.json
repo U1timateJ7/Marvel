@@ -1,0 +1,36 @@
+{
+  "type": "marvel:suit_upgrading",
+  "consume_suit": false,
+  "ingredients": [
+    {
+      "tag": "c:ingots/gold_titanium"
+    },
+    {
+      "tag": "c:ingots/gold_titanium"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "minecraft:comparator"
+    }
+  ],
+  "results": {
+    "id": "marvel:iron_man_mark_42_leggings"
+  },
+  "suit": {
+    "tag": "marvel:iron_man_mark_39_leggings"
+  }
+}

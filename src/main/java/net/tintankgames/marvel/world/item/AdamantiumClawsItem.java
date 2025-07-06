@@ -28,18 +28,18 @@ public class AdamantiumClawsItem extends SuitPowerItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
-        super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
-        if (p_41406_ instanceof ServerPlayer player) {
-            if (player.getMainHandItem() == p_41404_) {
-                if (!p_41404_.has(MarvelDataComponents.CLAWS_OUT)) {
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+        super.inventoryTick(stack, level, entity, p_41407_, p_41408_);
+        if (entity instanceof ServerPlayer player) {
+            if (player.getMainHandItem() == stack) {
+                if (!stack.has(MarvelDataComponents.CLAWS_OUT)) {
                     player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.WOLVERINE_CLAWS_OUT.get(), SoundSource.PLAYERS);
-                    p_41404_.set(MarvelDataComponents.CLAWS_OUT, Unit.INSTANCE);
+                    stack.set(MarvelDataComponents.CLAWS_OUT, Unit.INSTANCE);
                 }
             } else {
-                if (p_41404_.has(MarvelDataComponents.CLAWS_OUT)) {
+                if (stack.has(MarvelDataComponents.CLAWS_OUT)) {
                     player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.WOLVERINE_CLAWS_IN.get(), SoundSource.PLAYERS);
-                    p_41404_.remove(MarvelDataComponents.CLAWS_OUT);
+                    stack.remove(MarvelDataComponents.CLAWS_OUT);
                 }
             }
         }

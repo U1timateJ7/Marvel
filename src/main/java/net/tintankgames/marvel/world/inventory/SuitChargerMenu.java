@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.world.inventory;
 
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -9,14 +10,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.tintankgames.marvel.world.item.SuitChargerItem;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
+
+import java.util.UUID;
 
 public class SuitChargerMenu extends AbstractContainerMenu {
     static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{
@@ -25,15 +25,18 @@ public class SuitChargerMenu extends AbstractContainerMenu {
     private static final EquipmentSlot[] SLOT_IDS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
     private final ContainerLevelAccess access;
     private final Player player;
+    private final ContainerData data;
 
     protected SuitChargerMenu(int p_38852_, Inventory p_39357_) {
-        this(p_38852_, p_39357_, new SimpleContainer(4), ContainerLevelAccess.NULL);
+        this(p_38852_, p_39357_, new SimpleContainer(4), ContainerLevelAccess.NULL, new SimpleContainerData(4));
     }
 
-    public SuitChargerMenu(int p_38852_, Inventory inventory, Container container, ContainerLevelAccess containerLevelAccess) {
+    public SuitChargerMenu(int p_38852_, Inventory inventory, Container container, ContainerLevelAccess containerLevelAccess, ContainerData data) {
         super(MarvelMenuTypes.SUIT_CHARGER.get(), p_38852_);
         this.access = containerLevelAccess;
         this.player = inventory.player;
+        checkContainerDataCount(data, 4);
+        this.data = data;
 
         for (int k = 0; k < 4; k++) {
             final EquipmentSlot equipmentslot = SLOT_IDS[k];
@@ -41,6 +44,12 @@ public class SuitChargerMenu extends AbstractContainerMenu {
                 @Override
                 public int getMaxStackSize() {
                     return 1;
+                }
+
+                @Override
+                public void setByPlayer(ItemStack p_270152_) {
+                    super.setByPlayer(p_270152_);
+                    setLastInteractedUUID(player.getUUID());
                 }
 
                 @Override
@@ -165,5 +174,17 @@ public class SuitChargerMenu extends AbstractContainerMenu {
         }
 
         return itemstack;
+    }
+
+    public UUID getLastInteractedUUID() {
+        return UUIDUtil.uuidFromIntArray(new int[] {data.get(0), data.get(1), data.get(2), data.get(3)});
+    }
+
+    public void setLastInteractedUUID(UUID uuid) {
+        int[] array = UUIDUtil.uuidToIntArray(uuid);
+        data.set(0, array[0]);
+        data.set(1, array[1]);
+        data.set(2, array[2]);
+        data.set(3, array[3]);
     }
 }

@@ -21,7 +21,8 @@ public enum ShieldArt implements StringRepresentable {
     CAPTAIN_AMERICA("captain_america", DyeColor.RED, DyeColor.WHITE, DyeColor.BLUE),
     CAPTAIN_AMERICA_STEALTH("captain_america_stealth", DyeColor.LIGHT_BLUE, DyeColor.WHITE, DyeColor.BLUE),
     CAPTAIN_CARTER("captain_carter", DyeColor.RED, DyeColor.BLUE),
-    RED_GUARDIAN("red_guardian", DyeColor.RED);
+    RED_GUARDIAN("red_guardian", DyeColor.RED),
+    US_AGENT("us_agent", DyeColor.BLACK, DyeColor.RED);
 
     private static final IntFunction<ShieldArt> SHIELD_ART_BY_ID = ByIdMap.continuous(ShieldArt::ordinal, ShieldArt.values(), ByIdMap.OutOfBoundsStrategy.ZERO);
     public static final Codec<ShieldArt> CODEC = StringRepresentable.fromEnum(ShieldArt::values);

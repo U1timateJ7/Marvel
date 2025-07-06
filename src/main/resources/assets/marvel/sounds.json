@@ -353,5 +353,24 @@
     "sounds": [
       "marvel:entity/red_skull/hit"
     ]
+  },
+  "entity.iron_man_sentry.enter": {
+    "subtitle": "subtitles.item.iron_man_sentry.enter",
+    "sounds": [
+      "marvel:entity/iron_man_sentry/enter"
+    ]
+  },
+  "entity.iron_man_sentry.exit": {
+    "subtitle": "subtitles.item.iron_man_sentry.exit",
+    "sounds": [
+      "marvel:entity/iron_man_sentry/exit"
+    ]
+  },
+  "entity.iron_man_suit_part.equip": {
+    "sounds": [
+      "marvel:entity/iron_man_suit_part/equip1",
+      "marvel:entity/iron_man_suit_part/equip2",
+      "marvel:entity/iron_man_suit_part/equip3"
+    ]
   }
 }

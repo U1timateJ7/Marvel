@@ -44,6 +44,8 @@ public class MarvelAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<VeronicaData>> VERONICA = register("veronica", () -> AttachmentType.builder(() -> new VeronicaData(false, new ArrayList<>(), 0)).serialize(VeronicaData.CODEC).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<EntityHolder<Entity>>> HELD_ENTITY = register("held_entity", () -> AttachmentType.builder(() -> new EntityHolder<>(null)).build());
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<EntitySuit>> ENTITY_SUIT = register("entity_suit", () -> AttachmentType.builder(() -> EntitySuit.NONE).serialize(EntitySuit.CODEC).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> SUMMONING_SUIT = register("summoning_suit", () -> AttachmentType.builder(() -> false).build());
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> SUMMONED_SUIT = register("summoned_suit", () -> AttachmentType.builder(() -> false).build());
 
     private static <T> DeferredHolder<AttachmentType<?>, AttachmentType<T>> register(String id, Supplier<AttachmentType<T>> supplier) {
         return REGISTER.register(id, supplier);

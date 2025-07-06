@@ -3,6 +3,7 @@ package net.tintankgames.marvel.plugin.jei;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -10,6 +11,7 @@ import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -77,6 +79,9 @@ public class MarvelSuperheroesJeiPlugin implements IModPlugin {
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_UPGRADING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_UPGRADING.get()));
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_VARIANT, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_VARIANT.get()));
         registration.addRecipes(MarvelJeiRecipeTypes.SUIT_REPAIRING, getValidHandledRecipes(Minecraft.getInstance().level.getRecipeManager(), MarvelRecipeTypes.SUIT_REPAIRING.get()));
+
+        registration.addIngredientInfo(MarvelItems.TESSERACT_SHARD.toStack(), VanillaTypes.ITEM_STACK, Component.translatable(MarvelItems.TESSERACT_SHARD.getId().toLanguageKey("info")));
+        registration.addIngredientInfo(MarvelItems.TESSERACT.toStack(), VanillaTypes.ITEM_STACK, Component.translatable(MarvelItems.TESSERACT.getId().toLanguageKey("info")));
 
         registration.addRecipes(RecipeTypes.CRAFTING, getSpecialRecipes());
     }

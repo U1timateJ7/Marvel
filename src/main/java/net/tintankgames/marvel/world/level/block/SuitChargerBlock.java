@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.world.level.block;
 
+import com.google.common.collect.Streams;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -75,8 +77,8 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
         if (player.isSecondaryUseActive() && blockEntity instanceof SuitChargerBlockEntity charger) {
             boolean playerHasNoSuit = true;
             boolean chargerHasNoSuit = true;
-            boolean playerHasFullSuit = player.getInventory().armor.get(0).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(1).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(2).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(3).getItem() instanceof SuitChargerItem;
-            boolean chargerHasFullSuit = charger.getItem(0).getItem() instanceof SuitChargerItem && charger.getItem(1).getItem() instanceof SuitChargerItem && charger.getItem(2).getItem() instanceof SuitChargerItem && charger.getItem(3).getItem() instanceof SuitChargerItem;
+            boolean playerHasFullSuit = player.getInventory().armor.get(0).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(1).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(2).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(3).getItem() instanceof SuitChargerItem && Streams.stream(player.getArmorSlots()).noneMatch(EnchantmentHelper::hasBindingCurse);
+            boolean chargerHasFullSuit = charger.getItem(0).getItem() instanceof SuitChargerItem && charger.getItem(1).getItem() instanceof SuitChargerItem && charger.getItem(2).getItem() instanceof SuitChargerItem && charger.getItem(3).getItem() instanceof SuitChargerItem && charger.items().stream().noneMatch(EnchantmentHelper::hasBindingCurse);
             for (ItemStack armor : player.getInventory().armor) {
                 if (!armor.isEmpty()) {
                     playerHasNoSuit = false;
@@ -99,6 +101,7 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     for (int i = 0; i < charger.getContainerSize(); i++) {
                         charger.setItem(i, playerArmor.get(i).copy());
                     }
+                    charger.setLastInteracted(player.getUUID());
                 }
                 return InteractionResult.sidedSuccess(level.isClientSide);
             } else {
@@ -120,8 +123,8 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
         if (player.isSecondaryUseActive() && blockEntity instanceof SuitChargerBlockEntity charger) {
             boolean playerHasNoSuit = true;
             boolean chargerHasNoSuit = true;
-            boolean playerHasFullSuit = player.getInventory().armor.get(0).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(1).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(2).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(3).getItem() instanceof SuitChargerItem;
-            boolean chargerHasFullSuit = charger.getItem(0).getItem() instanceof SuitChargerItem && charger.getItem(1).getItem() instanceof SuitChargerItem && charger.getItem(2).getItem() instanceof SuitChargerItem && charger.getItem(3).getItem() instanceof SuitChargerItem;
+            boolean playerHasFullSuit = player.getInventory().armor.get(0).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(1).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(2).getItem() instanceof SuitChargerItem && player.getInventory().armor.get(3).getItem() instanceof SuitChargerItem && Streams.stream(player.getArmorSlots()).noneMatch(EnchantmentHelper::hasBindingCurse);
+            boolean chargerHasFullSuit = charger.getItem(0).getItem() instanceof SuitChargerItem && charger.getItem(1).getItem() instanceof SuitChargerItem && charger.getItem(2).getItem() instanceof SuitChargerItem && charger.getItem(3).getItem() instanceof SuitChargerItem && charger.items().stream().noneMatch(EnchantmentHelper::hasBindingCurse);
             for (ItemStack armor : player.getInventory().armor) {
                 if (!armor.isEmpty()) {
                     playerHasNoSuit = false;
@@ -144,6 +147,7 @@ public class SuitChargerBlock extends HorizontalDirectionalBlock implements Enti
                     for (int i = 0; i < charger.getContainerSize(); i++) {
                         charger.setItem(i, playerArmor.get(i).copy());
                     }
+                    charger.setLastInteracted(player.getUUID());
                 }
                 return ItemInteractionResult.sidedSuccess(level.isClientSide);
             } else {

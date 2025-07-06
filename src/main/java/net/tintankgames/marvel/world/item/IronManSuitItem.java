@@ -1,5 +1,6 @@
 package net.tintankgames.marvel.world.item;
 
+import com.google.common.collect.Streams;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -17,10 +18,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -38,6 +36,7 @@ import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.MarvelParticleTypes;
 import net.tintankgames.marvel.world.effect.MarvelMobEffects;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +86,7 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 } else {
                     serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).removeModifier(creativeFlightModifier.id());
                 }
-                if (serverPlayer.getY() >= ((IronManSuitItem) serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem()).getFlightMax() && !serverPlayer.isCreative()) {
+                if (serverPlayer.getY() >= ((IronManSuitItem) serverPlayer.getItemBySlot(EquipmentSlot.CHEST).getItem()).getFlightMax(serverPlayer.getItemBySlot(EquipmentSlot.HEAD), serverPlayer.getItemBySlot(EquipmentSlot.CHEST), serverPlayer.getItemBySlot(EquipmentSlot.LEGS), serverPlayer.getItemBySlot(EquipmentSlot.FEET)) && !serverPlayer.isCreative()) {
                     serverPlayer.addEffect(effect(MarvelMobEffects.ICING, 0, 30));
                 }
                 if (serverPlayer.getAbilities().flying) {
@@ -107,6 +106,29 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).removeModifier(safeFalLDistanceModifier.id());
                 serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
                 serverPlayer.getAttribute(Attributes.KNOCKBACK_RESISTANCE).removeModifier(knockbackResistanceModifier.id());
+                ItemStack chestplate = serverPlayer.getItemBySlot(EquipmentSlot.CHEST);
+                ItemStack boots = serverPlayer.getItemBySlot(EquipmentSlot.FEET);
+                if (boots.has(MarvelDataComponents.SUIT_PARTS) && chestplate.has(MarvelDataComponents.SUIT_PARTS) && (boots.get(MarvelDataComponents.SUIT_PARTS).parts().get(0) || boots.get(MarvelDataComponents.SUIT_PARTS).parts().get(1)) && (chestplate.get(MarvelDataComponents.SUIT_PARTS).parts().get(3) || chestplate.get(MarvelDataComponents.SUIT_PARTS).parts().get(5))) {
+                    serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).addOrUpdateTransientModifier(creativeFlightModifier);
+                    serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).addOrUpdateTransientModifier(safeFalLDistanceModifier);
+                    serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).addOrUpdateTransientModifier(fallDamageMultiplierModifier);
+                    if (serverPlayer.getAbilities().flying) {
+                        double d = 1 / (serverPlayer.getAbilities().getFlyingSpeed() * (hasArmor(serverPlayer, MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR) ? 2.0F : 1.0F) / 0.05F);
+                        Vec3 movement = serverPlayer.getData(MarvelAttachmentTypes.DELTA_MOVEMENT).multiply(d, d, d);
+                        movement = new Vec3(Math.clamp(movement.x, -1.0F, 1.0F), Math.clamp(movement.y, -1.0F, 1.0F), Math.clamp(movement.z, -1.0F, 1.0F));
+                        serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.FLYING, serverPlayer.getAbilities().flying);
+                        serverPlayer.getItemBySlot(EquipmentSlot.CHEST).set(MarvelDataComponents.DELTA_MOVEMENT, movement);
+                        Vec3 flamePlacement = serverPlayer.position().add(movement.multiply(-1.5, -1, -1.5)).add(0, movement.horizontalDistance() * 1.4, 0);
+                        serverPlayer.serverLevel().sendParticles(MarvelParticleTypes.IRON_MAN_FLAME.get(), flamePlacement.x(), flamePlacement.y(), flamePlacement.z(), 4, 0.1, 0, 0.1, 0);
+                    } else {
+                        serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.FLYING);
+                        serverPlayer.getItemBySlot(EquipmentSlot.CHEST).remove(MarvelDataComponents.DELTA_MOVEMENT);
+                    }
+                } else {
+                    serverPlayer.getAttribute(NeoForgeMod.CREATIVE_FLIGHT).removeModifier(creativeFlightModifier.id());
+                    serverPlayer.getAttribute(Attributes.SAFE_FALL_DISTANCE).removeModifier(safeFalLDistanceModifier.id());
+                    serverPlayer.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER).removeModifier(fallDamageMultiplierModifier.id());
+                }
             }
         }
     }
@@ -125,7 +147,8 @@ public abstract class IronManSuitItem extends EnergySuitItem {
                 }
             }
         }
-        return head && chest && legs && feet && wearingSameArmor;
+        boolean hasAllParts = Streams.stream(living.getArmorSlots()).allMatch(stack -> stack.getItem() instanceof ArmorItem armorItem && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(armorItem.getType(), true)).hasAllParts());
+        return head && chest && legs && feet && wearingSameArmor && hasAllParts;
     }
 
     @Override
@@ -181,12 +204,18 @@ public abstract class IronManSuitItem extends EnergySuitItem {
 
     @SubscribeEvent
     public static void arrowImmunity(LivingAttackEvent event) {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getEntity().getItemBySlot(EquipmentSlot.FEET).is(MarvelItems.Tags.IRON_MAN_ARMOR) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS) && event.getEntity().getRandom().nextInt(5) < 3) {
+        if ((hasArmor(event.getEntity(), MarvelItems.Tags.IRON_MAN_ARMOR) || hasArrowImmunityParts(event.getEntity())) && event.getSource().getDirectEntity() != null && event.getSource().getDirectEntity().getType().is(EntityTypeTags.ARROWS) && event.getEntity().getRandom().nextInt(5) < 3) {
             event.setCanceled(true);
         }
     }
 
-    protected double getFlightMax() {
+    private static boolean hasArrowImmunityParts(LivingEntity living) {
+        SuitParts chest = living.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.CHESTPLATE, false));
+        SuitParts legs = living.getItemBySlot(EquipmentSlot.LEGS).getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(Type.LEGGINGS, false));
+        return chest.hasAllParts() && legs.hasAllParts();
+    }
+
+    protected double getFlightMax(ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots) {
         return 256.0F;
     }
 

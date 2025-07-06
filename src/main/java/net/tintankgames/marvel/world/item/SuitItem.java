@@ -25,6 +25,8 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.tintankgames.marvel.MarvelSuperheroes;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.item.component.SuitPartItem;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -87,6 +89,18 @@ public abstract class SuitItem extends ArmorItem {
                     for (Item powerItem : stack.getOrDefault(MarvelDataComponents.POWER_ITEMS, List.<Item>of())) {
                         if (player.getInventory().contains(itemStack -> itemStack.is(powerItem))) {
                             player.getInventory().removeItem(player.getInventory().getItem(findSlotMatchingItem(player.getInventory().items, powerItem)));
+                        }
+                    }
+                }
+            }
+            if (stack.getItem() instanceof SummonableIronManSuitItem item) {
+                if (living instanceof Player player) {
+                    for (SuitPartItem suitPartItem : item.partPowerItems.stream().filter(partItem -> item.getType() == partItem.piece() && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(item.getType(), true)).parts().get(partItem.part())).toList()) {
+                        if (!player.getInventory().contains(itemStack -> itemStack.is(suitPartItem.stack().getItem())) && !player.getSlot(499).get().is(suitPartItem.stack().getItem())) {
+                            player.addItem(suitPartItem.stack().copy());
+                        }
+                        if (player.getInventory().countItem(suitPartItem.stack().getItem()) > 1) {
+                            player.getInventory().removeItem(player.getInventory().getItem(findSlotMatchingItem(player.getInventory().items, suitPartItem.stack().getItem())));
                         }
                     }
                 }

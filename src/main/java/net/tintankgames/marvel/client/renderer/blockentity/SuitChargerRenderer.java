@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -29,6 +30,7 @@ import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SuitItem;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import net.tintankgames.marvel.world.level.block.SuitChargerBlock;
 import net.tintankgames.marvel.world.level.block.entity.SuitChargerBlockEntity;
 import org.spongepowered.asm.mixin.Unique;
@@ -68,13 +70,13 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
             if (suitItem.getEquipmentSlot() == equipmentSlot) {
                 Model model = ClientHooks.getArmorModel(Minecraft.getInstance().player, itemstack, equipmentSlot, originalModel);
                 ArmorMaterial armormaterial = suitItem.getMaterial().value();
-                int i = itemstack.is(ItemTags.DYEABLE) ? DyedItemColor.getOrDefault(itemstack, -6265536) : -1;
+                int i = itemstack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(itemstack, -6265536)) : -1;
 
-                for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
+                for (ArmorMaterial.Layer layer : armormaterial.layers()) {
                     float red;
                     float green;
                     float blue;
-                    if (armormaterial$layer.dyeable() && i != -1) {
+                    if (layer.dyeable() && i != -1) {
                         red = (float) FastColor.ARGB32.red(i) / 255.0F;
                         green = (float)FastColor.ARGB32.green(i) / 255.0F;
                         blue = (float)FastColor.ARGB32.blue(i) / 255.0F;
@@ -84,7 +86,24 @@ public class SuitChargerRenderer implements BlockEntityRenderer<SuitChargerBlock
                         blue = 1.0F;
                     }
 
-                    ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, armormaterial$layer, false, equipmentSlot);
+                    SuitParts parts = itemstack.get(MarvelDataComponents.SUIT_PARTS);
+                    if (parts != null && !parts.hasAllParts()) {
+                        for (int k = 0; k < parts.parts().size(); k++) {
+                            if (parts.parts().get(k)) {
+                                int finalK = k;
+                                ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, layer, false, equipmentSlot).withPath(id -> id.replace(".png", "_" + suitItem.getType().getName() + "_" + finalK + ".png"));
+                                VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
+                                model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
+                                if ((suitItem.getType() != ArmorItem.Type.HELMET || k != 1) && itemstack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && itemstack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
+                                    VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                                    model.renderToBuffer(poseStack, glowConsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
+                                }
+                            }
+                        }
+                        continue;
+                    }
+
+                    ResourceLocation texture = ClientHooks.getArmorTexture(Minecraft.getInstance().player, itemstack, layer, false, equipmentSlot);
                     VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
                     model.renderToBuffer(poseStack, vertexconsumer, light, OverlayTexture.pack(OverlayTexture.u(0), OverlayTexture.v(false)), red, green, blue, 1.0F);
                     if (itemstack.is(MarvelItems.Tags.IRON_MAN_MARK_1_CHESTPLATE)) {

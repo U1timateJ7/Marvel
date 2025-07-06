@@ -1,18 +1,19 @@
 package net.tintankgames.marvel.world.item;
 
+import com.google.common.collect.Streams;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -29,7 +30,33 @@ public abstract class EnergySuitItem extends SuitItem implements SuitChargerItem
     @Override
     protected void fullSuitTick(ItemStack stack, Level level, Player player) {
         super.fullSuitTick(stack, level, player);
-        if (!player.isCreative() && !player.isSpectator() && getEnergy(stack) > 0.0F) removeEnergy(stack, 2.0F / 60.0F / (player.getAbilities().flying ? 1.0F : 2.0F) / 20.0F);
+        if (getType() == Type.CHESTPLATE) {
+            float helmetEnergy = getEnergy(player.getItemBySlot(EquipmentSlot.HEAD));
+            float chestplateEnergy = getEnergy(player.getItemBySlot(EquipmentSlot.CHEST));
+            float leggingsEnergy = getEnergy(player.getItemBySlot(EquipmentSlot.LEGS));
+            float bootsEnergy = getEnergy(player.getItemBySlot(EquipmentSlot.FEET));
+            float energy = (helmetEnergy + chestplateEnergy + leggingsEnergy + bootsEnergy) / 4;
+            player.getArmorSlots().forEach(armor -> setEnergy(armor, energy));
+        }
+        if (!player.isCreative() && !player.isSpectator() && getEnergy(stack) > 0.0F) removeEnergy(stack, (2.0F / 60.0F / 2.0F / 20.0F) * (player.getAbilities().flying ? hasArmor(player, MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR) ? 3.0F : 2.0F : 1.0F));
+    }
+
+    private static boolean hasArmor(LivingEntity living, TagKey<Item> tagKey) {
+        boolean head = living.getItemBySlot(EquipmentSlot.HEAD).is(tagKey);
+        boolean chest = living.getItemBySlot(EquipmentSlot.CHEST).is(tagKey);
+        boolean legs = living.getItemBySlot(EquipmentSlot.LEGS).is(tagKey);
+        boolean feet = living.getItemBySlot(EquipmentSlot.FEET).is(tagKey);
+        boolean wearingSameArmor = true;
+        if (living.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof SentryIronManSuitItem sentrySuitItem) {
+            for (ItemStack armor : living.getArmorSlots()) {
+                if (!(armor.getItem() instanceof SentryIronManSuitItem) || !sentrySuitItem.isSuitPiece(armor)) {
+                    wearingSameArmor = false;
+                    break;
+                }
+            }
+        }
+        boolean hasAllParts = Streams.stream(living.getArmorSlots()).allMatch(stack -> stack.getItem() instanceof ArmorItem armorItem && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(armorItem.getType(), true)).hasAllParts());
+        return head && chest && legs && feet && wearingSameArmor && hasAllParts;
     }
 
     public static float getEnergy(ItemStack stack) {

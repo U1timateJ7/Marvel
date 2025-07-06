@@ -15,10 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tintankgames.marvel.MarvelSuperheroes;
-import net.tintankgames.marvel.world.item.component.ItemStackHolder;
-import net.tintankgames.marvel.world.item.component.OpticBlastMode;
-import net.tintankgames.marvel.world.item.component.ShieldArt;
-import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.item.component.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -50,6 +47,8 @@ public class MarvelDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> INVISIBLE = register("invisible", () -> DataComponentType.<Unit>builder().persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding().build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Boolean>> SINGLE_BLOCK = register("single_block", () -> DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build());
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> WINTER_SOLDIER = register("winter_soldier", () -> DataComponentType.<Unit>builder().persistent(Codec.unit(Unit.INSTANCE)).networkSynchronized(StreamCodec.unit(Unit.INSTANCE)).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SuitParts>> SUIT_PARTS = register("suit_parts", () -> DataComponentType.<SuitParts>builder().persistent(SuitParts.CODEC).networkSynchronized(SuitParts.STREAM_CODEC).cacheEncoding().build());
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Long>> USE_TIME = register("use_time", () -> DataComponentType.<Long>builder().networkSynchronized(ByteBufCodecs.VAR_LONG).build());
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String id, Supplier<DataComponentType<T>> supplier) {
         return REGISTER.register(id, supplier);

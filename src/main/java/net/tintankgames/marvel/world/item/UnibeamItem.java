@@ -3,6 +3,7 @@ package net.tintankgames.marvel.world.item;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -15,8 +16,10 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.core.particles.EmissiveDustParticleOptions;
 import net.tintankgames.marvel.sounds.MarvelSoundEvents;
+import net.tintankgames.marvel.world.level.MarvelGameRules;
 
 import java.util.function.Predicate;
 
@@ -31,6 +34,7 @@ public class UnibeamItem extends SuitPowerItem {
         if (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 7.5F || player.isCreative()) {
             player.startUsingItem(hand);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_UNIBEAM_CHARGE.get(), SoundSource.PLAYERS);
+            stack.set(MarvelDataComponents.USE_TIME, System.currentTimeMillis());
             return InteractionResultHolder.consume(stack);
         }
         return InteractionResultHolder.pass(stack);
@@ -44,7 +48,7 @@ public class UnibeamItem extends SuitPowerItem {
             if (!level.isClientSide && (EnergySuitItem.getEnergy(player.getItemBySlot(EquipmentSlot.CHEST)) >= 7.5F || player.isCreative())) {
                 HitResult hit = getHitResult(player, entity1 -> entity1 instanceof LivingEntity, 100f, 0f);
                 if (hit.getType() != HitResult.Type.MISS) {
-                    level.explode(player, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), 3.0F * (player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_17_ARMOR) ? 2.0F : player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) ? 1.5F : 1.0F), Level.ExplosionInteraction.MOB);
+                    level.explode(player, hit.getLocation().x(), hit.getLocation().y(), hit.getLocation().z(), level.getGameRules().getBoolean(MarvelGameRules.RULE_SUPERPOWERGRIEFING) ? 3.0F * (player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_17_ARMOR) ? 2.0F : player.getItemBySlot(EquipmentSlot.CHEST).is(MarvelItems.Tags.IRON_MAN_MARK_24_ARMOR) ? 1.5F : 1.0F) : 0, Level.ExplosionInteraction.MOB);
                 }
                 for (double d = 0; d < Math.abs(player.position().add(0, 1.25, 0).distanceTo(hit.getLocation())); d += 0.1) {
                     Vec3 vec3 = player.position().add(0, 1.25, 0).add(player.getViewVector(0.0F).scale(d));
@@ -60,6 +64,7 @@ public class UnibeamItem extends SuitPowerItem {
             }
             player.awardStat(Stats.ITEM_USED.get(this));
         }
+        stack.set(MarvelDataComponents.USE_TIME, -1L);
     }
 
     private static HitResult getHitResult(Entity entity, Predicate<Entity> predicate, double d, float rotation) {
@@ -80,5 +85,25 @@ public class UnibeamItem extends SuitPowerItem {
     @Override
     public int getUseDuration(ItemStack p_43419_) {
         return 72000;
+    }
+
+    @Override
+    public boolean isBarVisible(ItemStack stack) {
+        return stack.getOrDefault(MarvelDataComponents.USE_TIME, -1L) >= 0;
+    }
+
+    @Override
+    public int getBarColor(ItemStack stack) {
+        return 0xACF4F9;
+    }
+
+    @Override
+    public int getBarWidth(ItemStack stack) {
+        return (int) Mth.clamp(((System.currentTimeMillis() - stack.getOrDefault(MarvelDataComponents.USE_TIME, -1L)) / 1000.0F) * 13.0F, 0.0F, 13.0F);
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return !ItemStack.isSameItem(oldStack, newStack) || oldStack.getCount() != newStack.getCount();
     }
 }

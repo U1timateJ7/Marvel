@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class IronManSentryRenderer extends MobRenderer<IronManSentry, PlayerModel<IronManSentry>> {
-    private static final ResourceLocation TEXTURE_LOCATION = MarvelSuperheroes.id("textures/models/suit/empty");
+    private static final ResourceLocation TEXTURE_LOCATION = MarvelSuperheroes.id("textures/models/suit/empty.png");
 
     public IronManSentryRenderer(EntityRendererProvider.Context context) {
         super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5F);
