@@ -446,11 +446,11 @@ public class IronManMark38 extends VeronicaSentry implements RangedAttackMob, Ne
                                 player.setItemSlot(slot, getItemBySlot(slot).copy());
                             }
                             serverLevel.tryAddFreshEntityWithPassengers(suit);
-                            serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                            serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_EXIT.get(), SoundSource.PLAYERS);
                         }
                     }
                     player.refreshDimensions();
-                    if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
+                    if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_ENTER.get(), SoundSource.PLAYERS);
                     discard();
                 }
                 if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && !player.getData(MarvelAttachmentTypes.VERONICA).enabled() && player instanceof ServerPlayer serverPlayer) {
@@ -643,7 +643,7 @@ public class IronManMark38 extends VeronicaSentry implements RangedAttackMob, Ne
         }
         if (((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) && !isCharging()) {
             for (ItemStack stack : getArmorSlots()) {
-                if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, 2.0F / 60.0F / 2.0F / 20.0F);
+                if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, (2.0F / 60.0F / 2.0F / 20.0F) * (isFlying() ? Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR)) ? 3.0F : 2.0F : 1.0F));
             }
         }
         setFlying(getOwner() instanceof Player player && player.getAbilities().flying);

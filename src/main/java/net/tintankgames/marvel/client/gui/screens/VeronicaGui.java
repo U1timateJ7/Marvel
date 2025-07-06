@@ -4,9 +4,11 @@ import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.data.Texture;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
@@ -19,8 +21,8 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.network.SendSuitMessage;
 import net.tintankgames.marvel.world.entity.VeronicaSentry;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
-import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
-import net.tintankgames.marvel.world.item.VeronicaSuit;
+import net.tintankgames.marvel.world.item.SummonableIronManSuitItem;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -47,7 +49,7 @@ public class VeronicaGui extends LightweightGuiDescription {
         WItem chestplateDisplay = new WItem(ItemStack.EMPTY, true);
         WItem leggingsDisplay = new WItem(ItemStack.EMPTY, true);
         WItem bootsDisplay = new WItem(ItemStack.EMPTY, true);
-        WButton send = new WButton(Component.translatable("gui.veronica.send"));
+        WStyledButton send = new WStyledButton(Component.translatable("gui.veronica.send"));
         send.setEnabled(false);
         WButton sendAll = new WButton(Component.translatable("gui.veronica.send_all"));
         sendAll.setEnabled(!player.getData(MarvelAttachmentTypes.VERONICA).getSuits().isEmpty());
@@ -55,11 +57,11 @@ public class VeronicaGui extends LightweightGuiDescription {
             wButton.setSize(180, 20);
             ItemStack helmet = suit.armor().get(3).copy();
             if (helmet.has(MarvelDataComponents.HELMET_OPEN)) helmet.set(MarvelDataComponents.HELMET_OPEN, false);
-            wButton.setIcon(((SentryIronManSuitItem) suit.armor().get(3).getItem()).createIcon(helmet, player));
-            wButton.setLabel(((VeronicaSuit) suit.armor().getFirst().getItem()).veronicaName());
+            wButton.setIcon(suit.helmet().createIcon(helmet, player));
+            wButton.setLabel(suit.boots().veronicaName());
             wButton.setOnClick(() -> {
                 selectedSuit = suit.id();
-                VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+                VeronicaSentry sentry = suit.chestplate().type().create(player.level());
                 if (sentry != null) {
                     sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
                     sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
@@ -72,9 +74,10 @@ public class VeronicaGui extends LightweightGuiDescription {
                 chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));
                 helmetDisplay.setItems(Collections.singletonList(suit.armor().get(3)));
                 energy.tick();
-                name.setText(((VeronicaSuit) suit.armor().getFirst().getItem()).veronicaName());
+                name.setText(suit.boots().veronicaName());
                 display.setRender(true);
                 send.setEnabled(true);
+                if (send.getLabel() != null) send.setLabel(send.getLabel().copy().withStyle(style -> style.withHoverEvent(suit.armor().stream().anyMatch(stack -> stack.isEmpty() || (stack.getItem() instanceof SummonableIronManSuitItem suitItem && !stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true)).hasAllParts())) ? new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("gui.veronica.incomplete_suit").withStyle(ChatFormatting.RED)) : null)));
             });
         });
         send.setOnClick(() -> {
@@ -116,7 +119,7 @@ public class VeronicaGui extends LightweightGuiDescription {
                     if (selectedSuit == -1 && !suits.isEmpty()) {
                         VeronicaData.Suit suit = suits.getFirst();
                         selectedSuit = suit.id();
-                        VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+                        VeronicaSentry sentry = suit.chestplate().type().create(player.level());
                         if (sentry != null) {
                             sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
                             sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
@@ -129,9 +132,10 @@ public class VeronicaGui extends LightweightGuiDescription {
                         chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));
                         helmetDisplay.setItems(Collections.singletonList(suit.armor().get(3)));
                         energy.tick();
-                        name.setText(((VeronicaSuit) suit.armor().getFirst().getItem()).veronicaName());
+                        name.setText(suit.boots().veronicaName());
                         display.setRender(true);
                         send.setEnabled(true);
+                        if (send.getLabel() != null) send.setLabel(send.getLabel().copy().withStyle(style -> style.withHoverEvent(suit.armor().stream().anyMatch(stack -> stack.getItem() instanceof SummonableIronManSuitItem suitItem && !stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true)).hasAllParts()) ? new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("gui.veronica.incomplete_suit").withStyle(ChatFormatting.RED)) : null)));
                         if (!children.contains(name)) add(name, 20, 20, 120, 10);
                         if (!children.contains(display)) add(display, 20, 40, 80, 70);
                         if (!children.contains(energyBackground)) add(energyBackground, 0, 45, 18, 70);
@@ -185,7 +189,7 @@ public class VeronicaGui extends LightweightGuiDescription {
         if (!suits.isEmpty()) {
             VeronicaData.Suit suit = suits.getFirst();
             selectedSuit = suit.id();
-            VeronicaSentry sentry = ((SentryIronManSuitItem) suit.armor().get(2).getItem()).type().create(player.level());
+            VeronicaSentry sentry = suit.chestplate().type().create(player.level());
             if (sentry != null) {
                 sentry.setItemSlot(EquipmentSlot.FEET, suit.armor().get(0));
                 sentry.setItemSlot(EquipmentSlot.LEGS, suit.armor().get(1));
@@ -197,9 +201,10 @@ public class VeronicaGui extends LightweightGuiDescription {
             leggingsDisplay.setItems(Collections.singletonList(suit.armor().get(1)));
             chestplateDisplay.setItems(Collections.singletonList(suit.armor().get(2)));
             helmetDisplay.setItems(Collections.singletonList(suit.armor().get(3)));
-            name.setText(((VeronicaSuit) suit.armor().getFirst().getItem()).veronicaName());
+            name.setText(suit.boots().veronicaName());
             display.setRender(true);
             send.setEnabled(true);
+            if (send.getLabel() != null) send.setLabel(send.getLabel().copy().withStyle(style -> style.withHoverEvent(suit.armor().stream().anyMatch(stack -> stack.getItem() instanceof SummonableIronManSuitItem suitItem && !stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true)).hasAllParts()) ? new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("gui.veronica.incomplete_suit").withStyle(ChatFormatting.RED)) : null)));
             root.add(name, 20, 20, 120, 10);
             root.add(display, 20, 40, 80, 70);
             root.add(energyBackground, 0, 45, 18, 70);

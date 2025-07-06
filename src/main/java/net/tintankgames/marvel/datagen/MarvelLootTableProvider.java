@@ -102,7 +102,7 @@ public class MarvelLootTableProvider {
         @Override
         public void generate() {
             add(MarvelEntityTypes.HYDRA_AGENT.get(), LootTable.lootTable()
-                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                    .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(0.0F, 1.0F))
                             .add(LootItem.lootTableItem(MarvelItems.TESSERACT_SHARD).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 1.0F))).apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().equipment(EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(MarvelItems.TESSERACT_CROSSBOW)))))
                     )
             );

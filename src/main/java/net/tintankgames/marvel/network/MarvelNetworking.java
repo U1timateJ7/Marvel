@@ -37,6 +37,7 @@ public class MarvelNetworking {
     public static final CustomPacketPayload.Type<CallMjolnirMessage> CALL_MJOLNIR = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("call_mjolnir"));
     public static final CustomPacketPayload.Type<OpenVeronicaMessage> OPEN_VERONICA = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("open_veronica"));
     public static final CustomPacketPayload.Type<SendSuitMessage> SEND_SUIT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("send_suit"));
+    public static final CustomPacketPayload.Type<SummonSuitMessage> SUMMON_SUIT = new CustomPacketPayload.Type<>(MarvelSuperheroes.id("summon_suit"));
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
@@ -52,6 +53,7 @@ public class MarvelNetworking {
         registrar.playToServer(CALL_MJOLNIR, CallMjolnirMessage.CODEC, CallMjolnirMessage::handle);
         registrar.playToClient(OPEN_VERONICA, OpenVeronicaMessage.CODEC, OpenVeronicaMessage::handle);
         registrar.playToServer(SEND_SUIT, SendSuitMessage.CODEC, SendSuitMessage::handle);
+        registrar.playToServer(SUMMON_SUIT, SummonSuitMessage.CODEC, SummonSuitMessage::handle);
         registrar.playToClient(TargetedEntity.SyncMessage.TYPE, TargetedEntity.SyncMessage.CODEC, TargetedEntity.SyncMessage::handle);
         registrar.playToClient(VeronicaData.SyncMessage.TYPE, VeronicaData.SyncMessage.CODEC, VeronicaData.SyncMessage::handle);
         registrar.playToClient(EntityHolder.SyncMessage.TYPE, EntityHolder.SyncMessage.CODEC, EntityHolder.SyncMessage::handle);

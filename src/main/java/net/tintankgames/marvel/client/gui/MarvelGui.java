@@ -13,12 +13,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -37,6 +36,7 @@ import net.tintankgames.marvel.world.entity.VeronicaSentry;
 import net.tintankgames.marvel.world.item.EnergySuitItem;
 import net.tintankgames.marvel.world.item.IronManSuitItem;
 import net.tintankgames.marvel.world.item.MarvelItems;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -53,13 +53,13 @@ public class MarvelGui {
     public static void renderOverlays(RenderGuiLayerEvent.Post event) {
         if (event.getName() == VanillaGuiLayers.CAMERA_OVERLAYS && Minecraft.getInstance().options.getCameraType().isFirstPerson() && !Minecraft.getInstance().options.hideGui) {
             ItemStack helmet = Minecraft.getInstance().player.getInventory().getArmor(3);
-            if (helmet.is(MarvelItems.IRON_MAN_MARK_1_HELMET) || (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) <= 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false))) {
+            if (helmet.is(MarvelItems.IRON_MAN_MARK_1_HELMET) || (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) <= 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false)) || (!helmet.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.HELMET, true)).hasAllParts() && helmet.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.HELMET, true)).parts().get(1))) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_low_power.png"), 1.0F, 0xFFFFFF);
             }
             if (Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING)) {
                 renderTextureOverlay(event.getGuiGraphics(), POWDER_SNOW_OUTLINE_LOCATION, Math.min(1.0F, (30.0F - (Minecraft.getInstance().player.getEffect(MarvelMobEffects.ICING).getDuration() + event.getPartialTick().getGameTimeDeltaTicks())) / 10.0F), 0xFFFFFF);
             }
-            if (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) > 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && !Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING)) {
+            if (helmet.is(MarvelItems.Tags.IRON_MAN_ARMOR) && EnergySuitItem.getEnergy(helmet) > 0.0F && !helmet.getOrDefault(MarvelDataComponents.HELMET_OPEN, false) && !Minecraft.getInstance().player.hasEffect(MarvelMobEffects.ICING) && helmet.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(ArmorItem.Type.HELMET, true)).hasAllParts()) {
                 renderTextureOverlay(event.getGuiGraphics(), MarvelSuperheroes.id("textures/misc/iron_man_hud.png"), 1.0F, helmet.getItem() instanceof IronManSuitItem suitItem ? suitItem.hudColor(helmet, Minecraft.getInstance().player) : 0x68E3FF);
                 for (int i = -2; i < 2; i++) {
                     ItemStack armor = Minecraft.getInstance().player.getInventory().armor.get(1 - i);
@@ -116,7 +116,12 @@ public class MarvelGui {
         poseStack.popPose();
         xOffset += 10;
         yOffset -= 10;
-        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) + xOffset >= guiGraphics.guiWidth() ? xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) - (guiGraphics.guiWidth() - xOffset)) : xOffset, yOffset, color, false);
+        if (entity instanceof OwnableEntity ownableEntity && ownableEntity.getOwner() != null) {
+            guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) - (guiGraphics.guiWidth() - xOffset)) - 8, yOffset - 8, color, false);
+            guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.owner", ownableEntity.getOwner().getName()), xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.owner", ownableEntity.getOwner().getName())) - (guiGraphics.guiWidth() - xOffset)) - 8, yOffset, color, false);
+        } else {
+            guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.target", entity.getName()), xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.target", entity.getName())) - (guiGraphics.guiWidth() - xOffset)) - 8, yOffset, color, false);
+        }
         xOffset += 50;
         yOffset += 26;
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.hp", String.format("%.0f", entity.getHealth())), xOffset, yOffset - 8, color, false);
@@ -125,7 +130,7 @@ public class MarvelGui {
         guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.z", String.format("%.1f", entity.getZ())), xOffset, yOffset + 16, color, false);
         xOffset -= 50;
         yOffset += 34;
-        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.distance", String.format("%.1f", entity.distanceTo(player))), xOffset, yOffset, color, false);
+        guiGraphics.drawString(Minecraft.getInstance().font, Component.translatable("gui.iron_man.distance", String.format("%.1f", entity.distanceTo(player))), xOffset - (Minecraft.getInstance().font.width(Component.translatable("gui.iron_man.distance", String.format("%.1f", entity.distanceTo(player)))) - (guiGraphics.guiWidth() - xOffset)) - 8, yOffset, color, false);
     }
 
     public static void renderEntityInGui(GuiGraphics guiGraphics, int xPos, int yPos, float scale, Quaternionf rotation, Entity entity, float partialTicks) {

@@ -21,7 +21,7 @@ public class IronManMark39SuitItem extends SentryIronManSuitItem {
     }
 
     @Override
-    protected double getFlightMax() {
+    protected double getFlightMax(ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots) {
         return Double.MAX_VALUE;
     }
 

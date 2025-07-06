@@ -16,6 +16,7 @@ public class MarvelModels {
     public static final ModelLayerLocation SUIT_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("suit_chestplate"), "main");
     public static final ModelLayerLocation SUIT_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("suit_leggings"), "main");
     public static final ModelLayerLocation SUIT_BOOTS = new ModelLayerLocation(MarvelSuperheroes.id("suit_boots"), "main");
+    public static final ModelLayerLocation SUIT_PART = new ModelLayerLocation(MarvelSuperheroes.id("suit_part"), "main");
     public static final ModelLayerLocation PANTHER_HELMET = new ModelLayerLocation(MarvelSuperheroes.id("panther_helmet"), "main");
     public static final ModelLayerLocation PANTHER_CHESTPLATE = new ModelLayerLocation(MarvelSuperheroes.id("panther_chestplate"), "main");
     public static final ModelLayerLocation PANTHER_LEGGINGS = new ModelLayerLocation(MarvelSuperheroes.id("panther_leggings"), "main");
@@ -94,6 +95,7 @@ public class MarvelModels {
         event.registerLayerDefinition(SUIT_CHESTPLATE, () -> SuitModel.createBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(SUIT_LEGGINGS, () -> SuitModel.createBodyLayer(ArmorItem.Type.LEGGINGS));
         event.registerLayerDefinition(SUIT_BOOTS, () -> SuitModel.createBodyLayer(ArmorItem.Type.BOOTS));
+        event.registerLayerDefinition(SUIT_PART, SuitPartModel::createBodyLayer);
         event.registerLayerDefinition(PANTHER_HELMET, () -> SuitModel.createPantherBodyLayer(ArmorItem.Type.HELMET));
         event.registerLayerDefinition(PANTHER_CHESTPLATE, () -> SuitModel.createPantherBodyLayer(ArmorItem.Type.CHESTPLATE));
         event.registerLayerDefinition(PANTHER_LEGGINGS, () -> SuitModel.createPantherBodyLayer(ArmorItem.Type.LEGGINGS));

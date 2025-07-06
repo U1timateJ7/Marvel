@@ -27,9 +27,11 @@ import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -45,10 +47,8 @@ import net.tintankgames.marvel.sounds.MarvelSoundEvents;
 import net.tintankgames.marvel.world.entity.ai.control.SentryMoveControl;
 import net.tintankgames.marvel.world.entity.ai.goal.SentryFollowOwnerGoal;
 import net.tintankgames.marvel.world.entity.projectile.Repulsor;
-import net.tintankgames.marvel.world.item.EnergySuitItem;
-import net.tintankgames.marvel.world.item.MarvelItems;
-import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
-import net.tintankgames.marvel.world.item.VeronicaSuit;
+import net.tintankgames.marvel.world.item.*;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -452,12 +452,12 @@ public class IronManSentry extends VeronicaSentry implements RangedAttackMob, Ne
                                 player.setItemSlot(slot, getItemBySlot(slot).copy());
                             }
                             serverLevel.tryAddFreshEntityWithPassengers(suit);
-                            serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                            serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_EXIT.get(), SoundSource.PLAYERS);
                         }
                         player.setData(MarvelAttachmentTypes.ENTITY_SUIT, EntitySuit.NONE);
                         player.refreshDimensions();
                     }
-                    if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_CLOSE.get(), SoundSource.PLAYERS);
+                    if (!level().isClientSide) level().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_ENTER.get(), SoundSource.PLAYERS);
                     discard();
                 }
                 if (player.isHolding(MarvelItems.VERONICA_REMOTE.get()) && !player.getData(MarvelAttachmentTypes.VERONICA).enabled() && player instanceof ServerPlayer serverPlayer) {
@@ -666,7 +666,7 @@ public class IronManSentry extends VeronicaSentry implements RangedAttackMob, Ne
         }
         if (((getOwner() instanceof Player player && !player.isCreative()) || !(getOwner() instanceof Player)) && !isCharging()) {
             for (ItemStack stack : getArmorSlots()) {
-                if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, 2.0F / 60.0F / 2.0F / 20.0F);
+                if (EnergySuitItem.getEnergy(stack) > 0.0F) EnergySuitItem.removeEnergy(stack, (2.0F / 60.0F / 2.0F / 20.0F) * (isFlying() ? Streams.stream(getArmorSlots()).allMatch(armor -> armor.is(MarvelItems.Tags.IRON_MAN_MARK_19_ARMOR)) ? 3.0F : 2.0F : 1.0F));
             }
         }
         setFlying(getOwner() instanceof Player player && player.getAbilities().flying);
@@ -679,6 +679,31 @@ public class IronManSentry extends VeronicaSentry implements RangedAttackMob, Ne
             getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(4.0);
         }
         this.removeAllEffects();
+        if (getOwner() != null && level() instanceof ServerLevel serverLevel && getOwner().level() == level() && Streams.stream(getArmorSlots()).allMatch(stack -> stack.getItem() instanceof SummonableIronManSuitItem || stack.isEmpty()) && Streams.stream(getArmorSlots()).anyMatch(stack -> stack.getItem() instanceof SummonableIronManSuitItem) && !getOwner().getData(MarvelAttachmentTypes.SUMMONED_SUIT)) {
+            boolean hasAllParts = true;
+            for (ItemStack stack : getArmorSlots()) {
+                hasAllParts = hasAllParts && !stack.isEmpty() && stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(((ArmorItem) stack.getItem()).getType(), true)).hasAllParts();
+            }
+            if (!hasAllParts) {
+                getOwner().setData(MarvelAttachmentTypes.SUMMONED_SUIT, true);
+                for (ItemStack stack : Streams.stream(getArmorSlots()).filter(stack -> !stack.isEmpty()).toList()) {
+                    SummonableIronManSuitItem item = (SummonableIronManSuitItem) stack.getItem();
+                    SuitParts parts = stack.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(item.getType(), true));
+                    for (int i = 0; i < parts.parts().size(); i++) {
+                        if (parts.parts().get(i)) {
+                            IronManSuitPart part = MarvelEntityTypes.IRON_MAN_SUIT_PART.get().spawn(serverLevel, blockPosition(), MobSpawnType.TRIGGERED);
+                            part.setTame(true, false);
+                            part.setOwnerUUID(getOwner().getUUID());
+                            ItemStack newStack = stack.copy();
+                            newStack.set(MarvelDataComponents.SUIT_PARTS, SuitParts.onePart(i, parts.parts().size()));
+                            part.setPiece(newStack);
+                            part.setDelay(getRandom().nextInt(20, 160));
+                        }
+                    }
+                }
+                discard();
+            }
+        }
     }
 
     @Override
@@ -691,7 +716,10 @@ public class IronManSentry extends VeronicaSentry implements RangedAttackMob, Ne
         for (ItemStack stack : getArmorSlots()) {
             ItemStack armor = stack.copy();
             armor.setDamageValue(Math.max(armor.getDamageValue(), random.nextInt(armor.getMaxDamage() / 8) + (armor.getMaxDamage() - armor.getMaxDamage() / 4)));
-            spawnAtLocation(armor);
+            ItemEntity entity = spawnAtLocation(armor);
+            if (entity != null && getOwner() != null && entity.getItem().getItem() instanceof SummonableIronManSuitItem) {
+                entity.setThrower(getOwner());
+            }
         }
     }
 

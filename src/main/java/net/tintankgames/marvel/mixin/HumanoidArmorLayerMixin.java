@@ -19,6 +19,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -26,9 +27,11 @@ import net.neoforged.neoforge.client.ClientHooks;
 import net.tintankgames.marvel.client.model.SuitModel;
 import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.entity.IronManSuitPart;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SuitItem;
 import net.tintankgames.marvel.world.item.component.Size;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -67,7 +70,7 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
     @Unique
     private void marvel$renderSuitPiece(PoseStack poseStack, MultiBufferSource multiBufferSource, T livingEntity, EquipmentSlot equipmentSlot, int light, float animationProgress, A originalModel) {
-        ItemStack itemstack = livingEntity.getItemBySlot(equipmentSlot);
+        ItemStack itemstack = livingEntity instanceof IronManSuitPart suitPart && suitPart.getArmorType().getSlot() == equipmentSlot ? suitPart.getPiece() : livingEntity.getItemBySlot(equipmentSlot);
         if (itemstack.getItem() instanceof SuitItem suitItem) {
             if (suitItem.getEquipmentSlot() == equipmentSlot) {
                 this.getParentModel().copyPropertiesTo(originalModel);
@@ -97,6 +100,23 @@ public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends 
 
                     if (model instanceof SuitModel<?> suitModel) {
                         suitModel.animateArmor(livingEntity, animationProgress);
+                    }
+
+                    SuitParts parts = itemstack.get(MarvelDataComponents.SUIT_PARTS);
+                    if (parts != null && !parts.hasAllParts()) {
+                        for (int k = 0; k < parts.parts().size(); k++) {
+                            if (parts.parts().get(k)) {
+                                int finalK = k;
+                                ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, layer, false, equipmentSlot).withPath(id -> id.replace(".png", "_" + suitItem.getType().getName() + "_" + finalK + ".png"));
+                                VertexConsumer vertexconsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
+                                model.renderToBuffer(poseStack, vertexconsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
+                                if ((suitItem.getType() != ArmorItem.Type.HELMET || k != 1) && itemstack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && itemstack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
+                                    VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                                    model.renderToBuffer(poseStack, glowConsumer, light, LivingEntityRenderer.getOverlayCoords(livingEntity, 0), j);
+                                }
+                            }
+                        }
+                        continue;
                     }
 
                     ResourceLocation texture = ClientHooks.getArmorTexture(livingEntity, itemstack, layer, false, equipmentSlot);

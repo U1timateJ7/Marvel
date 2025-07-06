@@ -24,6 +24,7 @@ import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SentryIronManSuitItem;
 import net.tintankgames.marvel.world.item.SuitPowerItem;
 import net.tintankgames.marvel.world.item.component.ItemStackHolder;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import net.tintankgames.marvel.world.level.timers.SetItemInCurioSlotCallback;
 import net.tintankgames.marvel.world.level.timers.SetItemInSlotCallback;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -61,7 +62,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 ItemStack mainHand = player.getMainHandItem();
                 if (chestplate.getItem() instanceof SentryIronManSuitItem sentrySuitItem) {
-                    hasFullSentryArmor = player.getInventory().armor.stream().allMatch(armor -> armor.getItem() instanceof SentryIronManSuitItem && sentrySuitItem.isSuitPiece(armor));
+                    hasFullSentryArmor = player.getInventory().armor.stream().allMatch(armor -> armor.getItem() instanceof SentryIronManSuitItem suitItem && sentrySuitItem.isSuitPiece(armor) && armor.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true)).hasAllParts());
                 }
                 if (hasFullSentryArmor && !chestplate.has(MarvelDataComponents.INVISIBLE) && EnergySuitItem.getEnergy(chestplate) > 0.0F) {
                     if (player.getData(MarvelAttachmentTypes.ENTITY_SUIT) != EntitySuit.NONE) {
@@ -78,7 +79,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                                 player.setItemSlot(slot, ItemStack.EMPTY);
                             }
                             player.serverLevel().tryAddFreshEntityWithPassengers(suit);
-                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_EXIT.get(), SoundSource.PLAYERS);
                         }
                         player.setData(MarvelAttachmentTypes.ENTITY_SUIT, EntitySuit.NONE);
                         player.refreshDimensions();
@@ -96,7 +97,7 @@ public class SecondarySuitAbilityMessage implements CustomPacketPayload {
                                 player.setItemSlot(slot, ItemStack.EMPTY);
                             }
                             player.serverLevel().tryAddFreshEntityWithPassengers(sentry);
-                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_HELMET_OPEN.get(), SoundSource.PLAYERS);
+                            player.serverLevel().playSound(null, player.getX(), player.getY(), player.getZ(), MarvelSoundEvents.IRON_MAN_SENTRY_EXIT.get(), SoundSource.PLAYERS);
                         }
                     }
                 } else if ((mainHand.is(MarvelItems.MJOLNIR) && Objects.equals(mainHand.get(MarvelDataComponents.OWNER).toString(), player.getUUID().toString())) || mainHand.is(MarvelItems.STORMBREAKER)) {

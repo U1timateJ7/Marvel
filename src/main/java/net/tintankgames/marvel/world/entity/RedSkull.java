@@ -195,7 +195,7 @@ public class RedSkull extends Monster implements RangedAttackMob {
 
     @Override
     public boolean isInvulnerableTo(DamageSource p_345073_) {
-        if (p_345073_.is(DamageTypeTags.IS_PROJECTILE)) {
+        if (p_345073_.is(DamageTypeTags.IS_PROJECTILE) && random.nextFloat() >= (1f/3f)) {
             for (int i = 0; i < 64; i++) {
                 if (this.teleport()) {
                     return true;
@@ -275,6 +275,10 @@ public class RedSkull extends Monster implements RangedAttackMob {
                 setAttackTimer(getAttackTimer() - 1);
                 if (getAttackTimer() == 0) reassessWeaponGoal();
             }
+        }
+
+        if (this.tickCount % 10 == 0) {
+            this.heal(1.0F);
         }
     }
 

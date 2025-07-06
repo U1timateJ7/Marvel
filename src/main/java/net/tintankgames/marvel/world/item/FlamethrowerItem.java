@@ -69,11 +69,11 @@ public class FlamethrowerItem extends SuitPowerItem implements ProjectileItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
-        super.inventoryTick(p_41404_, p_41405_, p_41406_, p_41407_, p_41408_);
-        if (p_41406_ instanceof Player player) {
-            p_41404_.set(MarvelDataComponents.FUEL_MAX, player.isCreative() ? 100 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL_MAX, 100));
-            p_41404_.set(MarvelDataComponents.FUEL, player.isCreative() ? 100 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL, 0));
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+        super.inventoryTick(stack, level, entity, p_41407_, p_41408_);
+        if (entity instanceof Player player) {
+            stack.set(MarvelDataComponents.FUEL_MAX, player.isCreative() ? 100 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL_MAX, 100));
+            stack.set(MarvelDataComponents.FUEL, player.isCreative() ? 100 : player.getItemBySlot(EquipmentSlot.CHEST).getOrDefault(MarvelDataComponents.FUEL, 0));
         }
     }
 

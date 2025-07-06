@@ -13,6 +13,9 @@ import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.tintankgames.marvel.core.components.MarvelDataComponents;
+import net.tintankgames.marvel.world.item.SummonableIronManSuitItem;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import net.tintankgames.marvel.world.level.block.MarvelBlocks;
 
 public class SuitRepairingRecipe implements Recipe<CraftingInput> {
@@ -57,6 +60,9 @@ public class SuitRepairingRecipe implements Recipe<CraftingInput> {
         ItemStack result = p_44001_.getItem(0).copy();
         if (this.suit.test(result)) {
             result.setDamageValue((int) (result.getDamageValue() - (result.getMaxDamage() * repairPercent)));
+            if (result.getItem() instanceof SummonableIronManSuitItem suitItem && !result.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true)).hasAllParts()) {
+                result.set(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(suitItem.getType(), true));
+            }
             return result;
         }
         return ItemStack.EMPTY;

@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractArrowMixin",
+    "ArmorSlotMixin",
     "BeardifierMixin",
     "BlockBehaviourMixin",
     "BrainMixin",
@@ -12,6 +13,7 @@
     "EnchantmentHelperMixin",
     "EntityMixin",
     "EntitySelectorMixin",
+    "EquipableMixin",
     "FallingBlockEntityMixin",
     "IMobEffectExtensionMixin",
     "LivingEntityAccessor",

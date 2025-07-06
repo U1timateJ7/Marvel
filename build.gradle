@@ -123,7 +123,6 @@ dependencies {
     // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
     // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
     runtimeOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}"
-    jarJar("top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}")
     compileOnly "top.theillusivec4.curios:curios-neoforge:${project.curios_version}+${project.minecraft_version}:api"
     //localRuntime "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}"
     compileOnly "dev.emi:emi-neoforge:${project.emi_version}+${project.minecraft_version}:api"

@@ -28,11 +28,13 @@ import net.tintankgames.marvel.attachment.MarvelAttachmentTypes;
 import net.tintankgames.marvel.client.model.IgorModel;
 import net.tintankgames.marvel.client.model.MarvelModels;
 import net.tintankgames.marvel.client.model.SuitModel;
+import net.tintankgames.marvel.client.renderer.MarvelRenderTypes;
 import net.tintankgames.marvel.client.renderer.entity.layers.EntitySuitLayer;
 import net.tintankgames.marvel.client.renderer.entity.layers.ItemOnBackLayer;
 import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.item.MarvelItems;
 import net.tintankgames.marvel.world.item.SuitItem;
+import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -90,14 +92,31 @@ public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractC
                 ArmorMaterial armormaterial = suitItem.getMaterial().value();
                 int i = stack.is(ItemTags.DYEABLE) ? FastColor.ARGB32.opaque(DyedItemColor.getOrDefault(stack, -6265536)) : -1;
 
-                for (ArmorMaterial.Layer armormaterial$layer : armormaterial.layers()) {
-                    int j = armormaterial$layer.dyeable() ? i : -1;
+                for (ArmorMaterial.Layer layer : armormaterial.layers()) {
+                    int j = layer.dyeable() ? i : -1;
 
                     if (model instanceof SuitModel<?> suitModel) {
                         suitModel.animateArmor(player, getBob(player, Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true)));
                     }
 
-                    ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, armormaterial$layer, false, EquipmentSlot.CHEST);
+                    SuitParts parts = stack.get(MarvelDataComponents.SUIT_PARTS);
+                    if (parts != null && !parts.hasAllParts()) {
+                        for (int k = 0; k < parts.parts().size(); k++) {
+                            if (parts.parts().get(k)) {
+                                int finalK = k;
+                                ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, layer, false, EquipmentSlot.CHEST).withPath(id -> id.replace(".png", "_" + suitItem.getType().getName() + "_" + finalK + ".png"));
+                                VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
+                                (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, j);
+                                if ((suitItem.getType() != ArmorItem.Type.HELMET || k != 1) && stack.is(MarvelItems.Tags.IRON_MAN_ARMOR) && stack.getOrDefault(MarvelDataComponents.ENERGY, 0.0F) > 0.0F) {
+                                    VertexConsumer glowConsumer = multiBufferSource.getBuffer(MarvelRenderTypes.entityEmissive(texture.withPath(id -> id.replace(".png", "_glow.png"))));
+                                    (rightArm ? model.rightArm : model.leftArm).render(poseStack, glowConsumer, light, OverlayTexture.NO_OVERLAY, j);
+                                }
+                            }
+                        }
+                        continue;
+                    }
+
+                    ResourceLocation texture = ClientHooks.getArmorTexture(player, stack, layer, false, EquipmentSlot.CHEST);
                     VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(texture));
                     (rightArm ? model.rightArm : model.leftArm).render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, j);
                     if (stack.has(MarvelDataComponents.ABSORBED_DAMAGE)) {

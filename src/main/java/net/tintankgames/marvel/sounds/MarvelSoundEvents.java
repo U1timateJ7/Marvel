@@ -60,6 +60,9 @@ public class MarvelSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SPACE_STONE_TELEPORT = register("item.space_stone.teleport");
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_SKULL_SHOOT = register("entity.red_skull.shoot");
     public static final DeferredHolder<SoundEvent, SoundEvent> RED_SKULL_HIT = register("entity.red_skull.hit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_SENTRY_ENTER = register("entity.iron_man_sentry.enter");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_SENTRY_EXIT = register("entity.iron_man_sentry.exit");
+    public static final DeferredHolder<SoundEvent, SoundEvent> IRON_MAN_SUIT_PART_EQUIP = register("entity.iron_man_suit_part.equip");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String id) {
         return REGISTER.register(id, () -> SoundEvent.createVariableRangeEvent(MarvelSuperheroes.id(id)));

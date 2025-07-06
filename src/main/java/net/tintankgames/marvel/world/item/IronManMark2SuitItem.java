@@ -1,6 +1,7 @@
 package net.tintankgames.marvel.world.item;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class IronManMark2SuitItem extends IronManSuitItem {
     }
 
     @Override
-    protected double getFlightMax() {
+    protected double getFlightMax(ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots) {
         return 128.0F;
     }
 
