@@ -1,12 +1,9 @@
 package net.tintankgames.marvel.mixin;
 
 import com.google.common.collect.Streams;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Equipable;
@@ -19,7 +16,6 @@ import net.tintankgames.marvel.core.components.MarvelDataComponents;
 import net.tintankgames.marvel.world.entity.IronManSuitPart;
 import net.tintankgames.marvel.world.item.component.SuitParts;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -34,7 +30,7 @@ public interface EquipableMixin {
             cir.setReturnValue(InteractionResultHolder.pass(itemstack));
         } else {
             ItemStack itemstack1 = p_270300_.getItemBySlot(equipmentslot);
-            if (!itemstack1.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(equipmentslot, true)).hasAllParts() && Streams.stream(marvel$getAllEntities(p_270395_)).anyMatch(entity -> entity instanceof IronManSuitPart part && part.getOwner() == p_270300_)) {
+            if (!itemstack1.getOrDefault(MarvelDataComponents.SUIT_PARTS, SuitParts.defaultParts(equipmentslot, true)).hasAllParts() && Streams.stream(p_270395_.getEntities().getAll()).anyMatch(entity -> entity instanceof IronManSuitPart part && part.getOwner() == p_270300_)) {
                 cir.setReturnValue(InteractionResultHolder.fail(itemstack));
             } else {
                 if ((!EnchantmentHelper.has(itemstack1, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE) || p_270300_.isCreative()) && !ItemStack.matches(itemstack, itemstack1)) {
@@ -50,15 +46,6 @@ public interface EquipableMixin {
                     cir.setReturnValue(InteractionResultHolder.fail(itemstack));
                 }
             }
-        }
-    }
-
-    @Unique
-    private Iterable<Entity> marvel$getAllEntities(Level level) {
-        if (level instanceof ClientLevel clientLevel) {
-            return clientLevel.getEntities().getAll();
-        } else {
-            return ((ServerLevel) level).getAllEntities();
         }
     }
 }

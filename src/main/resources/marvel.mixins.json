@@ -24,6 +24,7 @@
     "PotionBrewingMixin",
     "ProjectileMixin",
     "ServerboundSetStructureBlockPacketMixin",
+    "ServerGamePacketListenerImplMixin",
     "ServerLevelMixin",
     "StructureBlockEntityMixin",
     "VanillaRegistriesMixin",
